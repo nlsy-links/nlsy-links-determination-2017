@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+	<Words>
+
+		<Recognized>
+			<Word>Yob</Word>
+			<Word>ID</Word>
+			<Word>Biodad</Word>
+			<Word>Biomom</Word>
+			<Word>Bioparent</Word>
+			<Word>Bioparents</Word>
+			<Word>tbl</Word>
+			<Word>Mz</Word>
+			<Word>MinNonegative</Word>
+			
+			<!--<Word>tblSubject</Word>
+			<Word>tblResponse</Word>
+			<Word>tblSurveyTime</Word>
+			<Word>SurveySource</Word>-->
+		</Recognized>
+		<Unrecognized>
+			<Word></Word>
+		</Unrecognized>
+		<Deprecated>
+			<Term PreferredAlternate=""></Term>
+		</Deprecated>
+		<Compound>
+			<Term CompoundAlternate=""></Term>
+		</Compound>
+		<DiscreteExceptions>
+			<Term></Term>
+		</DiscreteExceptions>
+	</Words>
+	<Acronyms>
+		<CasingExceptions>
+			<Acronym>ID</Acronym>
+			<Acronym>tbl</Acronym>
+			<Acronym>Mz</Acronym>
+		</CasingExceptions>
+	</Acronyms>
+</Dictionary>
+<!--http://msdn.microsoft.com/en-us/library/bb514188.aspx#bkmk_dictionaryacronymscasingexceptionsacronym-->
