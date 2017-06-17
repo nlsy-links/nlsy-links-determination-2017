@@ -1,5 +1,5 @@
 ---
-title: Skeleton Report 1
+title: Row Counts of Tables
 date: "Date: `r Sys.Date()`"
 output:
   html_document:
@@ -9,13 +9,13 @@ output:
     number_sections: true
 ---
 
-This report covers the analyses used in the ZZZ project (Marcus Mark, PI).
+This report documents the basic properties of the (input & output) tables kinship determination (Joe Rodgers, PI).  Report created by Will Beasley.
 
 <!--  Set the working directory to the repository's base directory; this assumes the report is nested inside of two directories.-->
 ```{r, echo=F, message=F} 
 # cat("Working directory: ", getwd())
 library(knitr)
-opts_knit$set(root.dir='../../')  #Don't combine this call with any other chunk -especially one that uses file paths.
+opts_knit$set(root.dir='../../../')  #Don't combine this call with any other chunk -especially one that uses file paths.
 ```
 
 <!-- Set the report-wide options, and point to the external code file. -->
@@ -36,7 +36,7 @@ opts_chunk$set(
 echo_chunks    <- FALSE #Toggle for debugging.
 message_chunks <- FALSE #Toggle for debugging.
 options(width=100) #So the output is 25% wider than the default.
-read_chunk("./analysis/report-1/report-1.R") #This allows knitr to call chunks tagged in the underlying *.R file.
+read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks tagged in the underlying *.R file.
 ```
 
 <!-- Load 'sourced' R files.  Suppress the output when loading sources. --> 
@@ -69,36 +69,18 @@ read_chunk("./analysis/report-1/report-1.R") #This allows knitr to call chunks t
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers `r nrow(ds)` cars, with `r dplyr::n_distinct(ds$carburetor_count_f)` unique values for `carburetor_count`.
-1. The Seattle track's phluguerstometer was producing flaky negative values; it's measurements have been dropped.
+1. The current report covers `r nrow(ds)` tables.
 
 ## Unanswered Questions
-1. What does `VS` stand for?  How was it measured?
-1. Where the cars at the Philly track measured with the same phluguerstometer and the Cleveland track?
- 
+
 ## Answered Questions
-1. The Seattle track's phluguerstometer was producing flaky negative values; it's measurements have been dropped.
 
-# Graphs
+# Results
 
-## Marginals
-```{r marginals, echo=echo_chunks, message=message_chunks}
+## Counts
+```{r table, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
-## Scatterplots
-```{r scatterplots, echo=echo_chunks, message=message_chunks, fig.width=7}
-```
-
-# Models
-## Model Exploration
-```{r models, echo=echo_chunks, message=message_chunks}
-```
-
-## Final Model
-```{r model-results-table, echo=echo_chunks, message=message_chunks, warning=TRUE}
-```
-
-In the model that includes two predictors, the slope coefficent of `Miles per gallon` is `r summary(m2)$coefficients[2,1]`.
 
 
 # Session Information
