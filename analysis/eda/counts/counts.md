@@ -42,8 +42,18 @@ This report documents the basic properties of the (input & output) tables kinshi
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
+|Archive     |tblArchiveDescription      |        55|            4|
+|Archive     |tblRelatedValuesArchive    |   909,870|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
+|Enum        |tblLUBioparent             |         2|            2|
+|Enum        |tblLUGender                |         3|            2|
+|Enum        |tblLUMultipleBirth         |         5|            2|
+|Enum        |tblLURaceCohort            |         3|            2|
+|Enum        |tblLURosterGen1_NOTUSED    |        67|            2|
+|Enum        |tblLURosterGen1Assignment  |        50|           16|
+|Enum        |tblLUTristate              |         3|            2|
+|Enum        |tblLUYesNo                 |         6|            2|
 |Extract     |tblGen1Explicit            |    12,686|           95|
 |Extract     |tblGen1Implicit            |    12,686|          101|
 |Extract     |tblGen1Links               |    12,686|           95|
@@ -59,40 +69,30 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGeocodeSanitized        |     5,302|           29|
 |Extract     |tblLinks2004Gen1           |     3,890|            9|
 |Extract     |tblLinks2004Gen2           |    12,855|            5|
-|Process     |tblArchiveDescription      |        55|            4|
+|Metadata    |tblItem                    |       108|            5|
+|Metadata    |tblLUExtractSource         |        11|            2|
+|Metadata    |tblLUMarkerEvidence        |         8|            2|
+|Metadata    |tblLUMarkerType            |        28|            3|
+|Metadata    |tblLURelationshipPath      |         5|            2|
+|Metadata    |tblLUSurveySource          |         4|            2|
+|Metadata    |tblMzManual                |       206|            9|
+|Metadata    |tblVariable                |     1,559|           10|
 |Process     |tblBabyDaddy               |         0|           11|
 |Process     |tblFatherOfGen2            |         0|            7|
 |Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblItem                    |       108|            5|
-|Process     |tblLUBioparent             |         2|            2|
-|Process     |tblLUExtractSource         |        11|            2|
-|Process     |tblLUGender                |         3|            2|
-|Process     |tblLUMarkerEvidence        |         8|            2|
-|Process     |tblLUMarkerType            |        28|            3|
-|Process     |tblLUMultipleBirth         |         5|            2|
-|Process     |tblLURaceCohort            |         3|            2|
-|Process     |tblLURelationshipPath      |         5|            2|
-|Process     |tblLURosterGen1_NOTUSED    |        67|            2|
-|Process     |tblLURosterGen1Assignment  |        50|           16|
-|Process     |tblLUSurveySource          |         4|            2|
-|Process     |tblLUTristate              |         3|            2|
-|Process     |tblLUYesNo                 |         6|            2|
 |Process     |tblMarkerGen1              |         0|           10|
 |Process     |tblMarkerGen2              |         0|            8|
-|Process     |tblMzManual                |       206|            9|
 |Process     |tblOutcome                 |         0|            5|
 |Process     |tblOutcomesOLD             |         0|            4|
 |Process     |tblParentsOfGen1Current    |         0|           19|
 |Process     |tblParentsOfGen1Retro      |         0|            7|
-|Process     |tblRelatedStructure        |    85,590|            6|
+|Process     |tblRelatedStructure        |         0|            6|
 |Process     |tblRelatedValues           |         0|           24|
-|Process     |tblRelatedValuesArchive    |   909,870|           24|
-|Process     |tblResponse                | 2,543,774|            9|
-|Process     |tblRosterGen1              |    10,604|           13|
+|Process     |tblResponse                |         0|            9|
+|Process     |tblRosterGen1              |         0|           13|
 |Process     |tblSubject                 |    24,198|            5|
 |Process     |tblSubjectDetails          |         0|           15|
-|Process     |tblSurveyTime              |   580,752|            7|
-|Process     |tblVariable                |     1,559|           10|
+|Process     |tblSurveyTime              |         0|            7|
 
 
 
@@ -114,7 +114,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-06-17                                 
+ date     2017-06-20                                 
 ```
 
 ```
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-17, 00:43 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-20, 12:21 -0500 in 1 seconds.
 

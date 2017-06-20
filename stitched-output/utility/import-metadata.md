@@ -31,122 +31,133 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 ```r
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-schamea_name              <- "Metadata"
+schema_name               <- "Metadata"
 
-# col_types_tulsa <- readr::cols_only(
-#   Month       = readr::col_date("%m/%d/%Y"),
-#   FteSum      = readr::col_double(),
-#   FmlaSum     = readr::col_integer()
-# )
-```
-
-```r
-lst_ds <- directory_in %>%
-  list.files(pattern="*.csv", full.names=T) %>%
-  purrr::map(readr::read_csv)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character(),
-##   MinValue = col_integer(),
-##   MinNonnegative = col_integer(),
-##   MaxValue = col_integer()
-## )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character(),
-##   Explicit = col_integer()
-## )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   SubjectTag_S1 = col_integer(),
-##   SubjectTag_S2 = col_integer(),
-##   Generation = col_integer(),
-##   MultipleBirthIfSameSex = col_integer(),
-##   IsMz = col_integer(),
-##   Undecided = col_integer(),
-##   Related = col_integer(),
-##   Notes = col_character()
-## )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   ID = col_integer(),
-##   AlgorithmVersion = col_integer(),
-##   SubjectTag_S1 = col_integer(),
-##   SubjectTag_S2 = col_integer(),
-##   MultipleBirthIfSameSex = col_integer(),
-##   IsMz = col_integer(),
-##   SameGeneration = col_character(),
-##   RosterAssignmentID = col_character(),
-##   RRoster = col_character(),
-##   LastSurvey_S1 = col_integer(),
-##   LastSurvey_S2 = col_integer(),
-##   RPeek = col_character()
-## )
-```
-
-```
-## See spec(...) for full column specifications.
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   VariableCode = col_character(),
-##   Item = col_integer(),
-##   Generation = col_integer(),
-##   ExtractSource = col_integer(),
-##   SurveySource = col_integer(),
-##   SurveyYear = col_integer(),
-##   LoopIndex = col_integer(),
-##   Translate = col_integer(),
-##   Notes = col_character()
-## )
+lst_col_types <- list(
+  Item = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer()
+  ),
+  LUExtractSource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerEvidence = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerType = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    Explicit                            = readr::col_integer()
+  ),
+  LURelationshipPath = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUSurveySource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  MzManual = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    Undecided                           = readr::col_integer(),
+    Related                             = readr::col_integer(),
+    Notes                               = readr::col_character()
+  ),
+  # RArchive = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   AlgorithmVersion                    = readr::col_integer(),
+  #   SubjectTag_S1                       = readr::col_integer(),
+  #   SubjectTag_S2                       = readr::col_integer(),
+  #   MultipleBirthIfSameSex              = readr::col_integer(),
+  #   IsMz                                = readr::col_integer(),
+  #   SameGeneration                      = readr::col_character(),
+  #   RosterAssignmentID                  = readr::col_character(),
+  #   RRoster                             = readr::col_character(),
+  #   LastSurvey_S1                       = readr::col_integer(),
+  #   LastSurvey_S2                       = readr::col_integer(),
+  #   RImplicitPass1                      = readr::col_double(),
+  #   RImplicit                           = readr::col_double(),
+  #   RImplicitSubject                    = readr::col_double(),
+  #   RImplicitMother                     = readr::col_double(),
+  #   RImplicit2004                       = readr::col_double(),
+  #   RExplicitOldestSibVersion           = readr::col_double(),
+  #   RExplicitYoungestSibVersion         = readr::col_double(),
+  #   RExplicitPass1                      = readr::col_double(),
+  #   RExplicit                           = readr::col_double(),
+  #   RPass1                              = readr::col_double(),
+  #   R                                   = readr::col_double(),
+  #   RFull                               = readr::col_double(),
+  #   RPeek                               = readr::col_character()
+  # ),
+  Variable = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveySource                        = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex                           = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character()
+  )
+)
 ```
 
 ```r
+ds_file <- names(lst_col_types) %>%
+  tibble::tibble(
+    name = .
+  ) %>%
+  dplyr::mutate(
+    path     = file.path(directory_in, paste0(name, ".csv")),
+    table_name = paste0(schema_name, ".tbl", name),
+    # table_name = paste0("tbl", name),
+    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    exists    = purrr::map_lgl(path, file.exists),
+    sql_delete= paste0("DELETE FROM ", table_name)
+  )
+
+ds_file
+```
+
+```
+## # A tibble: 8 x 6
+##                 name                                               path
+##                <chr>                                              <chr>
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 4 more variables: table_name <chr>, col_types <list>,
+## #   exists <lgl>, sql_delete <chr>
+```
+
+```r
+testit::assert("All metadata files must exist.", all(ds_file$exists))
+
+lst_ds <- ds_file %>%
+  dplyr::select(
+    file          = path,
+    col_types
+  ) %>%
+  purrr::pmap(readr::read_csv) %>%
+  purrr::set_names(nm=ds_file$table_name)
+
 rm(directory_in) # rm(col_types_tulsa)
 
 lst_ds %>%
@@ -237,27 +248,6 @@ lst_ds %>%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
-## # A tibble: 909,870 x 24
-##       ID AlgorithmVersion SubjectTag_S1 SubjectTag_S2
-##    <int>            <int>         <int>         <int>
-##  1     1               25           201           202
-##  2     2               25           301           302
-##  3     3               25           301           303
-##  4     4               25           302           303
-##  5     5               25           401           403
-##  6     6               25           801           802
-##  7     7               25           801           803
-##  8     8               25           802           803
-##  9     9               25          1001          1002
-## 10    10               25          1201          1202
-## # ... with 909,860 more rows, and 20 more variables:
-## #   MultipleBirthIfSameSex <int>, IsMz <int>, SameGeneration <chr>,
-## #   RosterAssignmentID <chr>, RRoster <chr>, LastSurvey_S1 <int>,
-## #   LastSurvey_S2 <int>, RImplicitPass1 <dbl>, RImplicit <dbl>,
-## #   RImplicitSubject <dbl>, RImplicitMother <dbl>, RImplicit2004 <dbl>,
-## #   RExplicitOldestSibVersion <dbl>, RExplicitYoungestSibVersion <dbl>,
-## #   RExplicitPass1 <dbl>, RExplicit <dbl>, RPass1 <dbl>, R <dbl>,
-## #   RFull <dbl>, RPeek <chr>
 ## # A tibble: 1,559 x 10
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
@@ -276,37 +266,56 @@ lst_ds %>%
 ```
 
 ```r
-lst_ds %>%
-  purrr::map("name")
+lst_ds$Metadata.tblVariable %>%
+  purrr::map(~max(nchar(.), na.rm=T))
 ```
 
 ```
-## [[1]]
-## NULL
+## $ID
+## [1] 4
 ## 
-## [[2]]
-## NULL
+## $VariableCode
+## [1] 8
 ## 
-## [[3]]
-## NULL
+## $Item
+## [1] 4
 ## 
-## [[4]]
-## NULL
+## $Generation
+## [1] 1
 ## 
-## [[5]]
-## NULL
+## $ExtractSource
+## [1] 2
 ## 
-## [[6]]
-## NULL
+## $SurveySource
+## [1] 1
 ## 
-## [[7]]
-## NULL
+## $SurveyYear
+## [1] 4
 ## 
-## [[8]]
-## NULL
+## $LoopIndex
+## [1] 3
 ## 
-## [[9]]
-## NULL
+## $Translate
+## [1] 1
+## 
+## $Notes
+## [1] 56
+```
+
+```r
+# lst_ds %>%
+#   purrr::map(nrow)
+# lst_ds %>%
+#   purrr::map(readr::spec)
+
+names(lst_ds)
+```
+
+```
+## [1] "Metadata.tblItem"               "Metadata.tblLUExtractSource"   
+## [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
+## [5] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
+## [7] "Metadata.tblMzManual"           "Metadata.tblVariable"
 ```
 
 ```r
@@ -314,7 +323,7 @@ lst_ds %>%
 ```
 
 ```r
-# # Sniff out problems
+# Sniff out problems
 # testit::assert("The month value must be nonmissing & since 2000", all(!is.na(ds$month) & (ds$month>="2012-01-01")))
 # testit::assert("The county_id value must be nonmissing & positive.", all(!is.na(ds$county_id) & (ds$county_id>0)))
 # testit::assert("The county_id value must be in [1, 77].", all(ds$county_id %in% seq_len(77L)))
@@ -328,19 +337,87 @@ lst_ds %>%
 # table(paste(ds$county_id, ds$month))[table(paste(ds$county_id, ds$month))>1]
 ```
 
+
 ```r
-# dput(colnames(ds)) # Print colnames for line below.
-# columns_to_write <- c("county_month_id", "county_id", "month", "fte", "fte_approximated", "region_id")
-# ds_slim <- ds %>%
-#   dplyr::select_(.dots=columns_to_write) %>%
-#   dplyr::mutate(
-#     fte_approximated <- as.integer(fte_approximated)
-#   )
-# ds_slim
+# lst_ds %>%
+#   purrr::map(function(x)paste(names(x)))
 #
-# rm(columns_to_write)
+
+channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+RODBC::odbcGetInfo(channel)
 ```
 
+```
+##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
+## "Microsoft SQL Server"           "10.50.2500"                "03.52" 
+##       Data_Source_Name            Driver_Name             Driver_Ver 
+##                     ""         "SQLSRV32.DLL"           "06.02.9200" 
+##               ODBC_Ver            Server_Name 
+##           "03.80.0000"            "BEE\\BASS"
+```
+
+```r
+# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
+
+# delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
+
+delete_results <- ds_file$sql_delete %>%
+  purrr::set_names(ds_file$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+
+delete_results
+```
+
+```
+##               Metadata.tblItem    Metadata.tblLUExtractSource 
+##                             -2                             -2 
+##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
+##                             -2                             -2 
+## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
+##                             -2                             -2 
+##           Metadata.tblMzManual           Metadata.tblVariable 
+##                             -2                             -2
+```
+
+```r
+# d <- lst_ds[["Metadata.tblMzManual"]] %>%
+#   dplyr::slice(1:2)
+# summary(d)
+
+# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+
+
+purrr::map2_int(
+  lst_ds,
+  # names(lst_ds),
+  ds_file$table_name,
+  function( d, table_name ) {
+    RODBC::sqlSave(
+      channel     = channel,
+      dat         = d,
+      tablename   = table_name,
+      safer       = FALSE,       # Don't keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    )
+  }
+)
+```
+
+```
+##               Metadata.tblItem    Metadata.tblLUExtractSource 
+##                              1                              1 
+##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
+##                              1                              1 
+## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
+##                              1                              1 
+##           Metadata.tblMzManual           Metadata.tblVariable 
+##                              1                              1
+```
+
+```r
+RODBC::odbcClose(channel); rm(channel)
+```
 
 The R session information (including the OS info, R version and all
 packages used):
@@ -351,38 +428,33 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.0 (2017-04-21)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.2 LTS
+## R version 3.4.0 Patched (2017-05-16 r72684)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows >= 8 x64 (build 9200)
 ## 
 ## Matrix products: default
-## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
-## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_0.6-1    magrittr_1.5
+## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11          lattice_0.20-35       tidyr_0.6.3          
-##  [4] zoo_1.8-0             digest_0.6.12         dplyr_0.7.0          
-##  [7] assertthat_0.2.0      grid_3.4.0            R6_2.2.1             
-## [10] evaluate_0.10         RSQLite_1.1-2         stringi_1.1.5        
-## [13] rlang_0.1.1.9000      testit_0.7            tools_3.4.0          
-## [16] stringr_1.2.0         readr_1.1.1           OuhscMunge_0.1.8.9001
-## [19] glue_1.1.0            purrr_0.2.2.2         hms_0.3              
-## [22] compiler_3.4.0        memoise_1.1.0         knitr_1.16           
-## [25] tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
 ```
 
 ```r
@@ -390,6 +462,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-19 08:52:03 CDT"
+## [1] "2017-06-20 12:21:15 CDT"
 ```
 

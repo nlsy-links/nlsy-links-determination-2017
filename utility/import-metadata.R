@@ -19,34 +19,136 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-schamea_name              <- "Metadata"
+schema_name               <- "Metadata"
 
-# col_types_tulsa <- readr::cols_only(
-#   Month       = readr::col_date("%m/%d/%Y"),
-#   FteSum      = readr::col_double(),
-#   FmlaSum     = readr::col_integer()
-# )
+lst_col_types <- list(
+  Item = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer()
+  ),
+  LUExtractSource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerEvidence = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerType = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    Explicit                            = readr::col_integer()
+  ),
+  LURelationshipPath = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUSurveySource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  MzManual = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    Undecided                           = readr::col_integer(),
+    Related                             = readr::col_integer(),
+    Notes                               = readr::col_character()
+  ),
+  # RArchive = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   AlgorithmVersion                    = readr::col_integer(),
+  #   SubjectTag_S1                       = readr::col_integer(),
+  #   SubjectTag_S2                       = readr::col_integer(),
+  #   MultipleBirthIfSameSex              = readr::col_integer(),
+  #   IsMz                                = readr::col_integer(),
+  #   SameGeneration                      = readr::col_character(),
+  #   RosterAssignmentID                  = readr::col_character(),
+  #   RRoster                             = readr::col_character(),
+  #   LastSurvey_S1                       = readr::col_integer(),
+  #   LastSurvey_S2                       = readr::col_integer(),
+  #   RImplicitPass1                      = readr::col_double(),
+  #   RImplicit                           = readr::col_double(),
+  #   RImplicitSubject                    = readr::col_double(),
+  #   RImplicitMother                     = readr::col_double(),
+  #   RImplicit2004                       = readr::col_double(),
+  #   RExplicitOldestSibVersion           = readr::col_double(),
+  #   RExplicitYoungestSibVersion         = readr::col_double(),
+  #   RExplicitPass1                      = readr::col_double(),
+  #   RExplicit                           = readr::col_double(),
+  #   RPass1                              = readr::col_double(),
+  #   R                                   = readr::col_double(),
+  #   RFull                               = readr::col_double(),
+  #   RPeek                               = readr::col_character()
+  # ),
+  Variable = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveySource                        = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex                           = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character()
+  )
+)
+
 
 # ---- load-data ---------------------------------------------------------------
+ds_file <- names(lst_col_types) %>%
+  tibble::tibble(
+    name = .
+  ) %>%
+  dplyr::mutate(
+    path     = file.path(directory_in, paste0(name, ".csv")),
+    table_name = paste0(schema_name, ".tbl", name),
+    # table_name = paste0("tbl", name),
+    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    exists    = purrr::map_lgl(path, file.exists),
+    sql_delete= paste0("DELETE FROM ", table_name)
+  )
 
+ds_file
 
-lst_ds <- directory_in %>%
-  list.files(pattern="*.csv", full.names=T) %>%
-  purrr::map(readr::read_csv)
+testit::assert("All metadata files must exist.", all(ds_file$exists))
+
+lst_ds <- ds_file %>%
+  dplyr::select(
+    file          = path,
+    col_types
+  ) %>%
+  purrr::pmap(readr::read_csv) %>%
+  purrr::set_names(nm=ds_file$table_name)
 
 rm(directory_in) # rm(col_types_tulsa)
 
 lst_ds %>%
   purrr::walk(print)
 
-lst_ds %>%
-  purrr::map("name")
+lst_ds$Metadata.tblVariable %>%
+  purrr::map(~max(nchar(.), na.rm=T))
+
+# lst_ds %>%
+#   purrr::map(nrow)
+# lst_ds %>%
+#   purrr::map(readr::spec)
+
+names(lst_ds)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
+
 # ---- verify-values -----------------------------------------------------------
-# # Sniff out problems
+# Sniff out problems
 # testit::assert("The month value must be nonmissing & since 2000", all(!is.na(ds$month) & (ds$month>="2012-01-01")))
 # testit::assert("The county_id value must be nonmissing & positive.", all(!is.na(ds$county_id) & (ds$county_id>0)))
 # testit::assert("The county_id value must be in [1, 77].", all(ds$county_id %in% seq_len(77L)))
@@ -60,16 +162,45 @@ lst_ds %>%
 # table(paste(ds$county_id, ds$month))[table(paste(ds$county_id, ds$month))>1]
 
 # ---- specify-columns-to-upload -----------------------------------------------
-# dput(colnames(ds)) # Print colnames for line below.
-# columns_to_write <- c("county_month_id", "county_id", "month", "fte", "fte_approximated", "region_id")
-# ds_slim <- ds %>%
-#   dplyr::select_(.dots=columns_to_write) %>%
-#   dplyr::mutate(
-#     fte_approximated <- as.integer(fte_approximated)
-#   )
-# ds_slim
-#
-# rm(columns_to_write)
 
 
 # ---- upload-to-db ----------------------------------------------------------
+# lst_ds %>%
+#   purrr::map(function(x)paste(names(x)))
+#
+
+channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+RODBC::odbcGetInfo(channel)
+# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
+
+# delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
+
+delete_results <- ds_file$sql_delete %>%
+  purrr::set_names(ds_file$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+
+delete_results
+
+# d <- lst_ds[["Metadata.tblMzManual"]] %>%
+#   dplyr::slice(1:2)
+# summary(d)
+
+# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+
+
+purrr::map2_int(
+  lst_ds,
+  # names(lst_ds),
+  ds_file$table_name,
+  function( d, table_name ) {
+    RODBC::sqlSave(
+      channel     = channel,
+      dat         = d,
+      tablename   = table_name,
+      safer       = FALSE,       # Don't keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    )
+  }
+)
+RODBC::odbcClose(channel); rm(channel)
