@@ -109,8 +109,8 @@ ds_file <- names(lst_col_types) %>%
   ) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    # table_name = paste0(schema_name, ".tbl", name),
-    table_name = paste0("tbl", name),
+    table_name = paste0(schema_name, ".tbl", name),
+    # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists)
   )
@@ -137,6 +137,8 @@ lst_ds %>%
 # lst_ds %>%
 #   purrr::map(readr::spec)
 
+names(lst_ds)
+
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
@@ -156,16 +158,60 @@ lst_ds %>%
 # table(paste(ds$county_id, ds$month))[table(paste(ds$county_id, ds$month))>1]
 
 # ---- specify-columns-to-upload -----------------------------------------------
-# dput(colnames(ds)) # Print colnames for line below.
-# columns_to_write <- c("county_month_id", "county_id", "month", "fte", "fte_approximated", "region_id")
-# ds_slim <- ds %>%
-#   dplyr::select_(.dots=columns_to_write) %>%
-#   dplyr::mutate(
-#     fte_approximated <- as.integer(fte_approximated)
-#   )
-# ds_slim
-#
-# rm(columns_to_write)
 
 
 # ---- upload-to-db ----------------------------------------------------------
+# lst_ds %>%
+#   purrr::map(function(x)paste(names(x)))
+#
+
+
+channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+RODBC::odbcGetInfo(channel)
+keepExistingTable <- FALSE
+# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
+
+purrr::map2(
+  lst_ds,
+  # names(lst_ds),
+  ds_file$table_name,
+  function( d, table_name ) {
+    RODBC::sqlSave(
+      channel     = channel,
+      dat         = d,
+      tablename   = table_name,
+      safer       = keepExistingTable,
+      rownames    = FALSE,
+      append      = TRUE
+    )
+  }
+)
+
+
+RODBC::odbcClose(channel)
+
+
+
+OuhscMunge::upload_sqls_rodbc(
+  d                = lst_ds[[1]],
+  table_name       = "dbo.tblItem",
+  dsn_name         = "BeeNlsLinks",
+  clear_table      = F,
+  create_table     = FALSE
+
+)
+
+
+
+
+purrr::map2(
+  lst_ds,
+  # names(lst_ds),
+  ds_file$table_name,
+  OuhscMunge::upload_sqls_rodbc,
+  dsn_name        = "BeeNlsLinks",
+  clear_table     = TRUE,
+  create_table    = FALSE
+)
+
+

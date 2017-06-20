@@ -42,6 +42,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
+|Archive     |tblRelatedValuesArchive    |   909,870|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
 |Extract     |tblGen1Explicit            |    12,686|           95|
@@ -87,7 +88,6 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Process     |tblParentsOfGen1Retro      |         0|            7|
 |Process     |tblRelatedStructure        |    85,590|            6|
 |Process     |tblRelatedValues           |         0|           24|
-|Process     |tblRelatedValuesArchive    |   909,870|           24|
 |Process     |tblResponse                |         0|            9|
 |Process     |tblRosterGen1              |    10,604|           13|
 |Process     |tblSubject                 |    24,198|            5|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-19, 22:16 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-19, 22:40 -0500 in 1 seconds.
 
