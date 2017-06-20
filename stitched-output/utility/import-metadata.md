@@ -31,13 +31,7 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 ```r
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-schamea_name              <- "Metadata"
-
-# col_types_tulsa <- readr::cols_only(
-#   Month       = readr::col_date("%m/%d/%Y"),
-#   FteSum      = readr::col_double(),
-#   FmlaSum     = readr::col_integer()
-# )
+schema_name               <- "Metadata"
 
 lst_col_types <- list(
   Item = readr::cols_only(
@@ -79,32 +73,32 @@ lst_col_types <- list(
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  RArchive = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    AlgorithmVersion                    = readr::col_integer(),
-    SubjectTag_S1                       = readr::col_integer(),
-    SubjectTag_S2                       = readr::col_integer(),
-    MultipleBirthIfSameSex              = readr::col_integer(),
-    IsMz                                = readr::col_integer(),
-    SameGeneration                      = readr::col_character(),
-    RosterAssignmentID                  = readr::col_character(),
-    RRoster                             = readr::col_character(),
-    LastSurvey_S1                       = readr::col_integer(),
-    LastSurvey_S2                       = readr::col_integer(),
-    RImplicitPass1                      = readr::col_double(),
-    RImplicit                           = readr::col_double(),
-    RImplicitSubject                    = readr::col_double(),
-    RImplicitMother                     = readr::col_double(),
-    RImplicit2004                       = readr::col_double(),
-    RExplicitOldestSibVersion           = readr::col_double(),
-    RExplicitYoungestSibVersion         = readr::col_double(),
-    RExplicitPass1                      = readr::col_double(),
-    RExplicit                           = readr::col_double(),
-    RPass1                              = readr::col_double(),
-    R                                   = readr::col_double(),
-    RFull                               = readr::col_double(),
-    RPeek                               = readr::col_character()
-  ),
+  # RArchive = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   AlgorithmVersion                    = readr::col_integer(),
+  #   SubjectTag_S1                       = readr::col_integer(),
+  #   SubjectTag_S2                       = readr::col_integer(),
+  #   MultipleBirthIfSameSex              = readr::col_integer(),
+  #   IsMz                                = readr::col_integer(),
+  #   SameGeneration                      = readr::col_character(),
+  #   RosterAssignmentID                  = readr::col_character(),
+  #   RRoster                             = readr::col_character(),
+  #   LastSurvey_S1                       = readr::col_integer(),
+  #   LastSurvey_S2                       = readr::col_integer(),
+  #   RImplicitPass1                      = readr::col_double(),
+  #   RImplicit                           = readr::col_double(),
+  #   RImplicitSubject                    = readr::col_double(),
+  #   RImplicitMother                     = readr::col_double(),
+  #   RImplicit2004                       = readr::col_double(),
+  #   RExplicitOldestSibVersion           = readr::col_double(),
+  #   RExplicitYoungestSibVersion         = readr::col_double(),
+  #   RExplicitPass1                      = readr::col_double(),
+  #   RExplicit                           = readr::col_double(),
+  #   RPass1                              = readr::col_double(),
+  #   R                                   = readr::col_double(),
+  #   RFull                               = readr::col_double(),
+  #   RPeek                               = readr::col_character()
+  # ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -118,29 +112,48 @@ lst_col_types <- list(
     Notes                               = readr::col_character()
   )
 )
-
-# lst_col_types[["Item"]]
 ```
 
 ```r
-ds_file <- tibble::tibble(
-  file = list.files(directory_in, pattern="*.csv", full.names=T)
-)
-
-ds_file <- list.files(directory_in, pattern="*.csv", full.names=T) %>%
-  tibble::tibble(file = .) %>%
-  # dplyr::slice(1:2) %>%
+ds_file <- names(lst_col_types) %>%
+  tibble::tibble(
+    name = .
+  ) %>%
   dplyr::mutate(
-    table_name = tools::file_path_sans_ext(basename(file)),
-    col_types = purrr::map(table_name, function(x) lst_col_types[[x]])
+    path     = file.path(directory_in, paste0(name, ".csv")),
+    # table_name = paste0(schema_name, ".tbl", name),
+    table_name = paste0("tbl", name),
+    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    exists    = purrr::map_lgl(path, file.exists)
   )
 
+ds_file
+```
 
+```
+## # A tibble: 8 x 5
+##                 name                                               path
+##                <chr>                                              <chr>
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 3 more variables: table_name <chr>, col_types <list>,
+## #   exists <lgl>
+```
 
-#TODO: put arguments into a tibble.
+```r
+testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 lst_ds <- ds_file %>%
-  dplyr::select(file, col_types) %>%
+  dplyr::select(
+    file          = path,
+    col_types
+  ) %>%
   purrr::pmap(readr::read_csv) %>%
   purrr::set_names(nm=ds_file$table_name)
 
@@ -234,27 +247,6 @@ lst_ds %>%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
-## # A tibble: 909,870 x 24
-##       ID AlgorithmVersion SubjectTag_S1 SubjectTag_S2
-##    <int>            <int>         <int>         <int>
-##  1     1               25           201           202
-##  2     2               25           301           302
-##  3     3               25           301           303
-##  4     4               25           302           303
-##  5     5               25           401           403
-##  6     6               25           801           802
-##  7     7               25           801           803
-##  8     8               25           802           803
-##  9     9               25          1001          1002
-## 10    10               25          1201          1202
-## # ... with 909,860 more rows, and 20 more variables:
-## #   MultipleBirthIfSameSex <int>, IsMz <int>, SameGeneration <chr>,
-## #   RosterAssignmentID <chr>, RRoster <chr>, LastSurvey_S1 <int>,
-## #   LastSurvey_S2 <int>, RImplicitPass1 <dbl>, RImplicit <dbl>,
-## #   RImplicitSubject <dbl>, RImplicitMother <dbl>, RImplicit2004 <dbl>,
-## #   RExplicitOldestSibVersion <dbl>, RExplicitYoungestSibVersion <dbl>,
-## #   RExplicitPass1 <dbl>, RExplicit <dbl>, RPass1 <dbl>, R <dbl>,
-## #   RFull <dbl>, RPeek <chr>
 ## # A tibble: 1,559 x 10
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
@@ -274,14 +266,9 @@ lst_ds %>%
 
 ```r
 # lst_ds %>%
-#   purrr::map("ID")
-
-# lst_ds %>%
 #   purrr::map(nrow)
 # lst_ds %>%
 #   purrr::map(readr::spec)
-
-# names(lst_ds)
 ```
 
 ```r
@@ -289,7 +276,7 @@ lst_ds %>%
 ```
 
 ```r
-# # Sniff out problems
+# Sniff out problems
 # testit::assert("The month value must be nonmissing & since 2000", all(!is.na(ds$month) & (ds$month>="2012-01-01")))
 # testit::assert("The county_id value must be nonmissing & positive.", all(!is.na(ds$county_id) & (ds$county_id>0)))
 # testit::assert("The county_id value must be in [1, 77].", all(ds$county_id %in% seq_len(77L)))
@@ -347,10 +334,11 @@ sessionInfo()
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       tools_3.4.0      stringr_1.2.0    readr_1.1.1     
-## [13] glue_1.1.0       purrr_0.2.2.2    hms_0.3          compiler_3.4.0  
-## [17] knitr_1.16       bindr_0.1        tibble_1.3.3
+##  [5] R6_2.2.1         backports_1.1.0  evaluate_0.10    stringi_1.1.5   
+##  [9] rlang_0.1.1      testit_0.7       checkmate_1.8.2  tools_3.4.0     
+## [13] stringr_1.2.0    readr_1.1.1      glue_1.1.0       markdown_0.8    
+## [17] purrr_0.2.2.2    hms_0.3          compiler_3.4.0   knitr_1.16      
+## [21] bindr_0.1        tibble_1.3.3
 ```
 
 ```r
@@ -358,6 +346,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-19 20:06:36 CDT"
+## [1] "2017-06-19 20:24:42 CDT"
 ```
 

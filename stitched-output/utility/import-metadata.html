@@ -225,13 +225,7 @@ requireNamespace(&quot;testit&quot;                 ) #For asserting conditions 
 
 <pre><code class="r"># Constant values that won&#39;t change.
 directory_in              &lt;- &quot;data-public/metadata/tables&quot;
-schamea_name              &lt;- &quot;Metadata&quot;
-
-# col_types_tulsa &lt;- readr::cols_only(
-#   Month       = readr::col_date(&quot;%m/%d/%Y&quot;),
-#   FteSum      = readr::col_double(),
-#   FmlaSum     = readr::col_integer()
-# )
+schema_name               &lt;- &quot;Metadata&quot;
 
 lst_col_types &lt;- list(
   Item = readr::cols_only(
@@ -273,32 +267,32 @@ lst_col_types &lt;- list(
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  RArchive = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    AlgorithmVersion                    = readr::col_integer(),
-    SubjectTag_S1                       = readr::col_integer(),
-    SubjectTag_S2                       = readr::col_integer(),
-    MultipleBirthIfSameSex              = readr::col_integer(),
-    IsMz                                = readr::col_integer(),
-    SameGeneration                      = readr::col_character(),
-    RosterAssignmentID                  = readr::col_character(),
-    RRoster                             = readr::col_character(),
-    LastSurvey_S1                       = readr::col_integer(),
-    LastSurvey_S2                       = readr::col_integer(),
-    RImplicitPass1                      = readr::col_double(),
-    RImplicit                           = readr::col_double(),
-    RImplicitSubject                    = readr::col_double(),
-    RImplicitMother                     = readr::col_double(),
-    RImplicit2004                       = readr::col_double(),
-    RExplicitOldestSibVersion           = readr::col_double(),
-    RExplicitYoungestSibVersion         = readr::col_double(),
-    RExplicitPass1                      = readr::col_double(),
-    RExplicit                           = readr::col_double(),
-    RPass1                              = readr::col_double(),
-    R                                   = readr::col_double(),
-    RFull                               = readr::col_double(),
-    RPeek                               = readr::col_character()
-  ),
+  # RArchive = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   AlgorithmVersion                    = readr::col_integer(),
+  #   SubjectTag_S1                       = readr::col_integer(),
+  #   SubjectTag_S2                       = readr::col_integer(),
+  #   MultipleBirthIfSameSex              = readr::col_integer(),
+  #   IsMz                                = readr::col_integer(),
+  #   SameGeneration                      = readr::col_character(),
+  #   RosterAssignmentID                  = readr::col_character(),
+  #   RRoster                             = readr::col_character(),
+  #   LastSurvey_S1                       = readr::col_integer(),
+  #   LastSurvey_S2                       = readr::col_integer(),
+  #   RImplicitPass1                      = readr::col_double(),
+  #   RImplicit                           = readr::col_double(),
+  #   RImplicitSubject                    = readr::col_double(),
+  #   RImplicitMother                     = readr::col_double(),
+  #   RImplicit2004                       = readr::col_double(),
+  #   RExplicitOldestSibVersion           = readr::col_double(),
+  #   RExplicitYoungestSibVersion         = readr::col_double(),
+  #   RExplicitPass1                      = readr::col_double(),
+  #   RExplicit                           = readr::col_double(),
+  #   RPass1                              = readr::col_double(),
+  #   R                                   = readr::col_double(),
+  #   RFull                               = readr::col_double(),
+  #   RPeek                               = readr::col_character()
+  # ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -312,28 +306,45 @@ lst_col_types &lt;- list(
     Notes                               = readr::col_character()
   )
 )
-
-# lst_col_types[[&quot;Item&quot;]]
 </code></pre>
 
-<pre><code class="r">ds_file &lt;- tibble::tibble(
-  file = list.files(directory_in, pattern=&quot;*.csv&quot;, full.names=T)
-)
-
-ds_file &lt;- list.files(directory_in, pattern=&quot;*.csv&quot;, full.names=T) %&gt;%
-  tibble::tibble(file = .) %&gt;%
-  # dplyr::slice(1:2) %&gt;%
+<pre><code class="r">ds_file &lt;- names(lst_col_types) %&gt;%
+  tibble::tibble(
+    name = .
+  ) %&gt;%
   dplyr::mutate(
-    table_name = tools::file_path_sans_ext(basename(file)),
-    col_types = purrr::map(table_name, function(x) lst_col_types[[x]])
+    path     = file.path(directory_in, paste0(name, &quot;.csv&quot;)),
+    # table_name = paste0(schema_name, &quot;.tbl&quot;, name),
+    table_name = paste0(&quot;tbl&quot;, name),
+    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    exists    = purrr::map_lgl(path, file.exists)
   )
 
+ds_file
+</code></pre>
 
+<pre><code>## # A tibble: 8 x 5
+##                 name                                               path
+##                &lt;chr&gt;                                              &lt;chr&gt;
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 3 more variables: table_name &lt;chr&gt;, col_types &lt;list&gt;,
+## #   exists &lt;lgl&gt;
+</code></pre>
 
-#TODO: put arguments into a tibble.
+<pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
 
 lst_ds &lt;- ds_file %&gt;%
-  dplyr::select(file, col_types) %&gt;%
+  dplyr::select(
+    file          = path,
+    col_types
+  ) %&gt;%
   purrr::pmap(readr::read_csv) %&gt;%
   purrr::set_names(nm=ds_file$table_name)
 
@@ -426,27 +437,6 @@ lst_ds %&gt;%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz &lt;int&gt;,
 ## #   Undecided &lt;int&gt;, Related &lt;int&gt;, Notes &lt;chr&gt;
-## # A tibble: 909,870 x 24
-##       ID AlgorithmVersion SubjectTag_S1 SubjectTag_S2
-##    &lt;int&gt;            &lt;int&gt;         &lt;int&gt;         &lt;int&gt;
-##  1     1               25           201           202
-##  2     2               25           301           302
-##  3     3               25           301           303
-##  4     4               25           302           303
-##  5     5               25           401           403
-##  6     6               25           801           802
-##  7     7               25           801           803
-##  8     8               25           802           803
-##  9     9               25          1001          1002
-## 10    10               25          1201          1202
-## # ... with 909,860 more rows, and 20 more variables:
-## #   MultipleBirthIfSameSex &lt;int&gt;, IsMz &lt;int&gt;, SameGeneration &lt;chr&gt;,
-## #   RosterAssignmentID &lt;chr&gt;, RRoster &lt;chr&gt;, LastSurvey_S1 &lt;int&gt;,
-## #   LastSurvey_S2 &lt;int&gt;, RImplicitPass1 &lt;dbl&gt;, RImplicit &lt;dbl&gt;,
-## #   RImplicitSubject &lt;dbl&gt;, RImplicitMother &lt;dbl&gt;, RImplicit2004 &lt;dbl&gt;,
-## #   RExplicitOldestSibVersion &lt;dbl&gt;, RExplicitYoungestSibVersion &lt;dbl&gt;,
-## #   RExplicitPass1 &lt;dbl&gt;, RExplicit &lt;dbl&gt;, RPass1 &lt;dbl&gt;, R &lt;dbl&gt;,
-## #   RFull &lt;dbl&gt;, RPeek &lt;chr&gt;
 ## # A tibble: 1,559 x 10
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    &lt;int&gt;        &lt;chr&gt; &lt;int&gt;      &lt;int&gt;         &lt;int&gt;        &lt;int&gt;
@@ -465,20 +455,15 @@ lst_ds %&gt;%
 </code></pre>
 
 <pre><code class="r"># lst_ds %&gt;%
-#   purrr::map(&quot;ID&quot;)
-
-# lst_ds %&gt;%
 #   purrr::map(nrow)
 # lst_ds %&gt;%
 #   purrr::map(readr::spec)
-
-# names(lst_ds)
 </code></pre>
 
 <pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 </code></pre>
 
-<pre><code class="r"># # Sniff out problems
+<pre><code class="r"># Sniff out problems
 # testit::assert(&quot;The month value must be nonmissing &amp; since 2000&quot;, all(!is.na(ds$month) &amp; (ds$month&gt;=&quot;2012-01-01&quot;)))
 # testit::assert(&quot;The county_id value must be nonmissing &amp; positive.&quot;, all(!is.na(ds$county_id) &amp; (ds$county_id&gt;0)))
 # testit::assert(&quot;The county_id value must be in [1, 77].&quot;, all(ds$county_id %in% seq_len(77L)))
@@ -531,16 +516,17 @@ packages used):</p>
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       tools_3.4.0      stringr_1.2.0    readr_1.1.1     
-## [13] glue_1.1.0       purrr_0.2.2.2    hms_0.3          compiler_3.4.0  
-## [17] knitr_1.16       bindr_0.1        tibble_1.3.3
+##  [5] R6_2.2.1         backports_1.1.0  evaluate_0.10    stringi_1.1.5   
+##  [9] rlang_0.1.1      testit_0.7       checkmate_1.8.2  tools_3.4.0     
+## [13] stringr_1.2.0    readr_1.1.1      glue_1.1.0       markdown_0.8    
+## [17] purrr_0.2.2.2    hms_0.3          compiler_3.4.0   knitr_1.16      
+## [21] bindr_0.1        tibble_1.3.3
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-19 20:06:36 CDT&quot;
+<pre><code>## [1] &quot;2017-06-19 20:24:42 CDT&quot;
 </code></pre>
 
 </body>
