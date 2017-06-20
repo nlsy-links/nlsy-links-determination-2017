@@ -45,6 +45,14 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Archive     |tblRelatedValuesArchive    |   909,870|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
+|Enum        |tblLUBioparent             |         2|            2|
+|Enum        |tblLUGender                |         3|            2|
+|Enum        |tblLUMultipleBirth         |         5|            2|
+|Enum        |tblLURaceCohort            |         3|            2|
+|Enum        |tblLURosterGen1_NOTUSED    |        67|            2|
+|Enum        |tblLURosterGen1Assignment  |        50|           16|
+|Enum        |tblLUTristate              |         3|            2|
+|Enum        |tblLUYesNo                 |         6|            2|
 |Extract     |tblGen1Explicit            |    12,686|           95|
 |Extract     |tblGen1Implicit            |    12,686|          101|
 |Extract     |tblGen1Links               |    12,686|           95|
@@ -72,14 +80,6 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Process     |tblBabyDaddy               |         0|           11|
 |Process     |tblFatherOfGen2            |         0|            7|
 |Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblLUBioparent             |         2|            2|
-|Process     |tblLUGender                |         3|            2|
-|Process     |tblLUMultipleBirth         |         5|            2|
-|Process     |tblLURaceCohort            |         3|            2|
-|Process     |tblLURosterGen1_NOTUSED    |        67|            2|
-|Process     |tblLURosterGen1Assignment  |        50|           16|
-|Process     |tblLUTristate              |         3|            2|
-|Process     |tblLUYesNo                 |         6|            2|
 |Process     |tblMarkerGen1              |         0|           10|
 |Process     |tblMarkerGen2              |         0|            8|
 |Process     |tblOutcome                 |         0|            5|
@@ -114,7 +114,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-06-19                                 
+ date     2017-06-20                                 
 ```
 
 ```
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-19, 22:40 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-20, 10:33 -0500 in 1 seconds.
 
