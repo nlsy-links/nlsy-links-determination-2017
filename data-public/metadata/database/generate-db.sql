@@ -88,6 +88,10 @@ ALTER ASSEMBLY [SqlServerNlsLinks]
 ADD FILE FROM 0xEFBBBF7573696E672053797374656D2E5265666C656374696F6E3B0D0A7573696E672053797374656D2E52756E74696D652E436F6D70696C657253657276696365733B0D0A7573696E672053797374656D2E52756E74696D652E496E7465726F7053657276696365733B0D0A7573696E672053797374656D2E446174612E53716C3B0D0A0D0A2F2F2047656E6572616C20496E666F726D6174696F6E2061626F757420616E20617373656D626C7920697320636F6E74726F6C6C6564207468726F7567682074686520666F6C6C6F77696E670D0A2F2F20736574206F6620617474726962757465732E204368616E6765207468657365206174747269627574652076616C75657320746F206D6F646966792074686520696E666F726D6174696F6E0D0A2F2F206173736F636961746564207769746820616E20617373656D626C792E0D0A5B617373656D626C793A20417373656D626C795469746C65282253716C5365727665724E6C734C696E6B7322295D0D0A5B617373656D626C793A20417373656D626C794465736372697074696F6E282222295D0D0A5B617373656D626C793A20417373656D626C79436F6E66696775726174696F6E282222295D0D0A5B617373656D626C793A20417373656D626C79436F6D70616E79282222295D0D0A5B617373656D626C793A20417373656D626C7950726F64756374282253716C5365727665724E6C734C696E6B7322295D0D0A5B617373656D626C793A20417373656D626C79436F707972696768742822436F7079726967687420C2A920203230313122295D0D0A5B617373656D626C793A20417373656D626C7954726164656D61726B282222295D0D0A5B617373656D626C793A20417373656D626C7943756C74757265282222295D0D0A0D0A5B617373656D626C793A20436F6D56697369626C652866616C7365295D0D0A0D0A2F2F0D0A2F2F2056657273696F6E20696E666F726D6174696F6E20666F7220616E20617373656D626C7920636F6E7369737473206F662074686520666F6C6C6F77696E6720666F75722076616C7565733A0D0A2F2F0D0A2F2F2020202020204D616A6F722056657273696F6E0D0A2F2F2020202020204D696E6F722056657273696F6E0D0A2F2F2020202020204275696C64204E756D6265720D0A2F2F2020202020205265766973696F6E0D0A2F2F0D0A2F2F20596F752063616E207370656369667920616C6C207468652076616C756573206F7220796F752063616E2064656661756C7420746865205265766973696F6E20616E64204275696C64204E756D626572730D0A2F2F206279207573696E672074686520272A272061732073686F776E2062656C6F773A0D0A5B617373656D626C793A20417373656D626C7956657273696F6E2822312E302E2A22295D0D0A0D0A
 AS N'Properties\AssemblyInfo.cs'
 GO
+CREATE SCHEMA [Archive]
+GO
+CREATE SCHEMA [Enum]
+GO
 CREATE SCHEMA [Extract]
 GO
 CREATE SCHEMA [Metadata]
@@ -100,11 +104,179 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [Archive].[tblArchiveDescription](
+	[ID] [smallint] IDENTITY(1,1) NOT NULL,
+	[AlgorithmVersion] [smallint] NOT NULL,
+	[Description] [text] NOT NULL,
+	[Date] [date] NULL,
+ CONSTRAINT [PK_tblArchiveDescription] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Archive].[tblRelatedValuesArchive](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AlgorithmVersion] [smallint] NOT NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[SameGeneration] [tinyint] NULL,
+	[RosterAssignmentID] [tinyint] NULL,
+	[RRoster] [float] NULL,
+	[LastSurvey_S1] [smallint] NULL,
+	[LastSurvey_S2] [smallint] NULL,
+	[RImplicitPass1] [float] NULL,
+	[RImplicit] [float] NULL,
+	[RImplicitSubject] [float] NULL,
+	[RImplicitMother] [float] NULL,
+	[RImplicit2004] [float] NULL,
+	[RExplicitOldestSibVersion] [float] NULL,
+	[RExplicitYoungestSibVersion] [float] NULL,
+	[RExplicitPass1] [float] NULL,
+	[RExplicit] [float] NULL,
+	[RPass1] [float] NULL,
+	[R] [float] NULL,
+	[RFull] [float] NULL,
+	[RPeek] [float] NULL,
+ CONSTRAINT [PK_Process.tblRelatedValuesArchive] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[tblIRDemo2](
 	[ID] [nchar](10) NOT NULL,
 	[ColA] [numeric](18, 0) NULL,
 	[ColB] [real] NULL,
  CONSTRAINT [PK_tblIRDemo2] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLUBioparent](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](3) NOT NULL,
+ CONSTRAINT [PK_tblLUBioparent] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLUGender](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](15) NOT NULL,
+ CONSTRAINT [PK_tblLUGender] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLUMultipleBirth](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](10) NOT NULL,
+ CONSTRAINT [PK_tblLUMultipleBirth] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLURaceCohort](
+	[ID] [tinyint] NOT NULL,
+	[Label] [varchar](15) NOT NULL,
+ CONSTRAINT [PK_tblLURaceCohort] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLURosterGen1_NOTUSED](
+	[ResponseCode] [smallint] NOT NULL,
+	[Response] [varchar](255) NULL,
+ CONSTRAINT [PK_tblLURosterGen1] PRIMARY KEY CLUSTERED 
+(
+	[ResponseCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLURosterGen1Assignment](
+	[ID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ResponseLower] [smallint] NOT NULL,
+	[ResponseUpper] [smallint] NOT NULL,
+	[Freq] [smallint] NOT NULL,
+	[Resolved] [bit] NOT NULL,
+	[R] [float] NULL,
+	[RBoundLower] [float] NOT NULL,
+	[RBoundUpper] [float] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiodad] [tinyint] NOT NULL,
+	[ShareBiomom] [tinyint] NOT NULL,
+	[ShareBiograndparent] [tinyint] NOT NULL,
+	[Inconsistent] [bit] NOT NULL,
+	[Notes] [text] NULL,
+	[ResponseLowerLabel] [varchar](50) NULL,
+	[ResponseUpperLabel] [varchar](50) NULL,
+ CONSTRAINT [PK_tblLURosterGen1Assignment_1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLUTristate](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](10) NOT NULL,
+ CONSTRAINT [PK_tblLUIsMZ] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Enum].[tblLUYesNo](
+	[ID] [smallint] NOT NULL,
+	[Label] [char](40) NOT NULL,
+ CONSTRAINT [PK_[tblLUYesNoGen1] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -2204,21 +2376,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Process].[tblArchiveDescription](
-	[ID] [smallint] IDENTITY(1,1) NOT NULL,
-	[AlgorithmVersion] [smallint] NOT NULL,
-	[Description] [text] NOT NULL,
-	[Date] [date] NULL,
- CONSTRAINT [PK_tblArchiveDescription] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Process].[tblBabyDaddy](
 	[ID] [bigint] IDENTITY(1,1) NOT NULL,
 	[SubjectTag] [int] NOT NULL,
@@ -2266,124 +2423,6 @@ CREATE TABLE [Process].[tblIRDemo1](
 	[Variance] [float] NOT NULL,
 	[DateTimeCreated] [smalldatetime] NOT NULL,
  CONSTRAINT [PK_tblIRDemo1] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLUBioparent](
-	[ID] [tinyint] NOT NULL,
-	[Label] [char](3) NOT NULL,
- CONSTRAINT [PK_tblLUBioparent] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLUGender](
-	[ID] [tinyint] NOT NULL,
-	[Label] [char](15) NOT NULL,
- CONSTRAINT [PK_tblLUGender] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLUMultipleBirth](
-	[ID] [tinyint] NOT NULL,
-	[Label] [char](10) NOT NULL,
- CONSTRAINT [PK_tblLUMultipleBirth] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLURaceCohort](
-	[ID] [tinyint] NOT NULL,
-	[Label] [varchar](15) NOT NULL,
- CONSTRAINT [PK_tblLURaceCohort] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLURosterGen1_NOTUSED](
-	[ResponseCode] [smallint] NOT NULL,
-	[Response] [varchar](255) NULL,
- CONSTRAINT [PK_tblLURosterGen1] PRIMARY KEY CLUSTERED 
-(
-	[ResponseCode] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLURosterGen1Assignment](
-	[ID] [tinyint] IDENTITY(1,1) NOT NULL,
-	[ResponseLower] [smallint] NOT NULL,
-	[ResponseUpper] [smallint] NOT NULL,
-	[Freq] [smallint] NOT NULL,
-	[Resolved] [bit] NOT NULL,
-	[R] [float] NULL,
-	[RBoundLower] [float] NOT NULL,
-	[RBoundUpper] [float] NOT NULL,
-	[SameGeneration] [tinyint] NOT NULL,
-	[ShareBiodad] [tinyint] NOT NULL,
-	[ShareBiomom] [tinyint] NOT NULL,
-	[ShareBiograndparent] [tinyint] NOT NULL,
-	[Inconsistent] [bit] NOT NULL,
-	[Notes] [text] NULL,
-	[ResponseLowerLabel] [varchar](50) NULL,
-	[ResponseUpperLabel] [varchar](50) NULL,
- CONSTRAINT [PK_tblLURosterGen1Assignment_1] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLUTristate](
-	[ID] [tinyint] NOT NULL,
-	[Label] [char](10) NOT NULL,
- CONSTRAINT [PK_tblLUIsMZ] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblLUYesNo](
-	[ID] [smallint] NOT NULL,
-	[Label] [char](40) NOT NULL,
- CONSTRAINT [PK_[tblLUYesNoGen1] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -2567,41 +2606,6 @@ CREATE TABLE [Process].[tblRelatedValues](
 	[RFull] [float] NULL,
 	[RPeek] [float] NULL,
  CONSTRAINT [PK_tblRelatedValues] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblRelatedValuesArchive](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[AlgorithmVersion] [smallint] NOT NULL,
-	[SubjectTag_S1] [int] NOT NULL,
-	[SubjectTag_S2] [int] NOT NULL,
-	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
-	[IsMz] [tinyint] NOT NULL,
-	[SameGeneration] [tinyint] NULL,
-	[RosterAssignmentID] [tinyint] NULL,
-	[RRoster] [float] NULL,
-	[LastSurvey_S1] [smallint] NULL,
-	[LastSurvey_S2] [smallint] NULL,
-	[RImplicitPass1] [float] NULL,
-	[RImplicit] [float] NULL,
-	[RImplicitSubject] [float] NULL,
-	[RImplicitMother] [float] NULL,
-	[RImplicit2004] [float] NULL,
-	[RExplicitOldestSibVersion] [float] NULL,
-	[RExplicitYoungestSibVersion] [float] NULL,
-	[RExplicitPass1] [float] NULL,
-	[RExplicit] [float] NULL,
-	[RPass1] [float] NULL,
-	[R] [float] NULL,
-	[RFull] [float] NULL,
-	[RPeek] [float] NULL,
- CONSTRAINT [PK_Process.tblRelatedValuesArchive] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -2851,6 +2855,13 @@ WHERE     (SurveySource > 0)
 GROUP BY SubjectTag
 ORDER BY SubjectTag
 GO
+CREATE NONCLUSTERED INDEX [IX_Process.tblRelatedValuesArchive_Unique] ON [Archive].[tblRelatedValuesArchive]
+(
+	[AlgorithmVersion] ASC,
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblMzManual_Unique] ON [Metadata].[tblMzManual]
 (
 	[SubjectTag_S1] ASC,
@@ -2904,13 +2915,6 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedStructure_Tags] ON [Process].[tbl
 	[SubjectTag_S2] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX [IX_Process.tblRelatedValuesArchive_Unique] ON [Process].[tblRelatedValuesArchive]
-(
-	[AlgorithmVersion] ASC,
-	[SubjectTag_S1] ASC,
-	[SubjectTag_S2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubject_Unique] ON [Process].[tblSubject]
 (
 	[SubjectID] ASC,
@@ -2925,53 +2929,64 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurv
 GO
 ALTER TABLE [Metadata].[tblVariable] ADD  CONSTRAINT [DF_tblVariable_DoNotTranslate]  DEFAULT ((1)) FOR [Translate]
 GO
-ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [FK_tblMzManual_tblLUMultipleBirth] FOREIGN KEY([MultipleBirthIfSameSex])
-REFERENCES [Process].[tblLUMultipleBirth] ([ID])
+ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
+REFERENCES [Enum].[tblLURosterGen1Assignment] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [FK_tblMzManual_tblLUMultipleBirth]
+ALTER TABLE [Archive].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment]
 GO
-ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [FK_tblMzManual_tblLUTristate] FOREIGN KEY([IsMz])
-REFERENCES [Process].[tblLUTristate] ([ID])
+ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+GO
+ALTER TABLE [Archive].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
+REFERENCES [Enum].[tblLURosterGen1_NOTUSED] ([ResponseCode])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [FK_tblMzManual_tblLUTristate]
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
 GO
-ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUExtractSource] FOREIGN KEY([ExtractSource])
-REFERENCES [Metadata].[tblLUExtractSource] ([ID])
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
+REFERENCES [Enum].[tblLURosterGen1_NOTUSED] ([ResponseCode])
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUExtractSource]
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
 GO
-ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUItem] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUItem]
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
 GO
-ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUSurvey] FOREIGN KEY([SurveySource])
-REFERENCES [Metadata].[tblLUSurveySource] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUSurvey]
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
 GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH] FOREIGN KEY([BiodadInHH])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH]
 GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAlive] FOREIGN KEY([BiodadAlive])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAlive]
 GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAsthma] FOREIGN KEY([BiodadAsthma])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAsthma]
 GO
@@ -2983,17 +2998,17 @@ GO
 ALTER TABLE [Process].[tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblSubject]
 GO
 ALTER TABLE [Process].[tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAlive] FOREIGN KEY([BiodadAlive])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAlive]
 GO
 ALTER TABLE [Process].[tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAsthma] FOREIGN KEY([BiodadAsthma])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAsthma]
 GO
 ALTER TABLE [Process].[tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadInHH] FOREIGN KEY([BiodadInHH])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadInHH]
 GO
@@ -3003,40 +3018,6 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblSubject]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
-REFERENCES [Process].[tblLURosterGen1_NOTUSED] ([ResponseCode])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
-REFERENCES [Process].[tblLURosterGen1_NOTUSED] ([ResponseCode])
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
-REFERENCES [Process].[tblLUTristate] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
-REFERENCES [Process].[tblLUTristate] ([ID])
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
-REFERENCES [Process].[tblLUTristate] ([ID])
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
-REFERENCES [Process].[tblLUTristate] ([ID])
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
 GO
 ALTER TABLE [Process].[tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence] FOREIGN KEY([ShareBioGrandparentEvidence])
 REFERENCES [Metadata].[tblLUMarkerEvidence] ([ID])
@@ -3130,32 +3111,32 @@ GO
 ALTER TABLE [Process].[tblOutcomesOLD] CHECK CONSTRAINT [FK_tblOutcomesOLD_tblSubject]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo] FOREIGN KEY([AlwaysLivedWithBothBioparents])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadAlive] FOREIGN KEY([BiodadAlive])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadAlive]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadUSBorn] FOREIGN KEY([BiodadUSBorn])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadUSBorn]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiograndfatherUSBorn] FOREIGN KEY([BiograndfatherUSBorn])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiograndfatherUSBorn]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomAlive] FOREIGN KEY([BiomomAlive])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomAlive]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomUSBorn] FOREIGN KEY([BiomomUSBorn])
-REFERENCES [Process].[tblLUYesNo] ([ID])
+REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomUSBorn]
 GO
@@ -3191,36 +3172,36 @@ GO
 ALTER TABLE [Process].[tblRelatedStructure] CHECK CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject2]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUMultipleBirth] FOREIGN KEY([MultipleBirthIfSameSex])
-REFERENCES [Process].[tblLUMultipleBirth] ([ID])
+REFERENCES [Enum].[tblLUMultipleBirth] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUMultipleBirth]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate] FOREIGN KEY([IsMz])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiodadPass1] FOREIGN KEY([ExplicitShareBiodadPass1])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiodadPass1]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiomomPass1] FOREIGN KEY([ExplicitShareBiomomPass1])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiomomPass1]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiodadPass1] FOREIGN KEY([ImplicitShareBiodadPass1])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiodadPass1]
 GO
 ALTER TABLE [Process].[tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiomomPass1] FOREIGN KEY([ImplicitShareBiomomPass1])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiomomPass1]
 GO
@@ -3230,18 +3211,6 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblRelatedStructure]
-GO
-ALTER TABLE [Process].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Process].[tblLURosterGen1Assignment] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment]
-GO
-ALTER TABLE [Process].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate] FOREIGN KEY([SameGeneration])
-REFERENCES [Process].[tblLUTristate] ([ID])
-GO
-ALTER TABLE [Process].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
 GO
 ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblItem] FOREIGN KEY([Item])
 REFERENCES [Metadata].[tblItem] ([ID])
@@ -3265,12 +3234,12 @@ GO
 ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblSubject]
 GO
 ALTER TABLE [Process].[tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Process].[tblLURosterGen1Assignment] ([ID])
+REFERENCES [Enum].[tblLURosterGen1Assignment] ([ID])
 GO
 ALTER TABLE [Process].[tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment]
 GO
 ALTER TABLE [Process].[tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLUTristate] FOREIGN KEY([SameGeneration])
-REFERENCES [Process].[tblLUTristate] ([ID])
+REFERENCES [Enum].[tblLUTristate] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
@@ -3284,14 +3253,14 @@ GO
 ALTER TABLE [Process].[tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblRelatedStructure]
 GO
 ALTER TABLE [Process].[tblSubject]  WITH CHECK ADD  CONSTRAINT [FK_tblSubject_tblLUGender] FOREIGN KEY([Gender])
-REFERENCES [Process].[tblLUGender] ([ID])
+REFERENCES [Enum].[tblLUGender] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblSubject] CHECK CONSTRAINT [FK_tblSubject_tblLUGender]
 GO
 ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [FK_tblSubjectDetails_tblLURaceCohort] FOREIGN KEY([RaceCohort])
-REFERENCES [Process].[tblLURaceCohort] ([ID])
+REFERENCES [Enum].[tblLURaceCohort] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
@@ -3318,6 +3287,18 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblSurveyTime] CHECK CONSTRAINT [FK_tblSurveyTime_tblSubject]
 GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+GO
+ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
+GO
 ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual_Ordered] CHECK  (([SubjectTag_S1]<[SubjectTag_S2]))
 GO
 ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [CK_tblMzManual_Ordered]
@@ -3333,18 +3314,6 @@ GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
 GO
 ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_VariableCodeLength]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
-GO
-ALTER TABLE [Process].[tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
 GO
 ALTER TABLE [Process].[tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [CK_tblOutcomesOLD_Height] CHECK  (((48)<=[HeightInchesLateTeens] AND [HeightInchesLateTeens]<=(83) OR [HeightInchesLateTeens] IS NULL))
 GO
