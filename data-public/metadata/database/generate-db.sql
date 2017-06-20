@@ -1,0 +1,3678 @@
+USE [master]
+GO
+/****** Object:  Database [NlsLinks]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE DATABASE [NlsLinks] ON  PRIMARY 
+( NAME = N'NlsLinks', FILENAME = N'D:\NlsLinks\NlsLinks.mdf' , SIZE = 1038336KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'NlsLinks_log', FILENAME = N'G:\NlsLinks\NlsLinks_log.ldf' , SIZE = 3480448KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [NlsLinks] SET COMPATIBILITY_LEVEL = 100
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [NlsLinks].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [NlsLinks] SET ANSI_NULL_DEFAULT OFF
+GO
+ALTER DATABASE [NlsLinks] SET ANSI_NULLS OFF
+GO
+ALTER DATABASE [NlsLinks] SET ANSI_PADDING OFF
+GO
+ALTER DATABASE [NlsLinks] SET ANSI_WARNINGS OFF
+GO
+ALTER DATABASE [NlsLinks] SET ARITHABORT OFF
+GO
+ALTER DATABASE [NlsLinks] SET AUTO_CLOSE OFF
+GO
+ALTER DATABASE [NlsLinks] SET AUTO_CREATE_STATISTICS ON
+GO
+ALTER DATABASE [NlsLinks] SET AUTO_SHRINK OFF
+GO
+ALTER DATABASE [NlsLinks] SET AUTO_UPDATE_STATISTICS ON
+GO
+ALTER DATABASE [NlsLinks] SET CURSOR_CLOSE_ON_COMMIT OFF
+GO
+ALTER DATABASE [NlsLinks] SET CURSOR_DEFAULT  GLOBAL
+GO
+ALTER DATABASE [NlsLinks] SET CONCAT_NULL_YIELDS_NULL OFF
+GO
+ALTER DATABASE [NlsLinks] SET NUMERIC_ROUNDABORT OFF
+GO
+ALTER DATABASE [NlsLinks] SET QUOTED_IDENTIFIER OFF
+GO
+ALTER DATABASE [NlsLinks] SET RECURSIVE_TRIGGERS OFF
+GO
+ALTER DATABASE [NlsLinks] SET  DISABLE_BROKER
+GO
+ALTER DATABASE [NlsLinks] SET AUTO_UPDATE_STATISTICS_ASYNC OFF
+GO
+ALTER DATABASE [NlsLinks] SET DATE_CORRELATION_OPTIMIZATION OFF
+GO
+ALTER DATABASE [NlsLinks] SET TRUSTWORTHY OFF
+GO
+ALTER DATABASE [NlsLinks] SET ALLOW_SNAPSHOT_ISOLATION OFF
+GO
+ALTER DATABASE [NlsLinks] SET PARAMETERIZATION SIMPLE
+GO
+ALTER DATABASE [NlsLinks] SET READ_COMMITTED_SNAPSHOT OFF
+GO
+ALTER DATABASE [NlsLinks] SET HONOR_BROKER_PRIORITY OFF
+GO
+ALTER DATABASE [NlsLinks] SET  READ_WRITE
+GO
+ALTER DATABASE [NlsLinks] SET RECOVERY SIMPLE
+GO
+ALTER DATABASE [NlsLinks] SET  MULTI_USER
+GO
+ALTER DATABASE [NlsLinks] SET PAGE_VERIFY CHECKSUM
+GO
+ALTER DATABASE [NlsLinks] SET DB_CHAINING OFF
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'NlsLinks', N'ON'
+GO
+USE [NlsLinks]
+GO
+/****** Object:  User [Simulation]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE USER [Simulation] FOR LOGIN [Simulation] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [NlsyReadWrite]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE USER [NlsyReadWrite] FOR LOGIN [NlsyReadWrite] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Schema [Process]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE SCHEMA [Process] AUTHORIZATION [dbo]
+GO
+/****** Object:  Schema [Outcome]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE SCHEMA [Outcome] AUTHORIZATION [dbo]
+GO
+/****** Object:  Schema [Extract]    Script Date: 06/28/2015 20:27:08 ******/
+CREATE SCHEMA [Extract] AUTHORIZATION [dbo]
+GO
+/****** Object:  Table [Process].[tblLURosterGen1_NOTUSED]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLURosterGen1_NOTUSED](
+	[ResponseCode] [smallint] NOT NULL,
+	[Response] [varchar](255) NULL,
+ CONSTRAINT [PK_tblLURosterGen1] PRIMARY KEY CLUSTERED 
+(
+	[ResponseCode] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLURelationshipPath]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLURelationshipPath](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](20) NOT NULL,
+ CONSTRAINT [PK_tblLURelationshipPath] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLURaceCohort]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLURaceCohort](
+	[ID] [tinyint] NOT NULL,
+	[Label] [varchar](15) NOT NULL,
+ CONSTRAINT [PK_tblLURaceCohort] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUMultipleBirth]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUMultipleBirth](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](10) NOT NULL,
+ CONSTRAINT [PK_tblLUMultipleBirth] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUMarkerType]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUMarkerType](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](40) NOT NULL,
+	[Explicit] [bit] NOT NULL,
+ CONSTRAINT [PK_tblLUMarkerType] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUMarkerEvidence]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUMarkerEvidence](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](20) NOT NULL,
+ CONSTRAINT [PK_tblLUMarkerEvidence] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUGender]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUGender](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](15) NOT NULL,
+ CONSTRAINT [PK_tblLUGender] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUExtractSource]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUExtractSource](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](20) NOT NULL,
+ CONSTRAINT [PK_tblLUExtractSource] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUBioparent]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUBioparent](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](3) NOT NULL,
+ CONSTRAINT [PK_tblLUBioparent] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Extract].[tblLinks2004Gen2]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblLinks2004Gen2](
+	[ID1] [int] NOT NULL,
+	[ID2] [int] NOT NULL,
+	[Sex1] [tinyint] NULL,
+	[Sex2] [tinyint] NULL,
+	[RecommendedRelatedness] [real] NULL,
+ CONSTRAINT [PK_tblLinks2004Gen2] PRIMARY KEY CLUSTERED 
+(
+	[ID1] ASC,
+	[ID2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblLinks2004Gen1]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblLinks2004Gen1](
+	[PairID] [smallint] NOT NULL,
+	[ExtendedFamilyID] [smallint] NOT NULL,
+	[ID1] [smallint] NOT NULL,
+	[ID2] [smallint] NOT NULL,
+	[Sex1] [tinyint] NULL,
+	[Sex2] [tinyint] NULL,
+	[RecommendedRelatedness] [real] NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+ CONSTRAINT [PK_tblLinks2004Gen1] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblItem]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblItem](
+	[ID] [smallint] NOT NULL,
+	[Label] [varchar](50) NOT NULL,
+	[MinValue] [int] NOT NULL,
+	[MinNonnegative] [int] NULL,
+	[MaxValue] [int] NOT NULL,
+ CONSTRAINT [PK_tblLUItem] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblIRDemo2]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblIRDemo2](
+	[ID] [nchar](10) NOT NULL,
+	[ColA] [numeric](18, 0) NULL,
+	[ColB] [real] NULL,
+ CONSTRAINT [PK_tblIRDemo2] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblIRDemo1]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblIRDemo1](
+	[ID] [int] NOT NULL,
+	[Item] [smallint] NOT NULL,
+	[Count] [smallint] NOT NULL,
+	[Variance] [float] NOT NULL,
+	[DateTimeCreated] [smalldatetime] NOT NULL,
+ CONSTRAINT [PK_tblIRDemo1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGeocodeSanitized]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGeocodeSanitized](
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[DobDifferenceInDays1979V1979] [smallint] NULL,
+	[DobDifferenceInDays1979V1981] [smallint] NULL,
+	[DobDifferenceInDays1981V1979] [smallint] NULL,
+	[DobDifferenceInDays1981V1981] [smallint] NULL,
+	[DobDayIsMissing1979_1] [bit] NOT NULL,
+	[DobDayIsMissing1979_2] [bit] NOT NULL,
+	[BirthSubjectCountyMissing_1] [bit] NOT NULL,
+	[BirthSubjectCountyMissing_2] [bit] NOT NULL,
+	[BirthSubjectCountyEqual] [bit] NOT NULL,
+	[BirthSubjectStateMissing_1] [bit] NOT NULL,
+	[BirthSubjectStateMissing_2] [bit] NOT NULL,
+	[BirthSubjectStateEqual] [bit] NOT NULL,
+	[BirthSubjectCountryMissing_1] [bit] NOT NULL,
+	[BirthSubjectCountryMissing_2] [bit] NOT NULL,
+	[BirthSubjectCountryEqual] [bit] NOT NULL,
+	[BirthMotherStateMissing_1] [bit] NOT NULL,
+	[BirthMotherStateMissing_2] [bit] NOT NULL,
+	[BirthMotherStateEqual] [bit] NOT NULL,
+	[BirthMotherCountryMissing_1] [bit] NOT NULL,
+	[BirthMotherCountryMissing_2] [bit] NOT NULL,
+	[BirthMotherCountryEqual] [bit] NOT NULL,
+	[BirthFatherStateMissing_1] [bit] NOT NULL,
+	[BirthFatherStateMissing_2] [bit] NOT NULL,
+	[BirthFatherStateEqual] [bit] NOT NULL,
+	[BirthFatherCountryMissing_1] [bit] NOT NULL,
+	[BirthFatherCountryMissing_2] [bit] NOT NULL,
+	[BirthFatherCountryEqual] [bit] NOT NULL,
+ CONSTRAINT [PK_tblGeocodeSanitized] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2OutcomesWeight]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2OutcomesWeight](
+	[C0000100] [int] NOT NULL,
+	[C0000200] [int] NULL,
+	[C0005300] [int] NULL,
+	[C0005400] [int] NULL,
+	[C0005700] [int] NULL,
+	[Y0308500] [int] NULL,
+	[Y0904100] [int] NULL,
+	[Y1151000] [int] NULL,
+	[Y1386000] [int] NULL,
+	[Y1637700] [int] NULL,
+	[Y1891300] [int] NULL,
+	[Y2207200] [int] NULL,
+	[Y2544900] [int] NULL,
+ CONSTRAINT [PK_tblGen2OutcomesWeight] PRIMARY KEY CLUSTERED 
+(
+	[C0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2OutcomesMath]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2OutcomesMath](
+	[C0000100] [int] NOT NULL,
+	[C0000200] [int] NULL,
+	[C0005300] [int] NULL,
+	[C0005400] [int] NULL,
+	[C0005700] [int] NULL,
+	[C0579900] [int] NULL,
+	[C0580000] [int] NULL,
+	[C0580100] [int] NULL,
+	[C0799400] [int] NULL,
+	[C0799500] [int] NULL,
+	[C0799600] [int] NULL,
+	[C0998600] [int] NULL,
+	[C0998700] [int] NULL,
+	[C0998800] [int] NULL,
+	[C1198600] [int] NULL,
+	[C1198700] [int] NULL,
+	[C1198800] [int] NULL,
+	[C1507600] [int] NULL,
+	[C1507700] [int] NULL,
+	[C1507800] [int] NULL,
+	[C1564500] [int] NULL,
+	[C1564600] [int] NULL,
+	[C1564700] [int] NULL,
+	[C1799900] [int] NULL,
+	[C1800000] [int] NULL,
+	[C1800100] [int] NULL,
+	[C2503500] [int] NULL,
+	[C2503600] [int] NULL,
+	[C2503700] [int] NULL,
+	[C2532000] [int] NULL,
+	[C2532100] [int] NULL,
+	[C2532200] [int] NULL,
+	[C2802800] [int] NULL,
+	[C2802900] [int] NULL,
+	[C2803000] [int] NULL,
+	[C3111300] [int] NULL,
+	[C3111400] [int] NULL,
+	[C3111500] [int] NULL,
+	[C3615000] [int] NULL,
+	[C3615100] [int] NULL,
+	[C3615200] [int] NULL,
+	[C3993600] [int] NULL,
+	[C3993700] [int] NULL,
+	[C3993800] [int] NULL,
+ CONSTRAINT [PK_tblGen2OutcomesMath] PRIMARY KEY CLUSTERED 
+(
+	[C0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2OutcomesHeight]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2OutcomesHeight](
+	[C0000100] [int] NOT NULL,
+	[C0000200] [int] NULL,
+	[C0005300] [int] NULL,
+	[C0005400] [int] NULL,
+	[C0005700] [int] NULL,
+	[C0577600] [int] NULL,
+	[C0606300] [int] NULL,
+	[C0606400] [int] NULL,
+	[C0826400] [int] NULL,
+	[C0826500] [int] NULL,
+	[C1016700] [int] NULL,
+	[C1016800] [int] NULL,
+	[C1220200] [int] NULL,
+	[C1220300] [int] NULL,
+	[C1532700] [int] NULL,
+	[C1532800] [int] NULL,
+	[C1779300] [int] NULL,
+	[C1779400] [int] NULL,
+	[C2288500] [int] NULL,
+	[C2288600] [int] NULL,
+	[C2552300] [int] NULL,
+	[C2820900] [int] NULL,
+	[C3130400] [int] NULL,
+	[C3553400] [int] NULL,
+	[C3634500] [int] NULL,
+	[C3898000] [int] NULL,
+	[C4013000] [int] NULL,
+	[C5147900] [int] NULL,
+	[Y0308300] [int] NULL,
+	[Y0308400] [int] NULL,
+	[Y0609600] [int] NULL,
+	[Y0609700] [int] NULL,
+	[Y0903900] [int] NULL,
+	[Y0904000] [int] NULL,
+	[Y1150800] [int] NULL,
+	[Y1150900] [int] NULL,
+	[Y1385800] [int] NULL,
+	[Y1385900] [int] NULL,
+	[Y1637500] [int] NULL,
+	[Y1637600] [int] NULL,
+	[Y1891100] [int] NULL,
+	[Y1891200] [int] NULL,
+	[Y2207000] [int] NULL,
+	[Y2207100] [int] NULL,
+	[Y2544700] [int] NULL,
+	[Y2544800] [int] NULL,
+ CONSTRAINT [PK_tblGen2OutcomesHeight] PRIMARY KEY CLUSTERED 
+(
+	[C0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2LinksFromGen1]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2LinksFromGen1](
+	[R0000100] [int] NOT NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R4825700] [int] NULL,
+	[R4826000] [int] NULL,
+	[R4826100] [int] NULL,
+	[R4826300] [int] NULL,
+	[R4826500] [int] NULL,
+	[R4826800] [int] NULL,
+	[R5495900] [int] NULL,
+	[R5496200] [int] NULL,
+	[R5496300] [int] NULL,
+	[R5496500] [int] NULL,
+	[R5496700] [int] NULL,
+	[R5497000] [int] NULL,
+	[R5497200] [int] NULL,
+	[R6210700] [int] NULL,
+	[R6210800] [int] NULL,
+	[R6210900] [int] NULL,
+	[R6211500] [int] NULL,
+	[R6211600] [int] NULL,
+	[R6211700] [int] NULL,
+	[R6211800] [int] NULL,
+	[R6211900] [int] NULL,
+	[R6212200] [int] NULL,
+	[R6212300] [int] NULL,
+	[R6764000] [int] NULL,
+	[R6764100] [int] NULL,
+	[R6764200] [int] NULL,
+	[R6764900] [int] NULL,
+	[R6765000] [int] NULL,
+	[R6765100] [int] NULL,
+	[R6765200] [int] NULL,
+	[R6765600] [int] NULL,
+	[R6765700] [int] NULL,
+	[R6765800] [int] NULL,
+	[R6839600] [int] NULL,
+	[R7408300] [int] NULL,
+	[R7408400] [int] NULL,
+	[R7408500] [int] NULL,
+	[R7409200] [int] NULL,
+	[R7409300] [int] NULL,
+	[R7409400] [int] NULL,
+	[R7409500] [int] NULL,
+	[R7409900] [int] NULL,
+	[R7410000] [int] NULL,
+	[R7410100] [int] NULL,
+	[R7548600] [int] NULL,
+	[R8106400] [int] NULL,
+	[R8106500] [int] NULL,
+	[R8106600] [int] NULL,
+	[R8106700] [int] NULL,
+	[R8106800] [int] NULL,
+	[R8106900] [int] NULL,
+	[R8107000] [int] NULL,
+	[R8107100] [int] NULL,
+	[R8107200] [int] NULL,
+	[R8255400] [int] NULL,
+	[R9900400] [int] NULL,
+	[R9901200] [int] NULL,
+	[R9902000] [int] NULL,
+	[R9902800] [int] NULL,
+	[R9903600] [int] NULL,
+	[R9904400] [int] NULL,
+	[R9905200] [int] NULL,
+	[R9906000] [int] NULL,
+	[R9906600] [int] NULL,
+	[R9907200] [int] NULL,
+	[R9907800] [int] NULL,
+	[R9908000] [int] NULL,
+	[T0337300] [int] NULL,
+	[T0337400] [int] NULL,
+	[T0337500] [int] NULL,
+	[T0337600] [int] NULL,
+	[T0337700] [int] NULL,
+	[T0337800] [int] NULL,
+	[T0337900] [int] NULL,
+	[T0338000] [int] NULL,
+	[T0338100] [int] NULL,
+	[T0338200] [int] NULL,
+	[T0338300] [int] NULL,
+	[T0338400] [int] NULL,
+	[T0338500] [int] NULL,
+	[T0338600] [int] NULL,
+	[T1486900] [int] NULL,
+	[T1487000] [int] NULL,
+	[T1487100] [int] NULL,
+	[T1487200] [int] NULL,
+	[T1487300] [int] NULL,
+	[T1487400] [int] NULL,
+	[T1487500] [int] NULL,
+	[T1487600] [int] NULL,
+	[T1487700] [int] NULL,
+	[T1487800] [int] NULL,
+	[T2217700] [int] NULL,
+	[T2533500] [int] NULL,
+	[T2533600] [int] NULL,
+	[T2533700] [int] NULL,
+	[T2533800] [int] NULL,
+	[T2533900] [int] NULL,
+	[T2534000] [int] NULL,
+	[T2534100] [int] NULL,
+	[T2534200] [int] NULL,
+	[T2534300] [int] NULL,
+	[T2534400] [int] NULL,
+	[T2534500] [int] NULL,
+ CONSTRAINT [PK_tblGen2LinksFromGen1] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2Links]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2Links](
+	[C0000100] [int] NOT NULL,
+	[C0000200] [int] NULL,
+	[C0005300] [int] NULL,
+	[C0005400] [int] NULL,
+	[C0005500] [int] NULL,
+	[C0005700] [int] NULL,
+	[C0005800] [int] NULL,
+	[C0006500] [int] NULL,
+	[C0006800] [int] NULL,
+	[C0007010] [int] NULL,
+	[C0007030] [int] NULL,
+	[C0007041] [int] NULL,
+	[C0007043] [int] NULL,
+	[C0007045] [int] NULL,
+	[C0007047] [int] NULL,
+	[C0007049] [int] NULL,
+	[C0007052] [int] NULL,
+	[C0007055] [int] NULL,
+	[C0402400] [int] NULL,
+	[C0402500] [int] NULL,
+	[C0402600] [int] NULL,
+	[C0404100] [int] NULL,
+	[C0404200] [int] NULL,
+	[C0737000] [int] NULL,
+	[C0737100] [int] NULL,
+	[C0737200] [int] NULL,
+	[C0948700] [int] NULL,
+	[C0948800] [int] NULL,
+	[C0948900] [int] NULL,
+	[C1146600] [int] NULL,
+	[C1146700] [int] NULL,
+	[C1146800] [int] NULL,
+	[C1230100] [int] NULL,
+	[C1230200] [int] NULL,
+	[C1230300] [int] NULL,
+	[C1548100] [int] NULL,
+	[C1548101] [int] NULL,
+	[C1548102] [int] NULL,
+	[C1989400] [int] NULL,
+	[C1989401] [int] NULL,
+	[C1989402] [int] NULL,
+	[C2305100] [int] NULL,
+	[C2305101] [int] NULL,
+	[C2305102] [int] NULL,
+	[C2544700] [int] NULL,
+	[C2544701] [int] NULL,
+	[C2544702] [int] NULL,
+	[C2814500] [int] NULL,
+	[C2814501] [int] NULL,
+	[C2814502] [int] NULL,
+	[C3123500] [int] NULL,
+	[C3123501] [int] NULL,
+	[C3123502] [int] NULL,
+	[C3601100] [int] NULL,
+	[C3627700] [int] NULL,
+	[C3627701] [int] NULL,
+	[C3627702] [int] NULL,
+	[C3981100] [int] NULL,
+	[C4006300] [int] NULL,
+	[C4006301] [int] NULL,
+	[C4006302] [int] NULL,
+	[Y0000200] [int] NULL,
+	[Y0000201] [int] NULL,
+	[Y0000202] [int] NULL,
+	[Y0002100] [int] NULL,
+	[Y0390100] [int] NULL,
+	[Y0390101] [int] NULL,
+	[Y0390102] [int] NULL,
+	[Y0677600] [int] NULL,
+	[Y0933700] [int] NULL,
+	[Y0933701] [int] NULL,
+	[Y0933702] [int] NULL,
+	[Y0974800] [int] NULL,
+	[Y1180500] [int] NULL,
+	[Y1180501] [int] NULL,
+	[Y1180502] [int] NULL,
+	[Y1192400] [int] NULL,
+	[Y1421100] [int] NULL,
+	[Y1421101] [int] NULL,
+	[Y1421102] [int] NULL,
+	[Y1434300] [int] NULL,
+	[Y1450200] [int] NULL,
+	[Y1450201] [int] NULL,
+	[Y1450202] [int] NULL,
+	[Y1672700] [int] NULL,
+	[Y1695600] [int] NULL,
+	[Y1695601] [int] NULL,
+	[Y1695602] [int] NULL,
+	[Y1707300] [int] NULL,
+	[Y1707400] [int] NULL,
+	[Y1707500] [int] NULL,
+	[Y1707600] [int] NULL,
+	[Y1707700] [int] NULL,
+	[Y1707800] [int] NULL,
+	[Y1707900] [int] NULL,
+	[Y1708000] [int] NULL,
+	[Y1708100] [int] NULL,
+	[Y1708200] [int] NULL,
+	[Y1708300] [int] NULL,
+	[Y1708400] [int] NULL,
+	[Y1708500] [int] NULL,
+	[Y1708600] [int] NULL,
+	[Y1708700] [int] NULL,
+	[Y1708800] [int] NULL,
+	[Y1708900] [int] NULL,
+	[Y1709000] [int] NULL,
+	[Y1709100] [int] NULL,
+	[Y1709200] [int] NULL,
+	[Y1709300] [int] NULL,
+	[Y1948500] [int] NULL,
+	[Y1981600] [int] NULL,
+	[Y1981601] [int] NULL,
+	[Y1981602] [int] NULL,
+	[Y1992900] [int] NULL,
+	[Y1993000] [int] NULL,
+	[Y1993100] [int] NULL,
+	[Y1993200] [int] NULL,
+	[Y1993300] [int] NULL,
+	[Y1993400] [int] NULL,
+	[Y1993500] [int] NULL,
+	[Y1993600] [int] NULL,
+	[Y1993700] [int] NULL,
+	[Y1993800] [int] NULL,
+	[Y1993900] [int] NULL,
+	[Y1994000] [int] NULL,
+	[Y1994100] [int] NULL,
+	[Y1994200] [int] NULL,
+	[Y1994300] [int] NULL,
+	[Y1994400] [int] NULL,
+	[Y1994500] [int] NULL,
+	[Y1994600] [int] NULL,
+	[Y1994700] [int] NULL,
+	[Y1994800] [int] NULL,
+	[Y1994900] [int] NULL,
+	[Y2148600] [int] NULL,
+	[Y2267100] [int] NULL,
+	[Y2300400] [int] NULL,
+	[Y2300401] [int] NULL,
+	[Y2300402] [int] NULL,
+	[Y2311700] [int] NULL,
+	[Y2311800] [int] NULL,
+	[Y2311900] [int] NULL,
+	[Y2312000] [int] NULL,
+	[Y2312100] [int] NULL,
+	[Y2312200] [int] NULL,
+	[Y2312300] [int] NULL,
+	[Y2312400] [int] NULL,
+	[Y2312500] [int] NULL,
+	[Y2312600] [int] NULL,
+	[Y2312700] [int] NULL,
+	[Y2312800] [int] NULL,
+	[Y2312900] [int] NULL,
+	[Y2313000] [int] NULL,
+	[Y2313100] [int] NULL,
+	[Y2313200] [int] NULL,
+	[Y2313300] [int] NULL,
+	[Y2313400] [int] NULL,
+	[Y2313500] [int] NULL,
+	[Y2313600] [int] NULL,
+	[Y2313700] [int] NULL,
+	[Y2567000] [int] NULL,
+	[Y2567100] [int] NULL,
+	[Y2567200] [int] NULL,
+	[Y2616000] [int] NULL,
+ CONSTRAINT [PK_tblGen2Links] PRIMARY KEY CLUSTERED 
+(
+	[C0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2ImplicitFather]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2ImplicitFather](
+	[C0000100] [int] NOT NULL,
+	[C0000200] [int] NULL,
+	[C0005300] [int] NULL,
+	[C0005400] [int] NULL,
+	[C0005700] [int] NULL,
+	[C0008100] [int] NULL,
+	[C0008200] [int] NULL,
+	[C0008300] [int] NULL,
+	[C0008600] [int] NULL,
+	[C0008700] [int] NULL,
+	[C0008800] [int] NULL,
+	[C0009100] [int] NULL,
+	[C0009200] [int] NULL,
+	[C0009300] [int] NULL,
+	[C0009600] [int] NULL,
+	[C0009700] [int] NULL,
+	[C0009800] [int] NULL,
+	[C0009900] [int] NULL,
+	[C0010110] [int] NULL,
+	[C0010200] [int] NULL,
+	[C0010300] [int] NULL,
+	[C0010400] [int] NULL,
+	[C0010700] [int] NULL,
+	[C0010800] [int] NULL,
+	[C0010900] [int] NULL,
+	[C0011110] [int] NULL,
+	[C0011111] [int] NULL,
+	[C0011112] [int] NULL,
+	[C0011113] [int] NULL,
+	[C0011114] [int] NULL,
+	[C0011117] [int] NULL,
+	[C0011118] [int] NULL,
+	[C0011119] [int] NULL,
+	[C0011122] [int] NULL,
+	[C0011123] [int] NULL,
+	[C0011124] [int] NULL,
+	[C0011127] [int] NULL,
+	[C0011128] [int] NULL,
+	[C0011129] [int] NULL,
+	[C0011132] [int] NULL,
+	[C0011133] [int] NULL,
+	[C0011134] [int] NULL,
+	[C0011137] [int] NULL,
+	[C0011138] [int] NULL,
+	[C0011139] [int] NULL,
+	[C0011142] [int] NULL,
+	[C0011143] [int] NULL,
+	[C0011144] [int] NULL,
+	[C3070500] [int] NULL,
+	[C3423600] [int] NULL,
+	[C3601100] [int] NULL,
+	[C3601700] [int] NULL,
+	[C3601800] [int] NULL,
+	[C3601900] [int] NULL,
+	[C3605900] [int] NULL,
+	[C3981100] [int] NULL,
+	[C3981700] [int] NULL,
+	[C3981800] [int] NULL,
+	[C3981900] [int] NULL,
+	[Y0003200] [int] NULL,
+	[Y0007300] [int] NULL,
+	[Y0007400] [int] NULL,
+	[Y0007600] [int] NULL,
+	[Y0007601] [int] NULL,
+	[Y0008000] [int] NULL,
+	[Y0008500] [int] NULL,
+	[Y0008600] [int] NULL,
+	[Y0009400] [int] NULL,
+	[Y0394100] [int] NULL,
+	[Y0394300] [int] NULL,
+	[Y0394500] [int] NULL,
+	[Y0394501] [int] NULL,
+	[Y0394900] [int] NULL,
+	[Y0651000] [int] NULL,
+	[Y0682500] [int] NULL,
+	[Y0683800] [int] NULL,
+	[Y0683900] [int] NULL,
+	[Y0684100] [int] NULL,
+	[Y0684101] [int] NULL,
+	[Y0684500] [int] NULL,
+	[Y0947100] [int] NULL,
+	[Y0986200] [int] NULL,
+	[Y0986700] [int] NULL,
+	[Y0988800] [int] NULL,
+	[Y0988900] [int] NULL,
+	[Y0989400] [int] NULL,
+	[Y0989401] [int] NULL,
+	[Y0989900] [int] NULL,
+	[Y1229100] [int] NULL,
+	[Y1229200] [int] NULL,
+	[Y1229700] [int] NULL,
+	[Y1229701] [int] NULL,
+	[Y1458900] [int] NULL,
+	[Y1459400] [int] NULL,
+	[Y1459401] [int] NULL,
+	[Y1629500] [int] NULL,
+	[Y1704000] [int] NULL,
+	[Y1704500] [int] NULL,
+	[Y1704501] [int] NULL,
+	[Y1707300] [int] NULL,
+	[Y1883300] [int] NULL,
+	[Y1989500] [int] NULL,
+	[Y1990000] [int] NULL,
+	[Y1990001] [int] NULL,
+	[Y1992900] [int] NULL,
+	[Y2197500] [int] NULL,
+	[Y2308300] [int] NULL,
+	[Y2308800] [int] NULL,
+	[Y2308801] [int] NULL,
+	[Y2311700] [int] NULL,
+	[Y2531800] [int] NULL,
+ CONSTRAINT [PK_tblGen2ImplicitFather] PRIMARY KEY CLUSTERED 
+(
+	[C0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen2FatherFromGen1]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen2FatherFromGen1](
+	[R0000100] [int] NOT NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R1373300] [int] NULL,
+	[R1373400] [int] NULL,
+	[R1373500] [int] NULL,
+	[R1374000] [int] NULL,
+	[R1374100] [int] NULL,
+	[R1374200] [int] NULL,
+	[R1374700] [int] NULL,
+	[R1374800] [int] NULL,
+	[R1374900] [int] NULL,
+	[R1375400] [int] NULL,
+	[R1375500] [int] NULL,
+	[R1375600] [int] NULL,
+	[R1376100] [int] NULL,
+	[R1376200] [int] NULL,
+	[R1376300] [int] NULL,
+	[R1376800] [int] NULL,
+	[R1376900] [int] NULL,
+	[R1377000] [int] NULL,
+	[R1377500] [int] NULL,
+	[R1377600] [int] NULL,
+	[R1377700] [int] NULL,
+	[R1753700] [int] NULL,
+	[R1753800] [int] NULL,
+	[R1753900] [int] NULL,
+	[R1754400] [int] NULL,
+	[R1754500] [int] NULL,
+	[R1754600] [int] NULL,
+	[R1755100] [int] NULL,
+	[R1755200] [int] NULL,
+	[R1755300] [int] NULL,
+	[R1755800] [int] NULL,
+	[R1755900] [int] NULL,
+	[R1756000] [int] NULL,
+	[R1756500] [int] NULL,
+	[R1756600] [int] NULL,
+	[R1756700] [int] NULL,
+	[R1757200] [int] NULL,
+	[R1757300] [int] NULL,
+	[R1757400] [int] NULL,
+	[R1757900] [int] NULL,
+	[R1758000] [int] NULL,
+	[R1758100] [int] NULL,
+	[R2095700] [int] NULL,
+	[R2095800] [int] NULL,
+	[R2095900] [int] NULL,
+	[R2096400] [int] NULL,
+	[R2096500] [int] NULL,
+	[R2096600] [int] NULL,
+	[R2097100] [int] NULL,
+	[R2097200] [int] NULL,
+	[R2097300] [int] NULL,
+	[R2097800] [int] NULL,
+	[R2097900] [int] NULL,
+	[R2098000] [int] NULL,
+	[R2098500] [int] NULL,
+	[R2098600] [int] NULL,
+	[R2098700] [int] NULL,
+	[R2099200] [int] NULL,
+	[R2099300] [int] NULL,
+	[R2099400] [int] NULL,
+	[R2099900] [int] NULL,
+	[R2100000] [int] NULL,
+	[R2100100] [int] NULL,
+	[R2345900] [int] NULL,
+	[R2346200] [int] NULL,
+	[R2346500] [int] NULL,
+	[R2346800] [int] NULL,
+	[R2347100] [int] NULL,
+	[R2347400] [int] NULL,
+	[R2347700] [int] NULL,
+	[R2648000] [int] NULL,
+	[R2648100] [int] NULL,
+	[R2648200] [int] NULL,
+	[R2648700] [int] NULL,
+	[R2648800] [int] NULL,
+	[R2648900] [int] NULL,
+	[R2649400] [int] NULL,
+	[R2649500] [int] NULL,
+	[R2649600] [int] NULL,
+	[R2650100] [int] NULL,
+	[R2650200] [int] NULL,
+	[R2650300] [int] NULL,
+	[R2650800] [int] NULL,
+	[R2650900] [int] NULL,
+	[R2651000] [int] NULL,
+	[R2651500] [int] NULL,
+	[R2651600] [int] NULL,
+	[R2651700] [int] NULL,
+	[R2652200] [int] NULL,
+	[R2652300] [int] NULL,
+	[R2652400] [int] NULL,
+	[R2955900] [int] NULL,
+	[R2956200] [int] NULL,
+	[R2956500] [int] NULL,
+	[R2956800] [int] NULL,
+	[R2957100] [int] NULL,
+	[R2957400] [int] NULL,
+	[R2957700] [int] NULL,
+	[R3255900] [int] NULL,
+	[R3256000] [int] NULL,
+	[R3256100] [int] NULL,
+	[R3257700] [int] NULL,
+	[R3257800] [int] NULL,
+	[R3257900] [int] NULL,
+	[R3259500] [int] NULL,
+	[R3259600] [int] NULL,
+	[R3259700] [int] NULL,
+	[R3261300] [int] NULL,
+	[R3261400] [int] NULL,
+	[R3261500] [int] NULL,
+	[R3263100] [int] NULL,
+	[R3263200] [int] NULL,
+	[R3263300] [int] NULL,
+	[R3264900] [int] NULL,
+	[R3265000] [int] NULL,
+	[R3265100] [int] NULL,
+	[R3266700] [int] NULL,
+	[R3266800] [int] NULL,
+	[R3266900] [int] NULL,
+	[R3268500] [int] NULL,
+	[R3556400] [int] NULL,
+	[R3557000] [int] NULL,
+	[R3557600] [int] NULL,
+	[R3771800] [int] NULL,
+	[R3771900] [int] NULL,
+	[R3772000] [int] NULL,
+	[R3772100] [int] NULL,
+	[R3772200] [int] NULL,
+	[R3772300] [int] NULL,
+	[R3772400] [int] NULL,
+	[R3773900] [int] NULL,
+	[R3774000] [int] NULL,
+	[R3774100] [int] NULL,
+	[R3774200] [int] NULL,
+	[R3774300] [int] NULL,
+	[R3774400] [int] NULL,
+	[R3774500] [int] NULL,
+	[R3776000] [int] NULL,
+	[R3776100] [int] NULL,
+	[R3776200] [int] NULL,
+	[R3776300] [int] NULL,
+	[R3776400] [int] NULL,
+	[R3776500] [int] NULL,
+	[R3776600] [int] NULL,
+	[R3778100] [int] NULL,
+	[R3778200] [int] NULL,
+	[R3778300] [int] NULL,
+	[R3778400] [int] NULL,
+	[R3778500] [int] NULL,
+	[R3778600] [int] NULL,
+	[R3778700] [int] NULL,
+	[R3780200] [int] NULL,
+	[R3780300] [int] NULL,
+	[R3780400] [int] NULL,
+	[R3780500] [int] NULL,
+	[R3780600] [int] NULL,
+	[R3780700] [int] NULL,
+	[R3780800] [int] NULL,
+	[R3782300] [int] NULL,
+	[R3782400] [int] NULL,
+	[R3782500] [int] NULL,
+	[R3782600] [int] NULL,
+	[R3782900] [int] NULL,
+	[R3784400] [int] NULL,
+	[R3784500] [int] NULL,
+	[R3784600] [int] NULL,
+	[R3784700] [int] NULL,
+	[R3785000] [int] NULL,
+	[R3786500] [int] NULL,
+	[R3788004] [int] NULL,
+	[R4276800] [int] NULL,
+	[R4276900] [int] NULL,
+	[R4277000] [int] NULL,
+	[R4277100] [int] NULL,
+	[R4277101] [int] NULL,
+	[R4277200] [int] NULL,
+	[R4277201] [int] NULL,
+	[R4277700] [int] NULL,
+	[R4277800] [int] NULL,
+	[R4277900] [int] NULL,
+	[R4278000] [int] NULL,
+	[R4278001] [int] NULL,
+	[R4278100] [int] NULL,
+	[R4278101] [int] NULL,
+	[R4278600] [int] NULL,
+	[R4278700] [int] NULL,
+	[R4278800] [int] NULL,
+	[R4278900] [int] NULL,
+	[R4278901] [int] NULL,
+	[R4279000] [int] NULL,
+	[R4279001] [int] NULL,
+	[R4279500] [int] NULL,
+	[R4279600] [int] NULL,
+	[R4279700] [int] NULL,
+	[R4279800] [int] NULL,
+	[R4279801] [int] NULL,
+	[R4279900] [int] NULL,
+	[R4279901] [int] NULL,
+	[R4280400] [int] NULL,
+	[R4280500] [int] NULL,
+	[R4280600] [int] NULL,
+	[R4280700] [int] NULL,
+	[R4280701] [int] NULL,
+	[R4280800] [int] NULL,
+	[R4280801] [int] NULL,
+	[R4281300] [int] NULL,
+	[R4281400] [int] NULL,
+	[R4281500] [int] NULL,
+	[R4281600] [int] NULL,
+	[R4281601] [int] NULL,
+	[R4282100] [int] NULL,
+	[R4282200] [int] NULL,
+	[R4282300] [int] NULL,
+	[R4282400] [int] NULL,
+	[R4282401] [int] NULL,
+	[R4282900] [int] NULL,
+	[R4283000] [int] NULL,
+	[R4283100] [int] NULL,
+	[R4283600] [int] NULL,
+	[R4827600] [int] NULL,
+	[R4827700] [int] NULL,
+	[R4827800] [int] NULL,
+	[R4827900] [int] NULL,
+	[R4827901] [int] NULL,
+	[R4828000] [int] NULL,
+	[R4828001] [int] NULL,
+	[R4828100] [int] NULL,
+	[R4830600] [int] NULL,
+	[R4830700] [int] NULL,
+	[R4830800] [int] NULL,
+	[R4830900] [int] NULL,
+	[R4830901] [int] NULL,
+	[R4831000] [int] NULL,
+	[R4831001] [int] NULL,
+	[R4831100] [int] NULL,
+	[R4833600] [int] NULL,
+	[R4833700] [int] NULL,
+	[R4833800] [int] NULL,
+	[R4833900] [int] NULL,
+	[R4833901] [int] NULL,
+	[R4834000] [int] NULL,
+	[R4834001] [int] NULL,
+	[R4834100] [int] NULL,
+	[R4836600] [int] NULL,
+	[R4836700] [int] NULL,
+	[R4836800] [int] NULL,
+	[R4836900] [int] NULL,
+	[R4836901] [int] NULL,
+	[R4837000] [int] NULL,
+	[R4837001] [int] NULL,
+	[R4837100] [int] NULL,
+	[R4839600] [int] NULL,
+	[R4839700] [int] NULL,
+	[R4839800] [int] NULL,
+	[R4839900] [int] NULL,
+	[R4839901] [int] NULL,
+	[R4840000] [int] NULL,
+	[R4840001] [int] NULL,
+	[R4840100] [int] NULL,
+	[R4842500] [int] NULL,
+	[R4842600] [int] NULL,
+	[R4842700] [int] NULL,
+	[R4842800] [int] NULL,
+	[R4842801] [int] NULL,
+	[R4842900] [int] NULL,
+	[R4844800] [int] NULL,
+	[R4844900] [int] NULL,
+	[R4845000] [int] NULL,
+	[R4845100] [int] NULL,
+	[R4845101] [int] NULL,
+	[R4845200] [int] NULL,
+	[R4847100] [int] NULL,
+	[R4847200] [int] NULL,
+	[R4847300] [int] NULL,
+	[R4847400] [int] NULL,
+	[R5498000] [int] NULL,
+	[R5498100] [int] NULL,
+	[R5498200] [int] NULL,
+	[R5498300] [int] NULL,
+	[R5498301] [int] NULL,
+	[R5498400] [int] NULL,
+	[R5498401] [int] NULL,
+	[R5498500] [int] NULL,
+	[R5501000] [int] NULL,
+	[R5501100] [int] NULL,
+	[R5501200] [int] NULL,
+	[R5501300] [int] NULL,
+	[R5501301] [int] NULL,
+	[R5501400] [int] NULL,
+	[R5501401] [int] NULL,
+	[R5501500] [int] NULL,
+	[R5504000] [int] NULL,
+	[R5504100] [int] NULL,
+	[R5504200] [int] NULL,
+	[R5504300] [int] NULL,
+	[R5504301] [int] NULL,
+	[R5504400] [int] NULL,
+	[R5504401] [int] NULL,
+	[R5504500] [int] NULL,
+	[R5507000] [int] NULL,
+	[R5507100] [int] NULL,
+	[R5507200] [int] NULL,
+	[R5507300] [int] NULL,
+	[R5507301] [int] NULL,
+	[R5507400] [int] NULL,
+	[R5507401] [int] NULL,
+	[R5507500] [int] NULL,
+	[R5510000] [int] NULL,
+	[R5510100] [int] NULL,
+	[R5510200] [int] NULL,
+	[R5510300] [int] NULL,
+	[R5510301] [int] NULL,
+	[R5510400] [int] NULL,
+	[R5510401] [int] NULL,
+	[R5510500] [int] NULL,
+	[R5513000] [int] NULL,
+	[R5513100] [int] NULL,
+	[R5513200] [int] NULL,
+	[R5513300] [int] NULL,
+	[R5513301] [int] NULL,
+	[R5513400] [int] NULL,
+	[R5515300] [int] NULL,
+	[R5515400] [int] NULL,
+	[R5515500] [int] NULL,
+	[R5515600] [int] NULL,
+	[R5515601] [int] NULL,
+	[R5515700] [int] NULL,
+	[R5517600] [int] NULL,
+	[R5517700] [int] NULL,
+	[R5517800] [int] NULL,
+	[R5517900] [int] NULL,
+	[R5519800] [int] NULL,
+	[R5519900] [int] NULL,
+	[R5520000] [int] NULL,
+	[R5520100] [int] NULL,
+	[R5520101] [int] NULL,
+	[R5520200] [int] NULL,
+	[R6218400] [int] NULL,
+	[R6218500] [int] NULL,
+	[R6218600] [int] NULL,
+	[R6218700] [int] NULL,
+	[R6218800] [int] NULL,
+	[R6218900] [int] NULL,
+	[R6219000] [int] NULL,
+	[R6219100] [int] NULL,
+	[R6219200] [int] NULL,
+	[R6219300] [int] NULL,
+	[R6219500] [int] NULL,
+	[R6219600] [int] NULL,
+	[R6219700] [int] NULL,
+	[R6219800] [int] NULL,
+	[R6219900] [int] NULL,
+	[R6220000] [int] NULL,
+	[R6220100] [int] NULL,
+	[R6220200] [int] NULL,
+	[R6220300] [int] NULL,
+	[R6220400] [int] NULL,
+	[R6220600] [int] NULL,
+	[R6220700] [int] NULL,
+	[R6220800] [int] NULL,
+	[R6220900] [int] NULL,
+	[R6221000] [int] NULL,
+	[R6221100] [int] NULL,
+	[R6221200] [int] NULL,
+	[R6221300] [int] NULL,
+	[R6221400] [int] NULL,
+	[R6221500] [int] NULL,
+	[R6221700] [int] NULL,
+	[R6221701] [int] NULL,
+	[R6221800] [int] NULL,
+	[R6221801] [int] NULL,
+	[R6221900] [int] NULL,
+	[R6221901] [int] NULL,
+	[R6222000] [int] NULL,
+	[R6222001] [int] NULL,
+	[R6222100] [int] NULL,
+	[R6222101] [int] NULL,
+	[R6222200] [int] NULL,
+	[R6222201] [int] NULL,
+	[R6222300] [int] NULL,
+	[R6222301] [int] NULL,
+	[R6222400] [int] NULL,
+	[R6222401] [int] NULL,
+	[R6222500] [int] NULL,
+	[R6222501] [int] NULL,
+	[R6222600] [int] NULL,
+	[R6222601] [int] NULL,
+	[R6222800] [int] NULL,
+	[R6222801] [int] NULL,
+	[R6222900] [int] NULL,
+	[R6222901] [int] NULL,
+	[R6223000] [int] NULL,
+	[R6223001] [int] NULL,
+	[R6223100] [int] NULL,
+	[R6223101] [int] NULL,
+	[R6223200] [int] NULL,
+	[R6223201] [int] NULL,
+	[R6223300] [int] NULL,
+	[R6223301] [int] NULL,
+	[R6223400] [int] NULL,
+	[R6223500] [int] NULL,
+	[R6223600] [int] NULL,
+	[R6223700] [int] NULL,
+	[R6223800] [int] NULL,
+	[R6223900] [int] NULL,
+	[R6224000] [int] NULL,
+	[R6224100] [int] NULL,
+	[R6224200] [int] NULL,
+	[R6224300] [int] NULL,
+	[R6770600] [int] NULL,
+	[R6771600] [int] NULL,
+	[R6771700] [int] NULL,
+	[R6771800] [int] NULL,
+	[R6771900] [int] NULL,
+	[R6772000] [int] NULL,
+	[R6772100] [int] NULL,
+	[R6772200] [int] NULL,
+	[R6772300] [int] NULL,
+	[R6772400] [int] NULL,
+	[R6772500] [int] NULL,
+	[R6772600] [int] NULL,
+	[R6772700] [int] NULL,
+	[R6772800] [int] NULL,
+	[R6772900] [int] NULL,
+	[R6773000] [int] NULL,
+	[R6773100] [int] NULL,
+	[R6773200] [int] NULL,
+	[R6773300] [int] NULL,
+	[R6773400] [int] NULL,
+	[R6773500] [int] NULL,
+	[R6773600] [int] NULL,
+	[R6773700] [int] NULL,
+	[R6773800] [int] NULL,
+	[R6773900] [int] NULL,
+	[R6774000] [int] NULL,
+	[R6774100] [int] NULL,
+	[R6774200] [int] NULL,
+	[R6774300] [int] NULL,
+	[R6774400] [int] NULL,
+	[R6774500] [int] NULL,
+	[R6774600] [int] NULL,
+	[R6774700] [int] NULL,
+	[R6774800] [int] NULL,
+	[R6774900] [int] NULL,
+	[R6775000] [int] NULL,
+	[R6775100] [int] NULL,
+	[R6775200] [int] NULL,
+	[R6775300] [int] NULL,
+	[R6775400] [int] NULL,
+	[R6775500] [int] NULL,
+	[R6775501] [int] NULL,
+	[R6775600] [int] NULL,
+	[R6775601] [int] NULL,
+	[R6775700] [int] NULL,
+	[R6775701] [int] NULL,
+	[R6775800] [int] NULL,
+	[R6775801] [int] NULL,
+	[R6775900] [int] NULL,
+	[R6775901] [int] NULL,
+	[R6776000] [int] NULL,
+	[R6776001] [int] NULL,
+	[R6776100] [int] NULL,
+	[R6776101] [int] NULL,
+	[R6776200] [int] NULL,
+	[R6776201] [int] NULL,
+	[R6776300] [int] NULL,
+	[R6776301] [int] NULL,
+	[R6776400] [int] NULL,
+	[R6776401] [int] NULL,
+	[R6776500] [int] NULL,
+	[R6776501] [int] NULL,
+	[R6776600] [int] NULL,
+	[R6776601] [int] NULL,
+	[R6776700] [int] NULL,
+	[R6776701] [int] NULL,
+	[R6776800] [int] NULL,
+	[R6776801] [int] NULL,
+	[R6776900] [int] NULL,
+	[R6777000] [int] NULL,
+	[R6777100] [int] NULL,
+	[R6777200] [int] NULL,
+	[R6777300] [int] NULL,
+	[R6777400] [int] NULL,
+	[R6777500] [int] NULL,
+	[R6777600] [int] NULL,
+	[R6777700] [int] NULL,
+	[R6777800] [int] NULL,
+	[R7415900] [int] NULL,
+	[R7416000] [int] NULL,
+	[R7416100] [int] NULL,
+	[R7416200] [int] NULL,
+	[R7416300] [int] NULL,
+	[R7416400] [int] NULL,
+	[R7416500] [int] NULL,
+	[R7416600] [int] NULL,
+	[R7416700] [int] NULL,
+	[R7416800] [int] NULL,
+	[R7416900] [int] NULL,
+	[R7417000] [int] NULL,
+	[R7417100] [int] NULL,
+	[R7417200] [int] NULL,
+	[R7417300] [int] NULL,
+	[R7417400] [int] NULL,
+	[R7417500] [int] NULL,
+	[R7417600] [int] NULL,
+	[R7417700] [int] NULL,
+	[R7417800] [int] NULL,
+	[R7417900] [int] NULL,
+	[R7418000] [int] NULL,
+	[R7418100] [int] NULL,
+	[R7418200] [int] NULL,
+	[R7418300] [int] NULL,
+	[R7418400] [int] NULL,
+	[R7418500] [int] NULL,
+	[R7418600] [int] NULL,
+	[R7418700] [int] NULL,
+	[R7418800] [int] NULL,
+	[R7418900] [int] NULL,
+	[R7419000] [int] NULL,
+	[R7419100] [int] NULL,
+	[R7419200] [int] NULL,
+	[R7419300] [int] NULL,
+	[R7419400] [int] NULL,
+	[R7419500] [int] NULL,
+	[R7419600] [int] NULL,
+	[R7419700] [int] NULL,
+	[R7419800] [int] NULL,
+	[R7419900] [int] NULL,
+	[R7419901] [int] NULL,
+	[R7420000] [int] NULL,
+	[R7420001] [int] NULL,
+	[R7420100] [int] NULL,
+	[R7420101] [int] NULL,
+	[R7420200] [int] NULL,
+	[R7420201] [int] NULL,
+	[R7420300] [int] NULL,
+	[R7420301] [int] NULL,
+	[R7420400] [int] NULL,
+	[R7420401] [int] NULL,
+	[R7420500] [int] NULL,
+	[R7420501] [int] NULL,
+	[R7420600] [int] NULL,
+	[R7420601] [int] NULL,
+	[R7420700] [int] NULL,
+	[R7420701] [int] NULL,
+	[R7420800] [int] NULL,
+	[R7420801] [int] NULL,
+	[R7420900] [int] NULL,
+	[R7420901] [int] NULL,
+	[R7421000] [int] NULL,
+	[R7421001] [int] NULL,
+	[R7421100] [int] NULL,
+	[R7421101] [int] NULL,
+	[R7421200] [int] NULL,
+	[R7421201] [int] NULL,
+	[R7421300] [int] NULL,
+	[R7421301] [int] NULL,
+	[R7421400] [int] NULL,
+	[R7421500] [int] NULL,
+	[R7421600] [int] NULL,
+	[R7421700] [int] NULL,
+	[R7421800] [int] NULL,
+	[R7421900] [int] NULL,
+	[R7422000] [int] NULL,
+	[R7422100] [int] NULL,
+	[R7422200] [int] NULL,
+	[R7422300] [int] NULL,
+	[R8114000] [int] NULL,
+	[R8114100] [int] NULL,
+	[R8114200] [int] NULL,
+	[R8114300] [int] NULL,
+	[R8114400] [int] NULL,
+	[R8114500] [int] NULL,
+	[R8114600] [int] NULL,
+	[R8114700] [int] NULL,
+	[R8114800] [int] NULL,
+	[R8114900] [int] NULL,
+	[R8115000] [int] NULL,
+	[R8115100] [int] NULL,
+	[R8115200] [int] NULL,
+	[R8115300] [int] NULL,
+	[R8115400] [int] NULL,
+	[R8115500] [int] NULL,
+	[R8115600] [int] NULL,
+	[R8115700] [int] NULL,
+	[R8115800] [int] NULL,
+	[R8115900] [int] NULL,
+	[R8116000] [int] NULL,
+	[R8116100] [int] NULL,
+	[R8116200] [int] NULL,
+	[R8116300] [int] NULL,
+	[R8116400] [int] NULL,
+	[R8116500] [int] NULL,
+	[R8116600] [int] NULL,
+	[R8116700] [int] NULL,
+	[R8116800] [int] NULL,
+	[R8116900] [int] NULL,
+	[R8117000] [int] NULL,
+	[R8117100] [int] NULL,
+	[R8117200] [int] NULL,
+	[R8117300] [int] NULL,
+	[R8117400] [int] NULL,
+	[R8117500] [int] NULL,
+	[R8117600] [int] NULL,
+	[R8117700] [int] NULL,
+	[R8117800] [int] NULL,
+	[R8117900] [int] NULL,
+	[R8118000] [int] NULL,
+	[R8118001] [int] NULL,
+	[R8118100] [int] NULL,
+	[R8118101] [int] NULL,
+	[R8118200] [int] NULL,
+	[R8118201] [int] NULL,
+	[R8118300] [int] NULL,
+	[R8118301] [int] NULL,
+	[R8118400] [int] NULL,
+	[R8118401] [int] NULL,
+	[R8118500] [int] NULL,
+	[R8118501] [int] NULL,
+	[R8118600] [int] NULL,
+	[R8118601] [int] NULL,
+	[R8118700] [int] NULL,
+	[R8118701] [int] NULL,
+	[R8118800] [int] NULL,
+	[R8118801] [int] NULL,
+	[R8118900] [int] NULL,
+	[R8118901] [int] NULL,
+	[R8119000] [int] NULL,
+	[R8119001] [int] NULL,
+	[R8119100] [int] NULL,
+	[R8119101] [int] NULL,
+	[R8119200] [int] NULL,
+	[R8119201] [int] NULL,
+	[R8119300] [int] NULL,
+	[R8119301] [int] NULL,
+	[R8119400] [int] NULL,
+	[R8119401] [int] NULL,
+	[R8119500] [int] NULL,
+	[R8119501] [int] NULL,
+	[R8119600] [int] NULL,
+	[R8119700] [int] NULL,
+	[R8119800] [int] NULL,
+	[R8119900] [int] NULL,
+	[R8120000] [int] NULL,
+	[R8120100] [int] NULL,
+	[R8120200] [int] NULL,
+	[R8120300] [int] NULL,
+	[R8120400] [int] NULL,
+	[R8120500] [int] NULL,
+	[R8135300] [int] NULL,
+	[R8135400] [int] NULL,
+	[R8135500] [int] NULL,
+	[R8135600] [int] NULL,
+	[R8135700] [int] NULL,
+	[R8135800] [int] NULL,
+	[R8135900] [int] NULL,
+	[R9900600] [int] NULL,
+	[R9900601] [int] NULL,
+	[R9901400] [int] NULL,
+	[R9901401] [int] NULL,
+	[R9902200] [int] NULL,
+	[R9902201] [int] NULL,
+	[R9903000] [int] NULL,
+	[R9903001] [int] NULL,
+	[R9903800] [int] NULL,
+	[R9903801] [int] NULL,
+	[R9904600] [int] NULL,
+	[R9904601] [int] NULL,
+	[R9905400] [int] NULL,
+	[R9905401] [int] NULL,
+	[T0345800] [int] NULL,
+	[T0345900] [int] NULL,
+	[T0346000] [int] NULL,
+	[T0346100] [int] NULL,
+	[T0346200] [int] NULL,
+	[T0346300] [int] NULL,
+	[T0346400] [int] NULL,
+	[T0346500] [int] NULL,
+	[T0346600] [int] NULL,
+	[T0346700] [int] NULL,
+	[T0346800] [int] NULL,
+	[T0346900] [int] NULL,
+	[T0347000] [int] NULL,
+	[T0347100] [int] NULL,
+	[T0347200] [int] NULL,
+	[T0347300] [int] NULL,
+	[T0347400] [int] NULL,
+	[T0347500] [int] NULL,
+	[T0347600] [int] NULL,
+	[T0347700] [int] NULL,
+	[T0347800] [int] NULL,
+	[T0347900] [int] NULL,
+	[T0348000] [int] NULL,
+	[T0348100] [int] NULL,
+	[T0348200] [int] NULL,
+	[T0348300] [int] NULL,
+	[T0348400] [int] NULL,
+	[T0348500] [int] NULL,
+	[T0348600] [int] NULL,
+	[T0348700] [int] NULL,
+	[T0348800] [int] NULL,
+	[T0348900] [int] NULL,
+	[T0349000] [int] NULL,
+	[T0349100] [int] NULL,
+	[T0349200] [int] NULL,
+	[T0349300] [int] NULL,
+	[T0349400] [int] NULL,
+	[T0349500] [int] NULL,
+	[T0349600] [int] NULL,
+	[T0349700] [int] NULL,
+	[T0349800] [int] NULL,
+	[T0349900] [int] NULL,
+	[T0350000] [int] NULL,
+	[T0350100] [int] NULL,
+	[T0350101] [int] NULL,
+	[T0350200] [int] NULL,
+	[T0350201] [int] NULL,
+	[T0350300] [int] NULL,
+	[T0350301] [int] NULL,
+	[T0350400] [int] NULL,
+	[T0350401] [int] NULL,
+	[T0350500] [int] NULL,
+	[T0350501] [int] NULL,
+	[T0350600] [int] NULL,
+	[T0350601] [int] NULL,
+	[T0350700] [int] NULL,
+	[T0350701] [int] NULL,
+	[T0350800] [int] NULL,
+	[T0350801] [int] NULL,
+	[T0350900] [int] NULL,
+	[T0350901] [int] NULL,
+	[T0351000] [int] NULL,
+	[T0351001] [int] NULL,
+	[T0351100] [int] NULL,
+	[T0351101] [int] NULL,
+	[T0351200] [int] NULL,
+	[T0351201] [int] NULL,
+	[T0351300] [int] NULL,
+	[T0351301] [int] NULL,
+	[T0351400] [int] NULL,
+	[T0351401] [int] NULL,
+	[T0351500] [int] NULL,
+	[T0351501] [int] NULL,
+	[T0351600] [int] NULL,
+	[T0351601] [int] NULL,
+	[T0351700] [int] NULL,
+	[T0351701] [int] NULL,
+	[T0351800] [int] NULL,
+	[T0351801] [int] NULL,
+	[T0351900] [int] NULL,
+	[T0352000] [int] NULL,
+	[T0352100] [int] NULL,
+	[T0352200] [int] NULL,
+	[T0352300] [int] NULL,
+	[T0352400] [int] NULL,
+	[T0352500] [int] NULL,
+	[T0352600] [int] NULL,
+	[T0352700] [int] NULL,
+	[T0352800] [int] NULL,
+	[T0352900] [int] NULL,
+	[T0597800] [int] NULL,
+	[T0597900] [int] NULL,
+	[T0598000] [int] NULL,
+	[T0598100] [int] NULL,
+	[T0598200] [int] NULL,
+	[T0598300] [int] NULL,
+	[T0598400] [int] NULL,
+	[T1495200] [int] NULL,
+	[T1495300] [int] NULL,
+	[T1495400] [int] NULL,
+	[T1495500] [int] NULL,
+	[T1495600] [int] NULL,
+	[T1495700] [int] NULL,
+	[T1495800] [int] NULL,
+	[T1495900] [int] NULL,
+	[T1496000] [int] NULL,
+	[T1496100] [int] NULL,
+	[T1496200] [int] NULL,
+	[T1496300] [int] NULL,
+	[T1496400] [int] NULL,
+	[T1496500] [int] NULL,
+	[T1496600] [int] NULL,
+	[T1496700] [int] NULL,
+	[T1496800] [int] NULL,
+	[T1496900] [int] NULL,
+	[T1497000] [int] NULL,
+	[T1497100] [int] NULL,
+	[T1497200] [int] NULL,
+	[T1497300] [int] NULL,
+	[T1497400] [int] NULL,
+	[T1497500] [int] NULL,
+	[T1497600] [int] NULL,
+	[T1497700] [int] NULL,
+	[T1497800] [int] NULL,
+	[T1497900] [int] NULL,
+	[T1498000] [int] NULL,
+	[T1498100] [int] NULL,
+	[T1498200] [int] NULL,
+	[T1498300] [int] NULL,
+	[T1498400] [int] NULL,
+	[T1498500] [int] NULL,
+	[T1498600] [int] NULL,
+	[T1498700] [int] NULL,
+	[T1498800] [int] NULL,
+	[T1498900] [int] NULL,
+	[T1499000] [int] NULL,
+	[T1499100] [int] NULL,
+	[T1499200] [int] NULL,
+	[T1499300] [int] NULL,
+	[T1499400] [int] NULL,
+	[T1499500] [int] NULL,
+	[T1499501] [int] NULL,
+	[T1499600] [int] NULL,
+	[T1499601] [int] NULL,
+	[T1499700] [int] NULL,
+	[T1499701] [int] NULL,
+	[T1499800] [int] NULL,
+	[T1499801] [int] NULL,
+	[T1499900] [int] NULL,
+	[T1499901] [int] NULL,
+	[T1500000] [int] NULL,
+	[T1500001] [int] NULL,
+	[T1500100] [int] NULL,
+	[T1500101] [int] NULL,
+	[T1500200] [int] NULL,
+	[T1500201] [int] NULL,
+	[T1500300] [int] NULL,
+	[T1500301] [int] NULL,
+	[T1500400] [int] NULL,
+	[T1500401] [int] NULL,
+	[T1500500] [int] NULL,
+	[T1500501] [int] NULL,
+	[T1500600] [int] NULL,
+	[T1500601] [int] NULL,
+	[T1500700] [int] NULL,
+	[T1500701] [int] NULL,
+	[T1500800] [int] NULL,
+	[T1500801] [int] NULL,
+	[T1500900] [int] NULL,
+	[T1500901] [int] NULL,
+	[T1501000] [int] NULL,
+	[T1501001] [int] NULL,
+	[T1501100] [int] NULL,
+	[T1501200] [int] NULL,
+	[T1501300] [int] NULL,
+	[T1501400] [int] NULL,
+	[T1501500] [int] NULL,
+	[T1501600] [int] NULL,
+	[T1501700] [int] NULL,
+	[T1501800] [int] NULL,
+	[T1501900] [int] NULL,
+	[T1502000] [int] NULL,
+	[T1502100] [int] NULL,
+	[T1765100] [int] NULL,
+	[T1765200] [int] NULL,
+	[T1765300] [int] NULL,
+	[T1765400] [int] NULL,
+	[T1765500] [int] NULL,
+	[T1765600] [int] NULL,
+	[T1765700] [int] NULL,
+	[T2541200] [int] NULL,
+	[T2541300] [int] NULL,
+	[T2541400] [int] NULL,
+	[T2541500] [int] NULL,
+	[T2541600] [int] NULL,
+	[T2541700] [int] NULL,
+	[T2541800] [int] NULL,
+	[T2541900] [int] NULL,
+	[T2542000] [int] NULL,
+	[T2542100] [int] NULL,
+	[T2542200] [int] NULL,
+	[T2542300] [int] NULL,
+	[T2542400] [int] NULL,
+	[T2542500] [int] NULL,
+	[T2542600] [int] NULL,
+	[T2542700] [int] NULL,
+	[T2542800] [int] NULL,
+	[T2542900] [int] NULL,
+	[T2543000] [int] NULL,
+	[T2543100] [int] NULL,
+	[T2543200] [int] NULL,
+	[T2543300] [int] NULL,
+	[T2543400] [int] NULL,
+	[T2543500] [int] NULL,
+	[T2543600] [int] NULL,
+	[T2543700] [int] NULL,
+	[T2543800] [int] NULL,
+	[T2543900] [int] NULL,
+	[T2544000] [int] NULL,
+	[T2544100] [int] NULL,
+	[T2544200] [int] NULL,
+	[T2544300] [int] NULL,
+	[T2544400] [int] NULL,
+	[T2544500] [int] NULL,
+	[T2544600] [int] NULL,
+	[T2544700] [int] NULL,
+	[T2544800] [int] NULL,
+	[T2544900] [int] NULL,
+	[T2545000] [int] NULL,
+	[T2545100] [int] NULL,
+	[T2545200] [int] NULL,
+	[T2545201] [int] NULL,
+	[T2545300] [int] NULL,
+	[T2545301] [int] NULL,
+	[T2545400] [int] NULL,
+	[T2545401] [int] NULL,
+	[T2545500] [int] NULL,
+	[T2545501] [int] NULL,
+	[T2545600] [int] NULL,
+	[T2545601] [int] NULL,
+	[T2545700] [int] NULL,
+	[T2545701] [int] NULL,
+	[T2545800] [int] NULL,
+	[T2545801] [int] NULL,
+	[T2545900] [int] NULL,
+	[T2545901] [int] NULL,
+	[T2546000] [int] NULL,
+	[T2546001] [int] NULL,
+	[T2546100] [int] NULL,
+	[T2546101] [int] NULL,
+	[T2546200] [int] NULL,
+	[T2546201] [int] NULL,
+	[T2546300] [int] NULL,
+	[T2546301] [int] NULL,
+	[T2546400] [int] NULL,
+	[T2546401] [int] NULL,
+	[T2546500] [int] NULL,
+	[T2546501] [int] NULL,
+	[T2546600] [int] NULL,
+	[T2546601] [int] NULL,
+	[T2546700] [int] NULL,
+	[T2546701] [int] NULL,
+	[T2546800] [int] NULL,
+	[T2546900] [int] NULL,
+	[T2547000] [int] NULL,
+	[T2547100] [int] NULL,
+	[T2547200] [int] NULL,
+	[T2547300] [int] NULL,
+	[T2547400] [int] NULL,
+	[T2547500] [int] NULL,
+	[T2547600] [int] NULL,
+	[T2547700] [int] NULL,
+	[T2763400] [int] NULL,
+	[T2763500] [int] NULL,
+	[T2763600] [int] NULL,
+	[T2763700] [int] NULL,
+	[T2763800] [int] NULL,
+	[T2763900] [int] NULL,
+	[T2764000] [int] NULL,
+ CONSTRAINT [PK_tblGen2FatherFromGen1] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen1Outcomes]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen1Outcomes](
+	[R0000100] [int] NOT NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R0481600] [int] NULL,
+	[R0481700] [int] NULL,
+	[R0618200] [int] NULL,
+	[R0618300] [int] NULL,
+	[R0618301] [int] NULL,
+	[R0779800] [int] NULL,
+	[R0779900] [int] NULL,
+	[R1773900] [int] NULL,
+	[R1774000] [int] NULL,
+	[T0897300] [int] NULL,
+	[T0897400] [int] NULL,
+	[T0897500] [int] NULL,
+	[T2053800] [int] NULL,
+	[T2053900] [int] NULL,
+	[T2054000] [int] NULL,
+	[T3024700] [int] NULL,
+	[T3024800] [int] NULL,
+	[T3024900] [int] NULL,
+ CONSTRAINT [PK_tblGen1Outcomes] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen1MzDzDistinction2010]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen1MzDzDistinction2010](
+	[ExtendedFamilyID] [smallint] NOT NULL,
+	[Subject1ID] [int] NOT NULL,
+	[Subject2ID] [int] NOT NULL,
+	[REstimatedFromImplicitAndExplicits] [real] NOT NULL,
+	[MultipleBirth] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[RelationshipPath] [tinyint] NOT NULL,
+ CONSTRAINT [PK_tblGen1MzDzDistinction2010] PRIMARY KEY CLUSTERED 
+(
+	[Subject1ID] ASC,
+	[Subject2ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen1Links]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen1Links](
+	[R0000100] [int] NOT NULL,
+	[R0000149] [int] NULL,
+	[R0000300] [int] NULL,
+	[R0000500] [int] NULL,
+	[R0009100] [int] NULL,
+	[R0009300] [int] NULL,
+	[R0172500] [int] NULL,
+	[R0172600] [int] NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R0216500] [int] NULL,
+	[R0329200] [int] NULL,
+	[R0329210] [int] NULL,
+	[R0406510] [int] NULL,
+	[R0410100] [int] NULL,
+	[R0410300] [int] NULL,
+	[R0530700] [int] NULL,
+	[R0530800] [int] NULL,
+	[R0619010] [int] NULL,
+	[R0809900] [int] NULL,
+	[R0810000] [int] NULL,
+	[R0898310] [int] NULL,
+	[R1045700] [int] NULL,
+	[R1045800] [int] NULL,
+	[R1145110] [int] NULL,
+	[R1427500] [int] NULL,
+	[R1427600] [int] NULL,
+	[R1520310] [int] NULL,
+	[R1774100] [int] NULL,
+	[R1774200] [int] NULL,
+	[R1794600] [int] NULL,
+	[R1794700] [int] NULL,
+	[R1891010] [int] NULL,
+	[R2156200] [int] NULL,
+	[R2156300] [int] NULL,
+	[R2258110] [int] NULL,
+	[R2365700] [int] NULL,
+	[R2365800] [int] NULL,
+	[R2445510] [int] NULL,
+	[R2742500] [int] NULL,
+	[R2742600] [int] NULL,
+	[R2871300] [int] NULL,
+	[R2986100] [int] NULL,
+	[R2986200] [int] NULL,
+	[R3075000] [int] NULL,
+	[R3302500] [int] NULL,
+	[R3302600] [int] NULL,
+	[R3401700] [int] NULL,
+	[R3573400] [int] NULL,
+	[R3573500] [int] NULL,
+	[R3657100] [int] NULL,
+	[R3917600] [int] NULL,
+	[R3917700] [int] NULL,
+	[R4007600] [int] NULL,
+	[R4100200] [int] NULL,
+	[R4100201] [int] NULL,
+	[R4100202] [int] NULL,
+	[R4418700] [int] NULL,
+	[R4500200] [int] NULL,
+	[R4500201] [int] NULL,
+	[R4500202] [int] NULL,
+	[R5081700] [int] NULL,
+	[R5167000] [int] NULL,
+	[R5200200] [int] NULL,
+	[R5200201] [int] NULL,
+	[R5200202] [int] NULL,
+	[R6435300] [int] NULL,
+	[R6435301] [int] NULL,
+	[R6435302] [int] NULL,
+	[R6479800] [int] NULL,
+	[R6963300] [int] NULL,
+	[R6963301] [int] NULL,
+	[R6963302] [int] NULL,
+	[R7007500] [int] NULL,
+	[R7656300] [int] NULL,
+	[R7656301] [int] NULL,
+	[R7656302] [int] NULL,
+	[R7704800] [int] NULL,
+	[R8423200] [int] NULL,
+	[R8423201] [int] NULL,
+	[R8423202] [int] NULL,
+	[R8497200] [int] NULL,
+	[R9908000] [int] NULL,
+	[T0967300] [int] NULL,
+	[T0967301] [int] NULL,
+	[T0967302] [int] NULL,
+	[T0989000] [int] NULL,
+	[T2190500] [int] NULL,
+	[T2190501] [int] NULL,
+	[T2190502] [int] NULL,
+	[T2210800] [int] NULL,
+	[T2260600] [int] NULL,
+	[T2260601] [int] NULL,
+	[T2260602] [int] NULL,
+	[T3108700] [int] NULL,
+ CONSTRAINT [PK_tblGen1Links] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen1Implicit]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen1Implicit](
+	[H0001600] [int] NULL,
+	[H0001700] [int] NULL,
+	[H0001800] [int] NULL,
+	[H0001900] [int] NULL,
+	[H0002000] [int] NULL,
+	[H0002100] [int] NULL,
+	[H0002200] [int] NULL,
+	[H0002300] [int] NULL,
+	[H0002400] [int] NULL,
+	[H0002500] [int] NULL,
+	[H0002600] [int] NULL,
+	[H0002700] [int] NULL,
+	[H0002800] [int] NULL,
+	[H0002900] [int] NULL,
+	[H0003000] [int] NULL,
+	[H0003100] [int] NULL,
+	[H0013600] [int] NULL,
+	[H0013700] [int] NULL,
+	[H0013800] [int] NULL,
+	[H0013900] [int] NULL,
+	[H0014000] [int] NULL,
+	[H0014100] [int] NULL,
+	[H0014200] [int] NULL,
+	[H0014300] [int] NULL,
+	[H0014400] [int] NULL,
+	[H0014500] [int] NULL,
+	[H0014700] [int] NULL,
+	[H0014800] [int] NULL,
+	[H0014900] [int] NULL,
+	[H0015000] [int] NULL,
+	[H0015100] [int] NULL,
+	[H0015200] [int] NULL,
+	[H0015300] [int] NULL,
+	[H0015400] [int] NULL,
+	[H0015500] [int] NULL,
+	[H0015600] [int] NULL,
+	[H0015700] [int] NULL,
+	[H0015800] [int] NULL,
+	[H0015803] [int] NULL,
+	[H0015804] [int] NULL,
+	[R0000100] [int] NOT NULL,
+	[R0006100] [int] NULL,
+	[R0006500] [int] NULL,
+	[R0007300] [int] NULL,
+	[R0007700] [int] NULL,
+	[R0007900] [int] NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R2302900] [int] NULL,
+	[R2303100] [int] NULL,
+	[R2303200] [int] NULL,
+	[R2303300] [int] NULL,
+	[R2303500] [int] NULL,
+	[R2303600] [int] NULL,
+	[R2505100] [int] NULL,
+	[R2505300] [int] NULL,
+	[R2505400] [int] NULL,
+	[R2505500] [int] NULL,
+	[R2505700] [int] NULL,
+	[R2505800] [int] NULL,
+	[R2737900] [int] NULL,
+	[R2837200] [int] NULL,
+	[R2837300] [int] NULL,
+	[R2837400] [int] NULL,
+	[R2837500] [int] NULL,
+	[R2837600] [int] NULL,
+	[R2837700] [int] NULL,
+	[R2837800] [int] NULL,
+	[R2837900] [int] NULL,
+	[R2838000] [int] NULL,
+	[R2838100] [int] NULL,
+	[R2838200] [int] NULL,
+	[R2838300] [int] NULL,
+	[R2838400] [int] NULL,
+	[R2838500] [int] NULL,
+	[R2838600] [int] NULL,
+	[R2838700] [int] NULL,
+	[R2838800] [int] NULL,
+	[R2838900] [int] NULL,
+	[R2839000] [int] NULL,
+	[R2839100] [int] NULL,
+	[R2839200] [int] NULL,
+	[R2839300] [int] NULL,
+	[R2839400] [int] NULL,
+	[R2839500] [int] NULL,
+	[R2839600] [int] NULL,
+	[R2839700] [int] NULL,
+	[R2839800] [int] NULL,
+	[R2839900] [int] NULL,
+	[R2840000] [int] NULL,
+	[R2840100] [int] NULL,
+	[R2840200] [int] NULL,
+	[R2840300] [int] NULL,
+	[R2840400] [int] NULL,
+	[R2840500] [int] NULL,
+	[R2840600] [int] NULL,
+	[R2840700] [int] NULL,
+	[R2840800] [int] NULL,
+	[R2840900] [int] NULL,
+	[R2841000] [int] NULL,
+	[R2841100] [int] NULL,
+ CONSTRAINT [PK_tblGen1Implicit] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Extract].[tblGen1Explicit]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblGen1Explicit](
+	[R0000100] [int] NOT NULL,
+	[R0000149] [int] NULL,
+	[R0000150] [int] NULL,
+	[R0000151] [int] NULL,
+	[R0000152] [int] NULL,
+	[R0000153] [int] NULL,
+	[R0000154] [int] NULL,
+	[R0000155] [int] NULL,
+	[R0000156] [int] NULL,
+	[R0000157] [int] NULL,
+	[R0000158] [int] NULL,
+	[R0000159] [int] NULL,
+	[R0000162] [int] NULL,
+	[R0000163] [int] NULL,
+	[R0000164] [int] NULL,
+	[R0000165] [int] NULL,
+	[R0000166] [int] NULL,
+	[R0214700] [int] NULL,
+	[R0214800] [int] NULL,
+	[R4125101] [int] NULL,
+	[R4125801] [int] NULL,
+	[R4126501] [int] NULL,
+	[R4127201] [int] NULL,
+	[R4127901] [int] NULL,
+	[R4128601] [int] NULL,
+	[R4129301] [int] NULL,
+	[R4130001] [int] NULL,
+	[R4130701] [int] NULL,
+	[R4131401] [int] NULL,
+	[R4132101] [int] NULL,
+	[R4132801] [int] NULL,
+	[R4133701] [int] NULL,
+	[R4521500] [int] NULL,
+	[R4521700] [int] NULL,
+	[R4521800] [int] NULL,
+	[R4521900] [int] NULL,
+	[R4522000] [int] NULL,
+	[R4522100] [int] NULL,
+	[R4522200] [int] NULL,
+	[R4522300] [int] NULL,
+	[R4522400] [int] NULL,
+	[R4522500] [int] NULL,
+	[R4522600] [int] NULL,
+	[R4522700] [int] NULL,
+	[R4522800] [int] NULL,
+	[T0002000] [int] NULL,
+	[T0002100] [int] NULL,
+	[T0002200] [int] NULL,
+	[T0002300] [int] NULL,
+	[T0002400] [int] NULL,
+	[T0002500] [int] NULL,
+	[T0002600] [int] NULL,
+	[T0002700] [int] NULL,
+	[T0002800] [int] NULL,
+	[T0002900] [int] NULL,
+	[T0003000] [int] NULL,
+	[T0003100] [int] NULL,
+	[T0003200] [int] NULL,
+	[T0003300] [int] NULL,
+	[T0003400] [int] NULL,
+	[T0003500] [int] NULL,
+	[T0003600] [int] NULL,
+	[T0003700] [int] NULL,
+	[T0003800] [int] NULL,
+	[T0003900] [int] NULL,
+	[T0004000] [int] NULL,
+	[T0004100] [int] NULL,
+	[T0004200] [int] NULL,
+	[T0004300] [int] NULL,
+	[T0004400] [int] NULL,
+	[T0004500] [int] NULL,
+	[T2261500] [int] NULL,
+	[T2261600] [int] NULL,
+	[T2261700] [int] NULL,
+	[T2261800] [int] NULL,
+	[T2261900] [int] NULL,
+	[T2262000] [int] NULL,
+	[T2262100] [int] NULL,
+	[T2262200] [int] NULL,
+	[T2262300] [int] NULL,
+	[T2262400] [int] NULL,
+	[T2262500] [int] NULL,
+	[T2262600] [int] NULL,
+	[T2262700] [int] NULL,
+	[T2262800] [int] NULL,
+	[T2262900] [int] NULL,
+	[T2263000] [int] NULL,
+	[T2263100] [int] NULL,
+	[T2263200] [int] NULL,
+	[T2263300] [int] NULL,
+	[T2263400] [int] NULL,
+	[T2263500] [int] NULL,
+	[T2263600] [int] NULL,
+	[T2263700] [int] NULL,
+	[T2263800] [int] NULL,
+ CONSTRAINT [PK_tblGen1Explicit] PRIMARY KEY CLUSTERED 
+(
+	[R0000100] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblArchiveDescription]    Script Date: 06/28/2015 20:27:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblArchiveDescription](
+	[ID] [smallint] IDENTITY(1,1) NOT NULL,
+	[AlgorithmVersion] [smallint] NOT NULL,
+	[Description] [text] NOT NULL,
+	[Date] [date] NULL,
+ CONSTRAINT [PK_tblArchiveDescription] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  SqlAssembly [SqlServerNlsLinks]    Script Date: 06/28/2015 20:27:11 ******/
+CREATE ASSEMBLY [SqlServerNlsLinks]
+AUTHORIZATION [dbo]
+FROM 0x4D5A90000300000004000000FFFF0000B800000000000000400000000000000000000000000000000000000000000000000000000000000000000000800000000E1FBA0E00B409CD21B8014CCD21546869732070726F6772616D2063616E6E6F742062652072756E20696E20444F53206D6F64652E0D0D0A2400000000000000504500004C0103005C5BB54E0000000000000000E00002210B0108000006000000060000000000009E2500000020000000400000000040000020000000020000040000000000000004000000000000000080000000020000000000000300408500001000001000000000100000100000000000001000000000000000000000004425000057000000004000007803000000000000000000000000000000000000006000000C000000C42400001C0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000080000000000000000000000082000004800000000000000000000002E74657874000000A4050000002000000006000000020000000000000000000000000000200000602E7273726300000078030000004000000004000000080000000000000000000000000000400000402E72656C6F6300000C0000000060000000020000000C00000000000000000000000000004000004200000000000000000000000000000000802500000000000048000000020005005020000074040000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042534A4201000100000000000C00000076322E302E35303732370000000005006C0000005C010000237E0000C80100000802000023537472696E677300000000D00300000800000023555300D8030000100000002347554944000000E80300008C00000023426C6F620000000000000002000001071400000900000000FA253300160000010000000E000000010000000D0000000B000000010000000100000000000A0001000000000006003B0029000600580029000600750029000600940029000600AD0029000600C60029000600E10029000600FC0029000600340115010600480129000600740161012F00880100000600B70197010600D70197010000000001000000000001000100090052000A00110052000A00190052000A00210052000A00290052000A00310052000A00390052000A00410052000A00490052000F00510052000A00590052001400690052001A00710052001F002E000B0023002E0013003A002E001B003A002E0023003A002E002B0023002E00330040002E003B003A002E004B003A002E005B0058002E00630061002E006B006A000480000001000000E6103E45000000000000F501000002000000000000000000000001002000000000000000003C4D6F64756C653E0053716C5365727665724E6C734C696E6B732E646C6C006D73636F726C69620053797374656D2E5265666C656374696F6E00417373656D626C795469746C65417474726962757465002E63746F7200417373656D626C794465736372697074696F6E41747472696275746500417373656D626C79436F6E66696775726174696F6E41747472696275746500417373656D626C79436F6D70616E7941747472696275746500417373656D626C7950726F6475637441747472696275746500417373656D626C79436F7079726967687441747472696275746500417373656D626C7954726164656D61726B41747472696275746500417373656D626C7943756C747572654174747269627574650053797374656D2E52756E74696D652E496E7465726F70536572766963657300436F6D56697369626C6541747472696275746500417373656D626C7956657273696F6E4174747269627574650053797374656D2E446961676E6F73746963730044656275676761626C6541747472696275746500446562756767696E674D6F6465730053797374656D2E52756E74696D652E436F6D70696C6572536572766963657300436F6D70696C6174696F6E52656C61786174696F6E734174747269627574650052756E74696D65436F6D7061746962696C6974794174747269627574650053716C5365727665724E6C734C696E6B73000000032000000000007C15CF8065A4A74EA3CA5E72EC97CD060008B77A5C561934E089042001010E04200101020520010111310420010108032000011601001153716C5365727665724E6C734C696E6B73000005010000000017010012436F7079726967687420C2A920203230313100000801000701000000000801000800000000001E01000100540216577261704E6F6E457863657074696F6E5468726F777301000000000000005C5BB54E000000000200000064000000E0240000E006000052534453C42A10A4AFEFE94B815B787BCDC8195402000000463A5C50726F6A656374735C4E6C735C4C696E6B73323031315C53716C5365727665724E6C734C696E6B735C6F626A5C44656275675C53716C5365727665724E6C734C696E6B732E706462006C25000000000000000000008E250000002000000000000000000000000000000000000000000000802500000000000000000000000000000000000000005F436F72446C6C4D61696E006D73636F7265652E646C6C0000000000FF2500204000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100100000001800008000000000000000000000000000000100010000003000008000000000000000000000000000000100000000004800000058400000200300000000000000000000200334000000560053005F00560045005200530049004F004E005F0049004E0046004F0000000000BD04EFFE00000100000001003E45E610000001003E45E6103F000000000000000400000002000000000000000000000000000000440000000100560061007200460069006C00650049006E0066006F00000000002400040000005400720061006E0073006C006100740069006F006E00000000000000B00480020000010053007400720069006E006700460069006C00650049006E0066006F0000005C02000001003000300030003000300034006200300000004C0012000100460069006C0065004400650073006300720069007000740069006F006E0000000000530071006C005300650072007600650072004E006C0073004C0069006E006B007300000040000F000100460069006C006500560065007200730069006F006E000000000031002E0030002E0034003300320036002E0031003700370032003600000000004C001600010049006E007400650072006E0061006C004E0061006D0065000000530071006C005300650072007600650072004E006C0073004C0069006E006B0073002E0064006C006C0000004800120001004C006500670061006C0043006F007000790072006900670068007400000043006F0070007900720069006700680074002000A90020002000320030003100310000005400160001004F0072006900670069006E0061006C00460069006C0065006E0061006D0065000000530071006C005300650072007600650072004E006C0073004C0069006E006B0073002E0064006C006C000000440012000100500072006F0064007500630074004E0061006D00650000000000530071006C005300650072007600650072004E006C0073004C0069006E006B007300000044000F000100500072006F006400750063007400560065007200730069006F006E00000031002E0030002E0034003300320036002E00310037003700320036000000000048000F00010041007300730065006D0062006C0079002000560065007200730069006F006E00000031002E0030002E0034003300320036002E00310037003700320036000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000C000000A03500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+WITH PERMISSION_SET = SAFE
+GO
+ALTER ASSEMBLY [SqlServerNlsLinks]
+ADD FILE FROM 0x4D6963726F736F667420432F432B2B204D534620372E30300D0A1A445300000000020000010000000F0000004C000000000000000D00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008D8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF30E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0BCA3101380000000010000000100000000000000900FFFF0400000003800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF1A092FF1000000000000000065000000000000001900000000000000100000002C000000000000000C00000003000000060000000900000007000000080000000A0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF77093101020000000A00008A07006F760800010000000000040000000400000004000000000000000000000000000000190000000000EEC0000000002DBA2EF10000000000000000FEEFFEEF0100000001000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000BCA310138000000001000000010000000000000FFFFFFFF040000000380000000000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FEEFFEEF0100000001000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000800000000000000000FFFFFFFF1A092FF10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000942E31011C5BB54E02000000C42A10A4AFEFE94B815B787BCDC81954220000002F4C696E6B496E666F002F6E616D6573002F7372632F686561646572626C6F636B000300000006000000010000001A0000000000000011000000060000000A0000000500000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000B000000300000007200000038000000650000000000000019000000000000002C00000000000000FFFFFFFF100000000B0000000900000006000000050000000700000008000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000480000007200000038000000FFFFFFFF00000000190000000000000004000000030000000600000007000000002F7372632F686561646572626C6F636B000300000006000000010000001A0000000000000011000000060000000A0000000500000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000B00000018000000720000003800000065000000000000001900000000000000100000002C00000000000000030000000B000000060000000900000007000000080000000A00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+AS N'bin\Debug\SqlServerNlsLinks.pdb'
+GO
+ALTER ASSEMBLY [SqlServerNlsLinks]
+ADD FILE FROM 0xEFBBBF7573696E672053797374656D2E5265666C656374696F6E3B0D0A7573696E672053797374656D2E52756E74696D652E436F6D70696C657253657276696365733B0D0A7573696E672053797374656D2E52756E74696D652E496E7465726F7053657276696365733B0D0A7573696E672053797374656D2E446174612E53716C3B0D0A0D0A2F2F2047656E6572616C20496E666F726D6174696F6E2061626F757420616E20617373656D626C7920697320636F6E74726F6C6C6564207468726F7567682074686520666F6C6C6F77696E670D0A2F2F20736574206F6620617474726962757465732E204368616E6765207468657365206174747269627574652076616C75657320746F206D6F646966792074686520696E666F726D6174696F6E0D0A2F2F206173736F636961746564207769746820616E20617373656D626C792E0D0A5B617373656D626C793A20417373656D626C795469746C65282253716C5365727665724E6C734C696E6B7322295D0D0A5B617373656D626C793A20417373656D626C794465736372697074696F6E282222295D0D0A5B617373656D626C793A20417373656D626C79436F6E66696775726174696F6E282222295D0D0A5B617373656D626C793A20417373656D626C79436F6D70616E79282222295D0D0A5B617373656D626C793A20417373656D626C7950726F64756374282253716C5365727665724E6C734C696E6B7322295D0D0A5B617373656D626C793A20417373656D626C79436F707972696768742822436F7079726967687420C2A920203230313122295D0D0A5B617373656D626C793A20417373656D626C7954726164656D61726B282222295D0D0A5B617373656D626C793A20417373656D626C7943756C74757265282222295D0D0A0D0A5B617373656D626C793A20436F6D56697369626C652866616C7365295D0D0A0D0A2F2F0D0A2F2F2056657273696F6E20696E666F726D6174696F6E20666F7220616E20617373656D626C7920636F6E7369737473206F662074686520666F6C6C6F77696E6720666F75722076616C7565733A0D0A2F2F0D0A2F2F2020202020204D616A6F722056657273696F6E0D0A2F2F2020202020204D696E6F722056657273696F6E0D0A2F2F2020202020204275696C64204E756D6265720D0A2F2F2020202020205265766973696F6E0D0A2F2F0D0A2F2F20596F752063616E207370656369667920616C6C207468652076616C756573206F7220796F752063616E2064656661756C7420746865205265766973696F6E20616E64204275696C64204E756D626572730D0A2F2F206279207573696E672074686520272A272061732073686F776E2062656C6F773A0D0A5B617373656D626C793A20417373656D626C7956657273696F6E2822312E302E2A22295D0D0A0D0A
+AS N'Properties\AssemblyInfo.cs'
+GO
+/****** Object:  Table [Process].[tblLUYesNo]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUYesNo](
+	[ID] [smallint] NOT NULL,
+	[Label] [char](40) NOT NULL,
+ CONSTRAINT [PK_[tblLUYesNoGen1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUTristate]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUTristate](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](10) NOT NULL,
+ CONSTRAINT [PK_tblLUIsMZ] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLUSurveySource]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLUSurveySource](
+	[ID] [tinyint] NOT NULL,
+	[Label] [char](12) NOT NULL,
+ CONSTRAINT [PK_tblLUSurvey] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblLURosterGen1Assignment]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblLURosterGen1Assignment](
+	[ID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ResponseLower] [smallint] NOT NULL,
+	[ResponseUpper] [smallint] NOT NULL,
+	[Freq] [smallint] NOT NULL,
+	[Resolved] [bit] NOT NULL,
+	[R] [float] NULL,
+	[RBoundLower] [float] NOT NULL,
+	[RBoundUpper] [float] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiodad] [tinyint] NOT NULL,
+	[ShareBiomom] [tinyint] NOT NULL,
+	[ShareBiograndparent] [tinyint] NOT NULL,
+	[Inconsistent] [bit] NOT NULL,
+	[Notes] [text] NULL,
+	[ResponseLowerLabel] [varchar](50) NULL,
+	[ResponseUpperLabel] [varchar](50) NULL,
+ CONSTRAINT [PK_tblLURosterGen1Assignment_1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [Process].[tblMzManual]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblMzManual](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[Generation] [tinyint] NOT NULL,
+	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[Undecided] [bit] NOT NULL,
+	[Related] [bit] NULL,
+	[Notes] [text] NULL,
+ CONSTRAINT [PK_tbluMzManual] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblMzManual_Unique] ON [tblMzManual] 
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblSubject]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblSubject](
+	[SubjectTag] [int] NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[SubjectID] [int] NOT NULL,
+	[Generation] [tinyint] NOT NULL,
+	[Gender] [tinyint] NOT NULL,
+ CONSTRAINT [PK_Process.tblSubject] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubject_Unique] ON [tblSubject] 
+(
+	[SubjectID] ASC,
+	[Generation] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblVariable]    Script Date: 06/28/2015 20:27:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [tblVariable](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[VariableCode] [char](8) NOT NULL,
+	[Item] [smallint] NOT NULL,
+	[Generation] [tinyint] NOT NULL,
+	[ExtractSource] [tinyint] NOT NULL,
+	[SurveySource] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[LoopIndex] [tinyint] NOT NULL,
+	[Translate] [bit] NOT NULL,
+	[Notes] [text] NULL,
+ CONSTRAINT [PK_tblVariable] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_CodeUnique] ON [tblVariable] 
+(
+	[VariableCode] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_UniqueValues] ON [tblVariable] 
+(
+	[Item] ASC,
+	[SurveySource] ASC,
+	[SurveyYear] ASC,
+	[LoopIndex] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[vewVariable]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewVariable]
+AS
+SELECT     Process.tblVariable.VariableCode, Process.tblVariable.Item, Process.tblVariable.Generation, Process.tblVariable.SurveyYear, Process.tblItem.Label AS ItemLabel, 
+                      Process.tblVariable.Translate, Process.tblVariable.LoopIndex, Process.tblVariable.ExtractSource, Process.tblVariable.SurveySource, Process.tblVariable.ID
+FROM         Process.tblItem INNER JOIN
+                      Process.tblVariable ON Process.tblItem.ID = Process.tblVariable.Item
+GO
+/****** Object:  Table [Process].[tblSurveyTime]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblSurveyTime](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[SurveySource] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[SurveyDate] [date] NULL,
+	[AgeSelfReportYears] [float] NULL,
+	[AgeCalculateYears] [float] NULL,
+ CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [tblSurveyTime] 
+(
+	[SubjectTag] ASC,
+	[SurveyYear] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblSubjectDetails]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblSubjectDetails](
+	[SubjectTag] [int] NOT NULL,
+	[RaceCohort] [tinyint] NOT NULL,
+	[SiblingCountInNls] [tinyint] NOT NULL,
+	[BirthOrderInNls] [tinyint] NOT NULL,
+	[SimilarAgeCount] [tinyint] NOT NULL,
+	[HasMzPossibly] [bit] NOT NULL,
+	[KidCountBio] [tinyint] NULL,
+	[KidCountInNls] [tinyint] NULL,
+	[Mob] [smalldatetime] NULL,
+	[LastSurveyYearCompleted] [smallint] NULL,
+	[AgeAtLastSurvey] [float] NULL,
+	[IsDead] [bit] NOT NULL,
+	[DeathDate] [smalldatetime] NULL,
+	[IsBiodadDead] [bit] NULL,
+	[BiodadDeathDate] [smalldatetime] NULL,
+ CONSTRAINT [PK_tblSubject] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblResponse]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblResponse](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[Generation] [tinyint] NOT NULL,
+	[SurveySource] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[Item] [smallint] NOT NULL,
+	[Value] [int] NOT NULL,
+	[LoopIndex] [tinyint] NOT NULL,
+ CONSTRAINT [PK_tblResponse] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblRelatedValuesArchive]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblRelatedValuesArchive](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AlgorithmVersion] [smallint] NOT NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[SameGeneration] [tinyint] NULL,
+	[RosterAssignmentID] [tinyint] NULL,
+	[RRoster] [float] NULL,
+	[LastSurvey_S1] [smallint] NULL,
+	[LastSurvey_S2] [smallint] NULL,
+	[RImplicitPass1] [float] NULL,
+	[RImplicit] [float] NULL,
+	[RImplicitSubject] [float] NULL,
+	[RImplicitMother] [float] NULL,
+	[RImplicit2004] [float] NULL,
+	[RExplicitOldestSibVersion] [float] NULL,
+	[RExplicitYoungestSibVersion] [float] NULL,
+	[RExplicitPass1] [float] NULL,
+	[RExplicit] [float] NULL,
+	[RPass1] [float] NULL,
+	[R] [float] NULL,
+	[RFull] [float] NULL,
+	[RPeek] [float] NULL,
+ CONSTRAINT [PK_Process.tblRelatedValuesArchive] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_Process.tblRelatedValuesArchive_Unique] ON [tblRelatedValuesArchive] 
+(
+	[AlgorithmVersion] ASC,
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblFatherOfGen2]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblFatherOfGen2](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[BiodadInHH] [smallint] NOT NULL,
+	[BiodadAlive] [smallint] NOT NULL,
+	[BiodadDistanceFromHH] [smallint] NULL,
+	[BiodadAsthma] [smallint] NOT NULL,
+ CONSTRAINT [PK_tblFatherOfGen2_1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblBabyDaddy]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblBabyDaddy](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[ChildLoopIndex] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[BiodadInHH] [smallint] NOT NULL,
+	[BiodadAlive] [smallint] NOT NULL,
+	[BiodadEverLiveInHH] [smallint] NOT NULL,
+	[BiodadLeftHHDate] [smalldatetime] NULL,
+	[BiodadDeathDate] [smalldatetime] NULL,
+	[BiodadDistanceFromHH] [smallint] NULL,
+	[BiodadAsthma] [smallint] NOT NULL,
+ CONSTRAINT [PK_tblFatherOfGen2] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblRelatedStructure]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblRelatedStructure](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[RelationshipPath] [tinyint] NOT NULL,
+	[EverSharedHouse] [bit] NOT NULL,
+ CONSTRAINT [PK_tblRelatednessStructure] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedStructure_Tags] ON [tblRelatedStructure] 
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblParentsOfGen1Retro]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblParentsOfGen1Retro](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[Bioparent] [smallint] NOT NULL,
+	[InHH] [bit] NULL,
+	[Age] [tinyint] NOT NULL,
+	[Year] [smallint] NOT NULL,
+ CONSTRAINT [PK_tblParentsOfGen1Retro] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblParentsOfGen1Retro_UniqueAge] ON [tblParentsOfGen1Retro] 
+(
+	[SubjectTag] ASC,
+	[Age] ASC,
+	[Bioparent] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_tblParentsOfGen1Retro_UniqueYear] ON [tblParentsOfGen1Retro] 
+(
+	[SubjectTag] ASC,
+	[Year] ASC,
+	[Bioparent] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblParentsOfGen1Current]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblParentsOfGen1Current](
+	[SubjectTag] [int] NOT NULL,
+	[BiodadBirthYearReported] [smallint] NULL,
+	[BiodadBirthYearEstimated] [smallint] NULL,
+	[BiodadYearLastAsked] [smallint] NULL,
+	[BiodadAlive] [smallint] NOT NULL,
+	[BiodadDeathCause] [smallint] NOT NULL,
+	[BiodadDeathAge] [tinyint] NULL,
+	[BiodadUSBorn] [smallint] NOT NULL,
+	[BiodadHighestGrade] [tinyint] NULL,
+	[BiograndfatherUSBorn] [smallint] NOT NULL,
+	[BiomomBirthYearReported] [smallint] NULL,
+	[BiomomBirthYearEstimated] [smallint] NULL,
+	[BiomomYearLastAsked] [smallint] NULL,
+	[BiomomAlive] [smallint] NOT NULL,
+	[BiomomDeathCause] [smallint] NOT NULL,
+	[BiomomDeathAge] [tinyint] NULL,
+	[BiomomUSBorn] [smallint] NOT NULL,
+	[BiomomHighestGrade] [tinyint] NULL,
+	[AlwaysLivedWithBothBioparents] [smallint] NOT NULL,
+ CONSTRAINT [PK_tblParentsOfGen1Current] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblParentsOfGen1Current_UniqueSubjectTag] ON [tblParentsOfGen1Current] 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblOutcomesOLD]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblOutcomesOLD](
+	[SubjectTag] [int] NOT NULL,
+	[HeightInchesLateTeens] [tinyint] NULL,
+	[WeightPoundsLateTeens] [smallint] NULL,
+	[AfqtRescaled2006Bounded] [float] NULL,
+ CONSTRAINT [PK_tblOutcomesOLD] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblOutcome]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblOutcome](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[Item] [smallint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[Value] [int] NOT NULL,
+ CONSTRAINT [PK_tblOutcome] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_tblOutcome_Unique] ON [tblOutcome] 
+(
+	[Item] ASC,
+	[SubjectTag] ASC,
+	[SurveyYear] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblMarkerGen2]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblMarkerGen2](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[RelatedID] [int] NOT NULL,
+	[MarkerType] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NULL,
+	[MzEvidence] [tinyint] NOT NULL,
+	[ShareBiodadEvidence] [tinyint] NOT NULL,
+	[FromMother] [bit] NOT NULL,
+ CONSTRAINT [PK_tblMarkerGen2] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+ CONSTRAINT [IX_tblMarkerGen2_Unique] UNIQUE NONCLUSTERED 
+(
+	[RelatedID] ASC,
+	[MarkerType] ASC,
+	[SurveyYear] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblMarkerGen1]    Script Date: 06/28/2015 20:27:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblMarkerGen1](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[RelatedID] [int] NOT NULL,
+	[MarkerType] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[MzEvidence] [tinyint] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiomomEvidence] [tinyint] NOT NULL,
+	[ShareBiodadEvidence] [tinyint] NOT NULL,
+	[ShareBioGrandparentEvidence] [tinyint] NOT NULL,
+ CONSTRAINT [PK_tblMarkerGen1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+ CONSTRAINT [IX_tblMarkerGen1_Unique] UNIQUE NONCLUSTERED 
+(
+	[RelatedID] ASC,
+	[MarkerType] ASC,
+	[SurveyYear] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  StoredProcedure [Process].[prcResponseRetrieveSubset]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [prcResponseRetrieveSubset] 
+AS
+BEGIN
+	SET NOCOUNT ON;-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
+SELECT     ID, SubjectTag, ExtendedID, Generation, SurveySource, SurveyYear, Item, Value, LoopIndex
+FROM         Process.tblResponse
+WHERE Item in (0) --For RelatedValues
+
+OR Item in (13,14,15,16,17,20, 21,22,100)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
+--OR Item in (1,2)                                                                                         --For RosterGen1
+--OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
+--OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
+--OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
+--OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
+--OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
+--OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
+--OR Item in (9,10)                                                                                        --For MarkerGen2
+--OR Item in (200,201,203)                                                                                 --For Gen1Outcomes
+--OR Item in (500,501,502,503)                                                                             --For Gen2OutcomesHeight
+
+END
+GO
+/****** Object:  StoredProcedure [Process].[prcArchiveMaxVersion]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Name
+-- Create date: 
+-- Description:	
+-- =============================================
+CREATE PROCEDURE [prcArchiveMaxVersion] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+SELECT Max([AlgorithmVersion]) as MaxVersion
+  FROM [NlsLinks].[Process].[tblRelatedValuesArchive]
+
+END
+GO
+/****** Object:  Table [Process].[tblRelatedValues]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblRelatedValues](
+	[ID] [int] NOT NULL,
+	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[LastSurvey_S1] [smallint] NULL,
+	[LastSurvey_S2] [smallint] NULL,
+	[ImplicitShareBiomomPass1] [tinyint] NULL,
+	[ImplicitShareBiodadPass1] [tinyint] NULL,
+	[ExplicitShareBiomomPass1] [tinyint] NULL,
+	[ExplicitShareBiodadPass1] [tinyint] NULL,
+	[ShareBiomomPass1] [tinyint] NULL,
+	[ShareBiodadPass1] [tinyint] NULL,
+	[RImplicitPass1] [float] NULL,
+	[RImplicit] [float] NULL,
+	[RImplicitSubject] [float] NULL,
+	[RImplicitMother] [float] NULL,
+	[RImplicit2004] [float] NULL,
+	[RExplicitOlderSibVersion] [float] NULL,
+	[RExplicitYoungerSibVersion] [float] NULL,
+	[RExplicitPass1] [float] NULL,
+	[RExplicit] [float] NULL,
+	[RPass1] [float] NULL,
+	[R] [float] NULL,
+	[RFull] [float] NULL,
+	[RPeek] [float] NULL,
+ CONSTRAINT [PK_tblRelatedValues] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Process].[tblRosterGen1]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [tblRosterGen1](
+	[RelatedID] [int] NOT NULL,
+	[RosterAssignmentID] [tinyint] NOT NULL,
+	[ResponseLower] [smallint] NOT NULL,
+	[ResponseUpper] [smallint] NOT NULL,
+	[Resolved] [bit] NOT NULL,
+	[R] [float] NULL,
+	[RBoundLower] [float] NOT NULL,
+	[RBoundUpper] [float] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiodad] [tinyint] NOT NULL,
+	[ShareBiomom] [tinyint] NOT NULL,
+	[ShareBiograndparent] [tinyint] NOT NULL,
+	[Inconsistent] [bit] NOT NULL,
+ CONSTRAINT [PK_tblRosterGen1_1] PRIMARY KEY CLUSTERED 
+(
+	[RelatedID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[vewOutcomesOLD]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewOutcomesOLD]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.SubjectID, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
+                      Process.tblSubjectDetails.Mob, Process.tblOutcomesOLD.HeightInchesLateTeens, Process.tblOutcomesOLD.WeightPoundsLateTeens, 
+                      Process.tblOutcomesOLD.AfqtRescaled2006Bounded
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag INNER JOIN
+                      Process.tblOutcomesOLD ON Process.tblSubject.SubjectTag = Process.tblOutcomesOLD.SubjectTag
+GO
+/****** Object:  View [Process].[vewOutcome]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewOutcome]
+AS
+SELECT     Process.tblResponse.SubjectTag, Process.tblResponse.SurveyYear, Process.tblResponse.Item, Process.tblItem.Label AS ItemLabel, Process.tblResponse.Value, 
+                      Process.tblResponse.LoopIndex, Process.tblSubject.Generation, Process.tblSurveyTime.SurveyDate, Process.tblSurveyTime.AgeSelfReportYears, 
+                      Process.tblSurveyTime.AgeCalculateYears, Process.tblSubject.Gender
+FROM         Process.tblResponse INNER JOIN
+                      Process.tblItem ON Process.tblResponse.Item = Process.tblItem.ID INNER JOIN
+                      Process.tblSubject ON Process.tblResponse.SubjectTag = Process.tblSubject.SubjectTag INNER JOIN
+                      Process.tblSurveyTime ON Process.tblResponse.SubjectTag = Process.tblSurveyTime.SubjectTag AND 
+                      Process.tblResponse.SurveyYear = Process.tblSurveyTime.SurveyYear
+GO
+/****** Object:  View [Process].[vewSurveyTimeMostRecent]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewSurveyTimeMostRecent]
+AS
+SELECT     TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent
+FROM         Process.tblSurveyTime
+WHERE     (SurveySource > 0)
+GROUP BY SubjectTag
+ORDER BY SubjectTag
+GO
+/****** Object:  View [dbo].[vewSubjectDetails79Heavy]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewSubjectDetails79Heavy]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, Process.tblSubjectDetails.RaceCohort, 
+                      Process.tblSubjectDetails.SiblingCountInNls, Process.tblSubjectDetails.BirthOrderInNls, Process.tblSubjectDetails.SimilarAgeCount, 
+                      Process.tblSubjectDetails.HasMzPossibly, Process.tblSubjectDetails.KidCountBio, Process.tblSubjectDetails.KidCountInNls, Process.tblSubjectDetails.Mob, 
+                      Process.tblSubjectDetails.LastSurveyYearCompleted, Process.tblSubjectDetails.AgeAtLastSurvey, Process.tblSubjectDetails.IsDead, 
+                      Process.tblSubjectDetails.DeathDate
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
+GO
+/****** Object:  View [Process].[vewSubjectDetails]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewSubjectDetails]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.SubjectID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
+                      Process.tblSubjectDetails.Mob, Process.tblSubjectDetails.RaceCohort
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
+GO
+/****** Object:  View [dbo].[vewRelatedValuesGen1Only]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewRelatedValuesGen1Only]
+AS
+SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
+                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValues.R, Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, 
+                      Process.tblRelatedValues.LastSurvey_S1, Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, 
+                      Process.tblRelatedValues.RImplicit2004, Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, 
+                      Process.tblRelatedValues.RExplicit, Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, 
+                      Process.tblRelatedValues.RExplicitOlderSibVersion, Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRosterGen1.RosterAssignmentID, 
+                      Process.tblRosterGen1.R AS RosterR, Process.tblRelatedValues.RFull, Process.tblRosterGen1.SameGeneration
+FROM         Process.tblRelatedValues INNER JOIN
+                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID INNER JOIN
+                      Process.tblRosterGen1 ON Process.tblRelatedStructure.ID = Process.tblRosterGen1.RelatedID
+GO
+/****** Object:  View [dbo].[vewRelatedValues]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewRelatedValues]
+AS
+SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
+                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedStructure.EverSharedHouse, Process.tblRelatedValues.R, Process.tblRelatedValues.RFull, 
+                      Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, Process.tblRelatedValues.LastSurvey_S1, 
+                      Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, Process.tblRelatedValues.RImplicit2004, 
+                      Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, Process.tblRelatedValues.RExplicit, 
+                      Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, Process.tblRelatedValues.RExplicitOlderSibVersion, 
+                      Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRelatedValues.RImplicitSubject, Process.tblRelatedValues.RImplicitMother
+FROM         Process.tblRelatedValues INNER JOIN
+                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID
+GO
+/****** Object:  View [dbo].[vewMarkerGen2]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewMarkerGen2]
+AS
+SELECT     TOP (100) PERCENT Process.tblRelatedStructure.ExtendedID, Process.tblMarkerGen2.RelatedID, Process.tblMarkerGen2.ID AS MarkerID, 
+                      Process.tblMarkerGen2.MarkerType AS MarkerTypeID, Process.tblLUMarkerType.Label AS MarkerType, Process.tblLUMarkerType.Explicit, 
+                      Process.tblMarkerGen2.FromMother, Process.tblMarkerGen2.SurveyYear, Process.tblMarkerGen2.MzEvidence AS MzEvidenceID, 
+                      Process.tblMarkerGen2.ShareBiodadEvidence AS ShareBiodadEvidenceID, Process.tblRelatedStructure.Subject1Tag, Process.tblRelatedStructure.Subject2Tag, 
+                      Process.tblLUMarkerEvidence.Label
+FROM         Process.tblMarkerGen2 INNER JOIN
+                      Process.tblLUMarkerType ON Process.tblMarkerGen2.MarkerType = Process.tblLUMarkerType.ID INNER JOIN
+                      Process.tblRelatedStructure ON Process.tblMarkerGen2.RelatedID = Process.tblRelatedStructure.ID INNER JOIN
+                      Process.tblLUMarkerEvidence ON Process.tblMarkerGen2.ShareBiodadEvidence = Process.tblLUMarkerEvidence.ID AND 
+                      Process.tblMarkerGen2.MzEvidence = Process.tblLUMarkerEvidence.ID
+ORDER BY MarkerType, Process.tblMarkerGen2.SurveyYear
+GO
+/****** Object:  View [dbo].[vewGen1Crosstabs]    Script Date: 06/28/2015 20:27:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [vewGen1Crosstabs]
+AS
+SELECT     TOP (100) PERCENT COUNT(dbo.vewRelatedValues.ExtendedID) AS Count, Process.tblLUMultipleBirth.Label AS MultipleBirth, dbo.vewRelatedValues.RExplicit, 
+                      dbo.vewRelatedValues.R, dbo.vewRelatedValues.RImplicit2004
+FROM         dbo.vewRelatedValues INNER JOIN
+                      Process.tblLUMultipleBirth ON dbo.vewRelatedValues.MultipleBirth = Process.tblLUMultipleBirth.ID
+GROUP BY dbo.vewRelatedValues.RExplicit, dbo.vewRelatedValues.R, Process.tblLUMultipleBirth.Label, dbo.vewRelatedValues.RImplicit2004
+ORDER BY dbo.vewRelatedValues.R DESC
+GO
+/****** Object:  Default [DF_tblVariable_DoNotTranslate]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable] ADD  CONSTRAINT [DF_tblVariable_DoNotTranslate]  DEFAULT ((1)) FOR [Translate]
+GO
+/****** Object:  Check [CK_tblLURosterGen1Assignment_R]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
+GO
+/****** Object:  Check [CK_tblLURosterGen1Assignment_RBoundLower]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
+GO
+/****** Object:  Check [CK_tblLURosterGen1Assignment_RBoundUpper]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
+GO
+/****** Object:  Check [CK_tblMzManual_Ordered]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual_Ordered] CHECK  (([SubjectTag_S1]<[SubjectTag_S2]))
+GO
+ALTER TABLE [tblMzManual] CHECK CONSTRAINT [CK_tblMzManual_Ordered]
+GO
+/****** Object:  Check [CK_tblVariable_Generation]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [CK_tblVariable_Generation]
+GO
+/****** Object:  Check [CK_tblVariable_SurveyYear]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2010)))
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [CK_tblVariable_SurveyYear]
+GO
+/****** Object:  Check [CK_tblVariable_VariableCodeLength]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [CK_tblVariable_VariableCodeLength]
+GO
+/****** Object:  Check [CK_tblSurveyTime_AgeCalculateYears]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyTime_AgeCalculateYears] CHECK  (((0)<=[AgeCalculateYears] AND [AgeCalculateYears]<=(70)))
+GO
+ALTER TABLE [tblSurveyTime] CHECK CONSTRAINT [CK_tblSurveyTime_AgeCalculateYears]
+GO
+/****** Object:  Check [CK_tblSurveyTime_AgeSelfReportYears]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyTime_AgeSelfReportYears] CHECK  (((0)<=[AgeSelfReportYears] AND [AgeSelfReportYears]<=(70)))
+GO
+ALTER TABLE [tblSurveyTime] CHECK CONSTRAINT [CK_tblSurveyTime_AgeSelfReportYears]
+GO
+/****** Object:  Check [CK_tblSurveyTime_SurveyYear]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyTime_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2010)))
+GO
+ALTER TABLE [tblSurveyTime] CHECK CONSTRAINT [CK_tblSurveyTime_SurveyYear]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_AgeAtLastSurvey]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_AgeAtLastSurvey] CHECK  (([AgeAtLastSurvey]>=(0)))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_AgeAtLastSurvey]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_BirthOrderInNls]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_BirthOrderInNls] CHECK  (((1)<=[BirthOrderInNls] AND [BirthOrderInNls]<=(14)))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_BirthOrderInNls]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_KidCountBio]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_KidCountBio] CHECK  (((0)<=[KidCountBio] AND [KidCountBio]<=(11)))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_KidCountBio]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_LastSurveyYear]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear] CHECK  (((1979)<=[LastSurveyYearCompleted] AND [LastSurveyYearCompleted]<=(2010)))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_Mob]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_Mob] CHECK  (('1/1/1955'<=[Mob]))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_Mob]
+GO
+/****** Object:  Check [CK_tblSubjectDetails_SiblingCountInNls]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_SiblingCountInNls] CHECK  (((0)<=[SiblingCountInNls] AND [SiblingCountInNls]<=(13)))
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_SiblingCountInNls]
+GO
+/****** Object:  Check [CK_tblResponse_SurveyYear]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblResponse]  WITH CHECK ADD  CONSTRAINT [CK_tblResponse_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2010)))
+GO
+ALTER TABLE [tblResponse] CHECK CONSTRAINT [CK_tblResponse_SurveyYear]
+GO
+/****** Object:  Check [CK_tblParentsOfGen1Current_BiodadHighestGrade]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [CK_tblParentsOfGen1Current_BiodadHighestGrade] CHECK  (((0)<=[BiodadHighestGrade] AND [BiodadHighestGrade]<=(20)))
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [CK_tblParentsOfGen1Current_BiodadHighestGrade]
+GO
+/****** Object:  Check [CK_tblParentsOfGen1Current_BiomomHighestGrade]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [CK_tblParentsOfGen1Current_BiomomHighestGrade] CHECK  (((0)<=[BiomomHighestGrade] AND [BiomomHighestGrade]<=(20)))
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [CK_tblParentsOfGen1Current_BiomomHighestGrade]
+GO
+/****** Object:  Check [CK_tblOutcomesOLD_Height]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [CK_tblOutcomesOLD_Height] CHECK  (((48)<=[HeightInchesLateTeens] AND [HeightInchesLateTeens]<=(83) OR [HeightInchesLateTeens] IS NULL))
+GO
+ALTER TABLE [tblOutcomesOLD] CHECK CONSTRAINT [CK_tblOutcomesOLD_Height]
+GO
+/****** Object:  Check [CK_tblOutcomesOLD_Weight]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [CK_tblOutcomesOLD_Weight] CHECK  (((53)<=[WeightPoundsLateTeens] AND [WeightPoundsLateTeens]<=(350) OR [WeightPoundsLateTeens] IS NULL))
+GO
+ALTER TABLE [tblOutcomesOLD] CHECK CONSTRAINT [CK_tblOutcomesOLD_Weight]
+GO
+/****** Object:  Check [CK_tblRosterGen1_R]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [CK_tblRosterGen1_R] CHECK  (((0)<=[R] AND [R]<=(1) OR [R] IS NULL))
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [CK_tblRosterGen1_R]
+GO
+/****** Object:  Check [CK_tblRosterGen1_RBoundLower]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [CK_tblRosterGen1_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(1)))
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [CK_tblRosterGen1_RBoundLower]
+GO
+/****** Object:  Check [CK_tblRosterGen1_RBoundUpper]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [CK_tblRosterGen1_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [CK_tblRosterGen1_RBoundUpper]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLURosterGen1]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
+REFERENCES [tblLURosterGen1_NOTUSED] ([ResponseCode])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLURosterGen11]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
+REFERENCES [tblLURosterGen1_NOTUSED] ([ResponseCode])
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLUTristate]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [tblLUTristate] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLUTristate1]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLUTristate2]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
+GO
+/****** Object:  ForeignKey [FK_tblLURosterGen1Assignment_tblLUTristate3]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
+GO
+/****** Object:  ForeignKey [FK_tblMzManual_tblLUMultipleBirth]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblMzManual]  WITH CHECK ADD  CONSTRAINT [FK_tblMzManual_tblLUMultipleBirth] FOREIGN KEY([MultipleBirthIfSameSex])
+REFERENCES [tblLUMultipleBirth] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMzManual] CHECK CONSTRAINT [FK_tblMzManual_tblLUMultipleBirth]
+GO
+/****** Object:  ForeignKey [FK_tblMzManual_tblLUTristate]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblMzManual]  WITH CHECK ADD  CONSTRAINT [FK_tblMzManual_tblLUTristate] FOREIGN KEY([IsMz])
+REFERENCES [tblLUTristate] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMzManual] CHECK CONSTRAINT [FK_tblMzManual_tblLUTristate]
+GO
+/****** Object:  ForeignKey [FK_tblSubject_tblLUGender]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblSubject]  WITH CHECK ADD  CONSTRAINT [FK_tblSubject_tblLUGender] FOREIGN KEY([Gender])
+REFERENCES [tblLUGender] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblSubject] CHECK CONSTRAINT [FK_tblSubject_tblLUGender]
+GO
+/****** Object:  ForeignKey [FK_tblVariable_tblLUExtractSource]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUExtractSource] FOREIGN KEY([ExtractSource])
+REFERENCES [tblLUExtractSource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUExtractSource]
+GO
+/****** Object:  ForeignKey [FK_tblVariable_tblLUItem]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUItem] FOREIGN KEY([Item])
+REFERENCES [tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUItem]
+GO
+/****** Object:  ForeignKey [FK_tblVariable_tblLUSurvey]    Script Date: 06/28/2015 20:27:11 ******/
+ALTER TABLE [tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUSurvey] FOREIGN KEY([SurveySource])
+REFERENCES [tblLUSurveySource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUSurvey]
+GO
+/****** Object:  ForeignKey [FK_tblSurveyTime_tblLUSurveySource]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [FK_tblSurveyTime_tblLUSurveySource] FOREIGN KEY([SurveySource])
+REFERENCES [tblLUSurveySource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblSurveyTime] CHECK CONSTRAINT [FK_tblSurveyTime_tblLUSurveySource]
+GO
+/****** Object:  ForeignKey [FK_tblSurveyTime_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [FK_tblSurveyTime_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblSurveyTime] CHECK CONSTRAINT [FK_tblSurveyTime_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblSubjectDetails_tblLURaceCohort]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [FK_tblSubjectDetails_tblLURaceCohort] FOREIGN KEY([RaceCohort])
+REFERENCES [tblLURaceCohort] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [FK_tblSubjectDetails_tblLURaceCohort]
+GO
+/****** Object:  ForeignKey [FK_tblSubjectDetails_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [FK_tblSubjectDetails_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblSubjectDetails] CHECK CONSTRAINT [FK_tblSubjectDetails_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblResponse_tblItem]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblItem] FOREIGN KEY([Item])
+REFERENCES [tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblItem]
+GO
+/****** Object:  ForeignKey [FK_tblResponse_tblLUSurveySource]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblLUSurveySource] FOREIGN KEY([SurveySource])
+REFERENCES [tblLUSurveySource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblLUSurveySource]
+GO
+/****** Object:  ForeignKey [FK_tblResponse_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
+REFERENCES [tblLURosterGen1Assignment] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValuesArchive_tblLUTristate]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
+GO
+/****** Object:  ForeignKey [FK_tblFatherOfGen2_tblLUYesNo_BiodadAlive]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAlive] FOREIGN KEY([BiodadAlive])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAlive]
+GO
+/****** Object:  ForeignKey [FK_tblFatherOfGen2_tblLUYesNo_BiodadAsthma]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAsthma] FOREIGN KEY([BiodadAsthma])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadAsthma]
+GO
+/****** Object:  ForeignKey [FK_tblFatherOfGen2_tblLUYesNo_BiodadInHH]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadInHH] FOREIGN KEY([BiodadInHH])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblLUYesNo_BiodadInHH]
+GO
+/****** Object:  ForeignKey [FK_tblFatherOfGen2_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblFatherOfGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblFatherOfGen2_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblFatherOfGen2] CHECK CONSTRAINT [FK_tblFatherOfGen2_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH] FOREIGN KEY([BiodadInHH])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH]
+GO
+/****** Object:  ForeignKey [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAlive]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAlive] FOREIGN KEY([BiodadAlive])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAlive]
+GO
+/****** Object:  ForeignKey [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAsthma]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAsthma] FOREIGN KEY([BiodadAsthma])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen1_BiodadAsthma]
+GO
+/****** Object:  ForeignKey [FK_tblBabyDaddy_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblBabyDaddy] CHECK CONSTRAINT [FK_tblBabyDaddy_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedStructure_tblLURelationshipPath]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedStructure_tblLURelationshipPath] FOREIGN KEY([RelationshipPath])
+REFERENCES [tblLURelationshipPath] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRelatedStructure] CHECK CONSTRAINT [FK_tblRelatedStructure_tblLURelationshipPath]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedStructure_tblSubject_Subject1]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject1] FOREIGN KEY([SubjectTag_S1])
+REFERENCES [tblSubject] ([SubjectTag])
+GO
+ALTER TABLE [tblRelatedStructure] CHECK CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject1]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedStructure_tblSubject_Subject2]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject2] FOREIGN KEY([SubjectTag_S2])
+REFERENCES [tblSubject] ([SubjectTag])
+GO
+ALTER TABLE [tblRelatedStructure] CHECK CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject2]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Retro_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Retro]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Retro_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblParentsOfGen1Retro] CHECK CONSTRAINT [FK_tblParentsOfGen1Retro_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo] FOREIGN KEY([AlwaysLivedWithBothBioparents])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadAlive]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadAlive] FOREIGN KEY([BiodadAlive])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadAlive]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadUSBorn]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadUSBorn] FOREIGN KEY([BiodadUSBorn])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiodadUSBorn]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo_BiograndfatherUSBorn]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiograndfatherUSBorn] FOREIGN KEY([BiograndfatherUSBorn])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiograndfatherUSBorn]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomAlive]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomAlive] FOREIGN KEY([BiomomAlive])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomAlive]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomUSBorn]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomUSBorn] FOREIGN KEY([BiomomUSBorn])
+REFERENCES [tblLUYesNo] ([ID])
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo_BiomomUSBorn]
+GO
+/****** Object:  ForeignKey [FK_tblParentsOfGen1Current_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblParentsOfGen1Current] CHECK CONSTRAINT [FK_tblParentsOfGen1Current_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblOutcomesOLD_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcomesOLD_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblOutcomesOLD] CHECK CONSTRAINT [FK_tblOutcomesOLD_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblOutcome_tblItem]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblItem] FOREIGN KEY([Item])
+REFERENCES [tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblItem]
+GO
+/****** Object:  ForeignKey [FK_tblOutcome_tblSubject]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblSubject]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen2_tblLUMarkerEvidence_Biodad]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerEvidence_Biodad] FOREIGN KEY([ShareBiodadEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerEvidence_Biodad]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen2_tblLUMarkerEvidence_Mz]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerEvidence_Mz] FOREIGN KEY([MzEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerEvidence_Mz]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen2_tblLUMarkerType]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerType] FOREIGN KEY([MarkerType])
+REFERENCES [tblLUMarkerType] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblLUMarkerType]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen2_tblRelatedStructure]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen2]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen2_tblRelatedStructure] FOREIGN KEY([RelatedID])
+REFERENCES [tblRelatedStructure] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblRelatedStructure]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence] FOREIGN KEY([ShareBioGrandparentEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence_Biodad]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Biodad] FOREIGN KEY([ShareBiodadEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Biodad]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence_Biomom]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Biomom] FOREIGN KEY([ShareBiomomEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Biomom]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence_Mz]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Mz] FOREIGN KEY([MzEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_Mz]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiodad]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiodad] FOREIGN KEY([ShareBiodadEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiodad]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiomom]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiomom] FOREIGN KEY([ShareBiomomEvidence])
+REFERENCES [tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerEvidence_ShareBiomom]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblLUMarkerType]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerType] FOREIGN KEY([MarkerType])
+REFERENCES [tblLUMarkerType] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblLUMarkerType]
+GO
+/****** Object:  ForeignKey [FK_tblMarkerGen1_tblRelatedStructure]    Script Date: 06/28/2015 20:27:12 ******/
+ALTER TABLE [tblMarkerGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblMarkerGen1_tblRelatedStructure] FOREIGN KEY([RelatedID])
+REFERENCES [tblRelatedStructure] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblMarkerGen1] CHECK CONSTRAINT [FK_tblMarkerGen1_tblRelatedStructure]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUMultipleBirth]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUMultipleBirth] FOREIGN KEY([MultipleBirthIfSameSex])
+REFERENCES [tblLUMultipleBirth] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUMultipleBirth]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUTristate]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate] FOREIGN KEY([IsMz])
+REFERENCES [tblLUTristate] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiodadPass1]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiodadPass1] FOREIGN KEY([ExplicitShareBiodadPass1])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiodadPass1]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiomomPass1]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiomomPass1] FOREIGN KEY([ExplicitShareBiomomPass1])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ExplicitShareBiomomPass1]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiodadPass1]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiodadPass1] FOREIGN KEY([ImplicitShareBiodadPass1])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiodadPass1]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiomomPass1]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiomomPass1] FOREIGN KEY([ImplicitShareBiomomPass1])
+REFERENCES [tblLUTristate] ([ID])
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblLUTristate_ImplicitShareBiomomPass1]
+GO
+/****** Object:  ForeignKey [FK_tblRelatedValues_tblRelatedStructure]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRelatedValues]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValues_tblRelatedStructure] FOREIGN KEY([ID])
+REFERENCES [tblRelatedStructure] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblRelatedStructure]
+GO
+/****** Object:  ForeignKey [FK_tblRosterGen1_tblLURosterGen1Assignment]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
+REFERENCES [tblLURosterGen1Assignment] ([ID])
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment]
+GO
+/****** Object:  ForeignKey [FK_tblRosterGen1_tblLUTristate]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [tblLUTristate] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblLUTristate]
+GO
+/****** Object:  ForeignKey [FK_tblRosterGen1_tblRelatedStructure]    Script Date: 06/28/2015 20:27:13 ******/
+ALTER TABLE [tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblRelatedStructure] FOREIGN KEY([RelatedID])
+REFERENCES [tblRelatedStructure] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblRelatedStructure]
+GO
