@@ -29,9 +29,15 @@ Tables related to an *Subject*:
 
 [![subject](data-public/metadata/database/diagrams/subject.png)](data-public/metadata/database/diagrams)
 
-Most metadata is described in [CSVs](data-public/metadata/tables).
-
-For the masochistically curious, the full database is described [in SQL]([item](data-public/metadata/database/generate-db.sql).
+Additional Information:
+1. Some metadata sets are described in [CSVs](data-public/metadata/tables).  The metadata tables are [uploaded to the database](utility/import-metadata.R),  [logged](stitched-output/utility/import-metadata.md), and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/stitched-output/utility/import-metadata.md).
+1. Other metadata sets that are hardcoded into the C#:
+    * [Enums](BaseAssembly/Enums.cs)
+    * [EnumResponses](BaseAssembly/EnumResponses.cs)
+    * [EnumResponsesGen1](BaseAssembly/EnumResponsesGen1.cs)
+    * [EnumResponsesGen2](BaseAssembly/EnumResponsesGen2.cs)
+1. Row & columns counts for each table are [available](analysis/eda/counts/counts.md) and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/analysis/eda/counts/counts.md).
+1. For the masochistically curious, the full database is described [in SQL]([item](data-public/metadata/database/generate-db.sql).
 
 ## Aims
 >This application requests funds to continue our past NLSY kinship linking efforts, and to use recently-developed kinship links in new and innovative empirical research.  With previous support from a recent NIH grant, we updated kinship links for two National Longitudinal Survey of Youth datasets (NLSY79 and NLSY-Children/Young Adults), completed in 2013.  The proposed research will identify and circulate links for a third NLSY dataset, the NLSY97, and will provide data for four proposed studies that use the kinship link structure from all three datasets.
