@@ -121,17 +121,18 @@ ds_file <- names(lst_col_types) %>%
   ) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    # table_name = paste0(schema_name, ".tbl", name),
-    table_name = paste0("tbl", name),
+    table_name = paste0(schema_name, ".tbl", name),
+    # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists)
+    exists    = purrr::map_lgl(path, file.exists),
+    sql_delete= paste0("DELETE FROM ", table_name)
   )
 
 ds_file
 ```
 
 ```
-## # A tibble: 8 x 5
+## # A tibble: 8 x 6
 ##                 name                                               path
 ##                <chr>                                              <chr>
 ## 1               Item               data-public/metadata/tables/Item.csv
@@ -142,8 +143,8 @@ ds_file
 ## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
 ## 7           MzManual           data-public/metadata/tables/MzManual.csv
 ## 8           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 3 more variables: table_name <chr>, col_types <list>,
-## #   exists <lgl>
+## # ... with 4 more variables: table_name <chr>, col_types <list>,
+## #   exists <lgl>, sql_delete <chr>
 ```
 
 ```r
@@ -265,10 +266,56 @@ lst_ds %>%
 ```
 
 ```r
+lst_ds$Metadata.tblVariable %>%
+  purrr::map(~max(nchar(.), na.rm=T))
+```
+
+```
+## $ID
+## [1] 4
+## 
+## $VariableCode
+## [1] 8
+## 
+## $Item
+## [1] 4
+## 
+## $Generation
+## [1] 1
+## 
+## $ExtractSource
+## [1] 2
+## 
+## $SurveySource
+## [1] 1
+## 
+## $SurveyYear
+## [1] 4
+## 
+## $LoopIndex
+## [1] 3
+## 
+## $Translate
+## [1] 1
+## 
+## $Notes
+## [1] 56
+```
+
+```r
 # lst_ds %>%
 #   purrr::map(nrow)
 # lst_ds %>%
 #   purrr::map(readr::spec)
+
+names(lst_ds)
+```
+
+```
+## [1] "Metadata.tblItem"               "Metadata.tblLUExtractSource"   
+## [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
+## [5] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
+## [7] "Metadata.tblMzManual"           "Metadata.tblVariable"
 ```
 
 ```r
@@ -290,19 +337,87 @@ lst_ds %>%
 # table(paste(ds$county_id, ds$month))[table(paste(ds$county_id, ds$month))>1]
 ```
 
+
 ```r
-# dput(colnames(ds)) # Print colnames for line below.
-# columns_to_write <- c("county_month_id", "county_id", "month", "fte", "fte_approximated", "region_id")
-# ds_slim <- ds %>%
-#   dplyr::select_(.dots=columns_to_write) %>%
-#   dplyr::mutate(
-#     fte_approximated <- as.integer(fte_approximated)
-#   )
-# ds_slim
+# lst_ds %>%
+#   purrr::map(function(x)paste(names(x)))
 #
-# rm(columns_to_write)
+
+channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+RODBC::odbcGetInfo(channel)
 ```
 
+```
+##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
+## "Microsoft SQL Server"           "10.50.2500"                "03.52" 
+##       Data_Source_Name            Driver_Name             Driver_Ver 
+##                     ""         "SQLSRV32.DLL"           "06.02.9200" 
+##               ODBC_Ver            Server_Name 
+##           "03.80.0000"            "BEE\\BASS"
+```
+
+```r
+# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
+
+# delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
+
+delete_results <- ds_file$sql_delete %>%
+  purrr::set_names(ds_file$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+
+delete_results
+```
+
+```
+##               Metadata.tblItem    Metadata.tblLUExtractSource 
+##                             -2                             -2 
+##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
+##                             -2                             -2 
+## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
+##                             -2                             -2 
+##           Metadata.tblMzManual           Metadata.tblVariable 
+##                             -2                             -2
+```
+
+```r
+# d <- lst_ds[["Metadata.tblMzManual"]] %>%
+#   dplyr::slice(1:2)
+# summary(d)
+
+# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+
+
+purrr::map2_int(
+  lst_ds,
+  # names(lst_ds),
+  ds_file$table_name,
+  function( d, table_name ) {
+    RODBC::sqlSave(
+      channel     = channel,
+      dat         = d,
+      tablename   = table_name,
+      safer       = FALSE,       # Don't keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    )
+  }
+)
+```
+
+```
+##               Metadata.tblItem    Metadata.tblLUExtractSource 
+##                              1                              1 
+##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
+##                              1                              1 
+## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
+##                              1                              1 
+##           Metadata.tblMzManual           Metadata.tblVariable 
+##                              1                              1
+```
+
+```r
+RODBC::odbcClose(channel); rm(channel)
+```
 
 The R session information (including the OS info, R version and all
 packages used):
@@ -333,12 +448,13 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         backports_1.1.0  evaluate_0.10    stringi_1.1.5   
-##  [9] rlang_0.1.1      testit_0.7       checkmate_1.8.2  tools_3.4.0     
-## [13] stringr_1.2.0    readr_1.1.1      glue_1.1.0       markdown_0.8    
-## [17] purrr_0.2.2.2    hms_0.3          compiler_3.4.0   knitr_1.16      
-## [21] bindr_0.1        tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
 ```
 
 ```r
@@ -346,6 +462,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-19 20:24:42 CDT"
+## [1] "2017-06-20 12:21:15 CDT"
 ```
 

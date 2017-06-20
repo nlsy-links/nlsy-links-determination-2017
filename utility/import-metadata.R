@@ -112,7 +112,8 @@ ds_file <- names(lst_col_types) %>%
     table_name = paste0(schema_name, ".tbl", name),
     # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists)
+    exists    = purrr::map_lgl(path, file.exists),
+    sql_delete= paste0("DELETE FROM ", table_name)
   )
 
 ds_file
@@ -131,6 +132,9 @@ rm(directory_in) # rm(col_types_tulsa)
 
 lst_ds %>%
   purrr::walk(print)
+
+lst_ds$Metadata.tblVariable %>%
+  purrr::map(~max(nchar(.), na.rm=T))
 
 # lst_ds %>%
 #   purrr::map(nrow)
@@ -165,13 +169,26 @@ names(lst_ds)
 #   purrr::map(function(x)paste(names(x)))
 #
 
-
 channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
 RODBC::odbcGetInfo(channel)
-keepExistingTable <- FALSE
 # RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
 
-purrr::map2(
+# delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
+
+delete_results <- ds_file$sql_delete %>%
+  purrr::set_names(ds_file$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+
+delete_results
+
+# d <- lst_ds[["Metadata.tblMzManual"]] %>%
+#   dplyr::slice(1:2)
+# summary(d)
+
+# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+
+
+purrr::map2_int(
   lst_ds,
   # names(lst_ds),
   ds_file$table_name,
@@ -180,38 +197,10 @@ purrr::map2(
       channel     = channel,
       dat         = d,
       tablename   = table_name,
-      safer       = keepExistingTable,
+      safer       = FALSE,       # Don't keep the existing table.
       rownames    = FALSE,
       append      = TRUE
     )
   }
 )
-
-
-RODBC::odbcClose(channel)
-
-
-
-OuhscMunge::upload_sqls_rodbc(
-  d                = lst_ds[[1]],
-  table_name       = "dbo.tblItem",
-  dsn_name         = "BeeNlsLinks",
-  clear_table      = F,
-  create_table     = FALSE
-
-)
-
-
-
-
-purrr::map2(
-  lst_ds,
-  # names(lst_ds),
-  ds_file$table_name,
-  OuhscMunge::upload_sqls_rodbc,
-  dsn_name        = "BeeNlsLinks",
-  clear_table     = TRUE,
-  create_table    = FALSE
-)
-
-
+RODBC::odbcClose(channel); rm(channel)

@@ -42,6 +42,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
+|Archive     |tblArchiveDescription      |        55|            4|
 |Archive     |tblRelatedValuesArchive    |   909,870|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
@@ -75,8 +76,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Metadata    |tblLURelationshipPath      |         5|            2|
 |Metadata    |tblLUSurveySource          |         4|            2|
 |Metadata    |tblMzManual                |       206|            9|
-|Metadata    |tblVariable                |         0|           10|
-|Process     |tblArchiveDescription      |        55|            4|
+|Metadata    |tblVariable                |     1,559|           10|
 |Process     |tblBabyDaddy               |         0|           11|
 |Process     |tblFatherOfGen2            |         0|            7|
 |Process     |tblIRDemo1                 |         0|            5|
@@ -86,13 +86,13 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Process     |tblOutcomesOLD             |         0|            4|
 |Process     |tblParentsOfGen1Current    |         0|           19|
 |Process     |tblParentsOfGen1Retro      |         0|            7|
-|Process     |tblRelatedStructure        |    85,590|            6|
+|Process     |tblRelatedStructure        |         0|            6|
 |Process     |tblRelatedValues           |         0|           24|
 |Process     |tblResponse                |         0|            9|
-|Process     |tblRosterGen1              |    10,604|           13|
+|Process     |tblRosterGen1              |         0|           13|
 |Process     |tblSubject                 |    24,198|            5|
 |Process     |tblSubjectDetails          |         0|           15|
-|Process     |tblSurveyTime              |   580,752|            7|
+|Process     |tblSurveyTime              |         0|            7|
 
 
 
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-20, 10:33 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-20, 12:21 -0500 in 1 seconds.
 
