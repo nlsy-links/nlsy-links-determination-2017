@@ -27,20 +27,125 @@ schamea_name              <- "Metadata"
 #   FmlaSum     = readr::col_integer()
 # )
 
+lst_col_types <- list(
+  Item = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer()
+  ),
+  LUExtractSource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerEvidence = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerType = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    Explicit                            = readr::col_integer()
+  ),
+  LURelationshipPath = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUSurveySource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  MzManual = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    Undecided                           = readr::col_integer(),
+    Related                             = readr::col_integer(),
+    Notes                               = readr::col_character()
+  ),
+  RArchive = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    AlgorithmVersion                    = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    SameGeneration                      = readr::col_character(),
+    RosterAssignmentID                  = readr::col_character(),
+    RRoster                             = readr::col_character(),
+    LastSurvey_S1                       = readr::col_integer(),
+    LastSurvey_S2                       = readr::col_integer(),
+    RImplicitPass1                      = readr::col_double(),
+    RImplicit                           = readr::col_double(),
+    RImplicitSubject                    = readr::col_double(),
+    RImplicitMother                     = readr::col_double(),
+    RImplicit2004                       = readr::col_double(),
+    RExplicitOldestSibVersion           = readr::col_double(),
+    RExplicitYoungestSibVersion         = readr::col_double(),
+    RExplicitPass1                      = readr::col_double(),
+    RExplicit                           = readr::col_double(),
+    RPass1                              = readr::col_double(),
+    R                                   = readr::col_double(),
+    RFull                               = readr::col_double(),
+    RPeek                               = readr::col_character()
+  ),
+  Variable = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveySource                        = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex                           = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character()
+  )
+)
+
+# lst_col_types[["Item"]]
+
+
 # ---- load-data ---------------------------------------------------------------
+ds_file <- tibble::tibble(
+  file = list.files(directory_in, pattern="*.csv", full.names=T)
+)
+
+ds_file <- list.files(directory_in, pattern="*.csv", full.names=T) %>%
+  tibble::tibble(file = .) %>%
+  # dplyr::slice(1:2) %>%
+  dplyr::mutate(
+    table_name = tools::file_path_sans_ext(basename(file)),
+    col_types = purrr::map(table_name, function(x) lst_col_types[[x]])
+  )
 
 
-lst_ds <- directory_in %>%
-  list.files(pattern="*.csv", full.names=T) %>%
-  purrr::map(readr::read_csv)
+
+#TODO: put arguments into a tibble.
+
+lst_ds <- ds_file %>%
+  dplyr::select(file, col_types) %>%
+  purrr::pmap(readr::read_csv) %>%
+  purrr::set_names(nm=ds_file$table_name)
 
 rm(directory_in) # rm(col_types_tulsa)
 
 lst_ds %>%
   purrr::walk(print)
 
-lst_ds %>%
-  purrr::map("name")
+# lst_ds %>%
+#   purrr::map("ID")
+
+# lst_ds %>%
+#   purrr::map(nrow)
+# lst_ds %>%
+#   purrr::map(readr::spec)
+
+# names(lst_ds)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.

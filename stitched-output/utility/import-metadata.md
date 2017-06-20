@@ -38,115 +38,112 @@ schamea_name              <- "Metadata"
 #   FteSum      = readr::col_double(),
 #   FmlaSum     = readr::col_integer()
 # )
+
+lst_col_types <- list(
+  Item = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer()
+  ),
+  LUExtractSource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerEvidence = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUMarkerType = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    Explicit                            = readr::col_integer()
+  ),
+  LURelationshipPath = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  LUSurveySource = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character()
+  ),
+  MzManual = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    Undecided                           = readr::col_integer(),
+    Related                             = readr::col_integer(),
+    Notes                               = readr::col_character()
+  ),
+  RArchive = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    AlgorithmVersion                    = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    SameGeneration                      = readr::col_character(),
+    RosterAssignmentID                  = readr::col_character(),
+    RRoster                             = readr::col_character(),
+    LastSurvey_S1                       = readr::col_integer(),
+    LastSurvey_S2                       = readr::col_integer(),
+    RImplicitPass1                      = readr::col_double(),
+    RImplicit                           = readr::col_double(),
+    RImplicitSubject                    = readr::col_double(),
+    RImplicitMother                     = readr::col_double(),
+    RImplicit2004                       = readr::col_double(),
+    RExplicitOldestSibVersion           = readr::col_double(),
+    RExplicitYoungestSibVersion         = readr::col_double(),
+    RExplicitPass1                      = readr::col_double(),
+    RExplicit                           = readr::col_double(),
+    RPass1                              = readr::col_double(),
+    R                                   = readr::col_double(),
+    RFull                               = readr::col_double(),
+    RPeek                               = readr::col_character()
+  ),
+  Variable = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveySource                        = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex                           = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character()
+  )
+)
+
+# lst_col_types[["Item"]]
 ```
 
 ```r
-lst_ds <- directory_in %>%
-  list.files(pattern="*.csv", full.names=T) %>%
-  purrr::map(readr::read_csv)
-```
+ds_file <- tibble::tibble(
+  file = list.files(directory_in, pattern="*.csv", full.names=T)
+)
 
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character(),
-##   MinValue = col_integer(),
-##   MinNonnegative = col_integer(),
-##   MaxValue = col_integer()
-## )
-```
+ds_file <- list.files(directory_in, pattern="*.csv", full.names=T) %>%
+  tibble::tibble(file = .) %>%
+  # dplyr::slice(1:2) %>%
+  dplyr::mutate(
+    table_name = tools::file_path_sans_ext(basename(file)),
+    col_types = purrr::map(table_name, function(x) lst_col_types[[x]])
+  )
 
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-```
 
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character(),
-##   Explicit = col_integer()
-## )
-```
 
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   Label = col_character()
-## )
-```
+#TODO: put arguments into a tibble.
 
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   SubjectTag_S1 = col_integer(),
-##   SubjectTag_S2 = col_integer(),
-##   Generation = col_integer(),
-##   MultipleBirthIfSameSex = col_integer(),
-##   IsMz = col_integer(),
-##   Undecided = col_integer(),
-##   Related = col_integer(),
-##   Notes = col_character()
-## )
-```
+lst_ds <- ds_file %>%
+  dplyr::select(file, col_types) %>%
+  purrr::pmap(readr::read_csv) %>%
+  purrr::set_names(nm=ds_file$table_name)
 
-```
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   ID = col_integer(),
-##   AlgorithmVersion = col_integer(),
-##   SubjectTag_S1 = col_integer(),
-##   SubjectTag_S2 = col_integer(),
-##   MultipleBirthIfSameSex = col_integer(),
-##   IsMz = col_integer(),
-##   SameGeneration = col_character(),
-##   RosterAssignmentID = col_character(),
-##   RRoster = col_character(),
-##   LastSurvey_S1 = col_integer(),
-##   LastSurvey_S2 = col_integer(),
-##   RPeek = col_character()
-## )
-```
-
-```
-## See spec(...) for full column specifications.
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   ID = col_integer(),
-##   VariableCode = col_character(),
-##   Item = col_integer(),
-##   Generation = col_integer(),
-##   ExtractSource = col_integer(),
-##   SurveySource = col_integer(),
-##   SurveyYear = col_integer(),
-##   LoopIndex = col_integer(),
-##   Translate = col_integer(),
-##   Notes = col_character()
-## )
-```
-
-```r
 rm(directory_in) # rm(col_types_tulsa)
 
 lst_ds %>%
@@ -276,37 +273,15 @@ lst_ds %>%
 ```
 
 ```r
-lst_ds %>%
-  purrr::map("name")
-```
+# lst_ds %>%
+#   purrr::map("ID")
 
-```
-## [[1]]
-## NULL
-## 
-## [[2]]
-## NULL
-## 
-## [[3]]
-## NULL
-## 
-## [[4]]
-## NULL
-## 
-## [[5]]
-## NULL
-## 
-## [[6]]
-## NULL
-## 
-## [[7]]
-## NULL
-## 
-## [[8]]
-## NULL
-## 
-## [[9]]
-## NULL
+# lst_ds %>%
+#   purrr::map(nrow)
+# lst_ds %>%
+#   purrr::map(readr::spec)
+
+# names(lst_ds)
 ```
 
 ```r
@@ -351,38 +326,31 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.0 (2017-04-21)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.2 LTS
+## R version 3.4.0 Patched (2017-05-16 r72684)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows >= 8 x64 (build 9200)
 ## 
 ## Matrix products: default
-## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
-## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_0.6-1    magrittr_1.5
+## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11          lattice_0.20-35       tidyr_0.6.3          
-##  [4] zoo_1.8-0             digest_0.6.12         dplyr_0.7.0          
-##  [7] assertthat_0.2.0      grid_3.4.0            R6_2.2.1             
-## [10] evaluate_0.10         RSQLite_1.1-2         stringi_1.1.5        
-## [13] rlang_0.1.1.9000      testit_0.7            tools_3.4.0          
-## [16] stringr_1.2.0         readr_1.1.1           OuhscMunge_0.1.8.9001
-## [19] glue_1.1.0            purrr_0.2.2.2         hms_0.3              
-## [22] compiler_3.4.0        memoise_1.1.0         knitr_1.16           
-## [25] tibble_1.3.3
+##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
+##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
+##  [9] testit_0.7       tools_3.4.0      stringr_1.2.0    readr_1.1.1     
+## [13] glue_1.1.0       purrr_0.2.2.2    hms_0.3          compiler_3.4.0  
+## [17] knitr_1.16       bindr_0.1        tibble_1.3.3
 ```
 
 ```r
@@ -390,6 +358,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-19 08:52:03 CDT"
+## [1] "2017-06-19 20:06:36 CDT"
 ```
 
