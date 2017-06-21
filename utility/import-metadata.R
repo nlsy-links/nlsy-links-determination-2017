@@ -105,7 +105,8 @@ lst_col_types <- list(
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
   enum_name           = readr::col_character(),
-  enum_file           = readr::col_character(),
+  # enum_file           = readr::col_character(),
+  c_sharp_type        = readr::col_character(),
   convert_to_enum     = readr::col_logical()
 )
 
@@ -186,30 +187,32 @@ rm(lst_ds)
 
 # ---- convert-to-enum ---------------------------------------------------------
 
-create_cs_enum <- function( n, d ) {
-  # nrow(x)
+create_enum_body <- function( d ) {
   tab_spaces <- "    "
-  header <- paste0("public enum ", n, " {\n")
-  body <- paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
-  footer <- "}\n"
-  paste0(header, body, footer)
+  paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
 }
 
-ds_file  %>%
+ds_enum <- ds_file  %>%
   dplyr::filter(convert_to_enum) %>%
-  dplyr::select(enum_name,entries) %>%
-  tibble::deframe() %>%
-  purrr::map2(names(.), ., create_cs_enum) %>%
-  unlist() %>%
-  # paste(collapse="\n") %>%
-  cat()
-
+  dplyr::select(enum_name, entries, c_sharp_type) %>%
+  # tibble::deframe() %>%
+  # purrr::map2(names(.), ., create_cs_enum) %>%
+  # purrr::pmap(list(.$enum_name, .$c_sharp_type), create_cs_enum)# %>%
+  # purrr::map(.x = .$enum_name, .f= create_cs_enum)
+  # dplyr::pull(entries) %>%
+  # dplyr::rowwise() %>%
   dplyr::mutate(
-    a = purrr::map_int(entries, nrow)
-  )
+    enum_header = paste0("\npublic enum ", .$enum_name, " {\n"),
+    # enum_body   = purrr::map_chr(.$entries, ~paste0("    ",  .$Label, " = ", .$ID, ",\n", collapse="")),
+    enum_body   = purrr::map_chr(.$entries, create_enum_body),
+    enum_footer = "}\n",
+    enum_cs     = paste0(enum_header, enum_body, enum_footer)
+  ) %>%
+  dplyr::select(-enum_header, -enum_body, -enum_footer)
 
-
-
+ds_enum %>%
+  dplyr::pull(enum_cs) %>%
+  cat()
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
