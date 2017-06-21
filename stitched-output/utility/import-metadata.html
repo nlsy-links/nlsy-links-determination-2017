@@ -311,7 +311,7 @@ lst_col_types &lt;- list(
 col_types_mapping &lt;- readr::cols_only(
   table_name          = readr::col_character(),
   enum_name           = readr::col_character(),
-  # enum_file           = readr::col_character(),
+  # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
   convert_to_enum     = readr::col_logical()
 )
@@ -341,12 +341,10 @@ ds_mapping
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, &quot;.csv&quot;)),
     table_name = paste0(schema_name, &quot;.tbl&quot;, name),
-    # table_name = paste0(&quot;tbl&quot;, name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists),
     sql_delete= paste0(&quot;DELETE FROM &quot;, table_name)
   )
-
 ds_file
 </code></pre>
 
@@ -497,11 +495,8 @@ ds_file$entries %&gt;%
 </code></pre>
 
 <pre><code class="r">ds_file %&gt;%
-  # dplyr::select(entries) %&gt;%
-  # dplyr::rowwise() %&gt;%
   dplyr::group_by(name) %&gt;%
   dplyr::mutate(
-    # tibble::deframe()
     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
   ) %&gt;%
   dplyr::ungroup() %&gt;%
@@ -571,15 +566,8 @@ ds_file$table_name
 ds_enum &lt;- ds_file  %&gt;%
   dplyr::filter(convert_to_enum) %&gt;%
   dplyr::select(enum_name, entries, c_sharp_type) %&gt;%
-  # tibble::deframe() %&gt;%
-  # purrr::map2(names(.), ., create_cs_enum) %&gt;%
-  # purrr::pmap(list(.$enum_name, .$c_sharp_type), create_cs_enum)# %&gt;%
-  # purrr::map(.x = .$enum_name, .f= create_cs_enum)
-  # dplyr::pull(entries) %&gt;%
-  # dplyr::rowwise() %&gt;%
   dplyr::mutate(
     enum_header = paste0(&quot;\npublic enum &quot;, .$enum_name, &quot; {\n&quot;),
-    # enum_body   = purrr::map_chr(.$entries, ~paste0(&quot;    &quot;,  .$Label, &quot; = &quot;, .$ID, &quot;,\n&quot;, collapse=&quot;&quot;)),
     enum_body   = purrr::map_chr(.$entries, create_enum_body),
     enum_footer = &quot;}\n&quot;,
     enum_cs     = paste0(enum_header, enum_body, enum_footer)
@@ -791,9 +779,7 @@ ds_enum %&gt;%
 
 <pre><code class="r"># lst_ds %&gt;%
 #   purrr::map(function(x)paste(names(x)))
-#
 
-# channel &lt;- RODBC::odbcDriverConnect(&quot;driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi&quot;)
 channel &lt;- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 </code></pre>
@@ -806,10 +792,7 @@ RODBC::odbcGetInfo(channel)
 ##           &quot;03.80.0000&quot; &quot;GIMBLE\\EXPRESS_2016&quot;
 </code></pre>
 
-<pre><code class="r"># RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename=&quot;Metadata.tblItem&quot;, safer=keepExistingTable, rownames=FALSE, append=F)
-
-# delete_result &lt;- RODBC::sqlQuery(channel, &quot;DELETE FROM [NlsLinks].[Metadata].[tblVariable]&quot;, errors=FALSE)
-
+<pre><code class="r"># delete_result &lt;- RODBC::sqlQuery(channel, &quot;DELETE FROM [NlsLinks].[Metadata].[tblVariable]&quot;, errors=FALSE)
 delete_results &lt;- ds_file$sql_delete %&gt;%
   purrr::set_names(ds_file$table_name) %&gt;%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
@@ -827,15 +810,10 @@ delete_results
 ##                             -2                             -2
 </code></pre>
 
-<pre><code class="r"># d &lt;- lst_ds[[&quot;Metadata.tblMzManual&quot;]] %&gt;%
-#   dplyr::slice(1:2)
-# summary(d)
-
-# RODBC::sqlSave(channel, dat=d, tablename=&quot;Metadata.tblMzManual&quot;, safer=FALSE, rownames=FALSE, append=T)
+<pre><code class="r"># RODBC::sqlSave(channel, dat=d, tablename=&quot;Metadata.tblMzManual&quot;, safer=FALSE, rownames=FALSE, append=T)
 
 purrr::map2_int(
   ds_file$entries,
-  # names(lst_ds),
   ds_file$table_name,
   function( d, table_name ) {
     RODBC::sqlSave(
@@ -903,7 +881,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 14:13:30 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 14:16:46 CDT&quot;
 </code></pre>
 
 </body>

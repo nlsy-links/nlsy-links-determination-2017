@@ -105,7 +105,7 @@ lst_col_types <- list(
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
   enum_name           = readr::col_character(),
-  # enum_file           = readr::col_character(),
+  # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
   convert_to_enum     = readr::col_logical()
 )
@@ -122,12 +122,10 @@ ds_file <- names(lst_col_types) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
     table_name = paste0(schema_name, ".tbl", name),
-    # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists),
     sql_delete= paste0("DELETE FROM ", table_name)
   )
-
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
@@ -161,11 +159,8 @@ ds_file$entries %>%
   purrr::walk(print)
 
 ds_file %>%
-  # dplyr::select(entries) %>%
-  # dplyr::rowwise() %>%
   dplyr::group_by(name) %>%
   dplyr::mutate(
-    # tibble::deframe()
     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
   ) %>%
   dplyr::ungroup() %>%
@@ -186,7 +181,6 @@ rm(lst_ds)
 
 
 # ---- convert-to-enum ---------------------------------------------------------
-
 create_enum_body <- function( d ) {
   tab_spaces <- "    "
   paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
@@ -195,15 +189,8 @@ create_enum_body <- function( d ) {
 ds_enum <- ds_file  %>%
   dplyr::filter(convert_to_enum) %>%
   dplyr::select(enum_name, entries, c_sharp_type) %>%
-  # tibble::deframe() %>%
-  # purrr::map2(names(.), ., create_cs_enum) %>%
-  # purrr::pmap(list(.$enum_name, .$c_sharp_type), create_cs_enum)# %>%
-  # purrr::map(.x = .$enum_name, .f= create_cs_enum)
-  # dplyr::pull(entries) %>%
-  # dplyr::rowwise() %>%
   dplyr::mutate(
     enum_header = paste0("\npublic enum ", .$enum_name, " {\n"),
-    # enum_body   = purrr::map_chr(.$entries, ~paste0("    ",  .$Label, " = ", .$ID, ",\n", collapse="")),
     enum_body   = purrr::map_chr(.$entries, create_enum_body),
     enum_footer = "}\n",
     enum_cs     = paste0(enum_header, enum_body, enum_footer)
@@ -234,30 +221,22 @@ ds_enum %>%
 # ---- upload-to-db ----------------------------------------------------------
 # lst_ds %>%
 #   purrr::map(function(x)paste(names(x)))
-#
 
-# channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
-# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
 
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
-
 delete_results <- ds_file$sql_delete %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
 delete_results
 
-# d <- lst_ds[["Metadata.tblMzManual"]] %>%
-#   dplyr::slice(1:2)
-# summary(d)
 
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
 purrr::map2_int(
   ds_file$entries,
-  # names(lst_ds),
   ds_file$table_name,
   function( d, table_name ) {
     RODBC::sqlSave(
