@@ -113,6 +113,26 @@ lst_col_types <- list(
     Notes                               = readr::col_character()
   )
 )
+
+col_types_mapping <- readr::cols_only(
+  table_name          = readr::col_character(),
+  enum_name           = readr::col_character(),
+  enum_file           = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
+```
+
+```r
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping
+```
+
+```
+## # A tibble: 2 x 4
+##           table_name        enum_name           enum_file convert_to_enum
+##                <chr>            <chr>               <chr>           <lgl>
+## 1   LUMarkerEvidence   MarkerEvidence EnumLookupTables.cs            TRUE
+## 2 LURelationshipPath RelationshipPath EnumLookupTables.cs            TRUE
 ```
 
 ```r
@@ -159,6 +179,12 @@ lst_ds <- ds_file %>%
   purrr::pmap(readr::read_csv) %>%
   purrr::set_names(nm=ds_file$table_name)
 
+rm(directory_in) # rm(col_types_tulsa)
+```
+
+```r
+# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
 ds_file <- ds_file %>%
   dplyr::left_join(
     lst_ds %>%
@@ -168,9 +194,8 @@ ds_file <- ds_file %>%
         entries     = value
       ),
     by = "table_name"
-  )
-
-rm(directory_in) # rm(col_types_tulsa)
+  ) %>%
+  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
 
 ds_file$entries %>%
   purrr::walk(print)
@@ -278,6 +303,23 @@ ds_file$entries %>%
 ```
 
 ```r
+ds_file %>%
+  # dplyr::select(entries) %>%
+  # dplyr::rowwise() %>%
+  dplyr::group_by(name) %>%
+  dplyr::mutate(
+    # tibble::deframe()
+    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::pull(a)
+```
+
+```
+## [1]  2870   204   112   599    78    43 12261 18746
+```
+
+```r
 lst_ds$Metadata.tblVariable %>%
   purrr::map(~max(nchar(.), na.rm=T))
 ```
@@ -335,7 +377,53 @@ rm(lst_ds)
 ```
 
 ```r
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+create_cs_enum <- function( n, d ) {
+  # nrow(x)
+  tab_spaces <- "    "
+  header <- paste0("public enum ", n, " {\n")
+  body <- paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
+  footer <- "}\n"
+  paste0(header, body, footer)
+}
+
+ds_file  %>%
+  dplyr::filter(convert_to_enum) %>%
+  dplyr::select(enum_name,entries) %>%
+  tibble::deframe() %>%
+  purrr::map2(names(.), ., create_cs_enum) %>%
+  unlist() %>%
+  # paste(collapse="\n") %>%
+  cat()
+```
+
+```
+## public enum MarkerEvidence {
+##     Irrelevant = 0,
+##     StronglySupports = 1,
+##     Supports = 2,
+##     Consistent = 3,
+##     Ambiguous = 4,
+##     Missing = 5,
+##     Unlikely = 6,
+##     Disconfirms = 7,
+## }
+##  public enum RelationshipPath {
+##     Gen1Housemates = 1,
+##     Gen2Siblings = 2,
+##     Gen2Cousins = 3,
+##     ParentChild = 4,
+##     AuntNiece = 5,
+## }
+```
+
+```r
+  dplyr::mutate(
+    a = purrr::map_int(entries, nrow)
+  )
+```
+
+```
+## Error in purrr::map_int(entries, nrow): object 'entries' not found
 ```
 
 ```r
@@ -481,6 +569,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 11:14:37 CDT"
+## [1] "2017-06-21 12:15:16 CDT"
 ```
 

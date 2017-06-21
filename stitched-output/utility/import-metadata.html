@@ -307,6 +307,24 @@ lst_col_types &lt;- list(
     Notes                               = readr::col_character()
   )
 )
+
+col_types_mapping &lt;- readr::cols_only(
+  table_name          = readr::col_character(),
+  enum_name           = readr::col_character(),
+  enum_file           = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
+</code></pre>
+
+<pre><code class="r">ds_mapping &lt;- readr::read_csv(file.path(directory_in, &quot;_mapping.csv&quot;), col_types=col_types_mapping)
+ds_mapping
+</code></pre>
+
+<pre><code>## # A tibble: 2 x 4
+##           table_name        enum_name           enum_file convert_to_enum
+##                &lt;chr&gt;            &lt;chr&gt;               &lt;chr&gt;           &lt;lgl&gt;
+## 1   LUMarkerEvidence   MarkerEvidence EnumLookupTables.cs            TRUE
+## 2 LURelationshipPath RelationshipPath EnumLookupTables.cs            TRUE
 </code></pre>
 
 <pre><code class="r">ds_file &lt;- names(lst_col_types) %&gt;%
@@ -350,6 +368,11 @@ lst_ds &lt;- ds_file %&gt;%
   purrr::pmap(readr::read_csv) %&gt;%
   purrr::set_names(nm=ds_file$table_name)
 
+rm(directory_in) # rm(col_types_tulsa)
+</code></pre>
+
+<pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
 ds_file &lt;- ds_file %&gt;%
   dplyr::left_join(
     lst_ds %&gt;%
@@ -359,9 +382,8 @@ ds_file &lt;- ds_file %&gt;%
         entries     = value
       ),
     by = &quot;table_name&quot;
-  )
-
-rm(directory_in) # rm(col_types_tulsa)
+  ) %&gt;%
+  dplyr::left_join( ds_mapping, by=c(&quot;name&quot;=&quot;table_name&quot;))
 
 ds_file$entries %&gt;%
   purrr::walk(print)
@@ -467,6 +489,21 @@ ds_file$entries %&gt;%
 ## #   LoopIndex &lt;int&gt;, Translate &lt;int&gt;, Notes &lt;chr&gt;
 </code></pre>
 
+<pre><code class="r">ds_file %&gt;%
+  # dplyr::select(entries) %&gt;%
+  # dplyr::rowwise() %&gt;%
+  dplyr::group_by(name) %&gt;%
+  dplyr::mutate(
+    # tibble::deframe()
+    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+  ) %&gt;%
+  dplyr::ungroup() %&gt;%
+  dplyr::pull(a)
+</code></pre>
+
+<pre><code>## [1]  2870   204   112   599    78    43 12261 18746
+</code></pre>
+
 <pre><code class="r">lst_ds$Metadata.tblVariable %&gt;%
   purrr::map(~max(nchar(.), na.rm=T))
 </code></pre>
@@ -519,7 +556,50 @@ ds_file$table_name
 <pre><code class="r">rm(lst_ds)
 </code></pre>
 
-<pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+<pre><code class="r">create_cs_enum &lt;- function( n, d ) {
+  # nrow(x)
+  tab_spaces &lt;- &quot;    &quot;
+  header &lt;- paste0(&quot;public enum &quot;, n, &quot; {\n&quot;)
+  body &lt;- paste0(tab_spaces,  d$Label, &quot; = &quot;, d$ID, &quot;,\n&quot;, collapse=&quot;&quot;)
+  footer &lt;- &quot;}\n&quot;
+  paste0(header, body, footer)
+}
+
+ds_file  %&gt;%
+  dplyr::filter(convert_to_enum) %&gt;%
+  dplyr::select(enum_name,entries) %&gt;%
+  tibble::deframe() %&gt;%
+  purrr::map2(names(.), ., create_cs_enum) %&gt;%
+  unlist() %&gt;%
+  # paste(collapse=&quot;\n&quot;) %&gt;%
+  cat()
+</code></pre>
+
+<pre><code>## public enum MarkerEvidence {
+##     Irrelevant = 0,
+##     StronglySupports = 1,
+##     Supports = 2,
+##     Consistent = 3,
+##     Ambiguous = 4,
+##     Missing = 5,
+##     Unlikely = 6,
+##     Disconfirms = 7,
+## }
+##  public enum RelationshipPath {
+##     Gen1Housemates = 1,
+##     Gen2Siblings = 2,
+##     Gen2Cousins = 3,
+##     ParentChild = 4,
+##     AuntNiece = 5,
+## }
+</code></pre>
+
+<pre><code class="r">  dplyr::mutate(
+    a = purrr::map_int(entries, nrow)
+  )
+</code></pre>
+
+<pre><code>## Error in purrr::map_int(entries, nrow): object &#39;entries&#39; not found
 </code></pre>
 
 <pre><code class="r"># Sniff out problems
@@ -651,7 +731,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 11:14:37 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 12:15:16 CDT&quot;
 </code></pre>
 
 </body>

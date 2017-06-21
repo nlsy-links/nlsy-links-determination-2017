@@ -102,8 +102,18 @@ lst_col_types <- list(
   )
 )
 
+col_types_mapping <- readr::cols_only(
+  table_name          = readr::col_character(),
+  enum_name           = readr::col_character(),
+  enum_file           = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
 
 # ---- load-data ---------------------------------------------------------------
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping
+
+
 ds_file <- names(lst_col_types) %>%
   tibble::tibble(
     name = .
@@ -129,6 +139,11 @@ lst_ds <- ds_file %>%
   purrr::pmap(readr::read_csv) %>%
   purrr::set_names(nm=ds_file$table_name)
 
+rm(directory_in) # rm(col_types_tulsa)
+
+# ---- tweak-data --------------------------------------------------------------
+# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
 ds_file <- ds_file %>%
   dplyr::left_join(
     lst_ds %>%
@@ -138,12 +153,23 @@ ds_file <- ds_file %>%
         entries     = value
       ),
     by = "table_name"
-  )
-
-rm(directory_in) # rm(col_types_tulsa)
+  ) %>%
+  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
 
 ds_file$entries %>%
   purrr::walk(print)
+
+ds_file %>%
+  # dplyr::select(entries) %>%
+  # dplyr::rowwise() %>%
+  dplyr::group_by(name) %>%
+  dplyr::mutate(
+    # tibble::deframe()
+    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::pull(a)
+
 
 lst_ds$Metadata.tblVariable %>%
   purrr::map(~max(nchar(.), na.rm=T))
@@ -157,8 +183,32 @@ ds_file$table_name
 
 rm(lst_ds)
 
-# ---- tweak-data --------------------------------------------------------------
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
+# ---- convert-to-enum ---------------------------------------------------------
+
+create_cs_enum <- function( n, d ) {
+  # nrow(x)
+  tab_spaces <- "    "
+  header <- paste0("public enum ", n, " {\n")
+  body <- paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
+  footer <- "}\n"
+  paste0(header, body, footer)
+}
+
+ds_file  %>%
+  dplyr::filter(convert_to_enum) %>%
+  dplyr::select(enum_name,entries) %>%
+  tibble::deframe() %>%
+  purrr::map2(names(.), ., create_cs_enum) %>%
+  unlist() %>%
+  # paste(collapse="\n") %>%
+  cat()
+
+  dplyr::mutate(
+    a = purrr::map_int(entries, nrow)
+  )
+
+
 
 
 # ---- verify-values -----------------------------------------------------------
