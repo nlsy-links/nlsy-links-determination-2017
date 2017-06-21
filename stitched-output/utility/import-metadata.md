@@ -13,6 +13,7 @@ rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
 ```r
 # Call `base::source()` on any repo file that defines functions needed below.  Ideally, no real operations are performed.
+base::source("utility/connectivity.R")
 ```
 
 ```r
@@ -39,28 +40,40 @@ lst_col_types <- list(
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
     MinNonnegative                      = readr::col_integer(),
-    MaxValue                            = readr::col_integer()
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUExtractSource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerEvidence = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
-    Explicit                            = readr::col_integer()
+    Explicit                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LURelationshipPath = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUSurveySource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -109,9 +122,38 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   )
 )
+
+col_types_mapping <- readr::cols_only(
+  table_name          = readr::col_character(),
+  enum_name           = readr::col_character(),
+  # enum_file         = readr::col_character(),
+  c_sharp_type        = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
+```
+
+```r
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping
+```
+
+```
+## # A tibble: 8 x 4
+##           table_name        enum_name c_sharp_type convert_to_enum
+##                <chr>            <chr>        <chr>           <lgl>
+## 1               Item             Item        short            TRUE
+## 2    LUExtractSource    ExtractSource         byte            TRUE
+## 3   LUMarkerEvidence   MarkerEvidence         byte            TRUE
+## 4       LUMarkerType       MarkerType         byte            TRUE
+## 5 LURelationshipPath RelationshipPath         byte            TRUE
+## 6     LUSurveySource     SurveySource         byte            TRUE
+## 7         LUMzManual     NA_character NA_character           FALSE
+## 8           Variable     NA_character NA_character           FALSE
 ```
 
 ```r
@@ -122,12 +164,10 @@ ds_file <- names(lst_col_types) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
     table_name = paste0(schema_name, ".tbl", name),
-    # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists),
     sql_delete= paste0("DELETE FROM ", table_name)
   )
-
 ds_file
 ```
 
@@ -159,13 +199,29 @@ lst_ds <- ds_file %>%
   purrr::set_names(nm=ds_file$table_name)
 
 rm(directory_in) # rm(col_types_tulsa)
+```
 
-lst_ds %>%
+```r
+# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
+ds_file <- ds_file %>%
+  dplyr::left_join(
+    lst_ds %>%
+      tibble::enframe() %>%
+      dplyr::rename(
+        table_name  = name,
+        entries     = value
+      ),
+    by = "table_name"
+  ) %>%
+  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
+
+ds_file$entries %>%
   purrr::walk(print)
 ```
 
 ```
-## # A tibble: 108 x 5
+## # A tibble: 108 x 7
 ##       ID                              Label MinValue MinNonnegative
 ##    <int>                              <chr>    <int>          <int>
 ##  1     1            IDOfOther1979RosterGen1       -4              1
@@ -178,61 +234,62 @@ lst_ds %>%
 ##  8    10                    ShareBiodadGen2       -7              0
 ##  9    11               Gen1MomOfGen2Subject        2              2
 ## 10    13                   DateOfBirthMonth       -5              1
-## # ... with 98 more rows, and 1 more variables: MaxValue <int>
-## # A tibble: 11 x 2
-##       ID              Label
-##    <int>              <chr>
-##  1     3          Gen1Links
-##  2     4          Gen2Links
-##  3     5  Gen2LinksFromGen1
-##  4     6 Gen2ImplicitFather
-##  5     7 Gen2FatherFromGen1
-##  6     8       Gen1Outcomes
-##  7     9 Gen2OutcomesHeight
-##  8    10       Gen1Explicit
-##  9    11       Gen1Implicit
-## 10    12 Gen2OutcomesWeight
-## 11    13   Gen2OutcomesMath
-## # A tibble: 8 x 2
-##      ID            Label
-##   <int>            <chr>
-## 1     0       Irrelevant
-## 2     1 StronglySupports
-## 3     2         Supports
-## 4     3       Consistent
-## 5     4        Ambiguous
-## 6     5          Missing
-## 7     6         Unlikely
-## 8     7      Disconfirms
-## # A tibble: 28 x 3
-##       ID               Label Explicit
-##    <int>               <chr>    <int>
-##  1     1          RosterGen1        1
-##  2     2         ShareBiomom        1
-##  3     3         ShareBiodad        1
-##  4     5       DobSeparation        0
-##  5     6     GenderAgreement        0
-##  6    10        FatherAsthma        0
-##  7    11     BabyDaddyAsthma        0
-##  8    12 BabyDaddyLeftHHDate        0
-##  9    13  BabyDaddyDeathDate        0
-## 10    14      BabyDaddyAlive        0
+## # ... with 98 more rows, and 3 more variables: MaxValue <int>,
+## #   Active <lgl>, Notes <chr>
+## # A tibble: 11 x 4
+##       ID              Label Active Notes
+##    <int>              <chr>  <lgl> <chr>
+##  1     3          Gen1Links   TRUE  <NA>
+##  2     4          Gen2Links   TRUE  <NA>
+##  3     5  Gen2LinksFromGen1   TRUE  <NA>
+##  4     6 Gen2ImplicitFather   TRUE  <NA>
+##  5     7 Gen2FatherFromGen1   TRUE  <NA>
+##  6     8       Gen1Outcomes   TRUE  <NA>
+##  7     9 Gen2OutcomesHeight   TRUE  <NA>
+##  8    10       Gen1Explicit   TRUE  <NA>
+##  9    11       Gen1Implicit   TRUE  <NA>
+## 10    12 Gen2OutcomesWeight   TRUE  <NA>
+## 11    13   Gen2OutcomesMath   TRUE  <NA>
+## # A tibble: 8 x 4
+##      ID            Label Active Notes
+##   <int>            <chr>  <lgl> <chr>
+## 1     0       Irrelevant   TRUE  <NA>
+## 2     1 StronglySupports   TRUE  <NA>
+## 3     2         Supports   TRUE  <NA>
+## 4     3       Consistent   TRUE  <NA>
+## 5     4        Ambiguous   TRUE  <NA>
+## 6     5          Missing   TRUE  <NA>
+## 7     6         Unlikely   TRUE  <NA>
+## 8     7      Disconfirms   TRUE  <NA>
+## # A tibble: 28 x 5
+##       ID               Label Explicit Active Notes
+##    <int>               <chr>    <int>  <lgl> <chr>
+##  1     1          RosterGen1        1   TRUE  <NA>
+##  2     2         ShareBiomom        1   TRUE  <NA>
+##  3     3         ShareBiodad        1   TRUE  <NA>
+##  4     5       DobSeparation        0   TRUE  <NA>
+##  5     6     GenderAgreement        0   TRUE  <NA>
+##  6    10        FatherAsthma        0   TRUE  <NA>
+##  7    11     BabyDaddyAsthma        0   TRUE  <NA>
+##  8    12 BabyDaddyLeftHHDate        0   TRUE  <NA>
+##  9    13  BabyDaddyDeathDate        0   TRUE  <NA>
+## 10    14      BabyDaddyAlive        0   TRUE  <NA>
 ## # ... with 18 more rows
-## # A tibble: 5 x 2
-##      ID          Label
-##   <int>          <chr>
-## 1     1 Gen1Housemates
-## 2     2   Gen2Siblings
-## 3     3    Gen2Cousins
-## 4     4    ParentChild
-## 5     5      AuntNiece
-## # A tibble: 4 x 2
-##      ID       Label
-##   <int>       <chr>
-## 1     0 NoInterview
-## 2     1        Gen1
-## 3     2       Gen2C
-## 4     3      Gen2YA
+## # A tibble: 5 x 4
+##      ID          Label Active                                Notes
+##   <int>          <chr>  <lgl>                                <chr>
+## 1     1 Gen1Housemates   TRUE                                 <NA>
+## 2     2   Gen2Siblings   TRUE                                 <NA>
+## 3     3    Gen2Cousins   TRUE                                 <NA>
+## 4     4    ParentChild   TRUE                                 <NA>
+## 5     5      AuntNiece   TRUE Acutally (Uncle|Aunt)-(Nephew|Niece)
+## # A tibble: 4 x 4
+##      ID       Label Active Notes
+##   <int>       <chr>  <lgl> <chr>
+## 1     0 NoInterview   TRUE  <NA>
+## 2     1        Gen1   TRUE  <NA>
+## 3     2       Gen2C   TRUE  <NA>
+## 4     3      Gen2YA   TRUE  <NA>
 ## # A tibble: 206 x 9
 ##       ID SubjectTag_S1 SubjectTag_S2 Generation MultipleBirthIfSameSex
 ##    <int>         <int>         <int>      <int>                  <int>
@@ -248,7 +305,7 @@ lst_ds %>%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
-## # A tibble: 1,559 x 10
+## # A tibble: 1,559 x 11
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
 ##  1     1     R0000149   101          1             3            1
@@ -261,8 +318,22 @@ lst_ds %>%
 ##  8     8     R1891010    16          1             3            1
 ##  9     9     R2258110    16          1             3            1
 ## 10    10     R2445510    16          1             3            1
-## # ... with 1,549 more rows, and 4 more variables: SurveyYear <int>,
-## #   LoopIndex <int>, Translate <int>, Notes <chr>
+## # ... with 1,549 more rows, and 5 more variables: SurveyYear <int>,
+## #   LoopIndex <int>, Translate <int>, Active <lgl>, Notes <chr>
+```
+
+```r
+ds_file %>%
+  dplyr::group_by(name) %>%
+  dplyr::mutate(
+    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::pull(a)
+```
+
+```
+## [1]  2870   204   112   599    78    43 12261 18746
 ```
 
 ```r
@@ -298,6 +369,9 @@ lst_ds$Metadata.tblVariable %>%
 ## $Translate
 ## [1] 1
 ## 
+## $Active
+## [1] 4
+## 
 ## $Notes
 ## [1] 56
 ```
@@ -308,7 +382,7 @@ lst_ds$Metadata.tblVariable %>%
 # lst_ds %>%
 #   purrr::map(readr::spec)
 
-names(lst_ds)
+ds_file$table_name
 ```
 
 ```
@@ -319,7 +393,221 @@ names(lst_ds)
 ```
 
 ```r
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+rm(lst_ds)
+```
+
+```r
+create_enum_body <- function( d ) {
+  tab_spaces <- "    "
+  labels   <- dplyr::if_else(      d$Active , d$Label, paste("//", d$Label))
+  comments <- dplyr::if_else(is.na(d$Notes ), ""     , paste("//", d$Notes))
+
+  paste0(sprintf("%s%-60s = %5s, %s\n", tab_spaces, labels, d$ID, comments), collapse="")
+}
+
+# ds_file %>%
+#   dplyr::filter(name=="LURelationshipPath") %>%
+#   dplyr::pull(entries)
+
+ds_enum <- ds_file  %>%
+  dplyr::filter(convert_to_enum) %>%
+  dplyr::select(enum_name, entries, c_sharp_type) %>%
+  dplyr::mutate(
+    enum_header = paste0("\npublic enum ", .$enum_name, " {\n"),
+    enum_body   = purrr::map_chr(.$entries, create_enum_body),
+    enum_footer = "}\n",
+    enum_cs     = paste0(enum_header, enum_body, enum_footer)
+  ) %>%
+  dplyr::select(-enum_header, -enum_body, -enum_footer)
+
+ds_enum %>%
+  dplyr::pull(enum_cs) %>%
+  cat()
+```
+
+```
+## 
+## public enum Item {
+##     IDOfOther1979RosterGen1                                      =     1, 
+##     RosterGen1979                                                =     2, 
+##     SiblingNumberFrom1993SiblingRoster                           =     3, 
+##     IDCodeOfOtherSiblingGen1                                     =     4, 
+##     ShareBiomomGen1                                              =     5, 
+##     ShareBiodadGen1                                              =     6, 
+##     IDCodeOfOtherInterviewedBiodadGen2                           =     9, 
+##     ShareBiodadGen2                                              =    10, 
+##     Gen1MomOfGen2Subject                                         =    11, 
+##     DateOfBirthMonth                                             =    13, 
+##     DateOfBirthYearGen1                                          =    14, 
+##     DateOfBirthYearGen2                                          =    15, 
+##     AgeAtInterviewDateYears                                      =    16, 
+##     AgeAtInterviewDateMonths                                     =    17, 
+##     InterviewDateDay                                             =    20, 
+##     InterviewDateMonth                                           =    21, 
+##     InterviewDateYear                                            =    22, 
+##     Gen1SiblingIsATwinOrTrip1994                                 =    25, 
+##     Gen1MultipleSiblingType1994                                  =    26, 
+##     Gen1ListedTwinCorrect1994                                    =    27, 
+##     Gen1TwinIsMzOrDz1994                                         =    28, 
+##     Gen1ListedTripCorrect1994                                    =    29, 
+##     Gen1TripIsMzOrDz1994                                         =    30, 
+##     MotherOrBothInHHGen2                                         =    37, 
+##     FatherHasAsthmaGen2                                          =    40, 
+##     BioKidCountGen1                                              =    48, 
+##     Gen1ChildsIDByBirthOrder                                     =    49, 
+##     HerTwinsTripsAreListed                                       =    50, 
+##     HerTwinsAreMz                                                =    52, 
+##     HerTripsAreMz                                                =    53, 
+##     HerTwinsMistakenForEachOther                                 =    54, 
+##     HerTripsMistakenForEachOther                                 =    55, 
+##     BirthOrderInNlsGen2                                          =    60, 
+##     SiblingCountTotalFen1                                        =    63, 
+##     BioKidCountGen2                                              =    64, 
+##     OlderSiblingsTotalCountGen1                                  =    66, 
+##     Gen1HairColor                                                =    70, 
+##     Gen1EyeColor                                                 =    71, 
+##     Gen2HairColor_NOTUSED                                        =    72, 
+##     Gen2EyeColor_NOTUSED                                         =    73, 
+##     // BabyDaddyInHH                                             =    81, 
+##     // BabyDaddyAlive                                            =    82, 
+##     // BabyDaddyEverLiveInHH                                     =    83, 
+##     // BabyDaddyLeftHHMonth                                      =    84, 
+##     // BabyDaddyLeftHHYearFourDigit                              =    85, 
+##     // BabyDaddyDeathMonth                                       =    86, 
+##     // BabyDaddyDeathYearTwoDigit                                =    87, 
+##     // BabyDaddyDeathYearFourDigit                               =    88, 
+##     // BabyDaddyDistanceFromMotherFuzzyCeiling                   =    89, 
+##     // BabyDaddyHasAsthma                                        =    90, 
+##     // BabyDaddyLeftHHMonthOrNeverInHH                           =    91, 
+##     // BabyDaddyLeftHHYearTwoDigit                               =    92, 
+##     SubjectID                                                    =   100, 
+##     ExtendedFamilyID                                             =   101, 
+##     Gender                                                       =   102, 
+##     RaceCohort                                                   =   103, 
+##     Gen2CFatherLivingInHH                                        =   121, 
+##     Gen2CFatherAlive                                             =   122, 
+##     Gen2CFatherDistanceFromMotherFuzzyCeiling                    =   123, 
+##     Gen2CFatherAsthma_NOTUSED                                    =   125, 
+##     Gen2YAFatherInHH_NOTUSED                                     =   141, 
+##     Gen2YAFatherAlive_NOTUSED                                    =   142, 
+##     Gen2YADeathMonth                                             =   143, 
+##     Gen2YADeathYearFourDigit                                     =   144, 
+##     Gen1HeightInches                                             =   200, 
+##     Gen1WeightPounds                                             =   201, 
+##     Gen1AfqtScaled0Decimals_NOTUSED                              =   202, 
+##     Gen1AfqtScaled3Decimals                                      =   203, 
+##     Gen1HeightFeetInchesMashed                                   =   204, 
+##     Gen1FatherAlive                                              =   300, 
+##     Gen1FatherDeathCause                                         =   301, 
+##     Gen1FatherDeathAge                                           =   302, 
+##     Gen1FatherHasHealthProblems                                  =   303, 
+##     Gen1FatherHealthProblem                                      =   304, 
+##     Gen1FatherBirthCountry                                       =   305, 
+##     Gen1LivedWithFatherAtAgeX                                    =   306, 
+##     Gen1FatherHighestGrade                                       =   307, 
+##     Gen1GrandfatherBirthCountry                                  =   308, 
+##     Gen1FatherBirthMonth                                         =   309, 
+##     Gen1FatherBirthYear                                          =   310, 
+##     Gen1FatherAge                                                =   311, 
+##     Gen1MotherAlive                                              =   320, 
+##     Gen1MotherDeathCause                                         =   321, 
+##     Gen1MotherDeathAge                                           =   322, 
+##     Gen1MotherHasHealthProblems                                  =   323, 
+##     Gen1MotherHealthProblem                                      =   324, 
+##     Gen1MotherBirthCountry                                       =   325, 
+##     Gen1LivedWithMotherAtAgeX                                    =   326, 
+##     Gen1MotherHighestGrade                                       =   327, 
+##     Gen1MotherBirthMonth                                         =   329, 
+##     Gen1MotherBirthYear                                          =   330, 
+##     Gen1MotherAge                                                =   331, 
+##     Gen1AlwaysLivedWithBothParents                               =   340, 
+##     Gen2HeightInchesTotal                                        =   500, 
+##     Gen2HeightFeetOnly                                           =   501, 
+##     Gen2HeightInchesRemainder                                    =   502, 
+##     Gen2HeightInchesTotalMotherSupplement                        =   503, 
+##     Gen2WeightPoundsYA                                           =   504, 
+##     Gen2PiatMathRaw                                              =   511, 
+##     Gen2PiatMathPercentile                                       =   512, 
+##     Gen2PiatMathStandard                                         =   513, 
+##     Gen1ListIncorrectGen2TwinTrips_NOTINTAGCURRENTLY             =  9993, 
+##     Gen1VerifyFirstGen2TwinsTrips_NOTINTAGSETCURRENTLY           =  9994, 
+##     Gen1FirstIncorrectTwinTripYoungerOrOlder_NOTUSED             =  9995, 
+##     Gen1FirstIncorrectTwinTripAgeDifference_NOTUSED              =  9996, 
+##     Gen1SecondIncorrectTwinTripYoungerOrOlder_NOTUSED            =  9997, 
+##     Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED             =  9998, 
+##     NotTranslated                                                =  9999, 
+## }
+##  
+## public enum ExtractSource {
+##     Gen1Links                                                    =     3, 
+##     Gen2Links                                                    =     4, 
+##     Gen2LinksFromGen1                                            =     5, 
+##     Gen2ImplicitFather                                           =     6, 
+##     Gen2FatherFromGen1                                           =     7, 
+##     Gen1Outcomes                                                 =     8, 
+##     Gen2OutcomesHeight                                           =     9, 
+##     Gen1Explicit                                                 =    10, 
+##     Gen1Implicit                                                 =    11, 
+##     Gen2OutcomesWeight                                           =    12, 
+##     Gen2OutcomesMath                                             =    13, 
+## }
+##  
+## public enum MarkerEvidence {
+##     Irrelevant                                                   =     0, 
+##     StronglySupports                                             =     1, 
+##     Supports                                                     =     2, 
+##     Consistent                                                   =     3, 
+##     Ambiguous                                                    =     4, 
+##     Missing                                                      =     5, 
+##     Unlikely                                                     =     6, 
+##     Disconfirms                                                  =     7, 
+## }
+##  
+## public enum MarkerType {
+##     RosterGen1                                                   =     1, 
+##     ShareBiomom                                                  =     2, 
+##     ShareBiodad                                                  =     3, 
+##     DobSeparation                                                =     5, 
+##     GenderAgreement                                              =     6, 
+##     FatherAsthma                                                 =    10, 
+##     BabyDaddyAsthma                                              =    11, 
+##     BabyDaddyLeftHHDate                                          =    12, 
+##     BabyDaddyDeathDate                                           =    13, 
+##     BabyDaddyAlive                                               =    14, 
+##     BabyDaddyInHH                                                =    15, 
+##     BabyDaddyDistanceFromHH                                      =    16, 
+##     Gen2CFatherAlive                                             =    17, 
+##     Gen2CFatherInHH                                              =    18, 
+##     Gen2CFatherDistanceFromHH                                    =    19, 
+##     Gen1BiodadInHH                                               =    30, 
+##     Gen1BiodadDeathAge                                           =    31, 
+##     Gen1BiodadBirthYear                                          =    32, 
+##     // Gen1BiodadInHH1979                                        =    33, 
+##     Gen1BiodadBrithCountry                                       =    34, 
+##     Gen1BiodadBirthState                                         =    35, 
+##     Gen1BiomomInHH                                               =    40, 
+##     Gen1BiomomDeathAge                                           =    41, 
+##     Gen1BiomomBirthYear                                          =    42, 
+##     // Gen1BiomomInHH1979                                        =    43, 
+##     Gen1BiomomBirthCountry                                       =    44, 
+##     Gen1BiomomBirthState                                         =    45, 
+##     Gen1AlwaysLivedWithBothBioparents                            =    50, 
+## }
+##  
+## public enum RelationshipPath {
+##     Gen1Housemates                                               =     1, 
+##     Gen2Siblings                                                 =     2, 
+##     Gen2Cousins                                                  =     3, 
+##     ParentChild                                                  =     4, 
+##     AuntNiece                                                    =     5, // Acutally (Uncle|Aunt)-(Nephew|Niece)
+## }
+##  
+## public enum SurveySource {
+##     NoInterview                                                  =     0, 
+##     Gen1                                                         =     1, 
+##     Gen2C                                                        =     2, 
+##     Gen2YA                                                       =     3, 
+## }
 ```
 
 ```r
@@ -341,26 +629,22 @@ names(lst_ds)
 ```r
 # lst_ds %>%
 #   purrr::map(function(x)paste(names(x)))
-#
 
-channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 ```
 
 ```
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "10.50.2500"                "03.52" 
+## "Microsoft SQL Server"           "13.00.4001"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
-##                     ""         "SQLSRV32.DLL"           "06.02.9200" 
+##     "local-nlsy-links"      "msodbcsql13.dll"           "14.00.0500" 
 ##               ODBC_Ver            Server_Name 
-##           "03.80.0000"            "BEE\\BASS"
+##           "03.80.0000" "GIMBLE\\EXPRESS_2016"
 ```
 
 ```r
-# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
-
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
-
 delete_results <- ds_file$sql_delete %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
@@ -380,16 +664,10 @@ delete_results
 ```
 
 ```r
-# d <- lst_ds[["Metadata.tblMzManual"]] %>%
-#   dplyr::slice(1:2)
-# summary(d)
-
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
-
 purrr::map2_int(
-  lst_ds,
-  # names(lst_ds),
+  ds_file$entries,
   ds_file$table_name,
   function( d, table_name ) {
     RODBC::sqlSave(
@@ -401,7 +679,8 @@ purrr::map2_int(
       append      = TRUE
     )
   }
-)
+) %>%
+purrr::set_names(ds_file$table_name)
 ```
 
 ```
@@ -448,13 +727,12 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
+##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
+##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
+##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
+## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
+## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
+## [21] bindr_0.1        tibble_1.3.3
 ```
 
 ```r
@@ -462,6 +740,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-20 12:21:15 CDT"
+## [1] "2017-06-21 14:56:49 CDT"
 ```
 

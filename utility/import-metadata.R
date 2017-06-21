@@ -3,6 +3,7 @@ rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
 # ---- load-sources ------------------------------------------------------------
 # Call `base::source()` on any repo file that defines functions needed below.  Ideally, no real operations are performed.
+base::source("utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
 # Attach these package(s) so their functions don't need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
@@ -27,28 +28,40 @@ lst_col_types <- list(
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
     MinNonnegative                      = readr::col_integer(),
-    MaxValue                            = readr::col_integer()
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUExtractSource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerEvidence = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
-    Explicit                            = readr::col_integer()
+    Explicit                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LURelationshipPath = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUSurveySource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -97,12 +110,25 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   )
 )
 
+col_types_mapping <- readr::cols_only(
+  table_name          = readr::col_character(),
+  enum_name           = readr::col_character(),
+  # enum_file         = readr::col_character(),
+  c_sharp_type        = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
 
 # ---- load-data ---------------------------------------------------------------
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping
+
+
 ds_file <- names(lst_col_types) %>%
   tibble::tibble(
     name = .
@@ -110,12 +136,10 @@ ds_file <- names(lst_col_types) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
     table_name = paste0(schema_name, ".tbl", name),
-    # table_name = paste0("tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists),
     sql_delete= paste0("DELETE FROM ", table_name)
   )
-
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
@@ -130,8 +154,32 @@ lst_ds <- ds_file %>%
 
 rm(directory_in) # rm(col_types_tulsa)
 
-lst_ds %>%
+# ---- tweak-data --------------------------------------------------------------
+# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+
+ds_file <- ds_file %>%
+  dplyr::left_join(
+    lst_ds %>%
+      tibble::enframe() %>%
+      dplyr::rename(
+        table_name  = name,
+        entries     = value
+      ),
+    by = "table_name"
+  ) %>%
+  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
+
+ds_file$entries %>%
   purrr::walk(print)
+
+ds_file %>%
+  dplyr::group_by(name) %>%
+  dplyr::mutate(
+    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::pull(a)
+
 
 lst_ds$Metadata.tblVariable %>%
   purrr::map(~max(nchar(.), na.rm=T))
@@ -141,11 +189,38 @@ lst_ds$Metadata.tblVariable %>%
 # lst_ds %>%
 #   purrr::map(readr::spec)
 
-names(lst_ds)
+ds_file$table_name
 
-# ---- tweak-data --------------------------------------------------------------
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+rm(lst_ds)
 
+
+# ---- convert-to-enum ---------------------------------------------------------
+create_enum_body <- function( d ) {
+  tab_spaces <- "    "
+  labels   <- dplyr::if_else(      d$Active , d$Label, paste("//", d$Label))
+  comments <- dplyr::if_else(is.na(d$Notes ), ""     , paste("//", d$Notes))
+
+  paste0(sprintf("%s%-60s = %5s, %s\n", tab_spaces, labels, d$ID, comments), collapse="")
+}
+
+# ds_file %>%
+#   dplyr::filter(name=="LURelationshipPath") %>%
+#   dplyr::pull(entries)
+
+ds_enum <- ds_file  %>%
+  dplyr::filter(convert_to_enum) %>%
+  dplyr::select(enum_name, entries, c_sharp_type) %>%
+  dplyr::mutate(
+    enum_header = paste0("\npublic enum ", .$enum_name, " {\n"),
+    enum_body   = purrr::map_chr(.$entries, create_enum_body),
+    enum_footer = "}\n",
+    enum_cs     = paste0(enum_header, enum_body, enum_footer)
+  ) %>%
+  dplyr::select(-enum_header, -enum_body, -enum_footer)
+
+ds_enum %>%
+  dplyr::pull(enum_cs) %>%
+  cat()
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
@@ -167,40 +242,34 @@ names(lst_ds)
 # ---- upload-to-db ----------------------------------------------------------
 # lst_ds %>%
 #   purrr::map(function(x)paste(names(x)))
-#
 
-channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
-# RODBC::sqlSave(channel, dat=lst_ds[[1]], tablename="Metadata.tblItem", safer=keepExistingTable, rownames=FALSE, append=F)
 
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
-
 delete_results <- ds_file$sql_delete %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
 delete_results
 
-# d <- lst_ds[["Metadata.tblMzManual"]] %>%
-#   dplyr::slice(1:2)
-# summary(d)
 
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
-
 purrr::map2_int(
-  lst_ds,
-  # names(lst_ds),
+  ds_file$entries,
   ds_file$table_name,
   function( d, table_name ) {
     RODBC::sqlSave(
       channel     = channel,
       dat         = d,
       tablename   = table_name,
-      safer       = FALSE,       # Don't keep the existing table.
+      safer       = TRUE,       # Don't keep the existing table.
       rownames    = FALSE,
       append      = TRUE
     )
   }
-)
+) %>%
+purrr::set_names(ds_file$table_name)
+
 RODBC::odbcClose(channel); rm(channel)

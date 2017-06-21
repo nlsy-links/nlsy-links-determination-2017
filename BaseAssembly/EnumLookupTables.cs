@@ -158,10 +158,10 @@ namespace Nls.BaseAssembly {
 		//Gen2YLeftHHMonthOrNeverInHH = 91,
 		//Gen2YLeftHHYearTwoDigit = 92,
 	}
-    public enum OutcomeEnum : byte {
-        HeightAdult = 1,
-        WeightAdult = 2,
-    }
+    //public enum OutcomeEnum : byte {
+    //    HeightAdult = 1,
+    //    WeightAdult = 2,
+    //}
 	public enum ExtractSource : byte {
 		Gen1Links = 3,
 		Gen2Links = 4,
