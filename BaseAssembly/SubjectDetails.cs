@@ -128,7 +128,7 @@ namespace Nls.BaseAssembly {
 			return new DeathCondition(false	, null);
 		}
 		private static DeathCondition DetermineBiodadDeath ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended ) {
-			if ( (Generation)drSubject.Generation == Generation.Gen1 )
+			if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen1 )
 				return new DeathCondition(null, null);
 			Int32 motherTag = CommonCalculations.MotherTagOfGen2Subject(drSubject.SubjectID);
 			byte? childLoop = Retrieve.MotherLoopIndexForChildTag(motherTag, drSubject, dtExtended);
@@ -171,10 +171,10 @@ namespace Nls.BaseAssembly {
 				drSubject.Generation, _ds.tblSubject.GenerationColumn);
 			LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
 			Trace.Assert(drs.Length > 0, "At least one row should be returned.");
-			switch ( (Generation)drSubject.Generation ) {
-				case Generation.Gen1:
+			switch ( (Sample)drSubject.Generation ) {
+				case Sample.Nlsy79Gen1:
 					return (byte)drs.Length;
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					byte siblingCount = 0;
 					Int32 motherID = CommonCalculations.MotherIDOfGen2Subject(drSubject.SubjectTag);
 
@@ -197,8 +197,8 @@ namespace Nls.BaseAssembly {
 			bool hasMzPossibly = false;
 			DateTime? mobOfSubject = Mob.Retrieve(drSubject, dtExtended); //There shouldn't be any missing Mobs in Gen1.
 
-			switch ( (Generation)drSubject.Generation ) {
-				case Generation.Gen1:
+			switch ( (Sample)drSubject.Generation ) {
+				case Sample.Nlsy79Gen1:
 					Trace.Assert(drs.Length == siblingCountInNls, "The number of returned rows should match 'siblingCountInNls'.");
 
 					foreach ( LinksDataSet.tblSubjectRow dr in drs ) {
@@ -212,7 +212,7 @@ namespace Nls.BaseAssembly {
 						}
 					}
 					break;
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					Trace.Assert(drs.Length >= siblingCountInNls, "The number of returned rows should be equal or greater than 'siblingCountInNls'.");
 					Int32 motherIDV1 = CommonCalculations.MotherIDOfGen2Subject(drSubject.SubjectTag);
 					Int32 motherIDV2 = Retrieve.Response(Item.Gen1MomOfGen2Subject, drSubject.SubjectTag, dtExtended);
@@ -256,11 +256,11 @@ namespace Nls.BaseAssembly {
 			return true;
 		}
 		private static byte? DetermineBioKidCount ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, float? lastAge ) {
-			switch ( (Generation)drSubject.Generation ) {
-				case Generation.Gen1:
+			switch ( (Sample)drSubject.Generation ) {
+				case Sample.Nlsy79Gen1:
 					return (byte)Retrieve.Response(Item.BioKidCountGen1, drSubject.SubjectTag, dtExtended);
 
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					//EnumResponsesGen2.KidBioCount count = (EnumResponsesGen2.KidBioCount)Retrieve.Response(Item.BioKidCountGen2, drSubject.SubjectTag, dtExtended);
 					Int32? response =Retrieve.ResponseNullPossible(Item.BioKidCountGen2, drSubject.SubjectTag, dtExtended);
 					if ( response.HasValue ) 
@@ -274,11 +274,11 @@ namespace Nls.BaseAssembly {
 			}
 		}
 		private static byte? DetermineNlsKidCount ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily ) {
-			switch ( (Generation)drSubject.Generation ) {
-				case Generation.Gen1:
+			switch ( (Sample)drSubject.Generation ) {
+				case Sample.Nlsy79Gen1:
 					byte tally = 0;
 					foreach ( LinksDataSet.tblSubjectRow drRelative in subjectsInExtendedFamily ) {
-						if ( (Generation)drRelative.Generation == Generation.Gen2 ) {
+						if ( (Sample)drRelative.Generation == Sample.Nlsy79Gen2 ) {
 							Int32 motherIDV1 = CommonCalculations.MotherIDOfGen2Subject(drRelative.SubjectTag);
 							//Int32 motherIDV2 = Retrieve.Response(Item.Gen1MomOfGen2Subject, drSubject.SubjectTag, dtExtended);
 							//Trace.Assert(motherIDV1 == motherIDV2, "The mother IDs should match.");
@@ -287,7 +287,7 @@ namespace Nls.BaseAssembly {
 						}
 					}
 					return tally;
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					return null;
 				default:
 					throw new InvalidOperationException("The Generation value was not recognized.");

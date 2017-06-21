@@ -181,9 +181,10 @@ namespace Nls.BaseAssembly {
 		Gen2C = 2,
 		Gen2YA = 3,
 	}
-	public enum Generation : byte {
-		Gen1 = 1,
-		Gen2 = 2,
+	public enum Sample : byte {
+        Nlsy79Gen1 = 1,
+        Nlsy79Gen2 = 2,
+        Nlsy97 = 3,
 	}
 	public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
 		No = 0,

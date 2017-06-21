@@ -41,8 +41,8 @@ namespace Nls.BaseAssembly {
 			_isInterpolated = false;
 		}
 		public static PairR[] BuildRelatedPairsOfGen1Housemates ( DataColumn dcPass1, Int32 subjectTag1, Int32 subjectTag2, Int32 extendedID, LinksDataSet ds ) {
-			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag1) != Generation.Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag1 isn't Gen1.");
-			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag2) != Generation.Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag2 isn't Gen1.");
+			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag1) != Sample.Nlsy79Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag1 isn't Gen1.");
+			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag2) != Sample.Nlsy79Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag2 isn't Gen1.");
 			if ( dcPass1 == null ) throw new ArgumentNullException("dcPass1");
 			switch ( dcPass1.ColumnName ) {
 				case "RImplicitPass1":
@@ -77,8 +77,8 @@ namespace Nls.BaseAssembly {
 			return pairs;
 		}
 		public static PairR[] BuildRelatedPairsOfGen2Sibs ( DataColumn dcPass1, Int32 subjectTag1, Int32 subjectTag2, Int32 extendedID, LinksDataSet ds ) {
-			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag1) != Generation.Gen2 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag1 isn't Gen2.");
-			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag2) != Generation.Gen2 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag2 isn't Gen2.");
+			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag1) != Sample.Nlsy79Gen2 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag1 isn't Gen2.");
+			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag2) != Sample.Nlsy79Gen2 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag2 isn't Gen2.");
 			if ( dcPass1 == null ) throw new ArgumentNullException("dcPass1");
 			switch ( dcPass1.ColumnName ) {
 				case "RImplicitPass1":

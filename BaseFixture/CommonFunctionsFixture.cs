@@ -14,7 +14,7 @@ namespace Nls.Tests.BaseFixture {
 			LinksDataSet.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
 			dr.ExtendedID = 10;
 			dr.SubjectID = 1002;
-			dr.Generation = (byte)Generation.Gen2;
+			dr.Generation = (byte)Sample.Nlsy79Gen2;
 			dr.Gender = (byte)Gender.Male;
 			Int32 expected = 2; 
 			Int32 actual = CommonFunctions.LastTwoDigitsOfGen2SubjectID(dr);
@@ -26,7 +26,7 @@ namespace Nls.Tests.BaseFixture {
 			LinksDataSet.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
 			dr.ExtendedID = 4000;
 			dr.SubjectID = 400122;
-			dr.Generation = (byte)Generation.Gen2;
+			dr.Generation = (byte)Sample.Nlsy79Gen2;
 			dr.Gender = (byte)Gender.Male;
 			Int32 expected = 22; 
 			Int32 actual = CommonFunctions.LastTwoDigitsOfGen2SubjectID(dr);

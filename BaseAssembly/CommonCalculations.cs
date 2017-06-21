@@ -10,12 +10,12 @@ namespace Nls.BaseAssembly {
 			return topValue * (topValue - 1);
 		}
 		//public static Int32 CombinationOf2 ( Int16 topValue ) { return PermutationOf2(topValue) / 2;//Integer division		 //}
-		public static Generation GenerationOfSubjectTag ( Int32 subjectTag ) {
+		public static Sample GenerationOfSubjectTag ( Int32 subjectTag ) {
 			double remainder = Math.IEEERemainder(subjectTag, 100);
 			if ( remainder == 0 )
-				return Generation.Gen1;
+				return Sample.Nlsy79Gen1;
 			else
-				return Generation.Gen2;
+				return Sample.Nlsy79Gen2;
 		}
 		public static Int16 MotherIDOfGen2Subject ( Int32 gen2SubjectID ) {
 			Trace.Assert(Constants.Gen2IDMin <= gen2SubjectID && gen2SubjectID <= Constants.Gen2IDMax, "The SubjectID should be valid for Generation 2.");

@@ -77,7 +77,7 @@ namespace Nls.BaseAssembly {
 		//}
 		public static byte LastTwoDigitsOfGen2SubjectID ( LinksDataSet.tblSubjectRow drSubject ) {
 			if ( drSubject == null ) throw new ArgumentNullException("drSubject");
-			if ( drSubject.Generation != (byte)Generation.Gen2 ) throw new ArgumentOutOfRangeException("drSubject", drSubject.Generation, "This function is valid for only Gen2 subjects.");
+			if ( drSubject.Generation != (byte)Sample.Nlsy79Gen2 ) throw new ArgumentOutOfRangeException("drSubject", drSubject.Generation, "This function is valid for only Gen2 subjects.");
 			string subjectIDString = drSubject.SubjectID.ToString();
 			Int32 startIndex = subjectIDString.Length - 2;
 			return Convert.ToByte(subjectIDString.Substring(startIndex));
@@ -92,7 +92,7 @@ namespace Nls.BaseAssembly {
 		internal static bool BothGen1 ( LinksDataSet.tblSubjectRow drSubject1, LinksDataSet.tblSubjectRow drSubject2 ) {
 			if ( drSubject1 == null ) throw new ArgumentNullException("drSubject1");
 			if ( drSubject2 == null ) throw new ArgumentNullException("drSubject2");
-			return drSubject1.Generation == (byte)Generation.Gen1 && drSubject2.Generation == (byte)Generation.Gen1;
+			return drSubject1.Generation == (byte)Sample.Nlsy79Gen1 && drSubject2.Generation == (byte)Sample.Nlsy79Gen1;
 		}
 		//internal static bool BothGen1 ( LinksDataSet.tblRelatedRow drRelated ) {
 		//   if ( drRelated == null ) throw new ArgumentNullException("drRelated");

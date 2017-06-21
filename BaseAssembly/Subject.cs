@@ -19,7 +19,7 @@ namespace Nls.BaseAssembly {
 				drBare.SubjectID = (Int32)drGen1[Constants.Gen1SubjectIDColumn];
 				drBare.SubjectTag = drBare.SubjectID * 100;//For Gen1 subjects, append "00" at the end.
 				drBare.ExtendedID = Convert.ToInt16(drGen1[Constants.Gen1ExtendedFamilyIDColumn]);
-				drBare.Generation = (byte)Generation.Gen1;
+				drBare.Generation = (byte)Sample.Nlsy79Gen1;
 				drBare.Gender = Convert.ToByte(drGen1[Constants.Gen1GenderColumn]);
 				dsLinks.tblSubject.AddtblSubjectRow(drBare);
 				subjectRecordsAddedCount += 1;
@@ -32,7 +32,7 @@ namespace Nls.BaseAssembly {
 				drBare.SubjectTag = drBare.SubjectID;
 				Int32 motherID = drGen2.C0000200;
 				drBare.ExtendedID = RetrieveExtendedFamilyIDFromGenMotherID(dsImport, motherID);
-				drBare.Generation = (byte)Generation.Gen2;
+				drBare.Generation = (byte)Sample.Nlsy79Gen2;
 				
 				Int32 genderTemp = drGen2.C0005400;
 				if ( genderTemp == -3 ) genderTemp = (byte)Gender.InvalidSkipGen2;
