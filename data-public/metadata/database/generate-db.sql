@@ -2511,6 +2511,8 @@ CREATE TABLE [Metadata].[tblItem](
 	[MinValue] [int] NOT NULL,
 	[MinNonnegative] [int] NULL,
 	[MaxValue] [int] NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUItem] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2524,6 +2526,8 @@ GO
 CREATE TABLE [Metadata].[tblLUExtractSource](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](20) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUExtractSource] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2537,6 +2541,8 @@ GO
 CREATE TABLE [Metadata].[tblLUMarkerEvidence](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](20) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUMarkerEvidence] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2551,6 +2557,8 @@ CREATE TABLE [Metadata].[tblLUMarkerType](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](40) NOT NULL,
 	[Explicit] [bit] NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUMarkerType] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2564,6 +2572,8 @@ GO
 CREATE TABLE [Metadata].[tblLURelationshipPath](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](20) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLURelationshipPath] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2577,6 +2587,8 @@ GO
 CREATE TABLE [Metadata].[tblLUSurveySource](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](12) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUSurvey] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2588,7 +2600,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Metadata].[tblMzManual](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ID] [int] NOT NULL,
 	[SubjectTag_S1] [int] NOT NULL,
 	[SubjectTag_S2] [int] NOT NULL,
 	[Generation] [tinyint] NOT NULL,
@@ -2597,7 +2609,7 @@ CREATE TABLE [Metadata].[tblMzManual](
 	[Undecided] [bit] NOT NULL,
 	[Related] [bit] NULL,
 	[Notes] [varchar](255) NULL,
- CONSTRAINT [PK_tbluMzManual] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_tblMzManual] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -2608,7 +2620,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Metadata].[tblVariable](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ID] [int] NOT NULL,
 	[VariableCode] [char](8) NOT NULL,
 	[Item] [smallint] NOT NULL,
 	[Generation] [tinyint] NOT NULL,
@@ -2617,6 +2629,7 @@ CREATE TABLE [Metadata].[tblVariable](
 	[SurveyYear] [smallint] NOT NULL,
 	[LoopIndex] [tinyint] NOT NULL,
 	[Translate] [bit] NOT NULL,
+	[Active] [varchar](5) NOT NULL,
 	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblVariable] PRIMARY KEY CLUSTERED 
 (
@@ -2887,8 +2900,6 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurv
 	[SubjectTag] ASC,
 	[SurveyYear] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
-ALTER TABLE [Metadata].[tblVariable] ADD  CONSTRAINT [DF_tblVariable_DoNotTranslate]  DEFAULT ((1)) FOR [Translate]
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
 REFERENCES [Enum].[tblLURosterGen1Assignment] ([ID])

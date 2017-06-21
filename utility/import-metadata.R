@@ -264,7 +264,7 @@ purrr::map2_int(
       channel     = channel,
       dat         = d,
       tablename   = table_name,
-      safer       = FALSE,       # Don't keep the existing table.
+      safer       = TRUE,       # Don't keep the existing table.
       rownames    = FALSE,
       append      = TRUE
     )
