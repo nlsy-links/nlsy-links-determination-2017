@@ -1,6 +1,6 @@
-"ID","Label"
-1,"Gen1Housemates      "
-2,"Gen2Siblings        "
-3,"Gen2Cousins         "
-4,"ParentChild         "
-5,"AuntNiece           "
+ID,Label,Active,Notes
+1,Gen1Housemates      ,TRUE,
+2,Gen2Siblings        ,TRUE,
+3,Gen2Cousins         ,TRUE,
+4,ParentChild         ,TRUE,
+5,AuntNiece           ,TRUE,

@@ -40,28 +40,40 @@ lst_col_types <- list(
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
     MinNonnegative                      = readr::col_integer(),
-    MaxValue                            = readr::col_integer()
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUExtractSource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerEvidence = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
-    Explicit                            = readr::col_integer()
+    Explicit                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LURelationshipPath = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUSurveySource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -110,6 +122,8 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   )
 )
@@ -207,7 +221,7 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 108 x 5
+## # A tibble: 108 x 7
 ##       ID                              Label MinValue MinNonnegative
 ##    <int>                              <chr>    <int>          <int>
 ##  1     1            IDOfOther1979RosterGen1       -4              1
@@ -220,61 +234,62 @@ ds_file$entries %>%
 ##  8    10                    ShareBiodadGen2       -7              0
 ##  9    11               Gen1MomOfGen2Subject        2              2
 ## 10    13                   DateOfBirthMonth       -5              1
-## # ... with 98 more rows, and 1 more variables: MaxValue <int>
-## # A tibble: 11 x 2
-##       ID              Label
-##    <int>              <chr>
-##  1     3          Gen1Links
-##  2     4          Gen2Links
-##  3     5  Gen2LinksFromGen1
-##  4     6 Gen2ImplicitFather
-##  5     7 Gen2FatherFromGen1
-##  6     8       Gen1Outcomes
-##  7     9 Gen2OutcomesHeight
-##  8    10       Gen1Explicit
-##  9    11       Gen1Implicit
-## 10    12 Gen2OutcomesWeight
-## 11    13   Gen2OutcomesMath
-## # A tibble: 8 x 2
-##      ID            Label
-##   <int>            <chr>
-## 1     0       Irrelevant
-## 2     1 StronglySupports
-## 3     2         Supports
-## 4     3       Consistent
-## 5     4        Ambiguous
-## 6     5          Missing
-## 7     6         Unlikely
-## 8     7      Disconfirms
-## # A tibble: 28 x 3
-##       ID               Label Explicit
-##    <int>               <chr>    <int>
-##  1     1          RosterGen1        1
-##  2     2         ShareBiomom        1
-##  3     3         ShareBiodad        1
-##  4     5       DobSeparation        0
-##  5     6     GenderAgreement        0
-##  6    10        FatherAsthma        0
-##  7    11     BabyDaddyAsthma        0
-##  8    12 BabyDaddyLeftHHDate        0
-##  9    13  BabyDaddyDeathDate        0
-## 10    14      BabyDaddyAlive        0
+## # ... with 98 more rows, and 3 more variables: MaxValue <int>,
+## #   Active <lgl>, Notes <chr>
+## # A tibble: 11 x 4
+##       ID              Label Active Notes
+##    <int>              <chr>  <lgl> <chr>
+##  1     3          Gen1Links   TRUE  <NA>
+##  2     4          Gen2Links   TRUE  <NA>
+##  3     5  Gen2LinksFromGen1   TRUE  <NA>
+##  4     6 Gen2ImplicitFather   TRUE  <NA>
+##  5     7 Gen2FatherFromGen1   TRUE  <NA>
+##  6     8       Gen1Outcomes   TRUE  <NA>
+##  7     9 Gen2OutcomesHeight   TRUE  <NA>
+##  8    10       Gen1Explicit   TRUE  <NA>
+##  9    11       Gen1Implicit   TRUE  <NA>
+## 10    12 Gen2OutcomesWeight   TRUE  <NA>
+## 11    13   Gen2OutcomesMath   TRUE  <NA>
+## # A tibble: 8 x 4
+##      ID            Label Active Notes
+##   <int>            <chr>  <lgl> <chr>
+## 1     0       Irrelevant   TRUE  <NA>
+## 2     1 StronglySupports   TRUE  <NA>
+## 3     2         Supports   TRUE  <NA>
+## 4     3       Consistent   TRUE  <NA>
+## 5     4        Ambiguous   TRUE  <NA>
+## 6     5          Missing   TRUE  <NA>
+## 7     6         Unlikely   TRUE  <NA>
+## 8     7      Disconfirms   TRUE  <NA>
+## # A tibble: 28 x 5
+##       ID               Label Explicit Active Notes
+##    <int>               <chr>    <int>  <lgl> <chr>
+##  1     1          RosterGen1        1   TRUE  <NA>
+##  2     2         ShareBiomom        1   TRUE  <NA>
+##  3     3         ShareBiodad        1   TRUE  <NA>
+##  4     5       DobSeparation        0   TRUE  <NA>
+##  5     6     GenderAgreement        0   TRUE  <NA>
+##  6    10        FatherAsthma        0   TRUE  <NA>
+##  7    11     BabyDaddyAsthma        0   TRUE  <NA>
+##  8    12 BabyDaddyLeftHHDate        0   TRUE  <NA>
+##  9    13  BabyDaddyDeathDate        0   TRUE  <NA>
+## 10    14      BabyDaddyAlive        0   TRUE  <NA>
 ## # ... with 18 more rows
-## # A tibble: 5 x 2
-##      ID          Label
-##   <int>          <chr>
-## 1     1 Gen1Housemates
-## 2     2   Gen2Siblings
-## 3     3    Gen2Cousins
-## 4     4    ParentChild
-## 5     5      AuntNiece
-## # A tibble: 4 x 2
-##      ID       Label
-##   <int>       <chr>
-## 1     0 NoInterview
-## 2     1        Gen1
-## 3     2       Gen2C
-## 4     3      Gen2YA
+## # A tibble: 5 x 4
+##      ID          Label Active Notes
+##   <int>          <chr>  <lgl> <chr>
+## 1     1 Gen1Housemates   TRUE  <NA>
+## 2     2   Gen2Siblings   TRUE  <NA>
+## 3     3    Gen2Cousins   TRUE  <NA>
+## 4     4    ParentChild   TRUE  <NA>
+## 5     5      AuntNiece   TRUE  <NA>
+## # A tibble: 4 x 4
+##      ID       Label Active Notes
+##   <int>       <chr>  <lgl> <chr>
+## 1     0 NoInterview   TRUE  <NA>
+## 2     1        Gen1   TRUE  <NA>
+## 3     2       Gen2C   TRUE  <NA>
+## 4     3      Gen2YA   TRUE  <NA>
 ## # A tibble: 206 x 9
 ##       ID SubjectTag_S1 SubjectTag_S2 Generation MultipleBirthIfSameSex
 ##    <int>         <int>         <int>      <int>                  <int>
@@ -290,7 +305,7 @@ ds_file$entries %>%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
-## # A tibble: 1,559 x 10
+## # A tibble: 1,559 x 11
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
 ##  1     1     R0000149   101          1             3            1
@@ -303,8 +318,8 @@ ds_file$entries %>%
 ##  8     8     R1891010    16          1             3            1
 ##  9     9     R2258110    16          1             3            1
 ## 10    10     R2445510    16          1             3            1
-## # ... with 1,549 more rows, and 4 more variables: SurveyYear <int>,
-## #   LoopIndex <int>, Translate <int>, Notes <chr>
+## # ... with 1,549 more rows, and 5 more variables: SurveyYear <int>,
+## #   LoopIndex <int>, Translate <int>, Active <lgl>, Notes <chr>
 ```
 
 ```r
@@ -353,6 +368,9 @@ lst_ds$Metadata.tblVariable %>%
 ## 
 ## $Translate
 ## [1] 1
+## 
+## $Active
+## [1] 4
 ## 
 ## $Notes
 ## [1] 56
@@ -702,14 +720,12 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
-## [29] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
+##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
+##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
+## [13] readr_1.1.1      glue_1.1.0       purrr_0.2.2.2    hms_0.3         
+## [17] compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16       bindr_0.1       
+## [21] tibble_1.3.3
 ```
 
 ```r
@@ -717,6 +733,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 14:29:04 CDT"
+## [1] "2017-06-21 14:43:58 CDT"
 ```
 

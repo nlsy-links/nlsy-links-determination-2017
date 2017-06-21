@@ -1,12 +1,12 @@
-"ID","Label"
-3,"Gen1Links           "
-4,"Gen2Links           "
-5,"Gen2LinksFromGen1   "
-6,"Gen2ImplicitFather  "
-7,"Gen2FatherFromGen1  "
-8,"Gen1Outcomes        "
-9,"Gen2OutcomesHeight  "
-10,"Gen1Explicit        "
-11,"Gen1Implicit        "
-12,"Gen2OutcomesWeight  "
-13,"Gen2OutcomesMath    "
+ID,Label,Active,Notes
+3,Gen1Links           ,TRUE,
+4,Gen2Links           ,TRUE,
+5,Gen2LinksFromGen1   ,TRUE,
+6,Gen2ImplicitFather  ,TRUE,
+7,Gen2FatherFromGen1  ,TRUE,
+8,Gen1Outcomes        ,TRUE,
+9,Gen2OutcomesHeight  ,TRUE,
+10,Gen1Explicit        ,TRUE,
+11,Gen1Implicit        ,TRUE,
+12,Gen2OutcomesWeight  ,TRUE,
+13,Gen2OutcomesMath    ,TRUE,

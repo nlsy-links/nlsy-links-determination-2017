@@ -28,28 +28,40 @@ lst_col_types <- list(
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
     MinNonnegative                      = readr::col_integer(),
-    MaxValue                            = readr::col_integer()
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUExtractSource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerEvidence = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
-    Explicit                            = readr::col_integer()
+    Explicit                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LURelationshipPath = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   LUSurveySource = readr::cols_only(
     ID                                  = readr::col_integer(),
-    Label                               = readr::col_character()
+    Label                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
   ),
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -98,6 +110,8 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   )
 )
