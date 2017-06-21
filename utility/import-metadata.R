@@ -129,9 +129,20 @@ lst_ds <- ds_file %>%
   purrr::pmap(readr::read_csv) %>%
   purrr::set_names(nm=ds_file$table_name)
 
+ds_file <- ds_file %>%
+  dplyr::left_join(
+    lst_ds %>%
+      tibble::enframe() %>%
+      dplyr::rename(
+        table_name  = name,
+        entries     = value
+      ),
+    by = "table_name"
+  )
+
 rm(directory_in) # rm(col_types_tulsa)
 
-lst_ds %>%
+ds_file$entries %>%
   purrr::walk(print)
 
 lst_ds$Metadata.tblVariable %>%
@@ -142,7 +153,9 @@ lst_ds$Metadata.tblVariable %>%
 # lst_ds %>%
 #   purrr::map(readr::spec)
 
-names(lst_ds)
+ds_file$table_name
+
+rm(lst_ds)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
@@ -189,9 +202,8 @@ delete_results
 
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
-
 purrr::map2_int(
-  lst_ds,
+  ds_file$entries,
   # names(lst_ds),
   ds_file$table_name,
   function( d, table_name ) {
@@ -204,5 +216,7 @@ purrr::map2_int(
       append      = TRUE
     )
   }
-)
+) %>%
+purrr::set_names(ds_file$table_name)
+
 RODBC::odbcClose(channel); rm(channel)

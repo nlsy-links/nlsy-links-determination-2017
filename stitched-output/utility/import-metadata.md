@@ -159,9 +159,20 @@ lst_ds <- ds_file %>%
   purrr::pmap(readr::read_csv) %>%
   purrr::set_names(nm=ds_file$table_name)
 
+ds_file <- ds_file %>%
+  dplyr::left_join(
+    lst_ds %>%
+      tibble::enframe() %>%
+      dplyr::rename(
+        table_name  = name,
+        entries     = value
+      ),
+    by = "table_name"
+  )
+
 rm(directory_in) # rm(col_types_tulsa)
 
-lst_ds %>%
+ds_file$entries %>%
   purrr::walk(print)
 ```
 
@@ -309,7 +320,7 @@ lst_ds$Metadata.tblVariable %>%
 # lst_ds %>%
 #   purrr::map(readr::spec)
 
-names(lst_ds)
+ds_file$table_name
 ```
 
 ```
@@ -317,6 +328,10 @@ names(lst_ds)
 ## [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
 ## [5] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
 ## [7] "Metadata.tblMzManual"           "Metadata.tblVariable"
+```
+
+```r
+rm(lst_ds)
 ```
 
 ```r
@@ -388,9 +403,8 @@ delete_results
 
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
-
 purrr::map2_int(
-  lst_ds,
+  ds_file$entries,
   # names(lst_ds),
   ds_file$table_name,
   function( d, table_name ) {
@@ -403,7 +417,8 @@ purrr::map2_int(
       append      = TRUE
     )
   }
-)
+) %>%
+purrr::set_names(ds_file$table_name)
 ```
 
 ```
@@ -453,10 +468,12 @@ sessionInfo()
 ##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
 ##  [5] munsell_0.4.3    testit_0.7       colorspace_1.3-2 R6_2.2.1        
 ##  [9] rlang_0.1.1      stringr_1.2.0    highr_0.6        plyr_1.8.4      
-## [13] dplyr_0.7.0      tools_3.4.0      assertthat_0.2.0 tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] glue_1.1.0       evaluate_0.10    stringi_1.1.5    compiler_3.4.0  
-## [25] scales_0.4.1
+## [13] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [17] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [21] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [25] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [29] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  scales_0.4.1    
+## [33] markdown_0.8     pkgconfig_2.0.1
 ```
 
 ```r
@@ -464,6 +481,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 10:10:24 CDT"
+## [1] "2017-06-21 11:14:37 CDT"
 ```
 
