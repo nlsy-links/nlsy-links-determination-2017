@@ -349,15 +349,14 @@ ds_mapping
 ## 8           Variable     NA_character NA_character           FALSE
 </code></pre>
 
-<pre><code class="r">ds_file &lt;- names(lst_col_types) %&gt;%
-  tibble::tibble(
-    name = .
-  ) %&gt;%
+<pre><code class="r">ds_file &lt;- lst_col_types %&gt;%
+  tibble::enframe(value = &quot;col_types&quot;) %&gt;%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, &quot;.csv&quot;)),
-    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists)
-  )
+  ) %&gt;%
+  dplyr::select(name, path, dplyr::everything())
 ds_file
 </code></pre>
 
@@ -382,10 +381,24 @@ ds_entries &lt;- ds_file %&gt;%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
   )
+ds_entries
+</code></pre>
 
+<pre><code>## # A tibble: 8 x 4
+##                 name                                               path
+##                &lt;chr&gt;                                              &lt;chr&gt;
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 2 more variables: col_types &lt;list&gt;, entries &lt;list&gt;
+</code></pre>
 
-
-rm(directory_in) # rm(col_types_tulsa)
+<pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
 </code></pre>
 
 <pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
@@ -863,7 +876,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 16:54:05 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 16:57:50 CDT&quot;
 </code></pre>
 
 </body>

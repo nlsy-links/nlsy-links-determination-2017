@@ -130,15 +130,14 @@ ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types
 ds_mapping
 
 
-ds_file <- names(lst_col_types) %>%
-  tibble::tibble(
-    name = .
-  ) %>%
+ds_file <- lst_col_types %>%
+  tibble::enframe(value = "col_types") %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists)
-  )
+  ) %>%
+  dplyr::select(name, path, dplyr::everything())
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
@@ -148,7 +147,7 @@ ds_entries <- ds_file %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
   )
-
+ds_entries
 
 
 rm(directory_in) # rm(col_types_tulsa)

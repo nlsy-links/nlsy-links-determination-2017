@@ -158,15 +158,14 @@ ds_mapping
 ```
 
 ```r
-ds_file <- names(lst_col_types) %>%
-  tibble::tibble(
-    name = .
-  ) %>%
+ds_file <- lst_col_types %>%
+  tibble::enframe(value = "col_types") %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
     exists    = purrr::map_lgl(path, file.exists)
-  )
+  ) %>%
+  dplyr::select(name, path, dplyr::everything())
 ds_file
 ```
 
@@ -193,9 +192,25 @@ ds_entries <- ds_file %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
   )
+ds_entries
+```
 
+```
+## # A tibble: 8 x 4
+##                 name                                               path
+##                <chr>                                              <chr>
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 2 more variables: col_types <list>, entries <list>
+```
 
-
+```r
 rm(directory_in) # rm(col_types_tulsa)
 ```
 
@@ -694,6 +709,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 16:54:05 CDT"
+## [1] "2017-06-21 16:57:50 CDT"
 ```
 
