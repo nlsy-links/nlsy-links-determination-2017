@@ -197,8 +197,15 @@ rm(lst_ds)
 # ---- convert-to-enum ---------------------------------------------------------
 create_enum_body <- function( d ) {
   tab_spaces <- "    "
-  paste0(sprintf("%s%-60s = %s,\n", tab_spaces, d$Label, d$ID), collapse="")
+  labels   <- dplyr::if_else(      d$Active , d$Label, paste("//", d$Label))
+  comments <- dplyr::if_else(is.na(d$Notes ), ""     , paste("//", d$Notes))
+
+  paste0(sprintf("%s%-60s = %5s, %s\n", tab_spaces, labels, d$ID, comments), collapse="")
 }
+
+# ds_file %>%
+#   dplyr::filter(name=="LURelationshipPath") %>%
+#   dplyr::pull(entries)
 
 ds_enum <- ds_file  %>%
   dplyr::filter(convert_to_enum) %>%

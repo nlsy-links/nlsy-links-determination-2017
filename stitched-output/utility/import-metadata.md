@@ -276,13 +276,13 @@ ds_file$entries %>%
 ## 10    14      BabyDaddyAlive        0   TRUE  <NA>
 ## # ... with 18 more rows
 ## # A tibble: 5 x 4
-##      ID          Label Active Notes
-##   <int>          <chr>  <lgl> <chr>
-## 1     1 Gen1Housemates   TRUE  <NA>
-## 2     2   Gen2Siblings   TRUE  <NA>
-## 3     3    Gen2Cousins   TRUE  <NA>
-## 4     4    ParentChild   TRUE  <NA>
-## 5     5      AuntNiece   TRUE  <NA>
+##      ID          Label Active                                Notes
+##   <int>          <chr>  <lgl>                                <chr>
+## 1     1 Gen1Housemates   TRUE                                 <NA>
+## 2     2   Gen2Siblings   TRUE                                 <NA>
+## 3     3    Gen2Cousins   TRUE                                 <NA>
+## 4     4    ParentChild   TRUE                                 <NA>
+## 5     5      AuntNiece   TRUE Acutally (Uncle|Aunt)-(Nephew|Niece)
 ## # A tibble: 4 x 4
 ##      ID       Label Active Notes
 ##   <int>       <chr>  <lgl> <chr>
@@ -399,8 +399,15 @@ rm(lst_ds)
 ```r
 create_enum_body <- function( d ) {
   tab_spaces <- "    "
-  paste0(sprintf("%s%-60s = %s,\n", tab_spaces, d$Label, d$ID), collapse="")
+  labels   <- dplyr::if_else(      d$Active , d$Label, paste("//", d$Label))
+  comments <- dplyr::if_else(is.na(d$Notes ), ""     , paste("//", d$Notes))
+
+  paste0(sprintf("%s%-60s = %5s, %s\n", tab_spaces, labels, d$ID, comments), collapse="")
 }
+
+# ds_file %>%
+#   dplyr::filter(name=="LURelationshipPath") %>%
+#   dplyr::pull(entries)
 
 ds_enum <- ds_file  %>%
   dplyr::filter(convert_to_enum) %>%
@@ -421,185 +428,185 @@ ds_enum %>%
 ```
 ## 
 ## public enum Item {
-##     IDOfOther1979RosterGen1                                      = 1,
-##     RosterGen1979                                                = 2,
-##     SiblingNumberFrom1993SiblingRoster                           = 3,
-##     IDCodeOfOtherSiblingGen1                                     = 4,
-##     ShareBiomomGen1                                              = 5,
-##     ShareBiodadGen1                                              = 6,
-##     IDCodeOfOtherInterviewedBiodadGen2                           = 9,
-##     ShareBiodadGen2                                              = 10,
-##     Gen1MomOfGen2Subject                                         = 11,
-##     DateOfBirthMonth                                             = 13,
-##     DateOfBirthYearGen1                                          = 14,
-##     DateOfBirthYearGen2                                          = 15,
-##     AgeAtInterviewDateYears                                      = 16,
-##     AgeAtInterviewDateMonths                                     = 17,
-##     InterviewDateDay                                             = 20,
-##     InterviewDateMonth                                           = 21,
-##     InterviewDateYear                                            = 22,
-##     Gen1SiblingIsATwinOrTrip1994                                 = 25,
-##     Gen1MultipleSiblingType1994                                  = 26,
-##     Gen1ListedTwinCorrect1994                                    = 27,
-##     Gen1TwinIsMzOrDz1994                                         = 28,
-##     Gen1ListedTripCorrect1994                                    = 29,
-##     Gen1TripIsMzOrDz1994                                         = 30,
-##     MotherOrBothInHHGen2                                         = 37,
-##     FatherHasAsthmaGen2                                          = 40,
-##     BioKidCountGen1                                              = 48,
-##     Gen1ChildsIDByBirthOrder                                     = 49,
-##     HerTwinsTripsAreListed                                       = 50,
-##     HerTwinsAreMz                                                = 52,
-##     HerTripsAreMz                                                = 53,
-##     HerTwinsMistakenForEachOther                                 = 54,
-##     HerTripsMistakenForEachOther                                 = 55,
-##     BirthOrderInNlsGen2                                          = 60,
-##     SiblingCountTotalFen1                                        = 63,
-##     BioKidCountGen2                                              = 64,
-##     OlderSiblingsTotalCountGen1                                  = 66,
-##     Gen1HairColor                                                = 70,
-##     Gen1EyeColor                                                 = 71,
-##     Gen2HairColor_NOTUSED                                        = 72,
-##     Gen2EyeColor_NOTUSED                                         = 73,
-##     BabyDaddyInHH                                                = 81,
-##     BabyDaddyAlive                                               = 82,
-##     BabyDaddyEverLiveInHH                                        = 83,
-##     BabyDaddyLeftHHMonth                                         = 84,
-##     BabyDaddyLeftHHYearFourDigit                                 = 85,
-##     BabyDaddyDeathMonth                                          = 86,
-##     BabyDaddyDeathYearTwoDigit                                   = 87,
-##     BabyDaddyDeathYearFourDigit                                  = 88,
-##     BabyDaddyDistanceFromMotherFuzzyCeiling                      = 89,
-##     BabyDaddyHasAsthma                                           = 90,
-##     BabyDaddyLeftHHMonthOrNeverInHH                              = 91,
-##     BabyDaddyLeftHHYearTwoDigit                                  = 92,
-##     SubjectID                                                    = 100,
-##     ExtendedFamilyID                                             = 101,
-##     Gender                                                       = 102,
-##     RaceCohort                                                   = 103,
-##     Gen2CFatherLivingInHH                                        = 121,
-##     Gen2CFatherAlive                                             = 122,
-##     Gen2CFatherDistanceFromMotherFuzzyCeiling                    = 123,
-##     Gen2CFatherAsthma_NOTUSED                                    = 125,
-##     Gen2YAFatherInHH_NOTUSED                                     = 141,
-##     Gen2YAFatherAlive_NOTUSED                                    = 142,
-##     Gen2YADeathMonth                                             = 143,
-##     Gen2YADeathYearFourDigit                                     = 144,
-##     Gen1HeightInches                                             = 200,
-##     Gen1WeightPounds                                             = 201,
-##     Gen1AfqtScaled0Decimals_NOTUSED                              = 202,
-##     Gen1AfqtScaled3Decimals                                      = 203,
-##     Gen1HeightFeetInchesMashed                                   = 204,
-##     Gen1FatherAlive                                              = 300,
-##     Gen1FatherDeathCause                                         = 301,
-##     Gen1FatherDeathAge                                           = 302,
-##     Gen1FatherHasHealthProblems                                  = 303,
-##     Gen1FatherHealthProblem                                      = 304,
-##     Gen1FatherBirthCountry                                       = 305,
-##     Gen1LivedWithFatherAtAgeX                                    = 306,
-##     Gen1FatherHighestGrade                                       = 307,
-##     Gen1GrandfatherBirthCountry                                  = 308,
-##     Gen1FatherBirthMonth                                         = 309,
-##     Gen1FatherBirthYear                                          = 310,
-##     Gen1FatherAge                                                = 311,
-##     Gen1MotherAlive                                              = 320,
-##     Gen1MotherDeathCause                                         = 321,
-##     Gen1MotherDeathAge                                           = 322,
-##     Gen1MotherHasHealthProblems                                  = 323,
-##     Gen1MotherHealthProblem                                      = 324,
-##     Gen1MotherBirthCountry                                       = 325,
-##     Gen1LivedWithMotherAtAgeX                                    = 326,
-##     Gen1MotherHighestGrade                                       = 327,
-##     Gen1MotherBirthMonth                                         = 329,
-##     Gen1MotherBirthYear                                          = 330,
-##     Gen1MotherAge                                                = 331,
-##     Gen1AlwaysLivedWithBothParents                               = 340,
-##     Gen2HeightInchesTotal                                        = 500,
-##     Gen2HeightFeetOnly                                           = 501,
-##     Gen2HeightInchesRemainder                                    = 502,
-##     Gen2HeightInchesTotalMotherSupplement                        = 503,
-##     Gen2WeightPoundsYA                                           = 504,
-##     Gen2PiatMathRaw                                              = 511,
-##     Gen2PiatMathPercentile                                       = 512,
-##     Gen2PiatMathStandard                                         = 513,
-##     Gen1ListIncorrectGen2TwinTrips_NOTINTAGCURRENTLY             = 9993,
-##     Gen1VerifyFirstGen2TwinsTrips_NOTINTAGSETCURRENTLY           = 9994,
-##     Gen1FirstIncorrectTwinTripYoungerOrOlder_NOTUSED             = 9995,
-##     Gen1FirstIncorrectTwinTripAgeDifference_NOTUSED              = 9996,
-##     Gen1SecondIncorrectTwinTripYoungerOrOlder_NOTUSED            = 9997,
-##     Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED             = 9998,
-##     NotTranslated                                                = 9999,
+##     IDOfOther1979RosterGen1                                      =     1, 
+##     RosterGen1979                                                =     2, 
+##     SiblingNumberFrom1993SiblingRoster                           =     3, 
+##     IDCodeOfOtherSiblingGen1                                     =     4, 
+##     ShareBiomomGen1                                              =     5, 
+##     ShareBiodadGen1                                              =     6, 
+##     IDCodeOfOtherInterviewedBiodadGen2                           =     9, 
+##     ShareBiodadGen2                                              =    10, 
+##     Gen1MomOfGen2Subject                                         =    11, 
+##     DateOfBirthMonth                                             =    13, 
+##     DateOfBirthYearGen1                                          =    14, 
+##     DateOfBirthYearGen2                                          =    15, 
+##     AgeAtInterviewDateYears                                      =    16, 
+##     AgeAtInterviewDateMonths                                     =    17, 
+##     InterviewDateDay                                             =    20, 
+##     InterviewDateMonth                                           =    21, 
+##     InterviewDateYear                                            =    22, 
+##     Gen1SiblingIsATwinOrTrip1994                                 =    25, 
+##     Gen1MultipleSiblingType1994                                  =    26, 
+##     Gen1ListedTwinCorrect1994                                    =    27, 
+##     Gen1TwinIsMzOrDz1994                                         =    28, 
+##     Gen1ListedTripCorrect1994                                    =    29, 
+##     Gen1TripIsMzOrDz1994                                         =    30, 
+##     MotherOrBothInHHGen2                                         =    37, 
+##     FatherHasAsthmaGen2                                          =    40, 
+##     BioKidCountGen1                                              =    48, 
+##     Gen1ChildsIDByBirthOrder                                     =    49, 
+##     HerTwinsTripsAreListed                                       =    50, 
+##     HerTwinsAreMz                                                =    52, 
+##     HerTripsAreMz                                                =    53, 
+##     HerTwinsMistakenForEachOther                                 =    54, 
+##     HerTripsMistakenForEachOther                                 =    55, 
+##     BirthOrderInNlsGen2                                          =    60, 
+##     SiblingCountTotalFen1                                        =    63, 
+##     BioKidCountGen2                                              =    64, 
+##     OlderSiblingsTotalCountGen1                                  =    66, 
+##     Gen1HairColor                                                =    70, 
+##     Gen1EyeColor                                                 =    71, 
+##     Gen2HairColor_NOTUSED                                        =    72, 
+##     Gen2EyeColor_NOTUSED                                         =    73, 
+##     // BabyDaddyInHH                                             =    81, 
+##     // BabyDaddyAlive                                            =    82, 
+##     // BabyDaddyEverLiveInHH                                     =    83, 
+##     // BabyDaddyLeftHHMonth                                      =    84, 
+##     // BabyDaddyLeftHHYearFourDigit                              =    85, 
+##     // BabyDaddyDeathMonth                                       =    86, 
+##     // BabyDaddyDeathYearTwoDigit                                =    87, 
+##     // BabyDaddyDeathYearFourDigit                               =    88, 
+##     // BabyDaddyDistanceFromMotherFuzzyCeiling                   =    89, 
+##     // BabyDaddyHasAsthma                                        =    90, 
+##     // BabyDaddyLeftHHMonthOrNeverInHH                           =    91, 
+##     // BabyDaddyLeftHHYearTwoDigit                               =    92, 
+##     SubjectID                                                    =   100, 
+##     ExtendedFamilyID                                             =   101, 
+##     Gender                                                       =   102, 
+##     RaceCohort                                                   =   103, 
+##     Gen2CFatherLivingInHH                                        =   121, 
+##     Gen2CFatherAlive                                             =   122, 
+##     Gen2CFatherDistanceFromMotherFuzzyCeiling                    =   123, 
+##     Gen2CFatherAsthma_NOTUSED                                    =   125, 
+##     Gen2YAFatherInHH_NOTUSED                                     =   141, 
+##     Gen2YAFatherAlive_NOTUSED                                    =   142, 
+##     Gen2YADeathMonth                                             =   143, 
+##     Gen2YADeathYearFourDigit                                     =   144, 
+##     Gen1HeightInches                                             =   200, 
+##     Gen1WeightPounds                                             =   201, 
+##     Gen1AfqtScaled0Decimals_NOTUSED                              =   202, 
+##     Gen1AfqtScaled3Decimals                                      =   203, 
+##     Gen1HeightFeetInchesMashed                                   =   204, 
+##     Gen1FatherAlive                                              =   300, 
+##     Gen1FatherDeathCause                                         =   301, 
+##     Gen1FatherDeathAge                                           =   302, 
+##     Gen1FatherHasHealthProblems                                  =   303, 
+##     Gen1FatherHealthProblem                                      =   304, 
+##     Gen1FatherBirthCountry                                       =   305, 
+##     Gen1LivedWithFatherAtAgeX                                    =   306, 
+##     Gen1FatherHighestGrade                                       =   307, 
+##     Gen1GrandfatherBirthCountry                                  =   308, 
+##     Gen1FatherBirthMonth                                         =   309, 
+##     Gen1FatherBirthYear                                          =   310, 
+##     Gen1FatherAge                                                =   311, 
+##     Gen1MotherAlive                                              =   320, 
+##     Gen1MotherDeathCause                                         =   321, 
+##     Gen1MotherDeathAge                                           =   322, 
+##     Gen1MotherHasHealthProblems                                  =   323, 
+##     Gen1MotherHealthProblem                                      =   324, 
+##     Gen1MotherBirthCountry                                       =   325, 
+##     Gen1LivedWithMotherAtAgeX                                    =   326, 
+##     Gen1MotherHighestGrade                                       =   327, 
+##     Gen1MotherBirthMonth                                         =   329, 
+##     Gen1MotherBirthYear                                          =   330, 
+##     Gen1MotherAge                                                =   331, 
+##     Gen1AlwaysLivedWithBothParents                               =   340, 
+##     Gen2HeightInchesTotal                                        =   500, 
+##     Gen2HeightFeetOnly                                           =   501, 
+##     Gen2HeightInchesRemainder                                    =   502, 
+##     Gen2HeightInchesTotalMotherSupplement                        =   503, 
+##     Gen2WeightPoundsYA                                           =   504, 
+##     Gen2PiatMathRaw                                              =   511, 
+##     Gen2PiatMathPercentile                                       =   512, 
+##     Gen2PiatMathStandard                                         =   513, 
+##     Gen1ListIncorrectGen2TwinTrips_NOTINTAGCURRENTLY             =  9993, 
+##     Gen1VerifyFirstGen2TwinsTrips_NOTINTAGSETCURRENTLY           =  9994, 
+##     Gen1FirstIncorrectTwinTripYoungerOrOlder_NOTUSED             =  9995, 
+##     Gen1FirstIncorrectTwinTripAgeDifference_NOTUSED              =  9996, 
+##     Gen1SecondIncorrectTwinTripYoungerOrOlder_NOTUSED            =  9997, 
+##     Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED             =  9998, 
+##     NotTranslated                                                =  9999, 
 ## }
 ##  
 ## public enum ExtractSource {
-##     Gen1Links                                                    = 3,
-##     Gen2Links                                                    = 4,
-##     Gen2LinksFromGen1                                            = 5,
-##     Gen2ImplicitFather                                           = 6,
-##     Gen2FatherFromGen1                                           = 7,
-##     Gen1Outcomes                                                 = 8,
-##     Gen2OutcomesHeight                                           = 9,
-##     Gen1Explicit                                                 = 10,
-##     Gen1Implicit                                                 = 11,
-##     Gen2OutcomesWeight                                           = 12,
-##     Gen2OutcomesMath                                             = 13,
+##     Gen1Links                                                    =     3, 
+##     Gen2Links                                                    =     4, 
+##     Gen2LinksFromGen1                                            =     5, 
+##     Gen2ImplicitFather                                           =     6, 
+##     Gen2FatherFromGen1                                           =     7, 
+##     Gen1Outcomes                                                 =     8, 
+##     Gen2OutcomesHeight                                           =     9, 
+##     Gen1Explicit                                                 =    10, 
+##     Gen1Implicit                                                 =    11, 
+##     Gen2OutcomesWeight                                           =    12, 
+##     Gen2OutcomesMath                                             =    13, 
 ## }
 ##  
 ## public enum MarkerEvidence {
-##     Irrelevant                                                   = 0,
-##     StronglySupports                                             = 1,
-##     Supports                                                     = 2,
-##     Consistent                                                   = 3,
-##     Ambiguous                                                    = 4,
-##     Missing                                                      = 5,
-##     Unlikely                                                     = 6,
-##     Disconfirms                                                  = 7,
+##     Irrelevant                                                   =     0, 
+##     StronglySupports                                             =     1, 
+##     Supports                                                     =     2, 
+##     Consistent                                                   =     3, 
+##     Ambiguous                                                    =     4, 
+##     Missing                                                      =     5, 
+##     Unlikely                                                     =     6, 
+##     Disconfirms                                                  =     7, 
 ## }
 ##  
 ## public enum MarkerType {
-##     RosterGen1                                                   = 1,
-##     ShareBiomom                                                  = 2,
-##     ShareBiodad                                                  = 3,
-##     DobSeparation                                                = 5,
-##     GenderAgreement                                              = 6,
-##     FatherAsthma                                                 = 10,
-##     BabyDaddyAsthma                                              = 11,
-##     BabyDaddyLeftHHDate                                          = 12,
-##     BabyDaddyDeathDate                                           = 13,
-##     BabyDaddyAlive                                               = 14,
-##     BabyDaddyInHH                                                = 15,
-##     BabyDaddyDistanceFromHH                                      = 16,
-##     Gen2CFatherAlive                                             = 17,
-##     Gen2CFatherInHH                                              = 18,
-##     Gen2CFatherDistanceFromHH                                    = 19,
-##     Gen1BiodadInHH                                               = 30,
-##     Gen1BiodadDeathAge                                           = 31,
-##     Gen1BiodadBirthYear                                          = 32,
-##     Gen1BiodadInHH1979                                           = 33,
-##     Gen1BiodadBrithCountry                                       = 34,
-##     Gen1BiodadBirthState                                         = 35,
-##     Gen1BiomomInHH                                               = 40,
-##     Gen1BiomomDeathAge                                           = 41,
-##     Gen1BiomomBirthYear                                          = 42,
-##     Gen1BiomomInHH1979                                           = 43,
-##     Gen1BiomomBirthCountry                                       = 44,
-##     Gen1BiomomBirthState                                         = 45,
-##     Gen1AlwaysLivedWithBothBioparents                            = 50,
+##     RosterGen1                                                   =     1, 
+##     ShareBiomom                                                  =     2, 
+##     ShareBiodad                                                  =     3, 
+##     DobSeparation                                                =     5, 
+##     GenderAgreement                                              =     6, 
+##     FatherAsthma                                                 =    10, 
+##     BabyDaddyAsthma                                              =    11, 
+##     BabyDaddyLeftHHDate                                          =    12, 
+##     BabyDaddyDeathDate                                           =    13, 
+##     BabyDaddyAlive                                               =    14, 
+##     BabyDaddyInHH                                                =    15, 
+##     BabyDaddyDistanceFromHH                                      =    16, 
+##     Gen2CFatherAlive                                             =    17, 
+##     Gen2CFatherInHH                                              =    18, 
+##     Gen2CFatherDistanceFromHH                                    =    19, 
+##     Gen1BiodadInHH                                               =    30, 
+##     Gen1BiodadDeathAge                                           =    31, 
+##     Gen1BiodadBirthYear                                          =    32, 
+##     // Gen1BiodadInHH1979                                        =    33, 
+##     Gen1BiodadBrithCountry                                       =    34, 
+##     Gen1BiodadBirthState                                         =    35, 
+##     Gen1BiomomInHH                                               =    40, 
+##     Gen1BiomomDeathAge                                           =    41, 
+##     Gen1BiomomBirthYear                                          =    42, 
+##     // Gen1BiomomInHH1979                                        =    43, 
+##     Gen1BiomomBirthCountry                                       =    44, 
+##     Gen1BiomomBirthState                                         =    45, 
+##     Gen1AlwaysLivedWithBothBioparents                            =    50, 
 ## }
 ##  
 ## public enum RelationshipPath {
-##     Gen1Housemates                                               = 1,
-##     Gen2Siblings                                                 = 2,
-##     Gen2Cousins                                                  = 3,
-##     ParentChild                                                  = 4,
-##     AuntNiece                                                    = 5,
+##     Gen1Housemates                                               =     1, 
+##     Gen2Siblings                                                 =     2, 
+##     Gen2Cousins                                                  =     3, 
+##     ParentChild                                                  =     4, 
+##     AuntNiece                                                    =     5, // Acutally (Uncle|Aunt)-(Nephew|Niece)
 ## }
 ##  
 ## public enum SurveySource {
-##     NoInterview                                                  = 0,
-##     Gen1                                                         = 1,
-##     Gen2C                                                        = 2,
-##     Gen2YA                                                       = 3,
+##     NoInterview                                                  =     0, 
+##     Gen1                                                         =     1, 
+##     Gen2C                                                        =     2, 
+##     Gen2YA                                                       =     3, 
 ## }
 ```
 
@@ -723,9 +730,9 @@ sessionInfo()
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
 ##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
 ##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       purrr_0.2.2.2    hms_0.3         
-## [17] compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16       bindr_0.1       
-## [21] tibble_1.3.3
+## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
+## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
+## [21] bindr_0.1        tibble_1.3.3
 ```
 
 ```r
@@ -733,6 +740,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 14:43:58 CDT"
+## [1] "2017-06-21 14:56:49 CDT"
 ```
 
