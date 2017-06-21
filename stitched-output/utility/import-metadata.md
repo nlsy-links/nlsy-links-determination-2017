@@ -130,6 +130,7 @@ lst_col_types <- list(
 
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
+  # schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -163,16 +164,14 @@ ds_file <- names(lst_col_types) %>%
   ) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    table_name = paste0(schema_name, ".tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists),
-    sql_delete= paste0("DELETE FROM ", table_name)
+    exists    = purrr::map_lgl(path, file.exists)
   )
 ds_file
 ```
 
 ```
-## # A tibble: 8 x 6
+## # A tibble: 8 x 4
 ##                 name                                               path
 ##                <chr>                                              <chr>
 ## 1               Item               data-public/metadata/tables/Item.csv
@@ -183,20 +182,19 @@ ds_file
 ## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
 ## 7           MzManual           data-public/metadata/tables/MzManual.csv
 ## 8           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 4 more variables: table_name <chr>, col_types <list>,
-## #   exists <lgl>, sql_delete <chr>
+## # ... with 2 more variables: col_types <list>, exists <lgl>
 ```
 
 ```r
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
-lst_ds <- ds_file %>%
-  dplyr::select(
-    file          = path,
-    col_types
-  ) %>%
-  purrr::pmap(readr::read_csv) %>%
-  purrr::set_names(nm=ds_file$table_name)
+ds_entries <- ds_file %>%
+  dplyr::select(name, path, col_types) %>%
+  dplyr::mutate(
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
+  )
+
+
 
 rm(directory_in) # rm(col_types_tulsa)
 ```
@@ -205,16 +203,14 @@ rm(directory_in) # rm(col_types_tulsa)
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
 ds_file <- ds_file %>%
-  dplyr::left_join(
-    lst_ds %>%
-      tibble::enframe() %>%
-      dplyr::rename(
-        table_name  = name,
-        entries     = value
-      ),
-    by = "table_name"
+  dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
+  dplyr::mutate(
+    table_name    = paste0(schema_name, ".tbl", name),
+    sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
-  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
+  dplyr::left_join(ds_entries, by="name")
+
+rm(ds_entries)
 
 ds_file$entries %>%
   purrr::walk(print)
@@ -323,60 +319,20 @@ ds_file$entries %>%
 ```
 
 ```r
-ds_file %>%
-  dplyr::group_by(name) %>%
-  dplyr::mutate(
-    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
-  ) %>%
-  dplyr::ungroup() %>%
-  dplyr::pull(a)
-```
+# ds_file %>%
+#   dplyr::group_by(name) %>%
+#   dplyr::mutate(
+#     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+#   ) %>%
+#   dplyr::ungroup() %>%
+#   dplyr::pull(a)
 
-```
-## [1]  2870   204   112   599    78    43 12261 18746
-```
 
-```r
-lst_ds$Metadata.tblVariable %>%
-  purrr::map(~max(nchar(.), na.rm=T))
-```
+# ds_file %>%
+#   dplyr::select(name, entries) %>%
+#   tibble::deframe() %>%
+#   purrr::map(~max(nchar(.), na.rm=T))
 
-```
-## $ID
-## [1] 4
-## 
-## $VariableCode
-## [1] 8
-## 
-## $Item
-## [1] 4
-## 
-## $Generation
-## [1] 1
-## 
-## $ExtractSource
-## [1] 2
-## 
-## $SurveySource
-## [1] 1
-## 
-## $SurveyYear
-## [1] 4
-## 
-## $LoopIndex
-## [1] 3
-## 
-## $Translate
-## [1] 1
-## 
-## $Active
-## [1] 4
-## 
-## $Notes
-## [1] 56
-```
-
-```r
 # lst_ds %>%
 #   purrr::map(nrow)
 # lst_ds %>%
@@ -390,10 +346,6 @@ ds_file$table_name
 ## [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
 ## [5] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
 ## [7] "Metadata.tblMzManual"           "Metadata.tblVariable"
-```
-
-```r
-rm(lst_ds)
 ```
 
 ```r
@@ -674,7 +626,7 @@ purrr::map2_int(
       channel     = channel,
       dat         = d,
       tablename   = table_name,
-      safer       = FALSE,       # Don't keep the existing table.
+      safer       = TRUE,       # Don't keep the existing table.
       rownames    = FALSE,
       append      = TRUE
     )
@@ -727,12 +679,14 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
-## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
-## [21] bindr_0.1        tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
+## [29] pkgconfig_2.0.1
 ```
 
 ```r
@@ -740,6 +694,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 14:56:49 CDT"
+## [1] "2017-06-21 16:54:05 CDT"
 ```
 

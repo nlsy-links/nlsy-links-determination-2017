@@ -118,6 +118,7 @@ lst_col_types <- list(
 
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
+  # schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -135,22 +136,20 @@ ds_file <- names(lst_col_types) %>%
   ) %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    table_name = paste0(schema_name, ".tbl", name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists),
-    sql_delete= paste0("DELETE FROM ", table_name)
+    exists    = purrr::map_lgl(path, file.exists)
   )
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
-lst_ds <- ds_file %>%
-  dplyr::select(
-    file          = path,
-    col_types
-  ) %>%
-  purrr::pmap(readr::read_csv) %>%
-  purrr::set_names(nm=ds_file$table_name)
+ds_entries <- ds_file %>%
+  dplyr::select(name, path, col_types) %>%
+  dplyr::mutate(
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
+  )
+
+
 
 rm(directory_in) # rm(col_types_tulsa)
 
@@ -158,31 +157,31 @@ rm(directory_in) # rm(col_types_tulsa)
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
 ds_file <- ds_file %>%
-  dplyr::left_join(
-    lst_ds %>%
-      tibble::enframe() %>%
-      dplyr::rename(
-        table_name  = name,
-        entries     = value
-      ),
-    by = "table_name"
+  dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
+  dplyr::mutate(
+    table_name    = paste0(schema_name, ".tbl", name),
+    sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
-  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
+  dplyr::left_join(ds_entries, by="name")
+
+rm(ds_entries)
 
 ds_file$entries %>%
   purrr::walk(print)
 
-ds_file %>%
-  dplyr::group_by(name) %>%
-  dplyr::mutate(
-    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
-  ) %>%
-  dplyr::ungroup() %>%
-  dplyr::pull(a)
+# ds_file %>%
+#   dplyr::group_by(name) %>%
+#   dplyr::mutate(
+#     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+#   ) %>%
+#   dplyr::ungroup() %>%
+#   dplyr::pull(a)
 
 
-lst_ds$Metadata.tblVariable %>%
-  purrr::map(~max(nchar(.), na.rm=T))
+# ds_file %>%
+#   dplyr::select(name, entries) %>%
+#   tibble::deframe() %>%
+#   purrr::map(~max(nchar(.), na.rm=T))
 
 # lst_ds %>%
 #   purrr::map(nrow)
@@ -190,8 +189,6 @@ lst_ds$Metadata.tblVariable %>%
 #   purrr::map(readr::spec)
 
 ds_file$table_name
-
-rm(lst_ds)
 
 
 # ---- convert-to-enum ---------------------------------------------------------

@@ -324,6 +324,7 @@ lst_col_types &lt;- list(
 
 col_types_mapping &lt;- readr::cols_only(
   table_name          = readr::col_character(),
+  # schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -354,15 +355,13 @@ ds_mapping
   ) %&gt;%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, &quot;.csv&quot;)),
-    table_name = paste0(schema_name, &quot;.tbl&quot;, name),
     col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists),
-    sql_delete= paste0(&quot;DELETE FROM &quot;, table_name)
+    exists    = purrr::map_lgl(path, file.exists)
   )
 ds_file
 </code></pre>
 
-<pre><code>## # A tibble: 8 x 6
+<pre><code>## # A tibble: 8 x 4
 ##                 name                                               path
 ##                &lt;chr&gt;                                              &lt;chr&gt;
 ## 1               Item               data-public/metadata/tables/Item.csv
@@ -373,19 +372,18 @@ ds_file
 ## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
 ## 7           MzManual           data-public/metadata/tables/MzManual.csv
 ## 8           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 4 more variables: table_name &lt;chr&gt;, col_types &lt;list&gt;,
-## #   exists &lt;lgl&gt;, sql_delete &lt;chr&gt;
+## # ... with 2 more variables: col_types &lt;list&gt;, exists &lt;lgl&gt;
 </code></pre>
 
 <pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
 
-lst_ds &lt;- ds_file %&gt;%
-  dplyr::select(
-    file          = path,
-    col_types
-  ) %&gt;%
-  purrr::pmap(readr::read_csv) %&gt;%
-  purrr::set_names(nm=ds_file$table_name)
+ds_entries &lt;- ds_file %&gt;%
+  dplyr::select(name, path, col_types) %&gt;%
+  dplyr::mutate(
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
+  )
+
+
 
 rm(directory_in) # rm(col_types_tulsa)
 </code></pre>
@@ -393,16 +391,14 @@ rm(directory_in) # rm(col_types_tulsa)
 <pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
 ds_file &lt;- ds_file %&gt;%
-  dplyr::left_join(
-    lst_ds %&gt;%
-      tibble::enframe() %&gt;%
-      dplyr::rename(
-        table_name  = name,
-        entries     = value
-      ),
-    by = &quot;table_name&quot;
+  dplyr::left_join( ds_mapping, by=c(&quot;name&quot;=&quot;table_name&quot;)) %&gt;%
+  dplyr::mutate(
+    table_name    = paste0(schema_name, &quot;.tbl&quot;, name),
+    sql_delete    = paste0(&quot;DELETE FROM &quot;, table_name)
   ) %&gt;%
-  dplyr::left_join( ds_mapping, by=c(&quot;name&quot;=&quot;table_name&quot;))
+  dplyr::left_join(ds_entries, by=&quot;name&quot;)
+
+rm(ds_entries)
 
 ds_file$entries %&gt;%
   purrr::walk(print)
@@ -509,57 +505,21 @@ ds_file$entries %&gt;%
 ## #   LoopIndex &lt;int&gt;, Translate &lt;int&gt;, Active &lt;lgl&gt;, Notes &lt;chr&gt;
 </code></pre>
 
-<pre><code class="r">ds_file %&gt;%
-  dplyr::group_by(name) %&gt;%
-  dplyr::mutate(
-    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
-  ) %&gt;%
-  dplyr::ungroup() %&gt;%
-  dplyr::pull(a)
-</code></pre>
+<pre><code class="r"># ds_file %&gt;%
+#   dplyr::group_by(name) %&gt;%
+#   dplyr::mutate(
+#     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+#   ) %&gt;%
+#   dplyr::ungroup() %&gt;%
+#   dplyr::pull(a)
 
-<pre><code>## [1]  2870   204   112   599    78    43 12261 18746
-</code></pre>
 
-<pre><code class="r">lst_ds$Metadata.tblVariable %&gt;%
-  purrr::map(~max(nchar(.), na.rm=T))
-</code></pre>
+# ds_file %&gt;%
+#   dplyr::select(name, entries) %&gt;%
+#   tibble::deframe() %&gt;%
+#   purrr::map(~max(nchar(.), na.rm=T))
 
-<pre><code>## $ID
-## [1] 4
-## 
-## $VariableCode
-## [1] 8
-## 
-## $Item
-## [1] 4
-## 
-## $Generation
-## [1] 1
-## 
-## $ExtractSource
-## [1] 2
-## 
-## $SurveySource
-## [1] 1
-## 
-## $SurveyYear
-## [1] 4
-## 
-## $LoopIndex
-## [1] 3
-## 
-## $Translate
-## [1] 1
-## 
-## $Active
-## [1] 4
-## 
-## $Notes
-## [1] 56
-</code></pre>
-
-<pre><code class="r"># lst_ds %&gt;%
+# lst_ds %&gt;%
 #   purrr::map(nrow)
 # lst_ds %&gt;%
 #   purrr::map(readr::spec)
@@ -571,9 +531,6 @@ ds_file$table_name
 ## [3] &quot;Metadata.tblLUMarkerEvidence&quot;   &quot;Metadata.tblLUMarkerType&quot;      
 ## [5] &quot;Metadata.tblLURelationshipPath&quot; &quot;Metadata.tblLUSurveySource&quot;    
 ## [7] &quot;Metadata.tblMzManual&quot;           &quot;Metadata.tblVariable&quot;
-</code></pre>
-
-<pre><code class="r">rm(lst_ds)
 </code></pre>
 
 <pre><code class="r">create_enum_body &lt;- function( d ) {
@@ -845,7 +802,7 @@ purrr::map2_int(
       channel     = channel,
       dat         = d,
       tablename   = table_name,
-      safer       = FALSE,       # Don&#39;t keep the existing table.
+      safer       = TRUE,       # Don&#39;t keep the existing table.
       rownames    = FALSE,
       append      = TRUE
     )
@@ -893,18 +850,20 @@ packages used):</p>
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
-## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
-## [21] bindr_0.1        tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
+## [29] pkgconfig_2.0.1
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 14:56:49 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 16:54:05 CDT&quot;
 </code></pre>
 
 </body>
