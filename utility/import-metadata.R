@@ -20,7 +20,7 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-schema_name               <- "Metadata"
+# schema_name               <- "Metadata"
 
 lst_col_types <- list(
   Item = readr::cols_only(
@@ -118,7 +118,7 @@ lst_col_types <- list(
 
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
-  # schema_name         = readr::col_character(),
+  schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -161,8 +161,11 @@ ds_file <- ds_file %>%
     table_name    = paste0(schema_name, ".tbl", name),
     sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
-  dplyr::left_join(ds_entries, by="name")
-
+  dplyr::left_join(
+    ds_entries %>%
+      dplyr::select(name, entries)
+    , by="name"
+  )
 rm(ds_entries)
 
 ds_file$entries %>%
@@ -188,7 +191,7 @@ ds_file$entries %>%
 #   purrr::map(readr::spec)
 
 ds_file$table_name
-
+ds_file
 
 # ---- convert-to-enum ---------------------------------------------------------
 create_enum_body <- function( d ) {

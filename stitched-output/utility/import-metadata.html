@@ -226,7 +226,7 @@ requireNamespace(&quot;testit&quot;                 ) #For asserting conditions 
 
 <pre><code class="r"># Constant values that won&#39;t change.
 directory_in              &lt;- &quot;data-public/metadata/tables&quot;
-schema_name               &lt;- &quot;Metadata&quot;
+# schema_name               &lt;- &quot;Metadata&quot;
 
 lst_col_types &lt;- list(
   Item = readr::cols_only(
@@ -324,7 +324,7 @@ lst_col_types &lt;- list(
 
 col_types_mapping &lt;- readr::cols_only(
   table_name          = readr::col_character(),
-  # schema_name         = readr::col_character(),
+  schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -336,17 +336,18 @@ col_types_mapping &lt;- readr::cols_only(
 ds_mapping
 </code></pre>
 
-<pre><code>## # A tibble: 8 x 4
-##           table_name        enum_name c_sharp_type convert_to_enum
-##                &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;           &lt;lgl&gt;
-## 1               Item             Item        short            TRUE
-## 2    LUExtractSource    ExtractSource         byte            TRUE
-## 3   LUMarkerEvidence   MarkerEvidence         byte            TRUE
-## 4       LUMarkerType       MarkerType         byte            TRUE
-## 5 LURelationshipPath RelationshipPath         byte            TRUE
-## 6     LUSurveySource     SurveySource         byte            TRUE
-## 7         LUMzManual     NA_character NA_character           FALSE
-## 8           Variable     NA_character NA_character           FALSE
+<pre><code>## # A tibble: 8 x 5
+##           table_name schema_name        enum_name c_sharp_type
+##                &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;
+## 1               Item    Metadata             Item        short
+## 2    LUExtractSource    Metadata    ExtractSource         byte
+## 3   LUMarkerEvidence    Metadata   MarkerEvidence         byte
+## 4       LUMarkerType    Metadata       MarkerType         byte
+## 5 LURelationshipPath    Metadata RelationshipPath         byte
+## 6     LUSurveySource    Metadata     SurveySource         byte
+## 7           MzManual    Metadata     NA_character NA_character
+## 8           Variable    Metadata     NA_character NA_character
+## # ... with 1 more variables: convert_to_enum &lt;lgl&gt;
 </code></pre>
 
 <pre><code class="r">ds_file &lt;- lst_col_types %&gt;%
@@ -409,8 +410,11 @@ ds_file &lt;- ds_file %&gt;%
     table_name    = paste0(schema_name, &quot;.tbl&quot;, name),
     sql_delete    = paste0(&quot;DELETE FROM &quot;, table_name)
   ) %&gt;%
-  dplyr::left_join(ds_entries, by=&quot;name&quot;)
-
+  dplyr::left_join(
+    ds_entries %&gt;%
+      dplyr::select(name, entries)
+    , by=&quot;name&quot;
+  )
 rm(ds_entries)
 
 ds_file$entries %&gt;%
@@ -544,6 +548,26 @@ ds_file$table_name
 ## [3] &quot;Metadata.tblLUMarkerEvidence&quot;   &quot;Metadata.tblLUMarkerType&quot;      
 ## [5] &quot;Metadata.tblLURelationshipPath&quot; &quot;Metadata.tblLUSurveySource&quot;    
 ## [7] &quot;Metadata.tblMzManual&quot;           &quot;Metadata.tblVariable&quot;
+</code></pre>
+
+<pre><code class="r">ds_file
+</code></pre>
+
+<pre><code>## # A tibble: 8 x 11
+##                 name                                               path
+##                &lt;chr&gt;                                              &lt;chr&gt;
+## 1               Item               data-public/metadata/tables/Item.csv
+## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+## 7           MzManual           data-public/metadata/tables/MzManual.csv
+## 8           Variable           data-public/metadata/tables/Variable.csv
+## # ... with 9 more variables: col_types &lt;list&gt;, exists &lt;lgl&gt;,
+## #   schema_name &lt;chr&gt;, enum_name &lt;chr&gt;, c_sharp_type &lt;chr&gt;,
+## #   convert_to_enum &lt;lgl&gt;, table_name &lt;chr&gt;, sql_delete &lt;chr&gt;,
+## #   entries &lt;list&gt;
 </code></pre>
 
 <pre><code class="r">create_enum_body &lt;- function( d ) {
@@ -863,20 +887,18 @@ packages used):</p>
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
-## [29] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
+##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
+##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
+## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
+## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
+## [21] bindr_0.1        tibble_1.3.3
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 16:57:50 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 17:08:33 CDT&quot;
 </code></pre>
 
 </body>
