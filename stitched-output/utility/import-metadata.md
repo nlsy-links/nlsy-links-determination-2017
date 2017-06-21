@@ -13,6 +13,7 @@ rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
 ```r
 # Call `base::source()` on any repo file that defines functions needed below.  Ideally, no real operations are performed.
+base::source("utility/connectivity.R")
 ```
 
 ```r
@@ -343,17 +344,18 @@ names(lst_ds)
 #   purrr::map(function(x)paste(names(x)))
 #
 
-channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+# channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 ```
 
 ```
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "10.50.2500"                "03.52" 
+## "Microsoft SQL Server"           "13.00.4001"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
-##                     ""         "SQLSRV32.DLL"           "06.02.9200" 
+##     "local-nlsy-links"      "msodbcsql13.dll"           "14.00.0500" 
 ##               ODBC_Ver            Server_Name 
-##           "03.80.0000"            "BEE\\BASS"
+##           "03.80.0000" "GIMBLE\\EXPRESS_2016"
 ```
 
 ```r
@@ -449,12 +451,12 @@ sessionInfo()
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+##  [5] munsell_0.4.3    testit_0.7       colorspace_1.3-2 R6_2.2.1        
+##  [9] rlang_0.1.1      stringr_1.2.0    highr_0.6        plyr_1.8.4      
+## [13] dplyr_0.7.0      tools_3.4.0      assertthat_0.2.0 tibble_1.3.3    
 ## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
+## [21] glue_1.1.0       evaluate_0.10    stringi_1.1.5    compiler_3.4.0  
+## [25] scales_0.4.1
 ```
 
 ```r
@@ -462,6 +464,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-20 12:21:15 CDT"
+## [1] "2017-06-21 10:10:24 CDT"
 ```
 
