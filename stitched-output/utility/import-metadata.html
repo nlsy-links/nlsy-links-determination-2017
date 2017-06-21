@@ -560,7 +560,7 @@ ds_file$table_name
 
 <pre><code class="r">create_enum_body &lt;- function( d ) {
   tab_spaces &lt;- &quot;    &quot;
-  paste0(tab_spaces,  d$Label, &quot; = &quot;, d$ID, &quot;,\n&quot;, collapse=&quot;&quot;)
+  paste0(sprintf(&quot;%s%s = %s,\n&quot;, tab_spaces, d$Label, d$ID), collapse=&quot;&quot;)
 }
 
 ds_enum &lt;- ds_file  %&gt;%
@@ -881,7 +881,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 14:16:46 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 14:23:41 CDT&quot;
 </code></pre>
 
 </body>

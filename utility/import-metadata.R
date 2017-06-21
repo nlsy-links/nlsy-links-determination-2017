@@ -183,7 +183,7 @@ rm(lst_ds)
 # ---- convert-to-enum ---------------------------------------------------------
 create_enum_body <- function( d ) {
   tab_spaces <- "    "
-  paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
+  paste0(sprintf("%s%s = %s,\n", tab_spaces, d$Label, d$ID), collapse="")
 }
 
 ds_enum <- ds_file  %>%

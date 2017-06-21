@@ -381,7 +381,7 @@ rm(lst_ds)
 ```r
 create_enum_body <- function( d ) {
   tab_spaces <- "    "
-  paste0(tab_spaces,  d$Label, " = ", d$ID, ",\n", collapse="")
+  paste0(sprintf("%s%s = %s,\n", tab_spaces, d$Label, d$ID), collapse="")
 }
 
 ds_enum <- ds_file  %>%
@@ -717,6 +717,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 14:16:46 CDT"
+## [1] "2017-06-21 14:23:41 CDT"
 ```
 
