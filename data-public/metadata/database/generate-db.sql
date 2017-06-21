@@ -1,9 +1,11 @@
 USE [master]
 GO
-CREATE DATABASE [NlsLinks] ON  PRIMARY 
-( NAME = N'NlsLinks', FILENAME = N'D:\NlsLinks\NlsLinks.mdf' , SIZE = 369024KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+CREATE DATABASE [NlsLinks]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'NlsLinks', FILENAME = N'D:\database\nlsy-links\nlsy_links.mdf' , SIZE = 369024KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'NlsLinks_log', FILENAME = N'E:\NlsLinks_log.LDF' , SIZE = 1219712KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
+( NAME = N'NlsLinks_log', FILENAME = N'D:\database\nlsy-links\nlsy_links_log.ldf' , SIZE = 1219712KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 ALTER DATABASE [NlsLinks] SET COMPATIBILITY_LEVEL = 100
 GO
@@ -64,17 +66,33 @@ ALTER DATABASE [NlsLinks] SET PAGE_VERIFY CHECKSUM
 GO
 ALTER DATABASE [NlsLinks] SET DB_CHAINING OFF 
 GO
-EXEC sys.sp_db_vardecimal_storage_format N'NlsLinks', N'ON'
+ALTER DATABASE [NlsLinks] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [NlsLinks] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [NlsLinks] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [NlsLinks] SET QUERY_STORE = OFF
 GO
 USE [NlsLinks]
 GO
-CREATE USER [NlsyReadWrite] FOR LOGIN [NlsyReadWrite] WITH DEFAULT_SCHEMA=[dbo]
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
-ALTER ROLE [db_ddladmin] ADD MEMBER [NlsyReadWrite]
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
 GO
-ALTER ROLE [db_datareader] ADD MEMBER [NlsyReadWrite]
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
 GO
-ALTER ROLE [db_datawriter] ADD MEMBER [NlsyReadWrite]
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [NlsLinks]
 GO
 CREATE ASSEMBLY [SqlServerNlsLinks]
 FROM 0x4D5A90000300000004000000FFFF0000B800000000000000400000000000000000000000000000000000000000000000000000000000000000000000800000000E1FBA0E00B409CD21B8014CCD21546869732070726F6772616D2063616E6E6F742062652072756E20696E20444F53206D6F64652E0D0D0A2400000000000000504500004C0103005C5BB54E0000000000000000E00002210B0108000006000000060000000000009E2500000020000000400000000040000020000000020000040000000000000004000000000000000080000000020000000000000300408500001000001000000000100000100000000000001000000000000000000000004425000057000000004000007803000000000000000000000000000000000000006000000C000000C42400001C0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000080000000000000000000000082000004800000000000000000000002E74657874000000A4050000002000000006000000020000000000000000000000000000200000602E7273726300000078030000004000000004000000080000000000000000000000000000400000402E72656C6F6300000C0000000060000000020000000C00000000000000000000000000004000004200000000000000000000000000000000802500000000000048000000020005005020000074040000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042534A4201000100000000000C00000076322E302E35303732370000000005006C0000005C010000237E0000C80100000802000023537472696E677300000000D00300000800000023555300D8030000100000002347554944000000E80300008C00000023426C6F620000000000000002000001071400000900000000FA253300160000010000000E000000010000000D0000000B000000010000000100000000000A0001000000000006003B0029000600580029000600750029000600940029000600AD0029000600C60029000600E10029000600FC0029000600340115010600480129000600740161012F00880100000600B70197010600D70197010000000001000000000001000100090052000A00110052000A00190052000A00210052000A00290052000A00310052000A00390052000A00410052000A00490052000F00510052000A00590052001400690052001A00710052001F002E000B0023002E0013003A002E001B003A002E0023003A002E002B0023002E00330040002E003B003A002E004B003A002E005B0058002E00630061002E006B006A000480000001000000E6103E45000000000000F501000002000000000000000000000001002000000000000000003C4D6F64756C653E0053716C5365727665724E6C734C696E6B732E646C6C006D73636F726C69620053797374656D2E5265666C656374696F6E00417373656D626C795469746C65417474726962757465002E63746F7200417373656D626C794465736372697074696F6E41747472696275746500417373656D626C79436F6E66696775726174696F6E41747472696275746500417373656D626C79436F6D70616E7941747472696275746500417373656D626C7950726F6475637441747472696275746500417373656D626C79436F7079726967687441747472696275746500417373656D626C7954726164656D61726B41747472696275746500417373656D626C7943756C747572654174747269627574650053797374656D2E52756E74696D652E496E7465726F70536572766963657300436F6D56697369626C6541747472696275746500417373656D626C7956657273696F6E4174747269627574650053797374656D2E446961676E6F73746963730044656275676761626C6541747472696275746500446562756767696E674D6F6465730053797374656D2E52756E74696D652E436F6D70696C6572536572766963657300436F6D70696C6174696F6E52656C61786174696F6E734174747269627574650052756E74696D65436F6D7061746962696C6974794174747269627574650053716C5365727665724E6C734C696E6B73000000032000000000007C15CF8065A4A74EA3CA5E72EC97CD060008B77A5C561934E089042001010E04200101020520010111310420010108032000011601001153716C5365727665724E6C734C696E6B73000005010000000017010012436F7079726967687420C2A920203230313100000801000701000000000801000800000000001E01000100540216577261704E6F6E457863657074696F6E5468726F777301000000000000005C5BB54E000000000200000064000000E0240000E006000052534453C42A10A4AFEFE94B815B787BCDC8195402000000463A5C50726F6A656374735C4E6C735C4C696E6B73323031315C53716C5365727665724E6C734C696E6B735C6F626A5C44656275675C53716C5365727665724E6C734C696E6B732E706462006C25000000000000000000008E250000002000000000000000000000000000000000000000000000802500000000000000000000000000000000000000005F436F72446C6C4D61696E006D73636F7265652E646C6C0000000000FF2500204000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100100000001800008000000000000000000000000000000100010000003000008000000000000000000000000000000100000000004800000058400000200300000000000000000000200334000000560053005F00560045005200530049004F004E005F0049004E0046004F0000000000BD04EFFE00000100000001003E45E610000001003E45E6103F000000000000000400000002000000000000000000000000000000440000000100560061007200460069006C00650049006E0066006F00000000002400040000005400720061006E0073006C006100740069006F006E00000000000000B00480020000010053007400720069006E006700460069006C00650049006E0066006F0000005C02000001003000300030003000300034006200300000004C0012000100460069006C0065004400650073006300720069007000740069006F006E0000000000530071006C005300650072007600650072004E006C0073004C0069006E006B007300000040000F000100460069006C006500560065007200730069006F006E000000000031002E0030002E0034003300320036002E0031003700370032003600000000004C001600010049006E007400650072006E0061006C004E0061006D0065000000530071006C005300650072007600650072004E006C0073004C0069006E006B0073002E0064006C006C0000004800120001004C006500670061006C0043006F007000790072006900670068007400000043006F0070007900720069006700680074002000A90020002000320030003100310000005400160001004F0072006900670069006E0061006C00460069006C0065006E0061006D0065000000530071006C005300650072007600650072004E006C0073004C0069006E006B0073002E0064006C006C000000440012000100500072006F0064007500630074004E0061006D00650000000000530071006C005300650072007600650072004E006C0073004C0069006E006B007300000044000F000100500072006F006400750063007400560065007200730069006F006E00000031002E0030002E0034003300320036002E00310037003700320036000000000048000F00010041007300730065006D0062006C0079002000560065007200730069006F006E00000031002E0030002E0034003300320036002E00310037003700320036000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000C000000A03500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -99,6 +117,240 @@ GO
 CREATE SCHEMA [Outcome]
 GO
 CREATE SCHEMA [Process]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblOutcomesOLD](
+	[SubjectTag] [int] NOT NULL,
+	[HeightInchesLateTeens] [tinyint] NULL,
+	[WeightPoundsLateTeens] [smallint] NULL,
+	[AfqtRescaled2006Bounded] [float] NULL,
+ CONSTRAINT [PK_tblOutcomesOLD] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblSubject](
+	[SubjectTag] [int] NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[SubjectID] [int] NOT NULL,
+	[Generation] [tinyint] NOT NULL,
+	[Gender] [tinyint] NOT NULL,
+ CONSTRAINT [PK_Process.tblSubject] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblSubjectDetails](
+	[SubjectTag] [int] NOT NULL,
+	[RaceCohort] [tinyint] NOT NULL,
+	[SiblingCountInNls] [tinyint] NOT NULL,
+	[BirthOrderInNls] [tinyint] NOT NULL,
+	[SimilarAgeCount] [tinyint] NOT NULL,
+	[HasMzPossibly] [bit] NOT NULL,
+	[KidCountBio] [tinyint] NULL,
+	[KidCountInNls] [tinyint] NULL,
+	[Mob] [smalldatetime] NULL,
+	[LastSurveyYearCompleted] [smallint] NULL,
+	[AgeAtLastSurvey] [float] NULL,
+	[IsDead] [bit] NOT NULL,
+	[DeathDate] [smalldatetime] NULL,
+	[IsBiodadDead] [bit] NULL,
+	[BiodadDeathDate] [smalldatetime] NULL,
+ CONSTRAINT [PK_tblSubject] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vewOutcomesOLD]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.SubjectID, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
+                      Process.tblSubjectDetails.Mob, Process.tblOutcomesOLD.HeightInchesLateTeens, Process.tblOutcomesOLD.WeightPoundsLateTeens, 
+                      Process.tblOutcomesOLD.AfqtRescaled2006Bounded
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag INNER JOIN
+                      Process.tblOutcomesOLD ON Process.tblSubject.SubjectTag = Process.tblOutcomesOLD.SubjectTag
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblRelatedStructure](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[RelationshipPath] [tinyint] NOT NULL,
+	[EverSharedHouse] [bit] NOT NULL,
+ CONSTRAINT [PK_tblRelatednessStructure] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblRelatedValues](
+	[ID] [int] NOT NULL,
+	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
+	[IsMz] [tinyint] NOT NULL,
+	[LastSurvey_S1] [smallint] NULL,
+	[LastSurvey_S2] [smallint] NULL,
+	[ImplicitShareBiomomPass1] [tinyint] NULL,
+	[ImplicitShareBiodadPass1] [tinyint] NULL,
+	[ExplicitShareBiomomPass1] [tinyint] NULL,
+	[ExplicitShareBiodadPass1] [tinyint] NULL,
+	[ShareBiomomPass1] [tinyint] NULL,
+	[ShareBiodadPass1] [tinyint] NULL,
+	[RImplicitPass1] [float] NULL,
+	[RImplicit] [float] NULL,
+	[RImplicitSubject] [float] NULL,
+	[RImplicitMother] [float] NULL,
+	[RImplicit2004] [float] NULL,
+	[RExplicitOlderSibVersion] [float] NULL,
+	[RExplicitYoungerSibVersion] [float] NULL,
+	[RExplicitPass1] [float] NULL,
+	[RExplicit] [float] NULL,
+	[RPass1] [float] NULL,
+	[R] [float] NULL,
+	[RFull] [float] NULL,
+	[RPeek] [float] NULL,
+ CONSTRAINT [PK_tblRelatedValues] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vewRelatedValues]
+AS
+SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
+                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedStructure.EverSharedHouse, Process.tblRelatedValues.R, Process.tblRelatedValues.RFull, 
+                      Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, Process.tblRelatedValues.LastSurvey_S1, 
+                      Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, Process.tblRelatedValues.RImplicit2004, 
+                      Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, Process.tblRelatedValues.RExplicit, 
+                      Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, Process.tblRelatedValues.RExplicitOlderSibVersion, 
+                      Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRelatedValues.RImplicitSubject, Process.tblRelatedValues.RImplicitMother
+FROM         Process.tblRelatedValues INNER JOIN
+                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblRosterGen1](
+	[RelatedID] [int] NOT NULL,
+	[RosterAssignmentID] [tinyint] NOT NULL,
+	[ResponseLower] [smallint] NOT NULL,
+	[ResponseUpper] [smallint] NOT NULL,
+	[Resolved] [bit] NOT NULL,
+	[R] [float] NULL,
+	[RBoundLower] [float] NOT NULL,
+	[RBoundUpper] [float] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiodad] [tinyint] NOT NULL,
+	[ShareBiomom] [tinyint] NOT NULL,
+	[ShareBiograndparent] [tinyint] NOT NULL,
+	[Inconsistent] [bit] NOT NULL,
+ CONSTRAINT [PK_tblRosterGen1_1] PRIMARY KEY CLUSTERED 
+(
+	[RelatedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vewRelatedValuesGen1Only]
+AS
+SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
+                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValues.R, Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, 
+                      Process.tblRelatedValues.LastSurvey_S1, Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, 
+                      Process.tblRelatedValues.RImplicit2004, Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, 
+                      Process.tblRelatedValues.RExplicit, Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, 
+                      Process.tblRelatedValues.RExplicitOlderSibVersion, Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRosterGen1.RosterAssignmentID, 
+                      Process.tblRosterGen1.R AS RosterR, Process.tblRelatedValues.RFull, Process.tblRosterGen1.SameGeneration
+FROM         Process.tblRelatedValues INNER JOIN
+                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID INNER JOIN
+                      Process.tblRosterGen1 ON Process.tblRelatedStructure.ID = Process.tblRosterGen1.RelatedID
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vewSubjectDetails79Heavy]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, Process.tblSubjectDetails.RaceCohort, 
+                      Process.tblSubjectDetails.SiblingCountInNls, Process.tblSubjectDetails.BirthOrderInNls, Process.tblSubjectDetails.SimilarAgeCount, 
+                      Process.tblSubjectDetails.HasMzPossibly, Process.tblSubjectDetails.KidCountBio, Process.tblSubjectDetails.KidCountInNls, Process.tblSubjectDetails.Mob, 
+                      Process.tblSubjectDetails.LastSurveyYearCompleted, Process.tblSubjectDetails.AgeAtLastSurvey, Process.tblSubjectDetails.IsDead, 
+                      Process.tblSubjectDetails.DeathDate
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [Process].[vewSubjectDetails]
+AS
+SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.SubjectID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
+                      Process.tblSubjectDetails.Mob, Process.tblSubjectDetails.RaceCohort
+FROM         Process.tblSubject INNER JOIN
+                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Process].[tblSurveyTime](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[SurveySource] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[SurveyDate] [date] NULL,
+	[AgeSelfReportYears] [float] NULL,
+	[AgeCalculateYears] [float] NULL,
+ CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [Process].[vewSurveyTimeMostRecent]
+AS
+SELECT     TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent
+FROM         Process.tblSurveyTime
+WHERE     (SurveySource > 0)
+GROUP BY SubjectTag
+ORDER BY SubjectTag
 GO
 SET ANSI_NULLS ON
 GO
@@ -2500,21 +2752,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Process].[tblOutcomesOLD](
-	[SubjectTag] [int] NOT NULL,
-	[HeightInchesLateTeens] [tinyint] NULL,
-	[WeightPoundsLateTeens] [smallint] NULL,
-	[AfqtRescaled2006Bounded] [float] NULL,
- CONSTRAINT [PK_tblOutcomesOLD] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Process].[tblParentsOfGen1Current](
 	[SubjectTag] [int] NOT NULL,
 	[BiodadBirthYearReported] [smallint] NULL,
@@ -2563,58 +2800,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Process].[tblRelatedStructure](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[ExtendedID] [smallint] NOT NULL,
-	[SubjectTag_S1] [int] NOT NULL,
-	[SubjectTag_S2] [int] NOT NULL,
-	[RelationshipPath] [tinyint] NOT NULL,
-	[EverSharedHouse] [bit] NOT NULL,
- CONSTRAINT [PK_tblRelatednessStructure] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblRelatedValues](
-	[ID] [int] NOT NULL,
-	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
-	[IsMz] [tinyint] NOT NULL,
-	[LastSurvey_S1] [smallint] NULL,
-	[LastSurvey_S2] [smallint] NULL,
-	[ImplicitShareBiomomPass1] [tinyint] NULL,
-	[ImplicitShareBiodadPass1] [tinyint] NULL,
-	[ExplicitShareBiomomPass1] [tinyint] NULL,
-	[ExplicitShareBiodadPass1] [tinyint] NULL,
-	[ShareBiomomPass1] [tinyint] NULL,
-	[ShareBiodadPass1] [tinyint] NULL,
-	[RImplicitPass1] [float] NULL,
-	[RImplicit] [float] NULL,
-	[RImplicitSubject] [float] NULL,
-	[RImplicitMother] [float] NULL,
-	[RImplicit2004] [float] NULL,
-	[RExplicitOlderSibVersion] [float] NULL,
-	[RExplicitYoungerSibVersion] [float] NULL,
-	[RExplicitPass1] [float] NULL,
-	[RExplicit] [float] NULL,
-	[RPass1] [float] NULL,
-	[R] [float] NULL,
-	[RFull] [float] NULL,
-	[RPeek] [float] NULL,
- CONSTRAINT [PK_tblRelatedValues] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Process].[tblResponse](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[SubjectTag] [int] NOT NULL,
@@ -2630,230 +2815,6 @@ CREATE TABLE [Process].[tblResponse](
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblRosterGen1](
-	[RelatedID] [int] NOT NULL,
-	[RosterAssignmentID] [tinyint] NOT NULL,
-	[ResponseLower] [smallint] NOT NULL,
-	[ResponseUpper] [smallint] NOT NULL,
-	[Resolved] [bit] NOT NULL,
-	[R] [float] NULL,
-	[RBoundLower] [float] NOT NULL,
-	[RBoundUpper] [float] NOT NULL,
-	[SameGeneration] [tinyint] NOT NULL,
-	[ShareBiodad] [tinyint] NOT NULL,
-	[ShareBiomom] [tinyint] NOT NULL,
-	[ShareBiograndparent] [tinyint] NOT NULL,
-	[Inconsistent] [bit] NOT NULL,
- CONSTRAINT [PK_tblRosterGen1_1] PRIMARY KEY CLUSTERED 
-(
-	[RelatedID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblSubject](
-	[SubjectTag] [int] NOT NULL,
-	[ExtendedID] [smallint] NOT NULL,
-	[SubjectID] [int] NOT NULL,
-	[Generation] [tinyint] NOT NULL,
-	[Gender] [tinyint] NOT NULL,
- CONSTRAINT [PK_Process.tblSubject] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblSubjectDetails](
-	[SubjectTag] [int] NOT NULL,
-	[RaceCohort] [tinyint] NOT NULL,
-	[SiblingCountInNls] [tinyint] NOT NULL,
-	[BirthOrderInNls] [tinyint] NOT NULL,
-	[SimilarAgeCount] [tinyint] NOT NULL,
-	[HasMzPossibly] [bit] NOT NULL,
-	[KidCountBio] [tinyint] NULL,
-	[KidCountInNls] [tinyint] NULL,
-	[Mob] [smalldatetime] NULL,
-	[LastSurveyYearCompleted] [smallint] NULL,
-	[AgeAtLastSurvey] [float] NULL,
-	[IsDead] [bit] NOT NULL,
-	[DeathDate] [smalldatetime] NULL,
-	[IsBiodadDead] [bit] NULL,
-	[BiodadDeathDate] [smalldatetime] NULL,
- CONSTRAINT [PK_tblSubject] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblSurveyTime](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[SubjectTag] [int] NOT NULL,
-	[SurveySource] [tinyint] NOT NULL,
-	[SurveyYear] [smallint] NOT NULL,
-	[SurveyDate] [date] NULL,
-	[AgeSelfReportYears] [float] NULL,
-	[AgeCalculateYears] [float] NULL,
- CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewGen1Crosstabs]
-AS
-SELECT     TOP (100) PERCENT COUNT(dbo.vewRelatedValues.ExtendedID) AS Count, Process.tblLUMultipleBirth.Label AS MultipleBirth, dbo.vewRelatedValues.RExplicit, 
-                      dbo.vewRelatedValues.R, dbo.vewRelatedValues.RImplicit2004
-FROM         dbo.vewRelatedValues INNER JOIN
-                      Process.tblLUMultipleBirth ON dbo.vewRelatedValues.MultipleBirth = Process.tblLUMultipleBirth.ID
-GROUP BY dbo.vewRelatedValues.RExplicit, dbo.vewRelatedValues.R, Process.tblLUMultipleBirth.Label, dbo.vewRelatedValues.RImplicit2004
-ORDER BY dbo.vewRelatedValues.R DESC
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewMarkerGen2]
-AS
-SELECT     TOP (100) PERCENT Process.tblRelatedStructure.ExtendedID, Process.tblMarkerGen2.RelatedID, Process.tblMarkerGen2.ID AS MarkerID, 
-                      Process.tblMarkerGen2.MarkerType AS MarkerTypeID, Process.tblLUMarkerType.Label AS MarkerType, Process.tblLUMarkerType.Explicit, 
-                      Process.tblMarkerGen2.FromMother, Process.tblMarkerGen2.SurveyYear, Process.tblMarkerGen2.MzEvidence AS MzEvidenceID, 
-                      Process.tblMarkerGen2.ShareBiodadEvidence AS ShareBiodadEvidenceID, Process.tblRelatedStructure.Subject1Tag, Process.tblRelatedStructure.Subject2Tag, 
-                      Process.tblLUMarkerEvidence.Label
-FROM         Process.tblMarkerGen2 INNER JOIN
-                      Process.tblLUMarkerType ON Process.tblMarkerGen2.MarkerType = Process.tblLUMarkerType.ID INNER JOIN
-                      Process.tblRelatedStructure ON Process.tblMarkerGen2.RelatedID = Process.tblRelatedStructure.ID INNER JOIN
-                      Process.tblLUMarkerEvidence ON Process.tblMarkerGen2.ShareBiodadEvidence = Process.tblLUMarkerEvidence.ID AND 
-                      Process.tblMarkerGen2.MzEvidence = Process.tblLUMarkerEvidence.ID
-ORDER BY MarkerType, Process.tblMarkerGen2.SurveyYear
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewOutcomesOLD]
-AS
-SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.SubjectID, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
-                      Process.tblSubjectDetails.Mob, Process.tblOutcomesOLD.HeightInchesLateTeens, Process.tblOutcomesOLD.WeightPoundsLateTeens, 
-                      Process.tblOutcomesOLD.AfqtRescaled2006Bounded
-FROM         Process.tblSubject INNER JOIN
-                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag INNER JOIN
-                      Process.tblOutcomesOLD ON Process.tblSubject.SubjectTag = Process.tblOutcomesOLD.SubjectTag
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewRelatedValues]
-AS
-SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
-                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedStructure.EverSharedHouse, Process.tblRelatedValues.R, Process.tblRelatedValues.RFull, 
-                      Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, Process.tblRelatedValues.LastSurvey_S1, 
-                      Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, Process.tblRelatedValues.RImplicit2004, 
-                      Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, Process.tblRelatedValues.RExplicit, 
-                      Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, Process.tblRelatedValues.RExplicitOlderSibVersion, 
-                      Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRelatedValues.RImplicitSubject, Process.tblRelatedValues.RImplicitMother
-FROM         Process.tblRelatedValues INNER JOIN
-                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewRelatedValuesGen1Only]
-AS
-SELECT     Process.tblRelatedStructure.ExtendedID, Process.tblRelatedStructure.SubjectTag_S1, Process.tblRelatedStructure.SubjectTag_S2, 
-                      Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValues.R, Process.tblRelatedValues.MultipleBirthIfSameSex, Process.tblRelatedValues.IsMz, 
-                      Process.tblRelatedValues.LastSurvey_S1, Process.tblRelatedValues.LastSurvey_S2, Process.tblRelatedValues.RImplicitPass1, Process.tblRelatedValues.RImplicit, 
-                      Process.tblRelatedValues.RImplicit2004, Process.tblRelatedValues.RImplicit - Process.tblRelatedValues.RImplicit2004 AS RImplicitDifference, 
-                      Process.tblRelatedValues.RExplicit, Process.tblRelatedValues.RExplicitPass1, Process.tblRelatedValues.RPass1, 
-                      Process.tblRelatedValues.RExplicitOlderSibVersion, Process.tblRelatedValues.RExplicitYoungerSibVersion, Process.tblRosterGen1.RosterAssignmentID, 
-                      Process.tblRosterGen1.R AS RosterR, Process.tblRelatedValues.RFull, Process.tblRosterGen1.SameGeneration
-FROM         Process.tblRelatedValues INNER JOIN
-                      Process.tblRelatedStructure ON Process.tblRelatedValues.ID = Process.tblRelatedStructure.ID INNER JOIN
-                      Process.tblRosterGen1 ON Process.tblRelatedStructure.ID = Process.tblRosterGen1.RelatedID
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewSubjectDetails79Heavy]
-AS
-SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.Generation, Process.tblSubject.Gender, Process.tblSubjectDetails.RaceCohort, 
-                      Process.tblSubjectDetails.SiblingCountInNls, Process.tblSubjectDetails.BirthOrderInNls, Process.tblSubjectDetails.SimilarAgeCount, 
-                      Process.tblSubjectDetails.HasMzPossibly, Process.tblSubjectDetails.KidCountBio, Process.tblSubjectDetails.KidCountInNls, Process.tblSubjectDetails.Mob, 
-                      Process.tblSubjectDetails.LastSurveyYearCompleted, Process.tblSubjectDetails.AgeAtLastSurvey, Process.tblSubjectDetails.IsDead, 
-                      Process.tblSubjectDetails.DeathDate
-FROM         Process.tblSubject INNER JOIN
-                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[vewVariable]
-AS
-SELECT     Process.tblVariable.VariableCode, Process.tblVariable.Item, Process.tblVariable.Generation, Process.tblVariable.SurveyYear, Process.tblItem.Label AS ItemLabel, 
-                      Process.tblVariable.Translate, Process.tblVariable.LoopIndex, Process.tblVariable.ExtractSource, Process.tblVariable.SurveySource, Process.tblVariable.ID
-FROM         Process.tblItem INNER JOIN
-                      Process.tblVariable ON Process.tblItem.ID = Process.tblVariable.Item
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [Process].[vewOutcome]
-AS
-SELECT     Process.tblResponse.SubjectTag, Process.tblResponse.SurveyYear, Process.tblResponse.Item, Process.tblItem.Label AS ItemLabel, Process.tblResponse.Value, 
-                      Process.tblResponse.LoopIndex, Process.tblSubject.Generation, Process.tblSurveyTime.SurveyDate, Process.tblSurveyTime.AgeSelfReportYears, 
-                      Process.tblSurveyTime.AgeCalculateYears, Process.tblSubject.Gender
-FROM         Process.tblResponse INNER JOIN
-                      Process.tblItem ON Process.tblResponse.Item = Process.tblItem.ID INNER JOIN
-                      Process.tblSubject ON Process.tblResponse.SubjectTag = Process.tblSubject.SubjectTag INNER JOIN
-                      Process.tblSurveyTime ON Process.tblResponse.SubjectTag = Process.tblSurveyTime.SubjectTag AND 
-                      Process.tblResponse.SurveyYear = Process.tblSurveyTime.SurveyYear
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [Process].[vewSubjectDetails]
-AS
-SELECT     Process.tblSubject.SubjectTag, Process.tblSubject.ExtendedID, Process.tblSubject.SubjectID, Process.tblSubject.Generation, Process.tblSubject.Gender, 
-                      Process.tblSubjectDetails.Mob, Process.tblSubjectDetails.RaceCohort
-FROM         Process.tblSubject INNER JOIN
-                      Process.tblSubjectDetails ON Process.tblSubject.SubjectTag = Process.tblSubjectDetails.SubjectTag
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [Process].[vewSurveyTimeMostRecent]
-AS
-SELECT     TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent
-FROM         Process.tblSurveyTime
-WHERE     (SurveySource > 0)
-GROUP BY SubjectTag
-ORDER BY SubjectTag
 GO
 CREATE NONCLUSTERED INDEX [IX_Process.tblRelatedValuesArchive_Unique] ON [Archive].[tblRelatedValuesArchive]
 (
