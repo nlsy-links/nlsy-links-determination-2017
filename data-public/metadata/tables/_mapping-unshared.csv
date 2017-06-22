@@ -1,0 +1,14 @@
+name,subdirectory
+Gen1Outcomes,nlsy79-gen1
+Gen1Explicit,nlsy79-gen1
+Gen1GeocodeSanitized,nlsy79-gen1
+Gen1Implicit,nlsy79-gen1
+Gen1Links,nlsy79-gen1
+Gen2OutcomesWeight,nlsy79-gen2
+Gen2BirthDateFromGen1,nlsy79-gen2
+Gen2FatherFromGen1,nlsy79-gen2
+Gen2ImplicitFather,nlsy79-gen2
+Gen2Links,nlsy79-gen2
+Gen2LinksFromGen1,nlsy79-gen2
+Gen2OutcomesHeight,nlsy79-gen2
+Gen2OutcomesMath,nlsy79-gen2

@@ -59,6 +59,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Enum        |tblLUTristate              |         3|            4|
 |Enum        |tblLUYesNo                 |         6|            4|
 |Extract     |tblGen1Explicit            |    12,686|           95|
+|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
 |Extract     |tblGen1Implicit            |    12,686|          101|
 |Extract     |tblGen1Links               |    12,686|           95|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
@@ -71,7 +72,6 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGen2OutcomesHeight      |    11,504|           46|
 |Extract     |tblGen2OutcomesMath        |    11,504|           44|
 |Extract     |tblGen2OutcomesWeight      |    11,504|           13|
-|Extract     |tblGeocodeSanitized        |         0|           29|
 |Extract     |tblLinks2004Gen1           |         0|            9|
 |Extract     |tblLinks2004Gen2           |         0|            5|
 |Metadata    |tblItem                    |       108|            7|
@@ -115,7 +115,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-06-21                                 
+ date     2017-06-22                                 
 ```
 
 ```
@@ -168,5 +168,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 23:56 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-22, 00:20 -0500 in 1 seconds.
 

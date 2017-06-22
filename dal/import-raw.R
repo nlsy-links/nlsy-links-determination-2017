@@ -32,7 +32,7 @@ col_types_mapping <- readr::cols_only(
 )
 
 # ---- load-data ---------------------------------------------------------------
-ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping <- readr::read_csv("data-public/metadata/tables/_mapping-unshared.csv", col_types=col_types_mapping)
 ds_mapping
 
 
@@ -97,6 +97,9 @@ for( i in seq_len(nrow(ds_file)) ) {
   print(object.size(d), units="MB")
   print(d)
   cat("\n")
+
+  # summary(d)
+  # d2 <- d[1:3, ]
 
   result_save <- RODBC::sqlSave(
     channel     = channel,

@@ -24,7 +24,6 @@
 # Depending on how you do it, you might need to add w/ the command line (eg, git add -f ./data-unshared/raw/README.md)
 !README.md
 !data-unshared/contents.md
-!data-unshared/raw/_mapping.csv
 !data-unshared/raw/README.md
 !data-unshared/raw/nlsy79-gen1/README.md
 !data-unshared/raw/nlsy79-gen2/README.md

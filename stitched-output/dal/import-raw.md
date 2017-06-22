@@ -45,26 +45,27 @@ col_types_mapping <- readr::cols_only(
 ```
 
 ```r
-ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+ds_mapping <- readr::read_csv("data-public/metadata/tables/_mapping-unshared.csv", col_types=col_types_mapping)
 ds_mapping
 ```
 
 ```
-## # A tibble: 12 x 2
+## # A tibble: 13 x 2
 ##                     name subdirectory
 ##                    <chr>        <chr>
 ##  1          Gen1Outcomes  nlsy79-gen1
 ##  2          Gen1Explicit  nlsy79-gen1
-##  3          Gen1Implicit  nlsy79-gen1
-##  4             Gen1Links  nlsy79-gen1
-##  5    Gen2OutcomesWeight  nlsy79-gen2
-##  6 Gen2BirthDateFromGen1  nlsy79-gen2
-##  7    Gen2FatherFromGen1  nlsy79-gen2
-##  8    Gen2ImplicitFather  nlsy79-gen2
-##  9             Gen2Links  nlsy79-gen2
-## 10     Gen2LinksFromGen1  nlsy79-gen2
-## 11    Gen2OutcomesHeight  nlsy79-gen2
-## 12      Gen2OutcomesMath  nlsy79-gen2
+##  3  Gen1GeocodeSanitized  nlsy79-gen1
+##  4          Gen1Implicit  nlsy79-gen1
+##  5             Gen1Links  nlsy79-gen1
+##  6    Gen2OutcomesWeight  nlsy79-gen2
+##  7 Gen2BirthDateFromGen1  nlsy79-gen2
+##  8    Gen2FatherFromGen1  nlsy79-gen2
+##  9    Gen2ImplicitFather  nlsy79-gen2
+## 10             Gen2Links  nlsy79-gen2
+## 11     Gen2LinksFromGen1  nlsy79-gen2
+## 12    Gen2OutcomesHeight  nlsy79-gen2
+## 13      Gen2OutcomesMath  nlsy79-gen2
 ```
 
 ```r
@@ -79,21 +80,22 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 5
+## # A tibble: 13 x 5
 ##                     name exists subdirectory
 ##                    <chr>  <lgl>        <chr>
 ##  1          Gen1Outcomes   TRUE  nlsy79-gen1
 ##  2          Gen1Explicit   TRUE  nlsy79-gen1
-##  3          Gen1Implicit   TRUE  nlsy79-gen1
-##  4             Gen1Links   TRUE  nlsy79-gen1
-##  5    Gen2OutcomesWeight   TRUE  nlsy79-gen2
-##  6 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
-##  7    Gen2FatherFromGen1   TRUE  nlsy79-gen2
-##  8    Gen2ImplicitFather   TRUE  nlsy79-gen2
-##  9             Gen2Links   TRUE  nlsy79-gen2
-## 10     Gen2LinksFromGen1   TRUE  nlsy79-gen2
-## 11    Gen2OutcomesHeight   TRUE  nlsy79-gen2
-## 12      Gen2OutcomesMath   TRUE  nlsy79-gen2
+##  3  Gen1GeocodeSanitized   TRUE  nlsy79-gen1
+##  4          Gen1Implicit   TRUE  nlsy79-gen1
+##  5             Gen1Links   TRUE  nlsy79-gen1
+##  6    Gen2OutcomesWeight   TRUE  nlsy79-gen2
+##  7 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
+##  8    Gen2FatherFromGen1   TRUE  nlsy79-gen2
+##  9    Gen2ImplicitFather   TRUE  nlsy79-gen2
+## 10             Gen2Links   TRUE  nlsy79-gen2
+## 11     Gen2LinksFromGen1   TRUE  nlsy79-gen2
+## 12    Gen2OutcomesHeight   TRUE  nlsy79-gen2
+## 13      Gen2OutcomesMath   TRUE  nlsy79-gen2
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -122,11 +124,12 @@ ds_file$table_name
 
 ```
 ##  [1] "Extract.tblGen1Outcomes"          "Extract.tblGen1Explicit"         
-##  [3] "Extract.tblGen1Implicit"          "Extract.tblGen1Links"            
-##  [5] "Extract.tblGen2OutcomesWeight"    "Extract.tblGen2BirthDateFromGen1"
-##  [7] "Extract.tblGen2FatherFromGen1"    "Extract.tblGen2ImplicitFather"   
-##  [9] "Extract.tblGen2Links"             "Extract.tblGen2LinksFromGen1"    
-## [11] "Extract.tblGen2OutcomesHeight"    "Extract.tblGen2OutcomesMath"
+##  [3] "Extract.tblGen1GeocodeSanitized"  "Extract.tblGen1Implicit"         
+##  [5] "Extract.tblGen1Links"             "Extract.tblGen2OutcomesWeight"   
+##  [7] "Extract.tblGen2BirthDateFromGen1" "Extract.tblGen2FatherFromGen1"   
+##  [9] "Extract.tblGen2ImplicitFather"    "Extract.tblGen2Links"            
+## [11] "Extract.tblGen2LinksFromGen1"     "Extract.tblGen2OutcomesHeight"   
+## [13] "Extract.tblGen2OutcomesMath"
 ```
 
 ```r
@@ -134,21 +137,22 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 5
+## # A tibble: 13 x 5
 ##                     name exists subdirectory
 ##                    <chr>  <lgl>        <chr>
 ##  1          Gen1Outcomes   TRUE  nlsy79-gen1
 ##  2          Gen1Explicit   TRUE  nlsy79-gen1
-##  3          Gen1Implicit   TRUE  nlsy79-gen1
-##  4             Gen1Links   TRUE  nlsy79-gen1
-##  5    Gen2OutcomesWeight   TRUE  nlsy79-gen2
-##  6 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
-##  7    Gen2FatherFromGen1   TRUE  nlsy79-gen2
-##  8    Gen2ImplicitFather   TRUE  nlsy79-gen2
-##  9             Gen2Links   TRUE  nlsy79-gen2
-## 10     Gen2LinksFromGen1   TRUE  nlsy79-gen2
-## 11    Gen2OutcomesHeight   TRUE  nlsy79-gen2
-## 12      Gen2OutcomesMath   TRUE  nlsy79-gen2
+##  3  Gen1GeocodeSanitized   TRUE  nlsy79-gen1
+##  4          Gen1Implicit   TRUE  nlsy79-gen1
+##  5             Gen1Links   TRUE  nlsy79-gen1
+##  6    Gen2OutcomesWeight   TRUE  nlsy79-gen2
+##  7 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
+##  8    Gen2FatherFromGen1   TRUE  nlsy79-gen2
+##  9    Gen2ImplicitFather   TRUE  nlsy79-gen2
+## 10             Gen2Links   TRUE  nlsy79-gen2
+## 11     Gen2LinksFromGen1   TRUE  nlsy79-gen2
+## 12    Gen2OutcomesHeight   TRUE  nlsy79-gen2
+## 13      Gen2OutcomesMath   TRUE  nlsy79-gen2
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -191,6 +195,9 @@ for( i in seq_len(nrow(ds_file)) ) {
   print(object.size(d), units="MB")
   print(d)
   cat("\n")
+
+  # summary(d)
+  # d2 <- d[1:3, ]
 
   result_save <- RODBC::sqlSave(
     channel     = channel,
@@ -267,6 +274,39 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T2262900 <int>, T2263000 <int>, T2263100 <int>, T2263200 <int>,
 ## #   T2263300 <int>, T2263400 <int>, T2263500 <int>, T2263600 <int>,
 ## #   T2263700 <int>, T2263800 <int>
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen1GeocodeSanitized : data-unshared/raw/nlsy79-gen1/Gen1GeocodeSanitized.csv 
+## 0.6 Mb
+## # A tibble: 5,302 x 29
+##    SubjectTag_S1 SubjectTag_S2 DobDifferenceInDays1979V1979
+##            <int>         <int>                        <int>
+##  1           300           400                         -338
+##  2           500           600                         -461
+##  3          1300          1400                        -1868
+##  4          1700          1800                         -413
+##  5          2000          2100                         -591
+##  6          2300          2400                         -828
+##  7          2700          2800                        -1356
+##  8          2900          3000                          698
+##  9          3200          3300                        -1640
+## 10          3400          3500                        -1730
+## # ... with 5,292 more rows, and 26 more variables:
+## #   DobDifferenceInDays1979V1981 <int>,
+## #   DobDifferenceInDays1981V1979 <int>,
+## #   DobDifferenceInDays1981V1981 <int>, DobDayIsMissing1979_1 <int>,
+## #   DobDayIsMissing1979_2 <int>, BirthSubjectCountyMissing_1 <int>,
+## #   BirthSubjectCountyMissing_2 <int>, BirthSubjectCountyEqual <int>,
+## #   BirthSubjectStateMissing_1 <int>, BirthSubjectStateMissing_2 <int>,
+## #   BirthSubjectStateEqual <int>, BirthSubjectCountryMissing_1 <int>,
+## #   BirthSubjectCountryMissing_2 <int>, BirthSubjectCountryEqual <int>,
+## #   BirthMotherStateMissing_1 <int>, BirthMotherStateMissing_2 <int>,
+## #   BirthMotherStateEqual <int>, BirthMotherCountryMissing_1 <int>,
+## #   BirthMotherCountryMissing_2 <int>, BirthMotherCountryEqual <int>,
+## #   BirthFatherStateMissing_1 <int>, BirthFatherStateMissing_2 <int>,
+## #   BirthFatherStateEqual <int>, BirthFatherCountryMissing_1 <int>,
+## #   BirthFatherCountryMissing_2 <int>, BirthFatherCountryEqual <int>
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
@@ -678,7 +718,8 @@ sessionInfo()
 ## [13] assertthat_0.2.0 digest_0.6.12    rprojroot_1.2    tibble_1.3.3    
 ## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
 ## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
+## [29] pkgconfig_2.0.1
 ```
 
 ```r
@@ -686,6 +727,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 23:51:20 CDT"
+## [1] "2017-06-22 00:19:45 CDT"
 ```
 
