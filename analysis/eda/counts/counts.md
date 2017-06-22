@@ -30,7 +30,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers 50 tables.
+1. The current report covers 51 tables.
 
 ## Unanswered Questions
 
@@ -44,15 +44,20 @@ This report documents the basic properties of the (input & output) tables kinshi
 |:-----------|:--------------------------|---------:|------------:|
 |Archive     |tblArchiveDescription      |         0|            4|
 |Archive     |tblRelatedValuesArchive    |         0|           24|
+|dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
-|Enum        |tblLUBioparent             |         0|            2|
-|Enum        |tblLUGender                |         0|            2|
-|Enum        |tblLUMultipleBirth         |         0|            2|
-|Enum        |tblLURaceCohort            |         0|            2|
-|Enum        |tblLURosterGen1_NOTUSED    |         0|            2|
-|Enum        |tblLURosterGen1Assignment  |         0|           16|
-|Enum        |tblLUTristate              |         0|            2|
-|Enum        |tblLUYesNo                 |         0|            2|
+|Enum        |tblLUBioparent-not-used    |         0|            2|
+|Enum        |tblLUExtractSource         |        11|            4|
+|Enum        |tblLUGender                |         3|            4|
+|Enum        |tblLUMarkerEvidence        |         8|            4|
+|Enum        |tblLUMarkerType            |        28|            5|
+|Enum        |tblLUMultipleBirth         |         5|            4|
+|Enum        |tblLURaceCohort            |         3|            4|
+|Enum        |tblLURelationshipPath      |         5|            4|
+|Enum        |tblLURosterGen1            |        67|            4|
+|Enum        |tblLUSurveySource          |         4|            4|
+|Enum        |tblLUTristate              |         3|            4|
+|Enum        |tblLUYesNo                 |         6|            4|
 |Extract     |tblGen1Explicit            |         0|           95|
 |Extract     |tblGen1Implicit            |         0|          101|
 |Extract     |tblGen1Links               |         0|           95|
@@ -68,14 +73,10 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGeocodeSanitized        |         0|           29|
 |Extract     |tblLinks2004Gen1           |         0|            9|
 |Extract     |tblLinks2004Gen2           |         0|            5|
-|Metadata    |tblItem                    |       108|            5|
-|Metadata    |tblLUExtractSource         |        11|            2|
-|Metadata    |tblLUMarkerEvidence        |         8|            2|
-|Metadata    |tblLUMarkerType            |        28|            3|
-|Metadata    |tblLURelationshipPath      |         5|            2|
-|Metadata    |tblLUSurveySource          |         4|            2|
+|Metadata    |tblItem                    |       108|            7|
 |Metadata    |tblMzManual                |       206|            9|
-|Metadata    |tblVariable                |     1,559|           10|
+|Metadata    |tblRosterGen1Assignment    |        50|           16|
+|Metadata    |tblVariable                |     1,559|           11|
 |Process     |tblBabyDaddy               |         0|           11|
 |Process     |tblFatherOfGen2            |         0|            7|
 |Process     |tblIRDemo1                 |         0|            5|
@@ -166,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 14:14 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-21, 22:40 -0500 in 1 seconds.
 

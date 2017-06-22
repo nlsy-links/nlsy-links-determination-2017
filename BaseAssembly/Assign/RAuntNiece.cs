@@ -66,7 +66,7 @@ namespace Nls.BaseAssembly.Assign {
 			_dsLinks = dsLinks;
 			_idRelatedLeft = drLeft.ID;
 			
-			if ( CommonCalculations.GenerationOfSubjectTag(drLeft.SubjectTag_S1) == Generation.Gen1 ) {
+			if ( CommonCalculations.GenerationOfSubjectTag(drLeft.SubjectTag_S1) == Sample.Nlsy79Gen1 ) {
 				_drBareAunt = _dsLinks.tblSubject.FindBySubjectTag(drLeft.SubjectTag_S1);
 				_drBareNiece = _dsLinks.tblSubject.FindBySubjectTag(drLeft.SubjectTag_S2);
 			}
@@ -74,8 +74,8 @@ namespace Nls.BaseAssembly.Assign {
 				_drBareAunt = _dsLinks.tblSubject.FindBySubjectTag(drLeft.SubjectTag_S2);
 				_drBareNiece = _dsLinks.tblSubject.FindBySubjectTag(drLeft.SubjectTag_S1);
 			}
-			Trace.Assert(_drBareAunt.Generation == (byte)Generation.Gen1, "The generation should not be the same for a aunt-niece relationship.");
-			Trace.Assert(_drBareNiece.Generation == (byte)Generation.Gen2, "The generation should not be the same for a aunt-niece relationship.");
+			Trace.Assert(_drBareAunt.Generation == (byte)Sample.Nlsy79Gen1, "The generation should not be the same for a aunt-niece relationship.");
+			Trace.Assert(_drBareNiece.Generation == (byte)Sample.Nlsy79Gen2, "The generation should not be the same for a aunt-niece relationship.");
 
 			_multipleBirth = MultipleBirth.No;
 			_isMZ = Tristate.No;

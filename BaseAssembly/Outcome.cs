@@ -71,9 +71,9 @@ namespace Nls.BaseAssembly {
         private Int32 ProcessSubject( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended ) {
             const Int32 minRowCount=0;
             string itemString = "";
-            if( drSubject.Generation == (byte)Generation.Gen1 )
+            if( drSubject.Generation == (byte)Sample.Nlsy79Gen1 )
                 itemString = _itemIDsStringGen1;
-            else if( drSubject.Generation == (byte)Generation.Gen2 )
+            else if( drSubject.Generation == (byte)Sample.Nlsy79Gen2 )
                 itemString = _itemIDsStringGen2;
             else
                 throw new InvalidOperationException("The execution should not have gotten here.  The value of Generation was not recognized.");

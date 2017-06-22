@@ -73,7 +73,7 @@ namespace Nls.BaseAssembly {
 				SurveySource source = DetermineSurveySource(surveyYear, drSubject, dtResponse);
 				OverridesGen1.SubjectYear subjectYear = new OverridesGen1.SubjectYear(drSubject.SubjectID, surveyYear);
 				bool invalidSkipOverride = false;
-				if ( (drSubject.Generation == (byte)Generation.Gen1) && (_overrides.Contains(subjectYear)) ) {
+				if ( (drSubject.Generation == (byte)Sample.Nlsy79Gen1) && (_overrides.Contains(subjectYear)) ) {
 					source = SurveySource.Gen1;
 					invalidSkipOverride = true;
 				}
@@ -102,9 +102,9 @@ namespace Nls.BaseAssembly {
 			else {
 				SurveySource source = (SurveySource)drsResponse[0].SurveySource;
 				switch ( source ) {
-					case SurveySource.Gen1: Trace.Assert(drSubject.Generation == (byte)Generation.Gen1, "The subject should be Gen1."); break;
-					case SurveySource.Gen2C: Trace.Assert(drSubject.Generation == (byte)Generation.Gen2, "The subject should be Gen2."); break;
-					case SurveySource.Gen2YA: Trace.Assert(drSubject.Generation == (byte)Generation.Gen2, "The subject should be Gen2."); break;
+					case SurveySource.Gen1: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen1, "The subject should be Gen1."); break;
+					case SurveySource.Gen2C: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen2, "The subject should be Gen2."); break;
+					case SurveySource.Gen2YA: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen2, "The subject should be Gen2."); break;
 					default: throw new InvalidOperationException("The determined SurveySource was not recognized.");//The NotInterviewed shouldn't be possible for this switch.
 				}
 				return source;
@@ -184,7 +184,7 @@ namespace Nls.BaseAssembly {
 				return null;
 			}
 			else {
-				Trace.Assert(drsResponse[0].Generation == (byte)Generation.Gen2, "Only Gen2 subjects should be answering this item (specifically the Cs -not the YAs).");
+				Trace.Assert(drsResponse[0].Generation == (byte)Sample.Nlsy79Gen2, "Only Gen2 subjects should be answering this item (specifically the Cs -not the YAs).");
 				float ageInYears = (float)((drsResponse[0].Value + ageBiasCorrectionInMonths) / monthsPerYear);
 				Trace.Assert(ageInYears > 0, "Age should be positive (non-null) value, at this point of the execution.");
 				return ageInYears;

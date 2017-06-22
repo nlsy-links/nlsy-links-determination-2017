@@ -220,7 +220,7 @@ namespace Nls.BaseAssembly {
 			EnumResponsesGen1.Gen1Roster relationship = (EnumResponsesGen1.Gen1Roster)drsForRoster[0].Value;
 			return relationship;
 		}
-		internal static Int32 SubjectTagFromSubjectIDAndGeneration ( Int32 subjectID, Generation generation, LinksDataSet dsLinks ) {
+		internal static Int32 SubjectTagFromSubjectIDAndGeneration ( Int32 subjectID, Sample generation, LinksDataSet dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSubject.Count <= 0 ) throw new InvalidOperationException("There should be more than one row in tblSubject.");
 
@@ -246,7 +246,7 @@ namespace Nls.BaseAssembly {
 					DateTime? mob1 = Mob.Retrieve(dr1.SubjectTag, dsLinks.tblSubjectDetails);
 					DateTime? mob2 = Mob.Retrieve(dr2.SubjectTag, dsLinks.tblSubjectDetails);
 					if ( mob1.HasValue && mob2.HasValue ) {
-						if ( (dr1.Generation == (byte)Generation.Gen2) || (dr1.Gender == dr2.Gender) ) {
+						if ( (dr1.Generation == (byte)Sample.Nlsy79Gen2) || (dr1.Gender == dr2.Gender) ) {
 							Int32 daysDifferenceAbsolute = (Int32)Math.Abs(mob2.Value.Subtract(mob1.Value).TotalDays);
 							Trace.Assert(daysDifferenceAbsolute > Constants.MaxDaysBetweenTwinBirths, "If siblings have close birthdays, there should be a record in tblMzManual.");
 						}

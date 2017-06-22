@@ -1,0 +1,6 @@
+ID,Label,Active,Notes
+0,No,TRUE,
+2,Twin,TRUE,
+3,Trip,TRUE,
+4,TwinOrTrip,TRUE,Currently Then Gen1 algorithm doesn't distinguish.
+255,DoNotKnow,TRUE,

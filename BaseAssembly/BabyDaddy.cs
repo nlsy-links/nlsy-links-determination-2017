@@ -43,7 +43,7 @@ namespace Nls.BaseAssembly {
 				LinksDataSet.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
 				LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
 				foreach ( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
-					if ( (Generation)drSubject.Generation == Generation.Gen2 ) {
+					if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen2 ) {
 						Int32 recordsAddedForLoop = ProcessSubjectGen2(drSubject, dtExtendedResponse);
 						Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
 					}

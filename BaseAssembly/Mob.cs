@@ -8,8 +8,8 @@ namespace Nls.BaseAssembly {
 			if ( drSubject == null ) throw new ArgumentNullException("drSubject");
 
 			const Int32 maxRows = 1;
-			switch ( (Generation)drSubject.Generation ) {
-				case Generation.Gen1:
+			switch ( (Sample)drSubject.Generation ) {
+				case Sample.Nlsy79Gen1:
 					const SurveySource sourceGen1 = SurveySource.Gen1;
 					Int32? monthGen1 = Nls.BaseAssembly.Retrieve.ResponseNullPossible(Constants.Gen1MobSurveyYearPreferred, Item.DateOfBirthMonth, sourceGen1, drSubject.SubjectTag, maxRows, dt);
 					Int32 yearGen1 = Int32.MinValue;
@@ -22,7 +22,7 @@ namespace Nls.BaseAssembly {
 						yearGen1 = Nls.BaseAssembly.Retrieve.Response(Constants.Gen1MobSurveyYearBackup, Item.DateOfBirthYearGen1, drSubject.SubjectTag, maxRows, dt);
 					}
 					return CalculateMobForGen1(monthGen1.Value, yearGen1);
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					if ( OverridesGen2.MissingMobInvalidSkip.Contains(drSubject.SubjectID) ) return null;
 
 					const SurveySource sourceGen2 = SurveySource.Gen2C;

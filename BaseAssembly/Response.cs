@@ -34,21 +34,21 @@ namespace Nls.BaseAssembly {
 			sw.Start();
 			CheckVariableExistInImportedDataTables();
 			Int32 reponseRecordsAddedCount = 0;
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Links, Generation.Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Links);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Explicit, Generation.Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Explicit);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Implicit, Generation.Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Implicit);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2Links, Generation.Gen2, false, Constants.Gen2PassoverResponses, _dsImport.tblGen2Links);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2LinksFromGen1, Generation.Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen2LinksFromGen1);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2ImplicitFather, Generation.Gen2, false, Constants.Gen2PassoverResponses, _dsImport.tblGen2ImplicitFather);
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2FatherFromGen1, Generation.Gen1, true, Constants.Gen1PassoverResponses, _dsImport.tblGen2FatherFromGen1);
-            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Outcomes, Generation.Gen1, false, Constants.Gen1PassoverResponsesNoNegatives, _dsImport.tblGen1Outcomes);
-            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesHeight, Generation.Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesHeight);
-            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesWeight, Generation.Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesWeight);
-            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesMath, Generation.Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesMath);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Links, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Links);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Explicit, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Explicit);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Implicit, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen1Implicit);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2Links, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponses, _dsImport.tblGen2Links);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2LinksFromGen1, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen2LinksFromGen1);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2ImplicitFather, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponses, _dsImport.tblGen2ImplicitFather);
+			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2FatherFromGen1, Sample.Nlsy79Gen1, true, Constants.Gen1PassoverResponses, _dsImport.tblGen2FatherFromGen1);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Outcomes, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponsesNoNegatives, _dsImport.tblGen1Outcomes);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesHeight, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesHeight);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesWeight, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesWeight);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesMath, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesMath);
 			sw.Stop();
 			return string.Format("{0:N0} response records were translated.\nElapsed time: {1}", reponseRecordsAddedCount, sw.Elapsed.ToString());
 		}
-		private Int32 TranslateExtractSource ( ExtractSource extractSource, Generation generation, bool femalesOnly, Int32[] passoverValues, DataTable dtImport ) {
+		private Int32 TranslateExtractSource ( ExtractSource extractSource, Sample generation, bool femalesOnly, Int32[] passoverValues, DataTable dtImport ) {
 			Int32 gen1ReponseRecordsAddedCount = 0;
 			LinksDataSet.tblVariableRow[] drsVariablesToTranslate = VariablesToTranslate(extractSource);
 			_dsLinks.tblResponse.BeginLoadData();
@@ -56,11 +56,11 @@ namespace Nls.BaseAssembly {
 			string subjectIDColumnName;
 			string genderColumnName;
 			switch ( generation ) {
-				case Generation.Gen1:
+				case Sample.Nlsy79Gen1:
 					subjectIDColumnName = Constants.Gen1SubjectIDColumn;
 					genderColumnName = Constants.Gen1GenderColumn;
 					break;
-				case Generation.Gen2:
+				case Sample.Nlsy79Gen2:
 					subjectIDColumnName = Constants.Gen2SubjectIDColumn;
 					genderColumnName = Constants.Gen2GenderColumn;
 					break;

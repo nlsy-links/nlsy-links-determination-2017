@@ -20,8 +20,18 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-schema_name               <- "Metadata"
+# schema_name               <- "Metadata"
 
+col_types_minimal <- readr::cols_only(
+  ID                                  = readr::col_integer(),
+  Label                               = readr::col_character(),
+  Active                              = readr::col_logical(),
+  Notes                               = readr::col_character()
+)
+
+# The order of this list matters.
+#   - Tables are WRITTEN from top to bottom.
+#   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
   Item = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -32,18 +42,8 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUExtractSource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUMarkerEvidence = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUExtractSource = col_types_minimal,
+  LUMarkerEvidence = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -51,18 +51,13 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LURelationshipPath = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUSurveySource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUMultipleBirth = col_types_minimal,
+  LURaceCohort = col_types_minimal,
+  LURelationshipPath = col_types_minimal,
+  LURosterGen1 = col_types_minimal,
+  LUSurveySource = col_types_minimal,
+  LUTristate = col_types_minimal,
+  LUYesNo = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -100,6 +95,24 @@ lst_col_types <- list(
   #   RFull                               = readr::col_double(),
   #   RPeek                               = readr::col_character()
   # ),
+  RosterGen1Assignment    = readr::cols_only(
+    ID                      = readr::col_integer(),
+    ResponseLower           = readr::col_integer(),
+    ResponseUpper           = readr::col_integer(),
+    Freq                    = readr::col_integer(),
+    Resolved                = readr::col_integer(),
+    R                       = readr::col_double(),
+    RBoundLower             = readr::col_double(),
+    RBoundUpper             = readr::col_double(),
+    SameGeneration          = readr::col_integer(),
+    ShareBiodad             = readr::col_integer(),
+    ShareBiomom             = readr::col_integer(),
+    ShareBiograndparent     = readr::col_integer(),
+    Inconsistent            = readr::col_integer(),
+    Notes                   = readr::col_character(),
+    ResponseLowerLabel      = readr::col_character(),
+    ResponseUpperLabel      = readr::col_character()
+  ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -118,6 +131,7 @@ lst_col_types <- list(
 
 col_types_mapping <- readr::cols_only(
   table_name          = readr::col_character(),
+  schema_name         = readr::col_character(),
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
@@ -129,28 +143,26 @@ ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types
 ds_mapping
 
 
-ds_file <- names(lst_col_types) %>%
-  tibble::tibble(
-    name = .
-  ) %>%
+ds_file <- lst_col_types %>%
+  tibble::enframe(value = "col_types") %>%
   dplyr::mutate(
     path     = file.path(directory_in, paste0(name, ".csv")),
-    table_name = paste0(schema_name, ".tbl", name),
-    col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists),
-    sql_delete= paste0("DELETE FROM ", table_name)
-  )
+    # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+    exists    = purrr::map_lgl(path, file.exists)
+  ) %>%
+  dplyr::select(name, path, dplyr::everything())
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
-lst_ds <- ds_file %>%
-  dplyr::select(
-    file          = path,
-    col_types
-  ) %>%
-  purrr::pmap(readr::read_csv) %>%
-  purrr::set_names(nm=ds_file$table_name)
+ds_entries <- ds_file %>%
+  dplyr::select(name, path, col_types) %>%
+  dplyr::mutate(
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
+  )
+ds_entries
+
+# d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
 
 rm(directory_in) # rm(col_types_tulsa)
 
@@ -158,31 +170,34 @@ rm(directory_in) # rm(col_types_tulsa)
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 
 ds_file <- ds_file %>%
-  dplyr::left_join(
-    lst_ds %>%
-      tibble::enframe() %>%
-      dplyr::rename(
-        table_name  = name,
-        entries     = value
-      ),
-    by = "table_name"
+  dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
+  dplyr::mutate(
+    table_name    = paste0(schema_name, ".tbl", name),
+    sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
-  dplyr::left_join( ds_mapping, by=c("name"="table_name"))
+  dplyr::left_join(
+    ds_entries %>%
+      dplyr::select(name, entries)
+    , by="name"
+  )
+rm(ds_entries)
 
 ds_file$entries %>%
   purrr::walk(print)
 
-ds_file %>%
-  dplyr::group_by(name) %>%
-  dplyr::mutate(
-    a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
-  ) %>%
-  dplyr::ungroup() %>%
-  dplyr::pull(a)
+# ds_file %>%
+#   dplyr::group_by(name) %>%
+#   dplyr::mutate(
+#     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+#   ) %>%
+#   dplyr::ungroup() %>%
+#   dplyr::pull(a)
 
 
-lst_ds$Metadata.tblVariable %>%
-  purrr::map(~max(nchar(.), na.rm=T))
+# ds_file %>%
+#   dplyr::select(name, entries) %>%
+#   tibble::deframe() %>%
+#   purrr::map(~max(nchar(.), na.rm=T))
 
 # lst_ds %>%
 #   purrr::map(nrow)
@@ -190,9 +205,7 @@ lst_ds$Metadata.tblVariable %>%
 #   purrr::map(readr::spec)
 
 ds_file$table_name
-
-rm(lst_ds)
-
+ds_file
 
 # ---- convert-to-enum ---------------------------------------------------------
 create_enum_body <- function( d ) {
@@ -248,13 +261,20 @@ RODBC::odbcGetInfo(channel)
 
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results <- ds_file$sql_delete %>%
+  rev() %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
 delete_results
 
+# d <- ds_file %>%
+#   dplyr::select(table_name, entries) %>%
+#   dplyr::filter(table_name=="Enum.tblLURosterGen1") %>%
+#   tibble::deframe() %>%
+#   .[[1]]
 
-# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+# d2 <- d[, 1:16]
+# RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
 purrr::map2_int(
   ds_file$entries,

@@ -73,10 +73,10 @@ namespace Nls.BaseAssembly {
 		}
 		private static RelationshipPath GetRelationshipPath ( LinksDataSet.tblSubjectRow drSubject1, LinksDataSet.tblSubjectRow drSubject2 ) {
 			Trace.Assert(drSubject1.ExtendedID == drSubject2.ExtendedID, "The two subject should be in the same extended family.");
-			if ( drSubject1.Generation == (byte)Generation.Gen1 && drSubject2.Generation == (byte)Generation.Gen1 ) {
+			if ( drSubject1.Generation == (byte)Sample.Nlsy79Gen1 && drSubject2.Generation == (byte)Sample.Nlsy79Gen1 ) {
 				return RelationshipPath.Gen1Housemates;
 			}
-			else if ( drSubject1.Generation == (byte)Generation.Gen2 && drSubject2.Generation == (byte)Generation.Gen2 ) {
+			else if ( drSubject1.Generation == (byte)Sample.Nlsy79Gen2 && drSubject2.Generation == (byte)Sample.Nlsy79Gen2 ) {
 				if ( CommonCalculations.Gen2SubjectsHaveCommonMother(drSubject1.SubjectID, drSubject2.SubjectID) ) return RelationshipPath.Gen2Siblings;
 				else return RelationshipPath.Gen2Cousins;
 			}
