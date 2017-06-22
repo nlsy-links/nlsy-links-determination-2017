@@ -322,8 +322,8 @@ namespace LinksGui {
 			ta.Fill(_dsLinks.tblMzManual);
 		}
 		private void LoadRosterAssignment ( ) {
-			BA.LinksDataSetTableAdapters.tblLURosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblLURosterGen1AssignmentTableAdapter();
-			ta.Fill(_dsLinks.tblLURosterGen1Assignment);
+			BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter();
+			ta.Fill(_dsLinks.tblRosterGen1Assignment);
 		}
 
 		///////////////////////////

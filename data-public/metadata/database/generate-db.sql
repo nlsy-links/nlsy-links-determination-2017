@@ -3395,7 +3395,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 SELECT Max([AlgorithmVersion]) as MaxVersion
-  FROM [NlsLinks].[Process].[tblRelatedValuesArchive]
+  FROM [NlsLinks].Archive.[tblRelatedValuesArchive]
 
 END
 GO
