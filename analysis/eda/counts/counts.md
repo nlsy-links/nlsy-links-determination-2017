@@ -54,7 +54,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Enum        |tblLUMultipleBirth         |         5|            4|
 |Enum        |tblLURaceCohort            |         3|            4|
 |Enum        |tblLURelationshipPath      |         5|            4|
-|Enum        |tblLURosterGen1_NOTUSED    |         0|            2|
+|Enum        |tblLURosterGen1            |        67|            4|
 |Enum        |tblLUSurveySource          |         4|            4|
 |Enum        |tblLUTristate              |         3|            4|
 |Enum        |tblLUYesNo                 |         6|            4|
@@ -75,7 +75,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblLinks2004Gen2           |         0|            5|
 |Metadata    |tblItem                    |       108|            7|
 |Metadata    |tblMzManual                |       206|            9|
-|Metadata    |tblRosterGen1Assignment    |         0|           16|
+|Metadata    |tblRosterGen1Assignment    |        50|           16|
 |Metadata    |tblVariable                |     1,559|           11|
 |Process     |tblBabyDaddy               |         0|           11|
 |Process     |tblFatherOfGen2            |         0|            7|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 21:13 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-21, 22:40 -0500 in 1 seconds.
 

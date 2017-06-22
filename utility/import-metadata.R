@@ -22,7 +22,6 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 directory_in              <- "data-public/metadata/tables"
 # schema_name               <- "Metadata"
 
-
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
   Label                               = readr::col_character(),
@@ -30,6 +29,9 @@ col_types_minimal <- readr::cols_only(
   Notes                               = readr::col_character()
 )
 
+# The order of this list matters.
+#   - Tables are WRITTEN from top to bottom.
+#   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
   Item = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -52,6 +54,7 @@ lst_col_types <- list(
   LUMultipleBirth = col_types_minimal,
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
+  LURosterGen1 = col_types_minimal,
   LUSurveySource = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
@@ -92,6 +95,24 @@ lst_col_types <- list(
   #   RFull                               = readr::col_double(),
   #   RPeek                               = readr::col_character()
   # ),
+  RosterGen1Assignment    = readr::cols_only(
+    ID                      = readr::col_integer(),
+    ResponseLower           = readr::col_integer(),
+    ResponseUpper           = readr::col_integer(),
+    Freq                    = readr::col_integer(),
+    Resolved                = readr::col_integer(),
+    R                       = readr::col_double(),
+    RBoundLower             = readr::col_double(),
+    RBoundUpper             = readr::col_double(),
+    SameGeneration          = readr::col_integer(),
+    ShareBiodad             = readr::col_integer(),
+    ShareBiomom             = readr::col_integer(),
+    ShareBiograndparent     = readr::col_integer(),
+    Inconsistent            = readr::col_integer(),
+    Notes                   = readr::col_character(),
+    ResponseLowerLabel      = readr::col_character(),
+    ResponseUpperLabel      = readr::col_character()
+  ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -141,7 +162,7 @@ ds_entries <- ds_file %>%
   )
 ds_entries
 
-# readr::read_csv("data-public/metadata/tables/LUGender.csv", col_types=lst_col_types$LUGender)
+# d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
 
 rm(directory_in) # rm(col_types_tulsa)
 
@@ -240,6 +261,7 @@ RODBC::odbcGetInfo(channel)
 
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results <- ds_file$sql_delete %>%
+  rev() %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
@@ -247,10 +269,12 @@ delete_results
 
 # d <- ds_file %>%
 #   dplyr::select(table_name, entries) %>%
-#   dplyr::filter(table_name=="Enum.tblLUTristate") %>%
-#   tibble::deframe()
+#   dplyr::filter(table_name=="Enum.tblLURosterGen1") %>%
+#   tibble::deframe() %>%
+#   .[[1]]
 
-# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+# d2 <- d[, 1:16]
+# RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
 purrr::map2_int(
   ds_file$entries,

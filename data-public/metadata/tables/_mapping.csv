@@ -7,8 +7,10 @@ LUMarkerType,Enum,MarkerType,EnumLookupTables.cs,byte,TRUE
 LUMultipleBirth,Enum,MultipleBirth,EnumLookupTables.cs,byte,TRUE
 LURaceCohort,Enum,RaceCohort,EnumLookupTables.cs,byte,TRUE
 LURelationshipPath,Enum,RelationshipPath,EnumLookupTables.cs,byte,TRUE
+LURosterGen1,Enum,RosterGen1,EnumResponseGen1.cs,short,TRUE
 LUSurveySource,Enum,SurveySource,EnumLookupTables.cs,byte,TRUE
 LUTristate,Enum,Tristate,EnumLookupTables.cs,byte,TRUE
 LUYesNo,Enum,YesNo,EnumLookupTables.cs,short,TRUE
 MzManual,Metadata,NA_character,NA_character,NA_character,FALSE
+RosterGen1Assignment,Metadata,NA_character,NA_character,NA_character,FALSE
 Variable,Metadata,NA_character,NA_character,NA_character,FALSE

@@ -539,12 +539,14 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Enum].[tblLURosterGen1_NOTUSED](
-	[ResponseCode] [smallint] NOT NULL,
-	[Response] [varchar](255) NULL,
+CREATE TABLE [Enum].[tblLURosterGen1](
+	[ID] [smallint] NOT NULL,
+	[Label] [varchar](255) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLURosterGen1] PRIMARY KEY CLUSTERED 
 (
-	[ResponseCode] ASC
+	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -2603,7 +2605,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Metadata].[tblRosterGen1Assignment](
-	[ID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ID] [tinyint] NOT NULL,
 	[ResponseLower] [smallint] NOT NULL,
 	[ResponseUpper] [smallint] NOT NULL,
 	[Freq] [smallint] NOT NULL,
@@ -2616,14 +2618,14 @@ CREATE TABLE [Metadata].[tblRosterGen1Assignment](
 	[ShareBiomom] [tinyint] NOT NULL,
 	[ShareBiograndparent] [tinyint] NOT NULL,
 	[Inconsistent] [bit] NOT NULL,
-	[Notes] [text] NULL,
+	[Notes] [varchar](255) NULL,
 	[ResponseLowerLabel] [varchar](50) NULL,
 	[ResponseUpperLabel] [varchar](50) NULL,
  CONSTRAINT [PK_tblLURosterGen1Assignment_1] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
 GO
@@ -2924,14 +2926,12 @@ GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
 GO
 ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
-REFERENCES [Enum].[tblLURosterGen1_NOTUSED] ([ResponseCode])
-ON UPDATE CASCADE
-ON DELETE CASCADE
+REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
 ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
 GO
 ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
-REFERENCES [Enum].[tblLURosterGen1_NOTUSED] ([ResponseCode])
+REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
 ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
 GO

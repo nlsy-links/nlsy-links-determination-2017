@@ -34,7 +34,6 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 directory_in              <- "data-public/metadata/tables"
 # schema_name               <- "Metadata"
 
-
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
   Label                               = readr::col_character(),
@@ -42,6 +41,9 @@ col_types_minimal <- readr::cols_only(
   Notes                               = readr::col_character()
 )
 
+# The order of this list matters.
+#   - Tables are WRITTEN from top to bottom.
+#   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
   Item = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -64,6 +66,7 @@ lst_col_types <- list(
   LUMultipleBirth = col_types_minimal,
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
+  LURosterGen1 = col_types_minimal,
   LUSurveySource = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
@@ -104,6 +107,24 @@ lst_col_types <- list(
   #   RFull                               = readr::col_double(),
   #   RPeek                               = readr::col_character()
   # ),
+  RosterGen1Assignment    = readr::cols_only(
+    ID                      = readr::col_integer(),
+    ResponseLower           = readr::col_integer(),
+    ResponseUpper           = readr::col_integer(),
+    Freq                    = readr::col_integer(),
+    Resolved                = readr::col_integer(),
+    R                       = readr::col_double(),
+    RBoundLower             = readr::col_double(),
+    RBoundUpper             = readr::col_double(),
+    SameGeneration          = readr::col_integer(),
+    ShareBiodad             = readr::col_integer(),
+    ShareBiomom             = readr::col_integer(),
+    ShareBiograndparent     = readr::col_integer(),
+    Inconsistent            = readr::col_integer(),
+    Notes                   = readr::col_character(),
+    ResponseLowerLabel      = readr::col_character(),
+    ResponseUpperLabel      = readr::col_character()
+  ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -136,22 +157,24 @@ ds_mapping
 ```
 
 ```
-## # A tibble: 13 x 5
-##            table_name schema_name        enum_name c_sharp_type
-##                 <chr>       <chr>            <chr>        <chr>
-##  1               Item    Metadata             Item        short
-##  2    LUExtractSource        Enum    ExtractSource         byte
-##  3           LUGender        Enum           Gender         byte
-##  4   LUMarkerEvidence        Enum   MarkerEvidence         byte
-##  5       LUMarkerType        Enum       MarkerType         byte
-##  6    LUMultipleBirth        Enum    MultipleBirth         byte
-##  7       LURaceCohort        Enum       RaceCohort         byte
-##  8 LURelationshipPath        Enum RelationshipPath         byte
-##  9     LUSurveySource        Enum     SurveySource         byte
-## 10         LUTristate        Enum         Tristate         byte
-## 11            LUYesNo        Enum            YesNo        short
-## 12           MzManual    Metadata     NA_character NA_character
-## 13           Variable    Metadata     NA_character NA_character
+## # A tibble: 15 x 5
+##              table_name schema_name        enum_name c_sharp_type
+##                   <chr>       <chr>            <chr>        <chr>
+##  1                 Item    Metadata             Item        short
+##  2      LUExtractSource        Enum    ExtractSource         byte
+##  3             LUGender        Enum           Gender         byte
+##  4     LUMarkerEvidence        Enum   MarkerEvidence         byte
+##  5         LUMarkerType        Enum       MarkerType         byte
+##  6      LUMultipleBirth        Enum    MultipleBirth         byte
+##  7         LURaceCohort        Enum       RaceCohort         byte
+##  8   LURelationshipPath        Enum RelationshipPath         byte
+##  9         LURosterGen1        Enum       RosterGen1        short
+## 10       LUSurveySource        Enum     SurveySource         byte
+## 11           LUTristate        Enum         Tristate         byte
+## 12              LUYesNo        Enum            YesNo        short
+## 13             MzManual    Metadata     NA_character NA_character
+## 14 RosterGen1Assignment    Metadata     NA_character NA_character
+## 15             Variable    Metadata     NA_character NA_character
 ## # ... with 1 more variables: convert_to_enum <lgl>
 ```
 
@@ -168,22 +191,24 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 4
-##                  name                                               path
-##                 <chr>                                              <chr>
-##  1               Item               data-public/metadata/tables/Item.csv
-##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
-##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
-##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
-## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
-## 11           MzManual           data-public/metadata/tables/MzManual.csv
-## 12           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 2 more variables: col_types <list>, exists <lgl>
+## # A tibble: 14 x 4
+##                    name
+##                   <chr>
+##  1                 Item
+##  2      LUExtractSource
+##  3     LUMarkerEvidence
+##  4         LUMarkerType
+##  5      LUMultipleBirth
+##  6         LURaceCohort
+##  7   LURelationshipPath
+##  8         LURosterGen1
+##  9       LUSurveySource
+## 10           LUTristate
+## 11              LUYesNo
+## 12             MzManual
+## 13 RosterGen1Assignment
+## 14             Variable
+## # ... with 3 more variables: path <chr>, col_types <list>, exists <lgl>
 ```
 
 ```r
@@ -198,26 +223,28 @@ ds_entries
 ```
 
 ```
-## # A tibble: 12 x 4
-##                  name                                               path
-##                 <chr>                                              <chr>
-##  1               Item               data-public/metadata/tables/Item.csv
-##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
-##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
-##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
-## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
-## 11           MzManual           data-public/metadata/tables/MzManual.csv
-## 12           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 2 more variables: col_types <list>, entries <list>
+## # A tibble: 14 x 4
+##                    name
+##                   <chr>
+##  1                 Item
+##  2      LUExtractSource
+##  3     LUMarkerEvidence
+##  4         LUMarkerType
+##  5      LUMultipleBirth
+##  6         LURaceCohort
+##  7   LURelationshipPath
+##  8         LURosterGen1
+##  9       LUSurveySource
+## 10           LUTristate
+## 11              LUYesNo
+## 12             MzManual
+## 13 RosterGen1Assignment
+## 14             Variable
+## # ... with 3 more variables: path <chr>, col_types <list>, entries <list>
 ```
 
 ```r
-# readr::read_csv("data-public/metadata/tables/LUGender.csv", col_types=lst_col_types$LUGender)
+# d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
 
 rm(directory_in) # rm(col_types_tulsa)
 ```
@@ -320,6 +347,20 @@ ds_file$entries %>%
 ## 3     3    Gen2Cousins   TRUE                                 <NA>
 ## 4     4    ParentChild   TRUE                                 <NA>
 ## 5     5      AuntNiece   TRUE Acutally (Uncle|Aunt)-(Nephew|Niece)
+## # A tibble: 67 x 4
+##       ID       Label Active Notes
+##    <int>       <chr>  <lgl> <chr>
+##  1    -4   ValidSkip   TRUE  <NA>
+##  2    -3 InvalidSkip   TRUE  <NA>
+##  3    -1     Refusal   TRUE  <NA>
+##  4     0  Respondent   TRUE  <NA>
+##  5     1      Spouse   TRUE  <NA>
+##  6     2         Son   TRUE  <NA>
+##  7     3    Daughter   TRUE  <NA>
+##  8     4      Father   TRUE  <NA>
+##  9     5      Mother   TRUE  <NA>
+## 10     6     Brother   TRUE  <NA>
+## # ... with 57 more rows
 ## # A tibble: 4 x 4
 ##      ID       Label Active Notes
 ##   <int>       <chr>  <lgl> <chr>
@@ -357,6 +398,23 @@ ds_file$entries %>%
 ## 10    14         93001         93002          2                      2
 ## # ... with 196 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
+## # A tibble: 50 x 16
+##       ID ResponseLower ResponseUpper  Freq Resolved     R RBoundLower
+##    <int>         <int>         <int> <int>    <int> <dbl>       <dbl>
+##  1     1            -3            -3    67        0    NA       0.000
+##  2     2            -3            -1    11        0    NA       0.000
+##  3     3            -3            33     6        1 0.000       0.000
+##  4     4            -3            36    35        1 0.000       0.000
+##  5     5            -1            18     1        1 0.125       0.125
+##  6     6            -1            36     3        1 0.000       0.000
+##  7     7             1             1   167        1 0.000       0.000
+##  8     8             1            33     1        1 0.000       0.000
+##  9     9             1            36     1        1 0.000       0.000
+## 10    10             1            57     1        1 0.000       0.000
+## # ... with 40 more rows, and 9 more variables: RBoundUpper <dbl>,
+## #   SameGeneration <int>, ShareBiodad <int>, ShareBiomom <int>,
+## #   ShareBiograndparent <int>, Inconsistent <int>, Notes <chr>,
+## #   ResponseLowerLabel <chr>, ResponseUpperLabel <chr>
 ## # A tibble: 1,559 x 11
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
@@ -398,12 +456,13 @@ ds_file$table_name
 ```
 
 ```
-##  [1] "Metadata.tblItem"           "Enum.tblLUExtractSource"   
-##  [3] "Enum.tblLUMarkerEvidence"   "Enum.tblLUMarkerType"      
-##  [5] "Enum.tblLUMultipleBirth"    "Enum.tblLURaceCohort"      
-##  [7] "Enum.tblLURelationshipPath" "Enum.tblLUSurveySource"    
-##  [9] "Enum.tblLUTristate"         "Enum.tblLUYesNo"           
-## [11] "Metadata.tblMzManual"       "Metadata.tblVariable"
+##  [1] "Metadata.tblItem"                 "Enum.tblLUExtractSource"         
+##  [3] "Enum.tblLUMarkerEvidence"         "Enum.tblLUMarkerType"            
+##  [5] "Enum.tblLUMultipleBirth"          "Enum.tblLURaceCohort"            
+##  [7] "Enum.tblLURelationshipPath"       "Enum.tblLURosterGen1"            
+##  [9] "Enum.tblLUSurveySource"           "Enum.tblLUTristate"              
+## [11] "Enum.tblLUYesNo"                  "Metadata.tblMzManual"            
+## [13] "Metadata.tblRosterGen1Assignment" "Metadata.tblVariable"
 ```
 
 ```r
@@ -411,22 +470,24 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 11
-##                  name                                               path
-##                 <chr>                                              <chr>
-##  1               Item               data-public/metadata/tables/Item.csv
-##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
-##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
-##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
-## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
-## 11           MzManual           data-public/metadata/tables/MzManual.csv
-## 12           Variable           data-public/metadata/tables/Variable.csv
-## # ... with 9 more variables: col_types <list>, exists <lgl>,
+## # A tibble: 14 x 11
+##                    name
+##                   <chr>
+##  1                 Item
+##  2      LUExtractSource
+##  3     LUMarkerEvidence
+##  4         LUMarkerType
+##  5      LUMultipleBirth
+##  6         LURaceCohort
+##  7   LURelationshipPath
+##  8         LURosterGen1
+##  9       LUSurveySource
+## 10           LUTristate
+## 11              LUYesNo
+## 12             MzManual
+## 13 RosterGen1Assignment
+## 14             Variable
+## # ... with 10 more variables: path <chr>, col_types <list>, exists <lgl>,
 ## #   schema_name <chr>, enum_name <chr>, c_sharp_type <chr>,
 ## #   convert_to_enum <lgl>, table_name <chr>, sql_delete <chr>,
 ## #   entries <list>
@@ -652,6 +713,76 @@ ds_enum %>%
 ##     AuntNiece                                                    =     5, // Acutally (Uncle|Aunt)-(Nephew|Niece)
 ## }
 ##  
+## public enum RosterGen1 {
+##     ValidSkip                                                    =    -4, 
+##     InvalidSkip                                                  =    -3, 
+##     Refusal                                                      =    -1, 
+##     Respondent                                                   =     0, 
+##     Spouse                                                       =     1, 
+##     Son                                                          =     2, 
+##     Daughter                                                     =     3, 
+##     Father                                                       =     4, 
+##     Mother                                                       =     5, 
+##     Brother                                                      =     6, 
+##     Sister                                                       =     7, 
+##     Grandfather                                                  =     8, 
+##     Grandmother                                                  =     9, 
+##     Grandson                                                     =    10, 
+##     Granddaughter                                                =    11, 
+##     UncleEtc                                                     =    12, 
+##     AuntEtc                                                      =    13, 
+##     GreatUncle                                                   =    14, 
+##     GreatAunt                                                    =    15, 
+##     Cousin                                                       =    16, 
+##     Nephew                                                       =    17, 
+##     Niece                                                        =    18, 
+##     OtherBloodRelative                                           =    19, 
+##     AdoptedOrStepson                                             =    20, 
+##     AdoptedOrStepdaughter                                        =    21, 
+##     SonInLaw                                                     =    22, 
+##     DaughterInLaw                                                =    23, 
+##     FatherInLaw                                                  =    24, 
+##     MotherInLaw                                                  =    25, 
+##     BrotherInLaw                                                 =    26, 
+##     SisterInLaw                                                  =    27, 
+##     GrandfatherInLaw                                             =    28, 
+##     GrandmotherInLaw                                             =    29, 
+##     GrandsonInLaw                                                =    30, 
+##     GranddaughterInLaw                                           =    31, 
+##     OtherInLawRelative                                           =    32, 
+##     Partner                                                      =    33, 
+##     Boarder                                                      =    34, 
+##     FosterChild                                                  =    35, 
+##     OtherNonRelative                                             =    36, 
+##     Stepfather                                                   =    37, 
+##     Stepmother                                                   =    38, 
+##     Stepbrother                                                  =    39, 
+##     Stepsister                                                   =    40, 
+##     GreatGrandson                                                =    41, 
+##     GreatGranddaughter                                           =    42, 
+##     StepGrandson                                                 =    43, 
+##     StepGranddaughter                                            =    44, 
+##     FosterSon                                                    =    45, 
+##     FosterDaughter                                               =    46, 
+##     Parents                                                      =    47, 
+##     Grandparents                                                 =    48, 
+##     AuntOrUncle                                                  =    49, 
+##     FosterFather                                                 =    50, 
+##     FosterMother                                                 =    51, 
+##     FosterBrother                                                =    52, 
+##     FosterSister                                                 =    53, 
+##     Guardian                                                     =    54, 
+##     HusbandOrBrotherInLaw                                        =    57, 
+##     WifeOrSisterInLaw                                            =    58, 
+##     AdoptedOrStepbrother                                         =    59, 
+##     AdoptedOrStepsister                                          =    60, 
+##     BrotherOrCousin                                              =    62, 
+##     SisterOrCousin                                               =    63, 
+##     BrotherNaturalStepOrAdopted                                  =    64, 
+##     SisterNaturalStepOrAdopted                                   =    65, 
+##     SiblingOrSpouseOfInLaws                                      =    66, 
+## }
+##  
 ## public enum SurveySource {
 ##     NoInterview                                                  =     0, 
 ##     Gen1                                                         =     1, 
@@ -711,6 +842,7 @@ RODBC::odbcGetInfo(channel)
 ```r
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results <- ds_file$sql_delete %>%
+  rev() %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
@@ -718,27 +850,31 @@ delete_results
 ```
 
 ```
-##           Metadata.tblItem    Enum.tblLUExtractSource 
-##                         -2                         -2 
-##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
-##                         -2                         -2 
-##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
-##                         -2                         -2 
-## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
-##                         -2                         -2 
-##         Enum.tblLUTristate            Enum.tblLUYesNo 
-##                         -2                         -2 
-##       Metadata.tblMzManual       Metadata.tblVariable 
-##                         -2                         -1
+##                 Metadata.tblItem          Enum.tblLUExtractSource 
+##                               -2                               -2 
+##         Enum.tblLUMarkerEvidence             Enum.tblLUMarkerType 
+##                               -2                               -2 
+##          Enum.tblLUMultipleBirth             Enum.tblLURaceCohort 
+##                               -2                               -2 
+##       Enum.tblLURelationshipPath             Enum.tblLURosterGen1 
+##                               -2                               -2 
+##           Enum.tblLUSurveySource               Enum.tblLUTristate 
+##                               -2                               -2 
+##                  Enum.tblLUYesNo             Metadata.tblMzManual 
+##                               -2                               -2 
+## Metadata.tblRosterGen1Assignment             Metadata.tblVariable 
+##                               -2                               -2
 ```
 
 ```r
 # d <- ds_file %>%
 #   dplyr::select(table_name, entries) %>%
-#   dplyr::filter(table_name=="Enum.tblLUTristate") %>%
-#   tibble::deframe()
+#   dplyr::filter(table_name=="Enum.tblLURosterGen1") %>%
+#   tibble::deframe() %>%
+#   .[[1]]
 
-# RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
+# d2 <- d[, 1:16]
+# RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
 purrr::map2_int(
   ds_file$entries,
@@ -758,18 +894,20 @@ purrr::set_names(ds_file$table_name)
 ```
 
 ```
-##           Metadata.tblItem    Enum.tblLUExtractSource 
-##                          1                          1 
-##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
-##                          1                          1 
-##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
-##                          1                          1 
-## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
-##                          1                          1 
-##         Enum.tblLUTristate            Enum.tblLUYesNo 
-##                          1                          1 
-##       Metadata.tblMzManual       Metadata.tblVariable 
-##                          1                          1
+##                 Metadata.tblItem          Enum.tblLUExtractSource 
+##                                1                                1 
+##         Enum.tblLUMarkerEvidence             Enum.tblLUMarkerType 
+##                                1                                1 
+##          Enum.tblLUMultipleBirth             Enum.tblLURaceCohort 
+##                                1                                1 
+##       Enum.tblLURelationshipPath             Enum.tblLURosterGen1 
+##                                1                                1 
+##           Enum.tblLUSurveySource               Enum.tblLUTristate 
+##                                1                                1 
+##                  Enum.tblLUYesNo             Metadata.tblMzManual 
+##                                1                                1 
+## Metadata.tblRosterGen1Assignment             Metadata.tblVariable 
+##                                1                                1
 ```
 
 ```r
@@ -805,14 +943,12 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
-## [29] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
+##  [5] R6_2.2.1         evaluate_0.10    rlang_0.1.1      stringi_1.1.5   
+##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
+## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
+## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  bindr_0.1       
+## [21] knitr_1.16       tibble_1.3.3
 ```
 
 ```r
@@ -820,6 +956,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 21:13:50 CDT"
+## [1] "2017-06-21 22:40:33 CDT"
 ```
 
