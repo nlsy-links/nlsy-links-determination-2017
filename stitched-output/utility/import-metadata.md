@@ -65,6 +65,8 @@ lst_col_types <- list(
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
   LUSurveySource = col_types_minimal,
+  LUTristate = col_types_minimal,
+  LUYesNo = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -134,7 +136,7 @@ ds_mapping
 ```
 
 ```
-## # A tibble: 11 x 5
+## # A tibble: 13 x 5
 ##            table_name schema_name        enum_name c_sharp_type
 ##                 <chr>       <chr>            <chr>        <chr>
 ##  1               Item    Metadata             Item        short
@@ -146,8 +148,10 @@ ds_mapping
 ##  7       LURaceCohort        Enum       RaceCohort         byte
 ##  8 LURelationshipPath    Metadata RelationshipPath         byte
 ##  9     LUSurveySource    Metadata     SurveySource         byte
-## 10           MzManual    Metadata     NA_character NA_character
-## 11           Variable    Metadata     NA_character NA_character
+## 10         LUTristate        Enum         Tristate         byte
+## 11            LUYesNo        Enum            YesNo        short
+## 12           MzManual    Metadata     NA_character NA_character
+## 13           Variable    Metadata     NA_character NA_character
 ## # ... with 1 more variables: convert_to_enum <lgl>
 ```
 
@@ -164,7 +168,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 10 x 4
+## # A tibble: 12 x 4
 ##                  name                                               path
 ##                 <chr>                                              <chr>
 ##  1               Item               data-public/metadata/tables/Item.csv
@@ -175,8 +179,10 @@ ds_file
 ##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
 ##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
 ##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9           MzManual           data-public/metadata/tables/MzManual.csv
-## 10           Variable           data-public/metadata/tables/Variable.csv
+##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
+## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
+## 11           MzManual           data-public/metadata/tables/MzManual.csv
+## 12           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 2 more variables: col_types <list>, exists <lgl>
 ```
 
@@ -192,7 +198,7 @@ ds_entries
 ```
 
 ```
-## # A tibble: 10 x 4
+## # A tibble: 12 x 4
 ##                  name                                               path
 ##                 <chr>                                              <chr>
 ##  1               Item               data-public/metadata/tables/Item.csv
@@ -203,8 +209,10 @@ ds_entries
 ##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
 ##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
 ##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9           MzManual           data-public/metadata/tables/MzManual.csv
-## 10           Variable           data-public/metadata/tables/Variable.csv
+##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
+## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
+## 11           MzManual           data-public/metadata/tables/MzManual.csv
+## 12           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 2 more variables: col_types <list>, entries <list>
 ```
 
@@ -319,6 +327,21 @@ ds_file$entries %>%
 ## 2     1        Gen1   TRUE  <NA>
 ## 3     2       Gen2C   TRUE  <NA>
 ## 4     3      Gen2YA   TRUE  <NA>
+## # A tibble: 3 x 4
+##      ID     Label Active Notes
+##   <int>     <chr>  <lgl> <chr>
+## 1     0        No   TRUE  <NA>
+## 2     1       Yes   TRUE  <NA>
+## 3   255 DoNotKnow   TRUE  <NA>
+## # A tibble: 6 x 4
+##      ID                               Label Active Notes
+##   <int>                               <chr>  <lgl> <chr>
+## 1    -6 ValidSkipOrNoInterviewOrNotInSurvey   TRUE  <NA>
+## 2    -3                         InvalidSkip   TRUE  <NA>
+## 3    -2                           DoNotKnow   TRUE  <NA>
+## 4    -1                             Refusal   TRUE  <NA>
+## 5     0                                  No   TRUE  <NA>
+## 6     1                                 Yes   TRUE  <NA>
 ## # A tibble: 206 x 9
 ##       ID SubjectTag_S1 SubjectTag_S2 Generation MultipleBirthIfSameSex
 ##    <int>         <int>         <int>      <int>                  <int>
@@ -379,7 +402,8 @@ ds_file$table_name
 ##  [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
 ##  [5] "Enum.tblLUMultipleBirth"        "Enum.tblLURaceCohort"          
 ##  [7] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
-##  [9] "Metadata.tblMzManual"           "Metadata.tblVariable"
+##  [9] "Enum.tblLUTristate"             "Enum.tblLUYesNo"               
+## [11] "Metadata.tblMzManual"           "Metadata.tblVariable"
 ```
 
 ```r
@@ -387,7 +411,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 10 x 11
+## # A tibble: 12 x 11
 ##                  name                                               path
 ##                 <chr>                                              <chr>
 ##  1               Item               data-public/metadata/tables/Item.csv
@@ -398,8 +422,10 @@ ds_file
 ##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
 ##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
 ##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-##  9           MzManual           data-public/metadata/tables/MzManual.csv
-## 10           Variable           data-public/metadata/tables/Variable.csv
+##  9         LUTristate         data-public/metadata/tables/LUTristate.csv
+## 10            LUYesNo            data-public/metadata/tables/LUYesNo.csv
+## 11           MzManual           data-public/metadata/tables/MzManual.csv
+## 12           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 9 more variables: col_types <list>, exists <lgl>,
 ## #   schema_name <chr>, enum_name <chr>, c_sharp_type <chr>,
 ## #   convert_to_enum <lgl>, table_name <chr>, sql_delete <chr>,
@@ -632,6 +658,21 @@ ds_enum %>%
 ##     Gen2C                                                        =     2, 
 ##     Gen2YA                                                       =     3, 
 ## }
+##  
+## public enum Tristate {
+##     No                                                           =     0, 
+##     Yes                                                          =     1, 
+##     DoNotKnow                                                    =   255, 
+## }
+##  
+## public enum YesNo {
+##     ValidSkipOrNoInterviewOrNotInSurvey                          =    -6, 
+##     InvalidSkip                                                  =    -3, 
+##     DoNotKnow                                                    =    -2, 
+##     Refusal                                                      =    -1, 
+##     No                                                           =     0, 
+##     Yes                                                          =     1, 
+## }
 ```
 
 ```r
@@ -685,11 +726,18 @@ delete_results
 ##                             -2                             -2 
 ## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
 ##                             -2                             -2 
+##             Enum.tblLUTristate                Enum.tblLUYesNo 
+##                             -2                             -2 
 ##           Metadata.tblMzManual           Metadata.tblVariable 
 ##                             -2                             -1
 ```
 
 ```r
+# d <- ds_file %>%
+#   dplyr::select(table_name, entries) %>%
+#   dplyr::filter(table_name=="Enum.tblLUTristate") %>%
+#   tibble::deframe()
+
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
 purrr::map2_int(
@@ -717,6 +765,8 @@ purrr::set_names(ds_file$table_name)
 ##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
 ##                              1                              1 
 ## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
+##                              1                              1 
+##             Enum.tblLUTristate                Enum.tblLUYesNo 
 ##                              1                              1 
 ##           Metadata.tblMzManual           Metadata.tblVariable 
 ##                              1                              1
@@ -770,6 +820,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 20:13:28 CDT"
+## [1] "2017-06-21 20:52:08 CDT"
 ```
 

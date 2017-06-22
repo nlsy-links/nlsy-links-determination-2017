@@ -53,6 +53,8 @@ lst_col_types <- list(
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
   LUSurveySource = col_types_minimal,
+  LUTristate = col_types_minimal,
+  LUYesNo = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -243,6 +245,10 @@ delete_results <- ds_file$sql_delete %>%
 
 delete_results
 
+# d <- ds_file %>%
+#   dplyr::select(table_name, entries) %>%
+#   dplyr::filter(table_name=="Enum.tblLUTristate") %>%
+#   tibble::deframe()
 
 # RODBC::sqlSave(channel, dat=d, tablename="Metadata.tblMzManual", safer=FALSE, rownames=FALSE, append=T)
 
