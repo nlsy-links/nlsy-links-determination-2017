@@ -7,7 +7,7 @@ This report was automatically generated with the R package **knitr**
 
 
 ```r
-# knitr::stitch_rmd(script="./utility/import-metadata.R", output="./stitched-output/utility/import-metadata.md") # dir.create(output="./stitched-output/utility/", recursive=T)
+# knitr::stitch_rmd(script="./dal/import-metadata.R", output="./stitched-output/dal/import-metadata.md") # dir.create(output="./stitched-output/dal/", recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 ```
 
@@ -19,20 +19,20 @@ base::source("utility/connectivity.R")
 ```r
 # Attach these package(s) so their functions don't need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 library(magrittr            , quietly=TRUE)
-library(DBI                 , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
 requireNamespace("tidyr"                  )
+requireNamespace("tibble"                 )
+requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
-# requireNamespace("RODBC") #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 ```
 
 ```r
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables"
-# schema_name               <- "Metadata"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -82,48 +82,48 @@ lst_col_types <- list(
     Notes                               = readr::col_character()
   ),
   # RArchive = readr::cols_only(
-  #   ID                                  = readr::col_integer(),
-  #   AlgorithmVersion                    = readr::col_integer(),
-  #   SubjectTag_S1                       = readr::col_integer(),
-  #   SubjectTag_S2                       = readr::col_integer(),
-  #   MultipleBirthIfSameSex              = readr::col_integer(),
-  #   IsMz                                = readr::col_integer(),
-  #   SameGeneration                      = readr::col_character(),
-  #   RosterAssignmentID                  = readr::col_character(),
-  #   RRoster                             = readr::col_character(),
-  #   LastSurvey_S1                       = readr::col_integer(),
-  #   LastSurvey_S2                       = readr::col_integer(),
-  #   RImplicitPass1                      = readr::col_double(),
-  #   RImplicit                           = readr::col_double(),
-  #   RImplicitSubject                    = readr::col_double(),
-  #   RImplicitMother                     = readr::col_double(),
-  #   RImplicit2004                       = readr::col_double(),
-  #   RExplicitOldestSibVersion           = readr::col_double(),
-  #   RExplicitYoungestSibVersion         = readr::col_double(),
-  #   RExplicitPass1                      = readr::col_double(),
-  #   RExplicit                           = readr::col_double(),
-  #   RPass1                              = readr::col_double(),
-  #   R                                   = readr::col_double(),
-  #   RFull                               = readr::col_double(),
-  #   RPeek                               = readr::col_character()
+  #   ID                                = readr::col_integer(),
+  #   AlgorithmVersion                  = readr::col_integer(),
+  #   SubjectTag_S1                     = readr::col_integer(),
+  #   SubjectTag_S2                     = readr::col_integer(),
+  #   MultipleBirthIfSameSex            = readr::col_integer(),
+  #   IsMz                              = readr::col_integer(),
+  #   SameGeneration                    = readr::col_character(),
+  #   RosterAssignmentID                = readr::col_character(),
+  #   RRoster                           = readr::col_character(),
+  #   LastSurvey_S1                     = readr::col_integer(),
+  #   LastSurvey_S2                     = readr::col_integer(),
+  #   RImplicitPass1                    = readr::col_double(),
+  #   RImplicit                         = readr::col_double(),
+  #   RImplicitSubject                  = readr::col_double(),
+  #   RImplicitMother                   = readr::col_double(),
+  #   RImplicit2004                     = readr::col_double(),
+  #   RExplicitOldestSibVersion         = readr::col_double(),
+  #   RExplicitYoungestSibVersion       = readr::col_double(),
+  #   RExplicitPass1                    = readr::col_double(),
+  #   RExplicit                         = readr::col_double(),
+  #   RPass1                            = readr::col_double(),
+  #   R                                 = readr::col_double(),
+  #   RFull                             = readr::col_double(),
+  #   RPeek                             = readr::col_character()
   # ),
   RosterGen1Assignment    = readr::cols_only(
-    ID                      = readr::col_integer(),
-    ResponseLower           = readr::col_integer(),
-    ResponseUpper           = readr::col_integer(),
-    Freq                    = readr::col_integer(),
-    Resolved                = readr::col_integer(),
-    R                       = readr::col_double(),
-    RBoundLower             = readr::col_double(),
-    RBoundUpper             = readr::col_double(),
-    SameGeneration          = readr::col_integer(),
-    ShareBiodad             = readr::col_integer(),
-    ShareBiomom             = readr::col_integer(),
-    ShareBiograndparent     = readr::col_integer(),
-    Inconsistent            = readr::col_integer(),
-    Notes                   = readr::col_character(),
-    ResponseLowerLabel      = readr::col_character(),
-    ResponseUpperLabel      = readr::col_character()
+    ID                                  = readr::col_integer(),
+    ResponseLower                       = readr::col_integer(),
+    ResponseUpper                       = readr::col_integer(),
+    Freq                                = readr::col_integer(),
+    Resolved                            = readr::col_integer(),
+    R                                   = readr::col_double(),
+    RBoundLower                         = readr::col_double(),
+    RBoundUpper                         = readr::col_double(),
+    SameGeneration                      = readr::col_integer(),
+    ShareBiodad                         = readr::col_integer(),
+    ShareBiomom                         = readr::col_integer(),
+    ShareBiograndparent                 = readr::col_integer(),
+    Inconsistent                        = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    ResponseLowerLabel                  = readr::col_character(),
+    ResponseUpperLabel                  = readr::col_character()
   ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -940,7 +940,7 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
+## [1] bindrcpp_0.1 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
@@ -956,6 +956,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 22:40:33 CDT"
+## [1] "2017-06-21 22:52:40 CDT"
 ```
 
