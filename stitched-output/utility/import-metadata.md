@@ -140,14 +140,14 @@ ds_mapping
 ##            table_name schema_name        enum_name c_sharp_type
 ##                 <chr>       <chr>            <chr>        <chr>
 ##  1               Item    Metadata             Item        short
-##  2    LUExtractSource    Metadata    ExtractSource         byte
+##  2    LUExtractSource        Enum    ExtractSource         byte
 ##  3           LUGender        Enum           Gender         byte
-##  4   LUMarkerEvidence    Metadata   MarkerEvidence         byte
-##  5       LUMarkerType    Metadata       MarkerType         byte
+##  4   LUMarkerEvidence        Enum   MarkerEvidence         byte
+##  5       LUMarkerType        Enum       MarkerType         byte
 ##  6    LUMultipleBirth        Enum    MultipleBirth         byte
 ##  7       LURaceCohort        Enum       RaceCohort         byte
-##  8 LURelationshipPath    Metadata RelationshipPath         byte
-##  9     LUSurveySource    Metadata     SurveySource         byte
+##  8 LURelationshipPath        Enum RelationshipPath         byte
+##  9     LUSurveySource        Enum     SurveySource         byte
 ## 10         LUTristate        Enum         Tristate         byte
 ## 11            LUYesNo        Enum            YesNo        short
 ## 12           MzManual    Metadata     NA_character NA_character
@@ -398,12 +398,12 @@ ds_file$table_name
 ```
 
 ```
-##  [1] "Metadata.tblItem"               "Metadata.tblLUExtractSource"   
-##  [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
-##  [5] "Enum.tblLUMultipleBirth"        "Enum.tblLURaceCohort"          
-##  [7] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
-##  [9] "Enum.tblLUTristate"             "Enum.tblLUYesNo"               
-## [11] "Metadata.tblMzManual"           "Metadata.tblVariable"
+##  [1] "Metadata.tblItem"           "Enum.tblLUExtractSource"   
+##  [3] "Enum.tblLUMarkerEvidence"   "Enum.tblLUMarkerType"      
+##  [5] "Enum.tblLUMultipleBirth"    "Enum.tblLURaceCohort"      
+##  [7] "Enum.tblLURelationshipPath" "Enum.tblLUSurveySource"    
+##  [9] "Enum.tblLUTristate"         "Enum.tblLUYesNo"           
+## [11] "Metadata.tblMzManual"       "Metadata.tblVariable"
 ```
 
 ```r
@@ -718,18 +718,18 @@ delete_results
 ```
 
 ```
-##               Metadata.tblItem    Metadata.tblLUExtractSource 
-##                             -2                             -2 
-##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
-##                             -2                             -2 
-##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
-##                             -2                             -2 
-## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
-##                             -2                             -2 
-##             Enum.tblLUTristate                Enum.tblLUYesNo 
-##                             -2                             -2 
-##           Metadata.tblMzManual           Metadata.tblVariable 
-##                             -2                             -1
+##           Metadata.tblItem    Enum.tblLUExtractSource 
+##                         -2                         -2 
+##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
+##                         -2                         -2 
+##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
+##                         -2                         -2 
+## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
+##                         -2                         -2 
+##         Enum.tblLUTristate            Enum.tblLUYesNo 
+##                         -2                         -2 
+##       Metadata.tblMzManual       Metadata.tblVariable 
+##                         -2                         -1
 ```
 
 ```r
@@ -758,18 +758,18 @@ purrr::set_names(ds_file$table_name)
 ```
 
 ```
-##               Metadata.tblItem    Metadata.tblLUExtractSource 
-##                              1                              1 
-##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
-##                              1                              1 
-##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
-##                              1                              1 
-## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
-##                              1                              1 
-##             Enum.tblLUTristate                Enum.tblLUYesNo 
-##                              1                              1 
-##           Metadata.tblMzManual           Metadata.tblVariable 
-##                              1                              1
+##           Metadata.tblItem    Enum.tblLUExtractSource 
+##                          1                          1 
+##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
+##                          1                          1 
+##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
+##                          1                          1 
+## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
+##                          1                          1 
+##         Enum.tblLUTristate            Enum.tblLUYesNo 
+##                          1                          1 
+##       Metadata.tblMzManual       Metadata.tblVariable 
+##                          1                          1
 ```
 
 ```r
@@ -820,6 +820,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 20:52:08 CDT"
+## [1] "2017-06-21 21:13:50 CDT"
 ```
 

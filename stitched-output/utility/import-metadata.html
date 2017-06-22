@@ -332,14 +332,14 @@ ds_mapping
 ##            table_name schema_name        enum_name c_sharp_type
 ##                 &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;
 ##  1               Item    Metadata             Item        short
-##  2    LUExtractSource    Metadata    ExtractSource         byte
+##  2    LUExtractSource        Enum    ExtractSource         byte
 ##  3           LUGender        Enum           Gender         byte
-##  4   LUMarkerEvidence    Metadata   MarkerEvidence         byte
-##  5       LUMarkerType    Metadata       MarkerType         byte
+##  4   LUMarkerEvidence        Enum   MarkerEvidence         byte
+##  5       LUMarkerType        Enum       MarkerType         byte
 ##  6    LUMultipleBirth        Enum    MultipleBirth         byte
 ##  7       LURaceCohort        Enum       RaceCohort         byte
-##  8 LURelationshipPath    Metadata RelationshipPath         byte
-##  9     LUSurveySource    Metadata     SurveySource         byte
+##  8 LURelationshipPath        Enum RelationshipPath         byte
+##  9     LUSurveySource        Enum     SurveySource         byte
 ## 10         LUTristate        Enum         Tristate         byte
 ## 11            LUYesNo        Enum            YesNo        short
 ## 12           MzManual    Metadata     NA_character NA_character
@@ -581,12 +581,12 @@ ds_file$entries %&gt;%
 ds_file$table_name
 </code></pre>
 
-<pre><code>##  [1] &quot;Metadata.tblItem&quot;               &quot;Metadata.tblLUExtractSource&quot;   
-##  [3] &quot;Metadata.tblLUMarkerEvidence&quot;   &quot;Metadata.tblLUMarkerType&quot;      
-##  [5] &quot;Enum.tblLUMultipleBirth&quot;        &quot;Enum.tblLURaceCohort&quot;          
-##  [7] &quot;Metadata.tblLURelationshipPath&quot; &quot;Metadata.tblLUSurveySource&quot;    
-##  [9] &quot;Enum.tblLUTristate&quot;             &quot;Enum.tblLUYesNo&quot;               
-## [11] &quot;Metadata.tblMzManual&quot;           &quot;Metadata.tblVariable&quot;
+<pre><code>##  [1] &quot;Metadata.tblItem&quot;           &quot;Enum.tblLUExtractSource&quot;   
+##  [3] &quot;Enum.tblLUMarkerEvidence&quot;   &quot;Enum.tblLUMarkerType&quot;      
+##  [5] &quot;Enum.tblLUMultipleBirth&quot;    &quot;Enum.tblLURaceCohort&quot;      
+##  [7] &quot;Enum.tblLURelationshipPath&quot; &quot;Enum.tblLUSurveySource&quot;    
+##  [9] &quot;Enum.tblLUTristate&quot;         &quot;Enum.tblLUYesNo&quot;           
+## [11] &quot;Metadata.tblMzManual&quot;       &quot;Metadata.tblVariable&quot;
 </code></pre>
 
 <pre><code class="r">ds_file
@@ -891,18 +891,18 @@ delete_results &lt;- ds_file$sql_delete %&gt;%
 delete_results
 </code></pre>
 
-<pre><code>##               Metadata.tblItem    Metadata.tblLUExtractSource 
-##                             -2                             -2 
-##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
-##                             -2                             -2 
-##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
-##                             -2                             -2 
-## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
-##                             -2                             -2 
-##             Enum.tblLUTristate                Enum.tblLUYesNo 
-##                             -2                             -2 
-##           Metadata.tblMzManual           Metadata.tblVariable 
-##                             -2                             -1
+<pre><code>##           Metadata.tblItem    Enum.tblLUExtractSource 
+##                         -2                         -2 
+##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
+##                         -2                         -2 
+##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
+##                         -2                         -2 
+## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
+##                         -2                         -2 
+##         Enum.tblLUTristate            Enum.tblLUYesNo 
+##                         -2                         -2 
+##       Metadata.tblMzManual       Metadata.tblVariable 
+##                         -2                         -1
 </code></pre>
 
 <pre><code class="r"># d &lt;- ds_file %&gt;%
@@ -929,18 +929,18 @@ purrr::map2_int(
 purrr::set_names(ds_file$table_name)
 </code></pre>
 
-<pre><code>##               Metadata.tblItem    Metadata.tblLUExtractSource 
-##                              1                              1 
-##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
-##                              1                              1 
-##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
-##                              1                              1 
-## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
-##                              1                              1 
-##             Enum.tblLUTristate                Enum.tblLUYesNo 
-##                              1                              1 
-##           Metadata.tblMzManual           Metadata.tblVariable 
-##                              1                              1
+<pre><code>##           Metadata.tblItem    Enum.tblLUExtractSource 
+##                          1                          1 
+##   Enum.tblLUMarkerEvidence       Enum.tblLUMarkerType 
+##                          1                          1 
+##    Enum.tblLUMultipleBirth       Enum.tblLURaceCohort 
+##                          1                          1 
+## Enum.tblLURelationshipPath     Enum.tblLUSurveySource 
+##                          1                          1 
+##         Enum.tblLUTristate            Enum.tblLUYesNo 
+##                          1                          1 
+##       Metadata.tblMzManual       Metadata.tblVariable 
+##                          1                          1
 </code></pre>
 
 <pre><code class="r">RODBC::odbcClose(channel); rm(channel)
@@ -985,7 +985,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 20:52:08 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 21:13:50 CDT&quot;
 </code></pre>
 
 </body>
