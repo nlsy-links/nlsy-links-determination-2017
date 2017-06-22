@@ -22,7 +22,7 @@ namespace Nls.BaseAssembly {
 			if ( dsLinks.tblRosterGen1.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblRosterGen1.");
 			if ( dsLinks.tblParentsOfGen1Current.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblParentsOfGen1Current.");
 			if ( dsLinks.tblParentsOfGen1Retro.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblParentsOfGen1Retro.");
-			if ( dsImport.tblGeocodeSanitized.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblGeocodeSanitized.");
+            if( dsImport.tblGen1GeocodeSanitized.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblGeocodeSanitized.");
 			if ( dsLinks.tblMarkerGen1.Count != 0 ) throw new ArgumentException("There should be zero rows in tblMarkerGen1.");
 			_dsLinks = dsLinks;
 			_dsImport = dsImport;
@@ -61,11 +61,11 @@ namespace Nls.BaseAssembly {
 					recordsAdded += FromBioparentDeathAge(Bioparent.Mom, drRelated, dtParentsCurrent);
 					recordsAdded += FromBioparentDeathAge(Bioparent.Dad, drRelated, dtParentsCurrent);
 
-					recordsAdded += FromBioparentBirthCountry(Bioparent.Mom, drRelated, _dsImport.tblGeocodeSanitized);
-					recordsAdded += FromBioparentBirthCountry(Bioparent.Dad, drRelated, _dsImport.tblGeocodeSanitized);
+                    recordsAdded += FromBioparentBirthCountry(Bioparent.Mom, drRelated, _dsImport.tblGen1GeocodeSanitized);
+                    recordsAdded += FromBioparentBirthCountry(Bioparent.Dad, drRelated, _dsImport.tblGen1GeocodeSanitized);
 
-					recordsAdded += FromBioparentBirthState(Bioparent.Mom, drRelated, _dsImport.tblGeocodeSanitized);
-					recordsAdded += FromBioparentBirthState(Bioparent.Dad, drRelated, _dsImport.tblGeocodeSanitized);
+                    recordsAdded += FromBioparentBirthState(Bioparent.Mom, drRelated, _dsImport.tblGen1GeocodeSanitized);
+                    recordsAdded += FromBioparentBirthState(Bioparent.Dad, drRelated, _dsImport.tblGen1GeocodeSanitized);
 
 					foreach ( Int16 year in ItemYears.Gen1BioparentBirthYear ) {
 						recordsAdded += FromBioparentBirthYear(Bioparent.Mom, year, drRelated, dtParentsCurrent);
@@ -155,11 +155,11 @@ namespace Nls.BaseAssembly {
             const Int32 recordsAdded = 1;
             return recordsAdded;
         }
-        private Int32 FromBioparentBirthCountry( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGeocodeSanitizedDataTable dtGeocode ) {
+        private Int32 FromBioparentBirthCountry( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
 			const Int16 year = ItemYears.Gen1BioparentBirthCountry;
 			Int32 subjectSmaller = Math.Min(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
 			Int32 subjectLarger = Math.Max(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
-			ImportDataSet.tblGeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
+            ImportDataSet.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
 
 			MarkerType markerType;
 
@@ -201,11 +201,11 @@ namespace Nls.BaseAssembly {
 			const Int32 recordsAdded = 1;
 			return recordsAdded;
 		}
-		private Int32 FromBioparentBirthState ( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGeocodeSanitizedDataTable dtGeocode ) {
+        private Int32 FromBioparentBirthState( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
 			const Int16 year = ItemYears.Gen1BioparentBirthState;
 			Int32 subjectSmaller = Math.Min(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
 			Int32 subjectLarger = Math.Max(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
-			ImportDataSet.tblGeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
+            ImportDataSet.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
 
 			MarkerType markerType;
 

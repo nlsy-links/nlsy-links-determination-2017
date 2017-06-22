@@ -40,8 +40,8 @@ namespace LinksGui {
 			_dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
 			_dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            //if( Convert.ToBoolean("true") ) {
-            if( Convert.ToBoolean("false") ) {
+            if( Convert.ToBoolean("true") ) {
+            //if( Convert.ToBoolean("false") ) {
 				LoadExtractGen1Links();
 				LoadExtractGen1Explicit();
 				LoadExtractGen1Implicit();
@@ -282,8 +282,8 @@ namespace LinksGui {
 			ta.Fill(_dsImport.tblGen2FatherFromGen1);
 		}
 		private void LoadGeocodeSanitized ( ) {
-			BA.ImportDataSetTableAdapters.tblGeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGeocodeSanitizedTableAdapter();
-			ta.Fill(_dsImport.tblGeocodeSanitized);
+            BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter();
+            ta.Fill(_dsImport.tblGen1GeocodeSanitized);
 		}
 		private void LoadLinks2004Gen1 ( ) {
 			BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter();
@@ -322,8 +322,8 @@ namespace LinksGui {
 			ta.Fill(_dsLinks.tblMzManual);
 		}
 		private void LoadRosterAssignment ( ) {
-			BA.LinksDataSetTableAdapters.tblLURosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblLURosterGen1AssignmentTableAdapter();
-			ta.Fill(_dsLinks.tblLURosterGen1Assignment);
+			BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter();
+			ta.Fill(_dsLinks.tblRosterGen1Assignment);
 		}
 
 		///////////////////////////

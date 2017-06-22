@@ -45,7 +45,7 @@ namespace Nls.BaseAssembly {
 					Int16 responseLower = Math.Min((Int16)response1on2, (Int16)response2on1);
 					Int16 responseUpper = Math.Max((Int16)response1on2, (Int16)response2on1);
 
-					LinksDataSet.tblLURosterGen1AssignmentRow drLU = RetrieveAssignmentRow(responseLower, responseUpper);
+					LinksDataSet.tblRosterGen1AssignmentRow drLU = RetrieveAssignmentRow(responseLower, responseUpper);
 					float r = float.MinValue;
 					if ( drLU.IsRNull() ) r = float.NaN;
 					else r = (float)drLU.R;
@@ -97,12 +97,12 @@ namespace Nls.BaseAssembly {
 			Trace.Assert(drsForShareResponse.Length == 1, "Exactly one row should be returned for the Item.RosterGen1979 item to Subject2");
 			return (EnumResponsesGen1.Gen1Roster)drsForShareResponse[0].Value;
 		}
-		private LinksDataSet.tblLURosterGen1AssignmentRow RetrieveAssignmentRow ( Int16 responseLower, Int16 responseUpper ) {
+		private LinksDataSet.tblRosterGen1AssignmentRow RetrieveAssignmentRow ( Int16 responseLower, Int16 responseUpper ) {
 			string select = string.Format("{0}={1} AND {2}={3}",
-				responseLower, _dsLinks.tblLURosterGen1Assignment.ResponseLowerColumn,
-				responseUpper, _dsLinks.tblLURosterGen1Assignment.ResponseUpperColumn);
+				responseLower, _dsLinks.tblRosterGen1Assignment.ResponseLowerColumn,
+				responseUpper, _dsLinks.tblRosterGen1Assignment.ResponseUpperColumn);
 
-			LinksDataSet.tblLURosterGen1AssignmentRow[] drs = (LinksDataSet.tblLURosterGen1AssignmentRow[])_dsLinks.tblLURosterGen1Assignment.Select(select);
+			LinksDataSet.tblRosterGen1AssignmentRow[] drs = (LinksDataSet.tblRosterGen1AssignmentRow[])_dsLinks.tblRosterGen1Assignment.Select(select);
 			Trace.Assert(drs.Length == 1, "Exactly one row should be returned for the Roster assignment");
 			return drs[0];
 		}
