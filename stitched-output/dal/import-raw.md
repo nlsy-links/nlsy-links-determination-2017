@@ -40,7 +40,8 @@ col_types_extract <- readr::cols(
 )
 col_types_mapping <- readr::cols_only(
   name                = readr::col_character(),
-  subdirectory        = readr::col_character()
+  subdirectory        = readr::col_character(),
+  upload              = readr::col_logical()
 )
 ```
 
@@ -50,22 +51,22 @@ ds_mapping
 ```
 
 ```
-## # A tibble: 13 x 2
-##                     name subdirectory
-##                    <chr>        <chr>
-##  1          Gen1Outcomes  nlsy79-gen1
-##  2          Gen1Explicit  nlsy79-gen1
-##  3  Gen1GeocodeSanitized  nlsy79-gen1
-##  4          Gen1Implicit  nlsy79-gen1
-##  5             Gen1Links  nlsy79-gen1
-##  6    Gen2OutcomesWeight  nlsy79-gen2
-##  7 Gen2BirthDateFromGen1  nlsy79-gen2
-##  8    Gen2FatherFromGen1  nlsy79-gen2
-##  9    Gen2ImplicitFather  nlsy79-gen2
-## 10             Gen2Links  nlsy79-gen2
-## 11     Gen2LinksFromGen1  nlsy79-gen2
-## 12    Gen2OutcomesHeight  nlsy79-gen2
-## 13      Gen2OutcomesMath  nlsy79-gen2
+## # A tibble: 13 x 3
+##                     name subdirectory upload
+##                    <chr>        <chr>  <lgl>
+##  1          Gen1Outcomes  nlsy79-gen1   TRUE
+##  2          Gen1Explicit  nlsy79-gen1   TRUE
+##  3  Gen1GeocodeSanitized  nlsy79-gen1   TRUE
+##  4          Gen1Implicit  nlsy79-gen1   TRUE
+##  5             Gen1Links  nlsy79-gen1   TRUE
+##  6    Gen2OutcomesWeight  nlsy79-gen2   TRUE
+##  7 Gen2BirthDateFromGen1  nlsy79-gen2  FALSE
+##  8    Gen2FatherFromGen1  nlsy79-gen2   TRUE
+##  9    Gen2ImplicitFather  nlsy79-gen2   TRUE
+## 10             Gen2Links  nlsy79-gen2   TRUE
+## 11     Gen2LinksFromGen1  nlsy79-gen2   TRUE
+## 12    Gen2OutcomesHeight  nlsy79-gen2   TRUE
+## 13      Gen2OutcomesMath  nlsy79-gen2   TRUE
 ```
 
 ```r
@@ -75,27 +76,27 @@ ds_file <- ds_mapping %>%
     path          = file.path(directory_in, subdirectory, paste0(name, ".csv")),
     exists        = purrr::map_lgl(path, file.exists)
   ) %>%
+  dplyr::filter(upload) %>%
   dplyr::select(name, exists, dplyr::everything())
 ds_file
 ```
 
 ```
-## # A tibble: 13 x 5
-##                     name exists subdirectory
-##                    <chr>  <lgl>        <chr>
-##  1          Gen1Outcomes   TRUE  nlsy79-gen1
-##  2          Gen1Explicit   TRUE  nlsy79-gen1
-##  3  Gen1GeocodeSanitized   TRUE  nlsy79-gen1
-##  4          Gen1Implicit   TRUE  nlsy79-gen1
-##  5             Gen1Links   TRUE  nlsy79-gen1
-##  6    Gen2OutcomesWeight   TRUE  nlsy79-gen2
-##  7 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
-##  8    Gen2FatherFromGen1   TRUE  nlsy79-gen2
-##  9    Gen2ImplicitFather   TRUE  nlsy79-gen2
-## 10             Gen2Links   TRUE  nlsy79-gen2
-## 11     Gen2LinksFromGen1   TRUE  nlsy79-gen2
-## 12    Gen2OutcomesHeight   TRUE  nlsy79-gen2
-## 13      Gen2OutcomesMath   TRUE  nlsy79-gen2
+## # A tibble: 12 x 6
+##                    name exists subdirectory upload
+##                   <chr>  <lgl>        <chr>  <lgl>
+##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
+##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
+##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
+##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
+##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
+##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
+##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
+##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
+##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
+## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
+## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
+## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -123,13 +124,12 @@ ds_file$table_name
 ```
 
 ```
-##  [1] "Extract.tblGen1Outcomes"          "Extract.tblGen1Explicit"         
-##  [3] "Extract.tblGen1GeocodeSanitized"  "Extract.tblGen1Implicit"         
-##  [5] "Extract.tblGen1Links"             "Extract.tblGen2OutcomesWeight"   
-##  [7] "Extract.tblGen2BirthDateFromGen1" "Extract.tblGen2FatherFromGen1"   
-##  [9] "Extract.tblGen2ImplicitFather"    "Extract.tblGen2Links"            
-## [11] "Extract.tblGen2LinksFromGen1"     "Extract.tblGen2OutcomesHeight"   
-## [13] "Extract.tblGen2OutcomesMath"
+##  [1] "Extract.tblGen1Outcomes"         "Extract.tblGen1Explicit"        
+##  [3] "Extract.tblGen1GeocodeSanitized" "Extract.tblGen1Implicit"        
+##  [5] "Extract.tblGen1Links"            "Extract.tblGen2OutcomesWeight"  
+##  [7] "Extract.tblGen2FatherFromGen1"   "Extract.tblGen2ImplicitFather"  
+##  [9] "Extract.tblGen2Links"            "Extract.tblGen2LinksFromGen1"   
+## [11] "Extract.tblGen2OutcomesHeight"   "Extract.tblGen2OutcomesMath"
 ```
 
 ```r
@@ -137,22 +137,21 @@ ds_file
 ```
 
 ```
-## # A tibble: 13 x 5
-##                     name exists subdirectory
-##                    <chr>  <lgl>        <chr>
-##  1          Gen1Outcomes   TRUE  nlsy79-gen1
-##  2          Gen1Explicit   TRUE  nlsy79-gen1
-##  3  Gen1GeocodeSanitized   TRUE  nlsy79-gen1
-##  4          Gen1Implicit   TRUE  nlsy79-gen1
-##  5             Gen1Links   TRUE  nlsy79-gen1
-##  6    Gen2OutcomesWeight   TRUE  nlsy79-gen2
-##  7 Gen2BirthDateFromGen1   TRUE  nlsy79-gen2
-##  8    Gen2FatherFromGen1   TRUE  nlsy79-gen2
-##  9    Gen2ImplicitFather   TRUE  nlsy79-gen2
-## 10             Gen2Links   TRUE  nlsy79-gen2
-## 11     Gen2LinksFromGen1   TRUE  nlsy79-gen2
-## 12    Gen2OutcomesHeight   TRUE  nlsy79-gen2
-## 13      Gen2OutcomesMath   TRUE  nlsy79-gen2
+## # A tibble: 12 x 6
+##                    name exists subdirectory upload
+##                   <chr>  <lgl>        <chr>  <lgl>
+##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
+##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
+##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
+##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
+##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
+##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
+##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
+##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
+##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
+## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
+## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
+## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -413,32 +412,6 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2BirthDateFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2BirthDateFromGen1.csv 
-## 1.2 Mb
-## # A tibble: 12,686 x 25
-##    R0000100 `"R0214700"` `"R0214800"` `"R9900001"` `"R9900002"`
-##       <int>        <int>        <int>        <int>        <int>
-##  1        1            3            2           -4           -4
-##  2        2            3            2            3         1993
-##  3        3            3            2            6         1981
-##  4        4            3            2            8         1980
-##  5        5            3            1            5         1989
-##  6        6            3            1            8         1991
-##  7        7            3            1            3         1990
-##  8        8            3            2            3         1976
-##  9        9            3            1            3         1991
-## 10       10            3            2            1         1983
-## # ... with 12,676 more rows, and 20 more variables: `"R9900801"` <int>,
-## #   `"R9900802"` <int>, `"R9901601"` <int>, `"R9901602"` <int>,
-## #   `"R9902401"` <int>, `"R9902402"` <int>, `"R9903201"` <int>,
-## #   `"R9903202"` <int>, `"R9904001"` <int>, `"R9904002"` <int>,
-## #   `"R9904801"` <int>, `"R9904802"` <int>, `"R9905601"` <int>,
-## #   `"R9905602"` <int>, `"R9906201"` <int>, `"R9906202"` <int>,
-## #   `"R9906801"` <int>, `"R9906802"` <int>, `"R9907401"` <int>,
-## #   `"R9907402"` <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
 ## Extract.tblGen2FatherFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2FatherFromGen1.csv 
 ## 46.5 Mb
 ## # A tibble: 12,686 x 952
@@ -680,7 +653,7 @@ cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_
 ```
 
 ```
-## upload_duration_in_seconds: 32
+## upload_duration_in_seconds: 29
 ```
 
 The R session information (including the OS info, R version and all
@@ -727,6 +700,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-22 00:19:45 CDT"
+## [1] "2017-06-22 00:29:32 CDT"
 ```
 

@@ -28,7 +28,8 @@ col_types_extract <- readr::cols(
 )
 col_types_mapping <- readr::cols_only(
   name                = readr::col_character(),
-  subdirectory        = readr::col_character()
+  subdirectory        = readr::col_character(),
+  upload              = readr::col_logical()
 )
 
 # ---- load-data ---------------------------------------------------------------
@@ -42,6 +43,7 @@ ds_file <- ds_mapping %>%
     path          = file.path(directory_in, subdirectory, paste0(name, ".csv")),
     exists        = purrr::map_lgl(path, file.exists)
   ) %>%
+  dplyr::filter(upload) %>%
   dplyr::select(name, exists, dplyr::everything())
 ds_file
 

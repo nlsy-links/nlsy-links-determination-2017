@@ -30,7 +30,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers 52 tables.
+1. The current report covers 51 tables.
 
 ## Unanswered Questions
 
@@ -64,7 +64,6 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGen1Links               |    12,686|           95|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
 |Extract     |tblGen1Outcomes            |    12,686|           21|
-|Extract     |tblGen2BirthDateFromGen1   |    12,686|           25|
 |Extract     |tblGen2FatherFromGen1      |    12,686|          952|
 |Extract     |tblGen2ImplicitFather      |    11,504|          111|
 |Extract     |tblGen2Links               |    11,512|          164|
@@ -168,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-22, 00:20 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-22, 00:30 -0500 in 1 seconds.
 
