@@ -42,8 +42,8 @@ This report documents the basic properties of the (input & output) tables kinshi
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
-|Archive     |tblArchiveDescription      |         0|            4|
-|Archive     |tblRelatedValuesArchive    |         0|           24|
+|Archive     |tblArchiveDescription      |        55|            4|
+|Archive     |tblRelatedValuesArchive    |   909,870|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-22, 00:56 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-22, 01:45 -0500 in 1 seconds.
 
