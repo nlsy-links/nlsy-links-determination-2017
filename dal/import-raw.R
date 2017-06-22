@@ -38,43 +38,30 @@ ds_mapping
 
 ds_file <- ds_mapping %>%
   dplyr::mutate(
-    path          = file.path(directory_in, subdirectory, paste0(name, ".csv")),
     table_name    = paste0(schema_name, ".tbl", name),
+    path          = file.path(directory_in, subdirectory, paste0(name, ".csv")),
     exists        = purrr::map_lgl(path, file.exists)
   ) %>%
-  dplyr::select(name, path, dplyr::everything())
+  dplyr::select(name, exists, dplyr::everything())
 ds_file
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 rm(ds_mapping)
 
-ds_entries <- ds_file %>%
-  dplyr::select(name, path) %>%
-  dplyr::mutate(
-    entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
-  )
-ds_entries
-print(object.size(ds_entries), units="MB")
+# ds_entries <- ds_file %>%
+#   dplyr::select(name, path) %>%
+#   dplyr::mutate(
+#     entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
+#   )
+# ds_entries
+# print(object.size(ds_entries), units="MB")
 
 
 rm(directory_in) # rm(col_types_tulsa)
 
 # ---- tweak-data --------------------------------------------------------------
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
-
-# ds_file <- ds_file %>%
-#   dplyr::mutate(
-#     table_name    = paste0(schema_name, ".tbl", name)
-#   ) %>%
-#   dplyr::left_join(
-#     ds_entries %>%
-#       dplyr::select(name, entries)
-#     , by="name"
-#   )
-# rm(ds_entries)
-
-ds_entries %>%
-  purrr::walk(print)
+# ds_entries %>%
+#   purrr::walk(print)
 
 ds_file$table_name
 ds_file
@@ -87,9 +74,6 @@ ds_file
 
 
 # ---- upload-to-db ----------------------------------------------------------
-# lst_ds %>%
-#   purrr::map(function(x)paste(names(x)))
-
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
@@ -105,29 +89,24 @@ RODBC::odbcGetInfo(channel)
 
 for( i in seq_len(nrow(ds_file)) ) {
 
-  d <- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
   cat(ds_file$table_name[[i]], ":", ds_file$path[[i]], "\n")
+
+  d <- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
+  print(object.size(d), units="MB")
   print(d)
   cat("\n")
-}
 
-# purrr::map_int(
-#   ds_file$table_name,
-#   ds_file$path,
-#   function( table_name, path ) {
-#
-#     d <- readr::read_csv(path, col_types = col_types_extract)
-#
-#     RODBC::sqlSave(
-#       channel     = channel,
-#       dat         = d,
-#       tablename   = table_name,
-#       safer       = FALSE,       # Don't keep the existing table.
-#       rownames    = FALSE,
-#       append      = TRUE
-#     )
-#   }
-# ) %>%
-#   purrr::set_names(ds_file$table_name)
+  result_save <- RODBC::sqlSave(
+    channel     = channel,
+    dat         = d,
+    tablename   = ds_file$table_name[[i]],
+    safer       = FALSE,       # Don't keep the existing table.
+    rownames    = FALSE,
+    append      = FALSE
+  )
+
+  cat("Save result:", result_save)
+  cat("\n---------------------------------------------------------------\n")
+}
 
 RODBC::odbcClose(channel); rm(channel)

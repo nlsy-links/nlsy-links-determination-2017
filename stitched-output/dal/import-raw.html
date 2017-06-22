@@ -253,212 +253,43 @@ ds_mapping
 
 <pre><code class="r">ds_file &lt;- ds_mapping %&gt;%
   dplyr::mutate(
-    path          = file.path(directory_in, subdirectory, paste0(name, &quot;.csv&quot;)),
     table_name    = paste0(schema_name, &quot;.tbl&quot;, name),
+    path          = file.path(directory_in, subdirectory, paste0(name, &quot;.csv&quot;)),
     exists        = purrr::map_lgl(path, file.exists)
   ) %&gt;%
-  dplyr::select(name, path, dplyr::everything())
+  dplyr::select(name, exists, dplyr::everything())
 ds_file
 </code></pre>
 
 <pre><code>## # A tibble: 4 x 5
-##           name                                           path subdirectory
-##          &lt;chr&gt;                                          &lt;chr&gt;        &lt;chr&gt;
-## 1 Gen1Outcomes data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv  nlsy79-gen1
-## 2 Gen1Explicit data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv  nlsy79-gen1
-## 3 Gen1Implicit data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv  nlsy79-gen1
-## 4    Gen1Links    data-unshared/raw/nlsy79-gen1/Gen1Links.csv  nlsy79-gen1
-## # ... with 2 more variables: table_name &lt;chr&gt;, exists &lt;lgl&gt;
+##           name exists subdirectory              table_name
+##          &lt;chr&gt;  &lt;lgl&gt;        &lt;chr&gt;                   &lt;chr&gt;
+## 1 Gen1Outcomes   TRUE  nlsy79-gen1 Extract.tblGen1Outcomes
+## 2 Gen1Explicit   TRUE  nlsy79-gen1 Extract.tblGen1Explicit
+## 3 Gen1Implicit   TRUE  nlsy79-gen1 Extract.tblGen1Implicit
+## 4    Gen1Links   TRUE  nlsy79-gen1    Extract.tblGen1Links
+## # ... with 1 more variables: path &lt;chr&gt;
 </code></pre>
 
 <pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
 rm(ds_mapping)
 
-ds_entries &lt;- ds_file %&gt;%
-  dplyr::select(name, path) %&gt;%
-  dplyr::mutate(
-    entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
-  )
-ds_entries
-</code></pre>
-
-<pre><code>## # A tibble: 4 x 3
-##           name                                           path
-##          &lt;chr&gt;                                          &lt;chr&gt;
-## 1 Gen1Outcomes data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv
-## 2 Gen1Explicit data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv
-## 3 Gen1Implicit data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv
-## 4    Gen1Links    data-unshared/raw/nlsy79-gen1/Gen1Links.csv
-## # ... with 1 more variables: entries &lt;list&gt;
-</code></pre>
-
-<pre><code class="r">print(object.size(ds_entries), units=&quot;MB&quot;)
-</code></pre>
-
-<pre><code>## 15.3 Mb
-</code></pre>
-
-<pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
-</code></pre>
-
-<pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
-
-# ds_file &lt;- ds_file %&gt;%
+# ds_entries &lt;- ds_file %&gt;%
+#   dplyr::select(name, path) %&gt;%
 #   dplyr::mutate(
-#     table_name    = paste0(schema_name, &quot;.tbl&quot;, name)
-#   ) %&gt;%
-#   dplyr::left_join(
-#     ds_entries %&gt;%
-#       dplyr::select(name, entries)
-#     , by=&quot;name&quot;
+#     entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
 #   )
-# rm(ds_entries)
+# ds_entries
+# print(object.size(ds_entries), units=&quot;MB&quot;)
 
-ds_entries %&gt;%
-  purrr::walk(print)
+
+rm(directory_in) # rm(col_types_tulsa)
 </code></pre>
 
-<pre><code>## [1] &quot;Gen1Outcomes&quot; &quot;Gen1Explicit&quot; &quot;Gen1Implicit&quot; &quot;Gen1Links&quot;   
-## [1] &quot;data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv&quot;
-## [2] &quot;data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv&quot;
-## [3] &quot;data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv&quot;
-## [4] &quot;data-unshared/raw/nlsy79-gen1/Gen1Links.csv&quot;   
-## [[1]]
-## # A tibble: 12,686 x 21
-##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
-##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-##  1        1        3        2      505       -1       -4       -4       -4
-##  2        2        3        2      502      120       12        9     6841
-##  3        3        3        2       -5       -5       51       46    49444
-##  4        4        3        2      507      110       62       48    55761
-##  5        5        3        1      503      130       90       99    96772
-##  6        6        3        1      504      200       99       99    99393
-##  7        7        3        1      505      131       33       35    47412
-##  8        8        3        2      505      179       43       42    44022
-##  9        9        3        1      506      145       55       51    59683
-## 10       10        3        2      506      115       27       21    30039
-## # ... with 12,676 more rows, and 13 more variables: R0779800 &lt;int&gt;,
-## #   R0779900 &lt;int&gt;, R1773900 &lt;int&gt;, R1774000 &lt;int&gt;, T0897300 &lt;int&gt;,
-## #   T0897400 &lt;int&gt;, T0897500 &lt;int&gt;, T2053800 &lt;int&gt;, T2053900 &lt;int&gt;,
-## #   T2054000 &lt;int&gt;, T3024700 &lt;int&gt;, T3024800 &lt;int&gt;, T3024900 &lt;int&gt;
-## 
-## [[2]]
-## # A tibble: 12,686 x 95
-##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
-##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-##  1        1        1       -4       -4       -4       -4       -4       -4
-##  2        2        2       -4       -4       -4       -4       -4       -4
-##  3        3        3        4        7       -4       -4       -4       -4
-##  4        4        3        3        7       -4       -4       -4       -4
-##  5        5        5        6        6       -4       -4       -4       -4
-##  6        6        5        5        6       -4       -4       -4       -4
-##  7        7        7       -4       -4       -4       -4       -4       -4
-##  8        8        8       -4       -4       -4       -4       -4       -4
-##  9        9        9       -4       -4       -4       -4       -4       -4
-## 10       10       10       -4       -4       -4       -4       -4       -4
-## # ... with 12,676 more rows, and 87 more variables: R0000156 &lt;int&gt;,
-## #   R0000157 &lt;int&gt;, R0000158 &lt;int&gt;, R0000159 &lt;int&gt;, R0000162 &lt;int&gt;,
-## #   R0000163 &lt;int&gt;, R0000164 &lt;int&gt;, R0000165 &lt;int&gt;, R0000166 &lt;int&gt;,
-## #   R0214700 &lt;int&gt;, R0214800 &lt;int&gt;, R4125101 &lt;int&gt;, R4125801 &lt;int&gt;,
-## #   R4126501 &lt;int&gt;, R4127201 &lt;int&gt;, R4127901 &lt;int&gt;, R4128601 &lt;int&gt;,
-## #   R4129301 &lt;int&gt;, R4130001 &lt;int&gt;, R4130701 &lt;int&gt;, R4131401 &lt;int&gt;,
-## #   R4132101 &lt;int&gt;, R4132801 &lt;int&gt;, R4133701 &lt;int&gt;, R4521500 &lt;int&gt;,
-## #   R4521700 &lt;int&gt;, R4521800 &lt;int&gt;, R4521900 &lt;int&gt;, R4522000 &lt;int&gt;,
-## #   R4522100 &lt;int&gt;, R4522200 &lt;int&gt;, R4522300 &lt;int&gt;, R4522400 &lt;int&gt;,
-## #   R4522500 &lt;int&gt;, R4522600 &lt;int&gt;, R4522700 &lt;int&gt;, R4522800 &lt;int&gt;,
-## #   T0002000 &lt;int&gt;, T0002100 &lt;int&gt;, T0002200 &lt;int&gt;, T0002300 &lt;int&gt;,
-## #   T0002400 &lt;int&gt;, T0002500 &lt;int&gt;, T0002600 &lt;int&gt;, T0002700 &lt;int&gt;,
-## #   T0002800 &lt;int&gt;, T0002900 &lt;int&gt;, T0003000 &lt;int&gt;, T0003100 &lt;int&gt;,
-## #   T0003200 &lt;int&gt;, T0003300 &lt;int&gt;, T0003400 &lt;int&gt;, T0003500 &lt;int&gt;,
-## #   T0003600 &lt;int&gt;, T0003700 &lt;int&gt;, T0003800 &lt;int&gt;, T0003900 &lt;int&gt;,
-## #   T0004000 &lt;int&gt;, T0004100 &lt;int&gt;, T0004200 &lt;int&gt;, T0004300 &lt;int&gt;,
-## #   T0004400 &lt;int&gt;, T0004500 &lt;int&gt;, T2261500 &lt;int&gt;, T2261600 &lt;int&gt;,
-## #   T2261700 &lt;int&gt;, T2261800 &lt;int&gt;, T2261900 &lt;int&gt;, T2262000 &lt;int&gt;,
-## #   T2262100 &lt;int&gt;, T2262200 &lt;int&gt;, T2262300 &lt;int&gt;, T2262400 &lt;int&gt;,
-## #   T2262500 &lt;int&gt;, T2262600 &lt;int&gt;, T2262700 &lt;int&gt;, T2262800 &lt;int&gt;,
-## #   T2262900 &lt;int&gt;, T2263000 &lt;int&gt;, T2263100 &lt;int&gt;, T2263200 &lt;int&gt;,
-## #   T2263300 &lt;int&gt;, T2263400 &lt;int&gt;, T2263500 &lt;int&gt;, T2263600 &lt;int&gt;,
-## #   T2263700 &lt;int&gt;, T2263800 &lt;int&gt;
-## 
-## [[3]]
-## # A tibble: 12,686 x 101
-##    H0001600 H0001700 H0001800 H0001900 H0002000 H0002100 H0002200 H0002300
-##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-##  1       -4       -4       -4       -4       -4       -4       -4       -4
-##  2        0        1       55        0       -4       -4       -4       -4
-##  3        1       -4       -4        1     4920       -4       -4       -4
-##  4       -4       -4       -4       -4       -4       -4       -4       -4
-##  5       -4       -4       -4       -4       -4       -4       -4       -4
-##  6        0        4       54        1     3039       -4       -4       -4
-##  7       -2       -4       -4       -4       -4       -4       -4       -4
-##  8        1       -4       -4        1     3625     5860     7851       -4
-##  9        1       -4       -4        0       -4       -4       -4       -4
-## 10       -4       -4       -4       -4       -4       -4       -4       -4
-## # ... with 12,676 more rows, and 93 more variables: H0002400 &lt;int&gt;,
-## #   H0002500 &lt;int&gt;, H0002600 &lt;int&gt;, H0002700 &lt;int&gt;, H0002800 &lt;int&gt;,
-## #   H0002900 &lt;int&gt;, H0003000 &lt;int&gt;, H0003100 &lt;int&gt;, H0013600 &lt;int&gt;,
-## #   H0013700 &lt;int&gt;, H0013800 &lt;int&gt;, H0013900 &lt;int&gt;, H0014000 &lt;int&gt;,
-## #   H0014100 &lt;int&gt;, H0014200 &lt;int&gt;, H0014300 &lt;int&gt;, H0014400 &lt;int&gt;,
-## #   H0014500 &lt;int&gt;, H0014700 &lt;int&gt;, H0014800 &lt;int&gt;, H0014900 &lt;int&gt;,
-## #   H0015000 &lt;int&gt;, H0015100 &lt;int&gt;, H0015200 &lt;int&gt;, H0015300 &lt;int&gt;,
-## #   H0015400 &lt;int&gt;, H0015500 &lt;int&gt;, H0015600 &lt;int&gt;, H0015700 &lt;int&gt;,
-## #   H0015800 &lt;int&gt;, H0015803 &lt;int&gt;, H0015804 &lt;int&gt;, R0000100 &lt;int&gt;,
-## #   R0006100 &lt;int&gt;, R0006500 &lt;int&gt;, R0007300 &lt;int&gt;, R0007700 &lt;int&gt;,
-## #   R0007900 &lt;int&gt;, R0214700 &lt;int&gt;, R0214800 &lt;int&gt;, R2302900 &lt;int&gt;,
-## #   R2303100 &lt;int&gt;, R2303200 &lt;int&gt;, R2303300 &lt;int&gt;, R2303500 &lt;int&gt;,
-## #   R2303600 &lt;int&gt;, R2505100 &lt;int&gt;, R2505300 &lt;int&gt;, R2505400 &lt;int&gt;,
-## #   R2505500 &lt;int&gt;, R2505700 &lt;int&gt;, R2505800 &lt;int&gt;, R2737900 &lt;int&gt;,
-## #   R2837200 &lt;int&gt;, R2837300 &lt;int&gt;, R2837400 &lt;int&gt;, R2837500 &lt;int&gt;,
-## #   R2837600 &lt;int&gt;, R2837700 &lt;int&gt;, R2837800 &lt;int&gt;, R2837900 &lt;int&gt;,
-## #   R2838000 &lt;int&gt;, R2838100 &lt;int&gt;, R2838200 &lt;int&gt;, R2838300 &lt;int&gt;,
-## #   R2838400 &lt;int&gt;, R2838500 &lt;int&gt;, R2838600 &lt;int&gt;, R2838700 &lt;int&gt;,
-## #   R2838800 &lt;int&gt;, R2838900 &lt;int&gt;, R2839000 &lt;int&gt;, R2839100 &lt;int&gt;,
-## #   R2839200 &lt;int&gt;, R2839300 &lt;int&gt;, R2839400 &lt;int&gt;, R2839500 &lt;int&gt;,
-## #   R2839600 &lt;int&gt;, R2839700 &lt;int&gt;, R2839800 &lt;int&gt;, R2839900 &lt;int&gt;,
-## #   R2840000 &lt;int&gt;, R2840100 &lt;int&gt;, R2840200 &lt;int&gt;, R2840300 &lt;int&gt;,
-## #   R2840400 &lt;int&gt;, R2840500 &lt;int&gt;, R2840600 &lt;int&gt;, R2840700 &lt;int&gt;,
-## #   R2840800 &lt;int&gt;, R2840900 &lt;int&gt;, R2841000 &lt;int&gt;, R2841100 &lt;int&gt;
-## 
-## [[4]]
-## # A tibble: 12,686 x 95
-##    R0000100 R0000149 R0000300 R0000500 R0009100 R0009300 R0172500 R0172600
-##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-##  1        1        1        9       58        1        1        3        3
-##  2        2        2        1       59        8        7        2       28
-##  3        3        3        8       61        3        1        2        8
-##  4        4        3        8       62        3        2        2        8
-##  5        5        5        7       59        1        0        4       19
-##  6        6        5       10       60        1        1        4       21
-##  7        7        7        6       64        1        0        2       13
-##  8        8        8        7       58        7        7        2       15
-##  9        9        9        7       63        4        0        2       13
-## 10       10       10       10       60        3        2        2        7
-## # ... with 12,676 more rows, and 87 more variables: R0214700 &lt;int&gt;,
-## #   R0214800 &lt;int&gt;, R0216500 &lt;int&gt;, R0329200 &lt;int&gt;, R0329210 &lt;int&gt;,
-## #   R0406510 &lt;int&gt;, R0410100 &lt;int&gt;, R0410300 &lt;int&gt;, R0530700 &lt;int&gt;,
-## #   R0530800 &lt;int&gt;, R0619010 &lt;int&gt;, R0809900 &lt;int&gt;, R0810000 &lt;int&gt;,
-## #   R0898310 &lt;int&gt;, R1045700 &lt;int&gt;, R1045800 &lt;int&gt;, R1145110 &lt;int&gt;,
-## #   R1427500 &lt;int&gt;, R1427600 &lt;int&gt;, R1520310 &lt;int&gt;, R1774100 &lt;int&gt;,
-## #   R1774200 &lt;int&gt;, R1794600 &lt;int&gt;, R1794700 &lt;int&gt;, R1891010 &lt;int&gt;,
-## #   R2156200 &lt;int&gt;, R2156300 &lt;int&gt;, R2258110 &lt;int&gt;, R2365700 &lt;int&gt;,
-## #   R2365800 &lt;int&gt;, R2445510 &lt;int&gt;, R2742500 &lt;int&gt;, R2742600 &lt;int&gt;,
-## #   R2871300 &lt;int&gt;, R2986100 &lt;int&gt;, R2986200 &lt;int&gt;, R3075000 &lt;int&gt;,
-## #   R3302500 &lt;int&gt;, R3302600 &lt;int&gt;, R3401700 &lt;int&gt;, R3573400 &lt;int&gt;,
-## #   R3573500 &lt;int&gt;, R3657100 &lt;int&gt;, R3917600 &lt;int&gt;, R3917700 &lt;int&gt;,
-## #   R4007600 &lt;int&gt;, R4100200 &lt;int&gt;, R4100201 &lt;int&gt;, R4100202 &lt;int&gt;,
-## #   R4418700 &lt;int&gt;, R4500200 &lt;int&gt;, R4500201 &lt;int&gt;, R4500202 &lt;int&gt;,
-## #   R5081700 &lt;int&gt;, R5167000 &lt;int&gt;, R5200200 &lt;int&gt;, R5200201 &lt;int&gt;,
-## #   R5200202 &lt;int&gt;, R6435300 &lt;int&gt;, R6435301 &lt;int&gt;, R6435302 &lt;int&gt;,
-## #   R6479800 &lt;int&gt;, R6963300 &lt;int&gt;, R6963301 &lt;int&gt;, R6963302 &lt;int&gt;,
-## #   R7007500 &lt;int&gt;, R7656300 &lt;int&gt;, R7656301 &lt;int&gt;, R7656302 &lt;int&gt;,
-## #   R7704800 &lt;int&gt;, R8423200 &lt;int&gt;, R8423201 &lt;int&gt;, R8423202 &lt;int&gt;,
-## #   R8497200 &lt;int&gt;, R9908000 &lt;int&gt;, T0967300 &lt;int&gt;, T0967301 &lt;int&gt;,
-## #   T0967302 &lt;int&gt;, T0989000 &lt;int&gt;, T2190500 &lt;int&gt;, T2190501 &lt;int&gt;,
-## #   T2190502 &lt;int&gt;, T2210800 &lt;int&gt;, T2260600 &lt;int&gt;, T2260601 &lt;int&gt;,
-## #   T2260602 &lt;int&gt;, T3108700 &lt;int&gt;
-</code></pre>
+<pre><code class="r"># ds_entries %&gt;%
+#   purrr::walk(print)
 
-<pre><code class="r">ds_file$table_name
+ds_file$table_name
 </code></pre>
 
 <pre><code>## [1] &quot;Extract.tblGen1Outcomes&quot; &quot;Extract.tblGen1Explicit&quot;
@@ -469,22 +300,19 @@ ds_entries %&gt;%
 </code></pre>
 
 <pre><code>## # A tibble: 4 x 5
-##           name                                           path subdirectory
-##          &lt;chr&gt;                                          &lt;chr&gt;        &lt;chr&gt;
-## 1 Gen1Outcomes data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv  nlsy79-gen1
-## 2 Gen1Explicit data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv  nlsy79-gen1
-## 3 Gen1Implicit data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv  nlsy79-gen1
-## 4    Gen1Links    data-unshared/raw/nlsy79-gen1/Gen1Links.csv  nlsy79-gen1
-## # ... with 2 more variables: table_name &lt;chr&gt;, exists &lt;lgl&gt;
+##           name exists subdirectory              table_name
+##          &lt;chr&gt;  &lt;lgl&gt;        &lt;chr&gt;                   &lt;chr&gt;
+## 1 Gen1Outcomes   TRUE  nlsy79-gen1 Extract.tblGen1Outcomes
+## 2 Gen1Explicit   TRUE  nlsy79-gen1 Extract.tblGen1Explicit
+## 3 Gen1Implicit   TRUE  nlsy79-gen1 Extract.tblGen1Implicit
+## 4    Gen1Links   TRUE  nlsy79-gen1    Extract.tblGen1Links
+## # ... with 1 more variables: path &lt;chr&gt;
 </code></pre>
 
 <pre><code class="r"># Sniff out problems
 </code></pre>
 
-<pre><code class="r"># lst_ds %&gt;%
-#   purrr::map(function(x)paste(names(x)))
-
-channel &lt;- open_dsn_channel()
+<pre><code class="r">channel &lt;- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 </code></pre>
 
@@ -507,14 +335,29 @@ RODBC::odbcGetInfo(channel)
 
 for( i in seq_len(nrow(ds_file)) ) {
 
-  d &lt;- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
   cat(ds_file$table_name[[i]], &quot;:&quot;, ds_file$path[[i]], &quot;\n&quot;)
+
+  d &lt;- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
+  print(object.size(d), units=&quot;MB&quot;)
   print(d)
   cat(&quot;\n&quot;)
+
+  result_save &lt;- RODBC::sqlSave(
+    channel     = channel,
+    dat         = d,
+    tablename   = ds_file$table_name[[i]],
+    safer       = FALSE,       # Don&#39;t keep the existing table.
+    rownames    = FALSE,
+    append      = TRUE
+  )
+
+  cat(&quot;Save result:&quot;, result_save)
+  cat(&quot;\n---------------------------------------------------------------\n&quot;)
 }
 </code></pre>
 
 <pre><code>## Extract.tblGen1Outcomes : data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv 
+## 1 Mb
 ## # A tibble: 12,686 x 21
 ##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
 ##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
@@ -533,7 +376,10 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T0897400 &lt;int&gt;, T0897500 &lt;int&gt;, T2053800 &lt;int&gt;, T2053900 &lt;int&gt;,
 ## #   T2054000 &lt;int&gt;, T3024700 &lt;int&gt;, T3024800 &lt;int&gt;, T3024900 &lt;int&gt;
 ## 
+## Save result: 1
+## ---------------------------------------------------------------
 ## Extract.tblGen1Explicit : data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv 
+## 4.6 Mb
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
 ##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
@@ -571,7 +417,10 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T2263300 &lt;int&gt;, T2263400 &lt;int&gt;, T2263500 &lt;int&gt;, T2263600 &lt;int&gt;,
 ## #   T2263700 &lt;int&gt;, T2263800 &lt;int&gt;
 ## 
+## Save result: 1
+## ---------------------------------------------------------------
 ## Extract.tblGen1Implicit : data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv 
+## 4.9 Mb
 ## # A tibble: 12,686 x 101
 ##    H0001600 H0001700 H0001800 H0001900 H0002000 H0002100 H0002200 H0002300
 ##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
@@ -610,7 +459,10 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   R2840400 &lt;int&gt;, R2840500 &lt;int&gt;, R2840600 &lt;int&gt;, R2840700 &lt;int&gt;,
 ## #   R2840800 &lt;int&gt;, R2840900 &lt;int&gt;, R2841000 &lt;int&gt;, R2841100 &lt;int&gt;
 ## 
+## Save result: 1
+## ---------------------------------------------------------------
 ## Extract.tblGen1Links : data-unshared/raw/nlsy79-gen1/Gen1Links.csv 
+## 4.6 Mb
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000300 R0000500 R0009100 R0009300 R0172500 R0172600
 ##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
@@ -647,28 +499,12 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T0967302 &lt;int&gt;, T0989000 &lt;int&gt;, T2190500 &lt;int&gt;, T2190501 &lt;int&gt;,
 ## #   T2190502 &lt;int&gt;, T2210800 &lt;int&gt;, T2260600 &lt;int&gt;, T2260601 &lt;int&gt;,
 ## #   T2260602 &lt;int&gt;, T3108700 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
 </code></pre>
 
-<pre><code class="r"># purrr::map_int(
-#   ds_file$table_name,
-#   ds_file$path,
-#   function( table_name, path ) {
-#
-#     d &lt;- readr::read_csv(path, col_types = col_types_extract)
-#
-#     RODBC::sqlSave(
-#       channel     = channel,
-#       dat         = d,
-#       tablename   = table_name,
-#       safer       = FALSE,       # Don&#39;t keep the existing table.
-#       rownames    = FALSE,
-#       append      = TRUE
-#     )
-#   }
-# ) %&gt;%
-#   purrr::set_names(ds_file$table_name)
-
-RODBC::odbcClose(channel); rm(channel)
+<pre><code class="r">RODBC::odbcClose(channel); rm(channel)
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -700,14 +536,15 @@ packages used):</p>
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
 ##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
 ##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       purrr_0.2.2.2    hms_0.3         
-## [17] compiler_3.4.0   knitr_1.16       bindr_0.1        tibble_1.3.3
+## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
+## [17] hms_0.3          compiler_3.4.0   knitr_1.16       bindr_0.1       
+## [21] tibble_1.3.3
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 23:25:58 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 23:37:07 CDT&quot;
 </code></pre>
 
 </body>

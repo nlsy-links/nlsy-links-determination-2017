@@ -58,11 +58,11 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Enum        |tblLUSurveySource          |         4|            4|
 |Enum        |tblLUTristate              |         3|            4|
 |Enum        |tblLUYesNo                 |         6|            4|
-|Extract     |tblGen1Explicit            |         0|           95|
-|Extract     |tblGen1Implicit            |         0|          101|
-|Extract     |tblGen1Links               |         0|           95|
+|Extract     |tblGen1Explicit            |    12,686|           95|
+|Extract     |tblGen1Implicit            |    12,686|          101|
+|Extract     |tblGen1Links               |    12,686|           95|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
-|Extract     |tblGen1Outcomes            |         0|           21|
+|Extract     |tblGen1Outcomes            |    12,686|           21|
 |Extract     |tblGen2FatherFromGen1      |         0|          952|
 |Extract     |tblGen2ImplicitFather      |         0|          111|
 |Extract     |tblGen2Links               |         0|          164|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 22:40 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-21, 23:39 -0500 in 1 seconds.
 
