@@ -104,7 +104,7 @@ for( i in seq_len(nrow(ds_file)) ) {
     tablename   = ds_file$table_name[[i]],
     safer       = FALSE,       # Don't keep the existing table.
     rownames    = FALSE,
-    append      = FALSE
+    append      = FALSE        # Toggle this to 'TRUE' the first time a table is uploaded.
   )
 
   cat("Save result:", result_save)

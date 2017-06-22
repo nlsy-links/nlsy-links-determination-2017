@@ -30,7 +30,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers 51 tables.
+1. The current report covers 52 tables.
 
 ## Unanswered Questions
 
@@ -63,13 +63,14 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGen1Links               |    12,686|           95|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
 |Extract     |tblGen1Outcomes            |    12,686|           21|
-|Extract     |tblGen2FatherFromGen1      |         0|          952|
-|Extract     |tblGen2ImplicitFather      |         0|          111|
-|Extract     |tblGen2Links               |         0|          164|
-|Extract     |tblGen2LinksFromGen1       |         0|          106|
-|Extract     |tblGen2OutcomesHeight      |         0|           46|
-|Extract     |tblGen2OutcomesMath        |         0|           44|
-|Extract     |tblGen2OutcomesWeight      |         0|           13|
+|Extract     |tblGen2BirthDateFromGen1   |    12,686|           25|
+|Extract     |tblGen2FatherFromGen1      |    12,686|          952|
+|Extract     |tblGen2ImplicitFather      |    11,504|          111|
+|Extract     |tblGen2Links               |    11,512|          164|
+|Extract     |tblGen2LinksFromGen1       |    12,686|          106|
+|Extract     |tblGen2OutcomesHeight      |    11,504|           46|
+|Extract     |tblGen2OutcomesMath        |    11,504|           44|
+|Extract     |tblGen2OutcomesWeight      |    11,504|           13|
 |Extract     |tblGeocodeSanitized        |         0|           29|
 |Extract     |tblLinks2004Gen1           |         0|            9|
 |Extract     |tblLinks2004Gen2           |         0|            5|
@@ -167,5 +168,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 23:42 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-21, 23:56 -0500 in 1 seconds.
 
