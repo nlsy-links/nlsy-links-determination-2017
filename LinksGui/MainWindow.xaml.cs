@@ -282,8 +282,8 @@ namespace LinksGui {
 			ta.Fill(_dsImport.tblGen2FatherFromGen1);
 		}
 		private void LoadGeocodeSanitized ( ) {
-			BA.ImportDataSetTableAdapters.tblGeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGeocodeSanitizedTableAdapter();
-			ta.Fill(_dsImport.tblGeocodeSanitized);
+            BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter();
+            ta.Fill(_dsImport.tblGen1GeocodeSanitized);
 		}
 		private void LoadLinks2004Gen1 ( ) {
 			BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter();
