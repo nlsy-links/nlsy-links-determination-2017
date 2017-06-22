@@ -74,6 +74,8 @@ ds_file
 
 
 # ---- upload-to-db ----------------------------------------------------------
+upload_start_time <- Sys.time()
+
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
@@ -110,3 +112,4 @@ for( i in seq_len(nrow(ds_file)) ) {
 }
 
 RODBC::odbcClose(channel); rm(channel)
+cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_start_time, units="secs"))), "\n")

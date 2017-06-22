@@ -130,6 +130,8 @@ ds_file
 
 
 ```r
+upload_start_time <- Sys.time()
+
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 ```
@@ -168,7 +170,7 @@ for( i in seq_len(nrow(ds_file)) ) {
     tablename   = ds_file$table_name[[i]],
     safer       = FALSE,       # Don't keep the existing table.
     rownames    = FALSE,
-    append      = TRUE
+    append      = FALSE
   )
 
   cat("Save result:", result_save)
@@ -327,6 +329,11 @@ for( i in seq_len(nrow(ds_file)) ) {
 
 ```r
 RODBC::odbcClose(channel); rm(channel)
+cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_start_time, units="secs"))), "\n")
+```
+
+```
+## upload_duration_in_seconds: 9
 ```
 
 The R session information (including the OS info, R version and all
@@ -358,12 +365,13 @@ sessionInfo()
 ## [1] bindrcpp_0.1 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
-## [17] hms_0.3          compiler_3.4.0   knitr_1.16       bindr_0.1       
-## [21] tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] assertthat_0.2.0 digest_0.6.12    rprojroot_1.2    tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8
 ```
 
 ```r
@@ -371,6 +379,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 23:37:07 CDT"
+## [1] "2017-06-21 23:42:36 CDT"
 ```
 
