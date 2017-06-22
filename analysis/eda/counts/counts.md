@@ -46,10 +46,10 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Archive     |tblRelatedValuesArchive    |         0|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
-|Enum        |tblLUBioparent             |         0|            2|
-|Enum        |tblLUGender                |         0|            2|
-|Enum        |tblLUMultipleBirth         |         0|            2|
-|Enum        |tblLURaceCohort            |         0|            2|
+|Enum        |tblLUBioparent-not-used    |         0|            2|
+|Enum        |tblLUGender                |         3|            4|
+|Enum        |tblLUMultipleBirth         |         5|            4|
+|Enum        |tblLURaceCohort            |         3|            4|
 |Enum        |tblLURosterGen1_NOTUSED    |         0|            2|
 |Enum        |tblLURosterGen1Assignment  |         0|           16|
 |Enum        |tblLUTristate              |         0|            2|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 16:43 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-21, 20:13 -0500 in 1 seconds.
 

@@ -22,6 +22,14 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 directory_in              <- "data-public/metadata/tables"
 # schema_name               <- "Metadata"
 
+
+col_types_minimal <- readr::cols_only(
+  ID                                  = readr::col_integer(),
+  Label                               = readr::col_character(),
+  Active                              = readr::col_logical(),
+  Notes                               = readr::col_character()
+)
+
 lst_col_types <- list(
   Item = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -32,18 +40,8 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUExtractSource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUMarkerEvidence = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUExtractSource = col_types_minimal,
+  LUMarkerEvidence = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -51,18 +49,10 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LURelationshipPath = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUSurveySource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUMultipleBirth = col_types_minimal,
+  LURaceCohort = col_types_minimal,
+  LURelationshipPath = col_types_minimal,
+  LUSurveySource = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -149,6 +139,7 @@ ds_entries <- ds_file %>%
   )
 ds_entries
 
+# readr::read_csv("data-public/metadata/tables/LUGender.csv", col_types=lst_col_types$LUGender)
 
 rm(directory_in) # rm(col_types_tulsa)
 

@@ -420,7 +420,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Enum].[tblLUBioparent](
+CREATE TABLE [Enum].[tblLUBioparent-not-used](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](3) NOT NULL,
  CONSTRAINT [PK_tblLUBioparent] PRIMARY KEY CLUSTERED 
@@ -436,6 +436,8 @@ GO
 CREATE TABLE [Enum].[tblLUGender](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](15) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUGender] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -449,6 +451,8 @@ GO
 CREATE TABLE [Enum].[tblLUMultipleBirth](
 	[ID] [tinyint] NOT NULL,
 	[Label] [char](10) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLUMultipleBirth] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -462,6 +466,8 @@ GO
 CREATE TABLE [Enum].[tblLURaceCohort](
 	[ID] [tinyint] NOT NULL,
 	[Label] [varchar](15) NOT NULL,
+	[Active] [varchar](5) NOT NULL,
+	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblLURaceCohort] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -2946,6 +2952,20 @@ ALTER TABLE [Enum].[tblLURosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_t
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Enum].[tblLURosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
+GO
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblItem] FOREIGN KEY([Item])
+REFERENCES [Metadata].[tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblItem]
+GO
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUExtractSource] FOREIGN KEY([ExtractSource])
+REFERENCES [Metadata].[tblLUExtractSource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUExtractSource]
 GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH] FOREIGN KEY([BiodadInHH])
 REFERENCES [Enum].[tblLUYesNo] ([ID])

@@ -1,8 +1,11 @@
 table_name,schema_name,enum_name,enum_file,c_sharp_type,convert_to_enum
 Item,Metadata,Item,EnumLookupTables.cs,short,TRUE
 LUExtractSource,Metadata,ExtractSource,EnumLookupTables.cs,byte,TRUE
+LUGender,Enum,Gender,EnumLookupTables.cs,byte,TRUE
 LUMarkerEvidence,Metadata,MarkerEvidence,EnumLookupTables.cs,byte,TRUE
 LUMarkerType,Metadata,MarkerType,EnumLookupTables.cs,byte,TRUE
+LUMultipleBirth,Enum,MultipleBirth,EnumLookupTables.cs,byte,TRUE
+LURaceCohort,Enum,RaceCohort,EnumLookupTables.cs,byte,TRUE
 LURelationshipPath,Metadata,RelationshipPath,EnumLookupTables.cs,byte,TRUE
 LUSurveySource,Metadata,SurveySource,EnumLookupTables.cs,byte,TRUE
 MzManual,Metadata,NA_character,NA_character,NA_character,FALSE

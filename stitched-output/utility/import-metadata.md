@@ -34,6 +34,14 @@ requireNamespace("testit"                 ) #For asserting conditions meet expec
 directory_in              <- "data-public/metadata/tables"
 # schema_name               <- "Metadata"
 
+
+col_types_minimal <- readr::cols_only(
+  ID                                  = readr::col_integer(),
+  Label                               = readr::col_character(),
+  Active                              = readr::col_logical(),
+  Notes                               = readr::col_character()
+)
+
 lst_col_types <- list(
   Item = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -44,18 +52,8 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUExtractSource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUMarkerEvidence = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUExtractSource = col_types_minimal,
+  LUMarkerEvidence = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -63,18 +61,10 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LURelationshipPath = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
-  LUSurveySource = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  LUMultipleBirth = col_types_minimal,
+  LURaceCohort = col_types_minimal,
+  LURelationshipPath = col_types_minimal,
+  LUSurveySource = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -144,17 +134,20 @@ ds_mapping
 ```
 
 ```
-## # A tibble: 8 x 5
-##           table_name schema_name        enum_name c_sharp_type
-##                <chr>       <chr>            <chr>        <chr>
-## 1               Item    Metadata             Item        short
-## 2    LUExtractSource    Metadata    ExtractSource         byte
-## 3   LUMarkerEvidence    Metadata   MarkerEvidence         byte
-## 4       LUMarkerType    Metadata       MarkerType         byte
-## 5 LURelationshipPath    Metadata RelationshipPath         byte
-## 6     LUSurveySource    Metadata     SurveySource         byte
-## 7           MzManual    Metadata     NA_character NA_character
-## 8           Variable    Metadata     NA_character NA_character
+## # A tibble: 11 x 5
+##            table_name schema_name        enum_name c_sharp_type
+##                 <chr>       <chr>            <chr>        <chr>
+##  1               Item    Metadata             Item        short
+##  2    LUExtractSource    Metadata    ExtractSource         byte
+##  3           LUGender        Enum           Gender         byte
+##  4   LUMarkerEvidence    Metadata   MarkerEvidence         byte
+##  5       LUMarkerType    Metadata       MarkerType         byte
+##  6    LUMultipleBirth        Enum    MultipleBirth         byte
+##  7       LURaceCohort        Enum       RaceCohort         byte
+##  8 LURelationshipPath    Metadata RelationshipPath         byte
+##  9     LUSurveySource    Metadata     SurveySource         byte
+## 10           MzManual    Metadata     NA_character NA_character
+## 11           Variable    Metadata     NA_character NA_character
 ## # ... with 1 more variables: convert_to_enum <lgl>
 ```
 
@@ -171,17 +164,19 @@ ds_file
 ```
 
 ```
-## # A tibble: 8 x 4
-##                 name                                               path
-##                <chr>                                              <chr>
-## 1               Item               data-public/metadata/tables/Item.csv
-## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-## 7           MzManual           data-public/metadata/tables/MzManual.csv
-## 8           Variable           data-public/metadata/tables/Variable.csv
+## # A tibble: 10 x 4
+##                  name                                               path
+##                 <chr>                                              <chr>
+##  1               Item               data-public/metadata/tables/Item.csv
+##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
+##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
+##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+##  9           MzManual           data-public/metadata/tables/MzManual.csv
+## 10           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 2 more variables: col_types <list>, exists <lgl>
 ```
 
@@ -197,21 +192,25 @@ ds_entries
 ```
 
 ```
-## # A tibble: 8 x 4
-##                 name                                               path
-##                <chr>                                              <chr>
-## 1               Item               data-public/metadata/tables/Item.csv
-## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-## 7           MzManual           data-public/metadata/tables/MzManual.csv
-## 8           Variable           data-public/metadata/tables/Variable.csv
+## # A tibble: 10 x 4
+##                  name                                               path
+##                 <chr>                                              <chr>
+##  1               Item               data-public/metadata/tables/Item.csv
+##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
+##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
+##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+##  9           MzManual           data-public/metadata/tables/MzManual.csv
+## 10           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 2 more variables: col_types <list>, entries <list>
 ```
 
 ```r
+# readr::read_csv("data-public/metadata/tables/LUGender.csv", col_types=lst_col_types$LUGender)
+
 rm(directory_in) # rm(col_types_tulsa)
 ```
 
@@ -291,6 +290,21 @@ ds_file$entries %>%
 ## 10    14      BabyDaddyAlive        0   TRUE  <NA>
 ## # ... with 18 more rows
 ## # A tibble: 5 x 4
+##      ID      Label Active
+##   <int>      <chr>  <lgl>
+## 1     0         No   TRUE
+## 2     2       Twin   TRUE
+## 3     3       Trip   TRUE
+## 4     4 TwinOrTrip   TRUE
+## 5   255  DoNotKnow   TRUE
+## # ... with 1 more variables: Notes <chr>
+## # A tibble: 3 x 4
+##      ID    Label Active Notes
+##   <int>    <chr>  <lgl> <chr>
+## 1     1 Hispanic   TRUE  <NA>
+## 2     2    Black   TRUE  <NA>
+## 3   255     Nbnh   TRUE  <NA>
+## # A tibble: 5 x 4
 ##      ID          Label Active                                Notes
 ##   <int>          <chr>  <lgl>                                <chr>
 ## 1     1 Gen1Housemates   TRUE                                 <NA>
@@ -361,10 +375,11 @@ ds_file$table_name
 ```
 
 ```
-## [1] "Metadata.tblItem"               "Metadata.tblLUExtractSource"   
-## [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
-## [5] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
-## [7] "Metadata.tblMzManual"           "Metadata.tblVariable"
+##  [1] "Metadata.tblItem"               "Metadata.tblLUExtractSource"   
+##  [3] "Metadata.tblLUMarkerEvidence"   "Metadata.tblLUMarkerType"      
+##  [5] "Enum.tblLUMultipleBirth"        "Enum.tblLURaceCohort"          
+##  [7] "Metadata.tblLURelationshipPath" "Metadata.tblLUSurveySource"    
+##  [9] "Metadata.tblMzManual"           "Metadata.tblVariable"
 ```
 
 ```r
@@ -372,17 +387,19 @@ ds_file
 ```
 
 ```
-## # A tibble: 8 x 11
-##                 name                                               path
-##                <chr>                                              <chr>
-## 1               Item               data-public/metadata/tables/Item.csv
-## 2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
-## 3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
-## 4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
-## 5 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
-## 6     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
-## 7           MzManual           data-public/metadata/tables/MzManual.csv
-## 8           Variable           data-public/metadata/tables/Variable.csv
+## # A tibble: 10 x 11
+##                  name                                               path
+##                 <chr>                                              <chr>
+##  1               Item               data-public/metadata/tables/Item.csv
+##  2    LUExtractSource    data-public/metadata/tables/LUExtractSource.csv
+##  3   LUMarkerEvidence   data-public/metadata/tables/LUMarkerEvidence.csv
+##  4       LUMarkerType       data-public/metadata/tables/LUMarkerType.csv
+##  5    LUMultipleBirth    data-public/metadata/tables/LUMultipleBirth.csv
+##  6       LURaceCohort       data-public/metadata/tables/LURaceCohort.csv
+##  7 LURelationshipPath data-public/metadata/tables/LURelationshipPath.csv
+##  8     LUSurveySource     data-public/metadata/tables/LUSurveySource.csv
+##  9           MzManual           data-public/metadata/tables/MzManual.csv
+## 10           Variable           data-public/metadata/tables/Variable.csv
 ## # ... with 9 more variables: col_types <list>, exists <lgl>,
 ## #   schema_name <chr>, enum_name <chr>, c_sharp_type <chr>,
 ## #   convert_to_enum <lgl>, table_name <chr>, sql_delete <chr>,
@@ -587,6 +604,20 @@ ds_enum %>%
 ##     Gen1AlwaysLivedWithBothBioparents                            =    50, 
 ## }
 ##  
+## public enum MultipleBirth {
+##     No                                                           =     0, 
+##     Twin                                                         =     2, 
+##     Trip                                                         =     3, 
+##     TwinOrTrip                                                   =     4, // Currently Then Gen1 algorithm doesn't distinguish.
+##     DoNotKnow                                                    =   255, 
+## }
+##  
+## public enum RaceCohort {
+##     Hispanic                                                     =     1, 
+##     Black                                                        =     2, 
+##     Nbnh                                                         =   255, 
+## }
+##  
 ## public enum RelationshipPath {
 ##     Gen1Housemates                                               =     1, 
 ##     Gen2Siblings                                                 =     2, 
@@ -629,7 +660,7 @@ RODBC::odbcGetInfo(channel)
 
 ```
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "13.00.4001"                "03.80" 
+## "Microsoft SQL Server"           "13.00.4202"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
 ##     "local-nlsy-links"      "msodbcsql13.dll"           "14.00.0500" 
 ##               ODBC_Ver            Server_Name 
@@ -650,10 +681,12 @@ delete_results
 ##                             -2                             -2 
 ##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
 ##                             -2                             -2 
+##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
+##                             -2                             -2 
 ## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
 ##                             -2                             -2 
 ##           Metadata.tblMzManual           Metadata.tblVariable 
-##                             -2                             -2
+##                             -2                             -1
 ```
 
 ```r
@@ -680,6 +713,8 @@ purrr::set_names(ds_file$table_name)
 ##               Metadata.tblItem    Metadata.tblLUExtractSource 
 ##                              1                              1 
 ##   Metadata.tblLUMarkerEvidence       Metadata.tblLUMarkerType 
+##                              1                              1 
+##        Enum.tblLUMultipleBirth           Enum.tblLURaceCohort 
 ##                              1                              1 
 ## Metadata.tblLURelationshipPath     Metadata.tblLUSurveySource 
 ##                              1                              1 
@@ -720,12 +755,14 @@ sessionInfo()
 ## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    stringi_1.1.5    rlang_0.1.1     
-##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
-## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  knitr_1.16      
-## [21] bindr_0.1        tibble_1.3.3
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
+## [29] pkgconfig_2.0.1
 ```
 
 ```r
@@ -733,6 +770,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 17:08:33 CDT"
+## [1] "2017-06-21 20:13:28 CDT"
 ```
 
