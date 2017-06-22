@@ -71,8 +71,8 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblGen2OutcomesHeight      |    11,504|           46|
 |Extract     |tblGen2OutcomesMath        |    11,504|           44|
 |Extract     |tblGen2OutcomesWeight      |    11,504|           13|
-|Extract     |tblLinks2004Gen1           |         0|            9|
-|Extract     |tblLinks2004Gen2           |         0|            5|
+|Extract     |tblLinks2004Gen1           |     3,890|            9|
+|Extract     |tblLinks2004Gen2           |    12,855|            5|
 |Metadata    |tblItem                    |       108|            7|
 |Metadata    |tblMzManual                |       206|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-22, 00:30 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-22, 00:56 -0500 in 1 seconds.
 

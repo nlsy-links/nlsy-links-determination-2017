@@ -24,7 +24,8 @@ directory_in              <- "data-unshared/raw"
 schema_name               <- "Extract"
 
 col_types_extract <- readr::cols(
-  .default            = readr::col_integer()
+  .default            = readr::col_integer(),
+  RecommendedRelatedness = readr::col_double()
 )
 col_types_mapping <- readr::cols_only(
   name                = readr::col_character(),
@@ -62,9 +63,6 @@ rm(ds_mapping)
 rm(directory_in) # rm(col_types_tulsa)
 
 # ---- tweak-data --------------------------------------------------------------
-# ds_entries %>%
-#   purrr::walk(print)
-
 ds_file$table_name
 ds_file
 
@@ -81,16 +79,6 @@ upload_start_time <- Sys.time()
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
-
-# d <- ds_file %>%
-#   dplyr::select(table_name, entries) %>%
-#   dplyr::filter(table_name=="Enum.tblLURosterGen1") %>%
-#   tibble::deframe() %>%
-#   .[[1]]
-
-# d2 <- d[, 1:16]
-# RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
-
 for( i in seq_len(nrow(ds_file)) ) {
 
   cat(ds_file$table_name[[i]], ":", ds_file$path[[i]], "\n")
@@ -102,6 +90,8 @@ for( i in seq_len(nrow(ds_file)) ) {
 
   # summary(d)
   # d2 <- d[1:3, ]
+
+  # RODBC::sqlSave(channel, dat=d, tablename="Extract.tblLinks2004Gen2", safer=TRUE, rownames=FALSE, append=TRUE)
 
   result_save <- RODBC::sqlSave(
     channel     = channel,
@@ -118,3 +108,4 @@ for( i in seq_len(nrow(ds_file)) ) {
 
 RODBC::odbcClose(channel); rm(channel)
 cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_start_time, units="secs"))), "\n")
+warnings()

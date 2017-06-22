@@ -12,3 +12,5 @@ Gen2Links,nlsy79-gen2,TRUE
 Gen2LinksFromGen1,nlsy79-gen2,TRUE
 Gen2OutcomesHeight,nlsy79-gen2,TRUE
 Gen2OutcomesMath,nlsy79-gen2,TRUE
+Links2004Gen1,historical,TRUE
+Links2004Gen2,historical,TRUE

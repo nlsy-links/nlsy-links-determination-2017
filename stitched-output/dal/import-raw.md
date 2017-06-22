@@ -36,7 +36,8 @@ directory_in              <- "data-unshared/raw"
 schema_name               <- "Extract"
 
 col_types_extract <- readr::cols(
-  .default            = readr::col_integer()
+  .default            = readr::col_integer(),
+  RecommendedRelatedness = readr::col_double()
 )
 col_types_mapping <- readr::cols_only(
   name                = readr::col_character(),
@@ -51,7 +52,7 @@ ds_mapping
 ```
 
 ```
-## # A tibble: 13 x 3
+## # A tibble: 15 x 3
 ##                     name subdirectory upload
 ##                    <chr>        <chr>  <lgl>
 ##  1          Gen1Outcomes  nlsy79-gen1   TRUE
@@ -67,6 +68,8 @@ ds_mapping
 ## 11     Gen2LinksFromGen1  nlsy79-gen2   TRUE
 ## 12    Gen2OutcomesHeight  nlsy79-gen2   TRUE
 ## 13      Gen2OutcomesMath  nlsy79-gen2   TRUE
+## 14         Links2004Gen1   historical   TRUE
+## 15         Links2004Gen2   historical   TRUE
 ```
 
 ```r
@@ -82,7 +85,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 6
+## # A tibble: 14 x 6
 ##                    name exists subdirectory upload
 ##                   <chr>  <lgl>        <chr>  <lgl>
 ##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
@@ -97,6 +100,8 @@ ds_file
 ## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
 ## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
 ## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
+## 13        Links2004Gen1   TRUE   historical   TRUE
+## 14        Links2004Gen2   TRUE   historical   TRUE
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -117,9 +122,6 @@ rm(directory_in) # rm(col_types_tulsa)
 ```
 
 ```r
-# ds_entries %>%
-#   purrr::walk(print)
-
 ds_file$table_name
 ```
 
@@ -129,7 +131,8 @@ ds_file$table_name
 ##  [5] "Extract.tblGen1Links"            "Extract.tblGen2OutcomesWeight"  
 ##  [7] "Extract.tblGen2FatherFromGen1"   "Extract.tblGen2ImplicitFather"  
 ##  [9] "Extract.tblGen2Links"            "Extract.tblGen2LinksFromGen1"   
-## [11] "Extract.tblGen2OutcomesHeight"   "Extract.tblGen2OutcomesMath"
+## [11] "Extract.tblGen2OutcomesHeight"   "Extract.tblGen2OutcomesMath"    
+## [13] "Extract.tblLinks2004Gen1"        "Extract.tblLinks2004Gen2"
 ```
 
 ```r
@@ -137,7 +140,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 6
+## # A tibble: 14 x 6
 ##                    name exists subdirectory upload
 ##                   <chr>  <lgl>        <chr>  <lgl>
 ##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
@@ -152,6 +155,8 @@ ds_file
 ## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
 ## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
 ## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
+## 13        Links2004Gen1   TRUE   historical   TRUE
+## 14        Links2004Gen2   TRUE   historical   TRUE
 ## # ... with 2 more variables: table_name <chr>, path <chr>
 ```
 
@@ -177,15 +182,6 @@ RODBC::odbcGetInfo(channel)
 ```
 
 ```r
-# d <- ds_file %>%
-#   dplyr::select(table_name, entries) %>%
-#   dplyr::filter(table_name=="Enum.tblLURosterGen1") %>%
-#   tibble::deframe() %>%
-#   .[[1]]
-
-# d2 <- d[, 1:16]
-# RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
-
 for( i in seq_len(nrow(ds_file)) ) {
 
   cat(ds_file$table_name[[i]], ":", ds_file$path[[i]], "\n")
@@ -197,6 +193,8 @@ for( i in seq_len(nrow(ds_file)) ) {
 
   # summary(d)
   # d2 <- d[1:3, ]
+
+  # RODBC::sqlSave(channel, dat=d, tablename="Extract.tblLinks2004Gen2", safer=TRUE, rownames=FALSE, append=TRUE)
 
   result_save <- RODBC::sqlSave(
     channel     = channel,
@@ -213,7 +211,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ```
 
 ```
-## Extract.tblGen1Outcomes : data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv 
+## Extract.tblGen1Outcomes : data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 1 Mb
 ## # A tibble: 12,686 x 21
 ##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
@@ -235,7 +241,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen1Explicit : data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv 
+## Extract.tblGen1Explicit : data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 4.6 Mb
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
@@ -276,7 +290,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen1GeocodeSanitized : data-unshared/raw/nlsy79-gen1/Gen1GeocodeSanitized.csv 
+## Extract.tblGen1GeocodeSanitized : data-unshared/raw/nlsy79-gen1/Gen1GeocodeSanitized.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 0.6 Mb
 ## # A tibble: 5,302 x 29
 ##    SubjectTag_S1 SubjectTag_S2 DobDifferenceInDays1979V1979
@@ -309,7 +331,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen1Implicit : data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv 
+## Extract.tblGen1Implicit : data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 4.9 Mb
 ## # A tibble: 12,686 x 101
 ##    H0001600 H0001700 H0001800 H0001900 H0002000 H0002100 H0002200 H0002300
@@ -351,7 +381,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen1Links : data-unshared/raw/nlsy79-gen1/Gen1Links.csv 
+## Extract.tblGen1Links : data-unshared/raw/nlsy79-gen1/Gen1Links.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 4.6 Mb
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000300 R0000500 R0009100 R0009300 R0172500 R0172600
@@ -392,7 +430,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesWeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesWeight.csv 
+## Extract.tblGen2OutcomesWeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesWeight.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 0.6 Mb
 ## # A tibble: 11,504 x 13
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 Y0308500 Y0904100 Y1151000
@@ -412,7 +458,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2FatherFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2FatherFromGen1.csv 
+## Extract.tblGen2FatherFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2FatherFromGen1.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 46.5 Mb
 ## # A tibble: 12,686 x 952
 ##    R0000100 R0214700 R0214800 R1373300 R1373400 R1373500 R1374000 R1374100
@@ -456,7 +510,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2ImplicitFather : data-unshared/raw/nlsy79-gen2/Gen2ImplicitFather.csv 
+## Extract.tblGen2ImplicitFather : data-unshared/raw/nlsy79-gen2/Gen2ImplicitFather.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 4.9 Mb
 ## # A tibble: 11,504 x 111
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0008100 C0008200 C0008300
@@ -500,7 +562,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2Links : data-unshared/raw/nlsy79-gen2/Gen2Links.csv 
+## Extract.tblGen2Links : data-unshared/raw/nlsy79-gen2/Gen2Links.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 7.3 Mb
 ## # A tibble: 11,512 x 164
 ##    C0000100 C0000200 C0005300 C0005400 C0005500 C0005700 C0005800 C0006500
@@ -544,7 +614,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2LinksFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2LinksFromGen1.csv 
+## Extract.tblGen2LinksFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2LinksFromGen1.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 5.2 Mb
 ## # A tibble: 12,686 x 106
 ##    R0000100 R0214700 R0214800 R4825700 R4826000 R4826100 R4826300 R4826500
@@ -588,7 +666,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesHeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesHeight.csv 
+## Extract.tblGen2OutcomesHeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesHeight.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 2 Mb
 ## # A tibble: 11,504 x 46
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0577600 C0606300 C0606400
@@ -617,7 +703,15 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesMath : data-unshared/raw/nlsy79-gen2/Gen2OutcomesMath.csv 
+## Extract.tblGen2OutcomesMath : data-unshared/raw/nlsy79-gen2/Gen2OutcomesMath.csv
+```
+
+```
+## Warning: The following named parsers don't match the column names:
+## RecommendedRelatedness
+```
+
+```
 ## 2 Mb
 ## # A tibble: 11,504 x 44
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0579900 C0580000 C0580100
@@ -645,6 +739,45 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## 
 ## Save result: 1
 ## ---------------------------------------------------------------
+## Extract.tblLinks2004Gen1 : data-unshared/raw/historical/Links2004Gen1.csv 
+## 0.2 Mb
+## # A tibble: 3,890 x 9
+##    PairID ExtendedFamilyID   ID1   ID2  Sex1  Sex2 RecommendedRelatedness
+##     <int>            <int> <int> <int> <int> <int>                  <dbl>
+##  1      1                3     3     4     2     2                     NA
+##  2      2                5     5     6     1     1                  0.500
+##  3      3               13    13    14     1     2                  0.500
+##  4      4               17    17    18     1     1                  0.375
+##  5      5               20    20    21     2     2                  0.500
+##  6      6               23    23    24     1     1                     NA
+##  7      7               27    27    28     2     2                  0.500
+##  8      8               29    29    30     2     2                  0.500
+##  9      9               32    32    33     2     1                     NA
+## 10     10               34    34    35     1     2                  0.375
+## # ... with 3,880 more rows, and 2 more variables: SubjectTag_S1 <int>,
+## #   SubjectTag_S2 <int>
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblLinks2004Gen2 : data-unshared/raw/historical/Links2004Gen2.csv 
+## 0.3 Mb
+## # A tibble: 12,855 x 5
+##      ID1   ID2  Sex1  Sex2 RecommendedRelatedness
+##    <int> <int> <int> <int>                  <dbl>
+##  1   201   202     2     2                   0.50
+##  2   301   302     2     2                   0.50
+##  3   301   303     2     2                   0.50
+##  4   302   303     2     2                   0.50
+##  5   401   403     1     2                   0.25
+##  6   801   802     2     1                   0.50
+##  7   801   803     2     2                   0.50
+##  8   802   803     1     2                   0.50
+##  9  1001  1002     2     2                   0.50
+## 10  1201  1202     1     1                   0.50
+## # ... with 12,845 more rows
+## 
+## Save result: 1
+## ---------------------------------------------------------------
 ```
 
 ```r
@@ -653,7 +786,28 @@ cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_
 ```
 
 ```
-## upload_duration_in_seconds: 29
+## upload_duration_in_seconds: 34
+```
+
+```r
+warnings()
+```
+
+```
+## Warning messages:
+## 1: The following named parsers don't match the column names: RecommendedRelatedness
+## 2: The following named parsers don't match the column names: RecommendedRelatedness
+## 3: The following named parsers don't match the column names: RecommendedRelatedness
+## 4: The following named parsers don't match the column names: RecommendedRelatedness
+## 5: The following named parsers don't match the column names: RecommendedRelatedness
+## 6: The following named parsers don't match the column names: RecommendedRelatedness
+## 7: The following named parsers don't match the column names: RecommendedRelatedness
+## 8: closing unused RODBC handle 30
+## 9: The following named parsers don't match the column names: RecommendedRelatedness
+## 10: The following named parsers don't match the column names: RecommendedRelatedness
+## 11: The following named parsers don't match the column names: RecommendedRelatedness
+## 12: The following named parsers don't match the column names: RecommendedRelatedness
+## 13: The following named parsers don't match the column names: RecommendedRelatedness
 ```
 
 The R session information (including the OS info, R version and all
@@ -700,6 +854,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-22 00:29:32 CDT"
+## [1] "2017-06-22 00:55:35 CDT"
 ```
 
