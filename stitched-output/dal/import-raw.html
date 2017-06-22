@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>This report was automatically generated with the R package <strong>knitr</strong>
+(version 1.16).</p>
+
+<pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/import-raw.R&quot;, output=&quot;./stitched-output/dal/import-raw.md&quot;) # dir.create(output=&quot;./stitched-output/dal/&quot;, recursive=T)
+rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
+</code></pre>
+
+<pre><code class="r"># Call `base::source()` on any repo file that defines functions needed below.  Ideally, no real operations are performed.
+base::source(&quot;utility/connectivity.R&quot;)
+</code></pre>
+
+<pre><code class="r"># Attach these package(s) so their functions don&#39;t need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+library(magrittr            , quietly=TRUE)
+
+# Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+requireNamespace(&quot;readr&quot;                  )
+requireNamespace(&quot;tidyr&quot;                  )
+requireNamespace(&quot;tibble&quot;                 )
+requireNamespace(&quot;purrr&quot;                  )
+requireNamespace(&quot;dplyr&quot;                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
+requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
+requireNamespace(&quot;RODBC&quot;                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
+</code></pre>
+
+<pre><code class="r"># Constant values that won&#39;t change.
+directory_in              &lt;- &quot;data-unshared/raw&quot;
+schema_name               &lt;- &quot;Extract&quot;
+
+col_types_extract &lt;- readr::cols(
+  .default            = readr::col_integer(),
+  RecommendedRelatedness = readr::col_double()
+)
+col_types_mapping &lt;- readr::cols_only(
+  name                = readr::col_character(),
+  subdirectory        = readr::col_character(),
+  upload              = readr::col_logical()
+)
+</code></pre>
+
+<pre><code class="r">ds_mapping &lt;- readr::read_csv(&quot;data-public/metadata/tables/_mapping-unshared.csv&quot;, col_types=col_types_mapping)
+ds_mapping
+</code></pre>
+
+<pre><code>## # A tibble: 15 x 3
+##                     name subdirectory upload
+##                    &lt;chr&gt;        &lt;chr&gt;  &lt;lgl&gt;
+##  1          Gen1Outcomes  nlsy79-gen1   TRUE
+##  2          Gen1Explicit  nlsy79-gen1   TRUE
+##  3  Gen1GeocodeSanitized  nlsy79-gen1   TRUE
+##  4          Gen1Implicit  nlsy79-gen1   TRUE
+##  5             Gen1Links  nlsy79-gen1   TRUE
+##  6    Gen2OutcomesWeight  nlsy79-gen2   TRUE
+##  7 Gen2BirthDateFromGen1  nlsy79-gen2  FALSE
+##  8    Gen2FatherFromGen1  nlsy79-gen2   TRUE
+##  9    Gen2ImplicitFather  nlsy79-gen2   TRUE
+## 10             Gen2Links  nlsy79-gen2   TRUE
+## 11     Gen2LinksFromGen1  nlsy79-gen2   TRUE
+## 12    Gen2OutcomesHeight  nlsy79-gen2   TRUE
+## 13      Gen2OutcomesMath  nlsy79-gen2   TRUE
+## 14         Links2004Gen1   historical   TRUE
+## 15         Links2004Gen2   historical   TRUE
+</code></pre>
+
+<pre><code class="r">ds_file &lt;- ds_mapping %&gt;%
+  dplyr::mutate(
+    table_name    = paste0(schema_name, &quot;.tbl&quot;, name),
+    path          = file.path(directory_in, subdirectory, paste0(name, &quot;.csv&quot;)),
+    exists        = purrr::map_lgl(path, file.exists)
+  ) %&gt;%
+  dplyr::filter(upload) %&gt;%
+  dplyr::select(name, exists, dplyr::everything())
+ds_file
+</code></pre>
+
+<pre><code>## # A tibble: 14 x 6
+##                    name exists subdirectory upload
+##                   &lt;chr&gt;  &lt;lgl&gt;        &lt;chr&gt;  &lt;lgl&gt;
+##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
+##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
+##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
+##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
+##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
+##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
+##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
+##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
+##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
+## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
+## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
+## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
+## 13        Links2004Gen1   TRUE   historical   TRUE
+## 14        Links2004Gen2   TRUE   historical   TRUE
+## # ... with 2 more variables: table_name &lt;chr&gt;, path &lt;chr&gt;
+</code></pre>
+
+<pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
+rm(ds_mapping)
+
+# ds_entries &lt;- ds_file %&gt;%
+#   dplyr::select(name, path) %&gt;%
+#   dplyr::mutate(
+#     entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
+#   )
+# ds_entries
+# print(object.size(ds_entries), units=&quot;MB&quot;)
+
+
+rm(directory_in) # rm(col_types_tulsa)
+</code></pre>
+
+<pre><code class="r">ds_file$table_name
+</code></pre>
+
+<pre><code>##  [1] &quot;Extract.tblGen1Outcomes&quot;         &quot;Extract.tblGen1Explicit&quot;        
+##  [3] &quot;Extract.tblGen1GeocodeSanitized&quot; &quot;Extract.tblGen1Implicit&quot;        
+##  [5] &quot;Extract.tblGen1Links&quot;            &quot;Extract.tblGen2OutcomesWeight&quot;  
+##  [7] &quot;Extract.tblGen2FatherFromGen1&quot;   &quot;Extract.tblGen2ImplicitFather&quot;  
+##  [9] &quot;Extract.tblGen2Links&quot;            &quot;Extract.tblGen2LinksFromGen1&quot;   
+## [11] &quot;Extract.tblGen2OutcomesHeight&quot;   &quot;Extract.tblGen2OutcomesMath&quot;    
+## [13] &quot;Extract.tblLinks2004Gen1&quot;        &quot;Extract.tblLinks2004Gen2&quot;
+</code></pre>
+
+<pre><code class="r">ds_file
+</code></pre>
+
+<pre><code>## # A tibble: 14 x 6
+##                    name exists subdirectory upload
+##                   &lt;chr&gt;  &lt;lgl&gt;        &lt;chr&gt;  &lt;lgl&gt;
+##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
+##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
+##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
+##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
+##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
+##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
+##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
+##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
+##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
+## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
+## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
+## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
+## 13        Links2004Gen1   TRUE   historical   TRUE
+## 14        Links2004Gen2   TRUE   historical   TRUE
+## # ... with 2 more variables: table_name &lt;chr&gt;, path &lt;chr&gt;
+</code></pre>
+
+<pre><code class="r"># Sniff out problems
+</code></pre>
+
+<pre><code class="r">upload_start_time &lt;- Sys.time()
+
+channel &lt;- open_dsn_channel()
+RODBC::odbcGetInfo(channel)
+</code></pre>
+
+<pre><code>##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
+## &quot;Microsoft SQL Server&quot;           &quot;13.00.4202&quot;                &quot;03.80&quot; 
+##       Data_Source_Name            Driver_Name             Driver_Ver 
+##     &quot;local-nlsy-links&quot;      &quot;msodbcsql13.dll&quot;           &quot;14.00.0500&quot; 
+##               ODBC_Ver            Server_Name 
+##           &quot;03.80.0000&quot; &quot;GIMBLE\\EXPRESS_2016&quot;
+</code></pre>
+
+<pre><code class="r">for( i in seq_len(nrow(ds_file)) ) {
+
+  cat(ds_file$table_name[[i]], &quot;:&quot;, ds_file$path[[i]], &quot;\n&quot;)
+
+  d &lt;- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
+  print(object.size(d), units=&quot;MB&quot;)
+  print(d)
+  cat(&quot;\n&quot;)
+
+  # summary(d)
+  # d2 &lt;- d[1:3, ]
+
+  # RODBC::sqlSave(channel, dat=d, tablename=&quot;Extract.tblLinks2004Gen2&quot;, safer=TRUE, rownames=FALSE, append=TRUE)
+
+  result_save &lt;- RODBC::sqlSave(
+    channel     = channel,
+    dat         = d,
+    tablename   = ds_file$table_name[[i]],
+    safer       = FALSE,       # Don&#39;t keep the existing table.
+    rownames    = FALSE,
+    append      = FALSE        # Toggle this to &#39;TRUE&#39; the first time a table is uploaded.
+  )
+
+  cat(&quot;Save result:&quot;, result_save)
+  cat(&quot;\n---------------------------------------------------------------\n&quot;)
+}
+</code></pre>
+
+<pre><code>## Extract.tblGen1Outcomes : data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 1 Mb
+## # A tibble: 12,686 x 21
+##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        3        2      505       -1       -4       -4       -4
+##  2        2        3        2      502      120       12        9     6841
+##  3        3        3        2       -5       -5       51       46    49444
+##  4        4        3        2      507      110       62       48    55761
+##  5        5        3        1      503      130       90       99    96772
+##  6        6        3        1      504      200       99       99    99393
+##  7        7        3        1      505      131       33       35    47412
+##  8        8        3        2      505      179       43       42    44022
+##  9        9        3        1      506      145       55       51    59683
+## 10       10        3        2      506      115       27       21    30039
+## # ... with 12,676 more rows, and 13 more variables: R0779800 &lt;int&gt;,
+## #   R0779900 &lt;int&gt;, R1773900 &lt;int&gt;, R1774000 &lt;int&gt;, T0897300 &lt;int&gt;,
+## #   T0897400 &lt;int&gt;, T0897500 &lt;int&gt;, T2053800 &lt;int&gt;, T2053900 &lt;int&gt;,
+## #   T2054000 &lt;int&gt;, T3024700 &lt;int&gt;, T3024800 &lt;int&gt;, T3024900 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen1Explicit : data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 4.6 Mb
+## # A tibble: 12,686 x 95
+##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        1       -4       -4       -4       -4       -4       -4
+##  2        2        2       -4       -4       -4       -4       -4       -4
+##  3        3        3        4        7       -4       -4       -4       -4
+##  4        4        3        3        7       -4       -4       -4       -4
+##  5        5        5        6        6       -4       -4       -4       -4
+##  6        6        5        5        6       -4       -4       -4       -4
+##  7        7        7       -4       -4       -4       -4       -4       -4
+##  8        8        8       -4       -4       -4       -4       -4       -4
+##  9        9        9       -4       -4       -4       -4       -4       -4
+## 10       10       10       -4       -4       -4       -4       -4       -4
+## # ... with 12,676 more rows, and 87 more variables: R0000156 &lt;int&gt;,
+## #   R0000157 &lt;int&gt;, R0000158 &lt;int&gt;, R0000159 &lt;int&gt;, R0000162 &lt;int&gt;,
+## #   R0000163 &lt;int&gt;, R0000164 &lt;int&gt;, R0000165 &lt;int&gt;, R0000166 &lt;int&gt;,
+## #   R0214700 &lt;int&gt;, R0214800 &lt;int&gt;, R4125101 &lt;int&gt;, R4125801 &lt;int&gt;,
+## #   R4126501 &lt;int&gt;, R4127201 &lt;int&gt;, R4127901 &lt;int&gt;, R4128601 &lt;int&gt;,
+## #   R4129301 &lt;int&gt;, R4130001 &lt;int&gt;, R4130701 &lt;int&gt;, R4131401 &lt;int&gt;,
+## #   R4132101 &lt;int&gt;, R4132801 &lt;int&gt;, R4133701 &lt;int&gt;, R4521500 &lt;int&gt;,
+## #   R4521700 &lt;int&gt;, R4521800 &lt;int&gt;, R4521900 &lt;int&gt;, R4522000 &lt;int&gt;,
+## #   R4522100 &lt;int&gt;, R4522200 &lt;int&gt;, R4522300 &lt;int&gt;, R4522400 &lt;int&gt;,
+## #   R4522500 &lt;int&gt;, R4522600 &lt;int&gt;, R4522700 &lt;int&gt;, R4522800 &lt;int&gt;,
+## #   T0002000 &lt;int&gt;, T0002100 &lt;int&gt;, T0002200 &lt;int&gt;, T0002300 &lt;int&gt;,
+## #   T0002400 &lt;int&gt;, T0002500 &lt;int&gt;, T0002600 &lt;int&gt;, T0002700 &lt;int&gt;,
+## #   T0002800 &lt;int&gt;, T0002900 &lt;int&gt;, T0003000 &lt;int&gt;, T0003100 &lt;int&gt;,
+## #   T0003200 &lt;int&gt;, T0003300 &lt;int&gt;, T0003400 &lt;int&gt;, T0003500 &lt;int&gt;,
+## #   T0003600 &lt;int&gt;, T0003700 &lt;int&gt;, T0003800 &lt;int&gt;, T0003900 &lt;int&gt;,
+## #   T0004000 &lt;int&gt;, T0004100 &lt;int&gt;, T0004200 &lt;int&gt;, T0004300 &lt;int&gt;,
+## #   T0004400 &lt;int&gt;, T0004500 &lt;int&gt;, T2261500 &lt;int&gt;, T2261600 &lt;int&gt;,
+## #   T2261700 &lt;int&gt;, T2261800 &lt;int&gt;, T2261900 &lt;int&gt;, T2262000 &lt;int&gt;,
+## #   T2262100 &lt;int&gt;, T2262200 &lt;int&gt;, T2262300 &lt;int&gt;, T2262400 &lt;int&gt;,
+## #   T2262500 &lt;int&gt;, T2262600 &lt;int&gt;, T2262700 &lt;int&gt;, T2262800 &lt;int&gt;,
+## #   T2262900 &lt;int&gt;, T2263000 &lt;int&gt;, T2263100 &lt;int&gt;, T2263200 &lt;int&gt;,
+## #   T2263300 &lt;int&gt;, T2263400 &lt;int&gt;, T2263500 &lt;int&gt;, T2263600 &lt;int&gt;,
+## #   T2263700 &lt;int&gt;, T2263800 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen1GeocodeSanitized : data-unshared/raw/nlsy79-gen1/Gen1GeocodeSanitized.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 0.6 Mb
+## # A tibble: 5,302 x 29
+##    SubjectTag_S1 SubjectTag_S2 DobDifferenceInDays1979V1979
+##            &lt;int&gt;         &lt;int&gt;                        &lt;int&gt;
+##  1           300           400                         -338
+##  2           500           600                         -461
+##  3          1300          1400                        -1868
+##  4          1700          1800                         -413
+##  5          2000          2100                         -591
+##  6          2300          2400                         -828
+##  7          2700          2800                        -1356
+##  8          2900          3000                          698
+##  9          3200          3300                        -1640
+## 10          3400          3500                        -1730
+## # ... with 5,292 more rows, and 26 more variables:
+## #   DobDifferenceInDays1979V1981 &lt;int&gt;,
+## #   DobDifferenceInDays1981V1979 &lt;int&gt;,
+## #   DobDifferenceInDays1981V1981 &lt;int&gt;, DobDayIsMissing1979_1 &lt;int&gt;,
+## #   DobDayIsMissing1979_2 &lt;int&gt;, BirthSubjectCountyMissing_1 &lt;int&gt;,
+## #   BirthSubjectCountyMissing_2 &lt;int&gt;, BirthSubjectCountyEqual &lt;int&gt;,
+## #   BirthSubjectStateMissing_1 &lt;int&gt;, BirthSubjectStateMissing_2 &lt;int&gt;,
+## #   BirthSubjectStateEqual &lt;int&gt;, BirthSubjectCountryMissing_1 &lt;int&gt;,
+## #   BirthSubjectCountryMissing_2 &lt;int&gt;, BirthSubjectCountryEqual &lt;int&gt;,
+## #   BirthMotherStateMissing_1 &lt;int&gt;, BirthMotherStateMissing_2 &lt;int&gt;,
+## #   BirthMotherStateEqual &lt;int&gt;, BirthMotherCountryMissing_1 &lt;int&gt;,
+## #   BirthMotherCountryMissing_2 &lt;int&gt;, BirthMotherCountryEqual &lt;int&gt;,
+## #   BirthFatherStateMissing_1 &lt;int&gt;, BirthFatherStateMissing_2 &lt;int&gt;,
+## #   BirthFatherStateEqual &lt;int&gt;, BirthFatherCountryMissing_1 &lt;int&gt;,
+## #   BirthFatherCountryMissing_2 &lt;int&gt;, BirthFatherCountryEqual &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen1Implicit : data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 4.9 Mb
+## # A tibble: 12,686 x 101
+##    H0001600 H0001700 H0001800 H0001900 H0002000 H0002100 H0002200 H0002300
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1       -4       -4       -4       -4       -4       -4       -4       -4
+##  2        0        1       55        0       -4       -4       -4       -4
+##  3        1       -4       -4        1     4920       -4       -4       -4
+##  4       -4       -4       -4       -4       -4       -4       -4       -4
+##  5       -4       -4       -4       -4       -4       -4       -4       -4
+##  6        0        4       54        1     3039       -4       -4       -4
+##  7       -2       -4       -4       -4       -4       -4       -4       -4
+##  8        1       -4       -4        1     3625     5860     7851       -4
+##  9        1       -4       -4        0       -4       -4       -4       -4
+## 10       -4       -4       -4       -4       -4       -4       -4       -4
+## # ... with 12,676 more rows, and 93 more variables: H0002400 &lt;int&gt;,
+## #   H0002500 &lt;int&gt;, H0002600 &lt;int&gt;, H0002700 &lt;int&gt;, H0002800 &lt;int&gt;,
+## #   H0002900 &lt;int&gt;, H0003000 &lt;int&gt;, H0003100 &lt;int&gt;, H0013600 &lt;int&gt;,
+## #   H0013700 &lt;int&gt;, H0013800 &lt;int&gt;, H0013900 &lt;int&gt;, H0014000 &lt;int&gt;,
+## #   H0014100 &lt;int&gt;, H0014200 &lt;int&gt;, H0014300 &lt;int&gt;, H0014400 &lt;int&gt;,
+## #   H0014500 &lt;int&gt;, H0014700 &lt;int&gt;, H0014800 &lt;int&gt;, H0014900 &lt;int&gt;,
+## #   H0015000 &lt;int&gt;, H0015100 &lt;int&gt;, H0015200 &lt;int&gt;, H0015300 &lt;int&gt;,
+## #   H0015400 &lt;int&gt;, H0015500 &lt;int&gt;, H0015600 &lt;int&gt;, H0015700 &lt;int&gt;,
+## #   H0015800 &lt;int&gt;, H0015803 &lt;int&gt;, H0015804 &lt;int&gt;, R0000100 &lt;int&gt;,
+## #   R0006100 &lt;int&gt;, R0006500 &lt;int&gt;, R0007300 &lt;int&gt;, R0007700 &lt;int&gt;,
+## #   R0007900 &lt;int&gt;, R0214700 &lt;int&gt;, R0214800 &lt;int&gt;, R2302900 &lt;int&gt;,
+## #   R2303100 &lt;int&gt;, R2303200 &lt;int&gt;, R2303300 &lt;int&gt;, R2303500 &lt;int&gt;,
+## #   R2303600 &lt;int&gt;, R2505100 &lt;int&gt;, R2505300 &lt;int&gt;, R2505400 &lt;int&gt;,
+## #   R2505500 &lt;int&gt;, R2505700 &lt;int&gt;, R2505800 &lt;int&gt;, R2737900 &lt;int&gt;,
+## #   R2837200 &lt;int&gt;, R2837300 &lt;int&gt;, R2837400 &lt;int&gt;, R2837500 &lt;int&gt;,
+## #   R2837600 &lt;int&gt;, R2837700 &lt;int&gt;, R2837800 &lt;int&gt;, R2837900 &lt;int&gt;,
+## #   R2838000 &lt;int&gt;, R2838100 &lt;int&gt;, R2838200 &lt;int&gt;, R2838300 &lt;int&gt;,
+## #   R2838400 &lt;int&gt;, R2838500 &lt;int&gt;, R2838600 &lt;int&gt;, R2838700 &lt;int&gt;,
+## #   R2838800 &lt;int&gt;, R2838900 &lt;int&gt;, R2839000 &lt;int&gt;, R2839100 &lt;int&gt;,
+## #   R2839200 &lt;int&gt;, R2839300 &lt;int&gt;, R2839400 &lt;int&gt;, R2839500 &lt;int&gt;,
+## #   R2839600 &lt;int&gt;, R2839700 &lt;int&gt;, R2839800 &lt;int&gt;, R2839900 &lt;int&gt;,
+## #   R2840000 &lt;int&gt;, R2840100 &lt;int&gt;, R2840200 &lt;int&gt;, R2840300 &lt;int&gt;,
+## #   R2840400 &lt;int&gt;, R2840500 &lt;int&gt;, R2840600 &lt;int&gt;, R2840700 &lt;int&gt;,
+## #   R2840800 &lt;int&gt;, R2840900 &lt;int&gt;, R2841000 &lt;int&gt;, R2841100 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen1Links : data-unshared/raw/nlsy79-gen1/Gen1Links.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 4.6 Mb
+## # A tibble: 12,686 x 95
+##    R0000100 R0000149 R0000300 R0000500 R0009100 R0009300 R0172500 R0172600
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        1        9       58        1        1        3        3
+##  2        2        2        1       59        8        7        2       28
+##  3        3        3        8       61        3        1        2        8
+##  4        4        3        8       62        3        2        2        8
+##  5        5        5        7       59        1        0        4       19
+##  6        6        5       10       60        1        1        4       21
+##  7        7        7        6       64        1        0        2       13
+##  8        8        8        7       58        7        7        2       15
+##  9        9        9        7       63        4        0        2       13
+## 10       10       10       10       60        3        2        2        7
+## # ... with 12,676 more rows, and 87 more variables: R0214700 &lt;int&gt;,
+## #   R0214800 &lt;int&gt;, R0216500 &lt;int&gt;, R0329200 &lt;int&gt;, R0329210 &lt;int&gt;,
+## #   R0406510 &lt;int&gt;, R0410100 &lt;int&gt;, R0410300 &lt;int&gt;, R0530700 &lt;int&gt;,
+## #   R0530800 &lt;int&gt;, R0619010 &lt;int&gt;, R0809900 &lt;int&gt;, R0810000 &lt;int&gt;,
+## #   R0898310 &lt;int&gt;, R1045700 &lt;int&gt;, R1045800 &lt;int&gt;, R1145110 &lt;int&gt;,
+## #   R1427500 &lt;int&gt;, R1427600 &lt;int&gt;, R1520310 &lt;int&gt;, R1774100 &lt;int&gt;,
+## #   R1774200 &lt;int&gt;, R1794600 &lt;int&gt;, R1794700 &lt;int&gt;, R1891010 &lt;int&gt;,
+## #   R2156200 &lt;int&gt;, R2156300 &lt;int&gt;, R2258110 &lt;int&gt;, R2365700 &lt;int&gt;,
+## #   R2365800 &lt;int&gt;, R2445510 &lt;int&gt;, R2742500 &lt;int&gt;, R2742600 &lt;int&gt;,
+## #   R2871300 &lt;int&gt;, R2986100 &lt;int&gt;, R2986200 &lt;int&gt;, R3075000 &lt;int&gt;,
+## #   R3302500 &lt;int&gt;, R3302600 &lt;int&gt;, R3401700 &lt;int&gt;, R3573400 &lt;int&gt;,
+## #   R3573500 &lt;int&gt;, R3657100 &lt;int&gt;, R3917600 &lt;int&gt;, R3917700 &lt;int&gt;,
+## #   R4007600 &lt;int&gt;, R4100200 &lt;int&gt;, R4100201 &lt;int&gt;, R4100202 &lt;int&gt;,
+## #   R4418700 &lt;int&gt;, R4500200 &lt;int&gt;, R4500201 &lt;int&gt;, R4500202 &lt;int&gt;,
+## #   R5081700 &lt;int&gt;, R5167000 &lt;int&gt;, R5200200 &lt;int&gt;, R5200201 &lt;int&gt;,
+## #   R5200202 &lt;int&gt;, R6435300 &lt;int&gt;, R6435301 &lt;int&gt;, R6435302 &lt;int&gt;,
+## #   R6479800 &lt;int&gt;, R6963300 &lt;int&gt;, R6963301 &lt;int&gt;, R6963302 &lt;int&gt;,
+## #   R7007500 &lt;int&gt;, R7656300 &lt;int&gt;, R7656301 &lt;int&gt;, R7656302 &lt;int&gt;,
+## #   R7704800 &lt;int&gt;, R8423200 &lt;int&gt;, R8423201 &lt;int&gt;, R8423202 &lt;int&gt;,
+## #   R8497200 &lt;int&gt;, R9908000 &lt;int&gt;, T0967300 &lt;int&gt;, T0967301 &lt;int&gt;,
+## #   T0967302 &lt;int&gt;, T0989000 &lt;int&gt;, T2190500 &lt;int&gt;, T2190501 &lt;int&gt;,
+## #   T2190502 &lt;int&gt;, T2210800 &lt;int&gt;, T2260600 &lt;int&gt;, T2260601 &lt;int&gt;,
+## #   T2260602 &lt;int&gt;, T3108700 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2OutcomesWeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesWeight.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 0.6 Mb
+## # A tibble: 11,504 x 13
+##    C0000100 C0000200 C0005300 C0005400 C0005700 Y0308500 Y0904100 Y1151000
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1      201        2        3        2     1993       -7       -7       -7
+##  2      202        2        3        2     1994       -7       -7       -7
+##  3      301        3        3        2     1981       -7      115       -7
+##  4      302        3        3        2     1983       -7      129      135
+##  5      303        3        3        2     1986       -7       -7       -7
+##  6      401        4        3        1     1980       -7      153       -7
+##  7      403        4        3        2     1997       -7       -7       -7
+##  8      801        8        3        2     1976      187       -7      220
+##  9      802        8        3        1     1979      130      178      190
+## 10      803        8        3        2     1982       -7      155      155
+## # ... with 11,494 more rows, and 5 more variables: Y1386000 &lt;int&gt;,
+## #   Y1637700 &lt;int&gt;, Y1891300 &lt;int&gt;, Y2207200 &lt;int&gt;, Y2544900 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2FatherFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2FatherFromGen1.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 46.5 Mb
+## # A tibble: 12,686 x 952
+##    R0000100 R0214700 R0214800 R1373300 R1373400 R1373500 R1374000 R1374100
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        3        2       -5       -5       -5       -5       -5
+##  2        2        3        2       -4       -4       -4       -4       -4
+##  3        3        3        2        1       -4       -4        1       -4
+##  4        4        3        2        0        1        4       -4       -4
+##  5        5        3        1       -4       -4       -4       -4       -4
+##  6        6        3        1       -4       -4       -4       -4       -4
+##  7        7        3        1       -4       -4       -4       -4       -4
+##  8        8        3        2        1       -4       -4        1       -4
+##  9        9        3        1       -4       -4       -4       -4       -4
+## 10       10        3        2        1       -4       -4       -4       -4
+## # ... with 12,676 more rows, and 944 more variables: R1374200 &lt;int&gt;,
+## #   R1374700 &lt;int&gt;, R1374800 &lt;int&gt;, R1374900 &lt;int&gt;, R1375400 &lt;int&gt;,
+## #   R1375500 &lt;int&gt;, R1375600 &lt;int&gt;, R1376100 &lt;int&gt;, R1376200 &lt;int&gt;,
+## #   R1376300 &lt;int&gt;, R1376800 &lt;int&gt;, R1376900 &lt;int&gt;, R1377000 &lt;int&gt;,
+## #   R1377500 &lt;int&gt;, R1377600 &lt;int&gt;, R1377700 &lt;int&gt;, R1753700 &lt;int&gt;,
+## #   R1753800 &lt;int&gt;, R1753900 &lt;int&gt;, R1754400 &lt;int&gt;, R1754500 &lt;int&gt;,
+## #   R1754600 &lt;int&gt;, R1755100 &lt;int&gt;, R1755200 &lt;int&gt;, R1755300 &lt;int&gt;,
+## #   R1755800 &lt;int&gt;, R1755900 &lt;int&gt;, R1756000 &lt;int&gt;, R1756500 &lt;int&gt;,
+## #   R1756600 &lt;int&gt;, R1756700 &lt;int&gt;, R1757200 &lt;int&gt;, R1757300 &lt;int&gt;,
+## #   R1757400 &lt;int&gt;, R1757900 &lt;int&gt;, R1758000 &lt;int&gt;, R1758100 &lt;int&gt;,
+## #   R2095700 &lt;int&gt;, R2095800 &lt;int&gt;, R2095900 &lt;int&gt;, R2096400 &lt;int&gt;,
+## #   R2096500 &lt;int&gt;, R2096600 &lt;int&gt;, R2097100 &lt;int&gt;, R2097200 &lt;int&gt;,
+## #   R2097300 &lt;int&gt;, R2097800 &lt;int&gt;, R2097900 &lt;int&gt;, R2098000 &lt;int&gt;,
+## #   R2098500 &lt;int&gt;, R2098600 &lt;int&gt;, R2098700 &lt;int&gt;, R2099200 &lt;int&gt;,
+## #   R2099300 &lt;int&gt;, R2099400 &lt;int&gt;, R2099900 &lt;int&gt;, R2100000 &lt;int&gt;,
+## #   R2100100 &lt;int&gt;, R2345900 &lt;int&gt;, R2346200 &lt;int&gt;, R2346500 &lt;int&gt;,
+## #   R2346800 &lt;int&gt;, R2347100 &lt;int&gt;, R2347400 &lt;int&gt;, R2347700 &lt;int&gt;,
+## #   R2648000 &lt;int&gt;, R2648100 &lt;int&gt;, R2648200 &lt;int&gt;, R2648700 &lt;int&gt;,
+## #   R2648800 &lt;int&gt;, R2648900 &lt;int&gt;, R2649400 &lt;int&gt;, R2649500 &lt;int&gt;,
+## #   R2649600 &lt;int&gt;, R2650100 &lt;int&gt;, R2650200 &lt;int&gt;, R2650300 &lt;int&gt;,
+## #   R2650800 &lt;int&gt;, R2650900 &lt;int&gt;, R2651000 &lt;int&gt;, R2651500 &lt;int&gt;,
+## #   R2651600 &lt;int&gt;, R2651700 &lt;int&gt;, R2652200 &lt;int&gt;, R2652300 &lt;int&gt;,
+## #   R2652400 &lt;int&gt;, R2955900 &lt;int&gt;, R2956200 &lt;int&gt;, R2956500 &lt;int&gt;,
+## #   R2956800 &lt;int&gt;, R2957100 &lt;int&gt;, R2957400 &lt;int&gt;, R2957700 &lt;int&gt;,
+## #   R3255900 &lt;int&gt;, R3256000 &lt;int&gt;, R3256100 &lt;int&gt;, R3257700 &lt;int&gt;,
+## #   R3257800 &lt;int&gt;, R3257900 &lt;int&gt;, R3259500 &lt;int&gt;, ...
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2ImplicitFather : data-unshared/raw/nlsy79-gen2/Gen2ImplicitFather.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 4.9 Mb
+## # A tibble: 11,504 x 111
+##    C0000100 C0000200 C0005300 C0005400 C0005700 C0008100 C0008200 C0008300
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1      201        2        3        2     1993       -7       -7       -7
+##  2      202        2        3        2     1994       -7       -7       -7
+##  3      301        3        3        2     1981        1       -7       -7
+##  4      302        3        3        2     1983        1       -7       -7
+##  5      303        3        3        2     1986       -7       -7       -7
+##  6      401        4        3        1     1980        0        1        4
+##  7      403        4        3        2     1997       -7       -7       -7
+##  8      801        8        3        2     1976        1       -7       -7
+##  9      802        8        3        1     1979        1       -7       -7
+## 10      803        8        3        2     1982        1       -7       -7
+## # ... with 11,494 more rows, and 103 more variables: C0008600 &lt;int&gt;,
+## #   C0008700 &lt;int&gt;, C0008800 &lt;int&gt;, C0009100 &lt;int&gt;, C0009200 &lt;int&gt;,
+## #   C0009300 &lt;int&gt;, C0009600 &lt;int&gt;, C0009700 &lt;int&gt;, C0009800 &lt;int&gt;,
+## #   C0009900 &lt;int&gt;, C0010110 &lt;int&gt;, C0010200 &lt;int&gt;, C0010300 &lt;int&gt;,
+## #   C0010400 &lt;int&gt;, C0010700 &lt;int&gt;, C0010800 &lt;int&gt;, C0010900 &lt;int&gt;,
+## #   C0011110 &lt;int&gt;, C0011111 &lt;int&gt;, C0011112 &lt;int&gt;, C0011113 &lt;int&gt;,
+## #   C0011114 &lt;int&gt;, C0011117 &lt;int&gt;, C0011118 &lt;int&gt;, C0011119 &lt;int&gt;,
+## #   C0011122 &lt;int&gt;, C0011123 &lt;int&gt;, C0011124 &lt;int&gt;, C0011127 &lt;int&gt;,
+## #   C0011128 &lt;int&gt;, C0011129 &lt;int&gt;, C0011132 &lt;int&gt;, C0011133 &lt;int&gt;,
+## #   C0011134 &lt;int&gt;, C0011137 &lt;int&gt;, C0011138 &lt;int&gt;, C0011139 &lt;int&gt;,
+## #   C0011142 &lt;int&gt;, C0011143 &lt;int&gt;, C0011144 &lt;int&gt;, C3070500 &lt;int&gt;,
+## #   C3423600 &lt;int&gt;, C3601100 &lt;int&gt;, C3601700 &lt;int&gt;, C3601800 &lt;int&gt;,
+## #   C3601900 &lt;int&gt;, C3605900 &lt;int&gt;, C3981100 &lt;int&gt;, C3981700 &lt;int&gt;,
+## #   C3981800 &lt;int&gt;, C3981900 &lt;int&gt;, Y0003200 &lt;int&gt;, Y0007300 &lt;int&gt;,
+## #   Y0007400 &lt;int&gt;, Y0007600 &lt;int&gt;, Y0007601 &lt;int&gt;, Y0008000 &lt;int&gt;,
+## #   Y0008500 &lt;int&gt;, Y0008600 &lt;int&gt;, Y0009400 &lt;int&gt;, Y0394100 &lt;int&gt;,
+## #   Y0394300 &lt;int&gt;, Y0394500 &lt;int&gt;, Y0394501 &lt;int&gt;, Y0394900 &lt;int&gt;,
+## #   Y0651000 &lt;int&gt;, Y0682500 &lt;int&gt;, Y0683800 &lt;int&gt;, Y0683900 &lt;int&gt;,
+## #   Y0684100 &lt;int&gt;, Y0684101 &lt;int&gt;, Y0684500 &lt;int&gt;, Y0947100 &lt;int&gt;,
+## #   Y0986200 &lt;int&gt;, Y0986700 &lt;int&gt;, Y0988800 &lt;int&gt;, Y0988900 &lt;int&gt;,
+## #   Y0989400 &lt;int&gt;, Y0989401 &lt;int&gt;, Y0989900 &lt;int&gt;, Y1229100 &lt;int&gt;,
+## #   Y1229200 &lt;int&gt;, Y1229700 &lt;int&gt;, Y1229701 &lt;int&gt;, Y1458900 &lt;int&gt;,
+## #   Y1459400 &lt;int&gt;, Y1459401 &lt;int&gt;, Y1629500 &lt;int&gt;, Y1704000 &lt;int&gt;,
+## #   Y1704500 &lt;int&gt;, Y1704501 &lt;int&gt;, Y1707300 &lt;int&gt;, Y1883300 &lt;int&gt;,
+## #   Y1989500 &lt;int&gt;, Y1990000 &lt;int&gt;, Y1990001 &lt;int&gt;, Y1992900 &lt;int&gt;,
+## #   Y2197500 &lt;int&gt;, Y2308300 &lt;int&gt;, Y2308800 &lt;int&gt;, ...
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2Links : data-unshared/raw/nlsy79-gen2/Gen2Links.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 7.3 Mb
+## # A tibble: 11,512 x 164
+##    C0000100 C0000200 C0005300 C0005400 C0005500 C0005700 C0005800 C0006500
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1      201        2        3        2        3     1993        1       -7
+##  2      202        2        3        2       11     1994        2       -7
+##  3      301        3        3        2        6     1981        1       56
+##  4      302        3        3        2       10     1983        2       28
+##  5      303        3        3        2        4     1986        3       -7
+##  6      401        4        3        1        8     1980        1       -7
+##  7      403        4        3        2        3     1997        2       -7
+##  8      801        8        3        2        3     1976        1      120
+##  9      802        8        3        1        5     1979        2       81
+## 10      803        8        3        2        9     1982        3       41
+## # ... with 11,502 more rows, and 156 more variables: C0006800 &lt;int&gt;,
+## #   C0007010 &lt;int&gt;, C0007030 &lt;int&gt;, C0007041 &lt;int&gt;, C0007043 &lt;int&gt;,
+## #   C0007045 &lt;int&gt;, C0007047 &lt;int&gt;, C0007049 &lt;int&gt;, C0007052 &lt;int&gt;,
+## #   C0007055 &lt;int&gt;, C0402400 &lt;int&gt;, C0402500 &lt;int&gt;, C0402600 &lt;int&gt;,
+## #   C0404100 &lt;int&gt;, C0404200 &lt;int&gt;, C0737000 &lt;int&gt;, C0737100 &lt;int&gt;,
+## #   C0737200 &lt;int&gt;, C0948700 &lt;int&gt;, C0948800 &lt;int&gt;, C0948900 &lt;int&gt;,
+## #   C1146600 &lt;int&gt;, C1146700 &lt;int&gt;, C1146800 &lt;int&gt;, C1230100 &lt;int&gt;,
+## #   C1230200 &lt;int&gt;, C1230300 &lt;int&gt;, C1548100 &lt;int&gt;, C1548101 &lt;int&gt;,
+## #   C1548102 &lt;int&gt;, C1989400 &lt;int&gt;, C1989401 &lt;int&gt;, C1989402 &lt;int&gt;,
+## #   C2305100 &lt;int&gt;, C2305101 &lt;int&gt;, C2305102 &lt;int&gt;, C2544700 &lt;int&gt;,
+## #   C2544701 &lt;int&gt;, C2544702 &lt;int&gt;, C2814500 &lt;int&gt;, C2814501 &lt;int&gt;,
+## #   C2814502 &lt;int&gt;, C3123500 &lt;int&gt;, C3123501 &lt;int&gt;, C3123502 &lt;int&gt;,
+## #   C3601100 &lt;int&gt;, C3627700 &lt;int&gt;, C3627701 &lt;int&gt;, C3627702 &lt;int&gt;,
+## #   C3981100 &lt;int&gt;, C4006300 &lt;int&gt;, C4006301 &lt;int&gt;, C4006302 &lt;int&gt;,
+## #   Y0000200 &lt;int&gt;, Y0000201 &lt;int&gt;, Y0000202 &lt;int&gt;, Y0002100 &lt;int&gt;,
+## #   Y0390100 &lt;int&gt;, Y0390101 &lt;int&gt;, Y0390102 &lt;int&gt;, Y0677600 &lt;int&gt;,
+## #   Y0933700 &lt;int&gt;, Y0933701 &lt;int&gt;, Y0933702 &lt;int&gt;, Y0974800 &lt;int&gt;,
+## #   Y1180500 &lt;int&gt;, Y1180501 &lt;int&gt;, Y1180502 &lt;int&gt;, Y1192400 &lt;int&gt;,
+## #   Y1421100 &lt;int&gt;, Y1421101 &lt;int&gt;, Y1421102 &lt;int&gt;, Y1434300 &lt;int&gt;,
+## #   Y1450200 &lt;int&gt;, Y1450201 &lt;int&gt;, Y1450202 &lt;int&gt;, Y1672700 &lt;int&gt;,
+## #   Y1695600 &lt;int&gt;, Y1695601 &lt;int&gt;, Y1695602 &lt;int&gt;, Y1707300 &lt;int&gt;,
+## #   Y1707400 &lt;int&gt;, Y1707500 &lt;int&gt;, Y1707600 &lt;int&gt;, Y1707700 &lt;int&gt;,
+## #   Y1707800 &lt;int&gt;, Y1707900 &lt;int&gt;, Y1708000 &lt;int&gt;, Y1708100 &lt;int&gt;,
+## #   Y1708200 &lt;int&gt;, Y1708300 &lt;int&gt;, Y1708400 &lt;int&gt;, Y1708500 &lt;int&gt;,
+## #   Y1708600 &lt;int&gt;, Y1708700 &lt;int&gt;, Y1708800 &lt;int&gt;, Y1708900 &lt;int&gt;,
+## #   Y1709000 &lt;int&gt;, Y1709100 &lt;int&gt;, Y1709200 &lt;int&gt;, ...
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2LinksFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2LinksFromGen1.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 5.2 Mb
+## # A tibble: 12,686 x 106
+##    R0000100 R0214700 R0214800 R4825700 R4826000 R4826100 R4826300 R4826500
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        3        2       -5       -5       -5       -5       -5
+##  2        2        3        2        0       -4       -4       -4       -4
+##  3        3        3        2        0       -4       -4       -4       -4
+##  4        4        3        2       -5       -5       -5       -5       -5
+##  5        5        3        1       -5       -5       -5       -5       -5
+##  6        6        3        1        0       -4       -4       -4       -4
+##  7        7        3        1        0       -4       -4       -4       -4
+##  8        8        3        2        0       -4       -4       -4       -4
+##  9        9        3        1        0       -4       -4       -4       -4
+## 10       10        3        2        0       -4       -4       -4       -4
+## # ... with 12,676 more rows, and 98 more variables: R4826800 &lt;int&gt;,
+## #   R5495900 &lt;int&gt;, R5496200 &lt;int&gt;, R5496300 &lt;int&gt;, R5496500 &lt;int&gt;,
+## #   R5496700 &lt;int&gt;, R5497000 &lt;int&gt;, R5497200 &lt;int&gt;, R6210700 &lt;int&gt;,
+## #   R6210800 &lt;int&gt;, R6210900 &lt;int&gt;, R6211500 &lt;int&gt;, R6211600 &lt;int&gt;,
+## #   R6211700 &lt;int&gt;, R6211800 &lt;int&gt;, R6211900 &lt;int&gt;, R6212200 &lt;int&gt;,
+## #   R6212300 &lt;int&gt;, R6764000 &lt;int&gt;, R6764100 &lt;int&gt;, R6764200 &lt;int&gt;,
+## #   R6764900 &lt;int&gt;, R6765000 &lt;int&gt;, R6765100 &lt;int&gt;, R6765200 &lt;int&gt;,
+## #   R6765600 &lt;int&gt;, R6765700 &lt;int&gt;, R6765800 &lt;int&gt;, R6839600 &lt;int&gt;,
+## #   R7408300 &lt;int&gt;, R7408400 &lt;int&gt;, R7408500 &lt;int&gt;, R7409200 &lt;int&gt;,
+## #   R7409300 &lt;int&gt;, R7409400 &lt;int&gt;, R7409500 &lt;int&gt;, R7409900 &lt;int&gt;,
+## #   R7410000 &lt;int&gt;, R7410100 &lt;int&gt;, R7548600 &lt;int&gt;, R8106400 &lt;int&gt;,
+## #   R8106500 &lt;int&gt;, R8106600 &lt;int&gt;, R8106700 &lt;int&gt;, R8106800 &lt;int&gt;,
+## #   R8106900 &lt;int&gt;, R8107000 &lt;int&gt;, R8107100 &lt;int&gt;, R8107200 &lt;int&gt;,
+## #   R8255400 &lt;int&gt;, R9900400 &lt;int&gt;, R9901200 &lt;int&gt;, R9902000 &lt;int&gt;,
+## #   R9902800 &lt;int&gt;, R9903600 &lt;int&gt;, R9904400 &lt;int&gt;, R9905200 &lt;int&gt;,
+## #   R9906000 &lt;int&gt;, R9906600 &lt;int&gt;, R9907200 &lt;int&gt;, R9907800 &lt;int&gt;,
+## #   R9908000 &lt;int&gt;, T0337300 &lt;int&gt;, T0337400 &lt;int&gt;, T0337500 &lt;int&gt;,
+## #   T0337600 &lt;int&gt;, T0337700 &lt;int&gt;, T0337800 &lt;int&gt;, T0337900 &lt;int&gt;,
+## #   T0338000 &lt;int&gt;, T0338100 &lt;int&gt;, T0338200 &lt;int&gt;, T0338300 &lt;int&gt;,
+## #   T0338400 &lt;int&gt;, T0338500 &lt;int&gt;, T0338600 &lt;int&gt;, T1486900 &lt;int&gt;,
+## #   T1487000 &lt;int&gt;, T1487100 &lt;int&gt;, T1487200 &lt;int&gt;, T1487300 &lt;int&gt;,
+## #   T1487400 &lt;int&gt;, T1487500 &lt;int&gt;, T1487600 &lt;int&gt;, T1487700 &lt;int&gt;,
+## #   T1487800 &lt;int&gt;, T2217700 &lt;int&gt;, T2533500 &lt;int&gt;, T2533600 &lt;int&gt;,
+## #   T2533700 &lt;int&gt;, T2533800 &lt;int&gt;, T2533900 &lt;int&gt;, T2534000 &lt;int&gt;,
+## #   T2534100 &lt;int&gt;, T2534200 &lt;int&gt;, T2534300 &lt;int&gt;, T2534400 &lt;int&gt;,
+## #   T2534500 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2OutcomesHeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesHeight.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 2 Mb
+## # A tibble: 11,504 x 46
+##    C0000100 C0000200 C0005300 C0005400 C0005700 C0577600 C0606300 C0606400
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1      201        2        3        2     1993       -7       -7       -7
+##  2      202        2        3        2     1994       -7       -7       -7
+##  3      301        3        3        2     1981       42        4        2
+##  4      302        3        3        2     1983       37        3        9
+##  5      303        3        3        2     1986       -7        2       10
+##  6      401        4        3        1     1980       -7        4        7
+##  7      403        4        3        2     1997       -7       -7       -7
+##  8      801        8        3        2     1976       58        5        5
+##  9      802        8        3        1     1979       50        4       10
+## 10      803        8        3        2     1982       41        4        4
+## # ... with 11,494 more rows, and 38 more variables: C0826400 &lt;int&gt;,
+## #   C0826500 &lt;int&gt;, C1016700 &lt;int&gt;, C1016800 &lt;int&gt;, C1220200 &lt;int&gt;,
+## #   C1220300 &lt;int&gt;, C1532700 &lt;int&gt;, C1532800 &lt;int&gt;, C1779300 &lt;int&gt;,
+## #   C1779400 &lt;int&gt;, C2288500 &lt;int&gt;, C2288600 &lt;int&gt;, C2552300 &lt;int&gt;,
+## #   C2820900 &lt;int&gt;, C3130400 &lt;int&gt;, C3553400 &lt;int&gt;, C3634500 &lt;int&gt;,
+## #   C3898000 &lt;int&gt;, C4013000 &lt;int&gt;, C5147900 &lt;int&gt;, Y0308300 &lt;int&gt;,
+## #   Y0308400 &lt;int&gt;, Y0609600 &lt;int&gt;, Y0609700 &lt;int&gt;, Y0903900 &lt;int&gt;,
+## #   Y0904000 &lt;int&gt;, Y1150800 &lt;int&gt;, Y1150900 &lt;int&gt;, Y1385800 &lt;int&gt;,
+## #   Y1385900 &lt;int&gt;, Y1637500 &lt;int&gt;, Y1637600 &lt;int&gt;, Y1891100 &lt;int&gt;,
+## #   Y1891200 &lt;int&gt;, Y2207000 &lt;int&gt;, Y2207100 &lt;int&gt;, Y2544700 &lt;int&gt;,
+## #   Y2544800 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblGen2OutcomesMath : data-unshared/raw/nlsy79-gen2/Gen2OutcomesMath.csv
+</code></pre>
+
+<pre><code>## Warning: The following named parsers don&#39;t match the column names:
+## RecommendedRelatedness
+</code></pre>
+
+<pre><code>## 2 Mb
+## # A tibble: 11,504 x 44
+##    C0000100 C0000200 C0005300 C0005400 C0005700 C0579900 C0580000 C0580100
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1      201        2        3        2     1993       -7       -7       -7
+##  2      202        2        3        2     1994       -7       -7       -7
+##  3      301        3        3        2     1981       -7       -7       -7
+##  4      302        3        3        2     1983       -7       -7       -7
+##  5      303        3        3        2     1986       -7       -7       -7
+##  6      401        4        3        1     1980       -7       -7       -7
+##  7      403        4        3        2     1997       -7       -7       -7
+##  8      801        8        3        2     1976       48       71      108
+##  9      802        8        3        1     1979       41       95      125
+## 10      803        8        3        2     1982       -7       -7       -7
+## # ... with 11,494 more rows, and 36 more variables: C0799400 &lt;int&gt;,
+## #   C0799500 &lt;int&gt;, C0799600 &lt;int&gt;, C0998600 &lt;int&gt;, C0998700 &lt;int&gt;,
+## #   C0998800 &lt;int&gt;, C1198600 &lt;int&gt;, C1198700 &lt;int&gt;, C1198800 &lt;int&gt;,
+## #   C1507600 &lt;int&gt;, C1507700 &lt;int&gt;, C1507800 &lt;int&gt;, C1564500 &lt;int&gt;,
+## #   C1564600 &lt;int&gt;, C1564700 &lt;int&gt;, C1799900 &lt;int&gt;, C1800000 &lt;int&gt;,
+## #   C1800100 &lt;int&gt;, C2503500 &lt;int&gt;, C2503600 &lt;int&gt;, C2503700 &lt;int&gt;,
+## #   C2532000 &lt;int&gt;, C2532100 &lt;int&gt;, C2532200 &lt;int&gt;, C2802800 &lt;int&gt;,
+## #   C2802900 &lt;int&gt;, C2803000 &lt;int&gt;, C3111300 &lt;int&gt;, C3111400 &lt;int&gt;,
+## #   C3111500 &lt;int&gt;, C3615000 &lt;int&gt;, C3615100 &lt;int&gt;, C3615200 &lt;int&gt;,
+## #   C3993600 &lt;int&gt;, C3993700 &lt;int&gt;, C3993800 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblLinks2004Gen1 : data-unshared/raw/historical/Links2004Gen1.csv 
+## 0.2 Mb
+## # A tibble: 3,890 x 9
+##    PairID ExtendedFamilyID   ID1   ID2  Sex1  Sex2 RecommendedRelatedness
+##     &lt;int&gt;            &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;                  &lt;dbl&gt;
+##  1      1                3     3     4     2     2                     NA
+##  2      2                5     5     6     1     1                  0.500
+##  3      3               13    13    14     1     2                  0.500
+##  4      4               17    17    18     1     1                  0.375
+##  5      5               20    20    21     2     2                  0.500
+##  6      6               23    23    24     1     1                     NA
+##  7      7               27    27    28     2     2                  0.500
+##  8      8               29    29    30     2     2                  0.500
+##  9      9               32    32    33     2     1                     NA
+## 10     10               34    34    35     1     2                  0.375
+## # ... with 3,880 more rows, and 2 more variables: SubjectTag_S1 &lt;int&gt;,
+## #   SubjectTag_S2 &lt;int&gt;
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+## Extract.tblLinks2004Gen2 : data-unshared/raw/historical/Links2004Gen2.csv 
+## 0.3 Mb
+## # A tibble: 12,855 x 5
+##      ID1   ID2  Sex1  Sex2 RecommendedRelatedness
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;                  &lt;dbl&gt;
+##  1   201   202     2     2                   0.50
+##  2   301   302     2     2                   0.50
+##  3   301   303     2     2                   0.50
+##  4   302   303     2     2                   0.50
+##  5   401   403     1     2                   0.25
+##  6   801   802     2     1                   0.50
+##  7   801   803     2     2                   0.50
+##  8   802   803     1     2                   0.50
+##  9  1001  1002     2     2                   0.50
+## 10  1201  1202     1     1                   0.50
+## # ... with 12,845 more rows
+## 
+## Save result: 1
+## ---------------------------------------------------------------
+</code></pre>
+
+<pre><code class="r">RODBC::odbcClose(channel); rm(channel)
+cat(&quot;upload_duration_in_seconds:&quot;, round(as.numeric(difftime(Sys.time(), upload_start_time, units=&quot;secs&quot;))), &quot;\n&quot;)
+</code></pre>
+
+<pre><code>## upload_duration_in_seconds: 34
+</code></pre>
+
+<pre><code class="r">warnings()
+</code></pre>
+
+<pre><code>## Warning messages:
+## 1: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 2: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 3: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 4: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 5: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 6: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 7: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 8: closing unused RODBC handle 30
+## 9: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 10: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 11: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 12: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+## 13: The following named parsers don&#39;t match the column names: RecommendedRelatedness
+</code></pre>
+
+<p>The R session information (including the OS info, R version and all
+packages used):</p>
+
+<pre><code class="r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.4.0 Patched (2017-05-16 r72684)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows &gt;= 8 x64 (build 9200)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] bindrcpp_0.1 magrittr_1.5
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
+##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
+##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
+## [13] assertthat_0.2.0 digest_0.6.12    rprojroot_1.2    tibble_1.3.3    
+## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
+## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
+## [29] pkgconfig_2.0.1
+</code></pre>
+
+<pre><code class="r">Sys.time()
+</code></pre>
+
+<pre><code>## [1] &quot;2017-06-22 00:55:35 CDT&quot;
+</code></pre>
+
+</body>
+
+</html>

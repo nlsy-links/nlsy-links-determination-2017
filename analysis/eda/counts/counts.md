@@ -58,21 +58,21 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Enum        |tblLUSurveySource          |         4|            4|
 |Enum        |tblLUTristate              |         3|            4|
 |Enum        |tblLUYesNo                 |         6|            4|
-|Extract     |tblGen1Explicit            |         0|           95|
-|Extract     |tblGen1Implicit            |         0|          101|
-|Extract     |tblGen1Links               |         0|           95|
+|Extract     |tblGen1Explicit            |    12,686|           95|
+|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
+|Extract     |tblGen1Implicit            |    12,686|          101|
+|Extract     |tblGen1Links               |    12,686|           95|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
-|Extract     |tblGen1Outcomes            |         0|           21|
-|Extract     |tblGen2FatherFromGen1      |         0|          952|
-|Extract     |tblGen2ImplicitFather      |         0|          111|
-|Extract     |tblGen2Links               |         0|          164|
-|Extract     |tblGen2LinksFromGen1       |         0|          106|
-|Extract     |tblGen2OutcomesHeight      |         0|           46|
-|Extract     |tblGen2OutcomesMath        |         0|           44|
-|Extract     |tblGen2OutcomesWeight      |         0|           13|
-|Extract     |tblGeocodeSanitized        |         0|           29|
-|Extract     |tblLinks2004Gen1           |         0|            9|
-|Extract     |tblLinks2004Gen2           |         0|            5|
+|Extract     |tblGen1Outcomes            |    12,686|           21|
+|Extract     |tblGen2FatherFromGen1      |    12,686|          952|
+|Extract     |tblGen2ImplicitFather      |    11,504|          111|
+|Extract     |tblGen2Links               |    11,512|          164|
+|Extract     |tblGen2LinksFromGen1       |    12,686|          106|
+|Extract     |tblGen2OutcomesHeight      |    11,504|           46|
+|Extract     |tblGen2OutcomesMath        |    11,504|           44|
+|Extract     |tblGen2OutcomesWeight      |    11,504|           13|
+|Extract     |tblLinks2004Gen1           |     3,890|            9|
+|Extract     |tblLinks2004Gen2           |    12,855|            5|
 |Metadata    |tblItem                    |       108|            7|
 |Metadata    |tblMzManual                |       206|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
@@ -114,7 +114,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-06-21                                 
+ date     2017-06-22                                 
 ```
 
 ```
@@ -167,5 +167,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-06-21, 22:40 -0500 in 1 seconds.
+Report rendered by Will at 2017-06-22, 00:56 -0500 in 1 seconds.
 

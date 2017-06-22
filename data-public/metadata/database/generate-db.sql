@@ -705,6 +705,47 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [Extract].[tblGen1GeocodeSanitized](
+	[SubjectTag_S1] [int] NOT NULL,
+	[SubjectTag_S2] [int] NOT NULL,
+	[DobDifferenceInDays1979V1979] [smallint] NULL,
+	[DobDifferenceInDays1979V1981] [smallint] NULL,
+	[DobDifferenceInDays1981V1979] [smallint] NULL,
+	[DobDifferenceInDays1981V1981] [smallint] NULL,
+	[DobDayIsMissing1979_1] [bit] NOT NULL,
+	[DobDayIsMissing1979_2] [bit] NOT NULL,
+	[BirthSubjectCountyMissing_1] [bit] NOT NULL,
+	[BirthSubjectCountyMissing_2] [bit] NOT NULL,
+	[BirthSubjectCountyEqual] [bit] NOT NULL,
+	[BirthSubjectStateMissing_1] [bit] NOT NULL,
+	[BirthSubjectStateMissing_2] [bit] NOT NULL,
+	[BirthSubjectStateEqual] [bit] NOT NULL,
+	[BirthSubjectCountryMissing_1] [bit] NOT NULL,
+	[BirthSubjectCountryMissing_2] [bit] NOT NULL,
+	[BirthSubjectCountryEqual] [bit] NOT NULL,
+	[BirthMotherStateMissing_1] [bit] NOT NULL,
+	[BirthMotherStateMissing_2] [bit] NOT NULL,
+	[BirthMotherStateEqual] [bit] NOT NULL,
+	[BirthMotherCountryMissing_1] [bit] NOT NULL,
+	[BirthMotherCountryMissing_2] [bit] NOT NULL,
+	[BirthMotherCountryEqual] [bit] NOT NULL,
+	[BirthFatherStateMissing_1] [bit] NOT NULL,
+	[BirthFatherStateMissing_2] [bit] NOT NULL,
+	[BirthFatherStateEqual] [bit] NOT NULL,
+	[BirthFatherCountryMissing_1] [bit] NOT NULL,
+	[BirthFatherCountryMissing_2] [bit] NOT NULL,
+	[BirthFatherCountryEqual] [bit] NOT NULL,
+ CONSTRAINT [PK_tblGeocodeSanitized] PRIMARY KEY CLUSTERED 
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [Extract].[tblGen1Implicit](
 	[H0001600] [int] NULL,
 	[H0001700] [int] NULL,
@@ -2480,47 +2521,6 @@ CREATE TABLE [Extract].[tblGen2OutcomesWeight](
  CONSTRAINT [PK_tblGen2OutcomesWeight] PRIMARY KEY CLUSTERED 
 (
 	[C0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Extract].[tblGeocodeSanitized](
-	[SubjectTag_S1] [int] NOT NULL,
-	[SubjectTag_S2] [int] NOT NULL,
-	[DobDifferenceInDays1979V1979] [smallint] NULL,
-	[DobDifferenceInDays1979V1981] [smallint] NULL,
-	[DobDifferenceInDays1981V1979] [smallint] NULL,
-	[DobDifferenceInDays1981V1981] [smallint] NULL,
-	[DobDayIsMissing1979_1] [bit] NOT NULL,
-	[DobDayIsMissing1979_2] [bit] NOT NULL,
-	[BirthSubjectCountyMissing_1] [bit] NOT NULL,
-	[BirthSubjectCountyMissing_2] [bit] NOT NULL,
-	[BirthSubjectCountyEqual] [bit] NOT NULL,
-	[BirthSubjectStateMissing_1] [bit] NOT NULL,
-	[BirthSubjectStateMissing_2] [bit] NOT NULL,
-	[BirthSubjectStateEqual] [bit] NOT NULL,
-	[BirthSubjectCountryMissing_1] [bit] NOT NULL,
-	[BirthSubjectCountryMissing_2] [bit] NOT NULL,
-	[BirthSubjectCountryEqual] [bit] NOT NULL,
-	[BirthMotherStateMissing_1] [bit] NOT NULL,
-	[BirthMotherStateMissing_2] [bit] NOT NULL,
-	[BirthMotherStateEqual] [bit] NOT NULL,
-	[BirthMotherCountryMissing_1] [bit] NOT NULL,
-	[BirthMotherCountryMissing_2] [bit] NOT NULL,
-	[BirthMotherCountryEqual] [bit] NOT NULL,
-	[BirthFatherStateMissing_1] [bit] NOT NULL,
-	[BirthFatherStateMissing_2] [bit] NOT NULL,
-	[BirthFatherStateEqual] [bit] NOT NULL,
-	[BirthFatherCountryMissing_1] [bit] NOT NULL,
-	[BirthFatherCountryMissing_2] [bit] NOT NULL,
-	[BirthFatherCountryEqual] [bit] NOT NULL,
- CONSTRAINT [PK_tblGeocodeSanitized] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag_S1] ASC,
-	[SubjectTag_S2] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO

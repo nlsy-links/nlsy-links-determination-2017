@@ -204,7 +204,7 @@ hr {
 <p>This report was automatically generated with the R package <strong>knitr</strong>
 (version 1.16).</p>
 
-<pre><code class="r"># knitr::stitch_rmd(script=&quot;./utility/import-metadata.R&quot;, output=&quot;./stitched-output/utility/import-metadata.md&quot;) # dir.create(output=&quot;./stitched-output/utility/&quot;, recursive=T)
+<pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/import-metadata.R&quot;, output=&quot;./stitched-output/dal/import-metadata.md&quot;) # dir.create(output=&quot;./stitched-output/dal/&quot;, recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 </code></pre>
 
@@ -214,19 +214,19 @@ base::source(&quot;utility/connectivity.R&quot;)
 
 <pre><code class="r"># Attach these package(s) so their functions don&#39;t need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 library(magrittr            , quietly=TRUE)
-library(DBI                 , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace(&quot;readr&quot;                  )
 requireNamespace(&quot;tidyr&quot;                  )
+requireNamespace(&quot;tibble&quot;                 )
+requireNamespace(&quot;purrr&quot;                  )
 requireNamespace(&quot;dplyr&quot;                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
-# requireNamespace(&quot;RODBC&quot;) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
+requireNamespace(&quot;RODBC&quot;                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
 </code></pre>
 
 <pre><code class="r"># Constant values that won&#39;t change.
 directory_in              &lt;- &quot;data-public/metadata/tables&quot;
-# schema_name               &lt;- &quot;Metadata&quot;
 
 col_types_minimal &lt;- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -276,48 +276,48 @@ lst_col_types &lt;- list(
     Notes                               = readr::col_character()
   ),
   # RArchive = readr::cols_only(
-  #   ID                                  = readr::col_integer(),
-  #   AlgorithmVersion                    = readr::col_integer(),
-  #   SubjectTag_S1                       = readr::col_integer(),
-  #   SubjectTag_S2                       = readr::col_integer(),
-  #   MultipleBirthIfSameSex              = readr::col_integer(),
-  #   IsMz                                = readr::col_integer(),
-  #   SameGeneration                      = readr::col_character(),
-  #   RosterAssignmentID                  = readr::col_character(),
-  #   RRoster                             = readr::col_character(),
-  #   LastSurvey_S1                       = readr::col_integer(),
-  #   LastSurvey_S2                       = readr::col_integer(),
-  #   RImplicitPass1                      = readr::col_double(),
-  #   RImplicit                           = readr::col_double(),
-  #   RImplicitSubject                    = readr::col_double(),
-  #   RImplicitMother                     = readr::col_double(),
-  #   RImplicit2004                       = readr::col_double(),
-  #   RExplicitOldestSibVersion           = readr::col_double(),
-  #   RExplicitYoungestSibVersion         = readr::col_double(),
-  #   RExplicitPass1                      = readr::col_double(),
-  #   RExplicit                           = readr::col_double(),
-  #   RPass1                              = readr::col_double(),
-  #   R                                   = readr::col_double(),
-  #   RFull                               = readr::col_double(),
-  #   RPeek                               = readr::col_character()
+  #   ID                                = readr::col_integer(),
+  #   AlgorithmVersion                  = readr::col_integer(),
+  #   SubjectTag_S1                     = readr::col_integer(),
+  #   SubjectTag_S2                     = readr::col_integer(),
+  #   MultipleBirthIfSameSex            = readr::col_integer(),
+  #   IsMz                              = readr::col_integer(),
+  #   SameGeneration                    = readr::col_character(),
+  #   RosterAssignmentID                = readr::col_character(),
+  #   RRoster                           = readr::col_character(),
+  #   LastSurvey_S1                     = readr::col_integer(),
+  #   LastSurvey_S2                     = readr::col_integer(),
+  #   RImplicitPass1                    = readr::col_double(),
+  #   RImplicit                         = readr::col_double(),
+  #   RImplicitSubject                  = readr::col_double(),
+  #   RImplicitMother                   = readr::col_double(),
+  #   RImplicit2004                     = readr::col_double(),
+  #   RExplicitOldestSibVersion         = readr::col_double(),
+  #   RExplicitYoungestSibVersion       = readr::col_double(),
+  #   RExplicitPass1                    = readr::col_double(),
+  #   RExplicit                         = readr::col_double(),
+  #   RPass1                            = readr::col_double(),
+  #   R                                 = readr::col_double(),
+  #   RFull                             = readr::col_double(),
+  #   RPeek                             = readr::col_character()
   # ),
   RosterGen1Assignment    = readr::cols_only(
-    ID                      = readr::col_integer(),
-    ResponseLower           = readr::col_integer(),
-    ResponseUpper           = readr::col_integer(),
-    Freq                    = readr::col_integer(),
-    Resolved                = readr::col_integer(),
-    R                       = readr::col_double(),
-    RBoundLower             = readr::col_double(),
-    RBoundUpper             = readr::col_double(),
-    SameGeneration          = readr::col_integer(),
-    ShareBiodad             = readr::col_integer(),
-    ShareBiomom             = readr::col_integer(),
-    ShareBiograndparent     = readr::col_integer(),
-    Inconsistent            = readr::col_integer(),
-    Notes                   = readr::col_character(),
-    ResponseLowerLabel      = readr::col_character(),
-    ResponseUpperLabel      = readr::col_character()
+    ID                                  = readr::col_integer(),
+    ResponseLower                       = readr::col_integer(),
+    ResponseUpper                       = readr::col_integer(),
+    Freq                                = readr::col_integer(),
+    Resolved                            = readr::col_integer(),
+    R                                   = readr::col_double(),
+    RBoundLower                         = readr::col_double(),
+    RBoundUpper                         = readr::col_double(),
+    SameGeneration                      = readr::col_integer(),
+    ShareBiodad                         = readr::col_integer(),
+    ShareBiomom                         = readr::col_integer(),
+    ShareBiograndparent                 = readr::col_integer(),
+    Inconsistent                        = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    ResponseLowerLabel                  = readr::col_character(),
+    ResponseUpperLabel                  = readr::col_character()
   ),
   Variable = readr::cols_only(
     ID                                  = readr::col_integer(),
@@ -1107,7 +1107,7 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.1 DBI_0.6-1    magrittr_1.5
+## [1] bindrcpp_0.1 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
@@ -1121,7 +1121,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2017-06-21 22:40:33 CDT&quot;
+<pre><code>## [1] &quot;2017-06-21 22:52:40 CDT&quot;
 </code></pre>
 
 </body>
