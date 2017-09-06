@@ -33,7 +33,7 @@ namespace Nls.BaseAssembly {
 		#endregion
 		#region  Expected Counts
 		public const Int32 Gen1Count = Gen1IDMax;
-		public const Int32 Gen2Count = 11504;//11495 in 2008;
+		public const Int32 Gen2Count = 11512; //11504 in 2010?;//11495 in 2008;
 		//public const Int32 Gen2SiblingPathCount = 22150;//Double entered;
 
 		public const Int32 Gen1HousematesPathCount = 5302;//Single entered;
