@@ -1,0 +1,72 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage[margin=.8in]{geometry}
+\usepackage{colortbl}
+
+\title{Comparison of Versions of Kinship Links}
+\author{Joe Rodger's BG Team}
+\begin{document}
+\maketitle
+
+\definecolor{goodColor}{rgb}{.9,1,.85}
+\definecolor{sosoColor}{rgb}{1,0.9215686,0.6117647}
+\definecolor{badColor}{rgb}{1,.85,.85}
+\definecolor{nullColor}{rgb}{.9, 0.85, 0.95} %0.8000000 0.7529412 0.8549020
+\setlength{\parindent}{0pt}%http://tex.stackexchange.com/questions/49188/how-to-insert-vertical-space-between-paragraphs
+
+
+<<setup, echo=FALSE>>=
+options(width=68) #Doesn't seem to affect the 'newerDescription' below
+
+#Set the chunks' working directory to the repository's base directory; this assumes the report is nested inside of two directories.
+opts_knit$set(root.dir='../../')  #Don't combine this call with any other chunk -espeically one that uses file paths.
+@
+
+<<echo=FALSE>>=
+library(formatR)
+library(stringr)
+rm(list=ls(all=TRUE)) #Clear all the variables before starting a new run.
+pathCode <- "./MicroscopicViews/VersionComparison/ArchiveComparison.R"
+source(pathCode)
+@
+% \textbf{RelationshipPaths Considered}: \Sexpr{includedRelationshipPaths};\\
+\textbf{Newer Links Version}: \Sexpr{newerVersionNumber};
+\textbf{Older Links Version}: \Sexpr{olderVersionNumber};
+
+<<echo=FALSE, comment=NA>>=
+# cat("Newer:", newerDescription)
+cat(str_wrap(paste("Newer Links:", newerDescription), width=80))
+cat(str_wrap(paste("Older Links:", olderDescription), width=80))
+@
+
+\begin{figure}[htbp]
+<<echo=FALSE, fig.width=3.2, fig.height=1.5>>=
+if( 1 %in% includedRelationshipPaths ) {
+  CreateRoc(relationshipPathID=1)
+}
+if( 2 %in% includedRelationshipPaths ) {
+  CreateRoc(relationshipPathID=2)
+}
+@
+\caption{ROC for Gen1Housemates (left) and Gen2Siblings (right)}
+\end{figure}
+
+<<echo=FALSE, results='asis'>>=
+if( 1 %in% includedRelationshipPaths ) {
+  PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=1, title="Counts for Gen1Housemates")
+  PrintMarginalTable(dsJoint=dsPrevious, relationshipPathID=1, title="Counts for Gen1Housemates (Previous version of links)")
+}
+if( 2 %in% includedRelationshipPaths ) {
+  PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=2, title="Counts for Gen2Siblings")
+  PrintMarginalTable(dsJoint=dsPrevious, relationshipPathID=2, title="Counts for Gen2Siblings (Previous version of links)")
+}
+@
+
+<<echo=FALSE, results='asis'>>=
+if( sum(ds$RelationshipPath==1) > 0 ) 
+  PrintConditionalTable(relationshipPathID=1, tabelCaption="Counts for Gen1Housemates")
+if( sum(ds$RelationshipPath==2) > 0 )
+  PrintConditionalTable(relationshipPathID=2, tabelCaption="Counts for Gen2Siblings")
+@
+
+\end{document}
