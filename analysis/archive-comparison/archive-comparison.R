@@ -1,37 +1,93 @@
-rm(list=ls(all=TRUE))
+rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is not called by knitr, because it's above the first chunk.
+
+# ---- load-sources ------------------------------------------------------------
+#Load any source files that contain/define functions, but that don't load any other types of variables
+#   into memory.  Avoid side effects and don't pollute the global environment.
+source("./utility/connectivity.R")
+
+# ---- load-packages -----------------------------------------------------------
 library(RODBC)
 library(plyr)
 library(xtable)
 library(ggplot2)
+
+library(magrittr) #Pipes
+# library(ggplot2) #For graphing
+requireNamespace("RODBC")
+requireNamespace("dplyr")
+requireNamespace("scales") #For formating values in graphs
+requireNamespace("knitr") #For the kable function for tables
+
+
+
+# ---- declare-globals ---------------------------------------------------------
+
 # includedRelationshipPaths <- c(2)
 # includedRelationshipPaths <- c(1)
 includedRelationshipPaths <- c(1, 2)
 
-sql <- paste("SELECT Process.tblRelatedValuesArchive.ID, Process.tblRelatedValuesArchive.AlgorithmVersion, Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValuesArchive.SubjectTag_S1, Process.tblRelatedValuesArchive.SubjectTag_S2, Process.tblRelatedValuesArchive.MultipleBirthIfSameSex, Process.tblRelatedValuesArchive.IsMz, Process.tblRelatedValuesArchive.LastSurvey_S1, Process.tblRelatedValuesArchive.LastSurvey_S2, Process.tblRelatedValuesArchive.RRoster, Process.tblRelatedValuesArchive.RImplicitPass1, Process.tblRelatedValuesArchive.RImplicit, Process.tblRelatedValuesArchive.RImplicit2004, Process.tblRelatedValuesArchive.RExplicitOldestSibVersion, Process.tblRelatedValuesArchive.RExplicitYoungestSibVersion, Process.tblRelatedValuesArchive.RExplicitPass1, Process.tblRelatedValuesArchive.RExplicit, Process.tblRelatedValuesArchive.RPass1, Process.tblRelatedValuesArchive.RFull
-  FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2 
-  WHERE Process.tblRelatedStructure.RelationshipPath IN (", paste0(includedRelationshipPaths, collapse=","), ") 
-      AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (SELECT TOP (2) AlgorithmVersion FROM Process.tblRelatedValuesArchive AS tblRelatedValuesArchive_1 
-    GROUP BY AlgorithmVersion ORDER BY AlgorithmVersion DESC))")
+sql <- paste("
+  SELECT
+    a.ID,
+    a.AlgorithmVersion,
+    s.RelationshipPath,
+    a.SubjectTag_S1,
+    a.SubjectTag_S2,
+    a.MultipleBirthIfSameSex,
+    a.IsMz,
+    a.LastSurvey_S1,
+    a.LastSurvey_S2,
+    a.RRoster,
+    a.RImplicitPass1,
+    a.RImplicit,
+    a.RImplicit2004,
+    a.RExplicitOldestSibVersion,
+    a.RExplicitYoungestSibVersion,
+    a.RExplicitPass1,
+    a.RExplicit,
+    a.RPass1,
+    a.RFull
+  FROM Archive.tblRelatedValuesArchive AS a
+    INNER JOIN Process.tblRelatedStructure AS s ON
+      a.SubjectTag_S1 = s.SubjectTag_S1
+      AND
+      a.SubjectTag_S2 = s.SubjectTag_S2
+  WHERE
+    s.RelationshipPath IN (1, 2)
+    AND
+    (
+      a.AlgorithmVersion IN (
+        SELECT TOP (2)
+          AlgorithmVersion
+        FROM Archive.tblRelatedValuesArchive AS a2
+        GROUP BY AlgorithmVersion
+        ORDER BY AlgorithmVersion DESC
+      )
+    )
+")
 
 # sql <- paste("SELECT Process.tblRelatedValuesArchive.ID, Process.tblRelatedValuesArchive.AlgorithmVersion, Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValuesArchive.SubjectTag_S1, Process.tblRelatedValuesArchive.SubjectTag_S2, Process.tblRelatedValuesArchive.MultipleBirthIfSameSex, Process.tblRelatedValuesArchive.IsMz, Process.tblRelatedValuesArchive.LastSurvey_S1, Process.tblRelatedValuesArchive.LastSurvey_S2, Process.tblRelatedValuesArchive.RRoster, Process.tblRelatedValuesArchive.RImplicitPass1, Process.tblRelatedValuesArchive.RImplicit, Process.tblRelatedValuesArchive.RImplicit2004, Process.tblRelatedValuesArchive.RExplicitOldestSibVersion, Process.tblRelatedValuesArchive.RExplicitYoungestSibVersion, Process.tblRelatedValuesArchive.RExplicitPass1, Process.tblRelatedValuesArchive.RExplicit, Process.tblRelatedValuesArchive.RPass1, Process.tblRelatedValuesArchive.RFull
-#   FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2 
-#   WHERE Process.tblRelatedStructure.RelationshipPath IN (", paste0(includedRelationshipPaths, collapse=","), ") 
+#   FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2
+#   WHERE Process.tblRelatedStructure.RelationshipPath IN (", paste0(includedRelationshipPaths, collapse=","), ")
 #     AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (73, 75))")
 
 
-sql <- gsub(pattern="\\n", replacement=" ", sql)
-sqlDescription <- "SELECT * FROM Process.tblArchiveDescription" #AlgorithmVersion, Description
-
+# sql <- gsub(pattern="\\n", replacement=" ", sql)
+sqlDescription <- "SELECT * FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
 startTime <- Sys.time()
-channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+
+# ---- load-data ---------------------------------------------------------------
+channel            <- open_dsn_channel()
 odbcGetInfo(channel)
 
 dsRaw <- sqlQuery(channel, sql, stringsAsFactors=F)
-# dsRaw <- head(dsRaw)
 dsDescription <- sqlQuery(channel, sqlDescription, stringsAsFactors=F)
-odbcCloseAll()
-(elapsedTime <- Sys.time() - startTime)
+
+RODBC::odbcClose(channel); rm(channel, sql, sqlDescription)
+(Sys.time() - startTime);  rm(startTime)
 nrow(dsRaw)
+
+# ---- tweak-data --------------------------------------------------------------
 
 olderVersionNumber <- min(dsRaw$AlgorithmVersion)
 olderDescription <- dsDescription[dsDescription$AlgorithmVersion==olderVersionNumber, 'Description']
@@ -72,6 +128,7 @@ colnames(ds)[which(colnames(ds)=="Count.x")] <- "Count"
 # dsG
 # ds <- dsG
 
+# ---- define-tables ----------------------------------------------------------
 colorGood <- "goodColor"
 colorSoso <- "sosoColor"
 colorBad <- "badColor"
@@ -90,19 +147,19 @@ PrintConditionalTable <- function( relationshipPathID, tabelCaption=paste("Joint
   dsT <- ds[ds$RelationshipPath==relationshipPathID, ]
   dsT <- dsT[, colnames(dsT)!="RelationshipPath"]
   dsT <- dsT[order(-dsT$Count, dsT$Delta), c(5,1,2,3,4,6)]
-  
+
 #   idGoodRows <- which(dsT$RImplicit==dsT$RExplicit)# & (ds$RImplicit2004 !=.375 | is.na(ds$RImplicit2004)))
 #   idBadRows <- which(abs(dsT$RImplicit - dsT$RExplicit) >= .25)# & ds$RImplicit!=1)
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
   idBadRows <- DetermineBadRowIDs(dsT)
   idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
-  
+
   idRows <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
   idRowsList <- as.list(idRows)# as.list(unlist(idRows))
   colorRows <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
   colorRows <- paste0("\\rowcolor{", colorRows, "} ")
-  
+
   digitsFormat <- c(0, 0, 3, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
   textTable <- xtable(dsT, digits=digitsFormat, caption=tabelCaption)
   print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-")#, size="small")
@@ -112,28 +169,28 @@ PrintConditionalTable <- function( relationshipPathID, tabelCaption=paste("Joint
 
 CreateMarginalTable  <- function(dsJoint,  relationshipPathID ) {
   dsJoint <- dsJoint[dsJoint$RelationshipPath==relationshipPathID, ]
-    
+
   dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
   dsImplicit2004Table <- data.frame(table(dsJoint$RImplicit2004, useNA="always"))
   dsTable <- merge(x=dsImplicit2004Table, y=dsImplicitTable, by="Var1", all=T)
   colnames(dsTable)[colnames(dsTable)=="Freq.x"] <- "Implicit2004"
   colnames(dsTable)[colnames(dsTable)=="Freq.y"] <- "Implicit"
-  
+
   if( relationshipPathID==1 ) {
     dsRosterTable <- data.frame(table(dsJoint$RRoster, useNA="always"))
     dsTable <- merge(x=dsTable, y=dsRosterTable, by="Var1", all=T)
     colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Roster"
   }
-  
+
   dsExplicitTable <- data.frame(table(dsJoint$RExplicit, useNA="always"))
   dsTable <- merge(x=dsTable, y=dsExplicitTable, by="Var1", all=T)
   colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Explicit"
-  
+
   dsRTable <- data.frame(table(dsJoint$RFull, useNA="always"))
   dsTable <- merge(x=dsTable, y=dsRTable, by="Var1", all=T)
   colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Eventual"
   colnames(dsTable)[colnames(dsTable)=="Var1"] <- "R"
-  
+
   dsTable <- dsTable[order(as.numeric(as.character(dsTable$R))), ]
   return( dsTable )
 }
@@ -154,17 +211,21 @@ CreateRoc <- function( relationshipPathID ) {
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
   idBadRows <- DetermineBadRowIDs(dsT)
-  
+
   goodSumLatest <- sum(dsT[idGoodRows, "Count"])
   badSumLatest <- sum(dsT[idBadRows, "Count"])
-  
+
   goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, "Delta"])
   badSumPrevious <- badSumLatest - sum(dsT[idBadRows, "Delta"])
   dsRoc <- data.frame(Version=c(newerVersionNumber, olderVersionNumber), Agree=c(goodSumLatest, goodSumPrevious), Disagree=c(badSumLatest, badSumPrevious))
-  
+
   rocLag1 <- ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
-    layer(geom="path") +    layer(geom="text") 
+    geom_path() +
+    geom_text()
     # coord_cartesian(xlim=c(0, 8000), ylim=c(0, 8000))#+ #xlim(0, 8000)
   return( rocLag1 )
 }
-CreateRoc(relationshipPathID=1)
+
+
+# CreateRoc(relationshipPathID=1)
+# CreateRoc(relationshipPathID=2)

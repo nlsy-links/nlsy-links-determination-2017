@@ -6,6 +6,7 @@
 \title{Comparison of Versions of Kinship Links}
 \author{Joe Rodger's BG Team}
 \begin{document}
+
 \maketitle
 
 \definecolor{goodColor}{rgb}{.9,1,.85}
@@ -14,6 +15,7 @@
 \definecolor{nullColor}{rgb}{.9, 0.85, 0.95} %0.8000000 0.7529412 0.8549020
 \setlength{\parindent}{0pt}%http://tex.stackexchange.com/questions/49188/how-to-insert-vertical-space-between-paragraphs
 
+% Working directory: \Sexpr{getwd()};
 
 <<setup, echo=FALSE>>=
 options(width=68) #Doesn't seem to affect the 'newerDescription' below
@@ -22,16 +24,49 @@ options(width=68) #Doesn't seem to affect the 'newerDescription' below
 opts_knit$set(root.dir='../../')  #Don't combine this call with any other chunk -espeically one that uses file paths.
 @
 
-<<echo=FALSE>>=
+% Working directory: \Sexpr{getwd()};
+
+
+<<set-options, echo=FALSE>>=
+library(knitr)
 library(formatR)
 library(stringr)
-rm(list=ls(all=TRUE)) #Clear all the variables before starting a new run.
-pathCode <- "./MicroscopicViews/VersionComparison/ArchiveComparison.R"
-source(pathCode)
+
+echo_chunks    <- FALSE #Toggle for debugging.
+message_chunks <- FALSE #Toggle for debugging.
+options(width=100) #So the output is 25% wider than the default.
+
+read_chunk("./analysis/archive-comparison/archive-comparison.R")
 @
+
+<<load-sources, echo=echo_chunks, message=message_chunks>>=
+@
+
+<<load-packages, echo=echo_chunks, message=message_chunks>>=
+@
+
+<<declare-globals, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
+<<rmd-specific, echo=echo_chunks, message=message_chunks>>=
+# Put presentation-specific code in here.  It doesn't call a chunk in the codebehind file.
+#   It should be rare (and used cautiously), but sometimes it makes sense to include code in Rmd
+#   that doesn't live in the codebehind R file.
+@
+
+<<load-data, echo=FALSE, results='show', message=message_chunks>>=
+@
+
+<<tweak-data, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
 % \textbf{RelationshipPaths Considered}: \Sexpr{includedRelationshipPaths};\\
 \textbf{Newer Links Version}: \Sexpr{newerVersionNumber};
 \textbf{Older Links Version}: \Sexpr{olderVersionNumber};
+
+<<define-tables, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
 
 <<echo=FALSE, comment=NA>>=
 # cat("Newer:", newerDescription)
@@ -63,10 +98,11 @@ if( 2 %in% includedRelationshipPaths ) {
 @
 
 <<echo=FALSE, results='asis'>>=
-if( sum(ds$RelationshipPath==1) > 0 ) 
+if( sum(ds$RelationshipPath==1) > 0 )
   PrintConditionalTable(relationshipPathID=1, tabelCaption="Counts for Gen1Housemates")
 if( sum(ds$RelationshipPath==2) > 0 )
   PrintConditionalTable(relationshipPathID=2, tabelCaption="Counts for Gen2Siblings")
 @
+
 
 \end{document}
