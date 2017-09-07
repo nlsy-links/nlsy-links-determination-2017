@@ -41,6 +41,7 @@
         <CollectionViewSource x:Key="tblGen2OutcomesMathViewSource" Source="{Binding tblGen2OutcomesMath, Source={StaticResource importDataSet}}"/>
         <CollectionViewSource x:Key="tblGen1GeocodeSanitizedViewSource" Source="{Binding tblGen1GeocodeSanitized, Source={StaticResource importDataSet}}"/>
         <CollectionViewSource x:Key="tblRosterGen1AssignmentViewSource" Source="{Binding tblRosterGen1Assignment, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblOutcomeViewSource" Source="{Binding tblOutcome, Source={StaticResource linksDataSet}}"/>
     </Window.Resources>
     <Grid Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblGen2LinksViewSource}">
         <Grid.RowDefinitions>
@@ -1524,7 +1525,7 @@
             </TabItem>
 
         </TabControl>
-        <TabControl Name="tabControlBottom"  Grid.Row="3" Background="Transparent">
+        <TabControl Name="tabControlBottom"  Grid.Row="3" Background="Transparent" SelectedIndex="{Binding Mode=OneWay, Source={StaticResource tblOutcomeViewSource}}">
             <TabItem Header="Subject" Name="tabSubject" >
                 <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}" Name="tblSubjectDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" >
                     <DataGrid.Columns>
@@ -1762,7 +1763,9 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="Outcomes" Name="tabOutcome" />
+            <TabItem Header="Outcomes" Name="tabOutcome" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblOutcomeViewSource}}"/>
+            </TabItem>
 
         </TabControl>
 

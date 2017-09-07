@@ -40,8 +40,8 @@ namespace LinksGui {
 			_dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
 			_dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            if( Convert.ToBoolean("true") ) {
-            //if( Convert.ToBoolean("false") ) {
+            //if( Convert.ToBoolean("true") ) {
+            if( Convert.ToBoolean("false") ) {
 				LoadExtractGen1Links();
 				LoadExtractGen1Explicit();
 				LoadExtractGen1Implicit();

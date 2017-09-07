@@ -77,22 +77,22 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Metadata    |tblMzManual                |       207|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
 |Metadata    |tblVariable                |     1,559|           11|
-|Process     |tblBabyDaddy               |         0|           11|
-|Process     |tblFatherOfGen2            |         0|            7|
+|Process     |tblBabyDaddy               |   178,803|           11|
+|Process     |tblFatherOfGen2            |    52,038|            7|
 |Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblMarkerGen1              |         0|           10|
-|Process     |tblMarkerGen2              |         0|            8|
-|Process     |tblOutcome                 |         0|            5|
+|Process     |tblMarkerGen1              |   217,310|           10|
+|Process     |tblMarkerGen2              |   206,263|            8|
+|Process     |tblOutcome                 |   108,569|            5|
 |Process     |tblOutcomesOLD             |         0|            4|
-|Process     |tblParentsOfGen1Current    |         0|           19|
-|Process     |tblParentsOfGen1Retro      |         0|            7|
-|Process     |tblRelatedStructure        |         0|            6|
-|Process     |tblRelatedValues           |         0|           24|
-|Process     |tblResponse                |         0|            9|
-|Process     |tblRosterGen1              |         0|           13|
-|Process     |tblSubject                 |         0|            5|
-|Process     |tblSubjectDetails          |         0|           15|
-|Process     |tblSurveyTime              |         0|            7|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|
+|Process     |tblRelatedStructure        |    85,590|            6|
+|Process     |tblRelatedValues           |    42,795|           24|
+|Process     |tblResponse                | 2,543,774|            9|
+|Process     |tblRosterGen1              |    10,604|           13|
+|Process     |tblSubject                 |    24,198|            5|
+|Process     |tblSubjectDetails          |    24,198|           15|
+|Process     |tblSurveyTime              |   580,752|            7|
 
 
 
@@ -168,5 +168,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-09-06, 18:17 -0500 in 1 seconds.
+Report rendered by Will at 2017-09-06, 21:55 -0500 in 1 seconds.
 

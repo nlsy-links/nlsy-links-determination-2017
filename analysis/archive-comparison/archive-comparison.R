@@ -18,10 +18,7 @@ requireNamespace("dplyr")
 requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
 
-
-
 # ---- declare-globals ---------------------------------------------------------
-
 # includedRelationshipPaths <- c(2)
 # includedRelationshipPaths <- c(1)
 includedRelationshipPaths <- c(1, 2)
@@ -88,7 +85,6 @@ RODBC::odbcClose(channel); rm(channel, sql, sqlDescription)
 nrow(dsRaw)
 
 # ---- tweak-data --------------------------------------------------------------
-
 olderVersionNumber <- min(dsRaw$AlgorithmVersion)
 olderDescription <- dsDescription[dsDescription$AlgorithmVersion==olderVersionNumber, 'Description']
 newerVersionNumber <- max(dsRaw$AlgorithmVersion)
