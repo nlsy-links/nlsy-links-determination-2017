@@ -75,6 +75,20 @@ startTime <- Sys.time()
 
 # ---- load-data ---------------------------------------------------------------
 # channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=192.168.1.66\\Express_2016; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
+
+channel <- RODBC::odbcDriverConnect("Driver={ODBC Driver 13 for SQL Server};Server=192.168.1.66\\Express_2016; Uid=NlsyReadWrite; Pwd=nophi" )
+
+conn <- DBI::dbConnect(
+  RSQLServer::SQLServer(),
+  # "Server=gimble\\Express_2016",
+  # "Server=192.168.1.66\\Express_2016",
+  "192.168.1.66\\Express_2016",
+  "user=NlsyReadWrite; Password=nophi",
+  database = "NlsLinks"
+)
+
+
 channel            <- open_dsn_channel()
 odbcGetInfo(channel)
 
