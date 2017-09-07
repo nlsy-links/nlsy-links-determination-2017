@@ -1,12 +1,19 @@
-## @knitr Setup
-rm(list=ls(all=TRUE)) #Clear variables from previous runs.
-library(NlsyLinks)
+rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is not called by knitr, because it's above the first chunk.
+
+# ---- load-sources ------------------------------------------------------------
+#Load any source files that contain/define functions, but that don't load any other types of variables
+#   into memory.  Avoid side effects and don't pollute the global environment.
+source("./utility/connectivity.R")
+
+# ---- load-packages -----------------------------------------------------------
+library(NlsyLinks) # devtools::install_github("LiveOak/NlsyLinks")
 library(RODBC)
 library(ggplot2)
 library(colorspace)
 library(xtable)
 library(plyr)
 
+# ---- declare-globals ---------------------------------------------------------
 #Define CSV of outcomes/phenotypes
 pathInput <- "./ForDistribution/Outcomes/ExtraOutcomes79.csv"
 #dsOutcomes <- read.csv("./CodingUtilities/Gen2Height/ExtraOutcomes79FromKelly2012March.csv")
@@ -32,7 +39,8 @@ oName <- "HeightZGenderAge"
 oName_1 <- paste0(oName, "_S1")
 oName_2 <- paste0(oName, "_S2")
 
-relationshipPaths <- c(1)
+# relationshipPaths <- c(1)
+relationshipPaths <- c(2)
 # relationshipPaths <- c(1, 2, 3, 4, 5)
 relationshipPathsString <- paste0("(", paste(relationshipPaths, collapse=","), ")")
 
@@ -49,31 +57,65 @@ startNewPage <- c(F, T, F, T, F, T, F)
 
 suppressGroupTables <- TRUE
 
-sql <- paste("SELECT Process.tblRelatedValuesArchive.AlgorithmVersion, Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValuesArchive.SubjectTag_S1, Process.tblRelatedValuesArchive.SubjectTag_S2,Process.tblRelatedValuesArchive.RImplicitPass1, Process.tblRelatedValuesArchive.RImplicit, Process.tblRelatedValuesArchive.RImplicitSubject, Process.tblRelatedValuesArchive.RImplicitMother, Process.tblRelatedValuesArchive.RImplicit2004, Process.tblRelatedValuesArchive.RExplicitPass1, Process.tblRelatedValuesArchive.RExplicit, Process.tblRelatedValuesArchive.RPass1, Process.tblRelatedValuesArchive.R, Process.tblRelatedValuesArchive.RFull, SameGeneration
-  FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2
-  WHERE Process.tblRelatedStructure.RelationshipPath IN ", relationshipPathsString, "
-      AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (SELECT TOP (2) AlgorithmVersion FROM Process.tblRelatedValuesArchive AS tblRelatedValuesArchive_1
-    GROUP BY AlgorithmVersion ORDER BY AlgorithmVersion DESC))")
+sql <- paste("
+  SELECT
+    a.AlgorithmVersion,
+    s.RelationshipPath,
+    a.SubjectTag_S1,
+    a.SubjectTag_S2,
+    a.RImplicitPass1,
+    a.RImplicit,
+    a.RImplicitSubject,
+    a.RImplicitMother,
+    a.RImplicit2004,
+    a.RExplicitPass1,
+    a.RExplicit,
+    a.RPass1,
+    a.R,
+    a.RFull,
+    SameGeneration
+  FROM Archive.tblRelatedValuesArchive AS a
+    INNER JOIN Process.tblRelatedStructure AS s ON
+      a.SubjectTag_S1 = s.SubjectTag_S1
+      AND
+      a.SubjectTag_S2 =s.SubjectTag_S2
+  WHERE
+    s.RelationshipPath IN ", relationshipPathsString, "
+    AND (
+    a.AlgorithmVersion IN (
+      SELECT TOP (2)
+      AlgorithmVersion
+      FROM Archive.tblRelatedValuesArchive AS a2
+      GROUP BY AlgorithmVersion
+      ORDER BY AlgorithmVersion DESC
+    )
+  )
+")
 
 # sql <- paste("SELECT Process.tblRelatedValuesArchive.AlgorithmVersion, Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValuesArchive.SubjectTag_S2, Process.tblRelatedValuesArchive.SubjectTag_S2,Process.tblRelatedValuesArchive.RImplicitPass1, Process.tblRelatedValuesArchive.RImplicit, Process.tblRelatedValuesArchive.RImplicitSubject, Process.tblRelatedValuesArchive.RImplicitMother, Process.tblRelatedValuesArchive.RImplicit2004, Process.tblRelatedValuesArchive.RExplicitPass1, Process.tblRelatedValuesArchive.RExplicit, Process.tblRelatedValuesArchive.RPass1, Process.tblRelatedValuesArchive.R, Process.tblRelatedValuesArchive.RFull, SameGeneration
 #   FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2
 #   WHERE Process.tblRelatedStructure.RelationshipPath = ", relationshipPath, "
 #       AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (73, 75))")
 
-sql <- gsub(pattern="\\n", replacement=" ", sql)
-sqlDescription <- "SELECT * FROM Process.tblArchiveDescription" #AlgorithmVersion, Description
+sqlDescription <- "SELECT * FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
+
+# ---- load-data ---------------------------------------------------------------
+channel            <- open_dsn_channel()
 
 startTime <- Sys.time()
-channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
 # odbcGetInfo(channel)
 
 dsRaw <- sqlQuery(channel, sql, stringsAsFactors=F)
 dsDescription <- sqlQuery(channel, sqlDescription, stringsAsFactors=F)
-odbcCloseAll()
+odbcClose(channel)
 elapsedTime <- Sys.time() - startTime
 # print(elapsedTime)
 # nrow(dsRaw)
 
+
+dsOutcomes <- read.csv(file=pathInput, stringsAsFactors=F)
+
+# ---- tweak-data --------------------------------------------------------------
 # sum(dsRaw$SameGeneration != 1)
 if( dropIfHousematesAreNotSameGeneration ) {
   dsRaw <- dsRaw[dsRaw$SameGeneration ==1, ]
@@ -100,7 +142,6 @@ dsLinkingNewer <- dsRaw[dsRaw$AlgorithmVersion==newerVersionNumber, ]
 dsLinkingOlder <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 rm(dsRaw)
 
-dsOutcomes <- read.csv(file=pathInput, stringsAsFactors=F)
 dsOutcomes$RandomFakeOutcome <- rnorm(n=nrow(dsOutcomes))
 dsOutcomes <- dsOutcomes[, c("SubjectTag", oName)]
 

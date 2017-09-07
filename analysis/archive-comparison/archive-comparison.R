@@ -74,6 +74,7 @@ sqlDescription <- "SELECT * FROM Archive.tblArchiveDescription" #AlgorithmVersio
 startTime <- Sys.time()
 
 # ---- load-data ---------------------------------------------------------------
+# channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
 channel            <- open_dsn_channel()
 odbcGetInfo(channel)
 
