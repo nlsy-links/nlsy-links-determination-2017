@@ -22,10 +22,10 @@ requireNamespace("RODBC"                  ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-unshared/raw"
-columns_to_drop           <- c("A0002600")
+columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name                           , ~file_name,
+  ~table_name                       , ~file_name,
   "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
   "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
   "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
@@ -70,9 +70,6 @@ print(ds_extract, n=20)
 
 
 # ---- specify-columns-to-upload -----------------------------------------------
-
-# a <- readr::read_csv("data-unshared/raw/nlsy79-gen1/Gen1Explicit.zip")
-
 
 # ---- upload-to-db ----------------------------------------------------------
 

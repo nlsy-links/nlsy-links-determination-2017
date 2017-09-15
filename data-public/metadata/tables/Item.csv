@@ -63,6 +63,8 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
 142,Gen2YAFatherAlive_NOTUSED,-7,0,1,TRUE,
 143,Gen2YADeathMonth,-7,1,12,TRUE,
 144,Gen2YADeathYearFourDigit,-7,1978,2010,TRUE,
+145,Gen2FromMomDeathMonth,-4,1,12,TRUE,
+146,Gen2FromMomDeathYearFourDigit,-4,1978,2015,TRUE,
 200,Gen1HeightInches,-5,48,83,TRUE,
 201,Gen1WeightPounds,-5,47,375,TRUE,
 202,Gen1AfqtScaled0Decimals_NOTUSED,-4,1,99,TRUE,
