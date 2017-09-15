@@ -1,0 +1,108 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage[margin=.8in]{geometry}
+\usepackage{colortbl}
+
+\title{Comparison of Versions of Kinship Links}
+\author{Joe Rodger's BG Team}
+\begin{document}
+
+\maketitle
+
+\definecolor{goodColor}{rgb}{.9,1,.85}
+\definecolor{sosoColor}{rgb}{1,0.9215686,0.6117647}
+\definecolor{badColor}{rgb}{1,.85,.85}
+\definecolor{nullColor}{rgb}{.9, 0.85, 0.95} %0.8000000 0.7529412 0.8549020
+\setlength{\parindent}{0pt}%http://tex.stackexchange.com/questions/49188/how-to-insert-vertical-space-between-paragraphs
+
+% Working directory: \Sexpr{getwd()};
+
+<<setup, echo=FALSE>>=
+options(width=68) #Doesn't seem to affect the 'newerDescription' below
+
+#Set the chunks' working directory to the repository's base directory; this assumes the report is nested inside of two directories.
+opts_knit$set(root.dir='../../')  #Don't combine this call with any other chunk -espeically one that uses file paths.
+@
+
+% Working directory: \Sexpr{getwd()};
+
+
+<<set-options, echo=FALSE>>=
+library(knitr)
+library(formatR)
+library(stringr)
+
+echo_chunks    <- FALSE #Toggle for debugging.
+message_chunks <- FALSE #Toggle for debugging.
+options(width=100) #So the output is 25% wider than the default.
+
+read_chunk("./analysis/archive-comparison/archive-comparison.R")
+@
+
+<<load-sources, echo=echo_chunks, message=message_chunks>>=
+@
+
+<<load-packages, echo=echo_chunks, message=message_chunks>>=
+@
+
+<<declare-globals, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
+<<rmd-specific, echo=echo_chunks, message=message_chunks>>=
+# Put presentation-specific code in here.  It doesn't call a chunk in the codebehind file.
+#   It should be rare (and used cautiously), but sometimes it makes sense to include code in Rmd
+#   that doesn't live in the codebehind R file.
+@
+
+<<load-data, echo=FALSE, results='show', message=message_chunks>>=
+@
+
+<<tweak-data, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
+% \textbf{RelationshipPaths Considered}: \Sexpr{includedRelationshipPaths};\\
+\textbf{Newer Links Version}: \Sexpr{newerVersionNumber};
+\textbf{Older Links Version}: \Sexpr{olderVersionNumber};
+
+<<define-tables, echo=echo_chunks, results='show', message=message_chunks>>=
+@
+
+
+<<echo=FALSE, comment=NA>>=
+# cat("Newer:", newerDescription)
+cat(str_wrap(paste("Newer Links:", newerDescription), width=80))
+cat(str_wrap(paste("Older Links:", olderDescription), width=80))
+@
+
+\begin{figure}[htbp]
+<<echo=FALSE, fig.width=3.2, fig.height=1.5>>=
+if( 1 %in% includedRelationshipPaths ) {
+  CreateRoc(relationshipPathID=1)
+}
+if( 2 %in% includedRelationshipPaths ) {
+  CreateRoc(relationshipPathID=2)
+}
+@
+\caption{ROC for Gen1Housemates (left) and Gen2Siblings (right)}
+\end{figure}
+
+<<echo=FALSE, results='asis'>>=
+if( 1 %in% includedRelationshipPaths ) {
+  PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=1, title="Counts for Gen1Housemates")
+  PrintMarginalTable(dsJoint=dsPrevious, relationshipPathID=1, title="Counts for Gen1Housemates (Previous version of links)")
+}
+if( 2 %in% includedRelationshipPaths ) {
+  PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=2, title="Counts for Gen2Siblings")
+  PrintMarginalTable(dsJoint=dsPrevious, relationshipPathID=2, title="Counts for Gen2Siblings (Previous version of links)")
+}
+@
+
+<<echo=FALSE, results='asis'>>=
+if( sum(ds$RelationshipPath==1) > 0 )
+  PrintConditionalTable(relationshipPathID=1, tabelCaption="Counts for Gen1Housemates")
+if( sum(ds$RelationshipPath==2) > 0 )
+  PrintConditionalTable(relationshipPathID=2, tabelCaption="Counts for Gen2Siblings")
+@
+
+
+\end{document}

@@ -61,7 +61,7 @@ namespace Nls.BaseAssembly {
                 }
             }
             _ds.tblOutcome.EndLoadData();
-            Trace.Assert(recordsAddedTotal == Constants.Gen1Count + Constants.Gen2Count, "The number of Gen1+Gen2 subjects should be correct.");
+            Trace.Assert(recordsAddedTotal >= Constants.Gen1Count + Constants.Gen2Count, "The number of Gen1+Gen2 subjects should be correct.");
 
             sw.Stop();
             return string.Format("{0:N0} Outcome records were created.\nElapsed time: {1}", recordsAddedTotal, sw.Elapsed.ToString());

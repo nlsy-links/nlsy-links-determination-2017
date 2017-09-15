@@ -213,7 +213,7 @@ namespace Nls.BaseAssembly {
     public enum RaceCohort : byte {
         Hispanic = 1,
         Black = 2,
-        Nbnh = 255,
+        Nbnh = 3,
     }
 	public enum MarkerEvidence : byte {
 		Irrelevant = 0,

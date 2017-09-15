@@ -43,7 +43,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
 |Archive     |tblArchiveDescription      |        55|            4|
-|Archive     |tblRelatedValuesArchive    |   909,870|           24|
+|Archive     |tblRelatedValuesArchive    |   676,582|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |dbo         |tblIRDemo2                 |         0|            3|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
@@ -74,25 +74,25 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblLinks2004Gen1           |     3,890|            9|
 |Extract     |tblLinks2004Gen2           |    12,855|            5|
 |Metadata    |tblItem                    |       108|            7|
-|Metadata    |tblMzManual                |       206|            9|
+|Metadata    |tblMzManual                |       208|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
 |Metadata    |tblVariable                |     1,559|           11|
-|Process     |tblBabyDaddy               |         0|           11|
-|Process     |tblFatherOfGen2            |         0|            7|
+|Process     |tblBabyDaddy               |   178,803|           11|
+|Process     |tblFatherOfGen2            |    52,038|            7|
 |Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblMarkerGen1              |         0|           10|
-|Process     |tblMarkerGen2              |         0|            8|
-|Process     |tblOutcome                 |         0|            5|
+|Process     |tblMarkerGen1              |   217,310|           10|
+|Process     |tblMarkerGen2              |   206,263|            8|
+|Process     |tblOutcome                 |   108,569|            5|
 |Process     |tblOutcomesOLD             |         0|            4|
-|Process     |tblParentsOfGen1Current    |         0|           19|
-|Process     |tblParentsOfGen1Retro      |         0|            7|
-|Process     |tblRelatedStructure        |         0|            6|
-|Process     |tblRelatedValues           |         0|           24|
-|Process     |tblResponse                |         0|            9|
-|Process     |tblRosterGen1              |         0|           13|
-|Process     |tblSubject                 |         0|            5|
-|Process     |tblSubjectDetails          |         0|           15|
-|Process     |tblSurveyTime              |         0|            7|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|
+|Process     |tblRelatedStructure        |    85,590|            6|
+|Process     |tblRelatedValues           |    42,795|           24|
+|Process     |tblResponse                | 2,543,774|            9|
+|Process     |tblRosterGen1              |    10,604|           13|
+|Process     |tblSubject                 |    24,198|            5|
+|Process     |tblSubjectDetails          |    24,198|           15|
+|Process     |tblSurveyTime              |   580,752|            7|
 
 
 
@@ -108,13 +108,13 @@ Session info -------------------------------------------------------------------
 
 ```
  setting  value                                      
- version  R version 3.4.0 Patched (2017-05-16 r72684)
+ version  R version 3.4.1 Patched (2017-08-29 r73159)
  system   x86_64, mingw32                            
  ui       RTerm                                      
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-06-22                                 
+ date     2017-09-14                                 
 ```
 
 ```
@@ -122,50 +122,51 @@ Packages -----------------------------------------------------------------------
 ```
 
 ```
- package    * version date       source        
- assertthat   0.2.0   2017-04-11 CRAN (R 3.3.3)
- backports    1.1.0   2017-05-22 CRAN (R 3.4.0)
- base       * 3.4.0   2017-05-18 local         
- bindr        0.1     2016-11-13 CRAN (R 3.3.2)
- bindrcpp   * 0.1     2016-12-11 CRAN (R 3.3.2)
- colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
- compiler     3.4.0   2017-05-18 local         
- datasets   * 3.4.0   2017-05-18 local         
- devtools     1.13.2  2017-06-02 CRAN (R 3.4.0)
- digest       0.6.12  2017-01-27 CRAN (R 3.3.2)
- dplyr        0.7.0   2017-06-09 CRAN (R 3.4.0)
- evaluate     0.10    2016-10-11 CRAN (R 3.3.1)
- glue         1.1.0   2017-06-13 CRAN (R 3.4.0)
- graphics   * 3.4.0   2017-05-18 local         
- grDevices  * 3.4.0   2017-05-18 local         
- highr        0.6     2016-05-09 CRAN (R 3.3.0)
- htmltools    0.3.6   2017-04-28 CRAN (R 3.3.3)
- knitr      * 1.16    2017-05-18 CRAN (R 3.4.0)
- magrittr   * 1.5     2014-11-22 CRAN (R 3.2.0)
- memoise      1.1.0   2017-04-21 CRAN (R 3.3.3)
- methods    * 3.4.0   2017-05-18 local         
- munsell      0.4.3   2016-02-13 CRAN (R 3.2.3)
- plyr         1.8.4   2016-06-08 CRAN (R 3.3.0)
- R6           2.2.1   2017-05-10 CRAN (R 3.4.0)
- Rcpp         0.12.11 2017-05-22 CRAN (R 3.4.0)
- rlang        0.1.1   2017-05-18 CRAN (R 3.4.0)
- rmarkdown    1.6     2017-06-15 CRAN (R 3.4.0)
- RODBC        1.3-15  2017-04-13 CRAN (R 3.3.3)
- rprojroot    1.2     2017-01-16 CRAN (R 3.3.2)
- scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
- stats      * 3.4.0   2017-05-18 local         
- stringi      1.1.5   2017-04-07 CRAN (R 3.3.3)
- stringr      1.2.0   2017-02-18 CRAN (R 3.3.2)
- testit       0.7     2017-05-22 CRAN (R 3.4.0)
- tibble       1.3.3   2017-05-28 CRAN (R 3.4.0)
- tools        3.4.0   2017-05-18 local         
- utils      * 3.4.0   2017-05-18 local         
- withr        1.0.2   2016-06-20 CRAN (R 3.3.1)
- yaml         2.1.14  2016-11-12 CRAN (R 3.3.2)
+ package    * version    date       source                          
+ assertthat   0.2.0      2017-04-11 CRAN (R 3.4.1)                  
+ backports    1.1.0      2017-05-22 CRAN (R 3.4.0)                  
+ base       * 3.4.1      2017-08-31 local                           
+ bindr        0.1        2016-11-13 CRAN (R 3.4.1)                  
+ bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.1)                  
+ colorspace   1.3-2      2016-12-14 CRAN (R 3.4.1)                  
+ compiler     3.4.1      2017-08-31 local                           
+ datasets   * 3.4.1      2017-08-31 local                           
+ devtools     1.13.3     2017-08-02 CRAN (R 3.4.1)                  
+ digest       0.6.12     2017-01-27 CRAN (R 3.4.1)                  
+ dplyr        0.7.2      2017-07-20 CRAN (R 3.4.1)                  
+ evaluate     0.10.1     2017-06-24 CRAN (R 3.4.1)                  
+ glue         1.1.1      2017-06-21 CRAN (R 3.4.1)                  
+ graphics   * 3.4.1      2017-08-31 local                           
+ grDevices  * 3.4.1      2017-08-31 local                           
+ highr        0.6        2016-05-09 CRAN (R 3.4.1)                  
+ htmltools    0.3.6      2017-04-28 CRAN (R 3.4.1)                  
+ knitr      * 1.17       2017-08-10 CRAN (R 3.4.1)                  
+ magrittr   * 1.5        2014-11-22 CRAN (R 3.4.1)                  
+ memoise      1.1.0      2017-04-21 CRAN (R 3.4.1)                  
+ methods    * 3.4.1      2017-08-31 local                           
+ munsell      0.4.3      2016-02-13 CRAN (R 3.4.1)                  
+ pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.1)                  
+ plyr         1.8.4      2016-06-08 CRAN (R 3.4.1)                  
+ R6           2.2.2      2017-06-17 CRAN (R 3.4.1)                  
+ Rcpp         0.12.12    2017-07-15 CRAN (R 3.4.1)                  
+ rlang        0.1.2.9000 2017-08-21 Github (tidyverse/rlang@f20124b)
+ rmarkdown    1.6        2017-06-15 CRAN (R 3.4.1)                  
+ RODBC        1.3-15     2017-04-13 CRAN (R 3.4.0)                  
+ rprojroot    1.2        2017-01-16 CRAN (R 3.4.1)                  
+ scales       0.5.0      2017-08-24 CRAN (R 3.4.1)                  
+ stats      * 3.4.1      2017-08-31 local                           
+ stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)                  
+ stringr      1.2.0      2017-02-18 CRAN (R 3.4.1)                  
+ testit       0.7        2017-07-12 Github (yihui/testit@701fa1f)   
+ tibble       1.3.4      2017-08-22 CRAN (R 3.4.1)                  
+ tools        3.4.1      2017-08-31 local                           
+ utils      * 3.4.1      2017-08-31 local                           
+ withr        2.0.0      2017-07-28 CRAN (R 3.4.1)                  
+ yaml         2.1.14     2016-11-12 CRAN (R 3.4.1)                  
 ```
 </details>
 
 
 
-Report rendered by Will at 2017-06-22, 01:45 -0500 in 1 seconds.
+Report rendered by Will at 2017-09-14, 23:29 -0500 in 2 seconds.
 

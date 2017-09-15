@@ -3,7 +3,7 @@
 
 
 This report was automatically generated with the R package **knitr**
-(version 1.16).
+(version 1.17).
 
 
 ```r
@@ -338,7 +338,7 @@ ds_file$entries %>%
 ##   <int>    <chr>  <lgl> <chr>
 ## 1     1 Hispanic   TRUE  <NA>
 ## 2     2    Black   TRUE  <NA>
-## 3   255     Nbnh   TRUE  <NA>
+## 3     3     Nbnh   TRUE  <NA>
 ## # A tibble: 5 x 4
 ##      ID          Label Active                                Notes
 ##   <int>          <chr>  <lgl>                                <chr>
@@ -383,7 +383,7 @@ ds_file$entries %>%
 ## 4    -1                             Refusal   TRUE  <NA>
 ## 5     0                                  No   TRUE  <NA>
 ## 6     1                                 Yes   TRUE  <NA>
-## # A tibble: 206 x 9
+## # A tibble: 207 x 9
 ##       ID SubjectTag_S1 SubjectTag_S2 Generation MultipleBirthIfSameSex
 ##    <int>         <int>         <int>      <int>                  <int>
 ##  1     1          5003          5004          2                      2
@@ -396,7 +396,7 @@ ds_file$entries %>%
 ##  8    12         74301         74302          2                      2
 ##  9    13         77502         77503          2                      2
 ## 10    14         93001         93002          2                      2
-## # ... with 196 more rows, and 4 more variables: IsMz <int>,
+## # ... with 197 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
 ## # A tibble: 50 x 16
 ##       ID ResponseLower ResponseUpper  Freq Resolved     R RBoundLower
@@ -702,7 +702,7 @@ ds_enum %>%
 ## public enum RaceCohort {
 ##     Hispanic                                                     =     1, 
 ##     Black                                                        =     2, 
-##     Nbnh                                                         =   255, 
+##     Nbnh                                                         =     3, 
 ## }
 ##  
 ## public enum RelationshipPath {
@@ -832,7 +832,7 @@ RODBC::odbcGetInfo(channel)
 
 ```
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "13.00.4202"                "03.80" 
+## "Microsoft SQL Server"           "13.00.4206"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
 ##     "local-nlsy-links"      "msodbcsql13.dll"           "14.00.0500" 
 ##               ODBC_Ver            Server_Name 
@@ -923,7 +923,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.0 Patched (2017-05-16 r72684)
+## R version 3.4.1 Patched (2017-08-29 r73159)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -940,15 +940,19 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.1 magrittr_1.5
+## [1] knitr_1.17         ggplot2_2.2.1.9000 xtable_1.8-2      
+## [4] plyr_1.8.4         RODBC_1.3-15       bindrcpp_0.2      
+## [7] magrittr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     tidyr_0.6.3      dplyr_0.7.0      assertthat_0.2.0
-##  [5] R6_2.2.1         evaluate_0.10    rlang_0.1.1      stringi_1.1.5   
-##  [9] testit_0.7       RODBC_1.3-15     tools_3.4.0      stringr_1.2.0   
-## [13] readr_1.1.1      glue_1.1.0       markdown_0.8     purrr_0.2.2.2   
-## [17] hms_0.3          compiler_3.4.0   pkgconfig_2.0.1  bindr_0.1       
-## [21] knitr_1.16       tibble_1.3.3
+##  [1] Rcpp_0.12.12     bindr_0.1        hms_0.3          munsell_0.4.3   
+##  [5] testit_0.7       colorspace_1.3-2 R6_2.2.2         rlang_0.1.2.9000
+##  [9] stringr_1.2.0    dplyr_0.7.2      tools_3.4.1      grid_3.4.1      
+## [13] gtable_0.2.0     htmltools_0.3.6  lazyeval_0.2.0   yaml_2.1.14     
+## [17] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.4    
+## [21] purrr_0.2.3      readr_1.1.1      tidyr_0.7.0      glue_1.1.1      
+## [25] evaluate_0.10.1  rmarkdown_1.6    labeling_0.3     stringi_1.1.5   
+## [29] compiler_3.4.1   scales_0.5.0     backports_1.1.0  pkgconfig_2.0.1
 ```
 
 ```r
@@ -956,6 +960,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-21 22:52:40 CDT"
+## [1] "2017-09-06 18:15:53 CDT"
 ```
 

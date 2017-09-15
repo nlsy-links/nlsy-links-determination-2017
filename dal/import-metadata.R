@@ -164,6 +164,9 @@ ds_entries
 
 # d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
 
+ds_table <- database_inventory()
+ds_table
+
 rm(directory_in) # rm(col_types_tulsa)
 
 # ---- tweak-data --------------------------------------------------------------
@@ -256,16 +259,32 @@ ds_enum %>%
 # lst_ds %>%
 #   purrr::map(function(x)paste(names(x)))
 
+ds_table_process <- ds_table %>%
+  dplyr::filter(schema_name == "Process") %>%
+  dplyr::mutate(
+    sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
+  )
+
+# Open channel
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
+
+# Clear process tables
+delete_results_process <- ds_table_process$sql_truncate %>%
+  rev() %>%
+  purrr::set_names(ds_table_process$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+delete_results_process
+
+# Delete metadata tables
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
-delete_results <- ds_file$sql_delete %>%
+delete_results_metadata <- ds_file$sql_delete %>%
   rev() %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
-delete_results
+delete_results_metadata
 
 # d <- ds_file %>%
 #   dplyr::select(table_name, entries) %>%
@@ -276,6 +295,7 @@ delete_results
 # d2 <- d[, 1:16]
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
+# Upload metadata tables
 purrr::map2_int(
   ds_file$entries,
   ds_file$table_name,
@@ -292,4 +312,5 @@ purrr::map2_int(
 ) %>%
 purrr::set_names(ds_file$table_name)
 
+# Close channel
 RODBC::odbcClose(channel); rm(channel)

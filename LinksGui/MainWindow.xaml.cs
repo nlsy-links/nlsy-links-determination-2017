@@ -40,8 +40,8 @@ namespace LinksGui {
 			_dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
 			_dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            if( Convert.ToBoolean("true") ) {
-            //if( Convert.ToBoolean("false") ) {
+            //if( Convert.ToBoolean("true") ) {
+            if( Convert.ToBoolean("false") ) {
 				LoadExtractGen1Links();
 				LoadExtractGen1Explicit();
 				LoadExtractGen1Implicit();
@@ -475,7 +475,7 @@ namespace LinksGui {
 			btnParentsOfGen1Current_Click(sender, e);
 			btnBabyDaddy_Click(sender, e);
 			btnFatherOfGen2_Click(sender, e);
-			//btnSubjectDetails_Click(sender, e);
+            btnSubjectDetails_Click(sender, e);
 			btnMarkerGen1_Click(sender, e);
 			btnMarkerGen2_Click(sender, e);
 			btnRelatedValues_Click(sender, e);
