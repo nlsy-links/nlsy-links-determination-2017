@@ -475,7 +475,7 @@ namespace LinksGui {
 			btnParentsOfGen1Current_Click(sender, e);
 			btnBabyDaddy_Click(sender, e);
 			btnFatherOfGen2_Click(sender, e);
-			//btnSubjectDetails_Click(sender, e);
+            btnSubjectDetails_Click(sender, e);
 			btnMarkerGen1_Click(sender, e);
 			btnMarkerGen2_Click(sender, e);
 			btnRelatedValues_Click(sender, e);
