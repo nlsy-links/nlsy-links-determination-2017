@@ -10,7 +10,7 @@ base::source("utility/connectivity.R")
 library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
-requireNamespace("glue"                  )
+requireNamespace("glue"                   )
 requireNamespace("readr"                  )
 requireNamespace("tidyr"                  )
 requireNamespace("tibble"                 )
@@ -59,6 +59,8 @@ ds_extract <- ds_extract %>%
   )
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
 
+print(ds_extract, n=20)
+
 # ---- tweak-data --------------------------------------------------------------
 
 # ---- verify-values -----------------------------------------------------------
@@ -77,6 +79,7 @@ for( i in seq_len(nrow(ds_extract)) ) {
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
+  print(d)
 
   RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
 

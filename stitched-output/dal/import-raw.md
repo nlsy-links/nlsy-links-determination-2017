@@ -3,7 +3,7 @@
 
 
 This report was automatically generated with the R package **knitr**
-(version 1.16).
+(version 1.17).
 
 
 ```r
@@ -21,6 +21,7 @@ base::source("utility/connectivity.R")
 library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+requireNamespace("glue"                   )
 requireNamespace("readr"                  )
 requireNamespace("tidyr"                  )
 requireNamespace("tibble"                 )
@@ -33,132 +34,66 @@ requireNamespace("RODBC"                  ) #For communicating with SQL Server o
 ```r
 # Constant values that won't change.
 directory_in              <- "data-unshared/raw"
-schema_name               <- "Extract"
 
-col_types_extract <- readr::cols(
-  .default            = readr::col_integer(),
-  RecommendedRelatedness = readr::col_double()
+ds_extract <- tibble::tribble(
+  ~table_name                       , ~file_name,
+  "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
+  "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
+  "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
+  "Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv",
+  "Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv",
+  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
+  # tblGen1MzDzDistinction2010
+  #
+  "Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv",
+  "Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv",
+  "Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv",
+  "Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv",
+  "Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv",
+  "Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv",
+  "Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
 )
-col_types_mapping <- readr::cols_only(
-  name                = readr::col_character(),
-  subdirectory        = readr::col_character(),
-  upload              = readr::col_logical()
+
+col_types_default <- readr::cols(
+  .default    = readr::col_integer()
 )
+
+checkmate::assert_character(ds_extract$table_name       , min.chars=10, any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name        , min.chars=10, any.missing=F, unique=T)
 ```
 
 ```r
-ds_mapping <- readr::read_csv("data-public/metadata/tables/_mapping-unshared.csv", col_types=col_types_mapping)
-ds_mapping
-```
-
-```
-## # A tibble: 15 x 3
-##                     name subdirectory upload
-##                    <chr>        <chr>  <lgl>
-##  1          Gen1Outcomes  nlsy79-gen1   TRUE
-##  2          Gen1Explicit  nlsy79-gen1   TRUE
-##  3  Gen1GeocodeSanitized  nlsy79-gen1   TRUE
-##  4          Gen1Implicit  nlsy79-gen1   TRUE
-##  5             Gen1Links  nlsy79-gen1   TRUE
-##  6    Gen2OutcomesWeight  nlsy79-gen2   TRUE
-##  7 Gen2BirthDateFromGen1  nlsy79-gen2  FALSE
-##  8    Gen2FatherFromGen1  nlsy79-gen2   TRUE
-##  9    Gen2ImplicitFather  nlsy79-gen2   TRUE
-## 10             Gen2Links  nlsy79-gen2   TRUE
-## 11     Gen2LinksFromGen1  nlsy79-gen2   TRUE
-## 12    Gen2OutcomesHeight  nlsy79-gen2   TRUE
-## 13      Gen2OutcomesMath  nlsy79-gen2   TRUE
-## 14         Links2004Gen1   historical   TRUE
-## 15         Links2004Gen2   historical   TRUE
-```
-
-```r
-ds_file <- ds_mapping %>%
+ds_extract <- ds_extract %>%
   dplyr::mutate(
-    table_name    = paste0(schema_name, ".tbl", name),
-    path          = file.path(directory_in, subdirectory, paste0(name, ".csv")),
-    exists        = purrr::map_lgl(path, file.exists)
-  ) %>%
-  dplyr::filter(upload) %>%
-  dplyr::select(name, exists, dplyr::everything())
-ds_file
+    path            = file.path(directory_in, file_name),
+    extract_exist   = file.exists(path),
+    sql_truncate    = glue::glue("TRUNCATE TABLE {table_name}")
+  )
+testit::assert("All files should be found.", all(ds_extract$extract_exist))
+
+print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 14 x 6
-##                    name exists subdirectory upload
-##                   <chr>  <lgl>        <chr>  <lgl>
-##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
-##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
-##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
-##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
-##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
-##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
-##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
-##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
-##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
-## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
-## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
-## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
-## 13        Links2004Gen1   TRUE   historical   TRUE
-## 14        Links2004Gen2   TRUE   historical   TRUE
-## # ... with 2 more variables: table_name <chr>, path <chr>
+## # A tibble: 12 x 5
+##                         table_name                            file_name
+##                              <chr>                                <chr>
+##  1         Extract.tblGen1Explicit         nlsy79-gen1/Gen1Explicit.csv
+##  2         Extract.tblGen1Implicit         nlsy79-gen1/Gen1Implicit.csv
+##  3            Extract.tblGen1Links            nlsy79-gen1/Gen1Links.csv
+##  4         Extract.tblGen1Outcomes         nlsy79-gen1/Gen1Outcomes.csv
+##  5 Extract.tblGen1GeocodeSanitized nlsy79-gen1/Gen1GeocodeSanitized.csv
+##  6   Extract.tblGen2FatherFromGen1   nlsy79-gen2/Gen2FatherFromGen1.csv
+##  7   Extract.tblGen2ImplicitFather   nlsy79-gen2/Gen2ImplicitFather.csv
+##  8            Extract.tblGen2Links            nlsy79-gen2/Gen2Links.csv
+##  9    Extract.tblGen2LinksFromGen1    nlsy79-gen2/Gen2LinksFromGen1.csv
+## 10   Extract.tblGen2OutcomesHeight   nlsy79-gen2/Gen2OutcomesHeight.csv
+## 11     Extract.tblGen2OutcomesMath     nlsy79-gen2/Gen2OutcomesMath.csv
+## 12   Extract.tblGen2OutcomesWeight   nlsy79-gen2/Gen2OutcomesWeight.csv
+## # ... with 3 more variables: path <chr>, extract_exist <lgl>,
+## #   sql_truncate <chr>
 ```
 
-```r
-testit::assert("All metadata files must exist.", all(ds_file$exists))
-rm(ds_mapping)
-
-# ds_entries <- ds_file %>%
-#   dplyr::select(name, path) %>%
-#   dplyr::mutate(
-#     entries = purrr::map(.$path, readr::read_csv, col_types = col_types_extract)
-#   )
-# ds_entries
-# print(object.size(ds_entries), units="MB")
-
-
-rm(directory_in) # rm(col_types_tulsa)
-```
-
-```r
-ds_file$table_name
-```
-
-```
-##  [1] "Extract.tblGen1Outcomes"         "Extract.tblGen1Explicit"        
-##  [3] "Extract.tblGen1GeocodeSanitized" "Extract.tblGen1Implicit"        
-##  [5] "Extract.tblGen1Links"            "Extract.tblGen2OutcomesWeight"  
-##  [7] "Extract.tblGen2FatherFromGen1"   "Extract.tblGen2ImplicitFather"  
-##  [9] "Extract.tblGen2Links"            "Extract.tblGen2LinksFromGen1"   
-## [11] "Extract.tblGen2OutcomesHeight"   "Extract.tblGen2OutcomesMath"    
-## [13] "Extract.tblLinks2004Gen1"        "Extract.tblLinks2004Gen2"
-```
-
-```r
-ds_file
-```
-
-```
-## # A tibble: 14 x 6
-##                    name exists subdirectory upload
-##                   <chr>  <lgl>        <chr>  <lgl>
-##  1         Gen1Outcomes   TRUE  nlsy79-gen1   TRUE
-##  2         Gen1Explicit   TRUE  nlsy79-gen1   TRUE
-##  3 Gen1GeocodeSanitized   TRUE  nlsy79-gen1   TRUE
-##  4         Gen1Implicit   TRUE  nlsy79-gen1   TRUE
-##  5            Gen1Links   TRUE  nlsy79-gen1   TRUE
-##  6   Gen2OutcomesWeight   TRUE  nlsy79-gen2   TRUE
-##  7   Gen2FatherFromGen1   TRUE  nlsy79-gen2   TRUE
-##  8   Gen2ImplicitFather   TRUE  nlsy79-gen2   TRUE
-##  9            Gen2Links   TRUE  nlsy79-gen2   TRUE
-## 10    Gen2LinksFromGen1   TRUE  nlsy79-gen2   TRUE
-## 11   Gen2OutcomesHeight   TRUE  nlsy79-gen2   TRUE
-## 12     Gen2OutcomesMath   TRUE  nlsy79-gen2   TRUE
-## 13        Links2004Gen1   TRUE   historical   TRUE
-## 14        Links2004Gen2   TRUE   historical   TRUE
-## # ... with 2 more variables: table_name <chr>, path <chr>
-```
 
 ```r
 # Sniff out problems
@@ -166,15 +101,13 @@ ds_file
 
 
 ```r
-upload_start_time <- Sys.time()
-
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 ```
 
 ```
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "13.00.4202"                "03.80" 
+## "Microsoft SQL Server"           "13.00.4206"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
 ##     "local-nlsy-links"      "msodbcsql13.dll"           "14.00.0500" 
 ##               ODBC_Ver            Server_Name 
@@ -182,75 +115,33 @@ RODBC::odbcGetInfo(channel)
 ```
 
 ```r
-for( i in seq_len(nrow(ds_file)) ) {
+for( i in seq_len(nrow(ds_extract)) ) {
+  message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
-  cat(ds_file$table_name[[i]], ":", ds_file$path[[i]], "\n")
-
-  d <- readr::read_csv(ds_file$path[[i]], col_types = col_types_extract)
-  print(object.size(d), units="MB")
+  d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
   print(d)
-  cat("\n")
 
-  # summary(d)
-  # d2 <- d[1:3, ]
+  RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
 
-  # RODBC::sqlSave(channel, dat=d, tablename="Extract.tblLinks2004Gen2", safer=TRUE, rownames=FALSE, append=TRUE)
-
-  result_save <- RODBC::sqlSave(
+  RODBC::sqlSave(
     channel     = channel,
     dat         = d,
-    tablename   = ds_file$table_name[[i]],
-    safer       = FALSE,       # Don't keep the existing table.
+    tablename   = ds_extract$table_name[i],
+    safer       = TRUE,       # Don't keep the existing table.
     rownames    = FALSE,
-    append      = FALSE        # Toggle this to 'TRUE' the first time a table is uploaded.
-  )
+    append      = TRUE
+  ) %>%
+  print()
 
-  cat("Save result:", result_save)
-  cat("\n---------------------------------------------------------------\n")
+  message(glue::glue("{format(object.size(d), units='MB')}"))
 }
 ```
 
 ```
-## Extract.tblGen1Outcomes : data-unshared/raw/nlsy79-gen1/Gen1Outcomes.csv
+## Uploading from `nlsy79-gen1/Gen1Explicit.csv` to `Extract.tblGen1Explicit`.
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
-```
-
-```
-## 1 Mb
-## # A tibble: 12,686 x 21
-##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
-##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
-##  1        1        3        2      505       -1       -4       -4       -4
-##  2        2        3        2      502      120       12        9     6841
-##  3        3        3        2       -5       -5       51       46    49444
-##  4        4        3        2      507      110       62       48    55761
-##  5        5        3        1      503      130       90       99    96772
-##  6        6        3        1      504      200       99       99    99393
-##  7        7        3        1      505      131       33       35    47412
-##  8        8        3        2      505      179       43       42    44022
-##  9        9        3        1      506      145       55       51    59683
-## 10       10        3        2      506      115       27       21    30039
-## # ... with 12,676 more rows, and 13 more variables: R0779800 <int>,
-## #   R0779900 <int>, R1773900 <int>, R1774000 <int>, T0897300 <int>,
-## #   T0897400 <int>, T0897500 <int>, T2053800 <int>, T2053900 <int>,
-## #   T2054000 <int>, T3024700 <int>, T3024800 <int>, T3024900 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen1Explicit : data-unshared/raw/nlsy79-gen1/Gen1Explicit.csv
-```
-
-```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
-```
-
-```
-## 4.6 Mb
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -287,60 +178,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T2262900 <int>, T2263000 <int>, T2263100 <int>, T2263200 <int>,
 ## #   T2263300 <int>, T2263400 <int>, T2263500 <int>, T2263600 <int>,
 ## #   T2263700 <int>, T2263800 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen1GeocodeSanitized : data-unshared/raw/nlsy79-gen1/Gen1GeocodeSanitized.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 4.6 Mb
 ```
 
 ```
-## 0.6 Mb
-## # A tibble: 5,302 x 29
-##    SubjectTag_S1 SubjectTag_S2 DobDifferenceInDays1979V1979
-##            <int>         <int>                        <int>
-##  1           300           400                         -338
-##  2           500           600                         -461
-##  3          1300          1400                        -1868
-##  4          1700          1800                         -413
-##  5          2000          2100                         -591
-##  6          2300          2400                         -828
-##  7          2700          2800                        -1356
-##  8          2900          3000                          698
-##  9          3200          3300                        -1640
-## 10          3400          3500                        -1730
-## # ... with 5,292 more rows, and 26 more variables:
-## #   DobDifferenceInDays1979V1981 <int>,
-## #   DobDifferenceInDays1981V1979 <int>,
-## #   DobDifferenceInDays1981V1981 <int>, DobDayIsMissing1979_1 <int>,
-## #   DobDayIsMissing1979_2 <int>, BirthSubjectCountyMissing_1 <int>,
-## #   BirthSubjectCountyMissing_2 <int>, BirthSubjectCountyEqual <int>,
-## #   BirthSubjectStateMissing_1 <int>, BirthSubjectStateMissing_2 <int>,
-## #   BirthSubjectStateEqual <int>, BirthSubjectCountryMissing_1 <int>,
-## #   BirthSubjectCountryMissing_2 <int>, BirthSubjectCountryEqual <int>,
-## #   BirthMotherStateMissing_1 <int>, BirthMotherStateMissing_2 <int>,
-## #   BirthMotherStateEqual <int>, BirthMotherCountryMissing_1 <int>,
-## #   BirthMotherCountryMissing_2 <int>, BirthMotherCountryEqual <int>,
-## #   BirthFatherStateMissing_1 <int>, BirthFatherStateMissing_2 <int>,
-## #   BirthFatherStateEqual <int>, BirthFatherCountryMissing_1 <int>,
-## #   BirthFatherCountryMissing_2 <int>, BirthFatherCountryEqual <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen1Implicit : data-unshared/raw/nlsy79-gen1/Gen1Implicit.csv
+## Uploading from `nlsy79-gen1/Gen1Implicit.csv` to `Extract.tblGen1Implicit`.
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
-```
-
-```
-## 4.9 Mb
 ## # A tibble: 12,686 x 101
 ##    H0001600 H0001700 H0001800 H0001900 H0002000 H0002100 H0002200 H0002300
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -378,19 +227,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   R2840000 <int>, R2840100 <int>, R2840200 <int>, R2840300 <int>,
 ## #   R2840400 <int>, R2840500 <int>, R2840600 <int>, R2840700 <int>,
 ## #   R2840800 <int>, R2840900 <int>, R2841000 <int>, R2841100 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen1Links : data-unshared/raw/nlsy79-gen1/Gen1Links.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 4.9 Mb
 ```
 
 ```
-## 4.6 Mb
+## Uploading from `nlsy79-gen1/Gen1Links.csv` to `Extract.tblGen1Links`.
+```
+
+```
 ## # A tibble: 12,686 x 95
 ##    R0000100 R0000149 R0000300 R0000500 R0009100 R0009300 R0172500 R0172600
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -427,47 +275,87 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T0967302 <int>, T0989000 <int>, T2190500 <int>, T2190501 <int>,
 ## #   T2190502 <int>, T2210800 <int>, T2260600 <int>, T2260601 <int>,
 ## #   T2260602 <int>, T3108700 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesWeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesWeight.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 4.6 Mb
+```
+
+```
+## Uploading from `nlsy79-gen1/Gen1Outcomes.csv` to `Extract.tblGen1Outcomes`.
+```
+
+```
+## # A tibble: 12,686 x 21
+##    R0000100 R0214700 R0214800 R0481600 R0481700 R0618200 R0618300 R0618301
+##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
+##  1        1        3        2      505       -1       -4       -4       -4
+##  2        2        3        2      502      120       12        9     6841
+##  3        3        3        2       -5       -5       51       46    49444
+##  4        4        3        2      507      110       62       48    55761
+##  5        5        3        1      503      130       90       99    96772
+##  6        6        3        1      504      200       99       99    99393
+##  7        7        3        1      505      131       33       35    47412
+##  8        8        3        2      505      179       43       42    44022
+##  9        9        3        1      506      145       55       51    59683
+## 10       10        3        2      506      115       27       21    30039
+## # ... with 12,676 more rows, and 13 more variables: R0779800 <int>,
+## #   R0779900 <int>, R1773900 <int>, R1774000 <int>, T0897300 <int>,
+## #   T0897400 <int>, T0897500 <int>, T2053800 <int>, T2053900 <int>,
+## #   T2054000 <int>, T3024700 <int>, T3024800 <int>, T3024900 <int>
+## [1] 1
+```
+
+```
+## 1 Mb
+```
+
+```
+## Uploading from `nlsy79-gen1/Gen1GeocodeSanitized.csv` to `Extract.tblGen1GeocodeSanitized`.
+```
+
+```
+## # A tibble: 5,302 x 29
+##    SubjectTag_S1 SubjectTag_S2 DobDifferenceInDays1979V1979
+##            <int>         <int>                        <int>
+##  1           300           400                         -338
+##  2           500           600                         -461
+##  3          1300          1400                        -1868
+##  4          1700          1800                         -413
+##  5          2000          2100                         -591
+##  6          2300          2400                         -828
+##  7          2700          2800                        -1356
+##  8          2900          3000                          698
+##  9          3200          3300                        -1640
+## 10          3400          3500                        -1730
+## # ... with 5,292 more rows, and 26 more variables:
+## #   DobDifferenceInDays1979V1981 <int>,
+## #   DobDifferenceInDays1981V1979 <int>,
+## #   DobDifferenceInDays1981V1981 <int>, DobDayIsMissing1979_1 <int>,
+## #   DobDayIsMissing1979_2 <int>, BirthSubjectCountyMissing_1 <int>,
+## #   BirthSubjectCountyMissing_2 <int>, BirthSubjectCountyEqual <int>,
+## #   BirthSubjectStateMissing_1 <int>, BirthSubjectStateMissing_2 <int>,
+## #   BirthSubjectStateEqual <int>, BirthSubjectCountryMissing_1 <int>,
+## #   BirthSubjectCountryMissing_2 <int>, BirthSubjectCountryEqual <int>,
+## #   BirthMotherStateMissing_1 <int>, BirthMotherStateMissing_2 <int>,
+## #   BirthMotherStateEqual <int>, BirthMotherCountryMissing_1 <int>,
+## #   BirthMotherCountryMissing_2 <int>, BirthMotherCountryEqual <int>,
+## #   BirthFatherStateMissing_1 <int>, BirthFatherStateMissing_2 <int>,
+## #   BirthFatherStateEqual <int>, BirthFatherCountryMissing_1 <int>,
+## #   BirthFatherCountryMissing_2 <int>, BirthFatherCountryEqual <int>
+## [1] 1
 ```
 
 ```
 ## 0.6 Mb
-## # A tibble: 11,504 x 13
-##    C0000100 C0000200 C0005300 C0005400 C0005700 Y0308500 Y0904100 Y1151000
-##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
-##  1      201        2        3        2     1993       -7       -7       -7
-##  2      202        2        3        2     1994       -7       -7       -7
-##  3      301        3        3        2     1981       -7      115       -7
-##  4      302        3        3        2     1983       -7      129      135
-##  5      303        3        3        2     1986       -7       -7       -7
-##  6      401        4        3        1     1980       -7      153       -7
-##  7      403        4        3        2     1997       -7       -7       -7
-##  8      801        8        3        2     1976      187       -7      220
-##  9      802        8        3        1     1979      130      178      190
-## 10      803        8        3        2     1982       -7      155      155
-## # ... with 11,494 more rows, and 5 more variables: Y1386000 <int>,
-## #   Y1637700 <int>, Y1891300 <int>, Y2207200 <int>, Y2544900 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2FatherFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2FatherFromGen1.csv
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## Uploading from `nlsy79-gen2/Gen2FatherFromGen1.csv` to `Extract.tblGen2FatherFromGen1`.
 ```
 
 ```
-## 46.5 Mb
 ## # A tibble: 12,686 x 952
 ##    R0000100 R0214700 R0214800 R1373300 R1373400 R1373500 R1374000 R1374100
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -507,19 +395,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   R2956800 <int>, R2957100 <int>, R2957400 <int>, R2957700 <int>,
 ## #   R3255900 <int>, R3256000 <int>, R3256100 <int>, R3257700 <int>,
 ## #   R3257800 <int>, R3257900 <int>, R3259500 <int>, ...
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2ImplicitFather : data-unshared/raw/nlsy79-gen2/Gen2ImplicitFather.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 46.5 Mb
 ```
 
 ```
-## 4.9 Mb
+## Uploading from `nlsy79-gen2/Gen2ImplicitFather.csv` to `Extract.tblGen2ImplicitFather`.
+```
+
+```
 ## # A tibble: 11,504 x 111
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0008100 C0008200 C0008300
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -559,19 +446,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   Y1704500 <int>, Y1704501 <int>, Y1707300 <int>, Y1883300 <int>,
 ## #   Y1989500 <int>, Y1990000 <int>, Y1990001 <int>, Y1992900 <int>,
 ## #   Y2197500 <int>, Y2308300 <int>, Y2308800 <int>, ...
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2Links : data-unshared/raw/nlsy79-gen2/Gen2Links.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 4.9 Mb
 ```
 
 ```
-## 7.3 Mb
+## Uploading from `nlsy79-gen2/Gen2Links.csv` to `Extract.tblGen2Links`.
+```
+
+```
 ## # A tibble: 11,512 x 164
 ##    C0000100 C0000200 C0005300 C0005400 C0005500 C0005700 C0005800 C0006500
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -611,19 +497,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   Y1708200 <int>, Y1708300 <int>, Y1708400 <int>, Y1708500 <int>,
 ## #   Y1708600 <int>, Y1708700 <int>, Y1708800 <int>, Y1708900 <int>,
 ## #   Y1709000 <int>, Y1709100 <int>, Y1709200 <int>, ...
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2LinksFromGen1 : data-unshared/raw/nlsy79-gen2/Gen2LinksFromGen1.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 7.3 Mb
 ```
 
 ```
-## 5.2 Mb
+## Uploading from `nlsy79-gen2/Gen2LinksFromGen1.csv` to `Extract.tblGen2LinksFromGen1`.
+```
+
+```
 ## # A tibble: 12,686 x 106
 ##    R0000100 R0214700 R0214800 R4825700 R4826000 R4826100 R4826300 R4826500
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -663,19 +548,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   T2533700 <int>, T2533800 <int>, T2533900 <int>, T2534000 <int>,
 ## #   T2534100 <int>, T2534200 <int>, T2534300 <int>, T2534400 <int>,
 ## #   T2534500 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesHeight : data-unshared/raw/nlsy79-gen2/Gen2OutcomesHeight.csv
+## [1] 1
 ```
 
 ```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## 5.2 Mb
 ```
 
 ```
-## 2 Mb
+## Uploading from `nlsy79-gen2/Gen2OutcomesHeight.csv` to `Extract.tblGen2OutcomesHeight`.
+```
+
+```
 ## # A tibble: 11,504 x 46
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0577600 C0606300 C0606400
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -700,19 +584,18 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   Y1385900 <int>, Y1637500 <int>, Y1637600 <int>, Y1891100 <int>,
 ## #   Y1891200 <int>, Y2207000 <int>, Y2207100 <int>, Y2544700 <int>,
 ## #   Y2544800 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblGen2OutcomesMath : data-unshared/raw/nlsy79-gen2/Gen2OutcomesMath.csv
-```
-
-```
-## Warning: The following named parsers don't match the column names:
-## RecommendedRelatedness
+## [1] 1
 ```
 
 ```
 ## 2 Mb
+```
+
+```
+## Uploading from `nlsy79-gen2/Gen2OutcomesMath.csv` to `Extract.tblGen2OutcomesMath`.
+```
+
+```
 ## # A tibble: 11,504 x 44
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0579900 C0580000 C0580100
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
@@ -736,78 +619,42 @@ for( i in seq_len(nrow(ds_file)) ) {
 ## #   C2802900 <int>, C2803000 <int>, C3111300 <int>, C3111400 <int>,
 ## #   C3111500 <int>, C3615000 <int>, C3615100 <int>, C3615200 <int>,
 ## #   C3993600 <int>, C3993700 <int>, C3993800 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblLinks2004Gen1 : data-unshared/raw/historical/Links2004Gen1.csv 
-## 0.2 Mb
-## # A tibble: 3,890 x 9
-##    PairID ExtendedFamilyID   ID1   ID2  Sex1  Sex2 RecommendedRelatedness
-##     <int>            <int> <int> <int> <int> <int>                  <dbl>
-##  1      1                3     3     4     2     2                     NA
-##  2      2                5     5     6     1     1                  0.500
-##  3      3               13    13    14     1     2                  0.500
-##  4      4               17    17    18     1     1                  0.375
-##  5      5               20    20    21     2     2                  0.500
-##  6      6               23    23    24     1     1                     NA
-##  7      7               27    27    28     2     2                  0.500
-##  8      8               29    29    30     2     2                  0.500
-##  9      9               32    32    33     2     1                     NA
-## 10     10               34    34    35     1     2                  0.375
-## # ... with 3,880 more rows, and 2 more variables: SubjectTag_S1 <int>,
-## #   SubjectTag_S2 <int>
-## 
-## Save result: 1
-## ---------------------------------------------------------------
-## Extract.tblLinks2004Gen2 : data-unshared/raw/historical/Links2004Gen2.csv 
-## 0.3 Mb
-## # A tibble: 12,855 x 5
-##      ID1   ID2  Sex1  Sex2 RecommendedRelatedness
-##    <int> <int> <int> <int>                  <dbl>
-##  1   201   202     2     2                   0.50
-##  2   301   302     2     2                   0.50
-##  3   301   303     2     2                   0.50
-##  4   302   303     2     2                   0.50
-##  5   401   403     1     2                   0.25
-##  6   801   802     2     1                   0.50
-##  7   801   803     2     2                   0.50
-##  8   802   803     1     2                   0.50
-##  9  1001  1002     2     2                   0.50
-## 10  1201  1202     1     1                   0.50
-## # ... with 12,845 more rows
-## 
-## Save result: 1
-## ---------------------------------------------------------------
+## [1] 1
+```
+
+```
+## 2 Mb
+```
+
+```
+## Uploading from `nlsy79-gen2/Gen2OutcomesWeight.csv` to `Extract.tblGen2OutcomesWeight`.
+```
+
+```
+## # A tibble: 11,504 x 13
+##    C0000100 C0000200 C0005300 C0005400 C0005700 Y0308500 Y0904100 Y1151000
+##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
+##  1      201        2        3        2     1993       -7       -7       -7
+##  2      202        2        3        2     1994       -7       -7       -7
+##  3      301        3        3        2     1981       -7      115       -7
+##  4      302        3        3        2     1983       -7      129      135
+##  5      303        3        3        2     1986       -7       -7       -7
+##  6      401        4        3        1     1980       -7      153       -7
+##  7      403        4        3        2     1997       -7       -7       -7
+##  8      801        8        3        2     1976      187       -7      220
+##  9      802        8        3        1     1979      130      178      190
+## 10      803        8        3        2     1982       -7      155      155
+## # ... with 11,494 more rows, and 5 more variables: Y1386000 <int>,
+## #   Y1637700 <int>, Y1891300 <int>, Y2207200 <int>, Y2544900 <int>
+## [1] 1
+```
+
+```
+## 0.6 Mb
 ```
 
 ```r
 RODBC::odbcClose(channel); rm(channel)
-cat("upload_duration_in_seconds:", round(as.numeric(difftime(Sys.time(), upload_start_time, units="secs"))), "\n")
-```
-
-```
-## upload_duration_in_seconds: 34
-```
-
-```r
-warnings()
-```
-
-```
-## Warning messages:
-## 1: The following named parsers don't match the column names: RecommendedRelatedness
-## 2: The following named parsers don't match the column names: RecommendedRelatedness
-## 3: The following named parsers don't match the column names: RecommendedRelatedness
-## 4: The following named parsers don't match the column names: RecommendedRelatedness
-## 5: The following named parsers don't match the column names: RecommendedRelatedness
-## 6: The following named parsers don't match the column names: RecommendedRelatedness
-## 7: The following named parsers don't match the column names: RecommendedRelatedness
-## 8: closing unused RODBC handle 30
-## 9: The following named parsers don't match the column names: RecommendedRelatedness
-## 10: The following named parsers don't match the column names: RecommendedRelatedness
-## 11: The following named parsers don't match the column names: RecommendedRelatedness
-## 12: The following named parsers don't match the column names: RecommendedRelatedness
-## 13: The following named parsers don't match the column names: RecommendedRelatedness
 ```
 
 The R session information (including the OS info, R version and all
@@ -819,7 +666,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.0 Patched (2017-05-16 r72684)
+## R version 3.4.1 Patched (2017-08-29 r73159)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -836,17 +683,18 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.1 magrittr_1.5
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.11     bindr_0.1        knitr_1.16       hms_0.3         
-##  [5] testit_0.7       R6_2.2.1         rlang_0.1.1      stringr_1.2.0   
-##  [9] dplyr_0.7.0      tools_3.4.0      htmltools_0.3.6  yaml_2.1.14     
-## [13] assertthat_0.2.0 digest_0.6.12    rprojroot_1.2    tibble_1.3.3    
-## [17] purrr_0.2.2.2    readr_1.1.1      tidyr_0.6.3      RODBC_1.3-15    
-## [21] rsconnect_0.8    glue_1.1.0       evaluate_0.10    rmarkdown_1.6   
-## [25] stringi_1.1.5    compiler_3.4.0   backports_1.1.0  markdown_0.8    
-## [29] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.12     knitr_1.17       bindr_0.1        hms_0.3         
+##  [5] munsell_0.4.3    testit_0.7       colorspace_1.3-2 R6_2.2.2        
+##  [9] rlang_0.1.2.9000 highr_0.6        plyr_1.8.4       stringr_1.2.0   
+## [13] dplyr_0.7.2      tools_3.4.1      checkmate_1.8.4  htmltools_0.3.6 
+## [17] yaml_2.1.14      rprojroot_1.2    digest_0.6.12    assertthat_0.2.0
+## [21] tibble_1.3.4     purrr_0.2.3      readr_1.1.1      tidyr_0.7.1     
+## [25] RODBC_1.3-15     glue_1.1.1       evaluate_0.10.1  rmarkdown_1.6   
+## [29] stringi_1.1.5    compiler_3.4.1   scales_0.5.0     backports_1.1.0 
+## [33] markdown_0.8     pkgconfig_2.0.1
 ```
 
 ```r
@@ -854,6 +702,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-22 00:55:35 CDT"
+## [1] "2017-09-14 23:47:16 CDT"
 ```
 
