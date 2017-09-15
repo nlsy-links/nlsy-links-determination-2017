@@ -246,6 +246,66 @@ ds_entries
 ```r
 # d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
 
+ds_table <- database_inventory()
+ds_table
+```
+
+```
+##    schema_name                 table_name row_count column_count
+## 1      Archive      tblArchiveDescription        55            4
+## 2      Archive    tblRelatedValuesArchive    676582           24
+## 3          dbo                sysdiagrams         4            5
+## 4          dbo                 tblIRDemo2         0            3
+## 5         Enum    tblLUBioparent-not-used         0            2
+## 6         Enum         tblLUExtractSource        11            4
+## 7         Enum                tblLUGender         3            4
+## 8         Enum        tblLUMarkerEvidence         8            4
+## 9         Enum            tblLUMarkerType        28            5
+## 10        Enum         tblLUMultipleBirth         5            4
+## 11        Enum            tblLURaceCohort         3            4
+## 12        Enum      tblLURelationshipPath         5            4
+## 13        Enum            tblLURosterGen1        67            4
+## 14        Enum          tblLUSurveySource         4            4
+## 15        Enum              tblLUTristate         3            4
+## 16        Enum                 tblLUYesNo         6            4
+## 17     Extract            tblGen1Explicit     12686           96
+## 18     Extract    tblGen1GeocodeSanitized      5302           29
+## 19     Extract            tblGen1Implicit     12686          102
+## 20     Extract               tblGen1Links     12686           96
+## 21     Extract tblGen1MzDzDistinction2010         0            7
+## 22     Extract            tblGen1Outcomes     12686           22
+## 23     Extract      tblGen2FatherFromGen1     12686          939
+## 24     Extract      tblGen2ImplicitFather     11521          111
+## 25     Extract               tblGen2Links     11521          164
+## 26     Extract       tblGen2LinksFromGen1         0          107
+## 27     Extract      tblGen2OutcomesHeight         0           46
+## 28     Extract        tblGen2OutcomesMath         0           44
+## 29     Extract      tblGen2OutcomesWeight         0           13
+## 30     Extract           tblLinks2004Gen1      3890            9
+## 31     Extract           tblLinks2004Gen2     12855            5
+## 32    Metadata                    tblItem       110            7
+## 33    Metadata                tblMzManual       208            9
+## 34    Metadata    tblRosterGen1Assignment        50           16
+## 35    Metadata                tblVariable      1575           11
+## 36     Process               tblBabyDaddy         0           11
+## 37     Process            tblFatherOfGen2         0            7
+## 38     Process                 tblIRDemo1         0            5
+## 39     Process              tblMarkerGen1         0           10
+## 40     Process              tblMarkerGen2         0            8
+## 41     Process                 tblOutcome         0            5
+## 42     Process             tblOutcomesOLD         0            4
+## 43     Process    tblParentsOfGen1Current         0           19
+## 44     Process      tblParentsOfGen1Retro         0            7
+## 45     Process        tblRelatedStructure         0            6
+## 46     Process           tblRelatedValues         0           24
+## 47     Process                tblResponse         0            9
+## 48     Process              tblRosterGen1         0           13
+## 49     Process                 tblSubject         0            5
+## 50     Process          tblSubjectDetails         0           15
+## 51     Process              tblSurveyTime         0            7
+```
+
+```r
 rm(directory_in) # rm(col_types_tulsa)
 ```
 
@@ -270,7 +330,7 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 108 x 7
+## # A tibble: 110 x 7
 ##       ID                              Label MinValue MinNonnegative
 ##    <int>                              <chr>    <int>          <int>
 ##  1     1            IDOfOther1979RosterGen1       -4              1
@@ -283,7 +343,7 @@ ds_file$entries %>%
 ##  8    10                    ShareBiodadGen2       -7              0
 ##  9    11               Gen1MomOfGen2Subject        2              2
 ## 10    13                   DateOfBirthMonth       -5              1
-## # ... with 98 more rows, and 3 more variables: MaxValue <int>,
+## # ... with 100 more rows, and 3 more variables: MaxValue <int>,
 ## #   Active <lgl>, Notes <chr>
 ## # A tibble: 11 x 4
 ##       ID              Label Active Notes
@@ -383,7 +443,7 @@ ds_file$entries %>%
 ## 4    -1                             Refusal   TRUE  <NA>
 ## 5     0                                  No   TRUE  <NA>
 ## 6     1                                 Yes   TRUE  <NA>
-## # A tibble: 207 x 9
+## # A tibble: 208 x 9
 ##       ID SubjectTag_S1 SubjectTag_S2 Generation MultipleBirthIfSameSex
 ##    <int>         <int>         <int>      <int>                  <int>
 ##  1     1          5003          5004          2                      2
@@ -396,7 +456,7 @@ ds_file$entries %>%
 ##  8    12         74301         74302          2                      2
 ##  9    13         77502         77503          2                      2
 ## 10    14         93001         93002          2                      2
-## # ... with 197 more rows, and 4 more variables: IsMz <int>,
+## # ... with 198 more rows, and 4 more variables: IsMz <int>,
 ## #   Undecided <int>, Related <int>, Notes <chr>
 ## # A tibble: 50 x 16
 ##       ID ResponseLower ResponseUpper  Freq Resolved     R RBoundLower
@@ -415,7 +475,7 @@ ds_file$entries %>%
 ## #   SameGeneration <int>, ShareBiodad <int>, ShareBiomom <int>,
 ## #   ShareBiograndparent <int>, Inconsistent <int>, Notes <chr>,
 ## #   ResponseLowerLabel <chr>, ResponseUpperLabel <chr>
-## # A tibble: 1,559 x 11
+## # A tibble: 1,575 x 11
 ##       ID VariableCode  Item Generation ExtractSource SurveySource
 ##    <int>        <chr> <int>      <int>         <int>        <int>
 ##  1     1     R0000149   101          1             3            1
@@ -428,7 +488,7 @@ ds_file$entries %>%
 ##  8     8     R1891010    16          1             3            1
 ##  9     9     R2258110    16          1             3            1
 ## 10    10     R2445510    16          1             3            1
-## # ... with 1,549 more rows, and 5 more variables: SurveyYear <int>,
+## # ... with 1,565 more rows, and 5 more variables: SurveyYear <int>,
 ## #   LoopIndex <int>, Translate <int>, Active <lgl>, Notes <chr>
 ```
 
@@ -589,6 +649,8 @@ ds_enum %>%
 ##     Gen2YAFatherAlive_NOTUSED                                    =   142, 
 ##     Gen2YADeathMonth                                             =   143, 
 ##     Gen2YADeathYearFourDigit                                     =   144, 
+##     Gen2FromMomDeathMonth                                        =   145, 
+##     Gen2FromMomDeathYearFourDigit                                =   146, 
 ##     Gen1HeightInches                                             =   200, 
 ##     Gen1WeightPounds                                             =   201, 
 ##     Gen1AfqtScaled0Decimals_NOTUSED                              =   202, 
@@ -826,6 +888,14 @@ ds_enum %>%
 # lst_ds %>%
 #   purrr::map(function(x)paste(names(x)))
 
+ds_table_process <- ds_table %>%
+  dplyr::filter(schema_name == "Process") %>%
+  dplyr::mutate(
+    #sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
+    sql_truncate  = glue::glue("DELETE FROM {schema_name}.{table_name};")
+  )
+
+# Open channel
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 ```
@@ -840,13 +910,38 @@ RODBC::odbcGetInfo(channel)
 ```
 
 ```r
+# Clear process tables
+delete_results_process <- ds_table_process$sql_truncate %>%
+  rev() %>%
+  purrr::set_names(ds_table_process$table_name) %>%
+  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+delete_results_process
+```
+
+```
+##            tblBabyDaddy         tblFatherOfGen2              tblIRDemo1 
+##                      -1                      -1                      -1 
+##           tblMarkerGen1           tblMarkerGen2              tblOutcome 
+##                      -1                      -1                      -1 
+##          tblOutcomesOLD tblParentsOfGen1Current   tblParentsOfGen1Retro 
+##                      -1                      -1                      -1 
+##     tblRelatedStructure        tblRelatedValues             tblResponse 
+##                      -1                      -1                      -1 
+##           tblRosterGen1              tblSubject       tblSubjectDetails 
+##                      -1                      -1                      -1 
+##           tblSurveyTime 
+##                      -1
+```
+
+```r
+# Delete metadata tables
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
-delete_results <- ds_file$sql_delete %>%
+delete_results_metadata <- ds_file$sql_delete %>%
   rev() %>%
   purrr::set_names(ds_file$table_name) %>%
   purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
 
-delete_results
+delete_results_metadata
 ```
 
 ```
@@ -876,6 +971,7 @@ delete_results
 # d2 <- d[, 1:16]
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
+# Upload metadata tables
 purrr::map2_int(
   ds_file$entries,
   ds_file$table_name,
@@ -911,6 +1007,48 @@ purrr::set_names(ds_file$table_name)
 ```
 
 ```r
+# for( i in seq_len(nrow(ds_file)) ) {
+#   message(glue::glue("Uploading from `{ basename(ds_file$path)[i]}` to `{ds_file$table_name[i]}`."))
+#
+#   d <- ds_file$entries[[i]]
+#   print(d)
+#
+#   # RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+#
+#   # d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+#   #
+#   # missing_in_extract    <- setdiff(colnames(d_peek), colnames(d))
+#   # missing_in_database   <- setdiff(colnames(d), colnames(d_peek))
+#   #
+#   # d_column <- tibble::tibble(
+#   #   db        = colnames(d),
+#   #   extract   = colnames(d_peek)
+#   # ) %>%
+#   #   dplyr::filter(db != extract)
+#   #
+#   # RODBC::sqlSave(
+#   #   channel     = channel,
+#   #   dat         = d,
+#   #   tablename   = ds_extract$table_name[i],
+#   #   safer       = TRUE,       # Don't keep the existing table.
+#   #   rownames    = FALSE,
+#   #   append      = TRUE
+#   # ) %>%
+#   #   print()
+#
+#   OuhscMunge::upload_sqls_rodbc(
+#     d               = d,
+#     table_name      = ds_file$table_name[i] ,
+#     dsn_name        = "local-nlsy-links",
+#     clear_table     = T,
+#     create_table    = F
+#   )
+#
+#
+#   message(glue::glue("{format(object.size(d), units='MB')}"))
+# }
+
+# Close channel
 RODBC::odbcClose(channel); rm(channel)
 ```
 
@@ -940,19 +1078,19 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.17         ggplot2_2.2.1.9000 xtable_1.8-2      
-## [4] plyr_1.8.4         RODBC_1.3-15       bindrcpp_0.2      
-## [7] magrittr_1.5      
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.12     bindr_0.1        hms_0.3          munsell_0.4.3   
-##  [5] testit_0.7       colorspace_1.3-2 R6_2.2.2         rlang_0.1.2.9000
-##  [9] stringr_1.2.0    dplyr_0.7.2      tools_3.4.1      grid_3.4.1      
-## [13] gtable_0.2.0     htmltools_0.3.6  lazyeval_0.2.0   yaml_2.1.14     
-## [17] rprojroot_1.2    digest_0.6.12    assertthat_0.2.0 tibble_1.3.4    
-## [21] purrr_0.2.3      readr_1.1.1      tidyr_0.7.0      glue_1.1.1      
-## [25] evaluate_0.10.1  rmarkdown_1.6    labeling_0.3     stringi_1.1.5   
-## [29] compiler_3.4.1   scales_0.5.0     backports_1.1.0  pkgconfig_2.0.1
+##  [1] Rcpp_0.12.12          knitr_1.17            bindr_0.1            
+##  [4] hms_0.3               testit_0.7            R6_2.2.2             
+##  [7] rlang_0.1.2.9000      stringr_1.2.0         dplyr_0.7.2          
+## [10] tools_3.4.1           checkmate_1.8.4       htmltools_0.3.6      
+## [13] yaml_2.1.14           assertthat_0.2.0      digest_0.6.12        
+## [16] rprojroot_1.2         tibble_1.3.4          purrr_0.2.3          
+## [19] readr_1.1.1           tidyr_0.7.1           RODBC_1.3-15         
+## [22] glue_1.1.1            OuhscMunge_0.1.8.9002 evaluate_0.10.1      
+## [25] rmarkdown_1.6         stringi_1.1.5         compiler_3.4.1       
+## [28] backports_1.1.0       markdown_0.8          pkgconfig_2.0.1
 ```
 
 ```r
@@ -960,6 +1098,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-09-06 18:15:53 CDT"
+## [1] "2017-09-15 10:49:29 CDT"
 ```
 
