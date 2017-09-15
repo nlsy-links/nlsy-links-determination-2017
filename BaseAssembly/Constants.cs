@@ -37,10 +37,10 @@ namespace Nls.BaseAssembly {
 		//public const Int32 Gen2SiblingPathCount = 22150;//Double entered;
 
 		public const Int32 Gen1HousematesPathCount = 5302;//Single entered;
-        public const Int32 Gen2SiblingsPathCount = 11512; //11088 in 2010; //11075 in 2008;//Single entered;
+        public const Int32 Gen2SiblingsPathCount = 11099; //11088 in 2010; //11075 in 2008;//Single entered;
 		public const Int32 Gen2CousinsPathCount = 4995;//4972 in 2008;//Single entered;
-		public const Int32 ParentChildPathCount = 11504;//Single entered;
-		public const Int32 AuntNiecePathCount = 9884;//9870 in 2008;//Single entered;
+        public const Int32 ParentChildPathCount = 11512; //11504 in 2010;//Single entered;
+        public const Int32 AuntNiecePathCount = 9887; //9884 in 2010;//9870 in 2008;//Single entered;
 		#endregion
 		#region Counts
 		public const Int32 Gen1IDSiblingCountMin = 1;

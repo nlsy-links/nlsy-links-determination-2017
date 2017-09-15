@@ -74,7 +74,7 @@ This report documents the basic properties of the (input & output) tables kinshi
 |Extract     |tblLinks2004Gen1           |     3,890|            9|
 |Extract     |tblLinks2004Gen2           |    12,855|            5|
 |Metadata    |tblItem                    |       108|            7|
-|Metadata    |tblMzManual                |       207|            9|
+|Metadata    |tblMzManual                |       208|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
 |Metadata    |tblVariable                |     1,559|           11|
 |Process     |tblBabyDaddy               |   178,803|           11|
@@ -114,7 +114,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-09-06                                 
+ date     2017-09-14                                 
 ```
 
 ```
@@ -168,5 +168,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-09-06, 21:55 -0500 in 1 seconds.
+Report rendered by Will at 2017-09-14, 23:29 -0500 in 2 seconds.
 
