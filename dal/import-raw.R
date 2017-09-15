@@ -22,9 +22,10 @@ requireNamespace("RODBC"                  ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-unshared/raw"
+columns_to_drop           <- c("A0002600")
 
 ds_extract <- tibble::tribble(
-  ~table_name                       , ~file_name,
+  ~table_name                           , ~file_name,
   "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
   "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
   "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
@@ -55,6 +56,7 @@ ds_extract <- ds_extract %>%
   dplyr::mutate(
     path            = file.path(directory_in, file_name),
     extract_exist   = file.exists(path),
+    sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name}")
   )
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
@@ -69,6 +71,8 @@ print(ds_extract, n=20)
 
 # ---- specify-columns-to-upload -----------------------------------------------
 
+# a <- readr::read_csv("data-unshared/raw/nlsy79-gen1/Gen1Explicit.zip")
+
 
 # ---- upload-to-db ----------------------------------------------------------
 
@@ -79,9 +83,31 @@ for( i in seq_len(nrow(ds_extract)) ) {
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
+
+  columns_to_drop_specific <- colnames(d) %>%
+    intersect(columns_to_drop)
+  # %>%
+    # glue::glue("{.}")
+
+  if( length(columns_to_drop_specific) >= 1L ) {
+    d <- d %>%
+      dplyr::select_(.dots=paste0("-", columns_to_drop_specific))
+  }
+
   print(d)
 
   RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+
+  d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+
+  missing_in_extract    <- setdiff(colnames(d_peek), colnames(d))
+  missing_in_database   <- setdiff(colnames(d), colnames(d_peek))
+
+  d_column <- tibble::tibble(
+    db        = colnames(d),
+    extract   = colnames(d_peek)
+  ) %>%
+    dplyr::filter(db != extract)
 
   RODBC::sqlSave(
     channel     = channel,
@@ -92,6 +118,15 @@ for( i in seq_len(nrow(ds_extract)) ) {
     append      = TRUE
   ) %>%
   print()
+
+  # OuhscMunge::upload_sqls_rodbc(
+  #   d               = d,
+  #   table_name      = ds_extract$table_name[i] ,
+  #   dsn_name        = "local-nlsy-links",
+  #   clear_table     = F,
+  #   create_table    = T
+  # )
+
 
   message(glue::glue("{format(object.size(d), units='MB')}"))
 }
