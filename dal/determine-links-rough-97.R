@@ -29,19 +29,24 @@ col_types_default <- readr::cols(
 
 # ---- load-data ---------------------------------------------------------------
 # Retrieve location of csv to transfer.
-sc <- spark_connect (master = "local", version = "2.0.1")
-ds_import_explicit             <- readr::read_csv(path_97_explicit, col_types=col_types_default)
+sc <- spark_connect (master = "local")
+# ds_import_explicit             <- readr::read_csv(path_97_explicit, col_types=col_types_default)
 
 d <- spark_read_csv(sc, name = "dsp", path_97_explicit)
 
 tidy_iris <- tbl(sc,"dsp") %>%
-  select(R0000100, R0536300) %>%
+  # select(R0000100, R0536300) %>%
   mutate(
     R      = R0536300 + 1000L
-  )
+  ) %>%
+  dplyr::union_all(., .) %>%
+  dplyr::union_all(., .) %>%
+  dplyr::union_all(., .)
 
 returned <- tidy_iris %>%
   collect()
+
+spark_disconnect(sc)
 
 # readr::spec_csv(path_lu_cancellation_categorization)
 ds_lu_cancellation_categorization  <- readr::read_csv(path_lu_cancellation_categorization, col_types=col_types_cancellation_category)
