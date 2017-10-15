@@ -8,12 +8,13 @@ rm(list=ls(all=TRUE)) #Clear the memory for any variables set from any previous 
 # ---- load-sources ------------------------------------------------------------
 # source("./manipulation/osdh/ellis/common-ellis.R")
 
+
 # ---- load-packages -----------------------------------------------------------
 library(magrittr                , quietly=TRUE)
+library(sparklyr                , quietly=TRUE)   # spark_install ("2.2.0")
 requireNamespace("readr"                      )
 requireNamespace("dplyr"                      )
 requireNamespace("testit"                     )
-requireNamespace("stringr"                    )
 requireNamespace("OuhscMunge"                 )   # devtools::install_github("OuhscBbmc/OuhscMunge")
 
 # ---- declare-globals ---------------------------------------------------------
@@ -28,9 +29,24 @@ col_types_default <- readr::cols(
 
 # ---- load-data ---------------------------------------------------------------
 # Retrieve location of csv to transfer.
-ds_import_explicit             <- readr::read_csv(path_97_explicit, col_types=col_types_default)
+sc <- spark_connect (master = "local")
+# ds_import_explicit             <- readr::read_csv(path_97_explicit, col_types=col_types_default)
 
+d <- spark_read_csv(sc, name = "dsp", path_97_explicit)
 
+tidy_iris <- tbl(sc,"dsp") %>%
+  # select(R0000100, R0536300) %>%
+  mutate(
+    R      = R0536300 + 1000L
+  ) %>%
+  dplyr::union_all(., .) %>%
+  dplyr::union_all(., .) %>%
+  dplyr::union_all(., .)
+
+returned <- tidy_iris %>%
+  collect()
+
+spark_disconnect(sc)
 
 # readr::spec_csv(path_lu_cancellation_categorization)
 ds_lu_cancellation_categorization  <- readr::read_csv(path_lu_cancellation_categorization, col_types=col_types_cancellation_category)
@@ -292,3 +308,5 @@ OuhscMunge::upload_sqls_rodbc(
   clear_table   = TRUE,
   create_table  = FALSE
 ) # 9.042 minutes 2017-09-02
+
+spark_disconnect(sc)
