@@ -17,14 +17,46 @@ requireNamespace("knitr") #For the kable function for tables
 options(show.signif.stars=F) #Turn off the annotations on p-values
 
 
+sql_variable <- "
+  SELECT
+    v.ID                 AS variable_id,
+    v.VariableCode       AS variable_code,
+    v.Item               AS item_id,
+    i.Label              AS item_label,
+    v.Generation         AS generation,
+    v.ExtractSource      AS extract_source_id,
+    e.Label              AS extract_source_label,
+    v.SurveySource       AS survey_source_id,
+    s.Label              AS survey_source_label,
+    v.SurveyYear         AS survey_year,
+    v.LoopIndex          AS loop_index,
+    v.Translate          AS translate,
+    v.Active             AS variable_active,
+    v.Notes              AS variable_notes
+  FROM Metadata.tblVariable v
+    INNER JOIN Enum.tblLUSurveySource  s      ON v.SurveySource       = s.ID
+    INNER JOIN Enum.tblLUExtractSource e      ON v.ExtractSource      = e.ID
+    LEFT OUTER JOIN Metadata.tblItem   i      ON v.Item               = i.ID
+"
+
 # ---- load-data ---------------------------------------------------------------
 ds <- database_inventory()
+
+channel            <- open_dsn_channel()
+ds_variable        <- RODBC::sqlQuery(channel, sql_variable, stringsAsFactors=F)
+RODBC::odbcClose(channel); rm(channel, sql_variable)
 
 # ---- tweak-data --------------------------------------------------------------
 ds_pretty <- ds %>%
   dplyr::mutate(
     row_count       = scales::comma(row_count),
     column_count    = scales::comma(column_count)
+  )
+
+ds_variable <- ds_variable %>%
+  tibble::as_tibble() %>%
+  dplyr::mutate(
+    translate       = as.logical(translate)
   )
 
 # ---- table ---------------------------------------------------------------
@@ -36,3 +68,13 @@ ds_pretty %>%
     format      = "markdown"
   )
 
+
+
+# ---- variable ----------------------------------------------------------
+
+ds_variable %>%
+  knitr::kable(
+    col.names   = gsub("_", " ", colnames(.)),
+    # align       = "r",
+    format      = "markdown"
+  )
