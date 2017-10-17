@@ -277,10 +277,10 @@ ds_table
 ## 23     Extract      tblGen2FatherFromGen1     12686          939
 ## 24     Extract      tblGen2ImplicitFather     11521          111
 ## 25     Extract               tblGen2Links     11521          164
-## 26     Extract       tblGen2LinksFromGen1         0          107
-## 27     Extract      tblGen2OutcomesHeight         0           46
-## 28     Extract        tblGen2OutcomesMath         0           44
-## 29     Extract      tblGen2OutcomesWeight         0           13
+## 26     Extract       tblGen2LinksFromGen1     12686          123
+## 27     Extract      tblGen2OutcomesHeight     11521           46
+## 28     Extract        tblGen2OutcomesMath     11521           44
+## 29     Extract      tblGen2OutcomesWeight     11521           31
 ## 30     Extract           tblLinks2004Gen1      3890            9
 ## 31     Extract           tblLinks2004Gen2     12855            5
 ## 32    Metadata                    tblItem       110            7
@@ -293,16 +293,15 @@ ds_table
 ## 39     Process              tblMarkerGen1         0           10
 ## 40     Process              tblMarkerGen2         0            8
 ## 41     Process                 tblOutcome         0            5
-## 42     Process             tblOutcomesOLD         0            4
-## 43     Process    tblParentsOfGen1Current         0           19
-## 44     Process      tblParentsOfGen1Retro         0            7
-## 45     Process        tblRelatedStructure         0            6
-## 46     Process           tblRelatedValues         0           24
-## 47     Process                tblResponse         0            9
-## 48     Process              tblRosterGen1         0           13
-## 49     Process                 tblSubject         0            5
-## 50     Process          tblSubjectDetails         0           15
-## 51     Process              tblSurveyTime         0            7
+## 42     Process    tblParentsOfGen1Current         0           19
+## 43     Process      tblParentsOfGen1Retro         0            7
+## 44     Process        tblRelatedStructure         0            6
+## 45     Process           tblRelatedValues         0           24
+## 46     Process                tblResponse         0            9
+## 47     Process              tblRosterGen1         0           13
+## 48     Process                 tblSubject         0            5
+## 49     Process          tblSubjectDetails         0           15
+## 50     Process              tblSurveyTime         0            7
 ```
 
 ```r
@@ -923,14 +922,12 @@ delete_results_process
 ##                      -1                      -1                      -1 
 ##           tblMarkerGen1           tblMarkerGen2              tblOutcome 
 ##                      -1                      -1                      -1 
-##          tblOutcomesOLD tblParentsOfGen1Current   tblParentsOfGen1Retro 
+## tblParentsOfGen1Current   tblParentsOfGen1Retro     tblRelatedStructure 
 ##                      -1                      -1                      -1 
-##     tblRelatedStructure        tblRelatedValues             tblResponse 
+##        tblRelatedValues             tblResponse           tblRosterGen1 
 ##                      -1                      -1                      -1 
-##           tblRosterGen1              tblSubject       tblSubjectDetails 
-##                      -1                      -1                      -1 
-##           tblSurveyTime 
-##                      -1
+##              tblSubject       tblSubjectDetails           tblSurveyTime 
+##                      -1                      -1                      -1
 ```
 
 ```r
@@ -1061,7 +1058,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.1 Patched (2017-08-29 r73159)
+## R version 3.4.2 Patched (2017-10-08 r73502)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -1081,16 +1078,19 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.12          knitr_1.17            bindr_0.1            
-##  [4] hms_0.3               testit_0.7            R6_2.2.2             
-##  [7] rlang_0.1.2.9000      stringr_1.2.0         dplyr_0.7.2          
-## [10] tools_3.4.1           checkmate_1.8.4       htmltools_0.3.6      
-## [13] yaml_2.1.14           assertthat_0.2.0      digest_0.6.12        
-## [16] rprojroot_1.2         tibble_1.3.4          purrr_0.2.3          
-## [19] readr_1.1.1           tidyr_0.7.1           RODBC_1.3-15         
-## [22] glue_1.1.1            OuhscMunge_0.1.8.9002 evaluate_0.10.1      
-## [25] rmarkdown_1.6         stringi_1.1.5         compiler_3.4.1       
-## [28] backports_1.1.0       markdown_0.8          pkgconfig_2.0.1
+##  [1] Rcpp_0.12.13          knitr_1.17            bindr_0.1            
+##  [4] devtools_1.13.3       hms_0.3               testit_0.7           
+##  [7] munsell_0.4.3         colorspace_1.3-2      R6_2.2.2             
+## [10] rlang_0.1.2.9000      highr_0.6             plyr_1.8.4           
+## [13] stringr_1.2.0         dplyr_0.7.4           tools_3.4.2          
+## [16] checkmate_1.8.4-9000  withr_2.0.0           htmltools_0.3.6      
+## [19] yaml_2.1.14           rprojroot_1.2         digest_0.6.12        
+## [22] assertthat_0.2.0      tibble_1.3.4          purrr_0.2.3          
+## [25] tidyr_0.7.1           readr_1.1.1           RODBC_1.3-15         
+## [28] rsconnect_0.8.5       OuhscMunge_0.1.8.9004 memoise_1.1.0        
+## [31] glue_1.1.1            evaluate_0.10.1       rmarkdown_1.6        
+## [34] stringi_1.1.5         compiler_3.4.2        scales_0.5.0.9000    
+## [37] backports_1.1.1       markdown_0.8          pkgconfig_2.0.1
 ```
 
 ```r
@@ -1098,6 +1098,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-09-15 10:49:29 CDT"
+## [1] "2017-10-17 13:52:35 CDT"
 ```
 

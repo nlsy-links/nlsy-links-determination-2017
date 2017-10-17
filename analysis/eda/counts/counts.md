@@ -71,7 +71,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblGen2LinksFromGen1       |    12,686|          123|
 |Extract     |tblGen2OutcomesHeight      |    11,521|           46|
 |Extract     |tblGen2OutcomesMath        |    11,521|           44|
-|Extract     |tblGen2OutcomesWeight      |         0|           13|
+|Extract     |tblGen2OutcomesWeight      |    11,521|           31|
 |Extract     |tblLinks2004Gen1           |     3,890|            9|
 |Extract     |tblLinks2004Gen2           |    12,855|            5|
 |Metadata    |tblItem                    |       110|            7|
@@ -86,11 +86,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome                 |         0|            5|
 |Process     |tblParentsOfGen1Current    |         0|           19|
 |Process     |tblParentsOfGen1Retro      |         0|            7|
-|Process     |tblRelatedStructure        |         0|            6|
+|Process     |tblRelatedStructure        |    85,672|            6|
 |Process     |tblRelatedValues           |         0|           24|
-|Process     |tblResponse                |         0|            9|
+|Process     |tblResponse                | 2,565,902|            9|
 |Process     |tblRosterGen1              |         0|           13|
-|Process     |tblSubject                 |         0|            5|
+|Process     |tblSubject                 |    24,207|            5|
 |Process     |tblSubjectDetails          |         0|           15|
 |Process     |tblSurveyTime              |         0|            7|
 
@@ -163,7 +163,7 @@ This report documents the basic properties of the input & output tables kinship 
 |  143|Gen2YADeathMonth                                   |       -7|              1|       12|TRUE   |NA    |
 |  144|Gen2YADeathYearFourDigit                           |       -7|           1978|     2010|TRUE   |NA    |
 |  145|Gen2FromMomDeathMonth                              |       -4|              1|       12|TRUE   |NA    |
-|  146|Gen2FromMomDeathYearFourDigit                      |       -4|           1978|     2015|TRUE   |NA    |
+|  146|Gen2FromMomDeathYearFourDigit                      |       -4|           1974|     2015|TRUE   |NA    |
 |  200|Gen1HeightInches                                   |       -5|             48|       83|TRUE   |NA    |
 |  201|Gen1WeightPounds                                   |       -5|             47|      375|TRUE   |NA    |
 |  202|Gen1AfqtScaled0Decimals_NOTUSED                    |       -4|              1|       99|TRUE   |NA    |
@@ -180,10 +180,10 @@ This report documents the basic properties of the input & output tables kinship 
 |  308|Gen1GrandfatherBirthCountry                        |       -4|              1|        2|TRUE   |NA    |
 |  309|Gen1FatherBirthMonth                               |       -5|              1|       12|TRUE   |NA    |
 |  310|Gen1FatherBirthYear                                |       -5|              0|       66|TRUE   |NA    |
-|  311|Gen1FatherAge                                      |       -5|             32|       96|TRUE   |NA    |
+|  311|Gen1FatherAge                                      |       -5|             32|      110|TRUE   |NA    |
 |  320|Gen1MotherAlive                                    |       -4|              0|        1|TRUE   |NA    |
 |  321|Gen1MotherDeathCause                               |       -4|              1|        6|TRUE   |NA    |
-|  322|Gen1MotherDeathAge                                 |       -4|              0|       93|TRUE   |NA    |
+|  322|Gen1MotherDeathAge                                 |       -4|              0|      110|TRUE   |NA    |
 |  323|Gen1MotherHasHealthProblems                        |       -4|              0|        1|TRUE   |NA    |
 |  324|Gen1MotherHealthProblem                            |       -4|            100|   118791|TRUE   |NA    |
 |  325|Gen1MotherBirthCountry                             |       -3|              1|        3|TRUE   |NA    |
@@ -191,7 +191,7 @@ This report documents the basic properties of the input & output tables kinship 
 |  327|Gen1MotherHighestGrade                             |       -4|              0|       20|TRUE   |NA    |
 |  329|Gen1MotherBirthMonth                               |       -5|              1|       12|TRUE   |NA    |
 |  330|Gen1MotherBirthYear                                |       -5|              7|       66|TRUE   |NA    |
-|  331|Gen1MotherAge                                      |       -5|             34|       83|TRUE   |NA    |
+|  331|Gen1MotherAge                                      |       -5|             34|      110|TRUE   |NA    |
 |  340|Gen1AlwaysLivedWithBothParents                     |       -5|              0|        1|TRUE   |NA    |
 |  500|Gen2HeightInchesTotal                              |       -7|             13|       81|TRUE   |NA    |
 |  501|Gen2HeightFeetOnly                                 |       -7|              0|        8|TRUE   |NA    |
@@ -1863,5 +1863,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-10-17, 13:01 -0500 in 2 seconds.
+Report rendered by Will at 2017-10-17, 13:57 -0500 in 2 seconds.
 
