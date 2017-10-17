@@ -82,6 +82,10 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 ```{r table, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
+## Items
+```{r item, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
 ## Variables
 ```{r variable, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```

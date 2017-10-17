@@ -17,6 +17,17 @@ requireNamespace("knitr") #For the kable function for tables
 options(show.signif.stars=F) #Turn off the annotations on p-values
 
 
+sql_item <- "
+  SELECT
+  	[ID]
+  	,[Label]
+  	,[MinValue]
+  	,[MinNonnegative]
+  	,[MaxValue]
+  	,[Active]
+  	,[Notes]
+  FROM [Metadata].[tblItem]
+"
 sql_variable <- "
   SELECT
     v.ID                 AS variable_id,
@@ -43,8 +54,9 @@ sql_variable <- "
 ds <- database_inventory()
 
 channel            <- open_dsn_channel()
+ds_item            <- RODBC::sqlQuery(channel, sql_item    , stringsAsFactors=F)
 ds_variable        <- RODBC::sqlQuery(channel, sql_variable, stringsAsFactors=F)
-RODBC::odbcClose(channel); rm(channel, sql_variable)
+RODBC::odbcClose(channel); rm(channel, sql_item, sql_variable)
 
 # ---- tweak-data --------------------------------------------------------------
 ds_pretty <- ds %>%
@@ -52,6 +64,9 @@ ds_pretty <- ds %>%
     row_count       = scales::comma(row_count),
     column_count    = scales::comma(column_count)
   )
+
+ds_item <- ds_item %>%
+  tibble::as_tibble()
 
 ds_variable <- ds_variable %>%
   tibble::as_tibble() %>%
@@ -70,8 +85,16 @@ ds_pretty %>%
 
 
 
-# ---- variable ----------------------------------------------------------
+# ---- item ----------------------------------------------------------
+ds_item %>%
+  knitr::kable(
+    col.names   = gsub("_", " ", colnames(.)),
+    # align       = "r",
+    format      = "markdown"
+  )
 
+
+# ---- variable ----------------------------------------------------------
 ds_variable %>%
   knitr::kable(
     col.names   = gsub("_", " ", colnames(.)),

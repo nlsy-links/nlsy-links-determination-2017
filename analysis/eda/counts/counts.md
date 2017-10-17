@@ -94,6 +94,121 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblSubjectDetails          |         0|           15|
 |Process     |tblSurveyTime              |         0|            7|
 
+## Items
+
+|   ID|Label                                              | MinValue| MinNonnegative| MaxValue|Active |Notes |
+|----:|:--------------------------------------------------|--------:|--------------:|--------:|:------|:-----|
+|    1|IDOfOther1979RosterGen1                            |       -4|              1|    12557|TRUE   |NA    |
+|    2|RosterGen1979                                      |       -4|              1|       66|TRUE   |NA    |
+|    3|SiblingNumberFrom1993SiblingRoster                 |       -4|              1|       99|TRUE   |NA    |
+|    4|IDCodeOfOtherSiblingGen1                           |       -5|              3|    12518|TRUE   |NA    |
+|    5|ShareBiomomGen1                                    |       -5|              0|        2|TRUE   |NA    |
+|    6|ShareBiodadGen1                                    |       -5|              0|        2|TRUE   |NA    |
+|    9|IDCodeOfOtherInterviewedBiodadGen2                 |       -7|              1|       11|TRUE   |NA    |
+|   10|ShareBiodadGen2                                    |       -7|              0|        3|TRUE   |NA    |
+|   11|Gen1MomOfGen2Subject                               |        2|              2|    12675|TRUE   |NA    |
+|   13|DateOfBirthMonth                                   |       -5|              1|       12|TRUE   |NA    |
+|   14|DateOfBirthYearGen1                                |       -5|             55|       65|TRUE   |NA    |
+|   15|DateOfBirthYearGen2                                |       -3|           1970|     2012|TRUE   |NA    |
+|   16|AgeAtInterviewDateYears                            |       -7|             13|       53|TRUE   |NA    |
+|   17|AgeAtInterviewDateMonths                           |       -7|              0|      259|TRUE   |NA    |
+|   20|InterviewDateDay                                   |       -7|              1|       31|TRUE   |NA    |
+|   21|InterviewDateMonth                                 |       -7|              1|       12|TRUE   |NA    |
+|   22|InterviewDateYear                                  |       -7|             86|     2013|TRUE   |NA    |
+|   25|Gen1SiblingIsATwinOrTrip1994                       |       -5|              0|        1|TRUE   |NA    |
+|   26|Gen1MultipleSiblingType1994                        |       -5|              0|        2|TRUE   |NA    |
+|   27|Gen1ListedTwinCorrect1994                          |       -5|              0|        1|TRUE   |NA    |
+|   28|Gen1TwinIsMzOrDz1994                               |       -5|              1|        2|TRUE   |NA    |
+|   29|Gen1ListedTripCorrect1994                          |       -5|              0|        1|TRUE   |NA    |
+|   30|Gen1TripIsMzOrDz1994                               |       -5|              1|        2|TRUE   |NA    |
+|   37|MotherOrBothInHHGen2                               |       -7|              0|        1|TRUE   |NA    |
+|   40|FatherHasAsthmaGen2                                |       -7|              0|        1|TRUE   |NA    |
+|   48|BioKidCountGen1                                    |        0|              0|       11|TRUE   |NA    |
+|   49|Gen1ChildsIDByBirthOrder                           |       -4|              1|       11|TRUE   |NA    |
+|   50|HerTwinsTripsAreListed                             |       -5|              0|        5|TRUE   |NA    |
+|   52|HerTwinsAreMz                                      |       -5|              0|        5|TRUE   |NA    |
+|   53|HerTripsAreMz                                      |       -5|              0|        5|TRUE   |NA    |
+|   54|HerTwinsMistakenForEachOther                       |       -5|              1|        2|TRUE   |NA    |
+|   55|HerTripsMistakenForEachOther                       |       -5|              1|        2|TRUE   |NA    |
+|   60|BirthOrderInNlsGen2                                |       -3|              1|       11|TRUE   |NA    |
+|   63|SiblingCountTotalFen1                              |       -3|              0|       29|TRUE   |NA    |
+|   64|BioKidCountGen2                                    |       -7|              0|       11|TRUE   |NA    |
+|   66|OlderSiblingsTotalCountGen1                        |       -4|              0|       27|TRUE   |NA    |
+|   70|Gen1HairColor                                      |       -5|              1|        7|TRUE   |NA    |
+|   71|Gen1EyeColor                                       |       -5|              1|        9|TRUE   |NA    |
+|   72|Gen2HairColor_NOTUSED                              |       -7|              1|        7|TRUE   |NA    |
+|   73|Gen2EyeColor_NOTUSED                               |       -7|              1|       10|TRUE   |NA    |
+|   81|BabyDaddyInHH                                      |       -5|              0|        1|FALSE  |NA    |
+|   82|BabyDaddyAlive                                     |       -5|              0|        1|FALSE  |NA    |
+|   83|BabyDaddyEverLiveInHH                              |       -5|              1|        2|FALSE  |NA    |
+|   84|BabyDaddyLeftHHMonth                               |       -5|              1|       12|FALSE  |NA    |
+|   85|BabyDaddyLeftHHYearFourDigit                       |       -5|           1958|     2010|FALSE  |NA    |
+|   86|BabyDaddyDeathMonth                                |       -5|              1|       12|FALSE  |NA    |
+|   87|BabyDaddyDeathYearTwoDigit                         |       -5|             61|       93|FALSE  |NA    |
+|   88|BabyDaddyDeathYearFourDigit                        |       -5|           1961|     2010|FALSE  |NA    |
+|   89|BabyDaddyDistanceFromMotherFuzzyCeiling            |       -5|              1|        5|FALSE  |NA    |
+|   90|BabyDaddyHasAsthma                                 |       -5|              0|        2|FALSE  |NA    |
+|   91|BabyDaddyLeftHHMonthOrNeverInHH                    |       -5|              1|       96|FALSE  |NA    |
+|   92|BabyDaddyLeftHHYearTwoDigit                        |       -5|             57|       96|FALSE  |NA    |
+|  100|SubjectID                                          |        1|              1|  1267501|TRUE   |NA    |
+|  101|ExtendedFamilyID                                   |        1|              1|    12686|TRUE   |NA    |
+|  102|Gender                                             |       -3|              1|        2|TRUE   |NA    |
+|  103|RaceCohort                                         |        1|              1|        3|TRUE   |NA    |
+|  121|Gen2CFatherLivingInHH                              |       -7|              0|        1|TRUE   |NA    |
+|  122|Gen2CFatherAlive                                   |       -7|              0|        1|TRUE   |NA    |
+|  123|Gen2CFatherDistanceFromMotherFuzzyCeiling          |       -7|              1|        5|TRUE   |NA    |
+|  125|Gen2CFatherAsthma_NOTUSED                          |       -7|              0|        2|TRUE   |NA    |
+|  141|Gen2YAFatherInHH_NOTUSED                           |       -7|              0|        1|TRUE   |NA    |
+|  142|Gen2YAFatherAlive_NOTUSED                          |       -7|              0|        1|TRUE   |NA    |
+|  143|Gen2YADeathMonth                                   |       -7|              1|       12|TRUE   |NA    |
+|  144|Gen2YADeathYearFourDigit                           |       -7|           1978|     2010|TRUE   |NA    |
+|  145|Gen2FromMomDeathMonth                              |       -4|              1|       12|TRUE   |NA    |
+|  146|Gen2FromMomDeathYearFourDigit                      |       -4|           1978|     2015|TRUE   |NA    |
+|  200|Gen1HeightInches                                   |       -5|             48|       83|TRUE   |NA    |
+|  201|Gen1WeightPounds                                   |       -5|             47|      375|TRUE   |NA    |
+|  202|Gen1AfqtScaled0Decimals_NOTUSED                    |       -4|              1|       99|TRUE   |NA    |
+|  203|Gen1AfqtScaled3Decimals                            |       -5|              0|   100000|TRUE   |NA    |
+|  204|Gen1HeightFeetInchesMashed                         |       -5|            400|      611|TRUE   |NA    |
+|  300|Gen1FatherAlive                                    |       -4|              0|        1|TRUE   |NA    |
+|  301|Gen1FatherDeathCause                               |       -4|              1|        6|TRUE   |NA    |
+|  302|Gen1FatherDeathAge                                 |       -4|              0|      110|TRUE   |NA    |
+|  303|Gen1FatherHasHealthProblems                        |       -4|              0|        1|TRUE   |NA    |
+|  304|Gen1FatherHealthProblem                            |       -4|            100|   119972|TRUE   |NA    |
+|  305|Gen1FatherBirthCountry                             |       -3|              1|        3|TRUE   |NA    |
+|  306|Gen1LivedWithFatherAtAgeX                          |       -5|              0|        1|TRUE   |NA    |
+|  307|Gen1FatherHighestGrade                             |       -4|              0|       20|TRUE   |NA    |
+|  308|Gen1GrandfatherBirthCountry                        |       -4|              1|        2|TRUE   |NA    |
+|  309|Gen1FatherBirthMonth                               |       -5|              1|       12|TRUE   |NA    |
+|  310|Gen1FatherBirthYear                                |       -5|              0|       66|TRUE   |NA    |
+|  311|Gen1FatherAge                                      |       -5|             32|       96|TRUE   |NA    |
+|  320|Gen1MotherAlive                                    |       -4|              0|        1|TRUE   |NA    |
+|  321|Gen1MotherDeathCause                               |       -4|              1|        6|TRUE   |NA    |
+|  322|Gen1MotherDeathAge                                 |       -4|              0|       93|TRUE   |NA    |
+|  323|Gen1MotherHasHealthProblems                        |       -4|              0|        1|TRUE   |NA    |
+|  324|Gen1MotherHealthProblem                            |       -4|            100|   118791|TRUE   |NA    |
+|  325|Gen1MotherBirthCountry                             |       -3|              1|        3|TRUE   |NA    |
+|  326|Gen1LivedWithMotherAtAgeX                          |       -5|              0|        1|TRUE   |NA    |
+|  327|Gen1MotherHighestGrade                             |       -4|              0|       20|TRUE   |NA    |
+|  329|Gen1MotherBirthMonth                               |       -5|              1|       12|TRUE   |NA    |
+|  330|Gen1MotherBirthYear                                |       -5|              7|       66|TRUE   |NA    |
+|  331|Gen1MotherAge                                      |       -5|             34|       83|TRUE   |NA    |
+|  340|Gen1AlwaysLivedWithBothParents                     |       -5|              0|        1|TRUE   |NA    |
+|  500|Gen2HeightInchesTotal                              |       -7|             13|       81|TRUE   |NA    |
+|  501|Gen2HeightFeetOnly                                 |       -7|              0|        8|TRUE   |NA    |
+|  502|Gen2HeightInchesRemainder                          |       -7|              0|       11|TRUE   |NA    |
+|  503|Gen2HeightInchesTotalMotherSupplement              |       -7|              0|       75|TRUE   |NA    |
+|  504|Gen2WeightPoundsYA                                 |       -7|             70|      766|TRUE   |NA    |
+|  511|Gen2PiatMathRaw                                    |       -7|              0|       84|TRUE   |NA    |
+|  512|Gen2PiatMathPercentile                             |       -7|              0|       99|TRUE   |NA    |
+|  513|Gen2PiatMathStandard                               |       -7|              0|      135|TRUE   |NA    |
+| 9993|Gen1ListIncorrectGen2TwinTrips_NOTINTAGCURRENTLY   |       -5|              1|        2|TRUE   |NA    |
+| 9994|Gen1VerifyFirstGen2TwinsTrips_NOTINTAGSETCURRENTLY |       -5|              0|        6|TRUE   |NA    |
+| 9995|Gen1FirstIncorrectTwinTripYoungerOrOlder_NOTUSED   |       -5|              1|        3|TRUE   |NA    |
+| 9996|Gen1FirstIncorrectTwinTripAgeDifference_NOTUSED    |       -5|              1|       30|TRUE   |NA    |
+| 9997|Gen1SecondIncorrectTwinTripYoungerOrOlder_NOTUSED  |       -5|              2|        2|TRUE   |NA    |
+| 9998|Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED   |       -5|              7|        7|TRUE   |NA    |
+| 9999|NotTranslated                                      |        0|              0|        0|TRUE   |NA    |
+
 ## Variables
 
 | variable id|variable code | item id|item label                                         | generation| extract source id|extract source label | survey source id|survey source label | survey year| loop index|translate |variable active |variable notes                                           |
@@ -1694,7 +1809,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2017-10-15                                 
+ date     2017-10-17                                 
 ```
 
 ```
@@ -1748,5 +1863,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-10-15, 16:56 -0500 in 3 seconds.
+Report rendered by Will at 2017-10-17, 13:01 -0500 in 2 seconds.
 
