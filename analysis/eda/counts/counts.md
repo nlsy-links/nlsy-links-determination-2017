@@ -78,21 +78,21 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual                |       208|            9|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|
 |Metadata    |tblVariable                |     1,575|           11|
-|Process     |tblBabyDaddy               |         0|           11|
-|Process     |tblFatherOfGen2            |         0|            7|
+|Process     |tblBabyDaddy               |   178,993|           11|
+|Process     |tblFatherOfGen2            |    52,038|            7|
 |Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblMarkerGen1              |         0|           10|
-|Process     |tblMarkerGen2              |         0|            8|
-|Process     |tblOutcome                 |         0|            5|
-|Process     |tblParentsOfGen1Current    |         0|           19|
-|Process     |tblParentsOfGen1Retro      |         0|            7|
+|Process     |tblMarkerGen1              |   218,568|           10|
+|Process     |tblMarkerGen2              |   206,575|            8|
+|Process     |tblOutcome                 |   108,569|            5|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|
 |Process     |tblRelatedStructure        |    85,672|            6|
-|Process     |tblRelatedValues           |         0|           24|
+|Process     |tblRelatedValues           |    42,836|           24|
 |Process     |tblResponse                | 2,565,902|            9|
-|Process     |tblRosterGen1              |         0|           13|
+|Process     |tblRosterGen1              |    10,604|           13|
 |Process     |tblSubject                 |    24,207|            5|
-|Process     |tblSubjectDetails          |         0|           15|
-|Process     |tblSurveyTime              |         0|            7|
+|Process     |tblSubjectDetails          |    24,207|           15|
+|Process     |tblSurveyTime              |   580,968|            7|
 
 ## Items
 
@@ -1863,5 +1863,5 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2017-10-17, 13:57 -0500 in 2 seconds.
+Report rendered by Will at 2017-10-17, 15:49 -0500 in 2 seconds.
 
