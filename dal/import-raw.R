@@ -31,7 +31,7 @@ ds_extract <- tibble::tribble(
   "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
   "Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv",
   "Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv",
-  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
+  # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
   # tblGen1MzDzDistinction2010
   #
   "Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv",
@@ -76,7 +76,7 @@ print(ds_extract, n=20)
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
-for( i in seq_len(nrow(ds_extract)) ) {
+for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
@@ -125,7 +125,7 @@ for( i in seq_len(nrow(ds_extract)) ) {
   # )
 
 
-  message(glue::glue("{format(object.size(d), units='MB')}"))
+  message(glue::glue("Tibble size: {format(object.size(d), units='MB')}"))
 }
 
 RODBC::odbcClose(channel); rm(channel)
