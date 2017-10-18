@@ -74,7 +74,7 @@ namespace Nls.BaseAssembly {
         public static readonly Int32[] Gen2PassoverResponseNoNegatives = { -1, -2, -3, -4, -5 , -6, - 7 };
 		#endregion
 		#region SurveyYears
-		//See the class Nls.BaseAssembly.SurveyYears
+		//See the class Nls.BaseAssembly.ItemYears
 		#endregion
 		#region  DVs
 		public const byte Gen2AgeMissingHasChildrenThreshold = 16;//If their last completed survey was when they were 16 or younger, assume they didn't have any biological kids yet.
