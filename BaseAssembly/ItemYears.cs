@@ -4,7 +4,7 @@ namespace Nls.BaseAssembly {
     public static class ItemYears {
         public const Int16 Gen1Roster = 1979;
 
-        public readonly static Int16[] Gen1AndGen2 = { 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010 };
+        public readonly static Int16[] Gen1AndGen2 = { 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010, 2012 };
 
         public readonly static Int16[] Gen1ShareBioparent = { 2006, 2010 };
 
@@ -23,7 +23,7 @@ namespace Nls.BaseAssembly {
         //public readonly static Int16[] Gen1BioparentBirthMonth = ItemYears.Gen1BioparentBirthYear;
         public readonly static Int16[] Gen1BioparentAge = ItemYears.Gen1BioparentBirthYear;
 
-        public readonly static Int16[] Gen2ShareBiodad = { 2006, 2008, 2010 };
+        public readonly static Int16[] Gen2ShareBiodad = { 2006, 2008, 2010, 2012 };
 
         public readonly static Int16[] FatherAsthmaGen2 = { 2004, 2006, 2008 };
 
