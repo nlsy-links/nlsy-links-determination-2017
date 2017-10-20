@@ -65,16 +65,14 @@ ID,VariableCode,Item,Generation,ExtractSource,SurveySource,SurveyYear,LoopIndex,
 39,R0000500,14,1,3,1,1979,0,1,TRUE,NA
 290,R0410100,13,1,3,1,1981,0,1,TRUE,NA
 291,R0410300,14,1,3,1,1981,0,1,TRUE,NA
-,,,,,,,,,,
-,,,,,,,,,,
-44,C0005500,13,2,4,2,2008,0,1,TRUE,NA
-45,C0005700,15,2,4,2,2008,0,1,TRUE,NA
+44,C0005500,13,2,4,2,0,0,1,TRUE,NA
+45,C0005700,15,2,4,2,0,0,1,TRUE,NA
 ,,,,,,,,,,
 ,,,,,,,,,,
 ,,,,,,,,,,
 ,,,,,,,,,,
 ,,,,,,,,,,
-43,C0000100,100,2,6,2,2008,0,0,TRUE,Is read directly in Subject.cs
+43,C0000100,100,2,6,2,0,0,0,TRUE,Is read directly in Subject.cs
 ,,,,,,,,,,
 ,,,,,,,,,,
 46,Y1708400,10,2,4,3,2006,1,1,TRUE,NA
