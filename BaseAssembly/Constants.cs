@@ -33,14 +33,14 @@ namespace Nls.BaseAssembly {
 		#endregion
 		#region  Expected Counts
 		public const Int32 Gen1Count = Gen1IDMax;
-		public const Int32 Gen2Count = 11512; //11504 in 2010?;//11495 in 2008;
+        public const Int32 Gen2Count = 11521; // 11512; //11504 in 2010?;//11495 in 2008;
 		//public const Int32 Gen2SiblingPathCount = 22150;//Double entered;
 
 		public const Int32 Gen1HousematesPathCount = 5302;//Single entered;
-        public const Int32 Gen2SiblingsPathCount = 11099; //11088 in 2010; //11075 in 2008;//Single entered;
-		public const Int32 Gen2CousinsPathCount = 4995;//4972 in 2008;//Single entered;
-        public const Int32 ParentChildPathCount = 11512; //11504 in 2010;//Single entered;
-        public const Int32 AuntNiecePathCount = 9887; //9884 in 2010;//9870 in 2008;//Single entered;
+        public const Int32 Gen2SiblingsPathCount = 11114; //11099 in 2012; //11088 in 2010; //11075 in 2008;//Single entered;
+        public const Int32 Gen2CousinsPathCount = 5000; //4995 in 2012; //4972 in 2008;//Single entered;
+        public const Int32 ParentChildPathCount = 11521; //11512 in 2012; //11504 in 2010;//Single entered;
+        public const Int32 AuntNiecePathCount = 9899; //9887 in 2012; //9884 in 2010;//9870 in 2008;//Single entered;
 		#endregion
 		#region Counts
 		public const Int32 Gen1IDSiblingCountMin = 1;
@@ -51,7 +51,7 @@ namespace Nls.BaseAssembly {
 		public const Int32 Gen2IDSiblingCountMax = 10;    //ExtendedID 6371 has 11 kids, so Gen2 Subject637111 has 10 siblings.
 
 		//WRONG public const Int32 CousinCountMax = 16//ExtendedID 8693
-        public const Int32 SurveyTimeCount = 580752; //580560 in 2010; //429718 in 2008;
+        public const Int32 SurveyTimeCount = 580968; //580752 in 2012; //580560 in 2010; //429718 in 2008;
 		#endregion
 		#region Parents Of Gen1 
 		public const Int16 Gen1BioparentBirthYearReportedMin = 1900;
@@ -74,7 +74,7 @@ namespace Nls.BaseAssembly {
         public static readonly Int32[] Gen2PassoverResponseNoNegatives = { -1, -2, -3, -4, -5 , -6, - 7 };
 		#endregion
 		#region SurveyYears
-		//See the class Nls.BaseAssembly.SurveyYears
+		//See the class Nls.BaseAssembly.ItemYears
 		#endregion
 		#region  DVs
 		public const byte Gen2AgeMissingHasChildrenThreshold = 16;//If their last completed survey was when they were 16 or younger, assume they didn't have any biological kids yet.

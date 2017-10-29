@@ -262,7 +262,8 @@ ds_enum %>%
 ds_table_process <- ds_table %>%
   dplyr::filter(schema_name == "Process") %>%
   dplyr::mutate(
-    sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
+    #sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
+    sql_truncate  = glue::glue("DELETE FROM {schema_name}.{table_name};")
   )
 
 # Open channel
@@ -311,6 +312,47 @@ purrr::map2_int(
   }
 ) %>%
 purrr::set_names(ds_file$table_name)
+
+# for( i in seq_len(nrow(ds_file)) ) {
+#   message(glue::glue("Uploading from `{ basename(ds_file$path)[i]}` to `{ds_file$table_name[i]}`."))
+#
+#   d <- ds_file$entries[[i]]
+#   print(d)
+#
+#   # RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+#
+#   # d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+#   #
+#   # missing_in_extract    <- setdiff(colnames(d_peek), colnames(d))
+#   # missing_in_database   <- setdiff(colnames(d), colnames(d_peek))
+#   #
+#   # d_column <- tibble::tibble(
+#   #   db        = colnames(d),
+#   #   extract   = colnames(d_peek)
+#   # ) %>%
+#   #   dplyr::filter(db != extract)
+#   #
+#   # RODBC::sqlSave(
+#   #   channel     = channel,
+#   #   dat         = d,
+#   #   tablename   = ds_extract$table_name[i],
+#   #   safer       = TRUE,       # Don't keep the existing table.
+#   #   rownames    = FALSE,
+#   #   append      = TRUE
+#   # ) %>%
+#   #   print()
+#
+#   OuhscMunge::upload_sqls_rodbc(
+#     d               = d,
+#     table_name      = ds_file$table_name[i] ,
+#     dsn_name        = "local-nlsy-links",
+#     clear_table     = T,
+#     create_table    = F
+#   )
+#
+#
+#   message(glue::glue("{format(object.size(d), units='MB')}"))
+# }
 
 # Close channel
 RODBC::odbcClose(channel); rm(channel)

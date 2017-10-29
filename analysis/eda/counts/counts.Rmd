@@ -9,7 +9,7 @@ output:
     number_sections: true
 ---
 
-This report documents the basic properties of the (input & output) tables kinship determination (Joe Rodgers, PI).  Report created by Will Beasley.
+This report documents the basic properties of the input & output tables kinship determination (Joe Rodgers, PI).  Report created by Will Beasley.
 
 <!--  Set the working directory to the repository's base directory; this assumes the report is nested inside of two directories.-->
 ```{r, echo=F, message=F} 
@@ -70,15 +70,24 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 
 ## Notes 
 1. The current report covers `r nrow(ds)` tables.
+1. `r scales::comma(nrow(ds_variable))` variables are defined, and `r scales::comma(sum(ds_variable$variable_active))` variables are 'active'.
 
 ## Unanswered Questions
 
 ## Answered Questions
 
-# Results
+# Results {.tabset .tabset-fade .tabset-pills}
 
-## Counts
+## Tables
 ```{r table, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
+## Items
+```{r item, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
+## Variables
+```{r variable, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
 

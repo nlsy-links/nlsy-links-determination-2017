@@ -22,16 +22,16 @@ requireNamespace("RODBC"                  ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-unshared/raw"
-columns_to_drop           <- c("A0002600")
+columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name                           , ~file_name,
+  ~table_name                       , ~file_name,
   "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
   "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
   "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
   "Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv",
   "Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv",
-  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
+  # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
   # tblGen1MzDzDistinction2010
   #
   "Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv",
@@ -71,15 +71,12 @@ print(ds_extract, n=20)
 
 # ---- specify-columns-to-upload -----------------------------------------------
 
-# a <- readr::read_csv("data-unshared/raw/nlsy79-gen1/Gen1Explicit.zip")
-
-
 # ---- upload-to-db ----------------------------------------------------------
 
 channel <- open_dsn_channel()
 RODBC::odbcGetInfo(channel)
 
-for( i in seq_len(nrow(ds_extract)) ) {
+for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
@@ -128,7 +125,7 @@ for( i in seq_len(nrow(ds_extract)) ) {
   # )
 
 
-  message(glue::glue("{format(object.size(d), units='MB')}"))
+  message(glue::glue("Tibble size: {format(object.size(d), units='MB')}"))
 }
 
 RODBC::odbcClose(channel); rm(channel)

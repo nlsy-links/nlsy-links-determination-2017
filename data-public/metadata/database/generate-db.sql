@@ -144,21 +144,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Process].[tblOutcomesOLD](
-	[SubjectTag] [int] NOT NULL,
-	[HeightInchesLateTeens] [tinyint] NULL,
-	[WeightPoundsLateTeens] [smallint] NULL,
-	[AfqtRescaled2006Bounded] [float] NULL,
- CONSTRAINT [PK_tblOutcomesOLD] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Process].[tblSubjectDetails](
 	[SubjectTag] [int] NOT NULL,
 	[RaceCohort] [tinyint] NOT NULL,
@@ -1029,6 +1014,7 @@ CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[R0000100] [int] NOT NULL,
 	[R0214700] [int] NULL,
 	[R0214800] [int] NULL,
+	[R0173600] [int] NULL,
 	[R1373300] [int] NULL,
 	[R1373400] [int] NULL,
 	[R1373500] [int] NULL,
@@ -1685,20 +1671,6 @@ CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[R8135700] [int] NULL,
 	[R8135800] [int] NULL,
 	[R8135900] [int] NULL,
-	[R9900600] [int] NULL,
-	[R9900601] [int] NULL,
-	[R9901400] [int] NULL,
-	[R9901401] [int] NULL,
-	[R9902200] [int] NULL,
-	[R9902201] [int] NULL,
-	[R9903000] [int] NULL,
-	[R9903001] [int] NULL,
-	[R9903800] [int] NULL,
-	[R9903801] [int] NULL,
-	[R9904600] [int] NULL,
-	[R9904601] [int] NULL,
-	[R9905400] [int] NULL,
-	[R9905401] [int] NULL,
 	[T0345800] [int] NULL,
 	[T0345900] [int] NULL,
 	[T0346000] [int] NULL,
@@ -2287,6 +2259,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblGen2LinksFromGen1](
 	[R0000100] [int] NOT NULL,
+	[R0173600] [int] NULL,
 	[R0214700] [int] NULL,
 	[R0214800] [int] NULL,
 	[R4825700] [int] NULL,
@@ -2345,17 +2318,33 @@ CREATE TABLE [Extract].[tblGen2LinksFromGen1](
 	[R8107200] [int] NULL,
 	[R8255400] [int] NULL,
 	[R9900400] [int] NULL,
+	[R9900600] [int] NULL,
+	[R9900601] [int] NULL,
 	[R9901200] [int] NULL,
+	[R9901400] [int] NULL,
+	[R9901401] [int] NULL,
 	[R9902000] [int] NULL,
+	[R9902200] [int] NULL,
+	[R9902201] [int] NULL,
 	[R9902800] [int] NULL,
+	[R9903000] [int] NULL,
+	[R9903001] [int] NULL,
 	[R9903600] [int] NULL,
+	[R9903800] [int] NULL,
+	[R9903801] [int] NULL,
 	[R9904400] [int] NULL,
+	[R9904600] [int] NULL,
+	[R9904601] [int] NULL,
 	[R9905200] [int] NULL,
+	[R9905400] [int] NULL,
+	[R9905401] [int] NULL,
 	[R9906000] [int] NULL,
 	[R9906600] [int] NULL,
 	[R9907200] [int] NULL,
 	[R9907800] [int] NULL,
 	[R9908000] [int] NULL,
+	[R9911200] [int] NULL,
+	[R9911201] [int] NULL,
 	[T0337300] [int] NULL,
 	[T0337400] [int] NULL,
 	[T0337500] [int] NULL,
@@ -2967,20 +2956,6 @@ REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
 GO
-ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblItem] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblItem]
-GO
-ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblLUExtractSource] FOREIGN KEY([ExtractSource])
-REFERENCES [Enum].[tblLUExtractSource] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUExtractSource]
-GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH] FOREIGN KEY([BiodadInHH])
 REFERENCES [Enum].[tblLUYesNo] ([ID])
 GO
@@ -3095,26 +3070,12 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblRelatedStructure]
 GO
-ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblItem] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblItem]
-GO
 ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblSubject] FOREIGN KEY([SubjectTag])
 REFERENCES [Process].[tblSubject] ([SubjectTag])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblSubject]
-GO
-ALTER TABLE [Process].[tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcomesOLD_tblSubject] FOREIGN KEY([SubjectTag])
-REFERENCES [Process].[tblSubject] ([SubjectTag])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblOutcomesOLD] CHECK CONSTRAINT [FK_tblOutcomesOLD_tblSubject]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [FK_tblParentsOfGen1Current_tblLUYesNo] FOREIGN KEY([AlwaysLivedWithBothBioparents])
 REFERENCES [Enum].[tblLUYesNo] ([ID])
@@ -3218,13 +3179,6 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblRelatedStructure]
 GO
-ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblItem] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblItem]
-GO
 ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblLUSurveySource] FOREIGN KEY([SurveySource])
 REFERENCES [Enum].[tblLUSurveySource] ([ID])
 ON UPDATE CASCADE
@@ -3272,13 +3226,6 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [FK_tblSubjectDetails_tblLURaceCohort]
 GO
-ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [FK_tblSubjectDetails_tblSubject] FOREIGN KEY([SubjectTag])
-REFERENCES [Process].[tblSubject] ([SubjectTag])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [FK_tblSubjectDetails_tblSubject]
-GO
 ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [FK_tblSurveyTime_tblLUSurveySource] FOREIGN KEY([SurveySource])
 REFERENCES [Enum].[tblLUSurveySource] ([ID])
 ON UPDATE CASCADE
@@ -3320,14 +3267,6 @@ GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
 GO
 ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_VariableCodeLength]
-GO
-ALTER TABLE [Process].[tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [CK_tblOutcomesOLD_Height] CHECK  (((48)<=[HeightInchesLateTeens] AND [HeightInchesLateTeens]<=(83) OR [HeightInchesLateTeens] IS NULL))
-GO
-ALTER TABLE [Process].[tblOutcomesOLD] CHECK CONSTRAINT [CK_tblOutcomesOLD_Height]
-GO
-ALTER TABLE [Process].[tblOutcomesOLD]  WITH CHECK ADD  CONSTRAINT [CK_tblOutcomesOLD_Weight] CHECK  (((53)<=[WeightPoundsLateTeens] AND [WeightPoundsLateTeens]<=(350) OR [WeightPoundsLateTeens] IS NULL))
-GO
-ALTER TABLE [Process].[tblOutcomesOLD] CHECK CONSTRAINT [CK_tblOutcomesOLD_Weight]
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [CK_tblParentsOfGen1Current_BiodadHighestGrade] CHECK  (((0)<=[BiodadHighestGrade] AND [BiodadHighestGrade]<=(20)))
 GO
@@ -3421,17 +3360,17 @@ SELECT     ID, SubjectTag, ExtendedID, Generation, SurveySource, SurveyYear, Ite
 FROM         Process.tblResponse
 WHERE Item in (0) --For RelatedValues
 
---OR Item in (13,14,15,16,17,20, 21,22,100)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
---OR Item in (1,2)                                                                                         --For RosterGen1
---OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
---OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
---OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
---OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
---OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
---OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
---OR Item in (9,10)                                                                                        --For MarkerGen2
---OR Item in (200,201,203)                                                                                 --For Gen1Outcomes
---OR Item in (500,501,502,503)                                                                             --For Gen2OutcomesHeight
+OR Item in (13,14,15,16,17,20, 21,22,100)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
+OR Item in (1,2)                                                                                         --For RosterGen1
+OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
+OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
+OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
+OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
+OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
+OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
+OR Item in (9,10)                                                                                        --For MarkerGen2
+OR Item in (200,201,203)                                                                                 --For Gen1Outcomes
+OR Item in (500,501,502,503)                                                                             --For Gen2OutcomesHeight
 
 END
 GO
