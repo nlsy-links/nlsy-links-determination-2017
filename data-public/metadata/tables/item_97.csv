@@ -4,6 +4,8 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
   10,gender,1,1,2,TRUE,
   11,dob_month,1,1,12,TRUE,
   12,dob_year,1980,1980,1984,TRUE,
+ 101,roster_crosswalk,-5,1,20,TRUE,
+ 102,hh_member_id,-4,1,17,TRUE,
 
 2,RosterGen1979,-4,1,66,TRUE,
 3,SiblingNumberFrom1993SiblingRoster,-4,1,99,TRUE,
