@@ -13,6 +13,10 @@ Documentation & Tutorials for NLSY97 Linking & Rosters
 
     > Static copy of the roster loop detailing the relationships between housemates.
 
+1. [Household roster & nonresident roster flowchart](https://www.nlsinfo.org/sites/nlsinfo.org/files/attachments/hhrosterflowchart.pdf)
+
+    > Creation of Round 1 Rosters Based on Screener Data; Screener, Household Roster, and Nonresident Roster Questionnaire
+
 1. [Tutorial: Matching Cohabiting Partners to Their Characteristics in the NLSY97](https://www.nlsinfo.org/content/getting-started/intro-to-the-nls/tutorials/tutorial-matching-cohabiting-partners-their)
 
     > Objective:  To link the respondent's first cohabiting partner to the partner's characteristics using information from the created event history arrays, the household and non-resident rosters, and the partner roster. In particular, this tutorial shows you how to find the age of the respondent's first cohabiting partner in the NLSY97 data set.
