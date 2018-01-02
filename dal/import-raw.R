@@ -40,7 +40,9 @@ ds_extract <- tibble::tribble(
   "Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv",
   "Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv",
   "Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv",
-  "Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
+  "Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv",
+
+  "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
 )
 
 col_types_default <- readr::cols(
@@ -73,8 +75,8 @@ print(ds_extract, n=20)
 
 # ---- upload-to-db ----------------------------------------------------------
 
-channel <- open_dsn_channel()
-RODBC::odbcGetInfo(channel)
+channel <- open_dsn_channel_odbc()
+DBI::dbGetInfo(channel)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
@@ -91,33 +93,50 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
       dplyr::select_(.dots=paste0("-", columns_to_drop_specific))
   }
 
-  print(d)
+  # print(dim(d))
+  # purrr::map_chr(d, class)
+  print(d, n=20)
 
-  RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+  #RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+  # d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
 
-  d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+  DBI::dbGetQuery(channel, ds_extract$sql_truncate[i])
 
-  missing_in_extract    <- setdiff(colnames(d_peek), colnames(d))
-  missing_in_database   <- setdiff(colnames(d), colnames(d_peek))
+  # d_peek <- DBI::dbGetQuery(channel, ds_extract$sql_select[i])
+  peek <- DBI::dbListFields(channel, ds_extract$table_name[i])
 
-  d_column <- tibble::tibble(
-    db        = colnames(d),
-    extract   = colnames(d_peek)
-  ) %>%
-    dplyr::filter(db != extract)
+  missing_in_extract    <- setdiff(peek       , colnames(d))
+  missing_in_database   <- setdiff(colnames(d), peek       )
 
-  RODBC::sqlSave(
-    channel     = channel,
-    dat         = d,
-    tablename   = ds_extract$table_name[i],
-    safer       = TRUE,       # Don't keep the existing table.
-    rownames    = FALSE,
-    append      = TRUE
-  ) %>%
-  print()
+  # d_column <- tibble::tibble(
+  #   db        = colnames(d),
+  #   extract   = peek
+  # ) %>%
+  #   dplyr::filter(db != extract)
+
+  system.time({
+  DBI::dbWriteTable(
+    conn    = channel,
+    name    = ds_extract$table_name[i],
+    value   = d,
+    append  = T
+  )
+  })
+
+  # system.time({
+  # RODBC::sqlSave(
+  #   channel     = channel,
+  #   dat         = d,
+  #   tablename   = ds_extract$table_name[i],
+  #   safer       = TRUE,       # Don't keep the existing table.
+  #   rownames    = FALSE,
+  #   append      = TRUE
+  # ) %>%
+  # print()
+  # })
 
   # OuhscMunge::upload_sqls_rodbc(
-  #   d               = d,
+  #   d               = d[1:100, ],
   #   table_name      = ds_extract$table_name[i] ,
   #   dsn_name        = "local-nlsy-links",
   #   clear_table     = F,
@@ -127,5 +146,6 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 
   message(glue::glue("Tibble size: {format(object.size(d), units='MB')}"))
 }
+DBI::dbDisconnect(channel); rm(channel)
 
-RODBC::odbcClose(channel); rm(channel)
+# RODBC::odbcClose(channel); rm(channel)

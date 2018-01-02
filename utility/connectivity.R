@@ -1,4 +1,18 @@
-open_dsn_channel <- function( ) {
+open_dsn_channel_odbc <- function( ) {
+  requireNamespace("odbc")
+
+  channel <- DBI::dbConnect(
+    drv   = odbc::odbc(),
+    dsn   = "local-nlsy-links"
+  )
+  testit::assert("The ODBC channel should open successfully.", exists("channel"))
+
+  return( channel )
+}
+# channel <- open_dsn_channel_odbc()
+# DBI::dbDisconnect(channel); rm(channel)
+
+open_dsn_channel_rodbc <- function( ) {
   requireNamespace("RODBC")
 
   channel <- RODBC::odbcConnect(
