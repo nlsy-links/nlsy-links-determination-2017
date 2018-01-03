@@ -1,5 +1,6 @@
 table_name,schema_name,enum_name,enum_file,c_sharp_type,convert_to_enum
 item_79,Metadata,item_79,EnumLookupTables.cs,short,TRUE
+item_97,Metadata,item_97,EnumLookupTables.cs,short,TRUE
 LUExtractSource,Enum,ExtractSource,EnumLookupTables.cs,byte,TRUE
 LUGender,Enum,Gender,EnumLookupTables.cs,byte,TRUE
 LUMarkerEvidence,Enum,MarkerEvidence,EnumLookupTables.cs,byte,TRUE
@@ -14,3 +15,4 @@ LUYesNo,Enum,YesNo,EnumLookupTables.cs,short,TRUE
 MzManual,Metadata,NA_character,NA_character,NA_character,FALSE
 roster_assignment_79_gen1,Metadata,NA_character,NA_character,NA_character,FALSE
 variable_79,Metadata,NA_character,NA_character,NA_character,FALSE
+variable_97,Metadata,NA_character,NA_character,NA_character,FALSE

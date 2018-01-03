@@ -33,7 +33,16 @@ col_types_minimal <- readr::cols_only(
 #   - Tables are WRITTEN from top to bottom.
 #   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
-  Item = readr::cols_only(
+  item_79 = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
+  ),
+  item_97 = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
@@ -95,7 +104,7 @@ lst_col_types <- list(
   #   RFull                             = readr::col_double(),
   #   RPeek                             = readr::col_character()
   # ),
-  RosterGen1Assignment    = readr::cols_only(
+  roster_assignment_79_gen1    = readr::cols_only(
     ID                                  = readr::col_integer(),
     ResponseLower                       = readr::col_integer(),
     ResponseUpper                       = readr::col_integer(),
@@ -113,8 +122,22 @@ lst_col_types <- list(
     ResponseLowerLabel                  = readr::col_character(),
     ResponseUpperLabel                  = readr::col_character()
   ),
-  Variable = readr::cols_only(
+  variable_79 = readr::cols_only(
     ID                                  = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    Generation                          = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveySource                        = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex                           = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
+  ),
+  variable_97 = readr::cols_only(
+    # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
     Generation                          = readr::col_integer(),
@@ -262,20 +285,20 @@ ds_enum %>%
 ds_table_process <- ds_table %>%
   dplyr::filter(schema_name == "Process") %>%
   dplyr::mutate(
-    #sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
+    # sql_truncate  = glue::glue("TRUNCATE TABLE {schema_name}.{table_name};")
     sql_truncate  = glue::glue("DELETE FROM {schema_name}.{table_name};")
   )
 
 # Open channel
-channel <- open_dsn_channel()
-RODBC::odbcGetInfo(channel)
+channel <- open_dsn_channel_odbc()
+DBI::dbGetInfo(channel)
 
 
 # Clear process tables
 delete_results_process <- ds_table_process$sql_truncate %>%
   rev() %>%
   purrr::set_names(ds_table_process$table_name) %>%
-  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+  purrr::map(DBI::dbGetQuery, conn=channel)
 delete_results_process
 
 # Delete metadata tables
@@ -283,7 +306,7 @@ delete_results_process
 delete_results_metadata <- ds_file$sql_delete %>%
   rev() %>%
   purrr::set_names(ds_file$table_name) %>%
-  purrr::map_int(RODBC::sqlQuery, channel=channel, errors=FALSE)
+  purrr::map(DBI::dbGetQuery, conn=channel)
 
 delete_results_metadata
 
@@ -301,17 +324,23 @@ purrr::map2_int(
   ds_file$entries,
   ds_file$table_name,
   function( d, table_name ) {
-    RODBC::sqlSave(
-      channel     = channel,
-      dat         = d,
-      tablename   = table_name,
-      safer       = TRUE,       # Don't keep the existing table.
-      rownames    = FALSE,
-      append      = TRUE
+    DBI::dbWriteTable(
+      conn    = channel,
+      name    = table_name,
+      value   = d,
+      append  = T
     )
+    # RODBC::sqlSave(
+    #   channel     = channel,
+    #   dat         = d,
+    #   tablename   = table_name,
+    #   safer       = TRUE,       # Don't keep the existing table.
+    #   rownames    = FALSE,
+    #   append      = TRUE
+    # )
   }
-) %>%
-purrr::set_names(ds_file$table_name)
+) #%>%
+# purrr::set_names(ds_file$table_name)
 
 # for( i in seq_len(nrow(ds_file)) ) {
 #   message(glue::glue("Uploading from `{ basename(ds_file$path)[i]}` to `{ds_file$table_name[i]}`."))
@@ -355,4 +384,5 @@ purrr::set_names(ds_file$table_name)
 # }
 
 # Close channel
-RODBC::odbcClose(channel); rm(channel)
+DBI::dbDisconnect(channel); rm(channel)
+# RODBC::odbcClose(channel); rm(channel)

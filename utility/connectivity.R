@@ -67,7 +67,7 @@ database_inventory <- function( ) {
     ORDER BY t_row.schema_name, t_row.table_name
   "
 
-  channel            <- open_dsn_channel()
+  channel            <- open_dsn_channel_rodbc()
   ds    <- RODBC::sqlQuery(channel, sql_table, stringsAsFactors=F)
   # ds_row_count       <- RODBC::sqlTables(channel)
   RODBC::odbcClose(channel); rm(channel, sql_table)
