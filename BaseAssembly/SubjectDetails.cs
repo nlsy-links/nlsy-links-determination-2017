@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Nls.BaseAssembly {
 	public class SubjectDetails {
 		#region Fields
-		private readonly LinksDataSet _ds;
+		private readonly LinksDataSet79 _ds;
 		private readonly Item[] _items = { Item.DateOfBirthMonth, Item.DateOfBirthYearGen1, Item.DateOfBirthYearGen2,
 													Item.Gen1MomOfGen2Subject, Item.RaceCohort,
 													Item.BioKidCountGen1,Item.BioKidCountGen2,
@@ -59,7 +59,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Constructor
-		public SubjectDetails ( LinksDataSet ds ) {
+		public SubjectDetails ( LinksDataSet79 ds ) {
 			if ( ds == null ) throw new ArgumentNullException("ds");
 			if ( ds.tblSubject.Count <= 0 ) throw new InvalidOperationException("tblSubject must NOT be empty.");
 			if ( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
@@ -81,9 +81,9 @@ namespace Nls.BaseAssembly {
 			Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
 			Parallel.ForEach(extendedIDs, ( extendedID ) => {//
 				//foreach(Int32 extendedID in  extendedIDs){
-				LinksDataSet.tblResponseDataTable dtExtended = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString,minRowCount, _ds.tblResponse);
-				LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
-				foreach ( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
+				LinksDataSet79.tblResponseDataTable dtExtended = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString,minRowCount, _ds.tblResponse);
+				LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
+				foreach ( LinksDataSet79.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
 					Int32 recordsAddedForLoop = ProcessSubject(drSubject, dtExtended, subjectsInExtendedFamily);
 					Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
 				}
@@ -96,7 +96,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-		private Int32 ProcessSubject ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily ) {//, LinksDataSet.tblResponseDataTable dtResponseFamily
+		private Int32 ProcessSubject ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtended, LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily ) {//, LinksDataSet.tblResponseDataTable dtResponseFamily
 			Int32 subjectTag = drSubject.SubjectTag;
             RaceCohort race = (RaceCohort)(Retrieve.Response(Item.RaceCohort, drSubject.SubjectTag, dtExtended));
 			DateTime? mob = Mob.Retrieve(drSubject, dtExtended);
@@ -127,7 +127,7 @@ namespace Nls.BaseAssembly {
 		private static  DeathCondition DetermineSubjectDeath ( ) {
 			return new DeathCondition(false	, null);
 		}
-		private static DeathCondition DetermineBiodadDeath ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static DeathCondition DetermineBiodadDeath ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen1 )
 				return new DeathCondition(null, null);
 			Int32 motherTag = CommonCalculations.MotherTagOfGen2Subject(drSubject.SubjectID);
@@ -165,11 +165,11 @@ namespace Nls.BaseAssembly {
 
 			return new DeathCondition(null, null);
 		}
-		private byte DetermineSiblingCountInNls ( LinksDataSet.tblSubjectRow drSubject ) {
+		private byte DetermineSiblingCountInNls ( LinksDataSet79.tblSubjectRow drSubject ) {
 			string select = string.Format("{0}={1} AND {2}={3}",
 				drSubject.ExtendedID, _ds.tblSubject.ExtendedIDColumn.ColumnName,
 				drSubject.Generation, _ds.tblSubject.GenerationColumn);
-			LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
+			LinksDataSet79.tblSubjectRow[] drs = (LinksDataSet79.tblSubjectRow[])_ds.tblSubject.Select(select);
 			Trace.Assert(drs.Length > 0, "At least one row should be returned.");
 			switch ( (Sample)drSubject.Generation ) {
 				case Sample.Nlsy79Gen1:
@@ -178,7 +178,7 @@ namespace Nls.BaseAssembly {
 					byte siblingCount = 0;
 					Int32 motherID = CommonCalculations.MotherIDOfGen2Subject(drSubject.SubjectTag);
 
-					foreach ( LinksDataSet.tblSubjectRow dr in drs ) {
+					foreach ( LinksDataSet79.tblSubjectRow dr in drs ) {
 						if ( motherID == CommonCalculations.MotherIDOfGen2Subject(dr.SubjectTag) )
 							siblingCount += 1;
 					}
@@ -187,11 +187,11 @@ namespace Nls.BaseAssembly {
 					throw new InvalidOperationException("The Generation value was not recognized.");
 			}
 		}
-		private BirthCondition DetermineNlsBirthOrder ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, byte siblingCountInNls ) {//, LinksDataSet.tblResponseDataTable dtResponse 
+		private BirthCondition DetermineNlsBirthOrder ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtended, byte siblingCountInNls ) {//, LinksDataSet.tblResponseDataTable dtResponse 
 			string select = string.Format("{0}={1} AND {2}={3}",
 				drSubject.ExtendedID, dtExtended.ExtendedIDColumn.ColumnName,
 				drSubject.Generation, dtExtended.GenerationColumn.ColumnName);
-			LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
+			LinksDataSet79.tblSubjectRow[] drs = (LinksDataSet79.tblSubjectRow[])_ds.tblSubject.Select(select);
 			byte orderTally = 1;
 			byte similarAgeTally = 0;
 			bool hasMzPossibly = false;
@@ -201,7 +201,7 @@ namespace Nls.BaseAssembly {
 				case Sample.Nlsy79Gen1:
 					Trace.Assert(drs.Length == siblingCountInNls, "The number of returned rows should match 'siblingCountInNls'.");
 
-					foreach ( LinksDataSet.tblSubjectRow dr in drs ) {
+					foreach ( LinksDataSet79.tblSubjectRow dr in drs ) {
 						DateTime mobOfSibling = Mob.Retrieve(dr, dtExtended).Value;//There aren't any missings Mobs in Gen1.
 						double ageDifferenceInDays = mobOfSubject.Value.Subtract(mobOfSibling).TotalDays;
 						if ( ageDifferenceInDays > 0 )//This should account for twins and the subject himself.
@@ -224,7 +224,7 @@ namespace Nls.BaseAssembly {
 						similarAgeTally = 1;
 					}
 					else {
-						foreach ( LinksDataSet.tblSubjectRow dr in drs ) {
+						foreach ( LinksDataSet79.tblSubjectRow dr in drs ) {
 							if ( CommonCalculations.Gen2SubjectsHaveCommonMother(drSubject.SubjectID, dr.SubjectID) ) {
 								DateTime mobOfSibling = Mob.Retrieve(dr, dtExtended).Value;//There aren't any missings Mobs in Gen1.
 								double ageDifferenceInDays = mobOfSubject.Value.Subtract(mobOfSibling).TotalDays;
@@ -246,7 +246,7 @@ namespace Nls.BaseAssembly {
 			}
 			return new BirthCondition(orderTally, similarAgeTally, hasMzPossibly);
 		}
-		private static bool DetermineMzPossibility ( LinksDataSet.tblSubjectRow dr1, LinksDataSet.tblSubjectRow dr2 ) {
+		private static bool DetermineMzPossibility ( LinksDataSet79.tblSubjectRow dr1, LinksDataSet79.tblSubjectRow dr2 ) {
 			if ( dr1.SubjectTag == dr2.SubjectTag ) {
 				return false;//The rows point to the same subject;
 			}
@@ -255,7 +255,7 @@ namespace Nls.BaseAssembly {
 			}
 			return true;
 		}
-		private static byte? DetermineBioKidCount ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, float? lastAge ) {
+		private static byte? DetermineBioKidCount ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtended, float? lastAge ) {
 			switch ( (Sample)drSubject.Generation ) {
 				case Sample.Nlsy79Gen1:
 					return (byte)Retrieve.Response(Item.BioKidCountGen1, drSubject.SubjectTag, dtExtended);
@@ -273,11 +273,11 @@ namespace Nls.BaseAssembly {
 					throw new InvalidOperationException("The Generation value was not recognized.");
 			}
 		}
-		private static byte? DetermineNlsKidCount ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily ) {
+		private static byte? DetermineNlsKidCount ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily ) {
 			switch ( (Sample)drSubject.Generation ) {
 				case Sample.Nlsy79Gen1:
 					byte tally = 0;
-					foreach ( LinksDataSet.tblSubjectRow drRelative in subjectsInExtendedFamily ) {
+					foreach ( LinksDataSet79.tblSubjectRow drRelative in subjectsInExtendedFamily ) {
 						if ( (Sample)drRelative.Generation == Sample.Nlsy79Gen2 ) {
 							Int32 motherIDV1 = CommonCalculations.MotherIDOfGen2Subject(drRelative.SubjectTag);
 							//Int32 motherIDV2 = Retrieve.Response(Item.Gen1MomOfGen2Subject, drSubject.SubjectTag, dtExtended);
@@ -299,7 +299,7 @@ namespace Nls.BaseAssembly {
 				subjectTag, _ds.tblSurveyTime.SubjectTagColumn.ColumnName,
 				_ds.tblSurveyTime.SurveySourceColumn.ColumnName);
 			string sort = _ds.tblSurveyTime.SurveyYearColumn.ColumnName + " DESC";
-			LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])_ds.tblSurveyTime.Select(select, sort);
+			LinksDataSet79.tblSurveyTimeRow[] drs = (LinksDataSet79.tblSurveyTimeRow[])_ds.tblSurveyTime.Select(select, sort);
 			if ( drs.Length <= 0 )
 				return new LastSurvey(null, null);
 			else
@@ -310,7 +310,7 @@ namespace Nls.BaseAssembly {
 			bool isDead, DateTime? deathDate, bool? isBiodadDead, DateTime? biodadDeathDate) {
 
 			lock ( _ds.tblSubjectDetails ) {
-				LinksDataSet.tblSubjectDetailsRow drNew = _ds.tblSubjectDetails.NewtblSubjectDetailsRow();
+				LinksDataSet79.tblSubjectDetailsRow drNew = _ds.tblSubjectDetails.NewtblSubjectDetailsRow();
 				drNew.SubjectTag = subjectTag;
                 drNew.RaceCohort = Convert.ToByte(raceCohort);
                 drNew.SiblingCountInNls = siblingCountInNls;

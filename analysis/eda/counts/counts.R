@@ -26,11 +26,10 @@ sql_item <- "
   	,[MaxValue]
   	,[Active]
   	,[Notes]
-  FROM [Metadata].[tblItem]
+  FROM Metadata.tblItem_79
 "
 sql_variable <- "
   SELECT
-    v.ID                 AS variable_id,
     v.VariableCode       AS variable_code,
     v.Item               AS item_id,
     i.Label              AS item_label,
@@ -44,19 +43,22 @@ sql_variable <- "
     v.Translate          AS translate,
     v.Active             AS variable_active,
     v.Notes              AS variable_notes
-  FROM Metadata.tblVariable v
+  FROM Metadata.tblvariable_79 v
     INNER JOIN Enum.tblLUSurveySource  s      ON v.SurveySource       = s.ID
     INNER JOIN Enum.tblLUExtractSource e      ON v.ExtractSource      = e.ID
-    LEFT OUTER JOIN Metadata.tblItem   i      ON v.Item               = i.ID
+    LEFT OUTER JOIN Metadata.tblItem_79 i     ON v.Item               = i.ID
 "
 
 # ---- load-data ---------------------------------------------------------------
 ds <- database_inventory()
 
-channel            <- open_dsn_channel()
-ds_item            <- RODBC::sqlQuery(channel, sql_item    , stringsAsFactors=F)
-ds_variable        <- RODBC::sqlQuery(channel, sql_variable, stringsAsFactors=F)
-RODBC::odbcClose(channel); rm(channel, sql_item, sql_variable)
+d <- as.data.frame(ds[, 3])
+d2 <- d[1, , drop=F]
+
+channel            <- open_dsn_channel_odbc()
+ds_item            <- DBI::dbGetQuery(channel, sql_item    )
+ds_variable        <- DBI::dbGetQuery(channel, sql_variable)
+DBI::dbDisconnect(channel); rm(channel, sql_item, sql_variable)
 
 # ---- tweak-data --------------------------------------------------------------
 ds_pretty <- ds %>%
@@ -71,6 +73,7 @@ ds_item <- ds_item %>%
 ds_variable <- ds_variable %>%
   tibble::as_tibble() %>%
   dplyr::mutate(
+    variable_active = as.logical(variable_active),
     translate       = as.logical(translate)
   )
 

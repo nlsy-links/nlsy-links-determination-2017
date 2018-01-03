@@ -9,13 +9,13 @@ using Nls.BaseAssembly;
 namespace Nls.BaseAssembly.Assign {
 	public class RGen1Pass2 : IAssignPass2 {
 		#region Fields
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblRelatedStructureRow _drLeft;
-		private readonly LinksDataSet.tblRelatedStructureRow _drRight;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails1;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails2;
-		private readonly LinksDataSet.tblMarkerGen1DataTable _dtMarkersGen1;
-		private readonly LinksDataSet.tblRelatedValuesRow _drValue;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drLeft;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drRight;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails1;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails2;
+		private readonly LinksDataSet79.tblMarkerGen1DataTable _dtMarkersGen1;
+		private readonly LinksDataSet79.tblRelatedValuesRow _drValue;
 
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 		private readonly Int32 _idRelatedRight = Int32.MinValue;
@@ -48,7 +48,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPeek { get { return _rPeek; } }
 		#endregion
 		#region Constructor
-		public RGen1Pass2 ( LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft, LinksDataSet.tblRelatedStructureRow drRight ) {
+		public RGen1Pass2 ( LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft, LinksDataSet79.tblRelatedStructureRow drRight ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
 			if ( drRight == null ) throw new ArgumentNullException("drRight");
@@ -98,7 +98,7 @@ namespace Nls.BaseAssembly.Assign {
 				_rFull = CommonFunctions.TranslateToR(shareBiomom: shareBiomom, shareBiodad: shareBiodad, mustDecide: true);
 			}
 
-            LinksDataSet.tblRosterGen1Row drRoster = _dsLinks.tblRosterGen1.FindByRelatedID(_drValue.ID);
+            LinksDataSet79.tblRosterGen1Row drRoster = _dsLinks.tblRosterGen1.FindByRelatedID(_drValue.ID);
             _r = CalculateR(_rFull, (Tristate)drRoster.SameGeneration);
 		}
 		#endregion

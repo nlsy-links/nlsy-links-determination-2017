@@ -21,8 +21,8 @@ using BA = Nls.BaseAssembly;
 namespace LinksGui {
 	public partial class MainWindow : Window {
 		#region Fields
-		private BA.ImportDataSet _dsImport;
-		private BA.LinksDataSet _dsLinks;
+		private BA.ImportDataSet79 _dsImport;
+		private BA.LinksDataSet79 _dsLinks;
 		private SqlConnection _cnn;
 		private const string _cnnStringNameInAppConfig = "LinksGui.Properties.Settings.NlsLinksConnectionString";
 		private const string _combinedButtonTag = "CombinedButton";
@@ -37,11 +37,11 @@ namespace LinksGui {
 			Trace.Assert(settings != null, "The connectionStringSettings object should be initialized propertly.");
 			_cnn = new SqlConnection(settings.ConnectionString);
 
-			_dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
-			_dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
+			_dsImport = ((BA.ImportDataSet79)(this.FindResource("importDataSet")));
+			_dsLinks = ((BA.LinksDataSet79)(this.FindResource("linksDataSet")));
 
-            //if( Convert.ToBoolean("true") ) {
-            if( Convert.ToBoolean("false") ) {
+            if( Convert.ToBoolean("true") ) {
+            //if( Convert.ToBoolean("false") ) {
 				LoadExtractGen1Links();
 				LoadExtractGen1Explicit();
 				LoadExtractGen1Implicit();
@@ -310,12 +310,12 @@ namespace LinksGui {
             ta.Fill(_dsImport.tblGen2OutcomesMath);
         }
 		private void LoadItem ( ) {
-			BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
-			ta.Fill(_dsLinks.tblItem);
+            BA.LinksDataSetTableAdapters.tblItem_79TableAdapter ta = new BA.LinksDataSetTableAdapters.tblItem_79TableAdapter();
+            ta.Fill(_dsLinks.tblItem_79);
 		}
 		private void LoadVariable ( ) {
-			BA.LinksDataSetTableAdapters.tblVariableTableAdapter ta = new BA.LinksDataSetTableAdapters.tblVariableTableAdapter();
-			ta.Fill(_dsLinks.tblVariable);
+            BA.LinksDataSetTableAdapters.tblVariable_79TableAdapter ta = new BA.LinksDataSetTableAdapters.tblVariable_79TableAdapter();
+            ta.Fill(_dsLinks.tblVariable_79);
 		}
 		private void LoadMzManual ( ) {
 			BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();

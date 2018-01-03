@@ -10,8 +10,8 @@ namespace Nls.Tests.BaseFixture {
 
 		[TestMethod()]
 		public void LastTwoDigitsOfGen2SubjectIDTest2 ( ) {
-			LinksDataSet ds = new LinksDataSet();
-			LinksDataSet.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
+			LinksDataSet79 ds = new LinksDataSet79();
+			LinksDataSet79.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
 			dr.ExtendedID = 10;
 			dr.SubjectID = 1002;
 			dr.Generation = (byte)Sample.Nlsy79Gen2;
@@ -22,8 +22,8 @@ namespace Nls.Tests.BaseFixture {
 		}
 		[TestMethod()]
 		public void LastTwoDigitsOfGen2SubjectIDTest22 ( ) {
-			LinksDataSet ds = new LinksDataSet();
-			LinksDataSet.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
+			LinksDataSet79 ds = new LinksDataSet79();
+			LinksDataSet79.tblSubjectRow dr = ds.tblSubject.NewtblSubjectRow();
 			dr.ExtendedID = 4000;
 			dr.SubjectID = 400122;
 			dr.Generation = (byte)Sample.Nlsy79Gen2;

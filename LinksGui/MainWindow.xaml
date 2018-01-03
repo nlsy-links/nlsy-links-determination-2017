@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="546" Width="1157" xmlns:my="clr-namespace:Nls.BaseAssembly;assembly=BaseAssembly" Loaded="Window_Loaded" xmlns:my1="clr-namespace:LinksGui">
     <Window.Resources>
-        <my:ImportDataSet x:Key="importDataSet" />
+        <my:ImportDataSet79 x:Key="importDataSet" />
         <CollectionViewSource x:Key="tblGen1LinksViewSource" Source="{Binding Path=tblGen1Links, Source={StaticResource importDataSet}}" />
         <CollectionViewSource x:Key="tblGen2LinksViewSource" Source="{Binding Path=tblGen2Links, Source={StaticResource importDataSet}}" />
         <CollectionViewSource x:Key="tblGen2ImplicitFatherViewSource" Source="{Binding Path=tblGen2ImplicitFather, Source={StaticResource importDataSet}}" />
-        <my:LinksDataSet x:Key="linksDataSet" />
+        <my:LinksDataSet79 x:Key="linksDataSet" />
         <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding Path=tblItem, Source={StaticResource linksDataSet}}" />
         <CollectionViewSource x:Key="tblVariableViewSource" Source="{Binding Path=tblVariable, Source={StaticResource linksDataSet}}" />
         <CollectionViewSource x:Key="tblSubjectViewSource" Source="{Binding Path=tblSubject, Source={StaticResource linksDataSet}}" />

@@ -16,7 +16,7 @@ namespace Nls.BaseAssembly {
 			}
 		}
 		#region Fields
-		private readonly LinksDataSet _ds;
+		private readonly LinksDataSet79 _ds;
 		private readonly Item[] _items = { Item.AgeAtInterviewDateMonths, Item.AgeAtInterviewDateYears, 
 													Item.DateOfBirthMonth, Item.DateOfBirthYearGen1, Item.DateOfBirthYearGen2,
 													Item.InterviewDateDay, Item.InterviewDateMonth, Item.InterviewDateYear};
@@ -26,7 +26,7 @@ namespace Nls.BaseAssembly {
         private const float ageBiasCorrectionInMonths = 0.5f;
 		#endregion
 		#region Constructor
-		public SurveyTime ( LinksDataSet ds ) {
+		public SurveyTime ( LinksDataSet79 ds ) {
 			if ( ds == null ) throw new ArgumentNullException("ds");
 			if ( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
 			if ( ds.tblSurveyTime.Count != 0 ) throw new InvalidOperationException("tblSurveyTime must be empty before creating rows for it.");
@@ -58,11 +58,11 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-		private Int32 ProcessSubject ( LinksDataSet.tblSubjectRow drSubject ) {
+		private Int32 ProcessSubject ( LinksDataSet79.tblSubjectRow drSubject ) {
 			Int32 subjectTag = drSubject.SubjectTag;
 			Int32 recordsProcessed = 0;
 			Int16[] surveyYears = ItemYears.Gen1AndGen2;// SubjectWaves(subjectTag);
-			LinksDataSet.tblResponseDataTable dtResponse = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, _itemIDsString, 1, _ds.tblResponse);
+			LinksDataSet79.tblResponseDataTable dtResponse = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, _itemIDsString, 1, _ds.tblResponse);
 			DateTime? mob = Mob.Retrieve(drSubject, dtResponse);
 
 			foreach ( Int16 surveyYear in surveyYears ) {
@@ -89,12 +89,12 @@ namespace Nls.BaseAssembly {
 			}
 			return recordsProcessed;
 		}
-		private SurveySource DetermineSurveySource ( Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+		private SurveySource DetermineSurveySource ( Int16 surveyYear, LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtResponseForSubject ) {
 			string select = string.Format("{0}={1} AND {2}={3} AND {4}>0",
 				surveyYear, _ds.tblResponse.SurveyYearColumn.ColumnName,
 				(byte)Item.InterviewDateMonth, _ds.tblResponse.ItemColumn.ColumnName,
 				_ds.tblResponse.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsResponse = (LinksDataSet.tblResponseRow[])dtResponseForSubject.Select(select);
+			LinksDataSet79.tblResponseRow[] drsResponse = (LinksDataSet79.tblResponseRow[])dtResponseForSubject.Select(select);
 			Trace.Assert(drsResponse.Length <= 1, string.Format("There should be at most one row with a positive value for InterviewDateMonth (SubjectTag:{0}, SurveyYear:{1}).", drSubject.SubjectTag, surveyYear));
 			if ( drsResponse.Length == 0 ) {
 				return SurveySource.NoInterview;
@@ -110,7 +110,7 @@ namespace Nls.BaseAssembly {
 				return source;
 			}
 		}
-		private static DateTime? DetermineSurveyDate ( SurveySource source, Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+		private static DateTime? DetermineSurveyDate ( SurveySource source, Int16 surveyYear, LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtResponseForSubject ) {
 			Int32 maxRecords = 1;
 			Int32? monthReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateMonth, source, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
 			if ( !monthReported.HasValue || monthReported < 0 ) return null;
@@ -127,7 +127,7 @@ namespace Nls.BaseAssembly {
 			DateTime interviewDate = new DateTime(yearReported.Value, monthReported.Value, dayReported.Value);
 			return interviewDate;
 		}
-		private static float? DetermineAgeSelfReport ( SurveySource source, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtResponse, Int16 surveyYear ) {
+		private static float? DetermineAgeSelfReport ( SurveySource source, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtResponse, Int16 surveyYear ) {
 			float? ageSelfReportYears;
 			switch ( source ) {
 				case SurveySource.Gen2C:
@@ -152,13 +152,13 @@ namespace Nls.BaseAssembly {
 			ageInYears = Math.Max(0, ageInYears);
 			return ageInYears;
 		}
-		private static float? AgeSelfReportYears ( Int32 subjectTag, Int16 surveyYear, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+		private static float? AgeSelfReportYears ( Int32 subjectTag, Int16 surveyYear, LinksDataSet79.tblResponseDataTable dtResponseForSubject ) {
 			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}>0",
 				subjectTag, dtResponseForSubject.SubjectTagColumn.ColumnName,
 				surveyYear, dtResponseForSubject.SurveyYearColumn.ColumnName,
 				(byte)Item.AgeAtInterviewDateYears, dtResponseForSubject.ItemColumn.ColumnName,
 				dtResponseForSubject.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsResponse = (LinksDataSet.tblResponseRow[])dtResponseForSubject.Select(select);
+			LinksDataSet79.tblResponseRow[] drsResponse = (LinksDataSet79.tblResponseRow[])dtResponseForSubject.Select(select);
 			Trace.Assert(drsResponse.Length <= 1, "No more than one row should be returned.");
 
 			if ( drsResponse.Length == 0 ) {
@@ -170,13 +170,13 @@ namespace Nls.BaseAssembly {
 				return ageInYears;
 			}
 		}
-		private static float? AgeSelfReportMonths ( Int32 subjectTag, Int16 surveyYear, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+		private static float? AgeSelfReportMonths ( Int32 subjectTag, Int16 surveyYear, LinksDataSet79.tblResponseDataTable dtResponseForSubject ) {
 			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}>0",
 				subjectTag, dtResponseForSubject.SubjectTagColumn.ColumnName,
 				surveyYear, dtResponseForSubject.SurveyYearColumn.ColumnName,
 				(byte)Item.AgeAtInterviewDateMonths, dtResponseForSubject.ItemColumn.ColumnName,
 				dtResponseForSubject.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsResponse = (LinksDataSet.tblResponseRow[])dtResponseForSubject.Select(select);
+			LinksDataSet79.tblResponseRow[] drsResponse = (LinksDataSet79.tblResponseRow[])dtResponseForSubject.Select(select);
 			Trace.Assert(drsResponse.Length <= 1, "No more than one row should be returned.");
 
 			const double monthsPerYear = 12.0;
@@ -192,7 +192,7 @@ namespace Nls.BaseAssembly {
 		}
 		private void AddRow ( Int32 subjectTag, SurveySource surveySource, Int16 surveyYear, DateTime? surveyDate, float? ageSelfReport, float? calculatedAge ) {
 			lock ( _ds.tblSurveyTime ) {
-				LinksDataSet.tblSurveyTimeRow drNew = _ds.tblSurveyTime.NewtblSurveyTimeRow();
+				LinksDataSet79.tblSurveyTimeRow drNew = _ds.tblSurveyTime.NewtblSurveyTimeRow();
 				drNew.SubjectTag = subjectTag;
 				drNew.SurveySource = (byte)surveySource;
 				drNew.SurveyYear = surveyYear;
@@ -213,14 +213,14 @@ namespace Nls.BaseAssembly {
 		#region Public Static
 		//public static LinksDataSet.tblSurveyTimeDataTable ExtendedFamilySurveyTime ( Int16 extendedID, LinksDataSet dsLinks ) {
 		//}
-		public static SubjectSurvey[] RetrieveSubjectSurveys ( Int32 subjectTag, LinksDataSet dsLinks ) {
+		public static SubjectSurvey[] RetrieveSubjectSurveys ( Int32 subjectTag, LinksDataSet79 dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSurveyTime.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblSurveyTime.");
 
 			string select = string.Format("{0}={1} AND {2}>0",
 				subjectTag, dsLinks.tblSurveyTime.SubjectTagColumn.ColumnName,
 				dsLinks.tblSurveyTime.SurveySourceColumn.ColumnName);
-			LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])dsLinks.tblSurveyTime.Select(select);
+			LinksDataSet79.tblSurveyTimeRow[] drs = (LinksDataSet79.tblSurveyTimeRow[])dsLinks.tblSurveyTime.Select(select);
 			//Trace.Assert(drs.Length > 0, "There should be at least one row returned.");
 			SubjectSurvey[] ss = new SubjectSurvey[drs.Length];
 			for ( Int32 i = 0; i < drs.Length; i++ ) {
@@ -228,14 +228,14 @@ namespace Nls.BaseAssembly {
 			}
 			return ss;
 		}
-		public static DateTime? RetrieveSubjectSurveyDate ( Int32 subjectTag, Int16 surveyYear, LinksDataSet dsLinks ) {
+		public static DateTime? RetrieveSubjectSurveyDate ( Int32 subjectTag, Int16 surveyYear, LinksDataSet79 dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSurveyTime.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblSurveyTime.");
 
 			string select = string.Format("{0}={1} AND {2}={3}", // AND {4}>0",
 				subjectTag, dsLinks.tblSurveyTime.SubjectTagColumn.ColumnName,
 				surveyYear, dsLinks.tblSurveyTime.SurveyYearColumn.ColumnName); //dsLinks.tblSurveyTime.SurveySourceColumn.ColumnName
-			LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])dsLinks.tblSurveyTime.Select(select);
+			LinksDataSet79.tblSurveyTimeRow[] drs = (LinksDataSet79.tblSurveyTimeRow[])dsLinks.tblSurveyTime.Select(select);
 			Trace.Assert(drs.Length == 1, "There should be exactly one row returned.");
 			
 			if( drs[0].IsSurveyDateNull() ) {

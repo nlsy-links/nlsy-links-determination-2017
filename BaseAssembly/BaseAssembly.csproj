@@ -99,16 +99,16 @@
     <Compile Include="EnumLookupTables.cs" />
     <Compile Include="EnumResponsesGen1.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ImportDataSet.Designer.cs">
+    <Compile Include="ImportDataSet79.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+      <DependentUpon>ImportDataSet79.xsd</DependentUpon>
     </Compile>
     <Compile Include="ItemYearCount.cs" />
-    <Compile Include="LinksDataSet.Designer.cs">
+    <Compile Include="LinksDataSet79.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LinksDataSet.xsd</DependentUpon>
+      <DependentUpon>LinksDataSet79.xsd</DependentUpon>
     </Compile>
     <Compile Include="LinqTries.cs" />
     <Compile Include="MarkerGen2.cs" />
@@ -132,27 +132,27 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ImportDataSet.xsc">
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    <None Include="ImportDataSet79.xsc">
+      <DependentUpon>ImportDataSet79.xsd</DependentUpon>
     </None>
-    <None Include="ImportDataSet.xsd">
+    <None Include="ImportDataSet79.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ImportDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ImportDataSet79.Designer.cs</LastGenOutput>
     </None>
-    <None Include="ImportDataSet.xss">
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    <None Include="ImportDataSet79.xss">
+      <DependentUpon>ImportDataSet79.xsd</DependentUpon>
     </None>
-    <None Include="LinksDataSet.xsc">
-      <DependentUpon>LinksDataSet.xsd</DependentUpon>
+    <None Include="LinksDataSet79.xsc">
+      <DependentUpon>LinksDataSet79.xsd</DependentUpon>
     </None>
-    <None Include="LinksDataSet.xsd">
+    <None Include="LinksDataSet79.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LinksDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>LinksDataSet79.Designer.cs</LastGenOutput>
     </None>
-    <None Include="LinksDataSet.xss">
-      <DependentUpon>LinksDataSet.xsd</DependentUpon>
+    <None Include="LinksDataSet79.xss">
+      <DependentUpon>LinksDataSet79.xsd</DependentUpon>
     </None>
     <None Include="NlsSigningKey.snk" />
     <None Include="Properties\Settings.settings">

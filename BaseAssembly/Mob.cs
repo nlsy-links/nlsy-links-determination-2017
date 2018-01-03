@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Nls.BaseAssembly {
 	public static class Mob {
-		internal static DateTime? Retrieve ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dt ) {
+		internal static DateTime? Retrieve ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dt ) {
 			if ( dt == null ) throw new ArgumentNullException("dt");
 			if ( drSubject == null ) throw new ArgumentNullException("drSubject");
 
@@ -42,8 +42,8 @@ namespace Nls.BaseAssembly {
 					return null;
 			}
 		}
-		internal static DateTime? Retrieve ( Int32 subjectTag, LinksDataSet.tblSubjectDetailsDataTable dt ) {
-			LinksDataSet.tblSubjectDetailsRow dr = dt.FindBySubjectTag(subjectTag);
+		internal static DateTime? Retrieve ( Int32 subjectTag, LinksDataSet79.tblSubjectDetailsDataTable dt ) {
+			LinksDataSet79.tblSubjectDetailsRow dr = dt.FindBySubjectTag(subjectTag);
 			if ( dr.IsMobNull() )
 				return null;
 			else

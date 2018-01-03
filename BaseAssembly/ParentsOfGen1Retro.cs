@@ -10,14 +10,14 @@ using Nls.BaseAssembly.Trend;
 namespace Nls.BaseAssembly {
 	public sealed class ParentsOfGen1Retro {
 		#region Fields
-		private readonly LinksDataSet _ds;
+		private readonly LinksDataSet79 _ds;
 		private readonly Item[] _items = { Item.DateOfBirthMonth, Item.DateOfBirthYearGen1, Item.Gen1LivedWithFatherAtAgeX, Item.Gen1LivedWithMotherAtAgeX, Item.Gen1AlwaysLivedWithBothParents };
 		private readonly string _itemIDsString = "";
 		private const Int16 _surveyYear = ItemYears.Gen1BioparentInHH;
 
 		#endregion
 		#region Constructor
-		public ParentsOfGen1Retro ( LinksDataSet ds ) {
+		public ParentsOfGen1Retro ( LinksDataSet79 ds ) {
 			if ( ds == null ) throw new ArgumentNullException("ds");
 			if ( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
 			if ( ds.tblParentsOfGen1Retro.Count != 0 ) throw new InvalidOperationException("tblParentsOfGen1Retro must be empty before creating rows for it.");
@@ -38,9 +38,9 @@ namespace Nls.BaseAssembly {
 			Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
 			//Parallel.ForEach(extendedIDs, ( extendedID ) => {//
 			foreach ( Int16 extendedID in extendedIDs ) {
-				LinksDataSet.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
-				LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
-				foreach ( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
+				LinksDataSet79.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
+				LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
+				foreach ( LinksDataSet79.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
 					if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen1 ) {
 						Int32 recordsAddedForLoop = ProcessSubjectGen1(drSubject, dtExtendedResponse);
 						Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
@@ -53,7 +53,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-		private Int32 ProcessSubjectGen1 ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtendedResponse ) {
+		private Int32 ProcessSubjectGen1 ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtendedResponse ) {
 			Int32 subjectTag = drSubject.SubjectTag;
 			Int16 yob = Convert.ToInt16(Mob.Retrieve(drSubject, dtExtendedResponse).Value.Year);
 			Tristate bothParentsAlways = DetermineBothParentsAlwaysInHH(_surveyYear, subjectTag, yob, dtExtendedResponse);
@@ -63,7 +63,7 @@ namespace Nls.BaseAssembly {
 			recordsAdded += ProcessForOneParent(bothParentsAlways, Bioparent.Mom, yob, drSubject, dtExtendedResponse);
 			return recordsAdded;
 		}
-		private Int32 ProcessForOneParent ( Tristate bothParentsAlways, Bioparent parent,Int16 yob, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtendedResponse ) {
+		private Int32 ProcessForOneParent ( Tristate bothParentsAlways, Bioparent parent,Int16 yob, LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtendedResponse ) {
 			const byte loopIndexForNever = 255;
 			byte[] loopIndicesAndAges = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
 			Int32 recordsAdded = 0;
@@ -94,7 +94,7 @@ namespace Nls.BaseAssembly {
 			}
 			return recordsAdded;
 		}
-		private static Tristate DetermineBothParentsAlwaysInHH ( Int16 surveyYear, Int32 subjectTag, Int16 yob, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static Tristate DetermineBothParentsAlwaysInHH ( Int16 surveyYear, Int32 subjectTag, Int16 yob, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			Item item = Item.Gen1AlwaysLivedWithBothParents;
 			Int32? responseBothAlways = Retrieve.ResponseNullPossible(surveyYear, item, subjectTag, dtExtended);
 			if ( !responseBothAlways.HasValue )
@@ -102,14 +102,14 @@ namespace Nls.BaseAssembly {
 			else 
 				return CommonFunctions.TranslateYesNo((YesNo)responseBothAlways.Value);
 		}
-		private static Tristate DetermineOneParentEverInHH ( Item item, Int16 surveyYear, Int32 subjectTag, byte loopIndex, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static Tristate DetermineOneParentEverInHH ( Item item, Int16 surveyYear, Int32 subjectTag, byte loopIndex, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear, item, subjectTag, loopIndex, dtExtended);
 			if ( !response.HasValue )
 				return Tristate.DoNotKnow;
 			else
 				return CommonFunctions.TranslateYesNo(CommonFunctions.ReverseYesNo((YesNo)response));
 		}
-		private static Tristate DetermineParentInHH ( Item item, Int16 surveyYear, Int32 subjectTag, byte loopIndex, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static Tristate DetermineParentInHH ( Item item, Int16 surveyYear, Int32 subjectTag, byte loopIndex, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear, item, subjectTag, loopIndex, dtExtended);
 			if ( !response.HasValue )
 				return Tristate.DoNotKnow;
@@ -136,7 +136,7 @@ namespace Nls.BaseAssembly {
 		}
 		private void AddRow ( Int32 subjectTag, Int16 extendedID, Bioparent parent, Tristate inHH,  byte age, Int16 yearInHH ) {
 			//lock ( _ds.tblFatherOfGen2 ) {
-			LinksDataSet.tblParentsOfGen1RetroRow drNew = _ds.tblParentsOfGen1Retro.NewtblParentsOfGen1RetroRow();
+			LinksDataSet79.tblParentsOfGen1RetroRow drNew = _ds.tblParentsOfGen1Retro.NewtblParentsOfGen1RetroRow();
 			drNew.SubjectTag = subjectTag;
 			drNew.ExtendedID = extendedID;
 			drNew.Bioparent = (byte)parent;
@@ -151,7 +151,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Public/Private Static
-		public static TrendLineGen0InHH RetrieveTrend ( Bioparent bioparent, Int32 subjectTag, LinksDataSet.tblParentsOfGen1RetroDataTable dtRetro ) { //, LinksDataSet.tblSubjectDetailsDataTable dtDetail ) {
+		public static TrendLineGen0InHH RetrieveTrend ( Bioparent bioparent, Int32 subjectTag, LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetro ) { //, LinksDataSet.tblSubjectDetailsDataTable dtDetail ) {
 			if ( dtRetro == null )
 				return new TrendLineGen0InHH(yob: 0, hasAnyRecords: false, everAtHome: false, years: null, values: null, ages: null);
 			else if ( dtRetro.Count <= 0 )
@@ -160,7 +160,7 @@ namespace Nls.BaseAssembly {
 			string selectYears = string.Format("{0}={1} AND {2}={3}",
 				subjectTag, dtRetro.SubjectTagColumn.ColumnName,
 				(byte)bioparent, dtRetro.BioparentColumn.ColumnName);
-			LinksDataSet.tblParentsOfGen1RetroRow[] drs = (LinksDataSet.tblParentsOfGen1RetroRow[])dtRetro.Select(selectYears);
+			LinksDataSet79.tblParentsOfGen1RetroRow[] drs = (LinksDataSet79.tblParentsOfGen1RetroRow[])dtRetro.Select(selectYears);
 			Trace.Assert(drs.Length >= 0, "At least zero records should be retrieved from tblParentsOfGen1Retro.");
 			Int16 yob = (from dr in drs where dr.Age == 0 select dr.Year).First();
 
@@ -192,7 +192,7 @@ namespace Nls.BaseAssembly {
 			//}
 			return new TrendLineGen0InHH(yob: yob, hasAnyRecords: true, everAtHome: everInHH, years: years, values: inHHs, ages: ages);
 		}
-		public static Tristate RetrieveInHHByYear ( Int32 subjectTag, Bioparent bioparent, Int16 year, LinksDataSet.tblParentsOfGen1RetroDataTable dtRetro ) {
+		public static Tristate RetrieveInHHByYear ( Int32 subjectTag, Bioparent bioparent, Int16 year, LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetro ) {
 			if ( dtRetro == null ) throw new ArgumentNullException("dsLinks");
 			if ( dtRetro.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Retro.");
 
@@ -205,7 +205,7 @@ namespace Nls.BaseAssembly {
 			Trace.Assert(drs.Length <= 1, "There should be at most one row."); //The item asked only until they were 18.  The function could be requesting a year when they were older.
 			if ( drs.Length == 0 ) return Tristate.DoNotKnow;
 
-			LinksDataSet.tblParentsOfGen1RetroRow dr = (LinksDataSet.tblParentsOfGen1RetroRow)drs[0];
+			LinksDataSet79.tblParentsOfGen1RetroRow dr = (LinksDataSet79.tblParentsOfGen1RetroRow)drs[0];
 			if ( dr.IsInHHNull() )
 				return Tristate.DoNotKnow;
 			else if ( dr.InHH )
@@ -215,32 +215,32 @@ namespace Nls.BaseAssembly {
 			else
 				throw new InvalidOperationException();
 		}
-		public static LinksDataSet.tblParentsOfGen1RetroDataTable RetrieveRows ( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet.tblParentsOfGen1RetroDataTable dtRetro ) {
+		public static LinksDataSet79.tblParentsOfGen1RetroDataTable RetrieveRows ( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetro ) {
 			if ( dtRetro == null ) throw new ArgumentNullException("dsLinks");
 			if ( dtRetro.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Retro.");
 
 			string select = string.Format("{0}={1} OR {2}={3}",
 				subject1Tag, dtRetro.SubjectTagColumn.ColumnName,
 				subject2Tag, dtRetro.SubjectTagColumn.ColumnName);
-			LinksDataSet.tblParentsOfGen1RetroRow[] drs = (LinksDataSet.tblParentsOfGen1RetroRow[])dtRetro.Select(select);
+			LinksDataSet79.tblParentsOfGen1RetroRow[] drs = (LinksDataSet79.tblParentsOfGen1RetroRow[])dtRetro.Select(select);
 			//Trace.Assert(drs.Length >= 1, "There should be at least one row.");
 
-			LinksDataSet.tblParentsOfGen1RetroDataTable dt = new LinksDataSet.tblParentsOfGen1RetroDataTable();
-			foreach ( LinksDataSet.tblParentsOfGen1RetroRow dr in drs ) {
+			LinksDataSet79.tblParentsOfGen1RetroDataTable dt = new LinksDataSet79.tblParentsOfGen1RetroDataTable();
+			foreach ( LinksDataSet79.tblParentsOfGen1RetroRow dr in drs ) {
 				dt.ImportRow(dr);
 			}
 			return dt;
 		}
-		public static LinksDataSet.tblParentsOfGen1RetroDataTable RetrieveRows ( Int32 extendedID, LinksDataSet.tblParentsOfGen1RetroDataTable dtRetro ) {
+		public static LinksDataSet79.tblParentsOfGen1RetroDataTable RetrieveRows ( Int32 extendedID, LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetro ) {
 		   if ( dtRetro == null ) throw new ArgumentNullException("dsLinks");
 		   if ( dtRetro.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Retro.");
 
 		   string select = string.Format("{0}={1}", extendedID, dtRetro.ExtendedIDColumn.ColumnName);
-		   LinksDataSet.tblParentsOfGen1RetroRow[] drs = (LinksDataSet.tblParentsOfGen1RetroRow[])dtRetro.Select(select);
+		   LinksDataSet79.tblParentsOfGen1RetroRow[] drs = (LinksDataSet79.tblParentsOfGen1RetroRow[])dtRetro.Select(select);
 		   Trace.Assert(drs.Length >= 1, "There should be at least one row.");
 			
-		   LinksDataSet.tblParentsOfGen1RetroDataTable dt = new LinksDataSet.tblParentsOfGen1RetroDataTable();
-		   foreach ( LinksDataSet.tblParentsOfGen1RetroRow dr in drs ) {
+		   LinksDataSet79.tblParentsOfGen1RetroDataTable dt = new LinksDataSet79.tblParentsOfGen1RetroDataTable();
+		   foreach ( LinksDataSet79.tblParentsOfGen1RetroRow dr in drs ) {
 		      dt.ImportRow(dr);
 		   }
 		   return dt;

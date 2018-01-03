@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Nls.BaseAssembly {
 	public static class Subject {
 		#region Public Methods
-		public static string CreateSubject ( ImportDataSet dsImport, LinksDataSet dsLinks ) {
+		public static string CreateSubject ( ImportDataSet79 dsImport, LinksDataSet79 dsLinks ) {
 			if ( dsImport == null ) throw new ArgumentNullException("dsImport");
 			if ( dsImport.tblGen1Links.Rows.Count != Constants.Gen1Count ) throw new ArgumentException("There should be exactly " + Constants.Gen1Count + " Gen1 subject rows, but instead there are " + dsImport.tblGen1Links.Rows.Count + ".");
 			if ( dsImport.tblGen2Links.Rows.Count != Constants.Gen2Count ) throw new ArgumentException("There should be exactly " + Constants.Gen2Count + " Gen2 subject rows, but instead there are " + dsImport.tblGen2Links.Rows.Count + ".");
@@ -14,8 +14,8 @@ namespace Nls.BaseAssembly {
 			sw.Start();
 
 			Int32 subjectRecordsAddedCount = 0;
-			foreach ( ImportDataSet.tblGen1LinksRow drGen1 in dsImport.tblGen1Links ) {
-				LinksDataSet.tblSubjectRow drBare = dsLinks.tblSubject.NewtblSubjectRow();
+			foreach ( ImportDataSet79.tblGen1LinksRow drGen1 in dsImport.tblGen1Links ) {
+				LinksDataSet79.tblSubjectRow drBare = dsLinks.tblSubject.NewtblSubjectRow();
 				drBare.SubjectID = (Int32)drGen1[Constants.Gen1SubjectIDColumn];
 				drBare.SubjectTag = drBare.SubjectID * 100;//For Gen1 subjects, append "00" at the end.
 				drBare.ExtendedID = Convert.ToInt16(drGen1[Constants.Gen1ExtendedFamilyIDColumn]);
@@ -26,8 +26,8 @@ namespace Nls.BaseAssembly {
 			}
 			Trace.Assert(subjectRecordsAddedCount == Constants.Gen1Count, "The number of added Gen1 subjects should be correct.");
 
-			foreach ( ImportDataSet.tblGen2LinksRow drGen2 in dsImport.tblGen2Links ) {
-				LinksDataSet.tblSubjectRow drBare = dsLinks.tblSubject.NewtblSubjectRow();
+			foreach ( ImportDataSet79.tblGen2LinksRow drGen2 in dsImport.tblGen2Links ) {
+				LinksDataSet79.tblSubjectRow drBare = dsLinks.tblSubject.NewtblSubjectRow();
 				drBare.SubjectID = drGen2.C0000100;
 				drBare.SubjectTag = drBare.SubjectID;
 				Int32 motherID = drGen2.C0000200;
@@ -50,8 +50,8 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-		private static Int16 RetrieveExtendedFamilyIDFromGenMotherID ( ImportDataSet dsImport, Int32 motherID ) {
-			ImportDataSet.tblGen1LinksRow drGen1 = dsImport.tblGen1Links.FindByR0000100(motherID);
+		private static Int16 RetrieveExtendedFamilyIDFromGenMotherID ( ImportDataSet79 dsImport, Int32 motherID ) {
+			ImportDataSet79.tblGen1LinksRow drGen1 = dsImport.tblGen1Links.FindByR0000100(motherID);
 			Trace.Assert(drGen1 != null, "The retrieved mother's row should not be null for Gen1 subject '" + motherID + "'.");
 			return (Int16)drGen1.R0000149;
 		}

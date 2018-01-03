@@ -14,10 +14,10 @@ namespace Nls.Tests.BaseFixture {
 			const string expected = @"F:\Projects\Nls\Links2011\StableComparisonData\tblSurveyTimeSerial2011-07-31-22-39.xml";
 			//const string actual = @"F:\Projects\Nls\Links2011\StableComparisonData\tblSurveyTimeParallel2011-07-31-15-44.xml";
 			const string actual = @"F:\Projects\Nls\Links2011\StableComparisonData\tblSurveyTimeSerial2011-08-01-20-48.xml";
-			LinksDataSet dsExpected = new LinksDataSet();
+			LinksDataSet79 dsExpected = new LinksDataSet79();
 			dsExpected.ReadXml(expected);
 			dsExpected.Relations.Clear();
-			LinksDataSet dsActual = new LinksDataSet();
+			LinksDataSet79 dsActual = new LinksDataSet79();
 			dsActual.Relations.Clear();
 			dsActual.ReadXml(actual);
 
@@ -26,8 +26,8 @@ namespace Nls.Tests.BaseFixture {
 			Assert.AreEqual(dsExpected.tblSurveyTime.Count, dsActual.tblSurveyTime.Count, "The DataSets should have the same number of rows.");
 
 			const string sort = "SubjectTag, SurveyYear";
-			LinksDataSet.tblSurveyTimeRow[] drsExpected = (LinksDataSet.tblSurveyTimeRow[])dsExpected.tblSurveyTime.Select("", sort);
-			LinksDataSet.tblSurveyTimeRow[] drsActual = (LinksDataSet.tblSurveyTimeRow[])dsActual.tblSurveyTime.Select("", sort);
+			LinksDataSet79.tblSurveyTimeRow[] drsExpected = (LinksDataSet79.tblSurveyTimeRow[])dsExpected.tblSurveyTime.Select("", sort);
+			LinksDataSet79.tblSurveyTimeRow[] drsActual = (LinksDataSet79.tblSurveyTimeRow[])dsActual.tblSurveyTime.Select("", sort);
 
 			for ( Int32 i = 0; i < drsExpected.Length; i++ ) {
 				Assert.AreEqual<Int32>(drsExpected[i].SubjectTag, drsActual[i].SubjectTag, "The SubjectTag should be correct for row {0}.", i);

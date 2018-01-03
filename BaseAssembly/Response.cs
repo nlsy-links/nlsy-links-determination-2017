@@ -8,11 +8,11 @@ using Nls.BaseAssembly.EnumResponses;
 namespace Nls.BaseAssembly {
 	public class Response {
 		#region Fields
-		private readonly ImportDataSet _dsImport;
-		private readonly LinksDataSet _dsLinks;
+		private readonly ImportDataSet79 _dsImport;
+		private readonly LinksDataSet79 _dsLinks;
 		#endregion
 		#region Constructor
-		public Response ( ImportDataSet dsImport, LinksDataSet dsLinks ) {
+		public Response ( ImportDataSet79 dsImport, LinksDataSet79 dsLinks ) {
 			if ( dsImport == null ) throw new ArgumentNullException("dsImport");
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblResponse.Count != 0 ) throw new InvalidOperationException("tblResponse must be empty before creating rows for it.");
@@ -50,7 +50,7 @@ namespace Nls.BaseAssembly {
 		}
 		private Int32 TranslateExtractSource ( ExtractSource extractSource, Sample generation, bool femalesOnly, Int32[] passoverValues, DataTable dtImport ) {
 			Int32 gen1ReponseRecordsAddedCount = 0;
-			LinksDataSet.tblVariableRow[] drsVariablesToTranslate = VariablesToTranslate(extractSource);
+            LinksDataSet79.tblVariable_79Row[] drsVariablesToTranslate = VariablesToTranslate(extractSource);
 			_dsLinks.tblResponse.BeginLoadData();
 
 			string subjectIDColumnName;
@@ -73,9 +73,9 @@ namespace Nls.BaseAssembly {
 				if ( !femalesOnly || gender == GenderBothGenerations.Female ) {
 					Int32 subjectID = Convert.ToInt32(drImport[subjectIDColumnName]);
 					Int32 subjectTag = Retrieve.SubjectTagFromSubjectIDAndGeneration(subjectID, generation, _dsLinks);
-					foreach ( LinksDataSet.tblVariableRow drVariable in drsVariablesToTranslate ) {
+                    foreach( LinksDataSet79.tblVariable_79Row drVariable in drsVariablesToTranslate ) {
 						string columnName = drVariable.VariableCode;
-						LinksDataSet.tblResponseRow drResponse = _dsLinks.tblResponse.NewtblResponseRow();
+						LinksDataSet79.tblResponseRow drResponse = _dsLinks.tblResponse.NewtblResponseRow();
 						drResponse.Generation = (byte)generation;
 						drResponse.SubjectTag = subjectTag;
 						drResponse.ExtendedID = GetExtendedID(subjectTag);
@@ -84,11 +84,11 @@ namespace Nls.BaseAssembly {
 						drResponse.Item = drVariable.Item; //if ( drResponse.Item == 13 ) Trace.Assert(true);
 						drResponse.Value = Convert.ToInt32(drImport[columnName]);
 
-						LinksDataSet.tblItemRow drItem = drVariable.tblItemRow;
+                        LinksDataSet79.tblItem_79Row drItem = drVariable.tblItem_79Row;
 						if ( !(drItem.MinValue <= drResponse.Value && drResponse.Value <= drItem.MaxValue) )
-							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' exceeded the bounds of [{3}, {4}].", drVariable.Item, drVariable.ID, drResponse.Value, drItem.MinValue, drItem.MaxValue));
+                            throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' exceeded the bounds of [{3}, {4}].", drVariable.Item, drVariable.VariableCode, drResponse.Value, drItem.MinValue, drItem.MaxValue));
 						if ( 0 <= drResponse.Value && drResponse.Value < drItem.MinNonnegative )
-							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' dipped below the minimum nonnegative value of {3}.", drVariable.Item, drVariable.ID, drResponse.Value, drItem.MinNonnegative));
+							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' dipped below the minimum nonnegative value of {3}.", drVariable.Item, drVariable.VariableCode, drResponse.Value, drItem.MinNonnegative));
 						if ( !passoverValues.Contains(drResponse.Value) ) {
 							drResponse.LoopIndex = drVariable.LoopIndex;
 							_dsLinks.tblResponse.AddtblResponseRow(drResponse);
@@ -106,7 +106,7 @@ namespace Nls.BaseAssembly {
 			return _dsLinks.tblSubject.FindBySubjectTag(subjectTag).ExtendedID;
 		}
 		private void CheckVariableExistInImportedDataTables ( ) {
-			foreach ( LinksDataSet.tblVariableRow drVariable in _dsLinks.tblVariable ) {
+            foreach( LinksDataSet79.tblVariable_79Row drVariable in _dsLinks.tblVariable_79 ) {
 				if ( drVariable.Translate ) {
 					string tableName = ConverExtractSourceToTableName((ExtractSource)drVariable.ExtractSource);
 					AssertColumnExistsInImportTable(tableName, drVariable.VariableCode);
@@ -133,11 +133,11 @@ namespace Nls.BaseAssembly {
 			Int32 index = _dsImport.Tables[tableName].Columns.IndexOf(columnName);
 			if ( index < 0 ) throw new InvalidOperationException("The column '" + columnName + "' doesn't exist in " + tableName + ".");
 		}
-		private LinksDataSet.tblVariableRow[] VariablesToTranslate ( ExtractSource extractSource ) {
+		private LinksDataSet79.tblVariable_79Row[] VariablesToTranslate ( ExtractSource extractSource ) {
 			string select = string.Format("{0}={1} AND {2}={3}",
-				(byte)extractSource, _dsLinks.tblVariable.ExtractSourceColumn.ColumnName,
-				"TRUE", _dsLinks.tblVariable.TranslateColumn.ColumnName);
-			LinksDataSet.tblVariableRow[] drVariablesToTranslate = (LinksDataSet.tblVariableRow[])_dsLinks.tblVariable.Select(select);
+                (byte)extractSource, _dsLinks.tblVariable_79.ExtractSourceColumn.ColumnName,
+                "TRUE", _dsLinks.tblVariable_79.TranslateColumn.ColumnName);
+            LinksDataSet79.tblVariable_79Row[] drVariablesToTranslate = (LinksDataSet79.tblVariable_79Row[])_dsLinks.tblVariable_79.Select(select);
 			return drVariablesToTranslate;
 		}
 		#endregion

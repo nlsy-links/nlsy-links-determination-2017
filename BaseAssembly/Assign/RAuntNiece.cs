@@ -9,9 +9,9 @@ namespace Nls.BaseAssembly.Assign {
 	public class RAuntNiece : IAssignPass1, IAssignPass2 {
 		#region Fields
 		//private const RelationshipPath _path = RelationshipPath.AuntNiece;
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblSubjectRow _drBareAunt;
-		private readonly LinksDataSet.tblSubjectRow _drBareNiece;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblSubjectRow _drBareAunt;
+		private readonly LinksDataSet79.tblSubjectRow _drBareNiece;
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 
 		private readonly MultipleBirth _multipleBirth;
@@ -59,7 +59,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPeek { get { return _rPeek; } }
 		#endregion
 		#region Constructor
-		public RAuntNiece ( LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft ) {//ImportDataSet dsImport, , LinksDataSet.tblRelatedStructureRow drRight
+		public RAuntNiece ( LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft ) {//ImportDataSet dsImport, , LinksDataSet.tblRelatedStructureRow drRight
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
 			if ( dsLinks.tblSubject.Count == 0 ) throw new InvalidOperationException("tblSubject must NOT be empty before assigning R values from it.");
@@ -80,7 +80,7 @@ namespace Nls.BaseAssembly.Assign {
 			_multipleBirth = MultipleBirth.No;
 			_isMZ = Tristate.No;
 
-			LinksDataSet.tblRelatedValuesRow drValuesOfGen1Housemates = Gen1HousematesValues(_drBareAunt.SubjectTag, _drBareNiece.SubjectTag);//RelatedValues.Retrieve(_dsLinks, _path, 
+			LinksDataSet79.tblRelatedValuesRow drValuesOfGen1Housemates = Gen1HousematesValues(_drBareAunt.SubjectTag, _drBareNiece.SubjectTag);//RelatedValues.Retrieve(_dsLinks, _path, 
 			//For IAssignPass1
 			if ( drValuesOfGen1Housemates.IsRImplicitPass1Null() ) _rImplicitPass1 = null;
 			else _rImplicitPass1 = (float)(RCoefficients.ParentChild * drValuesOfGen1Housemates.RImplicitPass1);
@@ -121,7 +121,7 @@ namespace Nls.BaseAssembly.Assign {
 		}
 		#endregion
 		#region Private Methods
-		private LinksDataSet.tblRelatedValuesRow Gen1HousematesValues ( Int32 auntTag, Int32 nieceTag ) {
+		private LinksDataSet79.tblRelatedValuesRow Gen1HousematesValues ( Int32 auntTag, Int32 nieceTag ) {
 			RelationshipPath path = RelationshipPath.Gen1Housemates;
 			Int32 motherSisterTag = CommonCalculations.MotherTagOfGen2Subject(nieceTag);
 			return RelatedValues.RetrieveRRow(_dsLinks, path, auntTag, motherSisterTag);

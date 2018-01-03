@@ -40,7 +40,7 @@ namespace Nls.BaseAssembly {
 			_share = share;
 			_isInterpolated = false;
 		}
-		public static PairShare[] BuildRelatedPairsOfGen1Housemates ( DataColumn dcPass1, Int32 subjectTag1, Int32 subjectTag2, Int32 extendedID, LinksDataSet ds ) {
+		public static PairShare[] BuildRelatedPairsOfGen1Housemates ( DataColumn dcPass1, Int32 subjectTag1, Int32 subjectTag2, Int32 extendedID, LinksDataSet79 ds ) {
 			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag1) != Sample.Nlsy79Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag1 isn't Gen1.");
 			if ( CommonCalculations.GenerationOfSubjectTag(subjectTag2) != Sample.Nlsy79Gen1 ) throw new ArgumentOutOfRangeException("The generation implied by subjectTag2 isn't Gen1.");
 			if ( dcPass1 == null ) throw new ArgumentNullException("dcPass1");
@@ -62,14 +62,14 @@ namespace Nls.BaseAssembly {
 				(byte)RelationshipPath.Gen1Housemates, ds.tblRelatedStructure.RelationshipPathColumn.ColumnName,
 				subjectTag1, ds.tblRelatedStructure.SubjectTag_S1Column.ColumnName,
 				subjectTag2, ds.tblRelatedStructure.SubjectTag_S2Column.ColumnName);
-			LinksDataSet.tblRelatedStructureRow[] drsStructure = (LinksDataSet.tblRelatedStructureRow[])ds.tblRelatedStructure.Select(select);
+			LinksDataSet79.tblRelatedStructureRow[] drsStructure = (LinksDataSet79.tblRelatedStructureRow[])ds.tblRelatedStructure.Select(select);
 			Trace.Assert(drsStructure.Length >= 1, "At least one record should be returned.");
 
 			PairShare[] pairs = new PairShare[drsStructure.Length];
 			for ( Int32 i = 0; i < drsStructure.Length; i++ ) {
-				LinksDataSet.tblRelatedStructureRow dr = drsStructure[i];
+				LinksDataSet79.tblRelatedStructureRow dr = drsStructure[i];
 				Int32 relatedID = dr.ID;
-				LinksDataSet.tblRelatedValuesRow drValue = ds.tblRelatedValues.FindByID(relatedID);
+				LinksDataSet79.tblRelatedValuesRow drValue = ds.tblRelatedValues.FindByID(relatedID);
 				Tristate pass1;
 				if ( DBNull.Value.Equals(drValue[dcPass1]) )//if ( drValue.IsRImplicitPass1Null() )					
 					pass1 = Tristate.DoNotKnow;

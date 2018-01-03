@@ -8,10 +8,10 @@ using Nls.BaseAssembly;
 namespace Nls.BaseAssembly.Assign {
 	public class RParentChild : IAssignPass1, IAssignPass2 {
 		#region Fields
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblRelatedStructureRow _drLeft;
-		private readonly LinksDataSet.tblSubjectRow _drBare1;
-		private readonly LinksDataSet.tblSubjectRow _drBare2;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drLeft;
+		private readonly LinksDataSet79.tblSubjectRow _drBare1;
+		private readonly LinksDataSet79.tblSubjectRow _drBare2;
 
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 
@@ -59,7 +59,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPeek { get { return _rPeek; } }
 		#endregion
 		#region Constructor
-		public RParentChild ( LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft ) {//ImportDataSet dsImport, , LinksDataSet.tblRelatedStructureRow drRight
+		public RParentChild ( LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft ) {//ImportDataSet dsImport, , LinksDataSet.tblRelatedStructureRow drRight
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
 			if ( dsLinks.tblSubject.Count == 0 ) throw new InvalidOperationException("tblSubject must NOT be empty before assigning R values from it.");

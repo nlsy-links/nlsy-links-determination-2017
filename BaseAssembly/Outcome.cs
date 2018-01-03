@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Nls.BaseAssembly {
     public class Outcome {
         #region Fields
-        private readonly LinksDataSet _ds;
+        private readonly LinksDataSet79 _ds;
         //private readonly Item[] _items;
         private readonly Item[] _itemsGen1 = { Item.Gen1HeightInches, Item.Gen1WeightPounds, Item.Gen1AfqtScaled3Decimals };
         private readonly Item[] _itemsGen2 = { Item.Gen2CFatherAlive};
@@ -19,7 +19,7 @@ namespace Nls.BaseAssembly {
         //private readonly OutcomeItem[] _outcomeItemsGen2;
         #endregion
         #region Constructor
-        public Outcome( LinksDataSet ds ) {
+        public Outcome( LinksDataSet79 ds ) {
             if( ds == null ) throw new ArgumentNullException("ds");
             if( ds.tblSubject.Count <= 0 ) throw new InvalidOperationException("tblSubject must NOT be empty.");
             if( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
@@ -53,9 +53,9 @@ namespace Nls.BaseAssembly {
             Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
             //Parallel.ForEach(extendedIDs, ( extendedID ) => {//
             foreach( Int16 extendedID in extendedIDs ) {
-                LinksDataSet.tblResponseDataTable dtExtended = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
-                LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
-                foreach( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
+                LinksDataSet79.tblResponseDataTable dtExtended = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
+                LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
+                foreach( LinksDataSet79.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
                     Int32 recordsAddedForLoop = ProcessSubject(drSubject, dtExtended);//subjectsInExtendedFamily
                     Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
                 }
@@ -68,7 +68,7 @@ namespace Nls.BaseAssembly {
         }
         #endregion
         #region Private Methods
-        private Int32 ProcessSubject( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended ) {
+        private Int32 ProcessSubject( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtended ) {
             const Int32 minRowCount=0;
             string itemString = "";
             if( drSubject.Generation == (byte)Sample.Nlsy79Gen1 )
@@ -78,15 +78,15 @@ namespace Nls.BaseAssembly {
             else
                 throw new InvalidOperationException("The execution should not have gotten here.  The value of Generation was not recognized.");
 
-            LinksDataSet.tblResponseDataTable dt = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, itemString, minRowCount, dtExtended);
-            foreach( LinksDataSet.tblResponseRow dr in dt){
+            LinksDataSet79.tblResponseDataTable dt = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, itemString, minRowCount, dtExtended);
+            foreach( LinksDataSet79.tblResponseRow dr in dt){
                 AddRow(drSubject.SubjectTag, dr.Item, dr.SurveyYear, dr.Value);
             }
             return dt.Count;
 
         }
         private void AddRow( Int32 subjectTag, Int16 item, Int16 surveyYear, Int32 value ) {
-            LinksDataSet.tblOutcomeRow drNew = _ds.tblOutcome.NewtblOutcomeRow();
+            LinksDataSet79.tblOutcomeRow drNew = _ds.tblOutcome.NewtblOutcomeRow();
             drNew.SubjectTag = subjectTag;
             drNew.Item = item;
             drNew.SurveyYear = surveyYear;

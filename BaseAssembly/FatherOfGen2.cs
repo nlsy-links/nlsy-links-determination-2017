@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace Nls.BaseAssembly {
 	public sealed class FatherOfGen2 {
 		#region Fields
-		private readonly LinksDataSet _ds;
+		private readonly LinksDataSet79 _ds;
 		private readonly Item[] _items = { Item.Gen2CFatherLivingInHH, Item.Gen2CFatherAlive, Item.Gen2CFatherDistanceFromMotherFuzzyCeiling };
 		private readonly string _itemIDsString = "";
 		#endregion
 		#region Constructor
-		public FatherOfGen2 ( LinksDataSet ds ) {
+		public FatherOfGen2 ( LinksDataSet79 ds ) {
 			if ( ds == null ) throw new ArgumentNullException("ds");
 			if ( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
 			if ( ds.tblFatherOfGen2.Count != 0 ) throw new InvalidOperationException("tblFatherOfGen2 must be empty before creating rows for it.");
@@ -34,9 +34,9 @@ namespace Nls.BaseAssembly {
 			Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
 			//Parallel.ForEach(extendedIDs, ( extendedID ) => {//
 			foreach ( Int16 extendedID in extendedIDs ) {
-				LinksDataSet.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
-				LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
-				foreach ( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
+				LinksDataSet79.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
+				LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
+				foreach ( LinksDataSet79.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
 					if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen2 ) {
 						Int32 recordsAddedForLoop = ProcessSubjectGen2(drSubject, dtExtendedResponse);
 						Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
@@ -49,7 +49,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-		private Int32 ProcessSubjectGen2 ( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtendedResponse ) {
+		private Int32 ProcessSubjectGen2 ( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtendedResponse ) {
 			Int32 subjectTag = drSubject.SubjectTag;
 
 			Int32 recordsAdded = 0;
@@ -73,7 +73,7 @@ namespace Nls.BaseAssembly {
 			}
 			return recordsAdded;
 		}
-		private static YesNo DetermineBiodadInHH ( SurveySource source, Int16 surveyYear, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static YesNo DetermineBiodadInHH ( SurveySource source, Int16 surveyYear, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			Item item;
 			switch ( source ) {
 				case SurveySource.Gen2C: item = Item.Gen2CFatherLivingInHH; break;
@@ -93,7 +93,7 @@ namespace Nls.BaseAssembly {
 				default: throw new InvalidOperationException("The response " + codedResponse + " was not recognized.");
 			}
 		}
-		private static YesNo DetermineBiodadAlive ( YesNo biobdadInHH, Int16 surveyYear, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtMother ) {
+		private static YesNo DetermineBiodadAlive ( YesNo biobdadInHH, Int16 surveyYear, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtMother ) {
 			const Item item = Item.Gen2CFatherAlive;
 			if ( biobdadInHH == YesNo.Yes ) return YesNo.Yes;
 
@@ -110,7 +110,7 @@ namespace Nls.BaseAssembly {
 				default: throw new InvalidOperationException("The response " + codedResponse + " was not recognized.");
 			}
 		}
-		private static Int16? DetermineBiodadDistance ( Int16 surveyYear, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtMother ) {
+		private static Int16? DetermineBiodadDistance ( Int16 surveyYear, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtMother ) {
 			const Item item = Item.Gen2CFatherDistanceFromMotherFuzzyCeiling;
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear, item, subjectTag, dtMother);
 			if ( response.HasValue )
@@ -133,7 +133,7 @@ namespace Nls.BaseAssembly {
 		//}
 		private void AddRow ( Int32 subjectTag, Int16 surveyYear, YesNo biodadInHH, YesNo biodadAlive, Int16? biodadDistanceFromHH, YesNo biodadAsthma ) {
 			lock ( _ds.tblFatherOfGen2 ) {
-				LinksDataSet.tblFatherOfGen2Row drNew = _ds.tblFatherOfGen2.NewtblFatherOfGen2Row();
+				LinksDataSet79.tblFatherOfGen2Row drNew = _ds.tblFatherOfGen2.NewtblFatherOfGen2Row();
 				drNew.SubjectTag = subjectTag;
 				drNew.SurveyYear = surveyYear;
 				drNew.BiodadInHH = (Int16)biodadInHH;
@@ -149,24 +149,24 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Public/Private Static
-		public static LinksDataSet.tblFatherOfGen2DataTable RetrieveRows ( Int32 subjectTag, LinksDataSet dsLinks ) {
+		public static LinksDataSet79.tblFatherOfGen2DataTable RetrieveRows ( Int32 subjectTag, LinksDataSet79 dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblFatherOfGen2.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblFatherOfGen2.");
 
 			string select = string.Format("{0}={1}", subjectTag, dsLinks.tblFatherOfGen2.SubjectTagColumn.ColumnName);
-			LinksDataSet.tblFatherOfGen2Row[] drs = (LinksDataSet.tblFatherOfGen2Row[])dsLinks.tblFatherOfGen2.Select(select);
+			LinksDataSet79.tblFatherOfGen2Row[] drs = (LinksDataSet79.tblFatherOfGen2Row[])dsLinks.tblFatherOfGen2.Select(select);
 			//Trace.Assert(drs.Length >= 1, "There should be at least one row.");
-			LinksDataSet.tblFatherOfGen2DataTable dt = new LinksDataSet.tblFatherOfGen2DataTable();
-			foreach ( LinksDataSet.tblFatherOfGen2Row dr in drs ) {
+			LinksDataSet79.tblFatherOfGen2DataTable dt = new LinksDataSet79.tblFatherOfGen2DataTable();
+			foreach ( LinksDataSet79.tblFatherOfGen2Row dr in drs ) {
 				dt.ImportRow(dr);
 			}
 			return dt;
 		}
-		private static LinksDataSet.tblFatherOfGen2Row RetrieveRow ( Int32 subjectTag, Int16 surveyYear, LinksDataSet.tblFatherOfGen2DataTable dtInput ) {
+		private static LinksDataSet79.tblFatherOfGen2Row RetrieveRow ( Int32 subjectTag, Int16 surveyYear, LinksDataSet79.tblFatherOfGen2DataTable dtInput ) {
 			string select = string.Format("{0}={1} AND {2}={3}",
 				subjectTag, dtInput.SubjectTagColumn.ColumnName,
 				surveyYear, dtInput.SurveyYearColumn.ColumnName);
-			LinksDataSet.tblFatherOfGen2Row[] drs = (LinksDataSet.tblFatherOfGen2Row[])dtInput.Select(select);
+			LinksDataSet79.tblFatherOfGen2Row[] drs = (LinksDataSet79.tblFatherOfGen2Row[])dtInput.Select(select);
 			//if ( drs == null ) {
 			if ( drs.Length <=0 ) {
 				return null;
@@ -176,14 +176,14 @@ namespace Nls.BaseAssembly {
 				return drs[0];
 			}
 		}
-		public static Int16?[] RetrieveIsAlive ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet.tblFatherOfGen2DataTable dtInput ) {
+		public static Int16?[] RetrieveIsAlive ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet79.tblFatherOfGen2DataTable dtInput ) {
 			if ( dtInput == null ) throw new ArgumentNullException("dtInput");
 			if ( surveyYears == null ) throw new ArgumentNullException("surveyYears");
 			if ( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblFatherOfGen2.");
 
 			Int16?[] values = new Int16?[surveyYears.Length];
 			for ( Int32 i = 0; i < values.Length; i++ ) {
-				LinksDataSet.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
+				LinksDataSet79.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
 				if ( dr == null )
 					values[i] = null;
 				else if ( (YesNo)dr.BiodadAlive == YesNo.ValidSkipOrNoInterviewOrNotInSurvey )
@@ -195,14 +195,14 @@ namespace Nls.BaseAssembly {
 			}
 			return values;
 		}
-		public static Int16?[] RetrieveInHH ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet.tblFatherOfGen2DataTable dtInput ) {
+		public static Int16?[] RetrieveInHH ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet79.tblFatherOfGen2DataTable dtInput ) {
 			if ( dtInput == null ) throw new ArgumentNullException("dtInput");
 			if ( surveyYears == null ) throw new ArgumentNullException("surveyYears");
 			if ( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblFatherOfGen2.");
 
 			Int16?[] values = new Int16?[surveyYears.Length];
 			for ( Int32 i = 0; i < values.Length; i++ ) {
-				LinksDataSet.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
+				LinksDataSet79.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
 				if ( dr == null )
 					values[i] = null;
 				else if ( (YesNo)dr.BiodadInHH == YesNo.ValidSkipOrNoInterviewOrNotInSurvey )
@@ -214,14 +214,14 @@ namespace Nls.BaseAssembly {
 			}
 			return values;
 		}
-		public static Int16?[] RetrieveDistanceFromHH ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet.tblFatherOfGen2DataTable dtInput ) {
+		public static Int16?[] RetrieveDistanceFromHH ( Int32 subjectTag, Int16[] surveyYears, LinksDataSet79.tblFatherOfGen2DataTable dtInput ) {
 			if ( dtInput == null ) throw new ArgumentNullException("dtInput");
 			if ( surveyYears == null ) throw new ArgumentNullException("surveyYears");
 			if ( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblFatherOfGen2.");
 
 			Int16?[] distances = new Int16?[surveyYears.Length];
 			for ( Int32 i = 0; i < distances.Length; i++ ) {
-				LinksDataSet.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
+				LinksDataSet79.tblFatherOfGen2Row dr = RetrieveRow(subjectTag, surveyYears[i], dtInput);
 				if ( dr == null )
 					distances[i] = null;
 				else if ( dr.IsBiodadDistanceFromHHNull() )

@@ -8,15 +8,15 @@ using Nls.BaseAssembly;
 namespace Nls.BaseAssembly.Assign {
 	public class RGen2Pass1 : IAssignPass1 {
 		#region Fields
-		private readonly ImportDataSet _dsImport;
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblRelatedStructureRow _drLeft;
-		private readonly LinksDataSet.tblRelatedStructureRow _drRight;
-		private readonly LinksDataSet.tblSubjectRow _drBare1;
-		private readonly LinksDataSet.tblSubjectRow _drBare2;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails1;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails2;
-		private readonly LinksDataSet.tblMarkerGen2DataTable _dtMarkersGen2;
+		private readonly ImportDataSet79 _dsImport;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drLeft;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drRight;
+		private readonly LinksDataSet79.tblSubjectRow _drBare1;
+		private readonly LinksDataSet79.tblSubjectRow _drBare2;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails1;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails2;
+		private readonly LinksDataSet79.tblMarkerGen2DataTable _dtMarkersGen2;
 
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 		private readonly Int32 _idRelatedRight = Int32.MinValue;
@@ -57,7 +57,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPass1 { get { return _rPass1; } }
 		#endregion
 		#region Constructor
-		public RGen2Pass1 ( ImportDataSet dsImport, LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft, LinksDataSet.tblRelatedStructureRow drRight ) {
+		public RGen2Pass1 ( ImportDataSet79 dsImport, LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft, LinksDataSet79.tblRelatedStructureRow drRight ) {
 			if ( dsImport == null ) throw new ArgumentNullException("dsImport");
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
@@ -90,7 +90,7 @@ namespace Nls.BaseAssembly.Assign {
 
 			_dtMarkersGen2 = MarkerGen2.PairRelevantMarkerRows(_idRelatedLeft, _idRelatedRight, _dsLinks, _extendedID);
 
-			LinksDataSet.tblMzManualRow drMzManual = Retrieve.MzManualRecord(_drBare1, _drBare2, _dsLinks);
+			LinksDataSet79.tblMzManualRow drMzManual = Retrieve.MzManualRecord(_drBare1, _drBare2, _dsLinks);
 			if ( drMzManual == null ) {
 				_multipleBirth = MultipleBirth.No;
 				_isMZ = Tristate.No;
@@ -189,8 +189,8 @@ namespace Nls.BaseAssembly.Assign {
 			else return null;
 		}
 		private float? RetrieveRImplicit2004 ( ) {
-			ImportDataSet.tblLinks2004Gen2Row drV1 = _dsImport.tblLinks2004Gen2.FindByID1ID2(_drBare1.SubjectID, _drBare2.SubjectID);
-			ImportDataSet.tblLinks2004Gen2Row drV2 = _dsImport.tblLinks2004Gen2.FindByID1ID2(_drBare2.SubjectID, _drBare1.SubjectID);
+			ImportDataSet79.tblLinks2004Gen2Row drV1 = _dsImport.tblLinks2004Gen2.FindByID1ID2(_drBare1.SubjectID, _drBare2.SubjectID);
+			ImportDataSet79.tblLinks2004Gen2Row drV2 = _dsImport.tblLinks2004Gen2.FindByID1ID2(_drBare2.SubjectID, _drBare1.SubjectID);
 			if ( drV1 != null ) {
 				if ( drV1.IsRecommendedRelatednessNull() ) return null;
 				else return drV1.RecommendedRelatedness;

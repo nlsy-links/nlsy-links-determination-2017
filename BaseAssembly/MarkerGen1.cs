@@ -8,14 +8,14 @@ using Nls.BaseAssembly.Trend;
 namespace Nls.BaseAssembly {
 	public sealed class MarkerGen1 {
 		#region Fields
-		private readonly LinksDataSet _dsLinks;
-		private readonly ImportDataSet _dsImport;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly ImportDataSet79 _dsImport;
 		private readonly Item[] _items = { Item.IDOfOther1979RosterGen1, Item.RosterGen1979, Item.IDCodeOfOtherSiblingGen1, Item.ShareBiomomGen1, Item.ShareBiodadGen1};
 			//Unnecssary b/c they're in Retro & Current: Item.Gen1MotherDeathAge, Item.Gen1MotherBirthCountry, Item.Gen1MotherBirthYear, Item.Gen1FatherDeathAge, Item.Gen1FatherBirthCountry, Item.Gen1FatherBirthYear
 		private readonly string _itemIDsString = "";
 		#endregion
 		#region Constructor
-		public MarkerGen1 ( LinksDataSet dsLinks, ImportDataSet dsImport ) {
+		public MarkerGen1 ( LinksDataSet79 dsLinks, ImportDataSet79 dsImport ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSubject.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblSubject.");
 			if ( dsLinks.tblRelatedStructure.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblRelatedStructure.");
@@ -38,15 +38,15 @@ namespace Nls.BaseAssembly {
 			Int32 recordsAdded = 0;
 			Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_dsLinks);
 			foreach ( Int16 extendedID in extendedIDs ) {
-				LinksDataSet.tblRelatedStructureRow[] drsRelated = Retrieve.RelatedStructureInExtendedFamily(extendedID, RelationshipPath.Gen1Housemates, _dsLinks.tblRelatedStructure);
-				LinksDataSet.tblParentsOfGen1RetroDataTable dtRetroForExtended = ParentsOfGen1Retro.RetrieveRows(extendedID, _dsLinks.tblParentsOfGen1Retro);
+				LinksDataSet79.tblRelatedStructureRow[] drsRelated = Retrieve.RelatedStructureInExtendedFamily(extendedID, RelationshipPath.Gen1Housemates, _dsLinks.tblRelatedStructure);
+				LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetroForExtended = ParentsOfGen1Retro.RetrieveRows(extendedID, _dsLinks.tblParentsOfGen1Retro);
 
-				foreach ( LinksDataSet.tblRelatedStructureRow drRelated in drsRelated ) {
+				foreach ( LinksDataSet79.tblRelatedStructureRow drRelated in drsRelated ) {
 					Int32 subject1Tag = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1.SubjectTag;
 					Int32 subject2Tag = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2.SubjectTag;
-					LinksDataSet.tblResponseDataTable dtSubject1 = Retrieve.SubjectsRelevantResponseRows(subject1Tag, _itemIDsString, 1, _dsLinks.tblResponse);
-					LinksDataSet.tblParentsOfGen1CurrentDataTable dtParentsCurrent = ParentsOfGen1Current.RetrieveRows(subject1Tag, subject2Tag, _dsLinks);
-					LinksDataSet.tblParentsOfGen1RetroDataTable dtParentsRetro = ParentsOfGen1Retro.RetrieveRows(subject1Tag, subject2Tag, dtRetroForExtended);
+					LinksDataSet79.tblResponseDataTable dtSubject1 = Retrieve.SubjectsRelevantResponseRows(subject1Tag, _itemIDsString, 1, _dsLinks.tblResponse);
+					LinksDataSet79.tblParentsOfGen1CurrentDataTable dtParentsCurrent = ParentsOfGen1Current.RetrieveRows(subject1Tag, subject2Tag, _dsLinks);
+					LinksDataSet79.tblParentsOfGen1RetroDataTable dtParentsRetro = ParentsOfGen1Retro.RetrieveRows(subject1Tag, subject2Tag, dtRetroForExtended);
 
 					recordsAdded += FromRoster(drRelated, dtSubject1);
 					recordsAdded += FromShareExplicit(Item.ShareBiomomGen1, MarkerType.ShareBiomom, drRelated, dtSubject1);
@@ -80,7 +80,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods -Tier 1
-        private Int32 FromAlwaysLivedWithBothBioparents( LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblParentsOfGen1CurrentDataTable dtCurrent) {
+        private Int32 FromAlwaysLivedWithBothBioparents( LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtCurrent) {
             const Int16 year = ItemYears.Gen1BioparentInHH;
             const MarkerType markerType = MarkerType.Gen1AlwaysLivedWithBothBioparents;       
             Tristate subject1 = ParentsOfGen1Current.RetrieveAlwaysLiveWithBothBioparents(drRelated.SubjectTag_S1, dtCurrent);
@@ -98,7 +98,7 @@ namespace Nls.BaseAssembly {
             const Int32 recordsAdded = 1;
             return recordsAdded;
         }
-        private Int32 FromLiveWithBioparent( Int16 year, Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblParentsOfGen1RetroDataTable dtRetro ) {
+        private Int32 FromLiveWithBioparent( Int16 year, Bioparent bioparent, LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblParentsOfGen1RetroDataTable dtRetro ) {
             Tristate subject1 = ParentsOfGen1Retro.RetrieveInHHByYear(drRelated.SubjectTag_S1, bioparent, year, dtRetro);
             Tristate subject2 = ParentsOfGen1Retro.RetrieveInHHByYear(drRelated.SubjectTag_S2, bioparent, year, dtRetro);
             MarkerEvidence shareBioparent = MarkerEvidence.Missing;
@@ -155,11 +155,11 @@ namespace Nls.BaseAssembly {
             const Int32 recordsAdded = 1;
             return recordsAdded;
         }
-        private Int32 FromBioparentBirthCountry( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
+        private Int32 FromBioparentBirthCountry( Bioparent bioparent, LinksDataSet79.tblRelatedStructureRow drRelated, ImportDataSet79.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
 			const Int16 year = ItemYears.Gen1BioparentBirthCountry;
 			Int32 subjectSmaller = Math.Min(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
 			Int32 subjectLarger = Math.Max(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
-            ImportDataSet.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
+            ImportDataSet79.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
 
 			MarkerType markerType;
 
@@ -201,11 +201,11 @@ namespace Nls.BaseAssembly {
 			const Int32 recordsAdded = 1;
 			return recordsAdded;
 		}
-        private Int32 FromBioparentBirthState( Bioparent bioparent, LinksDataSet.tblRelatedStructureRow drRelated, ImportDataSet.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
+        private Int32 FromBioparentBirthState( Bioparent bioparent, LinksDataSet79.tblRelatedStructureRow drRelated, ImportDataSet79.tblGen1GeocodeSanitizedDataTable dtGeocode ) {
 			const Int16 year = ItemYears.Gen1BioparentBirthState;
 			Int32 subjectSmaller = Math.Min(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
 			Int32 subjectLarger = Math.Max(drRelated.SubjectTag_S1, drRelated.SubjectTag_S2);
-            ImportDataSet.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
+            ImportDataSet79.tblGen1GeocodeSanitizedRow drGeo = dtGeocode.FindBySubjectTag_S1SubjectTag_S2(subjectSmaller, subjectLarger);
 
 			MarkerType markerType;
 
@@ -247,7 +247,7 @@ namespace Nls.BaseAssembly {
 			const Int32 recordsAdded = 1;
 			return recordsAdded;
 		}
-		private Int32 FromBioparentBirthYear ( Bioparent bioparent, Int16 surveyYear, LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblParentsOfGen1CurrentDataTable dtParentsOfGen1Current ) {
+		private Int32 FromBioparentBirthYear ( Bioparent bioparent, Int16 surveyYear, LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtParentsOfGen1Current ) {
 			//const year = ItemYears.Gen1BioparentBirthYear;
 			Int16? birthYear1 = null;
 			Int16? birthYear2 = null;
@@ -302,7 +302,7 @@ namespace Nls.BaseAssembly {
 				biomomEvidence: shareBiomom, biodadEvidence: shareBiodad, biograndparentEvidence: MarkerEvidence.Ambiguous);
 			return 1;
 		}
-		private Int32 FromBioparentDeathAge (Bioparent bioparent , LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblParentsOfGen1CurrentDataTable dtParentsOfGen1Current ) {
+		private Int32 FromBioparentDeathAge (Bioparent bioparent , LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtParentsOfGen1Current ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentDeathAge;
 			byte? deathAge1 = null;
 			byte? deathAge2 = null;
@@ -358,7 +358,7 @@ namespace Nls.BaseAssembly {
 				biomomEvidence: shareBiomom, biodadEvidence: shareBiodad, biograndparentEvidence: MarkerEvidence.Ambiguous);
 			return 1;
 		}
-		private Int32 FromRoster ( LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dtSubject1 ) {
+		private Int32 FromRoster ( LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblResponseDataTable dtSubject1 ) {
 			const MarkerType markerType = MarkerType.RosterGen1;
 			MarkerGen1Summary roster = RosterGen1.RetrieveSummary(drRelated.ID, _dsLinks.tblRosterGen1);
 
@@ -372,19 +372,19 @@ namespace Nls.BaseAssembly {
 			const Int32 recordsAdded = 1;
 			return recordsAdded;
 		}
-		private Int32 FromShareExplicit ( Item itemRelationship, MarkerType markerType, LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dtSubject1 ) {
+		private Int32 FromShareExplicit ( Item itemRelationship, MarkerType markerType, LinksDataSet79.tblRelatedStructureRow drRelated, LinksDataSet79.tblResponseDataTable dtSubject1 ) {
 			const Item itemID = Item.IDCodeOfOtherSiblingGen1;
 			Int32 surveyYearCount = ItemYears.Gen1ShareBioparent.Length;
 
-			LinksDataSet.tblSubjectRow drSubject1 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1;
-			LinksDataSet.tblSubjectRow drSubject2 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2;
+			LinksDataSet79.tblSubjectRow drSubject1 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1;
+			LinksDataSet79.tblSubjectRow drSubject2 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2;
 
 			//Use the other subject's ID to find the appropriate 'loop index';
 			string selectToGetLoopIndex = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
 				drSubject1.SubjectTag, dtSubject1.SubjectTagColumn.ColumnName,
 				Convert.ToInt16(itemID), dtSubject1.ItemColumn.ColumnName,
 				drSubject2.SubjectID, dtSubject1.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsForLoopIndex = (LinksDataSet.tblResponseRow[])dtSubject1.Select(selectToGetLoopIndex);
+			LinksDataSet79.tblResponseRow[] drsForLoopIndex = (LinksDataSet79.tblResponseRow[])dtSubject1.Select(selectToGetLoopIndex);
 			Trace.Assert(drsForLoopIndex.Length <= surveyYearCount, string.Format("No more than {0} row(s) should be returned that matches Subject2 for item '{1}'.", surveyYearCount, itemID.ToString()));
 
 			if ( drsForLoopIndex.Length == 0 )
@@ -396,11 +396,11 @@ namespace Nls.BaseAssembly {
 				drSubject1.SubjectTag, dtSubject1.SubjectTagColumn.ColumnName,
 				Convert.ToInt16(itemRelationship), dtSubject1.ItemColumn.ColumnName,
 				drsForLoopIndex[0].LoopIndex, dtSubject1.LoopIndexColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtSubject1.Select(selectToShareResponse);
+			LinksDataSet79.tblResponseRow[] drsForShareResponse = (LinksDataSet79.tblResponseRow[])dtSubject1.Select(selectToShareResponse);
 			Trace.Assert(drsForLoopIndex.Length <= surveyYearCount, string.Format("No more than {0} row(s) should be returned that matches Subject2 for item '{1}'.", surveyYearCount, Item.IDCodeOfOtherInterviewedBiodadGen2.ToString()));
 			Int32 recordsAdded = 0;
 
-			foreach ( LinksDataSet.tblResponseRow drResponse in drsForShareResponse ) {
+			foreach ( LinksDataSet79.tblResponseRow drResponse in drsForShareResponse ) {
 				EnumResponsesGen1.ShareBioparentGen1 shareBioparent = (EnumResponsesGen1.ShareBioparentGen1)drResponse.Value;
 
 				MarkerEvidence evidence = Assign.EvidenceGen1.ShareBioparentsForBioparents(shareBioparent);
@@ -433,7 +433,7 @@ namespace Nls.BaseAssembly {
 		#endregion
 		#region Tier 2
 		private void AddMarkerRow ( Int16 extendedID, Int32 relatedID, MarkerType markerType, Int16 surveyYear, MarkerEvidence mzEvidence, MarkerEvidence sameGenerationEvidence, MarkerEvidence biomomEvidence, MarkerEvidence biodadEvidence, MarkerEvidence biograndparentEvidence ) {
-			LinksDataSet.tblMarkerGen1Row drNew = _dsLinks.tblMarkerGen1.NewtblMarkerGen1Row();
+			LinksDataSet79.tblMarkerGen1Row drNew = _dsLinks.tblMarkerGen1.NewtblMarkerGen1Row();
 			drNew.ExtendedID = extendedID;
 			drNew.RelatedID = relatedID;
 			drNew.MarkerType = Convert.ToByte(markerType);
@@ -448,13 +448,13 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Public Static Methods
-		internal static MarkerEvidence RetrieveParentMarkerSingleYear ( Int64 relatedIDLeft, MarkerType markerType, Bioparent bioparent, LinksDataSet.tblMarkerGen1DataTable dtMarker ) {
+		internal static MarkerEvidence RetrieveParentMarkerSingleYear ( Int64 relatedIDLeft, MarkerType markerType, Bioparent bioparent, LinksDataSet79.tblMarkerGen1DataTable dtMarker ) {
 			if ( dtMarker == null ) throw new ArgumentNullException("dtMarker");
 			string select = string.Format("{0}={1} AND {2}={3}",
 				relatedIDLeft, dtMarker.RelatedIDColumn.ColumnName,
 				(byte)markerType, dtMarker.MarkerTypeColumn.ColumnName);
 			string sort = dtMarker.SurveyYearColumn.ColumnName;
-			LinksDataSet.tblMarkerGen1Row[] drs = (LinksDataSet.tblMarkerGen1Row[])dtMarker.Select(select, sort);
+			LinksDataSet79.tblMarkerGen1Row[] drs = (LinksDataSet79.tblMarkerGen1Row[])dtMarker.Select(select, sort);
 			Trace.Assert(drs.Length <= 1, "The number of returns markers should not exceed 1.");
 			if ( drs.Length == 0 )
 				return MarkerEvidence.Missing;
@@ -465,14 +465,14 @@ namespace Nls.BaseAssembly {
 			else
 				throw new ArgumentOutOfRangeException("markerType", markerType, "The 'bioparent' value is not accepted by this function.");
 		}
-		internal static MarkerEvidence RetrieveParentMarkerMultiYear ( Int64 relatedIDLeft, MarkerType markerType, Int16 year, Bioparent bioparent, LinksDataSet.tblMarkerGen1DataTable dtMarker ) {
+		internal static MarkerEvidence RetrieveParentMarkerMultiYear ( Int64 relatedIDLeft, MarkerType markerType, Int16 year, Bioparent bioparent, LinksDataSet79.tblMarkerGen1DataTable dtMarker ) {
 			if ( dtMarker == null ) throw new ArgumentNullException("dtMarker");
 			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
 				relatedIDLeft, dtMarker.RelatedIDColumn.ColumnName,
 				year, dtMarker.SurveyYearColumn.ColumnName,
 				(byte)markerType, dtMarker.MarkerTypeColumn.ColumnName);
 			string sort = dtMarker.SurveyYearColumn.ColumnName;
-			LinksDataSet.tblMarkerGen1Row[] drs = (LinksDataSet.tblMarkerGen1Row[])dtMarker.Select(select, sort);
+			LinksDataSet79.tblMarkerGen1Row[] drs = (LinksDataSet79.tblMarkerGen1Row[])dtMarker.Select(select, sort);
 			Trace.Assert(drs.Length <= 1, "The number of returns markers should not exceed 1.");
 			if ( drs.Length == 0 )
 				return MarkerEvidence.Missing;
@@ -483,12 +483,12 @@ namespace Nls.BaseAssembly {
 			else
 				throw new ArgumentOutOfRangeException("markerType", markerType, "The 'bioparent' value is not accepted by this function.");
 		}
-		internal static MarkerGen1Summary[] RetrieveMarkers ( Int64 relatedIDLeft, MarkerType markerType, LinksDataSet.tblMarkerGen1DataTable dtMarker, Int32 maxCount ) {
+		internal static MarkerGen1Summary[] RetrieveMarkers ( Int64 relatedIDLeft, MarkerType markerType, LinksDataSet79.tblMarkerGen1DataTable dtMarker, Int32 maxCount ) {
 			if ( dtMarker == null ) throw new ArgumentNullException("dtMarker");
 			string select = string.Format("{0}={1} AND {2}={3}",
 				relatedIDLeft, dtMarker.RelatedIDColumn.ColumnName,
 				(byte)markerType, dtMarker.MarkerTypeColumn.ColumnName);
-			LinksDataSet.tblMarkerGen1Row[] drs = (LinksDataSet.tblMarkerGen1Row[])dtMarker.Select(select);
+			LinksDataSet79.tblMarkerGen1Row[] drs = (LinksDataSet79.tblMarkerGen1Row[])dtMarker.Select(select);
 			Trace.Assert(drs.Length <= maxCount, "The number of returns markers should not exceed " + maxCount + ".");
 			MarkerGen1Summary[] evidences = new MarkerGen1Summary[drs.Length];
 			for ( Int32 i = 0; i < drs.Length; i++ ) {
@@ -501,17 +501,17 @@ namespace Nls.BaseAssembly {
 			}
 			return evidences;
 		}
-		internal static LinksDataSet.tblMarkerGen1DataTable PairRelevantMarkerRows ( Int64 relatedIDLeft, Int64 relatedIDRight, LinksDataSet dsLinks, Int32 extendedID ) {
+		internal static LinksDataSet79.tblMarkerGen1DataTable PairRelevantMarkerRows ( Int64 relatedIDLeft, Int64 relatedIDRight, LinksDataSet79 dsLinks, Int32 extendedID ) {
 			string select = string.Format("{0}={1} AND {2} IN ({3},{4})",
 				extendedID, dsLinks.tblMarkerGen1.ExtendedIDColumn.ColumnName,
 				dsLinks.tblMarkerGen1.RelatedIDColumn.ColumnName, relatedIDLeft, relatedIDRight);
-			LinksDataSet.tblMarkerGen1Row[] drs = (LinksDataSet.tblMarkerGen1Row[])dsLinks.tblMarkerGen1.Select(select);
+			LinksDataSet79.tblMarkerGen1Row[] drs = (LinksDataSet79.tblMarkerGen1Row[])dsLinks.tblMarkerGen1.Select(select);
 			//if ( drs.Length <= 0 ) {
 			//   return null;
 			//}
 			//else {
-			LinksDataSet.tblMarkerGen1DataTable dt = new LinksDataSet.tblMarkerGen1DataTable();
-			foreach ( LinksDataSet.tblMarkerGen1Row dr in drs ) {
+			LinksDataSet79.tblMarkerGen1DataTable dt = new LinksDataSet79.tblMarkerGen1DataTable();
+			foreach ( LinksDataSet79.tblMarkerGen1Row dr in drs ) {
 				dt.ImportRow(dr);
 			}
 			return dt;

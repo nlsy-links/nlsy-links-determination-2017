@@ -8,15 +8,15 @@ using Nls.BaseAssembly;
 namespace Nls.BaseAssembly.Assign {
 	public class RGen1Pass1 : IAssignPass1 {
 		#region Fields
-		private readonly ImportDataSet _dsImport;
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblRelatedStructureRow _drLeft;
-		private readonly LinksDataSet.tblRelatedStructureRow _drRight;
+		private readonly ImportDataSet79 _dsImport;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drLeft;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drRight;
 		//private readonly LinksDataSet.tblSubjectRow _drBare1;
 		//private readonly LinksDataSet.tblSubjectRow _drBare2;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails1;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails2;
-		private readonly LinksDataSet.tblMarkerGen1DataTable _dtMarkersGen1;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails1;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails2;
+		private readonly LinksDataSet79.tblMarkerGen1DataTable _dtMarkersGen1;
 
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 		private readonly Int32 _idRelatedRight = Int32.MinValue;
@@ -68,7 +68,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPass1 { get { return _rPass1; } }
 		#endregion
 		#region Constructor
-		public RGen1Pass1 ( ImportDataSet dsImport, LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft, LinksDataSet.tblRelatedStructureRow drRight ) {
+		public RGen1Pass1 ( ImportDataSet79 dsImport, LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft, LinksDataSet79.tblRelatedStructureRow drRight ) {
 			if ( dsImport == null ) throw new ArgumentNullException("dsImport");
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
@@ -107,7 +107,7 @@ namespace Nls.BaseAssembly.Assign {
 
 			_dtMarkersGen1 = MarkerGen1.PairRelevantMarkerRows(_idRelatedLeft, _idRelatedRight, _dsLinks, _extendedID);
 
-			LinksDataSet.tblMzManualRow drMz = Retrieve.MzManualRecord(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2, _dsLinks);
+			LinksDataSet79.tblMzManualRow drMz = Retrieve.MzManualRecord(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2, _dsLinks);
 
 			if ( drMz == null ) {
 				_multipleBirth = MultipleBirth.No;
@@ -167,8 +167,8 @@ namespace Nls.BaseAssembly.Assign {
 				return Tristate.DoNotKnow;
 		}
 		private float? RetrieveRImplicit2004 ( ) {
-			ImportDataSet.tblLinks2004Gen1Row drV1 = _dsImport.tblLinks2004Gen1.FindBySubjectTag_S1SubjectTag_S2(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2);
-			ImportDataSet.tblLinks2004Gen1Row drV2 = _dsImport.tblLinks2004Gen1.FindBySubjectTag_S1SubjectTag_S2(_drLeft.SubjectTag_S2, _drLeft.SubjectTag_S1);
+			ImportDataSet79.tblLinks2004Gen1Row drV1 = _dsImport.tblLinks2004Gen1.FindBySubjectTag_S1SubjectTag_S2(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2);
+			ImportDataSet79.tblLinks2004Gen1Row drV2 = _dsImport.tblLinks2004Gen1.FindBySubjectTag_S1SubjectTag_S2(_drLeft.SubjectTag_S2, _drLeft.SubjectTag_S1);
 			if ( drV1 != null ) {
 				if ( drV1.IsRecommendedRelatednessNull() ) return null;
 				else return drV1.RecommendedRelatedness;
@@ -181,10 +181,10 @@ namespace Nls.BaseAssembly.Assign {
 				return null;//The record wasn't contained in the links created in 2004.
 			}
 		}
-		public static float? CalculateRRoster ( Int32 idRelated, LinksDataSet.tblRosterGen1DataTable dtRoster ) {
+		public static float? CalculateRRoster ( Int32 idRelated, LinksDataSet79.tblRosterGen1DataTable dtRoster ) {
 			//TODO: Check overrides first.
 
-			LinksDataSet.tblRosterGen1Row dr = dtRoster.FindByRelatedID(idRelated);
+			LinksDataSet79.tblRosterGen1Row dr = dtRoster.FindByRelatedID(idRelated);
 			Trace.Assert(dr != null, "Exactly one row should be retrieved from tblRosterGen1.");
 			if ( dr.Resolved ) {
 				Trace.Assert(!dr.IsRNull(), "If R is resolved by the roster, then R shouldn't be NaN.");
@@ -214,7 +214,7 @@ namespace Nls.BaseAssembly.Assign {
 				return null; //The could still be cousins or something else
 			}
 		}
-		public static float? CalculateRFull ( Tristate shareBiomom, Tristate shareBiodad, MultipleBirth multiple, Tristate isMZ, Tristate isRelatedInMZManual, Int32 idRelated, LinksDataSet.tblRosterGen1DataTable dtRoster ) {
+		public static float? CalculateRFull ( Tristate shareBiomom, Tristate shareBiodad, MultipleBirth multiple, Tristate isMZ, Tristate isRelatedInMZManual, Int32 idRelated, LinksDataSet79.tblRosterGen1DataTable dtRoster ) {
 			float? rRoster = CalculateRRoster(idRelated, dtRoster);
 
 			if ( isMZ == BaseAssembly.Tristate.Yes ) {

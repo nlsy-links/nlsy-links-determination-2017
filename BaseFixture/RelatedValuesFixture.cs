@@ -11,7 +11,7 @@ namespace Nls.Tests.BaseFixture {
     [TestClass]
     public sealed class RelatedValuesFixture {
         #region Fields
-        private static LinksDataSet _ds = new LinksDataSet();
+        private static LinksDataSet79 _ds = new LinksDataSet79();
         #endregion
         #region Structs
         //private struct Pair {
@@ -99,10 +99,10 @@ namespace Nls.Tests.BaseFixture {
             string select = string.Format("{0}={1} AND {2}={3}",
                 subjectTag1, _ds.tblRelatedStructure.SubjectTag_S1Column.ColumnName,
                 subjectTag2, _ds.tblRelatedStructure.SubjectTag_S2Column.ColumnName);
-            LinksDataSet.tblRelatedStructureRow[] drsStructure = (LinksDataSet.tblRelatedStructureRow[])_ds.tblRelatedStructure.Select(select);
+            LinksDataSet79.tblRelatedStructureRow[] drsStructure = (LinksDataSet79.tblRelatedStructureRow[])_ds.tblRelatedStructure.Select(select);
             Trace.Assert(drsStructure.Length == 1, "There should be exactly one row returned.");
             Int32 relatedID = drsStructure[0].ID;
-            LinksDataSet.tblRelatedValuesRow drValue = _ds.tblRelatedValues.FindByID(relatedID);
+            LinksDataSet79.tblRelatedValuesRow drValue = _ds.tblRelatedValues.FindByID(relatedID);
             if( drValue.IsRImplicitNull() )
                 return null;
             else

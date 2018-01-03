@@ -7,11 +7,11 @@ using Nls.BaseAssembly.Assign;
 namespace Nls.BaseAssembly {
 	public sealed class RelatedValues {
 		#region Fields
-		private readonly ImportDataSet _dsImport;
-		private readonly LinksDataSet _dsLinks;
+		private readonly ImportDataSet79 _dsImport;
+		private readonly LinksDataSet79 _dsLinks;
 		#endregion
 		#region Constructor
-		public RelatedValues ( ImportDataSet dsImport, LinksDataSet dsLinks ) {
+		public RelatedValues ( ImportDataSet79 dsImport, LinksDataSet79 dsLinks ) {
 			if ( dsImport == null ) throw new ArgumentNullException("dsImport");
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblRelatedStructure.Count <= 0 ) throw new ArgumentException("There should NOT be zero rows in tblRelatedStructure.");
@@ -47,12 +47,12 @@ namespace Nls.BaseAssembly {
 			sw.Stop();
 			return string.Format("{0:N0} RelatedValues records were processed.\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
 		}
-		public static string Archive ( Int16 algorithmVersion, LinksDataSet ds ) {
+		public static string Archive ( Int16 algorithmVersion, LinksDataSet79 ds ) {
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
 			Int32 recordsAdded = 0;
-			foreach ( LinksDataSet.tblRelatedValuesRow drValues in ds.tblRelatedValues ) {
-				LinksDataSet.tblRelatedValuesArchiveRow drNew = ds.tblRelatedValuesArchive.NewtblRelatedValuesArchiveRow();
+			foreach ( LinksDataSet79.tblRelatedValuesRow drValues in ds.tblRelatedValues ) {
+				LinksDataSet79.tblRelatedValuesArchiveRow drNew = ds.tblRelatedValuesArchive.NewtblRelatedValuesArchiveRow();
 				drNew.AlgorithmVersion = algorithmVersion;
 				drNew.SubjectTag_S1 = drValues.tblRelatedStructureRow.SubjectTag_S1;
 				drNew.SubjectTag_S2 = drValues.tblRelatedStructureRow.SubjectTag_S2;
@@ -62,10 +62,10 @@ namespace Nls.BaseAssembly {
 				//if ( drValues.IsS() ) drNew.SetLastSurvey_S1Null();
 				//else drNew.LastSurvey_S1 = drValues.LastSurvey_S1;
 
-				LinksDataSet.tblRelatedStructureRow drStructure = ds.tblRelatedStructure.FindByID(drValues.ID);
+				LinksDataSet79.tblRelatedStructureRow drStructure = ds.tblRelatedStructure.FindByID(drValues.ID);
 
 				if ( drStructure.RelationshipPath == (byte)RelationshipPath.Gen1Housemates ) {
-					LinksDataSet.tblRosterGen1Row drRoster = ds.tblRosterGen1.FindByRelatedID(drValues.ID);
+					LinksDataSet79.tblRosterGen1Row drRoster = ds.tblRosterGen1.FindByRelatedID(drValues.ID);
 					drNew.RosterAssignmentID = drRoster.RosterAssignmentID;
 					drNew.SameGeneration = drRoster.SameGeneration;
 
@@ -130,7 +130,7 @@ namespace Nls.BaseAssembly {
 			string message = string.Format("{0:N0} RelatedValues records were archived.\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
 			return message;
 		}
-		public static LinksDataSet.tblRelatedValuesRow RetrieveRRow ( LinksDataSet ds, RelationshipPath relationshipPath, Int32 subject1Tag, Int32 subject2Tag ) {
+		public static LinksDataSet79.tblRelatedValuesRow RetrieveRRow ( LinksDataSet79 ds, RelationshipPath relationshipPath, Int32 subject1Tag, Int32 subject2Tag ) {
 			if ( ds.tblRelatedValues.Count <= 0 ) throw new ArgumentException("tblRelatedValues should have more than one row.", "ds");
 
 			Int32 subjectTagSmaller = Int32.MinValue;
@@ -144,7 +144,7 @@ namespace Nls.BaseAssembly {
 				subjectTagLarger = subject1Tag;
 			}
 
-			LinksDataSet.tblRelatedStructureRow drStructure = RelatedStructure.Retrieve(ds, relationshipPath, subjectTagSmaller, subjectTagLarger);
+			LinksDataSet79.tblRelatedStructureRow drStructure = RelatedStructure.Retrieve(ds, relationshipPath, subjectTagSmaller, subjectTagLarger);
 			Trace.Assert(drStructure != null, "The retrieved row should not be null.");
 			return ds.tblRelatedValues.FindByID(drStructure.ID);
 		}
@@ -153,20 +153,20 @@ namespace Nls.BaseAssembly {
 		private Int32 Gen1Housemates ( ) {
 			const RelationshipPath path = RelationshipPath.Gen1Housemates;
 			Int32 recordsAdded = 0;
-			LinksDataSet.tblRelatedStructureRow[] drLefts = SelectLefthand(path);
+			LinksDataSet79.tblRelatedStructureRow[] drLefts = SelectLefthand(path);
 
 			//foreach ( LinksDataSet.tblRelatedStructureRow drLeft in drLefts ) {
 			//   LinksDataSet.tblMzManualRow drMz = Retrieve.MzManualRecord(drLeft.SubjectTag_S1, drLeft.SubjectTag_S2, _dsLinks);
 			//   if ( drMz == null ) AddRowPass0(drLeft.ID, MultipleBirth.No, Tristate.No);
 			//   else AddRowPass0(drLeft.ID, (MultipleBirth)drMz.MultipleBirthIfSameSex, (Tristate)drMz.IsMz);
 			//}
-			foreach ( LinksDataSet.tblRelatedStructureRow drLeft in drLefts ) {
-				LinksDataSet.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
+			foreach ( LinksDataSet79.tblRelatedStructureRow drLeft in drLefts ) {
+				LinksDataSet79.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
 				RGen1Pass1 pass1 = new RGen1Pass1(_dsImport, _dsLinks, drLeft, drRight);
 				AddRowPass1(pass1, pass1.IDLeft, drLeft.SubjectTag_S1, drLeft.SubjectTag_S2);
 			}
 			Parallel.ForEach(drLefts, ( drLeft ) => {
-				LinksDataSet.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
+				LinksDataSet79.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
 				RGen1Pass2 pass2 = new RGen1Pass2(_dsLinks, drLeft, drRight);
 				UpdateRowPass2(pass2, pass2.IDLeft);
 				Interlocked.Increment(ref recordsAdded);
@@ -176,16 +176,16 @@ namespace Nls.BaseAssembly {
 		private Int32 Gen2Siblings ( ) {
 			const RelationshipPath path = RelationshipPath.Gen2Siblings;
 			Int32 recordsAdded = 0;
-			LinksDataSet.tblRelatedStructureRow[] drLefts = SelectLefthand(path);
+			LinksDataSet79.tblRelatedStructureRow[] drLefts = SelectLefthand(path);
 
-			foreach ( LinksDataSet.tblRelatedStructureRow drLeft in drLefts ) {
-				LinksDataSet.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
+			foreach ( LinksDataSet79.tblRelatedStructureRow drLeft in drLefts ) {
+				LinksDataSet79.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
 				RGen2Pass1 rGen2Pass1 = new RGen2Pass1(_dsImport, _dsLinks, drLeft, drRight);
 				AddRowPass1(rGen2Pass1, rGen2Pass1.IDLeft, drLeft.SubjectTag_S1, drLeft.SubjectTag_S2);
 			}
 			//foreach ( LinksDataSet.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
 			Parallel.ForEach(drLefts, ( drLeft ) => {
-				LinksDataSet.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
+				LinksDataSet79.tblRelatedStructureRow drRight = SelectRighthand(drLeft);
 				RGen2Pass2 rGen2Pass2 = new RGen2Pass2(_dsLinks, drLeft, drRight);
 				UpdateRowPass2(rGen2Pass2, rGen2Pass2.IDLeft);
 				Interlocked.Increment(ref recordsAdded);
@@ -195,7 +195,7 @@ namespace Nls.BaseAssembly {
 		private Int32 ParentChild ( ) {
 			const RelationshipPath path = RelationshipPath.ParentChild;
 			Int32 recordsAdded = 0;
-			foreach ( LinksDataSet.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
+			foreach ( LinksDataSet79.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
 				RParentChild rParentChild = new RParentChild(_dsLinks, drLeft);
 				AddRowPass1(rParentChild, rParentChild.IDLeft, drLeft.SubjectTag_S1, drLeft.SubjectTag_S2);
 				UpdateRowPass2(rParentChild, rParentChild.IDLeft);
@@ -206,7 +206,7 @@ namespace Nls.BaseAssembly {
 		private Int32 AuntNiece ( ) {
 			const RelationshipPath path = RelationshipPath.AuntNiece;
 			Int32 recordsAdded = 0;
-			foreach ( LinksDataSet.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
+			foreach ( LinksDataSet79.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
 				RAuntNiece rAuntNiece = new RAuntNiece(_dsLinks, drLeft); //drRight
 				AddRowPass1(rAuntNiece, rAuntNiece.IDLeft, drLeft.SubjectTag_S1, drLeft.SubjectTag_S2);
 				UpdateRowPass2(rAuntNiece, rAuntNiece.IDLeft);
@@ -217,7 +217,7 @@ namespace Nls.BaseAssembly {
 		private Int32 Gen2Cousins ( ) {
 			const RelationshipPath path = RelationshipPath.Gen2Cousins;
 			Int32 recordsAdded = 0;
-			foreach ( LinksDataSet.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
+			foreach ( LinksDataSet79.tblRelatedStructureRow drLeft in SelectLefthand(path) ) {
 				RGen2Cousins rGen2Cousins = new RGen2Cousins(_dsLinks, drLeft); //drRight
 				AddRowPass1(rGen2Cousins, rGen2Cousins.IDLeft, drLeft.SubjectTag_S1, drLeft.SubjectTag_S2);
 				UpdateRowPass2(rGen2Cousins, rGen2Cousins.IDLeft);
@@ -225,19 +225,19 @@ namespace Nls.BaseAssembly {
 			}
 			return recordsAdded;
 		}
-		private LinksDataSet.tblRelatedStructureRow[] SelectLefthand ( RelationshipPath path ) {
+		private LinksDataSet79.tblRelatedStructureRow[] SelectLefthand ( RelationshipPath path ) {
 			//"Lefthand" is my slang for the lower/smaller SubjectTag corresponds to Subject1.
 			string select = string.Format("{0}={1} AND {2}<{3}",
 				(byte)path, _dsLinks.tblRelatedStructure.RelationshipPathColumn.ColumnName,
 				 _dsLinks.tblRelatedStructure.SubjectTag_S1Column.ColumnName, _dsLinks.tblRelatedStructure.SubjectTag_S2Column.ColumnName);
-			return (LinksDataSet.tblRelatedStructureRow[])_dsLinks.tblRelatedStructure.Select(select);
+			return (LinksDataSet79.tblRelatedStructureRow[])_dsLinks.tblRelatedStructure.Select(select);
 		}
-		private LinksDataSet.tblRelatedStructureRow SelectRighthand ( LinksDataSet.tblRelatedStructureRow drLeft ) {
+		private LinksDataSet79.tblRelatedStructureRow SelectRighthand ( LinksDataSet79.tblRelatedStructureRow drLeft ) {
 			//"Lefthand" is my slang for the lower/smaller SubjectTag corresponds to Subject1.
 			string select = string.Format("{0}={1} AND {2}={3}", //Why is the second comparison "="  (Will -June 7, 2012)
 				drLeft.SubjectTag_S1, _dsLinks.tblRelatedStructure.SubjectTag_S2Column.ColumnName,
 				drLeft.SubjectTag_S2, _dsLinks.tblRelatedStructure.SubjectTag_S1Column.ColumnName);
-			LinksDataSet.tblRelatedStructureRow[] drs = (LinksDataSet.tblRelatedStructureRow[])_dsLinks.tblRelatedStructure.Select(select);
+			LinksDataSet79.tblRelatedStructureRow[] drs = (LinksDataSet79.tblRelatedStructureRow[])_dsLinks.tblRelatedStructure.Select(select);
 			Trace.Assert(drs.Length == 1, "Exactly 1 row should be selected.");
 			return drs[0];
 		}
@@ -252,7 +252,7 @@ namespace Nls.BaseAssembly {
 		//}
 		private void AddRowPass1 ( IAssignPass1 assignPass1, Int32 relatedID, Int32 subject1Tag, Int32 subject2Tag ) {
 			lock ( _dsLinks.tblRelatedValues ) {
-				LinksDataSet.tblRelatedValuesRow drNew = _dsLinks.tblRelatedValues.NewtblRelatedValuesRow();
+				LinksDataSet79.tblRelatedValuesRow drNew = _dsLinks.tblRelatedValues.NewtblRelatedValuesRow();
 				drNew.ID = relatedID;
 				drNew.MultipleBirthIfSameSex = (byte)assignPass1.MultipleBirthIfSameSex;
 				drNew.IsMz = (byte)assignPass1.IsMZ;
@@ -305,7 +305,7 @@ namespace Nls.BaseAssembly {
 		}
 		private void UpdateRowPass2 ( IAssignPass2 assignPass2, Int32 relatedID ) {
 			lock ( _dsLinks.tblRelatedValues ) {
-				LinksDataSet.tblRelatedValuesRow drUpdated = _dsLinks.tblRelatedValues.FindByID(relatedID);
+				LinksDataSet79.tblRelatedValuesRow drUpdated = _dsLinks.tblRelatedValues.FindByID(relatedID);
 				//lock ( drUpdated ) {
 				if ( assignPass2.RImplicit.HasValue ) drUpdated.RImplicit = assignPass2.RImplicit.Value;
 				else drUpdated.SetRImplicitNull();
@@ -330,7 +330,7 @@ namespace Nls.BaseAssembly {
 			}
 		}
 		private Int16? SurveyTimeMostRecent ( Int32 subjectTag ) {
-			LinksDataSet.vewSurveyTimeMostRecentRow dr = _dsLinks.vewSurveyTimeMostRecent.FindBySubjectTag(subjectTag);
+			LinksDataSet79.vewSurveyTimeMostRecentRow dr = _dsLinks.vewSurveyTimeMostRecent.FindBySubjectTag(subjectTag);
 			if ( dr == null )
 				return null;
 			else

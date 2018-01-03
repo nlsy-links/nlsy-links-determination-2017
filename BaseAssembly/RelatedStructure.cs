@@ -4,10 +4,10 @@ using System.Diagnostics;
 namespace Nls.BaseAssembly {
 	public sealed class RelatedStructure {
 		#region Fields
-		private readonly LinksDataSet _dsLinks;
+		private readonly LinksDataSet79 _dsLinks;
 		#endregion
 		#region Constructor
-		public RelatedStructure ( LinksDataSet dsLinks ) {
+		public RelatedStructure ( LinksDataSet79 dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSubject.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblSubject.");
 			if ( dsLinks.tblRelatedStructure.Count != 0 ) throw new ArgumentException("There should be zero rows in tblRelatedStructure.");
@@ -27,13 +27,13 @@ namespace Nls.BaseAssembly {
 			string message = string.Format("{0:N0} Related paths were processed.\n\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
 			return message;
 		}
-		public static LinksDataSet.tblRelatedStructureRow Retrieve ( LinksDataSet ds, RelationshipPath relationshipPath, Int32 subject1Tag, Int32 subject2Tag ) {
+		public static LinksDataSet79.tblRelatedStructureRow Retrieve ( LinksDataSet79 ds, RelationshipPath relationshipPath, Int32 subject1Tag, Int32 subject2Tag ) {
 			if ( ds.tblRelatedStructure.Count <= 0 ) throw new ArgumentException("tblRelatedStructure should have more than one row.", "ds");
 			string sql = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
 				(byte)relationshipPath, ds.tblRelatedStructure.RelationshipPathColumn.ColumnName,
 				subject1Tag, ds.tblRelatedStructure.SubjectTag_S1Column.ColumnName,
 				subject2Tag, ds.tblRelatedStructure.SubjectTag_S2Column.ColumnName);
-			LinksDataSet.tblRelatedStructureRow[] drs = (LinksDataSet.tblRelatedStructureRow[])ds.tblRelatedStructure.Select(sql);
+			LinksDataSet79.tblRelatedStructureRow[] drs = (LinksDataSet79.tblRelatedStructureRow[])ds.tblRelatedStructure.Select(sql);
 			Trace.Assert(drs.Length == 1, "There should be exactly one row retrieved.");
 			return drs[0];
 		}
@@ -42,16 +42,16 @@ namespace Nls.BaseAssembly {
 		private Int32 UnpackExtendedFamily ( Int16 extendedID ) {
 			string sql = string.Format("{0}={1}",// AND {2}={3}",
 				extendedID, _dsLinks.tblSubject.ExtendedIDColumn.ColumnName);//,				(byte)Generation.Gen1, _dsLinks.tblSubject.GenerationColumn.ColumnName
-			LinksDataSet.tblSubjectRow[] drAllExtendedFamilyMembers = (LinksDataSet.tblSubjectRow[])this._dsLinks.tblSubject.Select(sql);
+			LinksDataSet79.tblSubjectRow[] drAllExtendedFamilyMembers = (LinksDataSet79.tblSubjectRow[])this._dsLinks.tblSubject.Select(sql);
 			Int32 totalUpackedRowsInFamily = 0;
-			foreach ( LinksDataSet.tblSubjectRow drSubject1 in drAllExtendedFamilyMembers ) {
-				foreach ( LinksDataSet.tblSubjectRow drSubject2 in drAllExtendedFamilyMembers ) {
+			foreach ( LinksDataSet79.tblSubjectRow drSubject1 in drAllExtendedFamilyMembers ) {
+				foreach ( LinksDataSet79.tblSubjectRow drSubject2 in drAllExtendedFamilyMembers ) {
 					if ( CommonFunctions.BothGen1(drSubject1, drSubject2) && (drSubject1.SubjectTag != drSubject2.SubjectTag) )
 						totalUpackedRowsInFamily += ProcessPair(drSubject1, extendedID, drSubject2);						
 				}
 			}
-			foreach ( LinksDataSet.tblSubjectRow drSubject1 in drAllExtendedFamilyMembers ) {
-				foreach ( LinksDataSet.tblSubjectRow drSubject2 in drAllExtendedFamilyMembers ) {
+			foreach ( LinksDataSet79.tblSubjectRow drSubject1 in drAllExtendedFamilyMembers ) {
+				foreach ( LinksDataSet79.tblSubjectRow drSubject2 in drAllExtendedFamilyMembers ) {
 					if ( !CommonFunctions.BothGen1(drSubject1, drSubject2) && (drSubject1.SubjectTag != drSubject2.SubjectTag) )
 						totalUpackedRowsInFamily += ProcessPair(drSubject1, extendedID, drSubject2);
 				}
@@ -59,10 +59,10 @@ namespace Nls.BaseAssembly {
 			Trace.Assert(totalUpackedRowsInFamily == CommonCalculations.PermutationOf2(drAllExtendedFamilyMembers.Length), "The number of unpacked rows for this extended family should be correct.");
 			return totalUpackedRowsInFamily;
 		}
-		private Int32 ProcessPair ( LinksDataSet.tblSubjectRow drSubject1, Int16 extendedID, LinksDataSet.tblSubjectRow drSubject2 ) {
+		private Int32 ProcessPair ( LinksDataSet79.tblSubjectRow drSubject1, Int16 extendedID, LinksDataSet79.tblSubjectRow drSubject2 ) {
 			Trace.Assert(drSubject1.ExtendedID == drSubject2.ExtendedID, "The ExtendedFamilyID should match.");
 
-			LinksDataSet.tblRelatedStructureRow drNew = this._dsLinks.tblRelatedStructure.NewtblRelatedStructureRow();
+			LinksDataSet79.tblRelatedStructureRow drNew = this._dsLinks.tblRelatedStructure.NewtblRelatedStructureRow();
 			drNew.ExtendedID = extendedID;
 			drNew.SubjectTag_S1 = drSubject1.SubjectTag;
 			drNew.SubjectTag_S2 = drSubject2.SubjectTag;
@@ -71,7 +71,7 @@ namespace Nls.BaseAssembly {
 			_dsLinks.tblRelatedStructure.AddtblRelatedStructureRow(drNew);
 			return 1;
 		}
-		private static RelationshipPath GetRelationshipPath ( LinksDataSet.tblSubjectRow drSubject1, LinksDataSet.tblSubjectRow drSubject2 ) {
+		private static RelationshipPath GetRelationshipPath ( LinksDataSet79.tblSubjectRow drSubject1, LinksDataSet79.tblSubjectRow drSubject2 ) {
 			Trace.Assert(drSubject1.ExtendedID == drSubject2.ExtendedID, "The two subject should be in the same extended family.");
 			if ( drSubject1.Generation == (byte)Sample.Nlsy79Gen1 && drSubject2.Generation == (byte)Sample.Nlsy79Gen1 ) {
 				return RelationshipPath.Gen1Housemates;

@@ -10,7 +10,7 @@ using Nls.BaseAssembly.EnumResponsesGen1;
 namespace Nls.BaseAssembly {
 	public sealed class ParentsOfGen1Current {
 		#region Fields
-		private readonly LinksDataSet _ds;
+		private readonly LinksDataSet79 _ds;
 		private readonly Item[] _items = { Item.Gen1FatherAlive, Item.Gen1FatherDeathCause, Item.Gen1FatherDeathAge, Item.Gen1FatherBirthCountry, Item.Gen1FatherHighestGrade, Item.Gen1GrandfatherBirthCountry,
 													Item.Gen1MotherAlive, Item.Gen1MotherDeathCause, Item.Gen1MotherDeathAge, Item.Gen1MotherBirthCountry, Item.Gen1MotherHighestGrade,
 													Item.Gen1FatherBirthYear, Item.Gen1FatherAge, //Item.Gen1FatherBirthMonth, 
@@ -20,7 +20,7 @@ namespace Nls.BaseAssembly {
 		private readonly string _itemIDsString = "";
 		#endregion
 		#region Constructor
-		public ParentsOfGen1Current ( LinksDataSet ds ) {
+		public ParentsOfGen1Current ( LinksDataSet79 ds ) {
 			if ( ds == null ) throw new ArgumentNullException("ds");
 			if ( ds.tblResponse.Count <= 0 ) throw new InvalidOperationException("tblResponse must NOT be empty.");
 			if ( ds.tblSurveyTime.Count <= 0 ) throw new InvalidOperationException("tblSurveyTime must NOT be empty.");
@@ -42,9 +42,9 @@ namespace Nls.BaseAssembly {
 			Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
 			//Parallel.ForEach(extendedIDs, ( extendedID ) => {//
 			foreach ( Int16 extendedID in extendedIDs ) {
-				LinksDataSet.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
-				LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
-				foreach ( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
+				LinksDataSet79.tblResponseDataTable dtExtendedResponse = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
+				LinksDataSet79.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
+				foreach ( LinksDataSet79.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
 					if ( (Sample)drSubject.Generation == Sample.Nlsy79Gen1 ) {
 						Int32 recordsAddedForLoop = ProcessSubjectGen1(drSubject, dtExtendedResponse);
 						Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
@@ -57,7 +57,7 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Private Methods
-        private Int32 ProcessSubjectGen1( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtendedResponse ) {
+        private Int32 ProcessSubjectGen1( LinksDataSet79.tblSubjectRow drSubject, LinksDataSet79.tblResponseDataTable dtExtendedResponse ) {
             Int32 subjectTag = drSubject.SubjectTag;
             YesNo alwaysWithBothBioparents = DetermineAlwaysWithBothBioparents(subjectTag, dtExtendedResponse);
 
@@ -110,7 +110,7 @@ namespace Nls.BaseAssembly {
             const Int32 recordsAdded = 1;
             return recordsAdded;
         }
-        private static YesNo DetermineAlwaysWithBothBioparents( Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+        private static YesNo DetermineAlwaysWithBothBioparents( Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
             const Item alwaysWithBothBioparents = Item.Gen1AlwaysLivedWithBothParents;
 
             //LinksDataSet.tblResponseRow[] d3 = (LinksDataSet.tblResponseRow[])dt.Select("Item=340");
@@ -121,7 +121,7 @@ namespace Nls.BaseAssembly {
             else
                 return YesNo.DoNotKnow;
         }
-        private static Int16? DetermineBioparentBirthYearReported( Item itemBirthYear, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+        private static Int16? DetermineBioparentBirthYearReported( Item itemBirthYear, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
             Int16[] surveyYears = ItemYears.Gen1BioparentBirthYear;
             Trace.Assert(surveyYears.Length == 2, "This function only works if the item exists in only two survey waves.");
 
@@ -142,7 +142,7 @@ namespace Nls.BaseAssembly {
                 return null;
             }
         }
-		private static Int16? DetermineBioparentBirthYearEstimated ( Item itemBirthYear, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended, LinksDataSet ds ) {
+		private static Int16? DetermineBioparentBirthYearEstimated ( Item itemBirthYear, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended, LinksDataSet79 ds ) {
 			Int16[] surveyYears = ItemYears.Gen1BioparentAge;
 			Trace.Assert(surveyYears.Length == 2, "This function only works if the item exists in only two survey waves.");
 
@@ -170,7 +170,7 @@ namespace Nls.BaseAssembly {
 				return null;
 			}
 		}
-		private static byte? DetermineLastHealthModuleIndex ( Item item, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static byte? DetermineLastHealthModuleIndex ( Item item, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentAlive;
 
 			string selectToGetLoopIndex = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}>=0",
@@ -178,7 +178,7 @@ namespace Nls.BaseAssembly {
 				Convert.ToInt16(item), dtExtended.ItemColumn.ColumnName,
 				surveyYear, dtExtended.SurveyYearColumn.ColumnName,
 				dtExtended.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsForLoopIndex = (LinksDataSet.tblResponseRow[])dtExtended.Select(selectToGetLoopIndex);
+			LinksDataSet79.tblResponseRow[] drsForLoopIndex = (LinksDataSet79.tblResponseRow[])dtExtended.Select(selectToGetLoopIndex);
 
 			if ( drsForLoopIndex.Length <= 0 ) {
 				return null;
@@ -188,7 +188,7 @@ namespace Nls.BaseAssembly {
 				return maxLoopIndex;
 			}
 		}
-		private static YesNo DetermineBioparentAlive ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static YesNo DetermineBioparentAlive ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentAlive;
 			Int32? response = Retrieve.Response(surveyYear: surveyYear, itemID: item, subjectTag: subjectTag, maxRows: 1, loopIndex: loopIndex, dt: dtExtended);
 
@@ -205,7 +205,7 @@ namespace Nls.BaseAssembly {
 				default: throw new InvalidOperationException("The response " + codedResponse + " was not recognized.");
 			}
 		}
-		private static byte? DetermineBioparentDeathAge ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static byte? DetermineBioparentDeathAge ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentDeathAge;
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear: surveyYear, itemID: item, subjectTag: subjectTag, loopIndex: loopIndex, dt: dtExtended);
 			if ( !response.HasValue )
@@ -215,7 +215,7 @@ namespace Nls.BaseAssembly {
 			else
 				return Convert.ToByte(response);
 		}
-		private static Gen1BioparentDeathCause DetermineBioparentDeathCause ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static Gen1BioparentDeathCause DetermineBioparentDeathCause ( Item item, byte loopIndex, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentDeathCause;
 
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear: surveyYear, itemID: item, subjectTag: subjectTag, loopIndex: loopIndex, dt: dtExtended);
@@ -226,7 +226,7 @@ namespace Nls.BaseAssembly {
 				return (EnumResponsesGen1.Gen1BioparentDeathCause)response.Value;
 		}
 		//The questions about their parent's death are asked in the Health-40, (as in 40 years old) and Health-50 module.
-		private static YesNo DetermineUSBorn ( Item item, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static YesNo DetermineUSBorn ( Item item, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentBirthCountry;
 
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear: surveyYear, itemID: item, subjectTag: subjectTag, dt: dtExtended);
@@ -247,7 +247,7 @@ namespace Nls.BaseAssembly {
 				default: throw new InvalidOperationException("The response " + codedResponse + " was not recognized.");
 			}
 		}
-		private static byte? DetermineHighestGrade ( Item item, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtExtended ) {
+		private static byte? DetermineHighestGrade ( Item item, Int32 subjectTag, LinksDataSet79.tblResponseDataTable dtExtended ) {
 			const Int16 surveyYear = ItemYears.Gen1BioparentHighestGrade;
 
 			Int32? response = Retrieve.ResponseNullPossible(surveyYear: surveyYear, itemID: item, subjectTag: subjectTag, dt: dtExtended);
@@ -263,7 +263,7 @@ namespace Nls.BaseAssembly {
 			Int16? biomomBirthYearReported, Int16? biomomBirthYearEstimated, Int16? biomomYearLastAsked, YesNo biomomAlive, Gen1BioparentDeathCause biomomDeathCause, byte? biomomDeathAge, YesNo biomomUSBorn, byte? biomomHighestGrade) {
 
 			//lock ( _ds.tblFatherOfGen2 ) {
-			LinksDataSet.tblParentsOfGen1CurrentRow drNew = _ds.tblParentsOfGen1Current.NewtblParentsOfGen1CurrentRow();
+			LinksDataSet79.tblParentsOfGen1CurrentRow drNew = _ds.tblParentsOfGen1Current.NewtblParentsOfGen1CurrentRow();
 			drNew.SubjectTag = subjectTag;
             drNew.AlwaysLivedWithBothBioparents = Convert.ToInt16(alwaysLivedWithBothBioparents);
 
@@ -316,27 +316,27 @@ namespace Nls.BaseAssembly {
 		}
 		#endregion
 		#region Public/Private Static
-		public static LinksDataSet.tblParentsOfGen1CurrentDataTable RetrieveRows ( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet dsLinks ) {
+		public static LinksDataSet79.tblParentsOfGen1CurrentDataTable RetrieveRows ( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet79 dsLinks ) {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblParentsOfGen1Current.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Retro.");
 
 			string select = string.Format("{0}={1} OR {2}={3}",
 				subject1Tag, dsLinks.tblParentsOfGen1Current.SubjectTagColumn.ColumnName,
 				subject2Tag, dsLinks.tblParentsOfGen1Current.SubjectTagColumn.ColumnName);
-			LinksDataSet.tblParentsOfGen1CurrentRow[] drs = (LinksDataSet.tblParentsOfGen1CurrentRow[])dsLinks.tblParentsOfGen1Current.Select(select);
+			LinksDataSet79.tblParentsOfGen1CurrentRow[] drs = (LinksDataSet79.tblParentsOfGen1CurrentRow[])dsLinks.tblParentsOfGen1Current.Select(select);
 			//Trace.Assert(drs.Length >= 1, "There should be at least one row.");
 
-			LinksDataSet.tblParentsOfGen1CurrentDataTable dt = new LinksDataSet.tblParentsOfGen1CurrentDataTable();
-			foreach ( LinksDataSet.tblParentsOfGen1CurrentRow dr in drs ) {
+			LinksDataSet79.tblParentsOfGen1CurrentDataTable dt = new LinksDataSet79.tblParentsOfGen1CurrentDataTable();
+			foreach ( LinksDataSet79.tblParentsOfGen1CurrentRow dr in drs ) {
 				dt.ImportRow(dr);
 			}
 			return dt;
 		}
-        public static Tristate RetrieveAlwaysLiveWithBothBioparents( Int32 subjectTag, LinksDataSet.tblParentsOfGen1CurrentDataTable dtInput ) {
+        public static Tristate RetrieveAlwaysLiveWithBothBioparents( Int32 subjectTag, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtInput ) {
             if( dtInput == null ) throw new ArgumentNullException("dtInput");
             if( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Current.");
 
-            LinksDataSet.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
+            LinksDataSet79.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
             YesNo response = (YesNo)(dr.AlwaysLivedWithBothBioparents);
             return CommonFunctions.TranslateYesNo(response);
 
@@ -354,11 +354,11 @@ namespace Nls.BaseAssembly {
             //        throw new InvalidOperationException("The TriState value is not recognized by this function.");
             //}
         }
-        public static Int16? RetrieveBirthYear( Int32 subjectTag, Bioparent bioparent, LinksDataSet.tblParentsOfGen1CurrentDataTable dtInput ) {
+        public static Int16? RetrieveBirthYear( Int32 subjectTag, Bioparent bioparent, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtInput ) {
             if( dtInput == null ) throw new ArgumentNullException("dtInput");
             if( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Current.");
 
-            LinksDataSet.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
+            LinksDataSet79.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
             switch( bioparent ) {
                 case Bioparent.Mom:
                     if( dr.IsBiomomBirthYearEstimatedNull() ) return null;
@@ -370,11 +370,11 @@ namespace Nls.BaseAssembly {
                     throw new ArgumentOutOfRangeException("bioparent", bioparent, "The function does not accommodate that bioparent value.");
             }
         }
-		public static byte? RetrieveDeathAge ( Int32 subjectTag, Bioparent bioparent, LinksDataSet.tblParentsOfGen1CurrentDataTable dtInput ) {
+		public static byte? RetrieveDeathAge ( Int32 subjectTag, Bioparent bioparent, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtInput ) {
 			if ( dtInput == null ) throw new ArgumentNullException("dtInput");
 			if ( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Current.");
 
-			LinksDataSet.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
+			LinksDataSet79.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
 			switch ( bioparent ) {
 				case Bioparent.Mom:
 					if ( dr.IsBiomomDeathAgeNull() ) return null;
@@ -386,11 +386,11 @@ namespace Nls.BaseAssembly {
 					throw new ArgumentOutOfRangeException("bioparent", bioparent, "The function does not accommodate that bioparent value.");
 			}
 		}
-		public static Tristate RetrieveUSBorn ( Int32 subjectTag, Item item, LinksDataSet.tblParentsOfGen1CurrentDataTable dtInput ) {
+		public static Tristate RetrieveUSBorn ( Int32 subjectTag, Item item, LinksDataSet79.tblParentsOfGen1CurrentDataTable dtInput ) {
 			if ( dtInput == null ) throw new ArgumentNullException("dtInput");
 			if ( dtInput.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblParentsOfGen1Current.");
 
-			LinksDataSet.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
+			LinksDataSet79.tblParentsOfGen1CurrentRow dr = dtInput.FindBySubjectTag(subjectTag);
 			Int16 response = Int16.MaxValue;
 			switch ( item ) {
 				case Item.Gen1MotherBirthCountry: response = dr.BiomomUSBorn; break;

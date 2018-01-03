@@ -9,13 +9,13 @@ using Nls.BaseAssembly;
 namespace Nls.BaseAssembly.Assign {
 	public class RGen2Pass2 : IAssignPass2 {
 		#region Fields
-		private readonly LinksDataSet _dsLinks;
-		private readonly LinksDataSet.tblRelatedStructureRow _drLeft;
-		private readonly LinksDataSet.tblRelatedStructureRow _drRight;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails1;
-		private readonly LinksDataSet.tblSubjectDetailsRow _drSubjectDetails2;
-		private readonly LinksDataSet.tblMarkerGen2DataTable _dtMarkersGen2;
-		private readonly LinksDataSet.tblRelatedValuesRow _drValue;
+		private readonly LinksDataSet79 _dsLinks;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drLeft;
+		private readonly LinksDataSet79.tblRelatedStructureRow _drRight;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails1;
+		private readonly LinksDataSet79.tblSubjectDetailsRow _drSubjectDetails2;
+		private readonly LinksDataSet79.tblMarkerGen2DataTable _dtMarkersGen2;
+		private readonly LinksDataSet79.tblRelatedValuesRow _drValue;
 
 		private readonly Int32 _idRelatedLeft = Int32.MinValue;
 		private readonly Int32 _idRelatedRight = Int32.MinValue;
@@ -40,7 +40,7 @@ namespace Nls.BaseAssembly.Assign {
 		public float? RPeek { get { return _rPeek; } }
 		#endregion
 		#region Constructor
-		public RGen2Pass2 ( LinksDataSet dsLinks, LinksDataSet.tblRelatedStructureRow drLeft, LinksDataSet.tblRelatedStructureRow drRight ) {//ImportDataSet dsImport,
+		public RGen2Pass2 ( LinksDataSet79 dsLinks, LinksDataSet79.tblRelatedStructureRow drLeft, LinksDataSet79.tblRelatedStructureRow drRight ) {//ImportDataSet dsImport,
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( drLeft == null ) throw new ArgumentNullException("drLeft");
 			if ( drRight == null ) throw new ArgumentNullException("drRight");
