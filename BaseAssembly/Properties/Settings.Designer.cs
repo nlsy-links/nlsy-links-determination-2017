@@ -28,9 +28,9 @@ namespace Nls.BaseAssembly.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=gimble\\express_2016;Initial Catalog=NlsyLinks79;Integrated Security=T" +
             "rue")]
-        public string NlsyLinks79ConnectionString {
+        public string Nlsy79ConnectionStringBase {
             get {
-                return ((string)(this["NlsyLinks79ConnectionString"]));
+                return ((string)(this["Nlsy79ConnectionStringBase"]));
             }
         }
     }

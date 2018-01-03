@@ -28,9 +28,9 @@ namespace LinksGui.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\express_2016;Initial Catalog=NlsyLinks79;Integrated Security=T" +
             "rue;Connect Timeout=60")]
-        public string Nlsy79ConnectionString {
+        public string Nlsy79ConnectionStringGui {
             get {
-                return ((string)(this["Nlsy79ConnectionString"]));
+                return ((string)(this["Nlsy79ConnectionStringGui"]));
             }
         }
     }

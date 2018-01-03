@@ -14505,7 +14505,7 @@ SELECT ID, SubjectTag, SurveySource, SurveyYear, SurveyDate, AgeSelfReportYears,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14945,7 +14945,7 @@ SELECT ID, SubjectTag, ChildLoopIndex, SurveyYear, BiodadInHH, BiodadAlive, Biod
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15373,7 +15373,7 @@ SELECT ID, SubjectTag, ChildLoopIndex, SurveyYear, BiodadInHH, BiodadAlive, Biod
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15589,7 +15589,7 @@ SELECT ID, SubjectTag, SurveyYear, BiodadInHH, BiodadAlive, BiodadDistanceFromHH
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15988,7 +15988,7 @@ SELECT RelatedID, RosterAssignmentID, ResponseLower, ResponseUpper, Resolved, R,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16441,7 +16441,7 @@ SELECT ID, SubjectTag, ExtendedID, Generation, SurveySource, SurveyYear, Item, V
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16841,7 +16841,7 @@ SELECT ID, ExtendedID, RelatedID, MarkerType, SurveyYear, MzEvidence, SameGenera
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17242,7 +17242,7 @@ SELECT ID, ExtendedID, RelatedID, MarkerType, SurveyYear, MzEvidence, ShareBioda
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17630,7 +17630,7 @@ SELECT ID, SubjectTag, ExtendedID, Bioparent, InHH, Age, Year FROM Process.tblPa
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18138,7 +18138,7 @@ SELECT SubjectTag, BiodadBirthYearReported, BiodadBirthYearEstimated, BiodadYear
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18874,7 +18874,7 @@ SELECT ID, SubjectTag, Item, SurveyYear, Value FROM Process.tblOutcome WHERE (ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19200,7 +19200,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Generation, Gender FROM Process.tblSub
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19530,7 +19530,7 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20075,7 +20075,7 @@ SELECT ID, MultipleBirthIfSameSex, IsMz, LastSurvey_S1, LastSurvey_S2, ImplicitS
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21213,7 +21213,7 @@ SELECT SubjectTag, RaceCohort, SiblingCountInNls, BirthOrderInNls, SimilarAgeCou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21846,7 +21846,7 @@ SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22300,7 +22300,7 @@ SELECT ID, VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22781,7 +22781,7 @@ SELECT ID, SubjectTag_S1, SubjectTag_S2, Generation, MultipleBirthIfSameSex, IsM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23405,7 +23405,7 @@ SELECT ID, AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24462,7 +24462,7 @@ SELECT ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundU
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.NlsyLinks79ConnectionString;
+            this._connection.ConnectionString = global::Nls.BaseAssembly.Properties.Settings.Default.Nlsy79ConnectionStringBase;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
