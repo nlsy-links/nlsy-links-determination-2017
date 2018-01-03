@@ -2988,7 +2988,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Metadata].[tblItem_79](
+CREATE TABLE [Metadata].[tblItem](
 	[ID] [smallint] NOT NULL,
 	[Label] [varchar](50) NOT NULL,
 	[MinValue] [int] NOT NULL,
@@ -3044,7 +3044,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Metadata].[tblroster_assignment_79_gen1](
+CREATE TABLE [Metadata].[tblroster_assignment_gen1](
 	[ID] [tinyint] NOT NULL,
 	[ResponseLower] [smallint] NOT NULL,
 	[ResponseUpper] [smallint] NOT NULL,
@@ -3071,7 +3071,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Metadata].[tblVariable_79](
+CREATE TABLE [Metadata].[tblVariable](
 	[VariableCode] [char](8) NOT NULL,
 	[Item] [smallint] NOT NULL,
 	[Generation] [tinyint] NOT NULL,
@@ -3316,7 +3316,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblMzManual_Unique] ON [Metadata].[tblMzMan
 GO
 SET ANSI_PADDING ON
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_79] ON [Metadata].[tblVariable_79]
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_79] ON [Metadata].[tblVariable]
 (
 	[VariableCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -3366,7 +3366,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurv
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Metadata].[tblroster_assignment_79_gen1] ([ID])
+REFERENCES [Metadata].[tblroster_assignment_gen1] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
@@ -3377,51 +3377,51 @@ REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
 REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
 REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
 GO
-ALTER TABLE [Metadata].[tblVariable_79]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_79_tblItem_79] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem_79] ([ID])
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_79_tblItem_79] FOREIGN KEY([Item])
+REFERENCES [Metadata].[tblItem] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblVariable_79] CHECK CONSTRAINT [FK_tblVariable_79_tblItem_79]
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_79_tblItem_79]
 GO
-ALTER TABLE [Metadata].[tblVariable_79]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_79_tblLUExtractSource] FOREIGN KEY([ExtractSource])
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_79_tblLUExtractSource] FOREIGN KEY([ExtractSource])
 REFERENCES [Enum].[tblLUExtractSource] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblVariable_79] CHECK CONSTRAINT [FK_tblVariable_79_tblLUExtractSource]
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_79_tblLUExtractSource]
 GO
 ALTER TABLE [Process].[tblBabyDaddy]  WITH CHECK ADD  CONSTRAINT [FK_tblBabyDaddy_tblLUYesNoGen_BiodadInHH] FOREIGN KEY([BiodadInHH])
 REFERENCES [Enum].[tblLUYesNo] ([ID])
@@ -3647,7 +3647,7 @@ GO
 ALTER TABLE [Process].[tblRelatedValues] CHECK CONSTRAINT [FK_tblRelatedValues_tblRelatedStructure]
 GO
 ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [FK_tblResponse_tblItem_79] FOREIGN KEY([Item])
-REFERENCES [Metadata].[tblItem_79] ([ID])
+REFERENCES [Metadata].[tblItem] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
@@ -3668,7 +3668,7 @@ GO
 ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblSubject]
 GO
 ALTER TABLE [Process].[tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Metadata].[tblroster_assignment_79_gen1] ([ID])
+REFERENCES [Metadata].[tblroster_assignment_gen1] ([ID])
 GO
 ALTER TABLE [Process].[tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment]
 GO
@@ -3717,29 +3717,29 @@ ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual
 GO
 ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [CK_tblMzManual_Ordered]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_79_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
+ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
 GO
-ALTER TABLE [Metadata].[tblVariable_79]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
 GO
-ALTER TABLE [Metadata].[tblVariable_79] CHECK CONSTRAINT [CK_tblVariable_79_Generation]
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_79_Generation]
 GO
-ALTER TABLE [Metadata].[tblVariable_79]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2030)))
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2030)))
 GO
-ALTER TABLE [Metadata].[tblVariable_79] CHECK CONSTRAINT [CK_tblVariable_79_SurveyYear]
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_79_SurveyYear]
 GO
-ALTER TABLE [Metadata].[tblVariable_79]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
+ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
 GO
-ALTER TABLE [Metadata].[tblVariable_79] CHECK CONSTRAINT [CK_tblVariable_79_VariableCodeLength]
+ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_79_VariableCodeLength]
 GO
 ALTER TABLE [Metadata].[tblVariable_97]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_97_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
 GO
