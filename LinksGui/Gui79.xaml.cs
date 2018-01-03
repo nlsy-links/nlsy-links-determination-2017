@@ -24,7 +24,7 @@ namespace LinksGui {
 		private BA.ImportDataSet _dsImport;
 		private BA.LinksDataSet _dsLinks;
 		private SqlConnection _cnn;
-		private const string _cnnStringNameInAppConfig = "LinksGui.Properties.Settings.NlsLinksConnectionString";
+		private const string _cnnStringNameInAppConfig = "LinksGui.Properties.Settings.Nlsy79ConnectionString";
 		private const string _combinedButtonTag = "CombinedButton";
 		#endregion
 		public MainWindow ( ) {
@@ -33,6 +33,7 @@ namespace LinksGui {
 		private void Window_Loaded ( object sender, RoutedEventArgs e ) {
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
+
 			ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[_cnnStringNameInAppConfig];
 			Trace.Assert(settings != null, "The connectionStringSettings object should be initialized propertly.");
 			_cnn = new SqlConnection(settings.ConnectionString);
