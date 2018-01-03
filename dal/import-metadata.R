@@ -17,6 +17,7 @@ requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
@@ -123,7 +124,7 @@ lst_col_types <- list(
     ResponseUpperLabel                  = readr::col_character()
   ),
   variable_79 = readr::cols_only(
-    ID                                  = readr::col_integer(),
+    # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
     Generation                          = readr::col_integer(),
@@ -146,7 +147,6 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
-    Notes                               = readr::col_character(),
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   )
@@ -179,13 +179,16 @@ ds_file
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 ds_entries <- ds_file %>%
+  # dplyr::slice(15) %>%
   dplyr::select(name, path, col_types) %>%
   dplyr::mutate(
-    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv)
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")
   )
 ds_entries
 
-# d <- readr::read_csv("data-public/metadata/tables/LURosterGen1.csv", col_types=lst_col_types$LURosterGen1)
+# d <- readr::read_csv("data-public/metadata/tables/variable_79.csv", col_types=lst_col_types$variable_79, comment = "#")
+# readr::problems(d)
+# ds_entries$entries[15]
 
 ds_table <- database_inventory()
 ds_table
@@ -198,8 +201,10 @@ rm(directory_in) # rm(col_types_tulsa)
 ds_file <- ds_file %>%
   dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
   dplyr::mutate(
-    table_name    = paste0(schema_name, ".tbl", name),
-    sql_delete    = paste0("DELETE FROM ", table_name)
+    table_name    = paste0("tbl", name),
+    sql_delete    = glue::glue("DELETE FROM {schema_name}.{table_name};")
+    # table_name    = paste0(schema_name, ".tbl", name),
+    # sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
   dplyr::left_join(
     ds_entries %>%
@@ -293,21 +298,24 @@ ds_table_process <- ds_table %>%
 channel <- open_dsn_channel_odbc()
 DBI::dbGetInfo(channel)
 
+channel_rodbc <- open_dsn_channel_rodbc()
+RODBC::odbcGetInfo(channel_rodbc)
 
 # Clear process tables
 delete_results_process <- ds_table_process$sql_truncate %>%
-  rev() %>%
   purrr::set_names(ds_table_process$table_name) %>%
+  rev() %>%
   purrr::map(DBI::dbGetQuery, conn=channel)
 delete_results_process
 
 # Delete metadata tables
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results_metadata <- ds_file$sql_delete %>%
-  rev() %>%
   purrr::set_names(ds_file$table_name) %>%
+  rev() %>%
   purrr::map(DBI::dbGetQuery, conn=channel)
 
+# DBI::dbGetQuery(conn=channel, ds_file$sql_delete[15])
 delete_results_metadata
 
 # d <- ds_file %>%
@@ -320,27 +328,44 @@ delete_results_metadata
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
 # Upload metadata tables
-purrr::map2_int(
-  ds_file$entries,
-  ds_file$table_name,
-  function( d, table_name ) {
-    DBI::dbWriteTable(
-      conn    = channel,
-      name    = table_name,
-      value   = d,
-      append  = T
-    )
-    # RODBC::sqlSave(
-    #   channel     = channel,
-    #   dat         = d,
-    #   tablename   = table_name,
-    #   safer       = TRUE,       # Don't keep the existing table.
-    #   rownames    = FALSE,
-    #   append      = TRUE
+purrr::pmap_int(
+  list(
+    ds_file$entries,
+    ds_file$table_name,
+    ds_file$schema_name
+  ),
+  function( d, table_name, schema_name ) {
+    # browser()
+    # DBI::dbWriteTable(
+    #   conn    = channel,
+    #   name    = table_name,
+    #   schema  = schema_name,
+    #   value   = d,
+    #   append  = F
     # )
+    RODBC::sqlSave(
+      channel     = channel_rodbc,
+      dat         = d,
+      # tablename   = table_name,
+      tablename   = paste0(schema_name, ".", table_name),
+      safer       = TRUE,       # Don't keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    )
   }
 ) #%>%
 # purrr::set_names(ds_file$table_name)
+# a <- ds_file$entries[[16]]
+# table(a$ID)
+
+# odbc::dbWriteTable(
+#   conn    = channel,
+#   name    = DBI::SQL("Metadata.tblvariable_97"),
+#   # name    = "tblvariable_97",
+#   # schema  = "Metadata",
+#   value   = ds_file$entries[[16]],
+#   append  = T
+# )
 
 # for( i in seq_len(nrow(ds_file)) ) {
 #   message(glue::glue("Uploading from `{ basename(ds_file$path)[i]}` to `{ds_file$table_name[i]}`."))
@@ -385,4 +410,4 @@ purrr::map2_int(
 
 # Close channel
 DBI::dbDisconnect(channel); rm(channel)
-# RODBC::odbcClose(channel); rm(channel)
+RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
