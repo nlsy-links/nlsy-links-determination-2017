@@ -62,9 +62,9 @@
     <Compile Include="TrendLineGen0InHHFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseAssembly\BaseAssembly.csproj">
+    <ProjectReference Include="..\BaseAssembly\Base79.csproj">
       <Project>{7E417BFB-2F16-41D4-B3AD-3DE8897E8BF0}</Project>
-      <Name>BaseAssembly</Name>
+      <Name>Base79</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
