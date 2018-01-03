@@ -24,7 +24,7 @@ namespace LinksGui {
 		private BA.ImportDataSet _dsImport;
 		private BA.LinksDataSet _dsLinks;
 		private SqlConnection _cnn;
-		private const string _cnnStringNameInAppConfig = "LinksGui.Properties.Settings.Nlsy79ConnectionString";
+		private const string _cnnStringNameInAppConfig = "LinksGui.Properties.Settings.Nlsy79ConnectionStringGui";
 		private const string _combinedButtonTag = "CombinedButton";
 		#endregion
 		public MainWindow ( ) {
