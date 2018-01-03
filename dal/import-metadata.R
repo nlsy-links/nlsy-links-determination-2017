@@ -134,7 +134,7 @@ lst_col_types <- list(
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
     Notes                               = readr::col_character(),
-    Active                              = readr::col_logical(),
+    Active                              = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
   variable_97 = readr::cols_only(
@@ -147,7 +147,7 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
-    Active                              = readr::col_logical(),
+    Active                              = readr::col_integer(),
     Notes                               = readr::col_character()
   )
 )
@@ -355,7 +355,7 @@ purrr::pmap_int(
   }
 ) #%>%
 # purrr::set_names(ds_file$table_name)
-# a <- ds_file$entries[[16]]
+a <- ds_file$entries[[15]]
 # table(a$ID)
 
 # odbc::dbWriteTable(
