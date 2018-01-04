@@ -3,7 +3,7 @@ open_dsn_channel_odbc <- function( ) {
 
   channel <- DBI::dbConnect(
     drv   = odbc::odbc(),
-    dsn   = "local-nlsy-links"
+    dsn   = "local-nlsy-links-79"
   )
   testit::assert("The ODBC channel should open successfully.", exists("channel"))
 
@@ -17,7 +17,7 @@ open_dsn_channel_rodbc <- function( ) {
 
   channel <- RODBC::odbcConnect(
     # Uses Trusted/integrated authentication
-    dsn   = "local-nlsy-links"
+    dsn   = "local-nlsy-links-79"
     # dsn = "BeeNlsLinks",
     # uid = "NlsyReadWrite",
     # pwd = "nophi"

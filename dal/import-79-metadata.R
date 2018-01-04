@@ -21,7 +21,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
-directory_in              <- "data-public/metadata/tables"
+directory_in              <- "data-public/metadata/tables-79"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -34,7 +34,7 @@ col_types_minimal <- readr::cols_only(
 #   - Tables are WRITTEN from top to bottom.
 #   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
-  item_79 = readr::cols_only(
+  item = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
     MinValue                            = readr::col_integer(),
@@ -43,15 +43,15 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  item_97 = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    Label                               = readr::col_character(),
-    MinValue                            = readr::col_integer(),
-    MinNonnegative                      = readr::col_integer(),
-    MaxValue                            = readr::col_integer(),
-    Active                              = readr::col_logical(),
-    Notes                               = readr::col_character()
-  ),
+  # item_97 = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   Label                               = readr::col_character(),
+  #   MinValue                            = readr::col_integer(),
+  #   MinNonnegative                      = readr::col_integer(),
+  #   MaxValue                            = readr::col_integer(),
+  #   Active                              = readr::col_logical(),
+  #   Notes                               = readr::col_character()
+  # ),
   LUExtractSource = col_types_minimal,
   LUMarkerEvidence = col_types_minimal,
   LUMarkerType = readr::cols_only(
@@ -105,7 +105,7 @@ lst_col_types <- list(
   #   RFull                             = readr::col_double(),
   #   RPeek                             = readr::col_character()
   # ),
-  roster_assignment_79_gen1    = readr::cols_only(
+  RosterGen1Assignment    = readr::cols_only(
     ID                                  = readr::col_integer(),
     ResponseLower                       = readr::col_integer(),
     ResponseUpper                       = readr::col_integer(),
@@ -123,7 +123,7 @@ lst_col_types <- list(
     ResponseLowerLabel                  = readr::col_character(),
     ResponseUpperLabel                  = readr::col_character()
   ),
-  variable_79 = readr::cols_only(
+  variable = readr::cols_only(
     # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
@@ -136,20 +136,20 @@ lst_col_types <- list(
     Notes                               = readr::col_character(),
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character()
-  ),
-  variable_97 = readr::cols_only(
-    # ID                                  = readr::col_integer(),
-    VariableCode                        = readr::col_character(),
-    Item                                = readr::col_integer(),
-    Generation                          = readr::col_integer(),
-    ExtractSource                       = readr::col_integer(),
-    SurveySource                        = readr::col_integer(),
-    SurveyYear                          = readr::col_integer(),
-    LoopIndex                           = readr::col_integer(),
-    Translate                           = readr::col_integer(),
-    Active                              = readr::col_integer(),
-    Notes                               = readr::col_character()
   )
+  # variable_97 = readr::cols_only(
+  #   # ID                                  = readr::col_integer(),
+  #   VariableCode                        = readr::col_character(),
+  #   Item                                = readr::col_integer(),
+  #   Generation                          = readr::col_integer(),
+  #   ExtractSource                       = readr::col_integer(),
+  #   SurveySource                        = readr::col_integer(),
+  #   SurveyYear                          = readr::col_integer(),
+  #   LoopIndex                           = readr::col_integer(),
+  #   Translate                           = readr::col_integer(),
+  #   Active                              = readr::col_integer(),
+  #   Notes                               = readr::col_character()
+  # )
 )
 
 col_types_mapping <- readr::cols_only(
@@ -355,7 +355,7 @@ purrr::pmap_int(
   }
 ) #%>%
 # purrr::set_names(ds_file$table_name)
-a <- ds_file$entries[[15]]
+# a <- ds_file$entries[[15]]
 # table(a$ID)
 
 # odbc::dbWriteTable(
