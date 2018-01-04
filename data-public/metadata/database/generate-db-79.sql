@@ -1356,7 +1356,28 @@ CREATE TABLE [Extract].[tblGen1Links](
 	[T2260600] [int] NULL,
 	[T2260601] [int] NULL,
 	[T2260602] [int] NULL,
+	[T2763400] [int] NULL,
+	[T2763500] [int] NULL,
+	[T2763600] [int] NULL,
+	[T2763700] [int] NULL,
+	[T2763800] [int] NULL,
+	[T2763900] [int] NULL,
+	[T2764000] [int] NULL,
 	[T3108700] [int] NULL,
+	[T3195600] [int] NULL,
+	[T3195601] [int] NULL,
+	[T3195602] [int] NULL,
+	[T3729600] [int] NULL,
+	[T3729700] [int] NULL,
+	[T3729800] [int] NULL,
+	[T3729900] [int] NULL,
+	[T3730000] [int] NULL,
+	[T3730100] [int] NULL,
+	[T4113200] [int] NULL,
+	[T4181100] [int] NULL,
+	[T4181101] [int] NULL,
+	[T4181102] [int] NULL,
+	[T5023600] [int] NULL,
  CONSTRAINT [PK_tblGen1Links] PRIMARY KEY CLUSTERED 
 (
 	[R0000100] ASC
@@ -1421,9 +1442,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[R0000100] [int] NOT NULL,
-	[R0214700] [int] NULL,
 	[R0214800] [int] NULL,
-	[R0173600] [int] NULL,
 	[R1373300] [int] NULL,
 	[R1373400] [int] NULL,
 	[R1373500] [int] NULL,
@@ -2080,6 +2099,22 @@ CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[R8135700] [int] NULL,
 	[R8135800] [int] NULL,
 	[R8135900] [int] NULL,
+	[R9900600] [int] NULL,
+	[R9900601] [int] NULL,
+	[R9901400] [int] NULL,
+	[R9901401] [int] NULL,
+	[R9902200] [int] NULL,
+	[R9902201] [int] NULL,
+	[R9903000] [int] NULL,
+	[R9903001] [int] NULL,
+	[R9903800] [int] NULL,
+	[R9903801] [int] NULL,
+	[R9904600] [int] NULL,
+	[R9904601] [int] NULL,
+	[R9905400] [int] NULL,
+	[R9905401] [int] NULL,
+	[R9911200] [int] NULL,
+	[R9911201] [int] NULL,
 	[T0345800] [int] NULL,
 	[T0345900] [int] NULL,
 	[T0346000] [int] NULL,
@@ -2359,6 +2394,12 @@ CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[T2763800] [int] NULL,
 	[T2763900] [int] NULL,
 	[T2764000] [int] NULL,
+	[T3729600] [int] NULL,
+	[T3729700] [int] NULL,
+	[T3729800] [int] NULL,
+	[T3729900] [int] NULL,
+	[T3730000] [int] NULL,
+	[T3730100] [int] NULL,
  CONSTRAINT [PK_tblGen2FatherFromGen1] PRIMARY KEY CLUSTERED 
 (
 	[R0000100] ASC
@@ -2553,6 +2594,11 @@ CREATE TABLE [Extract].[tblGen2Links](
 	[C4006300] [int] NULL,
 	[C4006301] [int] NULL,
 	[C4006302] [int] NULL,
+	[C5524800] [int] NULL,
+	[C5550100] [int] NULL,
+	[C5550101] [int] NULL,
+	[C5550102] [int] NULL,
+	[C5801100] [int] NULL,
 	[Y0000200] [int] NULL,
 	[Y0000201] [int] NULL,
 	[Y0000202] [int] NULL,
@@ -2656,6 +2702,44 @@ CREATE TABLE [Extract].[tblGen2Links](
 	[Y2567100] [int] NULL,
 	[Y2567200] [int] NULL,
 	[Y2616000] [int] NULL,
+	[Y2633100] [int] NULL,
+	[Y2633101] [int] NULL,
+	[Y2633102] [int] NULL,
+	[Y2644500] [int] NULL,
+	[Y2644600] [int] NULL,
+	[Y2644700] [int] NULL,
+	[Y2644800] [int] NULL,
+	[Y2644900] [int] NULL,
+	[Y2645000] [int] NULL,
+	[Y2645100] [int] NULL,
+	[Y2645200] [int] NULL,
+	[Y2645300] [int] NULL,
+	[Y2645400] [int] NULL,
+	[Y2645500] [int] NULL,
+	[Y2645600] [int] NULL,
+	[Y2645700] [int] NULL,
+	[Y2645800] [int] NULL,
+	[Y2645900] [int] NULL,
+	[Y2646000] [int] NULL,
+	[Y2646100] [int] NULL,
+	[Y2646200] [int] NULL,
+	[Y2646300] [int] NULL,
+	[Y2646400] [int] NULL,
+	[Y2966400] [int] NULL,
+	[Y2990500] [int] NULL,
+	[Y2990501] [int] NULL,
+	[Y2990502] [int] NULL,
+	[Y3002700] [int] NULL,
+	[Y3002800] [int] NULL,
+	[Y3002900] [int] NULL,
+	[Y3003000] [int] NULL,
+	[Y3003100] [int] NULL,
+	[Y3003200] [int] NULL,
+	[Y3003300] [int] NULL,
+	[Y3003400] [int] NULL,
+	[Y3003500] [int] NULL,
+	[Y3003600] [int] NULL,
+	[Y3331900] [int] NULL,
  CONSTRAINT [PK_tblGen2Links] PRIMARY KEY CLUSTERED 
 (
 	[C0000100] ASC
@@ -2996,7 +3080,7 @@ CREATE TABLE [Metadata].[tblItem](
 	[MaxValue] [int] NOT NULL,
 	[Active] [varchar](5) NOT NULL,
 	[Notes] [varchar](255) NULL,
- CONSTRAINT [PK_tblLUItem_79] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_tblLUItem] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -3044,7 +3128,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Metadata].[tblroster_assignment_gen1](
+CREATE TABLE [Metadata].[tblRosterGen1Assignment](
 	[ID] [tinyint] NOT NULL,
 	[ResponseLower] [smallint] NOT NULL,
 	[ResponseUpper] [smallint] NOT NULL,
@@ -3061,7 +3145,7 @@ CREATE TABLE [Metadata].[tblroster_assignment_gen1](
 	[Notes] [varchar](255) NULL,
 	[ResponseLowerLabel] [varchar](50) NULL,
 	[ResponseUpperLabel] [varchar](50) NULL,
- CONSTRAINT [PK_tblLURosterGen1Assignment_1] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_tblroster_assignment_gen1] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -3366,7 +3450,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurv
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Metadata].[tblroster_assignment_gen1] ([ID])
+REFERENCES [Metadata].[tblRosterGen1Assignment] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
@@ -3377,37 +3461,37 @@ REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive] CHECK CONSTRAINT [FK_tblRelatedValuesArchive_tblLUTristate]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1] FOREIGN KEY([ResponseLower])
 REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen1]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11] FOREIGN KEY([ResponseUpper])
 REFERENCES [Enum].[tblLURosterGen1] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLURosterGen11]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate] FOREIGN KEY([SameGeneration])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate1]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate2]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
 REFERENCES [Enum].[tblLUTristate] ([ID])
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [FK_tblLURosterGen1Assignment_tblLUTristate3]
 GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_79_tblItem_79] FOREIGN KEY([Item])
 REFERENCES [Metadata].[tblItem] ([ID])
@@ -3668,7 +3752,7 @@ GO
 ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [FK_tblResponse_tblSubject]
 GO
 ALTER TABLE [Process].[tblRosterGen1]  WITH CHECK ADD  CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
-REFERENCES [Metadata].[tblroster_assignment_gen1] ([ID])
+REFERENCES [Metadata].[tblRosterGen1Assignment] ([ID])
 GO
 ALTER TABLE [Process].[tblRosterGen1] CHECK CONSTRAINT [FK_tblRosterGen1_tblLURosterGen1Assignment]
 GO
@@ -3717,17 +3801,17 @@ ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual
 GO
 ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [CK_tblMzManual_Ordered]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_R]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundLower]
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+ALTER TABLE [Metadata].[tblRosterGen1Assignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
 GO
-ALTER TABLE [Metadata].[tblroster_assignment_gen1] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
+ALTER TABLE [Metadata].[tblRosterGen1Assignment] CHECK CONSTRAINT [CK_tblLURosterGen1Assignment_RBoundUpper]
 GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_79_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
 GO
@@ -3761,7 +3845,7 @@ ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [CK_
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [CK_tblParentsOfGen1Current_BiomomHighestGrade]
 GO
-ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [CK_tblResponse_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2010)))
+ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [CK_tblResponse_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2016)))
 GO
 ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [CK_tblResponse_SurveyYear]
 GO
@@ -3789,7 +3873,7 @@ ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSub
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_KidCountBio]
 GO
-ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear] CHECK  (((1979)<=[LastSurveyYearCompleted] AND [LastSurveyYearCompleted]<=(2010)))
+ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear] CHECK  (((1979)<=[LastSurveyYearCompleted] AND [LastSurveyYearCompleted]<=(2016)))
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear]
 GO
@@ -3809,7 +3893,7 @@ ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyT
 GO
 ALTER TABLE [Process].[tblSurveyTime] CHECK CONSTRAINT [CK_tblSurveyTime_AgeSelfReportYears]
 GO
-ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyTime_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2010)))
+ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [CK_tblSurveyTime_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2016)))
 GO
 ALTER TABLE [Process].[tblSurveyTime] CHECK CONSTRAINT [CK_tblSurveyTime_SurveyYear]
 GO
@@ -3829,7 +3913,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 SELECT Max([AlgorithmVersion]) as MaxVersion
-  FROM [NlsLinks].Archive.[tblRelatedValuesArchive]
+  FROM Archive.[tblRelatedValuesArchive]
 
 END
 GO

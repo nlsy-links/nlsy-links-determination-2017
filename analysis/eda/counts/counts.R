@@ -30,7 +30,7 @@ sql_item <- "
 "
 sql_variable <- "
   SELECT
-    v.ID                 AS variable_id,
+    -- v.ID                 AS variable_id,
     v.VariableCode       AS variable_code,
     v.Item               AS item_id,
     i.Label              AS item_label,
@@ -53,7 +53,7 @@ sql_variable <- "
 # ---- load-data ---------------------------------------------------------------
 ds <- database_inventory()
 
-channel            <- open_dsn_channel()
+channel            <- open_dsn_channel_rodbc()
 ds_item            <- RODBC::sqlQuery(channel, sql_item    , stringsAsFactors=F)
 ds_variable        <- RODBC::sqlQuery(channel, sql_variable, stringsAsFactors=F)
 RODBC::odbcClose(channel); rm(channel, sql_item, sql_variable)
