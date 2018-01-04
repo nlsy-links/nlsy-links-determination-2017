@@ -1,9 +1,23 @@
-open_dsn_channel <- function( ) {
+open_dsn_channel_odbc <- function( ) {
+  requireNamespace("odbc")
+
+  channel <- DBI::dbConnect(
+    drv   = odbc::odbc(),
+    dsn   = "local-nlsy-links-79"
+  )
+  testit::assert("The ODBC channel should open successfully.", exists("channel"))
+
+  return( channel )
+}
+# channel <- open_dsn_channel_odbc()
+# DBI::dbDisconnect(channel); rm(channel)
+
+open_dsn_channel_rodbc <- function( ) {
   requireNamespace("RODBC")
 
   channel <- RODBC::odbcConnect(
     # Uses Trusted/integrated authentication
-    dsn   = "local-nlsy-links"
+    dsn   = "local-nlsy-links-79"
     # dsn = "BeeNlsLinks",
     # uid = "NlsyReadWrite",
     # pwd = "nophi"
@@ -53,7 +67,7 @@ database_inventory <- function( ) {
     ORDER BY t_row.schema_name, t_row.table_name
   "
 
-  channel            <- open_dsn_channel()
+  channel            <- open_dsn_channel_rodbc()
   ds    <- RODBC::sqlQuery(channel, sql_table, stringsAsFactors=F)
   # ds_row_count       <- RODBC::sqlTables(channel)
   RODBC::odbcClose(channel); rm(channel, sql_table)

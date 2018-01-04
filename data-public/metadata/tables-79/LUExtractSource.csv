@@ -1,0 +1,13 @@
+ID,Label,Active,Notes
+3,Gen1Links           ,TRUE,
+4,Gen2Links           ,TRUE,
+5,Gen2LinksFromGen1   ,TRUE,
+6,Gen2ImplicitFather  ,TRUE,
+7,Gen2FatherFromGen1  ,TRUE,
+8,Gen1Outcomes        ,TRUE,
+9,Gen2OutcomesHeight  ,TRUE,
+10,Gen1Explicit        ,TRUE,
+11,Gen1Implicit        ,TRUE,
+12,Gen2OutcomesWeight  ,TRUE,
+13,Gen2OutcomesMath    ,TRUE,
+100,gen_1_97_roster   ,TRUE,

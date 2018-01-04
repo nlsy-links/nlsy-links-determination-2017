@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAssembly", "BaseAssembly\BaseAssembly.csproj", "{7E417BFB-2F16-41D4-B3AD-3DE8897E8BF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base79", "BaseAssembly\Base79.csproj", "{7E417BFB-2F16-41D4-B3AD-3DE8897E8BF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseFixture", "BaseFixture\BaseFixture.csproj", "{FCF01397-3551-49BE-9209-D5D43320D4E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base79Fixture", "BaseFixture\Base79Fixture.csproj", "{FCF01397-3551-49BE-9209-D5D43320D4E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinksGui", "LinksGui\LinksGui.csproj", "{4E4734F1-5FA3-44EA-B58A-2F96E2D83537}"
 EndProject

@@ -26,11 +26,11 @@ namespace Nls.BaseAssembly.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\express_2016;Initial Catalog=NlsLinks;Integrated Security=True" +
-            ";Connect Timeout=60")]
-        public string NlsLinksConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=gimble\\express_2016;Initial Catalog=NlsyLinks79;Integrated Security=T" +
+            "rue")]
+        public string Nlsy79ConnectionStringBase {
             get {
-                return ((string)(this["NlsLinksConnectionString"]));
+                return ((string)(this["Nlsy79ConnectionStringBase"]));
             }
         }
     }

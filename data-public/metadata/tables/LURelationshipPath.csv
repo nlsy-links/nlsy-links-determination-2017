@@ -1,6 +1,0 @@
-ID,Label,Active,Notes
-1,Gen1Housemates      ,TRUE,
-2,Gen2Siblings        ,TRUE,
-3,Gen2Cousins         ,TRUE,
-4,ParentChild         ,TRUE,
-5,AuntNiece           ,TRUE,Actually (Uncle|Aunt)-(Nephew|Niece)

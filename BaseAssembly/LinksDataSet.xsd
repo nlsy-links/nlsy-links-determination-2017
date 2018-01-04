@@ -2,14 +2,14 @@
 <xs:schema id="LinksDataSet" targetNamespace="http://tempuri.org/LinksDataSet.xsd" xmlns:mstns="http://tempuri.org/LinksDataSet.xsd" xmlns="http://tempuri.org/LinksDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NlsLinksConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NlsLinksConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Nls.BaseAssembly.Properties.Settings.GlobalReference.Default.NlsLinksConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Nlsy79ConnectionStringBase" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Nlsy79ConnectionStringBase (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Nls.BaseAssembly.Properties.Settings.GlobalReference.Default.Nlsy79ConnectionStringBase" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblSurveyTimeTableAdapter" GeneratorDataComponentClassName="tblSurveyTimeTableAdapter" Name="tblSurveyTime" UserDataComponentName="tblSurveyTimeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblSurveyTime" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblSurveyTime" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblSurveyTime] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ((@IsNull_SurveyDate = 1 AND [SurveyDate] IS NULL) OR ([SurveyDate] = @Original_SurveyDate)) AND ((@IsNull_AgeSelfReportYears = 1 AND [AgeSelfReportYears] IS NULL) OR ([AgeSelfReportYears] = @Original_AgeSelfReportYears)) AND ((@IsNull_AgeCalculateYears = 1 AND [AgeCalculateYears] IS NULL) OR ([AgeCalculateYears] = @Original_AgeCalculateYears)))</CommandText>
@@ -87,7 +87,7 @@ SELECT ID, SubjectTag, SurveySource, SurveyYear, SurveyDate, AgeSelfReportYears,
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblBabyDaddyTableAdapter" GeneratorDataComponentClassName="tblBabyDaddyTableAdapter" Name="tblBabyDaddy" UserDataComponentName="tblBabyDaddyTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblBabyDaddy" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblBabyDaddy" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblBabyDaddy] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([ChildLoopIndex] = @Original_ChildLoopIndex) AND ([SurveyYear] = @Original_SurveyYear) AND ([BiodadInHH] = @Original_BiodadInHH) AND ([BiodadAlive] = @Original_BiodadAlive) AND ([BiodadEverLiveInHH] = @Original_BiodadEverLiveInHH) AND ((@IsNull_BiodadLeftHHDate = 1 AND [BiodadLeftHHDate] IS NULL) OR ([BiodadLeftHHDate] = @Original_BiodadLeftHHDate)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDate)) AND ((@IsNull_BiodadDistanceFromHH = 1 AND [BiodadDistanceFromHH] IS NULL) OR ([BiodadDistanceFromHH] = @Original_BiodadDistanceFromHH)) AND ([BiodadAsthma] = @Original_BiodadAsthma))</CommandText>
@@ -185,7 +185,7 @@ SELECT ID, SubjectTag, ChildLoopIndex, SurveyYear, BiodadInHH, BiodadAlive, Biod
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vewSurveyTimeMostRecentTableAdapter" GeneratorDataComponentClassName="vewSurveyTimeMostRecentTableAdapter" Name="vewSurveyTimeMostRecent" UserDataComponentName="vewSurveyTimeMostRecentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.vewSurveyTimeMostRecent" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.vewSurveyTimeMostRecent" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT SubjectTag, SurveyYearMostRecent FROM Process.vewSurveyTimeMostRecent</CommandText>
@@ -202,7 +202,7 @@ SELECT ID, SubjectTag, ChildLoopIndex, SurveyYear, BiodadInHH, BiodadAlive, Biod
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblFatherOfGen2TableAdapter" GeneratorDataComponentClassName="tblFatherOfGen2TableAdapter" Name="tblFatherOfGen2" UserDataComponentName="tblFatherOfGen2TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblFatherOfGen2" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsyLinks79.Process.tblFatherOfGen2" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblFatherOfGen2] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([SurveyYear] = @Original_SurveyYear) AND ([BiodadInHH] = @Original_BiodadInHH) AND ([BiodadAlive] = @Original_BiodadAlive) AND ((@IsNull_BiodadDistanceFromHH = 1 AND [BiodadDistanceFromHH] IS NULL) OR ([BiodadDistanceFromHH] = @Original_BiodadDistanceFromHH)) AND ([BiodadAsthma] = @Original_BiodadAsthma))</CommandText>
@@ -276,7 +276,7 @@ SELECT ID, SubjectTag, SurveyYear, BiodadInHH, BiodadAlive, BiodadDistanceFromHH
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRosterGen1TableAdapter" GeneratorDataComponentClassName="tblRosterGen1TableAdapter" Name="tblRosterGen1" UserDataComponentName="tblRosterGen1TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblRosterGen1" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblRosterGen1" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblRosterGen1] WHERE (([RelatedID] = @Original_RelatedID) AND ([RosterAssignmentID] = @Original_RosterAssignmentID) AND ([ResponseLower] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBoundLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareBiomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiograndparent) AND ([Inconsistent] = @Original_Inconsistent))</CommandText>
@@ -381,7 +381,7 @@ SELECT RelatedID, RosterAssignmentID, ResponseLower, ResponseUpper, Resolved, R,
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblResponseTableAdapter" GeneratorDataComponentClassName="tblResponseTableAdapter" Name="tblResponse" UserDataComponentName="tblResponseTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblResponse" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblResponse" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblResponse] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([ExtendedID] = @Original_ExtendedID) AND ([Generation] = @Original_Generation) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ([Item] = @Original_Item) AND ([Value] = @Original_Value) AND ([LoopIndex] = @Original_LoopIndex))</CommandText>
@@ -463,7 +463,7 @@ SELECT ID, SubjectTag, ExtendedID, Generation, SurveySource, SurveyYear, Item, V
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMarkerGen1TableAdapter" GeneratorDataComponentClassName="tblMarkerGen1TableAdapter" Name="tblMarkerGen1" UserDataComponentName="tblMarkerGen1TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblMarkerGen1" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblMarkerGen1" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblMarkerGen1] WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([RelatedID] = @Original_RelatedID) AND ([MarkerType] = @Original_MarkerType) AND ([SurveyYear] = @Original_SurveyYear) AND ([MzEvidence] = @Original_MzEvidence) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiomomEvidence] = @Original_ShareBiomomEvidence) AND ([ShareBiodadEvidence] = @Original_ShareBiodadEvidence) AND ([ShareBioGrandparentEvidence] = @Original_ShareBioGrandparentEvidence))</CommandText>
@@ -550,7 +550,7 @@ SELECT ID, ExtendedID, RelatedID, MarkerType, SurveyYear, MzEvidence, SameGenera
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMarkerGen2TableAdapter" GeneratorDataComponentClassName="tblMarkerGen2TableAdapter" Name="tblMarkerGen2" UserDataComponentName="tblMarkerGen2TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblMarkerGen2" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblMarkerGen2" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblMarkerGen2] WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([RelatedID] = @Original_RelatedID) AND ([MarkerType] = @Original_MarkerType) AND ((@IsNull_SurveyYear = 1 AND [SurveyYear] IS NULL) OR ([SurveyYear] = @Original_SurveyYear)) AND ([MzEvidence] = @Original_MzEvidence) AND ([ShareBiodadEvidence] = @Original_ShareBiodadEvidence) AND ([FromMother] = @Original_FromMother))</CommandText>
@@ -629,7 +629,7 @@ SELECT ID, ExtendedID, RelatedID, MarkerType, SurveyYear, MzEvidence, ShareBioda
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblParentsOfGen1RetroTableAdapter" GeneratorDataComponentClassName="tblParentsOfGen1RetroTableAdapter" Name="tblParentsOfGen1Retro" UserDataComponentName="tblParentsOfGen1RetroTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblParentsOfGen1Retro" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblParentsOfGen1Retro" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblParentsOfGen1Retro] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([ExtendedID] = @Original_ExtendedID) AND ([Bioparent] = @Original_Bioparent) AND ((@IsNull_InHH = 1 AND [InHH] IS NULL) OR ([InHH] = @Original_InHH)) AND ([Age] = @Original_Age) AND ([Year] = @Original_Year))</CommandText>
@@ -703,7 +703,7 @@ SELECT ID, SubjectTag, ExtendedID, Bioparent, InHH, Age, Year FROM Process.tblPa
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblParentsOfGen1CurrentTableAdapter" GeneratorDataComponentClassName="tblParentsOfGen1CurrentTableAdapter" Name="tblParentsOfGen1Current" UserDataComponentName="tblParentsOfGen1CurrentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblParentsOfGen1Current" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblParentsOfGen1Current" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblParentsOfGen1Current] WHERE (([SubjectTag] = @Original_SubjectTag) AND ((@IsNull_BiodadBirthYearReported = 1 AND [BiodadBirthYearReported] IS NULL) OR ([BiodadBirthYearReported] = @Original_BiodadBirthYearReported)) AND ((@IsNull_BiodadBirthYearEstimated = 1 AND [BiodadBirthYearEstimated] IS NULL) OR ([BiodadBirthYearEstimated] = @Original_BiodadBirthYearEstimated)) AND ((@IsNull_BiodadYearLastAsked = 1 AND [BiodadYearLastAsked] IS NULL) OR ([BiodadYearLastAsked] = @Original_BiodadYearLastAsked)) AND ([BiodadAlive] = @Original_BiodadAlive) AND ([BiodadDeathCause] = @Original_BiodadDeathCause) AND ((@IsNull_BiodadDeathAge = 1 AND [BiodadDeathAge] IS NULL) OR ([BiodadDeathAge] = @Original_BiodadDeathAge)) AND ([BiodadUSBorn] = @Original_BiodadUSBorn) AND ((@IsNull_BiodadHighestGrade = 1 AND [BiodadHighestGrade] IS NULL) OR ([BiodadHighestGrade] = @Original_BiodadHighestGrade)) AND ([BiograndfatherUSBorn] = @Original_BiograndfatherUSBorn) AND ((@IsNull_BiomomBirthYearReported = 1 AND [BiomomBirthYearReported] IS NULL) OR ([BiomomBirthYearReported] = @Original_BiomomBirthYearReported)) AND ((@IsNull_BiomomBirthYearEstimated = 1 AND [BiomomBirthYearEstimated] IS NULL) OR ([BiomomBirthYearEstimated] = @Original_BiomomBirthYearEstimated)) AND ((@IsNull_BiomomYearLastAsked = 1 AND [BiomomYearLastAsked] IS NULL) OR ([BiomomYearLastAsked] = @Original_BiomomYearLastAsked)) AND ([BiomomAlive] = @Original_BiomomAlive) AND ([BiomomDeathCause] = @Original_BiomomDeathCause) AND ((@IsNull_BiomomDeathAge = 1 AND [BiomomDeathAge] IS NULL) OR ([BiomomDeathAge] = @Original_BiomomDeathAge)) AND ([BiomomUSBorn] = @Original_BiomomUSBorn) AND ((@IsNull_BiomomHighestGrade = 1 AND [BiomomHighestGrade] IS NULL) OR ([BiomomHighestGrade] = @Original_BiomomHighestGrade)) AND ([AlwaysLivedWithBothBioparents] = @Original_AlwaysLivedWithBothBioparents))</CommandText>
@@ -856,7 +856,7 @@ SELECT SubjectTag, BiodadBirthYearReported, BiodadBirthYearEstimated, BiodadYear
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblOutcomeTableAdapter" GeneratorDataComponentClassName="tblOutcomeTableAdapter" Name="tblOutcome" UserDataComponentName="tblOutcomeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblOutcome" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblOutcome" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblOutcome] WHERE (([ID] = @Original_ID) AND ([SubjectTag] = @Original_SubjectTag) AND ([Item] = @Original_Item) AND ([SurveyYear] = @Original_SurveyYear) AND ([Value] = @Original_Value))</CommandText>
@@ -918,7 +918,7 @@ SELECT ID, SubjectTag, Item, SurveyYear, Value FROM Process.tblOutcome WHERE (ID
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblSubjectTableAdapter" GeneratorDataComponentClassName="tblSubjectTableAdapter" Name="tblSubject" UserDataComponentName="tblSubjectTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblSubject" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblSubject" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblSubject] WHERE (([SubjectTag] = @Original_SubjectTag) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectID] = @Original_SubjectID) AND ([Generation] = @Original_Generation) AND ([Gender] = @Original_Gender))</CommandText>
@@ -981,7 +981,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Generation, Gender FROM Process.tblSub
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRelatedStructureTableAdapter" GeneratorDataComponentClassName="tblRelatedStructureTableAdapter" Name="tblRelatedStructure" UserDataComponentName="tblRelatedStructureTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblRelatedStructure" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblRelatedStructure" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblRelatedStructure] WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([RelationshipPath] = @Original_RelationshipPath) AND ([EverSharedHouse] = @Original_EverSharedHouse))</CommandText>
@@ -1048,7 +1048,7 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRelatedValuesTableAdapter" GeneratorDataComponentClassName="tblRelatedValuesTableAdapter" Name="tblRelatedValues" UserDataComponentName="tblRelatedValuesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblRelatedValues" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblRelatedValues" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblRelatedValues] WHERE (([ID] = @Original_ID) AND ([MultipleBirthIfSameSex] = @Original_MultipleBirthIfSameSex) AND ([IsMz] = @Original_IsMz) AND ((@IsNull_LastSurvey_S1 = 1 AND [LastSurvey_S1] IS NULL) OR ([LastSurvey_S1] = @Original_LastSurvey_S1)) AND ((@IsNull_LastSurvey_S2 = 1 AND [LastSurvey_S2] IS NULL) OR ([LastSurvey_S2] = @Original_LastSurvey_S2)) AND ((@IsNull_ImplicitShareBiomomPass1 = 1 AND [ImplicitShareBiomomPass1] IS NULL) OR ([ImplicitShareBiomomPass1] = @Original_ImplicitShareBiomomPass1)) AND ((@IsNull_ImplicitShareBiodadPass1 = 1 AND [ImplicitShareBiodadPass1] IS NULL) OR ([ImplicitShareBiodadPass1] = @Original_ImplicitShareBiodadPass1)) AND ((@IsNull_ExplicitShareBiomomPass1 = 1 AND [ExplicitShareBiomomPass1] IS NULL) OR ([ExplicitShareBiomomPass1] = @Original_ExplicitShareBiomomPass1)) AND ((@IsNull_ExplicitShareBiodadPass1 = 1 AND [ExplicitShareBiodadPass1] IS NULL) OR ([ExplicitShareBiodadPass1] = @Original_ExplicitShareBiodadPass1)) AND ((@IsNull_ShareBiomomPass1 = 1 AND [ShareBiomomPass1] IS NULL) OR ([ShareBiomomPass1] = @Original_ShareBiomomPass1)) AND ((@IsNull_ShareBiodadPass1 = 1 AND [ShareBiodadPass1] IS NULL) OR ([ShareBiodadPass1] = @Original_ShareBiodadPass1)) AND ((@IsNull_RImplicitPass1 = 1 AND [RImplicitPass1] IS NULL) OR ([RImplicitPass1] = @Original_RImplicitPass1)) AND ((@IsNull_RImplicit = 1 AND [RImplicit] IS NULL) OR ([RImplicit] = @Original_RImplicit)) AND ((@IsNull_RImplicitSubject = 1 AND [RImplicitSubject] IS NULL) OR ([RImplicitSubject] = @Original_RImplicitSubject)) AND ((@IsNull_RImplicitMother = 1 AND [RImplicitMother] IS NULL) OR ([RImplicitMother] = @Original_RImplicitMother)) AND ((@IsNull_RImplicit2004 = 1 AND [RImplicit2004] IS NULL) OR ([RImplicit2004] = @Original_RImplicit2004)) AND ((@IsNull_RExplicitOlderSibVersion = 1 AND [RExplicitOlderSibVersion] IS NULL) OR ([RExplicitOlderSibVersion] = @Original_RExplicitOlderSibVersion)) AND ((@IsNull_RExplicitYoungerSibVersion = 1 AND [RExplicitYoungerSibVersion] IS NULL) OR ([RExplicitYoungerSibVersion] = @Original_RExplicitYoungerSibVersion)) AND ((@IsNull_RExplicitPass1 = 1 AND [RExplicitPass1] IS NULL) OR ([RExplicitPass1] = @Original_RExplicitPass1)) AND ((@IsNull_RExplicit = 1 AND [RExplicit] IS NULL) OR ([RExplicit] = @Original_RExplicit)) AND ((@IsNull_RPass1 = 1 AND [RPass1] IS NULL) OR ([RPass1] = @Original_RPass1)) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ((@IsNull_RFull = 1 AND [RFull] IS NULL) OR ([RFull] = @Original_RFull)) AND ((@IsNull_RPeek = 1 AND [RPeek] IS NULL) OR ([RPeek] = @Original_RPeek)))</CommandText>
@@ -1248,7 +1248,7 @@ SELECT ID, MultipleBirthIfSameSex, IsMz, LastSurvey_S1, LastSurvey_S2, ImplicitS
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblSubjectDetailsTableAdapter" GeneratorDataComponentClassName="tblSubjectDetailsTableAdapter" Name="tblSubjectDetails" UserDataComponentName="tblSubjectDetailsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Process.tblSubjectDetails" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Process.tblSubjectDetails" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Process].[tblSubjectDetails] WHERE (([SubjectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([SiblingCountInNls] = @Original_SiblingCountInNls) AND ([BirthOrderInNls] = @Original_BirthOrderInNls) AND ([SimilarAgeCount] = @Original_SimilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ((@IsNull_KidCountBio = 1 AND [KidCountBio] IS NULL) OR ([KidCountBio] = @Original_KidCountBio)) AND ((@IsNull_KidCountInNls = 1 AND [KidCountInNls] IS NULL) OR ([KidCountInNls] = @Original_KidCountInNls)) AND ((@IsNull_Mob = 1 AND [Mob] IS NULL) OR ([Mob] = @Original_Mob)) AND ((@IsNull_LastSurveyYearCompleted = 1 AND [LastSurveyYearCompleted] IS NULL) OR ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted)) AND ((@IsNull_AgeAtLastSurvey = 1 AND [AgeAtLastSurvey] IS NULL) OR ([AgeAtLastSurvey] = @Original_AgeAtLastSurvey)) AND ([IsDead] = @Original_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] = @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL) OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDate)))</CommandText>
@@ -1375,181 +1375,9 @@ SELECT SubjectTag, RaceCohort, SiblingCountInNls, BirthOrderInNls, SimilarAgeCou
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemTableAdapter" GeneratorDataComponentClassName="tblItemTableAdapter" Name="tblItem" UserDataComponentName="tblItemTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Metadata.tblItem" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <DeleteCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [Metadata].[tblItem] WHERE (([ID] = @Original_ID) AND ([Label] = @Original_Label) AND ([MinValue] = @Original_MinValue) AND ((@IsNull_MinNonnegative = 1 AND [MinNonnegative] IS NULL) OR ([MinNonnegative] = @Original_MinNonnegative)) AND ([MaxValue] = @Original_MaxValue) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </DeleteCommand>
-                <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [Metadata].[tblItem] ([ID], [Label], [MinValue], [MinNonnegative], [MaxValue], [Active], [Notes]) VALUES (@ID, @Label, @MinValue, @MinNonnegative, @MaxValue, @Active, @Notes);
-SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem WHERE (ID = @ID)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                    </Parameters>
-                  </DbCommand>
-                </InsertCommand>
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [Metadata].[tblItem] SET [ID] = @ID, [Label] = @Label, [MinValue] = @MinValue, [MinNonnegative] = @MinNonnegative, [MaxValue] = @MaxValue, [Active] = @Active, [Notes] = @Notes WHERE (([ID] = @Original_ID) AND ([Label] = @Original_Label) AND ([MinValue] = @Original_MinValue) AND ((@IsNull_MinNonnegative = 1 AND [MinNonnegative] IS NULL) OR ([MinNonnegative] = @Original_MinNonnegative)) AND ([MaxValue] = @Original_MaxValue) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)));
-SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem WHERE (ID = @ID)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </UpdateCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="Label" DataSetColumn="Label" />
-              <Mapping SourceColumn="MinValue" DataSetColumn="MinValue" />
-              <Mapping SourceColumn="MinNonnegative" DataSetColumn="MinNonnegative" />
-              <Mapping SourceColumn="MaxValue" DataSetColumn="MaxValue" />
-              <Mapping SourceColumn="Active" DataSetColumn="Active" />
-              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVariableTableAdapter" GeneratorDataComponentClassName="tblVariableTableAdapter" Name="tblVariable" UserDataComponentName="tblVariableTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Metadata.tblVariable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <DeleteCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [Metadata].[tblVariable] WHERE (([ID] = @Original_ID) AND ([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([Generation] = @Original_Generation) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)))</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </DeleteCommand>
-                <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [Metadata].[tblVariable] ([ID], [VariableCode], [Item], [Generation], [ExtractSource], [SurveySource], [SurveyYear], [LoopIndex], [Translate], [Active], [Notes]) VALUES (@ID, @VariableCode, @Item, @Generation, @ExtractSource, @SurveySource, @SurveyYear, @LoopIndex, @Translate, @Active, @Notes);
-SELECT ID, VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable WHERE (ID = @ID)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                    </Parameters>
-                  </DbCommand>
-                </InsertCommand>
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [Metadata].[tblVariable] SET [ID] = @ID, [VariableCode] = @VariableCode, [Item] = @Item, [Generation] = @Generation, [ExtractSource] = @ExtractSource, [SurveySource] = @SurveySource, [SurveyYear] = @SurveyYear, [LoopIndex] = @LoopIndex, [Translate] = @Translate, [Active] = @Active, [Notes] = @Notes WHERE (([ID] = @Original_ID) AND ([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([Generation] = @Original_Generation) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)));
-SELECT ID, VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable WHERE (ID = @ID)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </UpdateCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="VariableCode" DataSetColumn="VariableCode" />
-              <Mapping SourceColumn="Item" DataSetColumn="Item" />
-              <Mapping SourceColumn="Generation" DataSetColumn="Generation" />
-              <Mapping SourceColumn="ExtractSource" DataSetColumn="ExtractSource" />
-              <Mapping SourceColumn="SurveySource" DataSetColumn="SurveySource" />
-              <Mapping SourceColumn="SurveyYear" DataSetColumn="SurveyYear" />
-              <Mapping SourceColumn="LoopIndex" DataSetColumn="LoopIndex" />
-              <Mapping SourceColumn="Translate" DataSetColumn="Translate" />
-              <Mapping SourceColumn="Active" DataSetColumn="Active" />
-              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMzManualTableAdapter" GeneratorDataComponentClassName="tblMzManualTableAdapter" Name="tblMzManual" UserDataComponentName="tblMzManualTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Metadata.tblMzManual" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsLinks.Metadata.tblMzManual" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Metadata].[tblMzManual] WHERE (([ID] = @Original_ID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([Generation] = @Original_Generation) AND ([MultipleBirthIfSameSex] = @Original_MultipleBirthIfSameSex) AND ([IsMz] = @Original_IsMz) AND ([Undecided] = @Original_Undecided) AND ((@IsNull_Related = 1 AND [Related] IS NULL) OR ([Related] = @Original_Related)) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)))</CommandText>
@@ -1636,7 +1464,7 @@ SELECT ID, SubjectTag_S1, SubjectTag_S2, Generation, MultipleBirthIfSameSex, IsM
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRosterGen1AssignmentTableAdapter" GeneratorDataComponentClassName="tblRosterGen1AssignmentTableAdapter" Name="tblRosterGen1Assignment" UserDataComponentName="tblRosterGen1AssignmentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Metadata.tblRosterGen1Assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsyLinks79.Metadata.tblRosterGen1Assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Metadata].[tblRosterGen1Assignment] WHERE (([ID] = @Original_ID) AND ([ResponseLower] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND ([Freq] = @Original_Freq) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBoundLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareBiomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiograndparent) AND ([Inconsistent] = @Original_Inconsistent) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_ResponseLowerLabel = 1 AND [ResponseLowerLabel] IS NULL) OR ([ResponseLowerLabel] = @Original_ResponseLowerLabel)) AND ((@IsNull_ResponseUpperLabel = 1 AND [ResponseUpperLabel] IS NULL) OR ([ResponseUpperLabel] = @Original_ResponseUpperLabel)))</CommandText>
@@ -1760,9 +1588,176 @@ SELECT ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundU
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVariableTableAdapter" GeneratorDataComponentClassName="tblVariableTableAdapter" Name="tblVariable" UserDataComponentName="tblVariableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsyLinks79.Metadata.tblVariable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [Metadata].[tblVariable] WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([Generation] = @Original_Generation) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [Metadata].[tblVariable] ([VariableCode], [Item], [Generation], [ExtractSource], [SurveySource], [SurveyYear], [LoopIndex], [Translate], [Active], [Notes]) VALUES (@VariableCode, @Item, @Generation, @ExtractSource, @SurveySource, @SurveyYear, @LoopIndex, @Translate, @Active, @Notes);
+SELECT VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [Metadata].[tblVariable] SET [VariableCode] = @VariableCode, [Item] = @Item, [Generation] = @Generation, [ExtractSource] = @ExtractSource, [SurveySource] = @SurveySource, [SurveyYear] = @SurveyYear, [LoopIndex] = @LoopIndex, [Translate] = @Translate, [Active] = @Active, [Notes] = @Notes WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([Generation] = @Original_Generation) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveySource] = @Original_SurveySource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)));
+SELECT VariableCode, Item, Generation, ExtractSource, SurveySource, SurveyYear, LoopIndex, Translate, Active, Notes FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_VariableCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="VariableCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_Item" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="Item" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_Generation" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="Generation" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ExtractSource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ExtractSource" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_SurveySource" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="SurveySource" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_SurveyYear" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="SurveyYear" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_LoopIndex" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="LoopIndex" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Translate" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Translate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="VariableCode" DataSetColumn="VariableCode" />
+              <Mapping SourceColumn="Item" DataSetColumn="Item" />
+              <Mapping SourceColumn="Generation" DataSetColumn="Generation" />
+              <Mapping SourceColumn="ExtractSource" DataSetColumn="ExtractSource" />
+              <Mapping SourceColumn="SurveySource" DataSetColumn="SurveySource" />
+              <Mapping SourceColumn="SurveyYear" DataSetColumn="SurveyYear" />
+              <Mapping SourceColumn="LoopIndex" DataSetColumn="LoopIndex" />
+              <Mapping SourceColumn="Translate" DataSetColumn="Translate" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblItemTableAdapter" GeneratorDataComponentClassName="tblItemTableAdapter" Name="tblItem" UserDataComponentName="tblItemTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsyLinks79.Metadata.tblItem" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [Metadata].[tblItem] WHERE (([ID] = @Original_ID) AND ([Label] = @Original_Label) AND ([MinValue] = @Original_MinValue) AND ((@IsNull_MinNonnegative = 1 AND [MinNonnegative] IS NULL) OR ([MinNonnegative] = @Original_MinNonnegative)) AND ([MaxValue] = @Original_MaxValue) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [Metadata].[tblItem] ([ID], [Label], [MinValue], [MinNonnegative], [MaxValue], [Active], [Notes]) VALUES (@ID, @Label, @MinValue, @MinNonnegative, @MaxValue, @Active, @Notes);
+SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem WHERE (ID = @ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [Metadata].[tblItem] SET [ID] = @ID, [Label] = @Label, [MinValue] = @MinValue, [MinNonnegative] = @MinNonnegative, [MaxValue] = @MaxValue, [Active] = @Active, [Notes] = @Notes WHERE (([ID] = @Original_ID) AND ([Label] = @Original_Label) AND ([MinValue] = @Original_MinValue) AND ((@IsNull_MinNonnegative = 1 AND [MinNonnegative] IS NULL) OR ([MinNonnegative] = @Original_MinNonnegative)) AND ([MaxValue] = @Original_MaxValue) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)));
+SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadata.tblItem WHERE (ID = @ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Label" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Label" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MinNonnegative" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MinNonnegative" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MaxValue" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MaxValue" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Active" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Label" DataSetColumn="Label" />
+              <Mapping SourceColumn="MinValue" DataSetColumn="MinValue" />
+              <Mapping SourceColumn="MinNonnegative" DataSetColumn="MinNonnegative" />
+              <Mapping SourceColumn="MaxValue" DataSetColumn="MaxValue" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRelatedValuesArchiveTableAdapter" GeneratorDataComponentClassName="tblRelatedValuesArchiveTableAdapter" Name="tblRelatedValuesArchive" UserDataComponentName="tblRelatedValuesArchiveTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NlsLinksConnectionString (Settings)" DbObjectName="NlsLinks.Archive.tblRelatedValuesArchive" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Nlsy79ConnectionStringBase (Settings)" DbObjectName="NlsyLinks79.Archive.tblRelatedValuesArchive" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Archive].[tblRelatedValuesArchive] WHERE (([ID] = @Original_ID) AND ([AlgorithmVersion] = @Original_AlgorithmVersion) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([MultipleBirthIfSameSex] = @Original_MultipleBirthIfSameSex) AND ([IsMz] = @Original_IsMz) AND ((@IsNull_SameGeneration = 1 AND [SameGeneration] IS NULL) OR ([SameGeneration] = @Original_SameGeneration)) AND ((@IsNull_RosterAssignmentID = 1 AND [RosterAssignmentID] IS NULL) OR ([RosterAssignmentID] = @Original_RosterAssignmentID)) AND ((@IsNull_RRoster = 1 AND [RRoster] IS NULL) OR ([RRoster] = @Original_RRoster)) AND ((@IsNull_LastSurvey_S1 = 1 AND [LastSurvey_S1] IS NULL) OR ([LastSurvey_S1] = @Original_LastSurvey_S1)) AND ((@IsNull_LastSurvey_S2 = 1 AND [LastSurvey_S2] IS NULL) OR ([LastSurvey_S2] = @Original_LastSurvey_S2)) AND ((@IsNull_RImplicitPass1 = 1 AND [RImplicitPass1] IS NULL) OR ([RImplicitPass1] = @Original_RImplicitPass1)) AND ((@IsNull_RImplicit = 1 AND [RImplicit] IS NULL) OR ([RImplicit] = @Original_RImplicit)) AND ((@IsNull_RImplicitSubject = 1 AND [RImplicitSubject] IS NULL) OR ([RImplicitSubject] = @Original_RImplicitSubject)) AND ((@IsNull_RImplicitMother = 1 AND [RImplicitMother] IS NULL) OR ([RImplicitMother] = @Original_RImplicitMother)) AND ((@IsNull_RImplicit2004 = 1 AND [RImplicit2004] IS NULL) OR ([RImplicit2004] = @Original_RImplicit2004)) AND ((@IsNull_RExplicitOldestSibVersion = 1 AND [RExplicitOldestSibVersion] IS NULL) OR ([RExplicitOldestSibVersion] = @Original_RExplicitOldestSibVersion)) AND ((@IsNull_RExplicitYoungestSibVersion = 1 AND [RExplicitYoungestSibVersion] IS NULL) OR ([RExplicitYoungestSibVersion] = @Original_RExplicitYoungestSibVersion)) AND ((@IsNull_RExplicitPass1 = 1 AND [RExplicitPass1] IS NULL) OR ([RExplicitPass1] = @Original_RExplicitPass1)) AND ((@IsNull_RExplicit = 1 AND [RExplicit] IS NULL) OR ([RExplicit] = @Original_RExplicit)) AND ((@IsNull_RPass1 = 1 AND [RPass1] IS NULL) OR ([RPass1] = @Original_RPass1)) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ((@IsNull_RFull = 1 AND [RFull] IS NULL) OR ([RFull] = @Original_RFull)) AND ((@IsNull_RPeek = 1 AND [RPeek] IS NULL) OR ([RPeek] = @Original_RPeek)))</CommandText>
@@ -2199,72 +2194,6 @@ SELECT ID, AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblItem" msprop:Generator_TableClassName="tblItemDataTable" msprop:Generator_TableVarName="tabletblItem" msprop:Generator_RowChangedName="tblItemRowChanged" msprop:Generator_TablePropName="tblItem" msprop:Generator_RowDeletingName="tblItemRowDeleting" msprop:Generator_RowChangingName="tblItemRowChanging" msprop:Generator_RowEvHandlerName="tblItemRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemRowDeleted" msprop:Generator_RowClassName="tblItemRow" msprop:Generator_UserTableName="tblItem" msprop:Generator_RowEvArgName="tblItemRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:short" />
-              <xs:element name="Label" msprop:Generator_ColumnVarNameInTable="columnLabel" msprop:Generator_ColumnPropNameInRow="Label" msprop:Generator_ColumnPropNameInTable="LabelColumn" msprop:Generator_UserColumnName="Label">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="MinValue" msprop:Generator_ColumnVarNameInTable="columnMinValue" msprop:Generator_ColumnPropNameInRow="MinValue" msprop:Generator_ColumnPropNameInTable="MinValueColumn" msprop:Generator_UserColumnName="MinValue" type="xs:int" />
-              <xs:element name="MinNonnegative" msprop:Generator_ColumnVarNameInTable="columnMinNonnegative" msprop:Generator_ColumnPropNameInRow="MinNonnegative" msprop:Generator_ColumnPropNameInTable="MinNonnegativeColumn" msprop:Generator_UserColumnName="MinNonnegative" type="xs:int" minOccurs="0" />
-              <xs:element name="MaxValue" msprop:Generator_ColumnVarNameInTable="columnMaxValue" msprop:Generator_ColumnPropNameInRow="MaxValue" msprop:Generator_ColumnPropNameInTable="MaxValueColumn" msprop:Generator_UserColumnName="MaxValue" type="xs:int" />
-              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="5" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="tblVariable" msprop:Generator_TableClassName="tblVariableDataTable" msprop:Generator_TableVarName="tabletblVariable" msprop:Generator_RowChangedName="tblVariableRowChanged" msprop:Generator_TablePropName="tblVariable" msprop:Generator_RowDeletingName="tblVariableRowDeleting" msprop:Generator_RowChangingName="tblVariableRowChanging" msprop:Generator_RowEvHandlerName="tblVariableRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVariableRowDeleted" msprop:Generator_RowClassName="tblVariableRow" msprop:Generator_UserTableName="tblVariable" msprop:Generator_RowEvArgName="tblVariableRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="VariableCode" msprop:Generator_ColumnVarNameInTable="columnVariableCode" msprop:Generator_ColumnPropNameInRow="VariableCode" msprop:Generator_ColumnPropNameInTable="VariableCodeColumn" msprop:Generator_UserColumnName="VariableCode">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="8" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Item" msprop:Generator_ColumnVarNameInTable="columnItem" msprop:Generator_ColumnPropNameInRow="Item" msprop:Generator_ColumnPropNameInTable="ItemColumn" msprop:Generator_UserColumnName="Item" type="xs:short" />
-              <xs:element name="Generation" msprop:Generator_ColumnVarNameInTable="columnGeneration" msprop:Generator_ColumnPropNameInRow="Generation" msprop:Generator_ColumnPropNameInTable="GenerationColumn" msprop:Generator_UserColumnName="Generation" type="xs:unsignedByte" />
-              <xs:element name="ExtractSource" msprop:Generator_ColumnVarNameInTable="columnExtractSource" msprop:Generator_ColumnPropNameInRow="ExtractSource" msprop:Generator_ColumnPropNameInTable="ExtractSourceColumn" msprop:Generator_UserColumnName="ExtractSource" type="xs:unsignedByte" />
-              <xs:element name="SurveySource" msprop:Generator_ColumnVarNameInTable="columnSurveySource" msprop:Generator_ColumnPropNameInRow="SurveySource" msprop:Generator_ColumnPropNameInTable="SurveySourceColumn" msprop:Generator_UserColumnName="SurveySource" type="xs:unsignedByte" />
-              <xs:element name="SurveyYear" msprop:Generator_ColumnVarNameInTable="columnSurveyYear" msprop:Generator_ColumnPropNameInRow="SurveyYear" msprop:Generator_ColumnPropNameInTable="SurveyYearColumn" msprop:Generator_UserColumnName="SurveyYear" type="xs:short" />
-              <xs:element name="LoopIndex" msprop:Generator_ColumnVarNameInTable="columnLoopIndex" msprop:Generator_ColumnPropNameInRow="LoopIndex" msprop:Generator_ColumnPropNameInTable="LoopIndexColumn" msprop:Generator_UserColumnName="LoopIndex" type="xs:unsignedByte" />
-              <xs:element name="Translate" msprop:Generator_ColumnVarNameInTable="columnTranslate" msprop:Generator_ColumnPropNameInRow="Translate" msprop:Generator_ColumnPropNameInTable="TranslateColumn" msprop:Generator_UserColumnName="Translate" type="xs:boolean" />
-              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="5" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="tblMzManual" msprop:Generator_TableClassName="tblMzManualDataTable" msprop:Generator_TableVarName="tabletblMzManual" msprop:Generator_RowChangedName="tblMzManualRowChanged" msprop:Generator_TablePropName="tblMzManual" msprop:Generator_RowDeletingName="tblMzManualRowDeleting" msprop:Generator_RowChangingName="tblMzManualRowChanging" msprop:Generator_RowEvHandlerName="tblMzManualRowChangeEventHandler" msprop:Generator_RowDeletedName="tblMzManualRowDeleted" msprop:Generator_RowClassName="tblMzManualRow" msprop:Generator_UserTableName="tblMzManual" msprop:Generator_RowEvArgName="tblMzManualRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
@@ -2320,6 +2249,65 @@ SELECT ID, AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSe
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVariable" msprop:Generator_TableClassName="tblVariableDataTable" msprop:Generator_TableVarName="tabletblVariable" msprop:Generator_TablePropName="tblVariable" msprop:Generator_RowDeletingName="tblVariableRowDeleting" msprop:Generator_RowChangingName="tblVariableRowChanging" msprop:Generator_RowEvHandlerName="tblVariableRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVariableRowDeleted" msprop:Generator_UserTableName="tblVariable" msprop:Generator_RowChangedName="tblVariableRowChanged" msprop:Generator_RowEvArgName="tblVariableRowChangeEvent" msprop:Generator_RowClassName="tblVariableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VariableCode" msprop:Generator_ColumnVarNameInTable="columnVariableCode" msprop:Generator_ColumnPropNameInRow="VariableCode" msprop:Generator_ColumnPropNameInTable="VariableCodeColumn" msprop:Generator_UserColumnName="VariableCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Item" msprop:Generator_ColumnVarNameInTable="columnItem" msprop:Generator_ColumnPropNameInRow="Item" msprop:Generator_ColumnPropNameInTable="ItemColumn" msprop:Generator_UserColumnName="Item" type="xs:short" />
+              <xs:element name="Generation" msprop:Generator_ColumnVarNameInTable="columnGeneration" msprop:Generator_ColumnPropNameInRow="Generation" msprop:Generator_ColumnPropNameInTable="GenerationColumn" msprop:Generator_UserColumnName="Generation" type="xs:unsignedByte" />
+              <xs:element name="ExtractSource" msprop:Generator_ColumnVarNameInTable="columnExtractSource" msprop:Generator_ColumnPropNameInRow="ExtractSource" msprop:Generator_ColumnPropNameInTable="ExtractSourceColumn" msprop:Generator_UserColumnName="ExtractSource" type="xs:unsignedByte" />
+              <xs:element name="SurveySource" msprop:Generator_ColumnVarNameInTable="columnSurveySource" msprop:Generator_ColumnPropNameInRow="SurveySource" msprop:Generator_ColumnPropNameInTable="SurveySourceColumn" msprop:Generator_UserColumnName="SurveySource" type="xs:unsignedByte" />
+              <xs:element name="SurveyYear" msprop:Generator_ColumnVarNameInTable="columnSurveyYear" msprop:Generator_ColumnPropNameInRow="SurveyYear" msprop:Generator_ColumnPropNameInTable="SurveyYearColumn" msprop:Generator_UserColumnName="SurveyYear" type="xs:short" />
+              <xs:element name="LoopIndex" msprop:Generator_ColumnVarNameInTable="columnLoopIndex" msprop:Generator_ColumnPropNameInRow="LoopIndex" msprop:Generator_ColumnPropNameInTable="LoopIndexColumn" msprop:Generator_UserColumnName="LoopIndex" type="xs:unsignedByte" />
+              <xs:element name="Translate" msprop:Generator_ColumnVarNameInTable="columnTranslate" msprop:Generator_ColumnPropNameInRow="Translate" msprop:Generator_ColumnPropNameInTable="TranslateColumn" msprop:Generator_UserColumnName="Translate" type="xs:boolean" />
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblItem" msprop:Generator_TableClassName="tblItemDataTable" msprop:Generator_TableVarName="tabletblItem" msprop:Generator_TablePropName="tblItem" msprop:Generator_RowDeletingName="tblItemRowDeleting" msprop:Generator_RowChangingName="tblItemRowChanging" msprop:Generator_RowEvHandlerName="tblItemRowChangeEventHandler" msprop:Generator_RowDeletedName="tblItemRowDeleted" msprop:Generator_UserTableName="tblItem" msprop:Generator_RowChangedName="tblItemRowChanged" msprop:Generator_RowEvArgName="tblItemRowChangeEvent" msprop:Generator_RowClassName="tblItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:short" />
+              <xs:element name="Label" msprop:Generator_ColumnVarNameInTable="columnLabel" msprop:Generator_ColumnPropNameInRow="Label" msprop:Generator_ColumnPropNameInTable="LabelColumn" msprop:Generator_UserColumnName="Label">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MinValue" msprop:Generator_ColumnVarNameInTable="columnMinValue" msprop:Generator_ColumnPropNameInRow="MinValue" msprop:Generator_ColumnPropNameInTable="MinValueColumn" msprop:Generator_UserColumnName="MinValue" type="xs:int" />
+              <xs:element name="MinNonnegative" msprop:Generator_ColumnVarNameInTable="columnMinNonnegative" msprop:Generator_ColumnPropNameInRow="MinNonnegative" msprop:Generator_ColumnPropNameInTable="MinNonnegativeColumn" msprop:Generator_UserColumnName="MinNonnegative" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxValue" msprop:Generator_ColumnVarNameInTable="columnMaxValue" msprop:Generator_ColumnPropNameInRow="MaxValue" msprop:Generator_ColumnPropNameInTable="MaxValueColumn" msprop:Generator_UserColumnName="MaxValue" type="xs:int" />
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -2418,20 +2406,20 @@ SELECT ID, AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSe
       <xs:selector xpath=".//mstns:tblSubjectDetails" />
       <xs:field xpath="mstns:SubjectTag" />
     </xs:unique>
-    <xs:unique name="tblItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:tblItem" />
-      <xs:field xpath="mstns:ID" />
-    </xs:unique>
-    <xs:unique name="tblVariable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:tblVariable" />
-      <xs:field xpath="mstns:ID" />
-    </xs:unique>
     <xs:unique name="tblMzManual_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:tblMzManual" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
     <xs:unique name="tblRosterGen1Assignment_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:tblRosterGen1Assignment" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="tblVariable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblVariable" />
+      <xs:field xpath="mstns:VariableCode" />
+    </xs:unique>
+    <xs:unique name="tblItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblItem" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
     <xs:unique name="tblRelatedValuesArchive_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
@@ -2455,10 +2443,8 @@ SELECT ID, AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSe
       <msdata:Relationship name="FK_tblRelatedStructure_tblSubject_Subject2" msdata:parent="tblSubject" msdata:child="tblRelatedStructure" msdata:parentkey="SubjectTag" msdata:childkey="SubjectTag_S2" msprop:Generator_UserChildTable="tblRelatedStructure" msprop:Generator_ChildPropName="GettblRelatedStructureRowsByFK_tblRelatedStructure_tblSubject_Subject2" msprop:Generator_UserRelationName="FK_tblRelatedStructure_tblSubject_Subject2" msprop:Generator_RelationVarName="relationFK_tblRelatedStructure_tblSubject_Subject2" msprop:Generator_UserParentTable="tblSubject" msprop:Generator_ParentPropName="tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2" />
       <msdata:Relationship name="FK_tblRelatedValues_tblRelatedStructure" msdata:parent="tblRelatedStructure" msdata:child="tblRelatedValues" msdata:parentkey="ID" msdata:childkey="ID" msprop:Generator_UserChildTable="tblRelatedValues" msprop:Generator_ChildPropName="GettblRelatedValuesRows" msprop:Generator_UserRelationName="FK_tblRelatedValues_tblRelatedStructure" msprop:Generator_RelationVarName="relationFK_tblRelatedValues_tblRelatedStructure" msprop:Generator_UserParentTable="tblRelatedStructure" msprop:Generator_ParentPropName="tblRelatedStructureRow" />
       <msdata:Relationship name="FK_tblSubjectDetails_tblSubject" msdata:parent="tblSubject" msdata:child="tblSubjectDetails" msdata:parentkey="SubjectTag" msdata:childkey="SubjectTag" msprop:Generator_UserChildTable="tblSubjectDetails" msprop:Generator_ChildPropName="GettblSubjectDetailsRows" msprop:Generator_UserRelationName="FK_tblSubjectDetails_tblSubject" msprop:Generator_ParentPropName="tblSubjectRow" msprop:Generator_RelationVarName="relationFK_tblSubjectDetails_tblSubject" msprop:Generator_UserParentTable="tblSubject" />
-      <msdata:Relationship name="FK_tblResponse_tblItem" msdata:parent="tblItem" msdata:child="tblResponse" msdata:parentkey="ID" msdata:childkey="Item" msprop:Generator_UserChildTable="tblResponse" msprop:Generator_ChildPropName="GettblResponseRows" msprop:Generator_UserRelationName="FK_tblResponse_tblItem" msprop:Generator_ParentPropName="tblItemRow" msprop:Generator_RelationVarName="relationFK_tblResponse_tblItem" msprop:Generator_UserParentTable="tblItem" />
-      <msdata:Relationship name="FK_tblOutcome_tblItem" msdata:parent="tblItem" msdata:child="tblOutcome" msdata:parentkey="ID" msdata:childkey="Item" msprop:Generator_UserChildTable="tblOutcome" msprop:Generator_ChildPropName="GettblOutcomeRows" msprop:Generator_UserRelationName="FK_tblOutcome_tblItem" msprop:Generator_ParentPropName="tblItemRow" msprop:Generator_RelationVarName="relationFK_tblOutcome_tblItem" msprop:Generator_UserParentTable="tblItem" />
-      <msdata:Relationship name="FK_tblVariable_tblItem" msdata:parent="tblItem" msdata:child="tblVariable" msdata:parentkey="ID" msdata:childkey="Item" msprop:Generator_UserChildTable="tblVariable" msprop:Generator_ChildPropName="GettblVariableRows" msprop:Generator_UserRelationName="FK_tblVariable_tblItem" msprop:Generator_RelationVarName="relationFK_tblVariable_tblItem" msprop:Generator_UserParentTable="tblItem" msprop:Generator_ParentPropName="tblItemRow" />
-      <msdata:Relationship name="FK_tblRosterGen1_tblLURosterGen1Assignment" msdata:parent="tblRosterGen1Assignment" msdata:child="tblRosterGen1" msdata:parentkey="ID" msdata:childkey="RosterAssignmentID" msprop:Generator_UserChildTable="tblRosterGen1" msprop:Generator_ChildPropName="GettblRosterGen1Rows" msprop:Generator_UserRelationName="FK_tblRosterGen1_tblLURosterGen1Assignment" msprop:Generator_ParentPropName="tblRosterGen1AssignmentRow" msprop:Generator_RelationVarName="relationFK_tblRosterGen1_tblLURosterGen1Assignment" msprop:Generator_UserParentTable="tblRosterGen1Assignment" />
+      <msdata:Relationship name="FK_tblVariable_79_tblItem_79" msdata:parent="tblItem" msdata:child="tblVariable" msdata:parentkey="ID" msdata:childkey="Item" msprop:Generator_UserChildTable="tblVariable" msprop:Generator_ChildPropName="GettblVariableRows" msprop:Generator_UserRelationName="FK_tblVariable_79_tblItem_79" msprop:Generator_RelationVarName="relationFK_tblVariable_79_tblItem_79" msprop:Generator_UserParentTable="tblItem" msprop:Generator_ParentPropName="tblItemRow" />
+      <msdata:Relationship name="FK_tblResponse_tblItem_79" msdata:parent="tblItem" msdata:child="tblResponse" msdata:parentkey="ID" msdata:childkey="Item" msprop:Generator_UserChildTable="tblResponse" msprop:Generator_ChildPropName="GettblResponseRows" msprop:Generator_UserRelationName="FK_tblResponse_tblItem_79" msprop:Generator_RelationVarName="relationFK_tblResponse_tblItem_79" msprop:Generator_UserParentTable="tblItem" msprop:Generator_ParentPropName="tblItemRow" />
       <msdata:Relationship name="FK_tblRelatedValuesArchive_tblLURosterGen1Assignment" msdata:parent="tblRosterGen1Assignment" msdata:child="tblRelatedValuesArchive" msdata:parentkey="ID" msdata:childkey="RosterAssignmentID" msprop:Generator_UserChildTable="tblRelatedValuesArchive" msprop:Generator_ChildPropName="GettblRelatedValuesArchiveRows" msprop:Generator_UserRelationName="FK_tblRelatedValuesArchive_tblLURosterGen1Assignment" msprop:Generator_ParentPropName="tblRosterGen1AssignmentRow" msprop:Generator_RelationVarName="relationFK_tblRelatedValuesArchive_tblLURosterGen1Assignment" msprop:Generator_UserParentTable="tblRosterGen1Assignment" />
     </xs:appinfo>
   </xs:annotation>

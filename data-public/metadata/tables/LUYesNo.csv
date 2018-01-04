@@ -1,7 +1,0 @@
-ID,Label,Active,Notes
--6,ValidSkipOrNoInterviewOrNotInSurvey,TRUE,
--3,InvalidSkip,TRUE,
--2,DoNotKnow,TRUE,
--1,Refusal,TRUE,
-0,No,TRUE,
-1,Yes,TRUE,

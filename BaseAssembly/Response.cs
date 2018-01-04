@@ -86,9 +86,9 @@ namespace Nls.BaseAssembly {
 
 						LinksDataSet.tblItemRow drItem = drVariable.tblItemRow;
 						if ( !(drItem.MinValue <= drResponse.Value && drResponse.Value <= drItem.MaxValue) )
-							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' exceeded the bounds of [{3}, {4}].", drVariable.Item, drVariable.ID, drResponse.Value, drItem.MinValue, drItem.MaxValue));
+							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' exceeded the bounds of [{3}, {4}].", drVariable.Item, drVariable.VariableCode, drResponse.Value, drItem.MinValue, drItem.MaxValue));
 						if ( 0 <= drResponse.Value && drResponse.Value < drItem.MinNonnegative )
-							throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' dipped below the minimum nonnegative value of {3}.", drVariable.Item, drVariable.ID, drResponse.Value, drItem.MinNonnegative));
+                            throw new InvalidOperationException(string.Format("For Item '{0}', variable '{1}', the value '{2}' dipped below the minimum nonnegative value of {3}.", drVariable.Item, drVariable.VariableCode, drResponse.Value, drItem.MinNonnegative));
 						if ( !passoverValues.Contains(drResponse.Value) ) {
 							drResponse.LoopIndex = drVariable.LoopIndex;
 							_dsLinks.tblResponse.AddtblResponseRow(drResponse);
