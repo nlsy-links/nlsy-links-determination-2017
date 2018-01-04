@@ -29,6 +29,7 @@ requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 ```
 
 ```r
@@ -37,24 +38,24 @@ directory_in              <- "data-unshared/raw"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name                       , ~file_name,
-  "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
-  "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
-  "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
-  "Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv",
-  "Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv",
-  # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
-  # tblGen1MzDzDistinction2010
-  #
-  "Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv",
-  "Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv",
-  "Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv",
-  "Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv",
-  "Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv",
-  "Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv",
-  "Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv",
+  ~table_name                       , ~file_name
+  ,"Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv"
+  ,"Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv"
+  ,"Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv"
+  ,"Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv"
+  ,"Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv"
+  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv"
+  # # tblGen1MzDzDistinction2010
+  # #
+  ,"Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv"
+  ,"Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv"
+  ,"Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv"
+  ,"Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv"
+  ,"Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv"
+  ,"Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv"
+  ,"Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
 
-  "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
+  # "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
 )
 
 col_types_default <- readr::cols(
@@ -79,7 +80,7 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 13 x 6
+## # A tibble: 12 x 6
 ##    table_name                      file_n~ path     extra~ sql_se~ sql_tr~
 ##    <chr>                           <chr>   <chr>    <lgl>  <chr>   <chr>  
 ##  1 Extract.tblGen1Explicit         nlsy79~ data-un~ T      SELECT~ TRUNCA~
@@ -94,7 +95,6 @@ print(ds_extract, n=20)
 ## 10 Extract.tblGen2OutcomesHeight   nlsy79~ data-un~ T      SELECT~ TRUNCA~
 ## 11 Extract.tblGen2OutcomesMath     nlsy79~ data-un~ T      SELECT~ TRUNCA~
 ## 12 Extract.tblGen2OutcomesWeight   nlsy79~ data-un~ T      SELECT~ TRUNCA~
-## 13 Extract.tbl97Roster             nlsy97~ data-un~ T      SELECT~ TRUNCA~
 ```
 
 
@@ -104,13 +104,13 @@ print(ds_extract, n=20)
 
 
 ```r
-channel <- open_dsn_channel_odbc()
-DBI::dbGetInfo(channel)
+channel_odbc <- open_dsn_channel_odbc()
+DBI::dbGetInfo(channel_odbc)
 ```
 
 ```
 ## $dbname
-## [1] "NlsLinks"
+## [1] "NlsyLinks79"
 ## 
 ## $dbms.name
 ## [1] "Microsoft SQL Server"
@@ -128,7 +128,7 @@ DBI::dbGetInfo(channel)
 ## [1] ""
 ## 
 ## $sourcename
-## [1] "local-nlsy-links"
+## [1] "local-nlsy-links-79"
 ## 
 ## $servername
 ## [1] "GIMBLE\\EXPRESS_2016"
@@ -153,6 +153,8 @@ DBI::dbGetInfo(channel)
 ```
 
 ```r
+channel_rodbc <- open_dsn_channel_rodbc()
+
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
 
@@ -172,13 +174,14 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # purrr::map_chr(d, class)
   print(d, n=20)
 
-  #RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
-  # d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+  #RODBC::sqlQuery(channel_odbc, ds_extract$sql_truncate[i], errors=FALSE)
+  # d_peek <- RODBC::sqlQuery(channel_odbc, ds_extract$sql_select[i], errors=FALSE)
 
-  DBI::dbGetQuery(channel, ds_extract$sql_truncate[i])
+  DBI::dbGetQuery(channel_odbc, ds_extract$sql_truncate[i])
 
-  # d_peek <- DBI::dbGetQuery(channel, ds_extract$sql_select[i])
-  peek <- DBI::dbListFields(channel, ds_extract$table_name[i])
+  d_peek <- DBI::dbGetQuery(channel_odbc, ds_extract$sql_select[i])
+  peek <- colnames(d_peek)
+  # peek <- DBI::dbListFields(channel_odbc, ds_extract$table_name[i])
 
   missing_in_extract    <- setdiff(peek       , colnames(d))
   missing_in_database   <- setdiff(colnames(d), peek       )
@@ -189,31 +192,32 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # ) %>%
   #   dplyr::filter(db != extract)
 
-  system.time({
-  DBI::dbWriteTable(
-    conn    = channel,
-    name    = ds_extract$table_name[i],
-    value   = d,
-    append  = T
-  )
-  })
-
   # system.time({
-  # RODBC::sqlSave(
-  #   channel     = channel,
-  #   dat         = d,
-  #   tablename   = ds_extract$table_name[i],
-  #   safer       = TRUE,       # Don't keep the existing table.
-  #   rownames    = FALSE,
-  #   append      = TRUE
-  # ) %>%
-  # print()
+  # DBI::dbWriteTable(
+  #   conn    = channel_odbc,
+  #   name    = DBI::SQL(ds_extract$table_name[i]),
+  #   value   = d, #[, 1:10],
+  #   # append  = T,
+  #   overwrite = T
+  # )
   # })
+
+  system.time({
+  RODBC::sqlSave(
+    channel     = channel_rodbc,
+    dat         = d,
+    tablename   = ds_extract$table_name[i],
+    safer       = TRUE,       # Don't keep the existing table.
+    rownames    = FALSE,
+    append      = TRUE
+  ) %>%
+  print()
+  })
 
   # OuhscMunge::upload_sqls_rodbc(
   #   d               = d[1:100, ],
   #   table_name      = ds_extract$table_name[i] ,
-  #   dsn_name        = "local-nlsy-links",
+  #   dsn_name        = "local-nlsy-links-79",
   #   clear_table     = F,
   #   create_table    = T
   # )
@@ -273,6 +277,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   T2262800 <int>, T2262900 <int>, T2263000 <int>, T2263100 <int>,
 ## #   T2263200 <int>, T2263300 <int>, T2263400 <int>, T2263500 <int>,
 ## #   T2263600 <int>, T2263700 <int>, T2263800 <int>
+## [1] 1
 ```
 
 ```
@@ -331,6 +336,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R2840300 <int>, R2840400 <int>, R2840500 <int>, R2840600 <int>,
 ## #   R2840700 <int>, R2840800 <int>, R2840900 <int>, R2841000 <int>,
 ## #   R2841100 <int>
+## [1] 1
 ```
 
 ```
@@ -342,7 +348,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 12,686 x 96
+## # A tibble: 12,686 x 117
 ##    R000~ R000~ R000~ R000~ R000~ R000~ R017~ R017~ R017~ R021~ R021~ R021~
 ##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
 ##  1     1     1     9    58     1     1     3     3     5     3     2    20
@@ -365,7 +371,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 18    18    17     3    58     2     2     3    24     1     3     1    21
 ## 19    19    19    12    57     3     3     2    28     5     3     2    21
 ## 20    20    20    11    59     2     0     3    14     5     3     2    19
-## # ... with 1.267e+04 more rows, and 84 more variables: R0329200 <int>,
+## # ... with 1.267e+04 more rows, and 105 more variables: R0329200 <int>,
 ## #   R0329210 <int>, R0406510 <int>, R0410100 <int>, R0410300 <int>,
 ## #   R0530700 <int>, R0530800 <int>, R0619010 <int>, R0809900 <int>,
 ## #   R0810000 <int>, R0898310 <int>, R1045700 <int>, R1045800 <int>,
@@ -386,11 +392,16 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R7800502 <int>, R8497200 <int>, R9908000 <int>, T0000900 <int>,
 ## #   T0000901 <int>, T0000902 <int>, T0989000 <int>, T1200700 <int>,
 ## #   T1200701 <int>, T1200702 <int>, T2210800 <int>, T2260600 <int>,
-## #   T2260601 <int>, T2260602 <int>, T3108700 <int>
+## #   T2260601 <int>, T2260602 <int>, T2763400 <int>, T2763500 <int>,
+## #   T2763600 <int>, T2763700 <int>, T2763800 <int>, T2763900 <int>,
+## #   T2764000 <int>, T3108700 <int>, T3195600 <int>, T3195601 <int>,
+## #   T3195602 <int>, T3729600 <int>, T3729700 <int>, T3729800 <int>,
+## #   T3729900 <int>, T3730000 <int>, T3730100 <int>, ...
+## [1] 1
 ```
 
 ```
-## Tibble size: 4.7 Mb
+## Tibble size: 5.7 Mb
 ```
 
 ```
@@ -425,6 +436,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R1774000 <int>, T0897300 <int>, T0897400 <int>, T0897500 <int>,
 ## #   T2053800 <int>, T2053900 <int>, T2054000 <int>, T3024700 <int>,
 ## #   T3024800 <int>, T3024900 <int>
+## [1] 1
 ```
 
 ```
@@ -469,6 +481,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   BirthFatherStateMissing_2 <int>, BirthFatherStateEqual <int>,
 ## #   BirthFatherCountryMissing_1 <int>, BirthFatherCountryMissing_2 <int>,
 ## #   BirthFatherCountryEqual <int>
+## [1] 1
 ```
 
 ```
@@ -480,59 +493,60 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 12,686 x 939
-##    R000~ R017~ R021~ R021~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~
+## # A tibble: 12,686 x 959
+##    R000~ R021~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~
 ##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-##  1     1     5     3     2    -5    -5    -5    -5    -5    -5    -5    -5
-##  2     2     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-##  3     3     5     3     2     1    -4    -4     1    -4    -4    -4    -4
-##  4     4     5     3     2     0     1     4    -4    -4    -4    -4    -4
-##  5     5     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  6     6     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  7     7     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  8     8     6     3     2     1    -4    -4     1    -4    -4     1    -4
-##  9     9     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 10    10     6     3     2     1    -4    -4    -4    -4    -4    -4    -4
-## 11    11     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 12    12     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-## 13    13     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 14    14     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-## 15    15     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 16    16     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 18    18     1     3     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 19    19     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-## 20    20     5     3     2    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 1.267e+04 more rows, and 927 more variables: R1374900 <int>,
-## #   R1375400 <int>, R1375500 <int>, R1375600 <int>, R1376100 <int>,
-## #   R1376200 <int>, R1376300 <int>, R1376800 <int>, R1376900 <int>,
-## #   R1377000 <int>, R1377500 <int>, R1377600 <int>, R1377700 <int>,
-## #   R1753700 <int>, R1753800 <int>, R1753900 <int>, R1754400 <int>,
-## #   R1754500 <int>, R1754600 <int>, R1755100 <int>, R1755200 <int>,
-## #   R1755300 <int>, R1755800 <int>, R1755900 <int>, R1756000 <int>,
-## #   R1756500 <int>, R1756600 <int>, R1756700 <int>, R1757200 <int>,
-## #   R1757300 <int>, R1757400 <int>, R1757900 <int>, R1758000 <int>,
-## #   R1758100 <int>, R2095700 <int>, R2095800 <int>, R2095900 <int>,
-## #   R2096400 <int>, R2096500 <int>, R2096600 <int>, R2097100 <int>,
-## #   R2097200 <int>, R2097300 <int>, R2097800 <int>, R2097900 <int>,
-## #   R2098000 <int>, R2098500 <int>, R2098600 <int>, R2098700 <int>,
-## #   R2099200 <int>, R2099300 <int>, R2099400 <int>, R2099900 <int>,
-## #   R2100000 <int>, R2100100 <int>, R2345900 <int>, R2346200 <int>,
-## #   R2346500 <int>, R2346800 <int>, R2347100 <int>, R2347400 <int>,
-## #   R2347700 <int>, R2648000 <int>, R2648100 <int>, R2648200 <int>,
-## #   R2648700 <int>, R2648800 <int>, R2648900 <int>, R2649400 <int>,
-## #   R2649500 <int>, R2649600 <int>, R2650100 <int>, R2650200 <int>,
-## #   R2650300 <int>, R2650800 <int>, R2650900 <int>, R2651000 <int>,
-## #   R2651500 <int>, R2651600 <int>, R2651700 <int>, R2652200 <int>,
-## #   R2652300 <int>, R2652400 <int>, R2955900 <int>, R2956200 <int>,
-## #   R2956500 <int>, R2956800 <int>, R2957100 <int>, R2957400 <int>,
-## #   R2957700 <int>, R3255900 <int>, R3256000 <int>, R3256100 <int>,
-## #   R3257700 <int>, R3257800 <int>, R3257900 <int>, R3259500 <int>,
-## #   R3259600 <int>, R3259700 <int>, R3261300 <int>, ...
+##  1     1     2    -5    -5    -5    -5    -5    -5    -5    -5    -5    -5
+##  2     2     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  3     3     2     1    -4    -4     1    -4    -4    -4    -4    -4    -4
+##  4     4     2     0     1     4    -4    -4    -4    -4    -4    -4    -4
+##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  6     6     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  8     8     2     1    -4    -4     1    -4    -4     1    -4    -4    -4
+##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 10    10     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 11    11     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 12    12     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 14    14     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 15    15     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 16    16     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 17    17     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 19    19     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 20    20     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## # ... with 1.267e+04 more rows, and 947 more variables: R1375500 <int>,
+## #   R1375600 <int>, R1376100 <int>, R1376200 <int>, R1376300 <int>,
+## #   R1376800 <int>, R1376900 <int>, R1377000 <int>, R1377500 <int>,
+## #   R1377600 <int>, R1377700 <int>, R1753700 <int>, R1753800 <int>,
+## #   R1753900 <int>, R1754400 <int>, R1754500 <int>, R1754600 <int>,
+## #   R1755100 <int>, R1755200 <int>, R1755300 <int>, R1755800 <int>,
+## #   R1755900 <int>, R1756000 <int>, R1756500 <int>, R1756600 <int>,
+## #   R1756700 <int>, R1757200 <int>, R1757300 <int>, R1757400 <int>,
+## #   R1757900 <int>, R1758000 <int>, R1758100 <int>, R2095700 <int>,
+## #   R2095800 <int>, R2095900 <int>, R2096400 <int>, R2096500 <int>,
+## #   R2096600 <int>, R2097100 <int>, R2097200 <int>, R2097300 <int>,
+## #   R2097800 <int>, R2097900 <int>, R2098000 <int>, R2098500 <int>,
+## #   R2098600 <int>, R2098700 <int>, R2099200 <int>, R2099300 <int>,
+## #   R2099400 <int>, R2099900 <int>, R2100000 <int>, R2100100 <int>,
+## #   R2345900 <int>, R2346200 <int>, R2346500 <int>, R2346800 <int>,
+## #   R2347100 <int>, R2347400 <int>, R2347700 <int>, R2648000 <int>,
+## #   R2648100 <int>, R2648200 <int>, R2648700 <int>, R2648800 <int>,
+## #   R2648900 <int>, R2649400 <int>, R2649500 <int>, R2649600 <int>,
+## #   R2650100 <int>, R2650200 <int>, R2650300 <int>, R2650800 <int>,
+## #   R2650900 <int>, R2651000 <int>, R2651500 <int>, R2651600 <int>,
+## #   R2651700 <int>, R2652200 <int>, R2652300 <int>, R2652400 <int>,
+## #   R2955900 <int>, R2956200 <int>, R2956500 <int>, R2956800 <int>,
+## #   R2957100 <int>, R2957400 <int>, R2957700 <int>, R3255900 <int>,
+## #   R3256000 <int>, R3256100 <int>, R3257700 <int>, R3257800 <int>,
+## #   R3257900 <int>, R3259500 <int>, R3259600 <int>, R3259700 <int>,
+## #   R3261300 <int>, R3261400 <int>, R3261500 <int>, ...
+## [1] 1
 ```
 
 ```
-## Tibble size: 45.9 Mb
+## Tibble size: 46.9 Mb
 ```
 
 ```
@@ -589,6 +603,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   Y1989500 <int>, Y1990000 <int>, Y1990001 <int>, Y1992900 <int>,
 ## #   Y2197500 <int>, Y2308300 <int>, Y2308800 <int>, Y2308801 <int>,
 ## #   Y2311700 <int>, Y2531800 <int>
+## [1] 1
 ```
 
 ```
@@ -649,6 +664,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   Y1708100 <int>, Y1708200 <int>, Y1708300 <int>, Y1708400 <int>,
 ## #   Y1708500 <int>, Y1708600 <int>, Y1708700 <int>, Y1708800 <int>,
 ## #   Y1708900 <int>, Y1709000 <int>, Y1709100 <int>, ...
+## [1] 1
 ```
 
 ```
@@ -709,6 +725,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   T1486900 <int>, T1487000 <int>, T1487100 <int>, T1487200 <int>,
 ## #   T1487300 <int>, T1487400 <int>, T1487500 <int>, T1487600 <int>,
 ## #   T1487700 <int>, T1487800 <int>, T2217700 <int>, ...
+## [1] 1
 ```
 
 ```
@@ -753,6 +770,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   Y1385900 <int>, Y1637500 <int>, Y1637600 <int>, Y1891100 <int>,
 ## #   Y1891200 <int>, Y2207000 <int>, Y2207100 <int>, Y2544700 <int>,
 ## #   Y2544800 <int>
+## [1] 1
 ```
 
 ```
@@ -796,6 +814,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   C2802900 <int>, C2803000 <int>, C3111300 <int>, C3111400 <int>,
 ## #   C3111500 <int>, C3615000 <int>, C3615100 <int>, C3615200 <int>,
 ## #   C3993600 <int>, C3993700 <int>, C3993800 <int>
+## [1] 1
 ```
 
 ```
@@ -836,76 +855,16 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   Y2623701 <int>, Y2623702 <int>, Y2623801 <int>, Y2623802 <int>,
 ## #   Y2623901 <int>, Y2623902 <int>, Y2624001 <int>, Y2624002 <int>,
 ## #   Y2624101 <int>, Y2624102 <int>
+## [1] 1
 ```
 
 ```
 ## Tibble size: 1.4 Mb
 ```
 
-```
-## Uploading from `nlsy97/97-roster.csv` to `Extract.tbl97Roster`.
-```
-
-```
-## # A tibble: 8,984 x 416
-##    R000~ R053~ R053~ R053~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~
-##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-##  1     1     2     9  1981     6     1     4     2     3     5    -4    -4
-##  2     2     1     7  1982     3     2     1     4    -4    -4    -4    -4
-##  3     3     2     9  1983     2     1    -4    -4    -4    -4    -4    -4
-##  4     4     2     2  1981     2     1    -4    -4    -4    -4    -4    -4
-##  5     5     1    10  1982     3     1     2     4    -4    -4    -4    -4
-##  6     6     2     1  1982     3     4     1     2     5    -4    -4    -4
-##  7     7     1     4  1983     3     4     1     2     5    -4    -4    -4
-##  8     8     2     6  1981     3     4     5     2     1    -4    -4    -4
-##  9     9     1    10  1982     3     4     5     2     1    -4    -4    -4
-## 10    10     1     3  1984     3     4     5     2     1    -4    -4    -4
-## 11    11     2     6  1982     2     1     3    -4    -4    -4    -4    -4
-## 12    12     1    10  1981     4     1     3     2    -4    -4    -4    -4
-## 13    13     1    11  1984     2     1     3     4     5    -4    -4    -4
-## 14    14     1     7  1980     3     1     2     4    -4    -4    -4    -4
-## 15    15     2     1  1983     3     1     2     4    -4    -4    -4    -4
-## 16    16     1     2  1982     2     1    -4    -4    -4    -4    -4    -4
-## 17    17     2    11  1981     4     1     2     3     5     6     7     8
-## 18    18     1     2  1982     6     2     1     3     4     5    -4    -4
-## 19    19     1     4  1984     6     2     1     3     4     5    -4    -4
-## 20    20     1    12  1980     2     3     4     1    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 404 more variables: R1098600 <int>,
-## #   R1098700 <int>, R1098800 <int>, R1098900 <int>, R1099000 <int>,
-## #   R1099100 <int>, R1099200 <int>, R1099300 <int>, R1101000 <int>,
-## #   R1101100 <int>, R1101200 <int>, R1101300 <int>, R1101400 <int>,
-## #   R1101500 <int>, R1101600 <int>, R1101700 <int>, R1101800 <int>,
-## #   R1101900 <int>, R1102000 <int>, R1102100 <int>, R1102200 <int>,
-## #   R1102300 <int>, R1102400 <int>, R1102500 <int>, R1102501 <int>,
-## #   R1102600 <int>, R1102700 <int>, R1102800 <int>, R1102900 <int>,
-## #   R1103000 <int>, R1103100 <int>, R1103200 <int>, R1103300 <int>,
-## #   R1103400 <int>, R1103500 <int>, R1103600 <int>, R1103700 <int>,
-## #   R1103800 <int>, R1103900 <int>, R1104000 <int>, R1104100 <int>,
-## #   R1117000 <int>, R1117100 <int>, R1117200 <int>, R1117300 <int>,
-## #   R1117400 <int>, R1117500 <int>, R1117600 <int>, R1117700 <int>,
-## #   R1117800 <int>, R1117900 <int>, R1118000 <int>, R1118100 <int>,
-## #   R1118200 <int>, R1118300 <int>, R1118400 <int>, R1118500 <int>,
-## #   R1118600 <int>, R1118700 <int>, R1118800 <int>, R1118900 <int>,
-## #   R1119000 <int>, R1119100 <int>, R1119200 <int>, R1119300 <int>,
-## #   R1119400 <int>, R1119500 <int>, R1119600 <int>, R1119700 <int>,
-## #   R1119800 <int>, R1119900 <int>, R1120000 <int>, R1120100 <int>,
-## #   R1120200 <int>, R1120300 <int>, R1120400 <int>, R1120500 <int>,
-## #   R1120600 <int>, R1120700 <int>, R1120800 <int>, R1120900 <int>,
-## #   R1121000 <int>, R1121100 <int>, R1121200 <int>, R1121300 <int>,
-## #   R1121400 <int>, R1121500 <int>, R1121600 <int>, R1121700 <int>,
-## #   R1121800 <int>, R1121900 <int>, R1122000 <int>, R1122100 <int>,
-## #   R1122200 <int>, R1122300 <int>, R1122400 <int>, R1122500 <int>,
-## #   R1122600 <int>, R1122700 <int>, R1122800 <int>, ...
-```
-
-```
-## Tibble size: 14.5 Mb
-```
-
 ```r
-DBI::dbDisconnect(channel); rm(channel)
-
-# RODBC::odbcClose(channel); rm(channel)
+DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
+RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 ```
 
 The R session information (including the OS info, R version and all
@@ -937,15 +896,22 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
-##  [5] odbc_1.1.3       hms_0.4.0        bit_1.1-12       testit_0.7.1    
-##  [9] R6_2.2.2         rlang_0.1.6      stringr_1.2.0    blob_1.1.0      
-## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.2      
-## [17] DBI_0.7          cli_1.0.0        bit64_0.9-7      yaml_2.1.16     
-## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
-## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
-## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
-## [33] backports_1.1.2  pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14          highr_0.6             plyr_1.8.4           
+##  [4] pillar_1.0.1          compiler_3.4.3        bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
+## [10] bit_1.1-12            evaluate_0.10.1       tibble_1.4.1         
+## [13] checkmate_1.8.5       pkgconfig_2.0.1       rlang_0.1.6          
+## [16] DBI_0.7               cli_1.0.0             rstudioapi_0.7       
+## [19] yaml_2.1.16           dplyr_0.7.4           stringr_1.2.0        
+## [22] knitr_1.18            hms_0.4.0             bit64_0.9-7          
+## [25] rprojroot_1.3-1       glue_1.2.0            OuhscMunge_0.1.8.9005
+## [28] R6_2.2.2              rmarkdown_1.8         tidyr_0.7.2          
+## [31] readr_1.1.1           purrr_0.2.4           blob_1.1.0           
+## [34] scales_0.5.0.9000     backports_1.1.2       RODBC_1.3-15         
+## [37] htmltools_0.3.6       rsconnect_0.8.5       assertthat_0.2.0     
+## [40] testit_0.7.1          colorspace_1.3-2      utf8_1.1.2           
+## [43] stringi_1.1.6         munsell_0.4.3         markdown_0.8         
+## [46] crayon_1.3.4
 ```
 
 ```r
@@ -953,6 +919,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-02 17:22:36 CST"
+## [1] "2018-01-04 01:34:01 CST"
 ```
 
