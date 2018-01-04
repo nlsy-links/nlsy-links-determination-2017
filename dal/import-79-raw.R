@@ -26,24 +26,24 @@ directory_in              <- "data-unshared/raw"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name                       , ~file_name,
-  "Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv",
-  "Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv",
-  "Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv",
-  "Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv",
-  "Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv",
-  # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv",
-  # tblGen1MzDzDistinction2010
-  #
-  "Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv",
-  "Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv",
-  "Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv",
-  "Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv",
-  "Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv",
-  "Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv",
-  "Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv",
+  ~table_name                       , ~file_name
+  ,"Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv"
+  ,"Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv"
+  ,"Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv"
+  ,"Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv"
+  ,"Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv"
+  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv"
+  # # tblGen1MzDzDistinction2010
+  # #
+  ,"Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv"
+  ,"Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv"
+  ,"Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv"
+  ,"Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv"
+  ,"Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv"
+  ,"Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv"
+  ,"Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
 
-  "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
+  # "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
 )
 
 col_types_default <- readr::cols(
@@ -76,8 +76,10 @@ print(ds_extract, n=20)
 
 # ---- upload-to-db ----------------------------------------------------------
 
-channel <- open_dsn_channel_odbc()
-DBI::dbGetInfo(channel)
+channel_odbc <- open_dsn_channel_odbc()
+DBI::dbGetInfo(channel_odbc)
+
+channel_rodbc <- open_dsn_channel_rodbc()
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
@@ -98,13 +100,14 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # purrr::map_chr(d, class)
   print(d, n=20)
 
-  #RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
-  # d_peek <- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+  #RODBC::sqlQuery(channel_odbc, ds_extract$sql_truncate[i], errors=FALSE)
+  # d_peek <- RODBC::sqlQuery(channel_odbc, ds_extract$sql_select[i], errors=FALSE)
 
-  DBI::dbGetQuery(channel, ds_extract$sql_truncate[i])
+  DBI::dbGetQuery(channel_odbc, ds_extract$sql_truncate[i])
 
-  # d_peek <- DBI::dbGetQuery(channel, ds_extract$sql_select[i])
-  peek <- DBI::dbListFields(channel, ds_extract$table_name[i])
+  d_peek <- DBI::dbGetQuery(channel_odbc, ds_extract$sql_select[i])
+  peek <- colnames(d_peek)
+  # peek <- DBI::dbListFields(channel_odbc, ds_extract$table_name[i])
 
   missing_in_extract    <- setdiff(peek       , colnames(d))
   missing_in_database   <- setdiff(colnames(d), peek       )
@@ -115,31 +118,32 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # ) %>%
   #   dplyr::filter(db != extract)
 
-  system.time({
-  DBI::dbWriteTable(
-    conn    = channel,
-    name    = ds_extract$table_name[i],
-    value   = d,
-    append  = T
-  )
-  })
-
   # system.time({
-  # RODBC::sqlSave(
-  #   channel     = channel,
-  #   dat         = d,
-  #   tablename   = ds_extract$table_name[i],
-  #   safer       = TRUE,       # Don't keep the existing table.
-  #   rownames    = FALSE,
-  #   append      = TRUE
-  # ) %>%
-  # print()
+  # DBI::dbWriteTable(
+  #   conn    = channel_odbc,
+  #   name    = DBI::SQL(ds_extract$table_name[i]),
+  #   value   = d, #[, 1:10],
+  #   # append  = T,
+  #   overwrite = T
+  # )
   # })
+
+  system.time({
+  RODBC::sqlSave(
+    channel     = channel_rodbc,
+    dat         = d,
+    tablename   = ds_extract$table_name[i],
+    safer       = TRUE,       # Don't keep the existing table.
+    rownames    = FALSE,
+    append      = TRUE
+  ) %>%
+  print()
+  })
 
   # OuhscMunge::upload_sqls_rodbc(
   #   d               = d[1:100, ],
   #   table_name      = ds_extract$table_name[i] ,
-  #   dsn_name        = "local-nlsy-links",
+  #   dsn_name        = "local-nlsy-links-79",
   #   clear_table     = F,
   #   create_table    = T
   # )
@@ -147,6 +151,5 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 
   message(glue::glue("Tibble size: {format(object.size(d), units='MB')}"))
 }
-DBI::dbDisconnect(channel); rm(channel)
-
-# RODBC::odbcClose(channel); rm(channel)
+DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
+RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
