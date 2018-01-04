@@ -15,12 +15,12 @@
     <Shape ID="DesignTable:tblGen2OutcomesWeight" ZOrder="9" X="1533" Y="418" Height="305" Width="291" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:tblLinks2004Gen1" ZOrder="8" X="291" Y="439" Height="248" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
     <Shape ID="DesignTable:tblGen2OutcomesMath" ZOrder="7" X="1559" Y="80" Height="305" Width="280" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblGen2Links" ZOrder="6" X="49" Y="429" Height="305" Width="220" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblGen1GeocodeSanitized" ZOrder="5" X="48" Y="87" Height="305" Width="294" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblRosterGen1Assignment" ZOrder="4" X="357" Y="746" Height="305" Width="296" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblGen1Links" ZOrder="3" X="1314" Y="102" Height="305" Width="220" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblGen2LinksFromGen1" ZOrder="2" X="587" Y="72" Height="305" Width="207" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblGen2FatherFromGen1" ZOrder="1" X="365" Y="105" Height="305" Width="288" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblGen1GeocodeSanitized" ZOrder="6" X="48" Y="87" Height="305" Width="294" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblRosterGen1Assignment" ZOrder="5" X="357" Y="746" Height="305" Width="296" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblGen2LinksFromGen1" ZOrder="4" X="587" Y="72" Height="305" Width="207" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblGen2Links" ZOrder="3" X="48" Y="437" Height="305" Width="220" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblGen1Links" ZOrder="2" X="1317" Y="97" Height="305" Width="220" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblGen2FatherFromGen1" ZOrder="1" X="363" Y="67" Height="305" Width="187" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
