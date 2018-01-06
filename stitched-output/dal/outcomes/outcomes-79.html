@@ -253,15 +253,26 @@ sql_survey_time &lt;- &quot;
     LEFT JOIN Process.tblSubject s      ON t.SubjectTag = s.SubjectTag
   ORDER BY t.SubjectTag, t.SurveyYear
 &quot;
+sql_subject_generation &lt;- &quot;
+  SELECT
+    SubjectTag    AS subject_tag,
+    Generation    AS generation
+  FROM Process.tblSubject
+&quot;
 
-path_out_csv  &lt;- config::get(&quot;outcomes-79-csv&quot;)
-path_out_rds  &lt;- config::get(&quot;outcomes-79-rds&quot;)
+sql_algorithm_version_max &lt;- &quot;SELECT MAX(AlgorithmVersion) as version FROM Archive.tblRelatedValuesArchive&quot;
+path_out_subject_csv_raw                &lt;- config::get(&quot;outcomes-79-subject-csv&quot;)
+path_out_subject_rds                    &lt;- config::get(&quot;outcomes-79-subject-rds&quot;)
+path_out_subject_survey_csv_raw         &lt;- config::get(&quot;outcomes-79-subject-survey-csv&quot;)
+path_out_subject_survey_rds             &lt;- config::get(&quot;outcomes-79-subject-survey-rds&quot;)
 </code></pre>
 
-<pre><code class="r">channel             &lt;- open_dsn_channel_odbc()
-ds_outcome          &lt;- DBI::dbGetQuery(channel, sql_outcome    )
-ds_survey_time      &lt;- DBI::dbGetQuery(channel, sql_survey_time)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time)
+<pre><code class="r">channel                   &lt;- open_dsn_channel_odbc()
+ds_outcome                &lt;- DBI::dbGetQuery(channel, sql_outcome    )
+ds_survey_time            &lt;- DBI::dbGetQuery(channel, sql_survey_time)
+ds_subject_generation     &lt;- DBI::dbGetQuery(channel, sql_subject_generation)
+ds_algorithm_version      &lt;- DBI::dbGetQuery(channel, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
 </code></pre>
 
 <pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
@@ -277,18 +288,62 @@ dim(ds_survey_time)
 <pre><code>## [1] 108569      4
 </code></pre>
 
-<pre><code class="r">ds_survey_time &lt;- ds_survey_time %&gt;%
+<pre><code class="r">dim(ds_subject_generation)
+</code></pre>
+
+<pre><code>## [1] 24207     2
+</code></pre>
+
+<pre><code class="r">ds_algorithm_version
+</code></pre>
+
+<pre><code>##   version
+## 1      86
+</code></pre>
+
+<pre><code class="r">path_out_subject_csv        &lt;- sprintf(path_out_subject_csv_raw         , ds_algorithm_version$version)
+path_out_subject_survey_csv &lt;- sprintf(path_out_subject_survey_csv_raw  , ds_algorithm_version$version)
+
+ds_survey_time &lt;- ds_survey_time %&gt;%
   tibble::as_tibble()
 
-ds &lt;- ds_outcome %&gt;%
+ds_subject_generation &lt;- ds_subject_generation %&gt;%
+  tibble::as_tibble()
+
+ds_outcome &lt;- ds_outcome %&gt;%
   tibble::as_tibble() %&gt;%
   dplyr::mutate(
-    item_label    = OuhscMunge::snake_case(item_label)
+    item_label          = OuhscMunge::snake_case(item_label),
+    value               = dplyr::if_else(item_label==&quot;gen1_afqt_scaled3_decimals&quot;, value / 1000, as.numeric(value)), # If the conversion is here, then the other variables must be double-precision floating points.
+    item_label          = dplyr::recode(item_label, &quot;gen1_afqt_scaled3_decimals&quot;=&quot;afqt_scaled_gen1&quot;) # If the conversion is here, then the other variables must be double-precision floating points.
+  )
+
+# table(ds_outcome$item_label)
+</code></pre>
+
+<pre><code class="r">ds_subject &lt;- ds_outcome %&gt;%
+  dplyr::group_by(subject_tag, item_label) %&gt;%
+  dplyr::summarize(
+    value  = OuhscMunge::first_nonmissing(value)
   ) %&gt;%
+  dplyr::ungroup() %&gt;%
+  tidyr::spread(key=item_label, value=value) %&gt;%
+  dplyr::left_join(ds_subject_generation, by=&quot;subject_tag&quot;) %&gt;%
+  dplyr::select(
+    subject_tag,
+    generation,
+    height_inches   = gen1_height_inches,
+    weight_pounds   = gen1_weight_pounds,
+    afqt_scaled_gen1,
+    father_alive    = gen2_c_father_alive
+  )
+</code></pre>
+
+<pre><code class="r">ds_subject_survey &lt;- ds_outcome %&gt;%
   tidyr::spread(key=item_label, value=value) %&gt;%
   dplyr::left_join(ds_survey_time, by=c(&quot;subject_tag&quot;, &quot;survey_year&quot;)) %&gt;%
   dplyr::mutate(
-    afqt_scaled_gen1   = gen1_afqt_scaled3_decimals / 1000
+    # afqt_scaled_gen1   = gen1_afqt_scaled3_decimals / 1000
   ) %&gt;%
   dplyr::select(
     subject_tag,
@@ -301,27 +356,57 @@ ds &lt;- ds_outcome %&gt;%
     father_alive    = gen2_c_father_alive
   )
 
-ds
+ds_subject_survey
 </code></pre>
 
 <pre><code>## # A tibble: 74,013 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
-##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;
-##  1         200        1981          1  22.1      NA     120    6.84     NA
-##  2         200        1982          1  23.1      62     125   NA        NA
-##  3         200        1985          1  26.1      62     118   NA        NA
-##  4         300        1981          1  NA        NA      NA   49.4      NA
-##  5         300        1982          1  20.6      70     160   NA        NA
-##  6         300        1985          1  23.5      70     152   NA        NA
-##  7         400        1981          1  18.6      NA     110   55.8      NA
-##  8         400        1982          1  19.5      67     109   NA        NA
-##  9         400        1985          1  22.7      67     126   NA        NA
-## 10         401        1984          2  NA        NA      NA   NA         1
+##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1         200        1981          1  22.1    NA       120    6.84  NA   
+##  2         200        1982          1  23.1    62.0     125   NA     NA   
+##  3         200        1985          1  26.1    62.0     118   NA     NA   
+##  4         300        1981          1  NA      NA        NA   49.4   NA   
+##  5         300        1982          1  20.6    70.0     160   NA     NA   
+##  6         300        1985          1  23.5    70.0     152   NA     NA   
+##  7         400        1981          1  18.6    NA       110   55.8   NA   
+##  8         400        1982          1  19.5    67.0     109   NA     NA   
+##  9         400        1985          1  22.7    67.0     126   NA     NA   
+## 10         401        1984          2  NA      NA        NA   NA      1.00
 ## # ... with 74,003 more rows
 </code></pre>
 
 <pre><code class="r"># Sniff out problems
-summary(ds)
+summary(ds_subject)
+</code></pre>
+
+<pre><code>##   subject_tag        generation    height_inches   weight_pounds  
+##  Min.   :    200   Min.   :1.000   Min.   :48.00   Min.   : 53.0  
+##  1st Qu.: 322225   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
+##  Median : 624051   Median :1.000   Median :67.00   Median :140.0  
+##  Mean   : 619274   Mean   :1.358   Mean   :67.08   Mean   :145.6  
+##  3rd Qu.: 906175   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
+##  Max.   :1268600   Max.   :2.000   Max.   :83.00   Max.   :375.0  
+##                                    NA&#39;s   :7190    NA&#39;s   :7063   
+##  afqt_scaled_gen1  father_alive   
+##  Min.   :  0.00   Min.   :-3.000  
+##  1st Qu.: 16.77   1st Qu.: 1.000  
+##  Median : 38.62   Median : 1.000  
+##  Mean   : 42.40   Mean   : 0.806  
+##  3rd Qu.: 66.29   3rd Qu.: 1.000  
+##  Max.   :100.00   Max.   : 1.000  
+##  NA&#39;s   :7648     NA&#39;s   :12552
+</code></pre>
+
+<pre><code class="r">checkmate::assert_integer(ds_subject$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject$generation           , lower=           1L   , upper=      2L, any.missing=F)
+checkmate::assert_numeric(ds_subject$height_inches        , lower=          48L   , upper=     83L, any.missing=T)
+checkmate::assert_numeric(ds_subject$weight_pounds        , lower=          47L   , upper=    400L, any.missing=T)
+checkmate::assert_numeric(ds_subject$afqt_scaled_gen1     , lower=           0    , upper=    100 , any.missing=T)
+checkmate::assert_numeric(ds_subject$father_alive         , lower=          -3L   , upper=      1L, any.missing=T)
+</code></pre>
+
+<pre><code class="r"># Sniff out problems
+summary(ds_subject_survey)
 </code></pre>
 
 <pre><code>##   subject_tag       survey_year     generation         age       
@@ -342,41 +427,72 @@ summary(ds)
 ##  NA&#39;s   :51058   NA&#39;s   :38960   NA&#39;s   :62099    NA&#39;s   :35366
 </code></pre>
 
-<pre><code class="r">checkmate::assert_integer(ds$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
-checkmate::assert_integer(ds$survey_year          , lower=        1979L   , upper=   2016L, any.missing=F, unique=F)
-checkmate::assert_integer(ds$generation           , lower=           1L   , upper=      2L, any.missing=F)
-checkmate::assert_numeric(ds$age                  , lower=           0    , upper=     40 , any.missing=T)
-checkmate::assert_integer(ds$height_inches        , lower=          48L   , upper=     83L, any.missing=T)
-checkmate::assert_integer(ds$weight_pounds        , lower=          47L   , upper=    400L, any.missing=T)
-checkmate::assert_numeric(ds$afqt_scaled_gen1     , lower=           0    , upper=    100 , any.missing=T)
-checkmate::assert_integer(ds$father_alive         , lower=          -3L   , upper=      1L, any.missing=T)
+<pre><code class="r">checkmate::assert_integer(ds_subject_survey$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject_survey$survey_year          , lower=        1979L   , upper=   2016L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject_survey$generation           , lower=           1L   , upper=      2L, any.missing=F)
+checkmate::assert_numeric(ds_subject_survey$age                  , lower=           0    , upper=     40 , any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$height_inches        , lower=          48L   , upper=     83L, any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$weight_pounds        , lower=          47L   , upper=    400L, any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$afqt_scaled_gen1     , lower=           0    , upper=    100 , any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$father_alive         , lower=          -3L   , upper=      1L, any.missing=T)
 </code></pre>
 
-<pre><code class="r"># dput(colnames(ds)) # Print colnames for line below.
+<pre><code class="r"># dput(colnames(ds_subject_survey)) # Print colnames for line below.
+columns_to_write &lt;- c(
+  &quot;subject_tag&quot;, &quot;generation&quot;,
+  &quot;height_inches&quot;, &quot;weight_pounds&quot;, &quot;afqt_scaled_gen1&quot;,
+  &quot;father_alive&quot;
+)
+ds_slim_subject &lt;- ds_subject %&gt;%
+  # dplyr::slice(1:100) %&gt;%
+  dplyr::select(!!columns_to_write)
+ds_slim_subject
+</code></pre>
+
+<pre><code>## # A tibble: 19,562 x 6
+##    subject_tag generation height_inches weight_pounds afqt_scale~ father_~
+##          &lt;int&gt;      &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+##  1         200          1          62.0           120        6.84    NA   
+##  2         300          1          70.0           160       49.4     NA   
+##  3         400          1          67.0           110       55.8     NA   
+##  4         401          2          NA              NA       NA        1.00
+##  5         500          1          63.0           130       96.8     NA   
+##  6         600          1          65.0           200       99.4     NA   
+##  7         700          1          67.0           131       47.4     NA   
+##  8         800          1          65.0           179       44.0     NA   
+##  9         801          2          NA              NA       NA        1.00
+## 10         802          2          NA              NA       NA        1.00
+## # ... with 19,552 more rows
+</code></pre>
+
+<pre><code class="r">rm(columns_to_write)
+</code></pre>
+
+<pre><code class="r"># dput(colnames(ds_subject_survey)) # Print colnames for line below.
 columns_to_write &lt;- c(
   &quot;subject_tag&quot;, &quot;survey_year&quot;, &quot;generation&quot;, &quot;age&quot;,
   &quot;height_inches&quot;, &quot;weight_pounds&quot;, &quot;afqt_scaled_gen1&quot;,
   &quot;father_alive&quot;
-  )
-ds_slim &lt;- ds %&gt;%
+)
+ds_slim_subject_survey &lt;- ds_subject_survey %&gt;%
   # dplyr::slice(1:100) %&gt;%
   dplyr::select(!!columns_to_write)
-ds_slim
+ds_slim_subject_survey
 </code></pre>
 
 <pre><code>## # A tibble: 74,013 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
-##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;
-##  1         200        1981          1  22.1      NA     120    6.84     NA
-##  2         200        1982          1  23.1      62     125   NA        NA
-##  3         200        1985          1  26.1      62     118   NA        NA
-##  4         300        1981          1  NA        NA      NA   49.4      NA
-##  5         300        1982          1  20.6      70     160   NA        NA
-##  6         300        1985          1  23.5      70     152   NA        NA
-##  7         400        1981          1  18.6      NA     110   55.8      NA
-##  8         400        1982          1  19.5      67     109   NA        NA
-##  9         400        1985          1  22.7      67     126   NA        NA
-## 10         401        1984          2  NA        NA      NA   NA         1
+##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1         200        1981          1  22.1    NA       120    6.84  NA   
+##  2         200        1982          1  23.1    62.0     125   NA     NA   
+##  3         200        1985          1  26.1    62.0     118   NA     NA   
+##  4         300        1981          1  NA      NA        NA   49.4   NA   
+##  5         300        1982          1  20.6    70.0     160   NA     NA   
+##  6         300        1985          1  23.5    70.0     152   NA     NA   
+##  7         400        1981          1  18.6    NA       110   55.8   NA   
+##  8         400        1982          1  19.5    67.0     109   NA     NA   
+##  9         400        1985          1  22.7    67.0     126   NA     NA   
+## 10         401        1984          2  NA      NA        NA   NA      1.00
 ## # ... with 74,003 more rows
 </code></pre>
 
@@ -384,8 +500,12 @@ ds_slim
 </code></pre>
 
 <pre><code class="r"># The content of these two datasets are identical.  The first one is a plain-text csv.  The second one is a native R object.
-readr::write_csv(ds, path_out_csv)
-readr::write_rds(ds, path_out_rds, compress=&quot;xz&quot;)
+readr::write_csv(ds_slim_subject, path_out_subject_csv)
+readr::write_rds(ds_slim_subject, path_out_subject_rds, compress=&quot;xz&quot;)
+
+# The content of these two datasets are identical.  The first one is a plain-text csv.  The second one is a native R object.
+readr::write_csv(ds_slim_subject_survey, path_out_subject_survey_csv)
+readr::write_rds(ds_slim_subject_survey, path_out_subject_survey_rds, compress=&quot;xz&quot;)
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -439,7 +559,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-05 16:57:35 CST&quot;
+<pre><code>## [1] &quot;2018-01-05 18:35:10 CST&quot;
 </code></pre>
 
 </body>
