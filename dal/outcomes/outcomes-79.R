@@ -23,10 +23,11 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 # Constant values that won't change.
 item_labels <- "
     'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
-'Gen2CFatherAlive'
+    'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
+    'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+    'Gen2CFatherAlive'
   "
-# 'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
-# 'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+
 
 sql_response <-   glue::glue("
     SELECT --TOP (1000)
@@ -45,22 +46,6 @@ sql_response <-   glue::glue("
     )
   ")
 
-# sql_outcome <- "
-#   SELECT -- TOP (100000)
-#   	--o.ID
-#     o.SubjectTag      AS subject_tag
-#     --,s.Generation
-#     ,o.SurveyYear     AS survey_year
-#     --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-#     --,o.Item
-#     ,i.Label          AS item_label
-#     ,o.Value          AS value
-#   FROM Process.tblOutcome o
-#     LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-#     --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-#     --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-#   ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-# "
 sql_survey_time <- "
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -87,8 +72,9 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 # ---- load-data ---------------------------------------------------------------
 
 channel                   <- open_dsn_channel_odbc()
+system.time({
 ds_response               <- DBI::dbGetQuery(channel, sql_response    )
-# ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+})
 ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     <- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)

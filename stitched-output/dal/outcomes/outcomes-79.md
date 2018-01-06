@@ -35,10 +35,11 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 # Constant values that won't change.
 item_labels <- "
     'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
-'Gen2CFatherAlive'
+    'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
+    'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+    'Gen2CFatherAlive'
   "
-# 'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
-# 'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+
 
 sql_response <-   glue::glue("
     SELECT --TOP (1000)
@@ -57,22 +58,6 @@ sql_response <-   glue::glue("
     )
   ")
 
-# sql_outcome <- "
-#   SELECT -- TOP (100000)
-#   	--o.ID
-#     o.SubjectTag      AS subject_tag
-#     --,s.Generation
-#     ,o.SurveyYear     AS survey_year
-#     --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-#     --,o.Item
-#     ,i.Label          AS item_label
-#     ,o.Value          AS value
-#   FROM Process.tblOutcome o
-#     LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-#     --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-#     --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-#   ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-# "
 sql_survey_time <- "
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -99,8 +84,17 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 
 ```r
 channel                   <- open_dsn_channel_odbc()
+system.time({
 ds_response               <- DBI::dbGetQuery(channel, sql_response    )
-# ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+})
+```
+
+```
+##    user  system elapsed 
+##     0.4     0.0     0.7
+```
+
+```r
 ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     <- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)
@@ -121,7 +115,7 @@ dim(ds_response)
 ```
 
 ```
-## [1] 108569      4
+## [1] 279649      4
 ```
 
 ```r
@@ -203,20 +197,20 @@ ds_subject_survey
 ```
 
 ```
-## # A tibble: 74,013 x 8
+## # A tibble: 118,822 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
 ##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1  22.1    NA       120    6.84  NA   
-##  2         200        1982          1  23.1    62.0     125   NA     NA   
-##  3         200        1985          1  26.1    62.0     118   NA     NA   
-##  4         300        1981          1  NA      NA        NA   49.4   NA   
-##  5         300        1982          1  20.6    70.0     160   NA     NA   
-##  6         300        1985          1  23.5    70.0     152   NA     NA   
-##  7         400        1981          1  18.6    NA       110   55.8   NA   
-##  8         400        1982          1  19.5    67.0     109   NA     NA   
-##  9         400        1985          1  22.7    67.0     126   NA     NA   
-## 10         401        1984          2  NA      NA        NA   NA      1.00
-## # ... with 74,003 more rows
+##  1         200        1981          1 22.1     NA       120    6.84     NA
+##  2         200        1982          1 23.1     62.0     125   NA        NA
+##  3         200        1985          1 26.1     62.0     118   NA        NA
+##  4         201        1998          2  5.20    NA        NA   NA        NA
+##  5         201        2000          2  7.20    NA        NA   NA        NA
+##  6         201        2002          2  9.30    NA        NA   NA        NA
+##  7         201        2004          2 11.3     NA        NA   NA        NA
+##  8         202        2000          2  5.60    NA        NA   NA        NA
+##  9         202        2002          2  7.60    NA        NA   NA        NA
+## 10         202        2004          2  9.60    NA        NA   NA        NA
+## # ... with 118,812 more rows
 ```
 
 ```r
@@ -227,12 +221,12 @@ summary(ds_subject)
 ```
 ##   subject_tag        generation    height_inches   weight_pounds  
 ##  Min.   :    200   Min.   :1.000   Min.   :48.00   Min.   : 53.0  
-##  1st Qu.: 322225   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
-##  Median : 624051   Median :1.000   Median :67.00   Median :140.0  
-##  Mean   : 619274   Mean   :1.358   Mean   :67.08   Mean   :145.6  
-##  3rd Qu.: 906175   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
+##  1st Qu.: 304727   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
+##  Median : 603352   Median :1.000   Median :67.00   Median :140.0  
+##  Mean   : 606991   Mean   :1.447   Mean   :67.08   Mean   :145.6  
+##  3rd Qu.: 896501   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
 ##  Max.   :1268600   Max.   :2.000   Max.   :83.00   Max.   :375.0  
-##                                    NA's   :7190    NA's   :7063   
+##                                    NA's   :10346   NA's   :10219  
 ##  afqt_scaled_gen1  father_alive   
 ##  Min.   :  0.00   Min.   :-3.000  
 ##  1st Qu.: 16.77   1st Qu.: 1.000  
@@ -240,7 +234,7 @@ summary(ds_subject)
 ##  Mean   : 42.40   Mean   : 0.806  
 ##  3rd Qu.: 66.29   3rd Qu.: 1.000  
 ##  Max.   :100.00   Max.   : 1.000  
-##  NA's   :7648     NA's   :12552
+##  NA's   :10804    NA's   :15708
 ```
 
 ```r
@@ -259,13 +253,13 @@ summary(ds_subject_survey)
 
 ```
 ##   subject_tag       survey_year     generation         age       
-##  Min.   :    200   Min.   :1981   Min.   :1.000   Min.   : 0.00  
-##  1st Qu.: 325003   1st Qu.:1982   1st Qu.:1.000   1st Qu.:13.10  
-##  Median : 623802   Median :1985   Median :2.000   Median :19.20  
-##  Mean   : 607496   Mean   :1989   Mean   :1.522   Mean   :17.58  
-##  3rd Qu.: 868401   3rd Qu.:1996   3rd Qu.:2.000   3rd Qu.:22.60  
-##  Max.   :1268600   Max.   :2010   Max.   :2.000   Max.   :37.50  
-##                                                   NA's   :9980   
+##  Min.   :    200   Min.   :1981   Min.   :1.000   Min.   : 0.0   
+##  1st Qu.: 285625   1st Qu.:1985   1st Qu.:1.000   1st Qu.:11.4   
+##  Median : 579002   Median :1994   Median :2.000   Median :18.3   
+##  Mean   : 577511   Mean   :1994   Mean   :1.702   Mean   :17.1   
+##  3rd Qu.: 842100   3rd Qu.:2004   3rd Qu.:2.000   3rd Qu.:22.5   
+##  Max.   :1268600   Max.   :2010   Max.   :2.000   Max.   :38.0   
+##                                                   NA's   :10136  
 ##  height_inches   weight_pounds   afqt_scaled_gen1  father_alive  
 ##  Min.   :48.00   Min.   : 47.0   Min.   :  0.00   Min.   :-3.00  
 ##  1st Qu.:64.00   1st Qu.:125.0   1st Qu.: 16.77   1st Qu.: 1.00  
@@ -273,7 +267,7 @@ summary(ds_subject_survey)
 ##  Mean   :67.08   Mean   :148.5   Mean   : 42.40   Mean   : 0.82  
 ##  3rd Qu.:70.00   3rd Qu.:165.0   3rd Qu.: 66.29   3rd Qu.: 1.00  
 ##  Max.   :83.00   Max.   :375.0   Max.   :100.00   Max.   : 1.00  
-##  NA's   :51058   NA's   :38960   NA's   :62099    NA's   :35366
+##  NA's   :95867   NA's   :83769   NA's   :106908   NA's   :80175
 ```
 
 ```r
@@ -301,20 +295,20 @@ ds_slim_subject
 ```
 
 ```
-## # A tibble: 19,562 x 6
+## # A tibble: 22,718 x 6
 ##    subject_tag generation height_inches weight_pounds afqt_scale~ father_~
 ##          <int>      <int>         <dbl>         <dbl>       <dbl>    <dbl>
 ##  1         200          1          62.0           120        6.84    NA   
-##  2         300          1          70.0           160       49.4     NA   
-##  3         400          1          67.0           110       55.8     NA   
-##  4         401          2          NA              NA       NA        1.00
-##  5         500          1          63.0           130       96.8     NA   
-##  6         600          1          65.0           200       99.4     NA   
-##  7         700          1          67.0           131       47.4     NA   
-##  8         800          1          65.0           179       44.0     NA   
-##  9         801          2          NA              NA       NA        1.00
-## 10         802          2          NA              NA       NA        1.00
-## # ... with 19,552 more rows
+##  2         201          2          NA              NA       NA       NA   
+##  3         202          2          NA              NA       NA       NA   
+##  4         300          1          70.0           160       49.4     NA   
+##  5         301          2          NA              NA       NA       NA   
+##  6         302          2          NA              NA       NA       NA   
+##  7         303          2          NA              NA       NA       NA   
+##  8         400          1          67.0           110       55.8     NA   
+##  9         401          2          NA              NA       NA        1.00
+## 10         500          1          63.0           130       96.8     NA   
+## # ... with 22,708 more rows
 ```
 
 ```r
@@ -335,20 +329,20 @@ ds_slim_subject_survey
 ```
 
 ```
-## # A tibble: 74,013 x 8
+## # A tibble: 118,822 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
 ##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1  22.1    NA       120    6.84  NA   
-##  2         200        1982          1  23.1    62.0     125   NA     NA   
-##  3         200        1985          1  26.1    62.0     118   NA     NA   
-##  4         300        1981          1  NA      NA        NA   49.4   NA   
-##  5         300        1982          1  20.6    70.0     160   NA     NA   
-##  6         300        1985          1  23.5    70.0     152   NA     NA   
-##  7         400        1981          1  18.6    NA       110   55.8   NA   
-##  8         400        1982          1  19.5    67.0     109   NA     NA   
-##  9         400        1985          1  22.7    67.0     126   NA     NA   
-## 10         401        1984          2  NA      NA        NA   NA      1.00
-## # ... with 74,003 more rows
+##  1         200        1981          1 22.1     NA       120    6.84     NA
+##  2         200        1982          1 23.1     62.0     125   NA        NA
+##  3         200        1985          1 26.1     62.0     118   NA        NA
+##  4         201        1998          2  5.20    NA        NA   NA        NA
+##  5         201        2000          2  7.20    NA        NA   NA        NA
+##  6         201        2002          2  9.30    NA        NA   NA        NA
+##  7         201        2004          2 11.3     NA        NA   NA        NA
+##  8         202        2000          2  5.60    NA        NA   NA        NA
+##  9         202        2002          2  7.60    NA        NA   NA        NA
+## 10         202        2004          2  9.60    NA        NA   NA        NA
+## # ... with 118,812 more rows
 ```
 
 ```r
@@ -414,6 +408,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 15:54:01 CST"
+## [1] "2018-01-06 16:18:24 CST"
 ```
 
