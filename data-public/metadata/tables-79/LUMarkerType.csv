@@ -18,7 +18,7 @@ ID,Label,Explicit,Active,Notes
 31,Gen1BiodadDeathAge                      ,0,TRUE,
 32,Gen1BiodadBirthYear                     ,0,TRUE,
 33,Gen1BiodadInHH1979                      ,0,FALSE,
-34,Gen1BiodadBrithCountry                  ,0,TRUE,
+34,Gen1BiodadBirthCountry                  ,0,TRUE,
 35,Gen1BiodadBirthState                    ,0,TRUE,
 40,Gen1BiomomInHH                          ,0,TRUE,
 41,Gen1BiomomDeathAge                      ,0,TRUE,

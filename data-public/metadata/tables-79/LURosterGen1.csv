@@ -1,4 +1,4 @@
-﻿ID,Label,Active,Notes
+ID,Label,Active,Notes
 -4,ValidSkip,TRUE,
 -3,InvalidSkip,TRUE,
 -1,Refusal,TRUE,
@@ -60,7 +60,7 @@
 57,HusbandOrBrotherInLaw,TRUE,
 58,WifeOrSisterInLaw,TRUE,
 59,AdoptedOrStepbrother,TRUE,
-60,AdoptedOrStepsister,TRUE,
+60,AdoptedOrStepsister,TRUE,"Watch out, this is listed at the bottom of the NlsInvestigator"
 62,BrotherOrCousin,TRUE,
 63,SisterOrCousin,TRUE,
 64,BrotherNaturalStepOrAdopted,TRUE,

@@ -19,13 +19,13 @@ namespace Nls.BaseAssembly {
         Gen1BiodadInHH = 30,
         Gen1BiodadDeathAge = 31,
         Gen1BiodadBirthYear = 32,
-        //Gen1BiodadInHH1979 = 33,
+        // Gen1BiodadInHH1979                                        =    33, 
         Gen1BiodadBirthCountry = 34,
         Gen1BiodadBirthState = 35,
         Gen1BiomomInHH = 40,
         Gen1BiomomDeathAge = 41,
         Gen1BiomomBirthYear = 42,
-        //Gen1BiomomInHH1979 = 43,
+        // Gen1BiomomInHH1979                                        =    43, 
         Gen1BiomomBirthCountry = 44,
         Gen1BiomomBirthState = 45,
         Gen1AlwaysLivedWithBothBioparents = 50,
@@ -48,7 +48,6 @@ namespace Nls.BaseAssembly {
         InterviewDateDay = 20,
         InterviewDateMonth = 21,
         InterviewDateYear = 22,
-
         Gen1SiblingIsATwinOrTrip1994 = 25,
         Gen1MultipleSiblingType1994 = 26,
         Gen1ListedTwinCorrect1994 = 27,
@@ -58,7 +57,6 @@ namespace Nls.BaseAssembly {
         MotherOrBothInHHGen2 = 37,
         FatherHasAsthmaGen2 = 40,
         BioKidCountGen1 = 48,
-
         Gen1ChildsIDByBirthOrder = 49,
         HerTwinsTripsAreListed = 50,
         HerTwinsAreMz = 52,
@@ -73,7 +71,6 @@ namespace Nls.BaseAssembly {
         Gen1EyeColor = 71,
         Gen2HairColor_NOTUSED = 72,
         Gen2EyeColor_NOTUSED = 73,
-
         BabyDaddyInHH = 81,
         BabyDaddyAlive = 82,
         BabyDaddyEverLiveInHH = 83,
@@ -86,12 +83,10 @@ namespace Nls.BaseAssembly {
         BabyDaddyHasAsthma = 90,
         BabyDaddyLeftHHMonthOrNeverInHH = 91,
         BabyDaddyLeftHHYearTwoDigit = 92,
-
         SubjectID = 100,
         ExtendedFamilyID = 101,
         Gender = 102,
         RaceCohort = 103,
-
         Gen2CFatherLivingInHH = 121,
         Gen2CFatherAlive = 122,
         Gen2CFatherDistanceFromMotherFuzzyCeiling = 123,
@@ -100,12 +95,13 @@ namespace Nls.BaseAssembly {
         Gen2YAFatherAlive_NOTUSED = 142,
         Gen2YADeathMonth = 143,
         Gen2YADeathYearFourDigit = 144,
-
+        Gen2FromMomDeathMonth = 145,
+        Gen2FromMomDeathYearFourDigit = 146,
         Gen1HeightInches = 200,
         Gen1WeightPounds = 201,
         Gen1AfqtScaled0Decimals_NOTUSED = 202,
         Gen1AfqtScaled3Decimals = 203,
-
+        Gen1HeightFeetInchesMashed = 204,
         Gen1FatherAlive = 300,
         Gen1FatherDeathCause = 301,
         Gen1FatherDeathAge = 302,
@@ -118,7 +114,6 @@ namespace Nls.BaseAssembly {
         Gen1FatherBirthMonth = 309,
         Gen1FatherBirthYear = 310,
         Gen1FatherAge = 311,
-
         Gen1MotherAlive = 320,
         Gen1MotherDeathCause = 321,
         Gen1MotherDeathAge = 322,
@@ -131,32 +126,21 @@ namespace Nls.BaseAssembly {
         Gen1MotherBirthYear = 330,
         Gen1MotherAge = 331,
         Gen1AlwaysLivedWithBothParents = 340,
-
         Gen2HeightInchesTotal = 500,
         Gen2HeightFeetOnly = 501,
         Gen2HeightInchesRemainder = 502,
         Gen2HeightInchesTotalMotherSupplement = 503,
-
+        Gen2WeightPoundsYA = 504,
+        Gen2PiatMathRaw = 511,
+        Gen2PiatMathPercentile = 512,
+        Gen2PiatMathStandard = 513,
         Gen1ListIncorrectGen2TwinTrips_NOTINTAGCURRENTLY = 9993,
         Gen1VerifyFirstGen2TwinsTrips_NOTINTAGSETCURRENTLY = 9994,
         Gen1FirstIncorrectTwinTripYoungerOrOlder_NOTUSED = 9995,
         Gen1FirstIncorrectTwinTripAgeDifference_NOTUSED = 9996,
         Gen1SecondIncorrectTwinTripYoungerOrOlder_NOTUSED = 9997,
         Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED = 9998,
-
         NotTranslated = 9999,
-        //Gen2YInHHGen1 = 81,
-        //Gen2YAliveGen1 = 82,
-        //Gen2YEverLiveInHH = 83,
-        //Gen2YLeftHHMonth = 84,
-        //Gen2YLeftHHYearFourDigit = 85,
-        //Gen2YDeathMonth = 86,
-        //Gen2YDeathYearTwoDigit = 87,
-        //Gen2YDeathYearFourDigit = 88,
-        //Gen2YDistanceFromMotherFuzzyCeiling = 89,
-        //Gen2YHasAsthmaGen1 = 90,
-        //Gen2YLeftHHMonthOrNeverInHH = 91,
-        //Gen2YLeftHHYearTwoDigit = 92,
     }
     //public enum OutcomeEnum : byte {
     //    HeightAdult = 1,
@@ -184,13 +168,13 @@ namespace Nls.BaseAssembly {
     public enum Sample : byte {
         Nlsy79Gen1 = 1,
         Nlsy79Gen2 = 2,
-        Nlsy97 = 3,
+        //Nlsy97 = 3,
     }
     public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
         No = 0,
         Twin = 2,
         Trip = 3,
-        TwinOrTrip = 4, //Currently Then Gen1 algorithm doesn't distinguish.
+        TwinOrTrip = 4, // Currently Then Gen1 algorithm doesn't distinguish.
         DoNotKnow = 255,
     }
     public enum Tristate : byte {
@@ -198,17 +182,17 @@ namespace Nls.BaseAssembly {
         Yes = 1,
         DoNotKnow = 255,
     }
-    public enum MultipleBirthImportGen1MzDistinction : byte {
-        No = 0,
-        Twin = 1,
-        Trip = 2,
-        TwinOrTrip = 3,
-        DontKnow = 255,
-    }
+    //public enum MultipleBirthImportGen1MzDistinction : byte {
+    //    No = 0,
+    //    Twin = 1,
+    //    Trip = 2,
+    //    TwinOrTrip = 3,
+    //    DontKnow = 255,
+    //}
     public enum Gender : byte {
         Male = 1,
         Female = 2,
-        InvalidSkipGen2 = 255,
+        InvalidSkipGen2 = 255, 
     }
     public enum RaceCohort : byte {
         Hispanic = 1,
@@ -230,7 +214,7 @@ namespace Nls.BaseAssembly {
         Gen2Siblings = 2,
         Gen2Cousins = 3,
         ParentChild = 4,
-        AuntNiece = 5, //Acutally (Uncle|Aunt)-(Nephew|Niece)
+        AuntNiece = 5, // Actually (Uncle|Aunt)-(Nephew|Niece)
     }
     public enum YesNo : short {
         ValidSkipOrNoInterviewOrNotInSurvey = -6,
@@ -241,8 +225,3 @@ namespace Nls.BaseAssembly {
         Yes = 1,
     }
 }
-//public enum EverSharedHouse : byte {
-//   No = 0,
-//   Yes = 1,
-//   //DontKnow = 255
-//}

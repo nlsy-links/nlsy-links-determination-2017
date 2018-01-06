@@ -125,7 +125,6 @@ namespace Nls.BaseAssembly {
             ValidSkip = -4,
             InvalidSkip = -3,
             Refusal = -1,
-
             Respondent = 0,
             Spouse = 1,
             Son = 2,
@@ -184,7 +183,7 @@ namespace Nls.BaseAssembly {
             HusbandOrBrotherInLaw = 57,
             WifeOrSisterInLaw = 58,
             AdoptedOrStepbrother = 59,
-            AdoptedOrStepsister = 60,//Watch out, this is listed at the bottom of the NlsInvestigator
+            AdoptedOrStepsister = 60, // Watch out, this is listed at the bottom of the NlsInvestigator
             BrotherOrCousin = 62,
             SisterOrCousin = 63,
             BrotherNaturalStepOrAdopted = 64,

@@ -54,6 +54,7 @@ lst_col_types <- list(
   # ),
   LUExtractSource = col_types_minimal,
   LUMarkerEvidence = col_types_minimal,
+  LUGender = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
