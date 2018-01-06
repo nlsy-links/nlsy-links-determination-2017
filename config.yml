@@ -1,0 +1,4 @@
+default:
+  trials: 5
+  outcomes-79-csv: "./data-public/derived/outcomes-79-v%i.csv"
+  outcomes-79-rds: "./data-public/derived/outcomes-79.rds"

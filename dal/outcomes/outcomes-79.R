@@ -1,4 +1,4 @@
-# knitr::stitch_rmd(script="./dal/import-79-raw.R", output="./stitched-output/dal/import-raw.md") # dir.create(output="./stitched-output/dal/", recursive=T)
+# knitr::stitch_rmd(script="./dal/outcomes/outcomes-79.R", output="./stitched-output/dal/outcomes/outcomes-79.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
 # ---- load-sources ------------------------------------------------------------
@@ -7,7 +7,6 @@ source("./utility/connectivity.R")
 # ---- load-packages -----------------------------------------------------------
 # Attach these package(s) so their functions don't need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 library(magrittr            , quietly=TRUE)
-# library(DBI                 , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"        )
@@ -17,6 +16,7 @@ requireNamespace("testit"       ) # For asserting conditions meet expected patte
 requireNamespace("checkmate"    ) # For asserting conditions meet expected patterns. # devtools::install_github("mllg/checkmate")
 requireNamespace("DBI"          )
 requireNamespace("odbc"         )
+requireNamespace("config"       )
 requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/OuhscMunge")
 
 # ---- declare-globals ---------------------------------------------------------
@@ -48,15 +48,26 @@ sql_survey_time <- "
   ORDER BY t.SubjectTag, t.SurveyYear
 "
 
+sql_algorithm_version_max <- "SELECT MAX(AlgorithmVersion) as version FROM Archive.tblRelatedValuesArchive"
+path_out_csv_raw          <- config::get("outcomes-79-csv")
+path_out_rds              <- config::get("outcomes-79-rds")
+
 # ---- load-data ---------------------------------------------------------------
 
-channel             <- open_dsn_channel_odbc()
-ds_outcome          <- DBI::dbGetQuery(channel, sql_outcome    )
-ds_survey_time      <- DBI::dbGetQuery(channel, sql_survey_time)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time)
+channel                   <- open_dsn_channel_odbc()
+ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
+ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_algorithm_version_max)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+dim(ds_survey_time)
+dim(ds_outcome)
+ds_algorithm_version
+
+path_out_csv <- sprintf(path_out_csv_raw, ds_algorithm_version$version)
+
 ds_survey_time <- ds_survey_time %>%
   tibble::as_tibble()
 
@@ -81,10 +92,10 @@ ds <- ds_outcome %>%
     father_alive    = gen2_c_father_alive
   )
 
-
+ds
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
-# summary(ds)
+summary(ds)
 checkmate::assert_integer(ds$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
 checkmate::assert_integer(ds$survey_year          , lower=        1979L   , upper=   2016L, any.missing=F, unique=F)
 checkmate::assert_integer(ds$generation           , lower=           1L   , upper=      2L, any.missing=F)
@@ -107,80 +118,8 @@ ds_slim <- ds %>%
 ds_slim
 
 rm(columns_to_write)
-#
-# # ---- save-to-disk ------------------------------------------------------------
-# # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
-# readr::write_csv(ds, path_out_unified)
-# # readr::write_rds(ds, path_out_unified, compress="gz") # Save as a compressed R-binary file if it's large or has a lot of factors.
-#
-#
-# # ---- save-to-db --------------------------------------------------------------
-# # If there's no PHI, a local database like SQLite fits a nice niche if
-# #   * the data is relational and
-# #   * later, only portions need to be queried/retrieved at a time (b/c everything won't need to be loaded into R's memory)
-#
-# sql_create_tbl_county <- "
-# CREATE TABLE `tbl_county` (
-# county_id              INTEGER NOT NULL PRIMARY KEY,
-# county_name            VARCHAR NOT NULL,
-# region_id              INTEGER NOT NULL
-# );"
-#
-# sql_create_tbl_te_month <- "
-# CREATE TABLE `tbl_te_month` (
-# county_month_id                    INTEGER NOT NULL PRIMARY KEY,
-# county_id                          INTEGER NOT NULL,
-# month                              VARCHAR NOT NULL,         -- There's no date type in SQLite.  Make sure it's ISO8601: yyyy-mm-dd
-# fte                                REAL    NOT NULL,
-# fte_approximated                   REAL    NOT NULL,
-# month_missing                      INTEGER NOT NULL,         -- There's no bit/boolean type in SQLite
-# fte_rolling_median_11_month        INTEGER, --  NOT NULL
-#
-# FOREIGN KEY(county_id) REFERENCES tbl_county(county_id)
-# );"
-#
-# # Remove old DB
-# if( file.exists(path_db) ) file.remove(path_db)
-#
-# # Open connection
-# cnn <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=path_db)
-# RSQLite::dbSendQuery(cnn, "PRAGMA foreign_keys=ON;") #This needs to be activated each time a connection is made. #http://stackoverflow.com/questions/15301643/sqlite3-forgets-to-use-foreign-keys
-# dbListTables(cnn)
-#
-# # Create tables
-# dbSendQuery(cnn, sql_create_tbl_county)
-# dbSendQuery(cnn, sql_create_tbl_te_month)
-# dbListTables(cnn)
-#
-# # Write to database
-# dbWriteTable(cnn, name='tbl_county',              value=ds_county,        append=TRUE, row.names=FALSE)
-# ds %>%
-#   dplyr::mutate(
-#     month               = strftime(month, "%Y-%m-%d"),
-#     fte_approximated    = as.logical(fte_approximated),
-#     month_missing       = as.logical(month_missing)
-#   ) %>%
-#   dplyr::select(county_month_id, county_id, month, fte, fte_approximated, month_missing, fte_rolling_median_11_month) %>%
-#   dbWriteTable(value=., conn=cnn, name='tbl_te_month', append=TRUE, row.names=FALSE)
-#
-# # Close connection
-# dbDisconnect(cnn)
-#
-# # # ---- upload-to-db ----------------------------------------------------------
-# # If there's PHI, write to a central database server that authenticates users (like SQL Server).
-# # (startTime <- Sys.time())
-# # dbTable <- "Osdh.tblC1TEMonth"
-# # channel <- RODBC::odbcConnect("te-example") #getSqlTypeInfo("Microsoft SQL Server") #;odbcGetInfo(channel)
-# #
-# # columnInfo <- RODBC::sqlColumns(channel, dbTable)
-# # varTypes <- as.character(columnInfo$TYPE_NAME)
-# # names(varTypes) <- as.character(columnInfo$COLUMN_NAME)  #varTypes
-# #
-# # RODBC::sqlClear(channel, dbTable)
-# # RODBC::sqlSave(channel, ds_slim, dbTable, append=TRUE, rownames=FALSE, fast=TRUE, varTypes=varTypes)
-# # RODBC::odbcClose(channel)
-# # rm(columnInfo, channel, columns_to_write, dbTable, varTypes)
-# # (elapsedDuration <-  Sys.time() - startTime) #21.4032 secs 2015-10-31
-#
-#
-# #Possibly consider writing to sqlite (with RSQLite) if there's no PHI, or a central database if there is PHI.
+
+# ---- save-to-disk ------------------------------------------------------------
+# The content of these two datasets are identical.  The first one is a plain-text csv.  The second one is a native R object.
+readr::write_csv(ds, path_out_csv)
+readr::write_rds(ds, path_out_rds, compress="xz")
