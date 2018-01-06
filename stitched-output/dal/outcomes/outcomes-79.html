@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>This report was automatically generated with the R package <strong>knitr</strong>
+(version 1.18).</p>
+
+<pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/outcomes/outcomes-79.R&quot;, output=&quot;./stitched-output/dal/outcomes/outcomes-79.md&quot;) # dir.create(&quot;./stitched-output/dal/outcomes/&quot;, recursive=T)
+rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
+</code></pre>
+
+<pre><code class="r">source(&quot;./utility/connectivity.R&quot;)
+</code></pre>
+
+<pre><code class="r"># Attach these package(s) so their functions don&#39;t need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+library(magrittr            , quietly=TRUE)
+
+# Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+requireNamespace(&quot;readr&quot;        )
+requireNamespace(&quot;tidyr&quot;        )
+requireNamespace(&quot;dplyr&quot;        ) # Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
+requireNamespace(&quot;testit&quot;       ) # For asserting conditions meet expected patterns.
+requireNamespace(&quot;checkmate&quot;    ) # For asserting conditions meet expected patterns. # devtools::install_github(&quot;mllg/checkmate&quot;)
+requireNamespace(&quot;DBI&quot;          )
+requireNamespace(&quot;odbc&quot;         )
+requireNamespace(&quot;config&quot;       )
+requireNamespace(&quot;OuhscMunge&quot;   ) # devtools::install_github(repo=&quot;OuhscBbmc/OuhscMunge&quot;)
+</code></pre>
+
+<pre><code class="r"># Constant values that won&#39;t change.
+sql_outcome &lt;- &quot;
+  SELECT -- TOP (100000)
+    --o.ID
+    o.SubjectTag      AS subject_tag
+    --,s.Generation
+    ,o.SurveyYear     AS survey_year
+    --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
+    --,o.Item
+    ,i.Label          AS item_label
+    ,o.Value          AS value
+  FROM Process.tblOutcome o
+    LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
+    --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
+    --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
+  ORDER BY o.SubjectTag, o.SurveyYear, i.Label
+&quot;
+sql_survey_time &lt;- &quot;
+  SELECT -- TOP (100000)
+    t.SubjectTag          AS subject_tag
+    ,t.SurveyYear         AS survey_year
+    ,s.Generation         AS generation
+    ,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
+  FROM Process.tblSurveyTime t
+    LEFT JOIN Process.tblSubject s      ON t.SubjectTag = s.SubjectTag
+  ORDER BY t.SubjectTag, t.SurveyYear
+&quot;
+sql_subject_generation &lt;- &quot;
+  SELECT
+    SubjectTag    AS subject_tag,
+    Generation    AS generation
+  FROM Process.tblSubject
+&quot;
+
+sql_algorithm_version_max &lt;- &quot;SELECT MAX(AlgorithmVersion) as version FROM Archive.tblRelatedValuesArchive&quot;
+path_out_subject_csv_raw                &lt;- config::get(&quot;outcomes-79-subject-csv&quot;)
+path_out_subject_rds                    &lt;- config::get(&quot;outcomes-79-subject-rds&quot;)
+path_out_subject_survey_csv_raw         &lt;- config::get(&quot;outcomes-79-subject-survey-csv&quot;)
+path_out_subject_survey_rds             &lt;- config::get(&quot;outcomes-79-subject-survey-rds&quot;)
+</code></pre>
+
+<pre><code class="r">channel                   &lt;- open_dsn_channel_odbc()
+ds_outcome                &lt;- DBI::dbGetQuery(channel, sql_outcome    )
+ds_survey_time            &lt;- DBI::dbGetQuery(channel, sql_survey_time)
+ds_subject_generation     &lt;- DBI::dbGetQuery(channel, sql_subject_generation)
+ds_algorithm_version      &lt;- DBI::dbGetQuery(channel, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
+</code></pre>
+
+<pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+dim(ds_survey_time)
+</code></pre>
+
+<pre><code>## [1] 605175      4
+</code></pre>
+
+<pre><code class="r">dim(ds_outcome)
+</code></pre>
+
+<pre><code>## [1] 108569      4
+</code></pre>
+
+<pre><code class="r">dim(ds_subject_generation)
+</code></pre>
+
+<pre><code>## [1] 24207     2
+</code></pre>
+
+<pre><code class="r">ds_algorithm_version
+</code></pre>
+
+<pre><code>##   version
+## 1      86
+</code></pre>
+
+<pre><code class="r">path_out_subject_csv        &lt;- sprintf(path_out_subject_csv_raw         , ds_algorithm_version$version)
+path_out_subject_survey_csv &lt;- sprintf(path_out_subject_survey_csv_raw  , ds_algorithm_version$version)
+
+ds_survey_time &lt;- ds_survey_time %&gt;%
+  tibble::as_tibble()
+
+ds_subject_generation &lt;- ds_subject_generation %&gt;%
+  tibble::as_tibble()
+
+ds_outcome &lt;- ds_outcome %&gt;%
+  tibble::as_tibble() %&gt;%
+  dplyr::mutate(
+    item_label          = OuhscMunge::snake_case(item_label),
+    value               = dplyr::if_else(item_label==&quot;gen1_afqt_scaled3_decimals&quot;, value / 1000, as.numeric(value)), # If the conversion is here, then the other variables must be double-precision floating points.
+    item_label          = dplyr::recode(item_label, &quot;gen1_afqt_scaled3_decimals&quot;=&quot;afqt_scaled_gen1&quot;) # If the conversion is here, then the other variables must be double-precision floating points.
+  )
+
+# table(ds_outcome$item_label)
+</code></pre>
+
+<pre><code class="r">ds_subject &lt;- ds_outcome %&gt;%
+  dplyr::group_by(subject_tag, item_label) %&gt;%
+  dplyr::summarize(
+    value  = OuhscMunge::first_nonmissing(value)
+  ) %&gt;%
+  dplyr::ungroup() %&gt;%
+  tidyr::spread(key=item_label, value=value) %&gt;%
+  dplyr::left_join(ds_subject_generation, by=&quot;subject_tag&quot;) %&gt;%
+  dplyr::select(
+    subject_tag,
+    generation,
+    height_inches   = gen1_height_inches,
+    weight_pounds   = gen1_weight_pounds,
+    afqt_scaled_gen1,
+    father_alive    = gen2_c_father_alive
+  )
+</code></pre>
+
+<pre><code class="r">ds_subject_survey &lt;- ds_outcome %&gt;%
+  tidyr::spread(key=item_label, value=value) %&gt;%
+  dplyr::left_join(ds_survey_time, by=c(&quot;subject_tag&quot;, &quot;survey_year&quot;)) %&gt;%
+  dplyr::mutate(
+    # afqt_scaled_gen1   = gen1_afqt_scaled3_decimals / 1000
+  ) %&gt;%
+  dplyr::select(
+    subject_tag,
+    survey_year,
+    generation,
+    age,
+    height_inches   = gen1_height_inches,
+    weight_pounds   = gen1_weight_pounds,
+    afqt_scaled_gen1,
+    father_alive    = gen2_c_father_alive
+  )
+
+ds_subject_survey
+</code></pre>
+
+<pre><code>## # A tibble: 74,013 x 8
+##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
+##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1         200        1981          1  22.1    NA       120    6.84  NA   
+##  2         200        1982          1  23.1    62.0     125   NA     NA   
+##  3         200        1985          1  26.1    62.0     118   NA     NA   
+##  4         300        1981          1  NA      NA        NA   49.4   NA   
+##  5         300        1982          1  20.6    70.0     160   NA     NA   
+##  6         300        1985          1  23.5    70.0     152   NA     NA   
+##  7         400        1981          1  18.6    NA       110   55.8   NA   
+##  8         400        1982          1  19.5    67.0     109   NA     NA   
+##  9         400        1985          1  22.7    67.0     126   NA     NA   
+## 10         401        1984          2  NA      NA        NA   NA      1.00
+## # ... with 74,003 more rows
+</code></pre>
+
+<pre><code class="r"># Sniff out problems
+summary(ds_subject)
+</code></pre>
+
+<pre><code>##   subject_tag        generation    height_inches   weight_pounds  
+##  Min.   :    200   Min.   :1.000   Min.   :48.00   Min.   : 53.0  
+##  1st Qu.: 322225   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
+##  Median : 624051   Median :1.000   Median :67.00   Median :140.0  
+##  Mean   : 619274   Mean   :1.358   Mean   :67.08   Mean   :145.6  
+##  3rd Qu.: 906175   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
+##  Max.   :1268600   Max.   :2.000   Max.   :83.00   Max.   :375.0  
+##                                    NA&#39;s   :7190    NA&#39;s   :7063   
+##  afqt_scaled_gen1  father_alive   
+##  Min.   :  0.00   Min.   :-3.000  
+##  1st Qu.: 16.77   1st Qu.: 1.000  
+##  Median : 38.62   Median : 1.000  
+##  Mean   : 42.40   Mean   : 0.806  
+##  3rd Qu.: 66.29   3rd Qu.: 1.000  
+##  Max.   :100.00   Max.   : 1.000  
+##  NA&#39;s   :7648     NA&#39;s   :12552
+</code></pre>
+
+<pre><code class="r">checkmate::assert_integer(ds_subject$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject$generation           , lower=           1L   , upper=      2L, any.missing=F)
+checkmate::assert_numeric(ds_subject$height_inches        , lower=          48L   , upper=     83L, any.missing=T)
+checkmate::assert_numeric(ds_subject$weight_pounds        , lower=          47L   , upper=    400L, any.missing=T)
+checkmate::assert_numeric(ds_subject$afqt_scaled_gen1     , lower=           0    , upper=    100 , any.missing=T)
+checkmate::assert_numeric(ds_subject$father_alive         , lower=          -3L   , upper=      1L, any.missing=T)
+</code></pre>
+
+<pre><code class="r"># Sniff out problems
+summary(ds_subject_survey)
+</code></pre>
+
+<pre><code>##   subject_tag       survey_year     generation         age       
+##  Min.   :    200   Min.   :1981   Min.   :1.000   Min.   : 0.00  
+##  1st Qu.: 325003   1st Qu.:1982   1st Qu.:1.000   1st Qu.:13.10  
+##  Median : 623802   Median :1985   Median :2.000   Median :19.20  
+##  Mean   : 607496   Mean   :1989   Mean   :1.522   Mean   :17.58  
+##  3rd Qu.: 868401   3rd Qu.:1996   3rd Qu.:2.000   3rd Qu.:22.60  
+##  Max.   :1268600   Max.   :2010   Max.   :2.000   Max.   :37.50  
+##                                                   NA&#39;s   :9980   
+##  height_inches   weight_pounds   afqt_scaled_gen1  father_alive  
+##  Min.   :48.00   Min.   : 47.0   Min.   :  0.00   Min.   :-3.00  
+##  1st Qu.:64.00   1st Qu.:125.0   1st Qu.: 16.77   1st Qu.: 1.00  
+##  Median :67.00   Median :145.0   Median : 38.62   Median : 1.00  
+##  Mean   :67.08   Mean   :148.5   Mean   : 42.40   Mean   : 0.82  
+##  3rd Qu.:70.00   3rd Qu.:165.0   3rd Qu.: 66.29   3rd Qu.: 1.00  
+##  Max.   :83.00   Max.   :375.0   Max.   :100.00   Max.   : 1.00  
+##  NA&#39;s   :51058   NA&#39;s   :38960   NA&#39;s   :62099    NA&#39;s   :35366
+</code></pre>
+
+<pre><code class="r">checkmate::assert_integer(ds_subject_survey$subject_tag          , lower=         100L   , upper=1268600L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject_survey$survey_year          , lower=        1979L   , upper=   2016L, any.missing=F, unique=F)
+checkmate::assert_integer(ds_subject_survey$generation           , lower=           1L   , upper=      2L, any.missing=F)
+checkmate::assert_numeric(ds_subject_survey$age                  , lower=           0    , upper=     40 , any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$height_inches        , lower=          48L   , upper=     83L, any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$weight_pounds        , lower=          47L   , upper=    400L, any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$afqt_scaled_gen1     , lower=           0    , upper=    100 , any.missing=T)
+checkmate::assert_numeric(ds_subject_survey$father_alive         , lower=          -3L   , upper=      1L, any.missing=T)
+</code></pre>
+
+<pre><code class="r"># dput(colnames(ds_subject_survey)) # Print colnames for line below.
+columns_to_write &lt;- c(
+  &quot;subject_tag&quot;, &quot;generation&quot;,
+  &quot;height_inches&quot;, &quot;weight_pounds&quot;, &quot;afqt_scaled_gen1&quot;,
+  &quot;father_alive&quot;
+)
+ds_slim_subject &lt;- ds_subject %&gt;%
+  # dplyr::slice(1:100) %&gt;%
+  dplyr::select(!!columns_to_write)
+ds_slim_subject
+</code></pre>
+
+<pre><code>## # A tibble: 19,562 x 6
+##    subject_tag generation height_inches weight_pounds afqt_scale~ father_~
+##          &lt;int&gt;      &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+##  1         200          1          62.0           120        6.84    NA   
+##  2         300          1          70.0           160       49.4     NA   
+##  3         400          1          67.0           110       55.8     NA   
+##  4         401          2          NA              NA       NA        1.00
+##  5         500          1          63.0           130       96.8     NA   
+##  6         600          1          65.0           200       99.4     NA   
+##  7         700          1          67.0           131       47.4     NA   
+##  8         800          1          65.0           179       44.0     NA   
+##  9         801          2          NA              NA       NA        1.00
+## 10         802          2          NA              NA       NA        1.00
+## # ... with 19,552 more rows
+</code></pre>
+
+<pre><code class="r">rm(columns_to_write)
+</code></pre>
+
+<pre><code class="r"># dput(colnames(ds_subject_survey)) # Print colnames for line below.
+columns_to_write &lt;- c(
+  &quot;subject_tag&quot;, &quot;survey_year&quot;, &quot;generation&quot;, &quot;age&quot;,
+  &quot;height_inches&quot;, &quot;weight_pounds&quot;, &quot;afqt_scaled_gen1&quot;,
+  &quot;father_alive&quot;
+)
+ds_slim_subject_survey &lt;- ds_subject_survey %&gt;%
+  # dplyr::slice(1:100) %&gt;%
+  dplyr::select(!!columns_to_write)
+ds_slim_subject_survey
+</code></pre>
+
+<pre><code>## # A tibble: 74,013 x 8
+##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
+##          &lt;int&gt;       &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1         200        1981          1  22.1    NA       120    6.84  NA   
+##  2         200        1982          1  23.1    62.0     125   NA     NA   
+##  3         200        1985          1  26.1    62.0     118   NA     NA   
+##  4         300        1981          1  NA      NA        NA   49.4   NA   
+##  5         300        1982          1  20.6    70.0     160   NA     NA   
+##  6         300        1985          1  23.5    70.0     152   NA     NA   
+##  7         400        1981          1  18.6    NA       110   55.8   NA   
+##  8         400        1982          1  19.5    67.0     109   NA     NA   
+##  9         400        1985          1  22.7    67.0     126   NA     NA   
+## 10         401        1984          2  NA      NA        NA   NA      1.00
+## # ... with 74,003 more rows
+</code></pre>
+
+<pre><code class="r">rm(columns_to_write)
+</code></pre>
+
+<pre><code class="r"># The content of these two datasets are identical.  The first one is a plain-text csv.  The second one is a native R object.
+readr::write_csv(ds_slim_subject, path_out_subject_csv)
+readr::write_rds(ds_slim_subject, path_out_subject_rds, compress=&quot;xz&quot;)
+
+# The content of these two datasets are identical.  The first one is a plain-text csv.  The second one is a native R object.
+readr::write_csv(ds_slim_subject_survey, path_out_subject_survey_csv)
+readr::write_rds(ds_slim_subject_survey, path_out_subject_survey_rds, compress=&quot;xz&quot;)
+</code></pre>
+
+<p>The R session information (including the OS info, R version and all
+packages used):</p>
+
+<pre><code class="r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.4.3 Patched (2017-12-05 r73849)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows &gt;= 8 x64 (build 9200)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] bindrcpp_0.2         DBI_0.7              magrittr_1.5        
+## [4] RODBC_1.3-15         plyr_1.8.4           xtable_1.8-2        
+## [7] colorspace_1.3-2     ggplot2_2.2.1.9000   NlsyLinks_2.0.7.9000
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
+##  [4] bindr_0.1             tools_3.4.3           odbc_1.1.3           
+##  [7] digest_0.6.13         bit_1.1-12            evaluate_0.10.1      
+## [10] memoise_1.1.0         RSQLite_2.0           checkmate_1.8.5      
+## [13] tibble_1.4.1          gtable_0.2.0          lattice_0.20-35      
+## [16] pkgconfig_2.0.1       rlang_0.1.6           cli_1.0.0            
+## [19] rstudioapi_0.7        yaml_2.1.16           pbivnorm_0.6.0       
+## [22] stringr_1.2.0         dplyr_0.7.4           knitr_1.18           
+## [25] hms_0.4.0             tidyselect_0.2.3      stats4_3.4.3         
+## [28] bit64_0.9-7           grid_3.4.3            glue_1.2.0           
+## [31] OuhscMunge_0.1.8.9005 R6_2.2.2              lavaan_0.5-23.1097   
+## [34] readr_1.1.1           tidyr_0.7.2           purrr_0.2.4          
+## [37] blob_1.1.0            backports_1.1.2       scales_0.5.0.9000    
+## [40] assertthat_0.2.0      testit_0.7.1          mnormt_1.5-5         
+## [43] config_0.2            labeling_0.3          quadprog_1.5-5       
+## [46] utf8_1.1.3            stringi_1.1.6         lazyeval_0.2.1       
+## [49] munsell_0.4.3         markdown_0.8          crayon_1.3.4         
+## [52] zoo_1.8-0
+</code></pre>
+
+<pre><code class="r">Sys.time()
+</code></pre>
+
+<pre><code>## [1] &quot;2018-01-05 18:35:10 CST&quot;
+</code></pre>
+
+</body>
+
+</html>

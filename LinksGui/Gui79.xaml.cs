@@ -213,7 +213,7 @@ namespace LinksGui {
 			BulkUpdate(schemaName, _dsLinks.tblMarkerGen2, LoadMarkerGen2);
 			BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
 			BulkUpdate(schemaName, _dsLinks.tblOutcome, LoadOutcomes);
-			BulkUpdate(schemaName, _dsLinks.tblRelatedValuesArchive, null);
+			BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
 
 			sw.Stop();
 			//string message = string.Format("The follow records were affected for each table ({0} Elapsed):\n{1:N0} tblSubject\n{2:N0} tblResponse", sw.Elapsed.ToString(), -999, -999);

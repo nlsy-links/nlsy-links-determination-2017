@@ -1,4 +1,4 @@
-# knitr::stitch_rmd(script="./dal/import-metadata.R", output="./stitched-output/dal/import-metadata.md") # dir.create(output="./stitched-output/dal/", recursive=T)
+# knitr::stitch_rmd(script="./dal/import-79-metadata.R", output="./stitched-output/dal/import-metadata.md") # dir.create(output="./stitched-output/dal/", recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
 # ---- load-sources ------------------------------------------------------------

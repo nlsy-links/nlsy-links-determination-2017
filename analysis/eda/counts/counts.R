@@ -8,7 +8,7 @@ source("./utility/connectivity.R")
 # ---- load-packages -----------------------------------------------------------
 library(magrittr) #Pipes
 # library(ggplot2) #For graphing
-requireNamespace("RODBC")
+requireNamespace("odbc")
 requireNamespace("dplyr")
 requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
@@ -53,10 +53,10 @@ sql_variable <- "
 # ---- load-data ---------------------------------------------------------------
 ds <- database_inventory()
 
-channel            <- open_dsn_channel_rodbc()
-ds_item            <- RODBC::sqlQuery(channel, sql_item    , stringsAsFactors=F)
-ds_variable        <- RODBC::sqlQuery(channel, sql_variable, stringsAsFactors=F)
-RODBC::odbcClose(channel); rm(channel, sql_item, sql_variable)
+channel            <- open_dsn_channel_odbc()
+ds_item            <- DBI::dbGetQuery(channel, sql_item    )
+ds_variable        <- DBI::dbGetQuery(channel, sql_variable)
+DBI::dbDisconnect(channel); rm(channel, sql_item, sql_variable)
 
 # ---- tweak-data --------------------------------------------------------------
 ds_pretty <- ds %>%

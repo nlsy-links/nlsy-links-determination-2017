@@ -1,0 +1,13 @@
+Progress Notes for 2018
+============================
+
+**Consider moving or duplicating this to whatever public webpage we establish.**
+
+2018-01-04
+-----------------
+* updated NLSY variables through 2012.  Helped Gen2 ROC agreement between implicit & explicit.
+    ```
+        Version Agree Disagree
+    1      86  7639      345
+    2      85  7492      355
+    ```

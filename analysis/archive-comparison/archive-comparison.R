@@ -70,32 +70,18 @@ sql <- paste("
 
 
 # sql <- gsub(pattern="\\n", replacement=" ", sql)
-sqlDescription <- "SELECT * FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
+# sqlDescription <- "SELECT AlgorithmVersion, Description, Date2 FROM Archive.tblArchiveDescription where AlgorithmVersion=72" #AlgorithmVersion, Description
+sqlDescription <- "SELECT AlgorithmVersion, Description FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
 startTime <- Sys.time()
 
 # ---- load-data ---------------------------------------------------------------
-# channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
-channel <- RODBC::odbcDriverConnect("driver={SQL Server};Server=192.168.1.66\\Express_2016; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
-
-channel <- RODBC::odbcDriverConnect("Driver={ODBC Driver 13 for SQL Server};Server=192.168.1.66\\Express_2016; Uid=NlsyReadWrite; Pwd=nophi" )
-
-conn <- DBI::dbConnect(
-  RSQLServer::SQLServer(),
-  # "Server=gimble\\Express_2016",
-  # "Server=192.168.1.66\\Express_2016",
-  "192.168.1.66\\Express_2016",
-  "user=NlsyReadWrite; Password=nophi",
-  database = "NlsLinks"
-)
-
-
-channel            <- open_dsn_channel()
-odbcGetInfo(channel)
-
-dsRaw <- sqlQuery(channel, sql, stringsAsFactors=F)
-dsDescription <- sqlQuery(channel, sqlDescription, stringsAsFactors=F)
-
-RODBC::odbcClose(channel); rm(channel, sql, sqlDescription)
+startTime <- Sys.time()
+channel            <- open_dsn_channel_odbc()
+# DBI::dbGetInfo(channel)
+dsRaw           <- DBI::dbGetQuery(channel, sql)
+dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)
+DBI::dbDisconnect(channel, sql, sqlDescription)
+elapsedTime <- Sys.time() - startTime
 (Sys.time() - startTime);  rm(startTime)
 nrow(dsRaw)
 

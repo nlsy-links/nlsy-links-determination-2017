@@ -7,11 +7,13 @@ source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
 library(NlsyLinks) # devtools::install_github("LiveOak/NlsyLinks")
-library(RODBC)
+# library(RODBC)
 library(ggplot2)
 library(colorspace)
 library(xtable)
 library(plyr)
+
+requireNamespace("odbc")
 
 # ---- declare-globals ---------------------------------------------------------
 #Define CSV of outcomes/phenotypes
@@ -97,17 +99,16 @@ sql <- paste("
 #   WHERE Process.tblRelatedStructure.RelationshipPath = ", relationshipPath, "
 #       AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (73, 75))")
 
-sqlDescription <- "SELECT * FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
+# sqlDescription <- "SELECT AlgorithmVersion, Description, Date2 FROM Archive.tblArchiveDescription where AlgorithmVersion=72" #AlgorithmVersion, Description
+sqlDescription <- "SELECT AlgorithmVersion, Description FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
 
 # ---- load-data ---------------------------------------------------------------
-channel            <- open_dsn_channel()
-
 startTime <- Sys.time()
+channel            <- open_dsn_channel_odbc()
 # odbcGetInfo(channel)
-
-dsRaw <- sqlQuery(channel, sql, stringsAsFactors=F)
-dsDescription <- sqlQuery(channel, sqlDescription, stringsAsFactors=F)
-odbcClose(channel)
+dsRaw           <- DBI::dbGetQuery(channel, sql)
+dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)
+DBI::dbDisconnect(channel, sql, sqlDescription)
 elapsedTime <- Sys.time() - startTime
 # print(elapsedTime)
 # nrow(dsRaw)
