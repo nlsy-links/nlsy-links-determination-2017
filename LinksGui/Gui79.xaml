@@ -1,7 +1,7 @@
 ﻿<Window x:Class="LinksGui.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="546" Width="1157" xmlns:my="clr-namespace:Nls.BaseAssembly;assembly=BaseAssembly" Loaded="Window_Loaded" xmlns:my1="clr-namespace:LinksGui">
+        Title="MainWindow" Height="546" Width="1157" xmlns:my="clr-namespace:Nls.Base79;assembly=Base79" Loaded="Window_Loaded" xmlns:my1="clr-namespace:LinksGui">
     <Window.Resources>
         <my:ImportDataSet x:Key="importDataSet" />
         <CollectionViewSource x:Key="tblGen1LinksViewSource" Source="{Binding Path=tblGen1Links, Source={StaticResource importDataSet}}" />

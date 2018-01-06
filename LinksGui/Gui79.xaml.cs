@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BA = Nls.BaseAssembly;
+using BA = Nls.Base79;
 
 namespace LinksGui {
 	public partial class MainWindow : Window {

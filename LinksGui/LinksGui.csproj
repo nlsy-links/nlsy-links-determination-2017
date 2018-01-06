@@ -165,8 +165,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="NlsSigningKey.snk" />
-    <None Include="Properties\DataSources\Nls.BaseAssembly.ImportDataSet.datasource" />
-    <None Include="Properties\DataSources\Nls.BaseAssembly.LinksDataSet.datasource" />
+    <None Include="Properties\DataSources\Nls.Base79.ImportDataSet.datasource" />
+    <None Include="Properties\DataSources\Nls.Base79.LinksDataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -174,7 +174,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseAssembly\Base79.csproj">
+    <ProjectReference Include="..\Base79\Base79.csproj">
       <Project>{7E417BFB-2F16-41D4-B3AD-3DE8897E8BF0}</Project>
       <Name>Base79</Name>
     </ProjectReference>
