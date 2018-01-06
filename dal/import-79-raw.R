@@ -54,6 +54,7 @@ checkmate::assert_character(ds_extract$table_name       , min.chars=10, any.miss
 checkmate::assert_character(ds_extract$file_name        , min.chars=10, any.missing=F, unique=T)
 
 # ---- load-data ---------------------------------------------------------------
+start_time <- Sys.time()
 
 ds_extract <- ds_extract %>%
   dplyr::mutate(
@@ -153,3 +154,6 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 }
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+
+duration_in_seconds <- round(as.numeric(difftime(Sys.time(), start_time, units="secs")))
+cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")

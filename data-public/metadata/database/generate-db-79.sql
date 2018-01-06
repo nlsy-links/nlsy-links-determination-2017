@@ -3621,6 +3621,13 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblRelatedStructure]
 GO
+ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblItem] FOREIGN KEY([Item])
+REFERENCES [Metadata].[tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblItem]
+GO
 ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblSubject] FOREIGN KEY([SubjectTag])
 REFERENCES [Process].[tblSubject] ([SubjectTag])
 ON UPDATE CASCADE
@@ -3938,8 +3945,12 @@ OR Item in (121, 122, 123, 124, 125)                                            
 OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
 OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
 OR Item in (9,10)                                                                                        --For MarkerGen2
-OR Item in (200,201,203)                                                                                 --For Gen1Outcomes
-OR Item in (500,501,502,503)                                                                             --For Gen2OutcomesHeight
+OR Item in (                                                                                             --Outcomes
+	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
+	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement
+	504,512,513,                                                                                           --Gen2WeightPoundsYA, Gen2PiatMathPercentile, Gen2PiatMathStandard
+	122                                                                                                    --Gen2CFatherAlive
+  )                
 
 END
 GO

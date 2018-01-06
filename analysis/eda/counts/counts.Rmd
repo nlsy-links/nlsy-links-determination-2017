@@ -111,4 +111,3 @@ report_render_duration_in_seconds <- round(as.numeric(difftime(Sys.time(), repor
 ```
 
 Report rendered by `r Sys.info()["user"]` at `r strftime(Sys.time(), "%Y-%m-%d, %H:%M %z")` in `r report_render_duration_in_seconds` seconds.
-
