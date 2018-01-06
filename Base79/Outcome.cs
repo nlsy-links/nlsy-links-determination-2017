@@ -10,8 +10,15 @@ namespace Nls.Base79 {
         #region Fields
         private readonly LinksDataSet _ds;
         //private readonly Item[] _items;
-        private readonly Item[] _itemsGen1 = { Item.Gen1HeightInches, Item.Gen1WeightPounds, Item.Gen1AfqtScaled3Decimals };
-        private readonly Item[] _itemsGen2 = { Item.Gen2CFatherAlive};
+        private readonly Item[] _itemsGen1 = { 
+            Item.Gen1HeightInches, Item.Gen1WeightPounds, Item.Gen1AfqtScaled3Decimals
+        };
+    
+        private readonly Item[] _itemsGen2 = { 
+            Item.Gen2HeightInchesTotal, Item.Gen2HeightFeetOnly, Item.Gen2HeightInchesRemainder, Item.Gen2HeightInchesTotalMotherSupplement,
+            Item.Gen2WeightPoundsYA, Item.Gen2PiatMathPercentile, Item.Gen2PiatMathStandard, Item.Gen2CFatherAlive
+        };
+
         private readonly string _itemIDsString = "";
         private readonly string _itemIDsStringGen1 = "";
         private readonly string _itemIDsStringGen2 = "";

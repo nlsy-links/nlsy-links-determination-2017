@@ -227,22 +227,46 @@ requireNamespace(&quot;OuhscMunge&quot;   ) # devtools::install_github(repo=&quo
 </code></pre>
 
 <pre><code class="r"># Constant values that won&#39;t change.
-sql_outcome &lt;- &quot;
-  SELECT -- TOP (100000)
-    --o.ID
-    o.SubjectTag      AS subject_tag
-    --,s.Generation
-    ,o.SurveyYear     AS survey_year
-    --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-    --,o.Item
-    ,i.Label          AS item_label
-    ,o.Value          AS value
-  FROM Process.tblOutcome o
-    LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-    --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-    --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-  ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-&quot;
+item_labels &lt;- &quot;
+    &#39;Gen1HeightInches&#39;, &#39;Gen1WeightPounds&#39;, &#39;Gen1AfqtScaled3Decimals&#39;,
+&#39;Gen2CFatherAlive&#39;
+  &quot;
+# &#39;Gen2HeightInchesTotal&#39;, &#39;Gen2HeightFeetOnly&#39;, &#39;Gen2HeightInchesRemainder&#39;, &#39;Gen2HeightInchesTotalMotherSupplement&#39;,
+# &#39;Gen2WeightPoundsYA&#39;, &#39;Gen2PiatMathPercentile&#39;, &#39;Gen2PiatMathStandard&#39;,
+
+sql_response &lt;-   glue::glue(&quot;
+    SELECT --TOP (1000)
+        r.SubjectTag       AS subject_tag
+        --,r.ExtendedID      AS extended_id
+        --,r.Generation      AS generation
+        ,r.SurveyYear      AS survey_year
+        --,r.Item            AS item_id
+        ,i.Label           AS item_label
+        ,r.Value           AS value
+        --,r.LoopIndex       AS loop_index
+    FROM Process.tblResponse r
+        LEFT JOIN Metadata.tblItem i ON r.Item=i.ID
+    WHERE i.Label IN (
+      {item_labels} -- This is replaced by `glue::glue()`
+    )
+  &quot;)
+
+# sql_outcome &lt;- &quot;
+#   SELECT -- TOP (100000)
+#       --o.ID
+#     o.SubjectTag      AS subject_tag
+#     --,s.Generation
+#     ,o.SurveyYear     AS survey_year
+#     --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
+#     --,o.Item
+#     ,i.Label          AS item_label
+#     ,o.Value          AS value
+#   FROM Process.tblOutcome o
+#     LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
+#     --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
+#     --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
+#   ORDER BY o.SubjectTag, o.SurveyYear, i.Label
+# &quot;
 sql_survey_time &lt;- &quot;
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -268,11 +292,12 @@ path_out_subject_survey_rds             &lt;- config::get(&quot;outcomes-79-subj
 </code></pre>
 
 <pre><code class="r">channel                   &lt;- open_dsn_channel_odbc()
-ds_outcome                &lt;- DBI::dbGetQuery(channel, sql_outcome    )
+ds_response               &lt;- DBI::dbGetQuery(channel, sql_response    )
+# ds_outcome                &lt;- DBI::dbGetQuery(channel, sql_outcome    )
 ds_survey_time            &lt;- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     &lt;- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      &lt;- DBI::dbGetQuery(channel, sql_algorithm_version_max)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_response, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
 </code></pre>
 
 <pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
@@ -282,7 +307,7 @@ dim(ds_survey_time)
 <pre><code>## [1] 605175      4
 </code></pre>
 
-<pre><code class="r">dim(ds_outcome)
+<pre><code class="r">dim(ds_response)
 </code></pre>
 
 <pre><code>## [1] 108569      4
@@ -310,7 +335,7 @@ ds_survey_time &lt;- ds_survey_time %&gt;%
 ds_subject_generation &lt;- ds_subject_generation %&gt;%
   tibble::as_tibble()
 
-ds_outcome &lt;- ds_outcome %&gt;%
+ds_response &lt;- ds_response %&gt;%
   tibble::as_tibble() %&gt;%
   dplyr::mutate(
     item_label          = OuhscMunge::snake_case(item_label),
@@ -321,7 +346,7 @@ ds_outcome &lt;- ds_outcome %&gt;%
 # table(ds_outcome$item_label)
 </code></pre>
 
-<pre><code class="r">ds_subject &lt;- ds_outcome %&gt;%
+<pre><code class="r">ds_subject &lt;- ds_response %&gt;%
   dplyr::group_by(subject_tag, item_label) %&gt;%
   dplyr::summarize(
     value  = OuhscMunge::first_nonmissing(value)
@@ -339,7 +364,7 @@ ds_outcome &lt;- ds_outcome %&gt;%
   )
 </code></pre>
 
-<pre><code class="r">ds_subject_survey &lt;- ds_outcome %&gt;%
+<pre><code class="r">ds_subject_survey &lt;- ds_response %&gt;%
   tidyr::spread(key=item_label, value=value) %&gt;%
   dplyr::left_join(ds_survey_time, by=c(&quot;subject_tag&quot;, &quot;survey_year&quot;)) %&gt;%
   dplyr::mutate(
@@ -531,35 +556,28 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] readr_1.1.1          dplyr_0.7.4          bindrcpp_0.2        
-##  [4] DBI_0.7              magrittr_1.5         RODBC_1.3-15        
-##  [7] plyr_1.8.4           xtable_1.8-2         colorspace_1.3-2    
-## [10] ggplot2_2.2.1.9000   NlsyLinks_2.0.7.9000
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
-##  [4] bindr_0.1             tools_3.4.3           odbc_1.1.3           
-##  [7] digest_0.6.13         bit_1.1-12            evaluate_0.10.1      
-## [10] memoise_1.1.0         RSQLite_2.0           checkmate_1.8.5      
-## [13] tibble_1.4.1          gtable_0.2.0          lattice_0.20-35      
-## [16] pkgconfig_2.0.1       rlang_0.1.6           cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.16           pbivnorm_0.6.0       
-## [22] stringr_1.2.0         knitr_1.18            hms_0.4.0            
-## [25] tidyselect_0.2.3      stats4_3.4.3          bit64_0.9-7          
-## [28] grid_3.4.3            glue_1.2.0            OuhscMunge_0.1.8.9005
-## [31] R6_2.2.2              lavaan_0.5-23.1097    tidyr_0.7.2          
-## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
-## [37] scales_0.5.0.9000     assertthat_0.2.0      testit_0.7.1         
-## [40] mnormt_1.5-5          config_0.2            labeling_0.3         
-## [43] quadprog_1.5-5        utf8_1.1.3            stringi_1.1.6        
-## [46] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
-## [49] crayon_1.3.4          zoo_1.8-0
+##  [1] Rcpp_0.12.14          rstudioapi_0.7        knitr_1.18           
+##  [4] bindr_0.1             hms_0.4.0             odbc_1.1.3           
+##  [7] tidyselect_0.2.3      bit_1.1-12            testit_0.7.1         
+## [10] R6_2.2.2              rlang_0.1.6           stringr_1.2.0        
+## [13] blob_1.1.0            dplyr_0.7.4           tools_3.4.3          
+## [16] checkmate_1.8.5       config_0.2            utf8_1.1.3           
+## [19] cli_1.0.0             DBI_0.7               yaml_2.1.16          
+## [22] bit64_0.9-7           assertthat_0.2.0      tibble_1.4.1         
+## [25] crayon_1.3.4          purrr_0.2.4           readr_1.1.1          
+## [28] tidyr_0.7.2           evaluate_0.10.1       OuhscMunge_0.1.8.9005
+## [31] glue_1.2.0            stringi_1.1.6         compiler_3.4.3       
+## [34] pillar_1.0.1          backports_1.1.2       markdown_0.8         
+## [37] pkgconfig_2.0.1
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-06 14:44:54 CST&quot;
+<pre><code>## [1] &quot;2018-01-06 15:54:01 CST&quot;
 </code></pre>
 
 </body>

@@ -33,22 +33,46 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 
 ```r
 # Constant values that won't change.
-sql_outcome <- "
-  SELECT -- TOP (100000)
-  	--o.ID
-    o.SubjectTag      AS subject_tag
-    --,s.Generation
-    ,o.SurveyYear     AS survey_year
-    --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-    --,o.Item
-    ,i.Label          AS item_label
-    ,o.Value          AS value
-  FROM Process.tblOutcome o
-    LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-    --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-    --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-  ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-"
+item_labels <- "
+    'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
+'Gen2CFatherAlive'
+  "
+# 'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
+# 'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+
+sql_response <-   glue::glue("
+    SELECT --TOP (1000)
+    	r.SubjectTag       AS subject_tag
+    	--,r.ExtendedID      AS extended_id
+    	--,r.Generation      AS generation
+    	,r.SurveyYear      AS survey_year
+    	--,r.Item            AS item_id
+    	,i.Label           AS item_label
+    	,r.Value           AS value
+    	--,r.LoopIndex       AS loop_index
+    FROM Process.tblResponse r
+    	LEFT JOIN Metadata.tblItem i ON r.Item=i.ID
+    WHERE i.Label IN (
+      {item_labels} -- This is replaced by `glue::glue()`
+    )
+  ")
+
+# sql_outcome <- "
+#   SELECT -- TOP (100000)
+#   	--o.ID
+#     o.SubjectTag      AS subject_tag
+#     --,s.Generation
+#     ,o.SurveyYear     AS survey_year
+#     --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
+#     --,o.Item
+#     ,i.Label          AS item_label
+#     ,o.Value          AS value
+#   FROM Process.tblOutcome o
+#     LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
+#     --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
+#     --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
+#   ORDER BY o.SubjectTag, o.SurveyYear, i.Label
+# "
 sql_survey_time <- "
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -75,11 +99,12 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 
 ```r
 channel                   <- open_dsn_channel_odbc()
-ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+ds_response               <- DBI::dbGetQuery(channel, sql_response    )
+# ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
 ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     <- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_response, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
 ```
 
 ```r
@@ -92,7 +117,7 @@ dim(ds_survey_time)
 ```
 
 ```r
-dim(ds_outcome)
+dim(ds_response)
 ```
 
 ```
@@ -126,7 +151,7 @@ ds_survey_time <- ds_survey_time %>%
 ds_subject_generation <- ds_subject_generation %>%
   tibble::as_tibble()
 
-ds_outcome <- ds_outcome %>%
+ds_response <- ds_response %>%
   tibble::as_tibble() %>%
   dplyr::mutate(
     item_label          = OuhscMunge::snake_case(item_label),
@@ -138,7 +163,7 @@ ds_outcome <- ds_outcome %>%
 ```
 
 ```r
-ds_subject <- ds_outcome %>%
+ds_subject <- ds_response %>%
   dplyr::group_by(subject_tag, item_label) %>%
   dplyr::summarize(
     value  = OuhscMunge::first_nonmissing(value)
@@ -157,7 +182,7 @@ ds_subject <- ds_outcome %>%
 ```
 
 ```r
-ds_subject_survey <- ds_outcome %>%
+ds_subject_survey <- ds_response %>%
   tidyr::spread(key=item_label, value=value) %>%
   dplyr::left_join(ds_survey_time, by=c("subject_tag", "survey_year")) %>%
   dplyr::mutate(
@@ -366,29 +391,22 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] readr_1.1.1          dplyr_0.7.4          bindrcpp_0.2        
-##  [4] DBI_0.7              magrittr_1.5         RODBC_1.3-15        
-##  [7] plyr_1.8.4           xtable_1.8-2         colorspace_1.3-2    
-## [10] ggplot2_2.2.1.9000   NlsyLinks_2.0.7.9000
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
-##  [4] bindr_0.1             tools_3.4.3           odbc_1.1.3           
-##  [7] digest_0.6.13         bit_1.1-12            evaluate_0.10.1      
-## [10] memoise_1.1.0         RSQLite_2.0           checkmate_1.8.5      
-## [13] tibble_1.4.1          gtable_0.2.0          lattice_0.20-35      
-## [16] pkgconfig_2.0.1       rlang_0.1.6           cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.16           pbivnorm_0.6.0       
-## [22] stringr_1.2.0         knitr_1.18            hms_0.4.0            
-## [25] tidyselect_0.2.3      stats4_3.4.3          bit64_0.9-7          
-## [28] grid_3.4.3            glue_1.2.0            OuhscMunge_0.1.8.9005
-## [31] R6_2.2.2              lavaan_0.5-23.1097    tidyr_0.7.2          
-## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
-## [37] scales_0.5.0.9000     assertthat_0.2.0      testit_0.7.1         
-## [40] mnormt_1.5-5          config_0.2            labeling_0.3         
-## [43] quadprog_1.5-5        utf8_1.1.3            stringi_1.1.6        
-## [46] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
-## [49] crayon_1.3.4          zoo_1.8-0
+##  [1] Rcpp_0.12.14          rstudioapi_0.7        knitr_1.18           
+##  [4] bindr_0.1             hms_0.4.0             odbc_1.1.3           
+##  [7] tidyselect_0.2.3      bit_1.1-12            testit_0.7.1         
+## [10] R6_2.2.2              rlang_0.1.6           stringr_1.2.0        
+## [13] blob_1.1.0            dplyr_0.7.4           tools_3.4.3          
+## [16] checkmate_1.8.5       config_0.2            utf8_1.1.3           
+## [19] cli_1.0.0             DBI_0.7               yaml_2.1.16          
+## [22] bit64_0.9-7           assertthat_0.2.0      tibble_1.4.1         
+## [25] crayon_1.3.4          purrr_0.2.4           readr_1.1.1          
+## [28] tidyr_0.7.2           evaluate_0.10.1       OuhscMunge_0.1.8.9005
+## [31] glue_1.2.0            stringi_1.1.6         compiler_3.4.3       
+## [34] pillar_1.0.1          backports_1.1.2       markdown_0.8         
+## [37] pkgconfig_2.0.1
 ```
 
 ```r
@@ -396,6 +414,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 14:44:54 CST"
+## [1] "2018-01-06 15:54:01 CST"
 ```
 

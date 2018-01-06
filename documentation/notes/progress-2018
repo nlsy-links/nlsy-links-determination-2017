@@ -3,7 +3,7 @@ Progress Notes for 2018
 
 **Consider moving or duplicating this to whatever public webpage we establish.**
 
-2018-01-04
+2018-01-02 through 2018-01-07
 -----------------
 * updated NLSY variables through 2012.  Helped Gen2 ROC agreement between implicit & explicit.
     ```
@@ -11,3 +11,8 @@ Progress Notes for 2018
     1      86  7639      345
     2      85  7492      355
     ```
+
+* [Issue #39](https://github.com/LiveOak/nlsy-links-determination-2017/issues/39):
+    > `Process.tblOutcome` is no longer necessary.  But a lot of important processing occurs between the extracts and `Process.tblResponse`.  If an R script could replace `Response.cs`, other people could manage their own outcomes without having to deal with installing & configuring Visual Studio.
+    >
+    >We might create a version that avoids SQL Server too.  It probably would be slower, but maybe easier to start out with.  Especially if you have only a few items & variables.
