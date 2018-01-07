@@ -283,7 +283,7 @@ ds_table
 ```
 ##    schema_name                 table_name row_count column_count
 ## 1      Archive      tblArchiveDescription        56            4
-## 2      Archive    tblRelatedValuesArchive    714116           24
+## 2      Archive    tblRelatedValuesArchive    756952           24
 ## 3          dbo                sysdiagrams         4            5
 ## 4         Enum    tblLUBioparent-not-used         0            2
 ## 5         Enum         tblLUExtractSource        11            4
@@ -319,21 +319,21 @@ ds_table
 ## 35    Metadata    tblRosterGen1Assignment        50           16
 ## 36    Metadata                tblVariable      1642           10
 ## 37    Metadata             tblVariable_97        37           10
-## 38     Process               tblBabyDaddy         0           11
-## 39     Process            tblFatherOfGen2         0            7
+## 38     Process               tblBabyDaddy    178993           11
+## 39     Process            tblFatherOfGen2     52038            7
 ## 40     Process                 tblIRDemo1         0            5
-## 41     Process              tblMarkerGen1         0           10
-## 42     Process              tblMarkerGen2         0            8
-## 43     Process                 tblOutcome         0            5
-## 44     Process    tblParentsOfGen1Current         0           19
-## 45     Process      tblParentsOfGen1Retro         0            7
-## 46     Process        tblRelatedStructure         0            6
-## 47     Process           tblRelatedValues         0           24
-## 48     Process                tblResponse         0            9
-## 49     Process              tblRosterGen1         0           13
-## 50     Process                 tblSubject         0            5
-## 51     Process          tblSubjectDetails         0           15
-## 52     Process              tblSurveyTime         0            7
+## 41     Process              tblMarkerGen1    218568           10
+## 42     Process              tblMarkerGen2    207408            8
+## 43     Process                 tblOutcome    279649            5
+## 44     Process    tblParentsOfGen1Current     12686           19
+## 45     Process      tblParentsOfGen1Retro    482068            7
+## 46     Process        tblRelatedStructure     85672            6
+## 47     Process           tblRelatedValues     42836           24
+## 48     Process                tblResponse   2673517            9
+## 49     Process              tblRosterGen1     10604           13
+## 50     Process                 tblSubject     24207            5
+## 51     Process          tblSubjectDetails     24207           15
+## 52     Process              tblSurveyTime    605175            7
 ```
 
 ```r
@@ -1220,7 +1220,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-06, 17:56 -0600 in 3 seconds.
+## File completed by `Will` at 2018-01-06, 19:51 -0600 in 57 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1275,6 +1275,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 17:56:35 CST"
+## [1] "2018-01-06 19:51:19 CST"
 ```
 

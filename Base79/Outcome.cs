@@ -15,7 +15,8 @@ namespace Nls.Base79 {
         };
     
         private readonly Item[] _itemsGen2 = { 
-            Item.Gen2HeightInchesTotal, Item.Gen2HeightFeetOnly, Item.Gen2HeightInchesRemainder, Item.Gen2HeightInchesTotalMotherSupplement,
+            //Item.Gen2HeightInchesTotal, 
+            Item.Gen2HeightFeetOnly, Item.Gen2HeightInchesRemainder, //Item.Gen2HeightInchesTotalMotherSupplement,
             Item.Gen2WeightPoundsYA, Item.Gen2PiatMathPercentile, Item.Gen2PiatMathStandard, Item.Gen2CFatherAlive
         };
 

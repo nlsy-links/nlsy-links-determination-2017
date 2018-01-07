@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-04"
+date: "Date: 2018-01-06"
 output:
   html_document:
     keep_md: yes
@@ -51,11 +51,11 @@ This report documents the basic properties of the input & output tables kinship 
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
-|Archive     |tblArchiveDescription      |        55|            4|
-|Archive     |tblRelatedValuesArchive    |   676,582|           24|
+|Archive     |tblArchiveDescription      |        56|            4|
+|Archive     |tblRelatedValuesArchive    |   794,486|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
-|Enum        |tblLUExtractSource         |        12|            4|
+|Enum        |tblLUExtractSource         |        11|            4|
 |Enum        |tblLUGender                |         3|            4|
 |Enum        |tblLUMarkerEvidence        |         8|            4|
 |Enum        |tblLUMarkerType            |        28|            5|
@@ -93,7 +93,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblIRDemo1                 |         0|            5|
 |Process     |tblMarkerGen1              |   218,568|           10|
 |Process     |tblMarkerGen2              |   207,408|            8|
-|Process     |tblOutcome                 |   217,138|            5|
+|Process     |tblOutcome                 |   279,649|            5|
 |Process     |tblParentsOfGen1Current    |    12,686|           19|
 |Process     |tblParentsOfGen1Retro      |   482,068|            7|
 |Process     |tblRelatedStructure        |    85,672|            6|
@@ -148,18 +148,18 @@ This report documents the basic properties of the input & output tables kinship 
 |   71|Gen1EyeColor                                       |       -5|              1|        9|TRUE   |NA    |
 |   72|Gen2HairColor_NOTUSED                              |       -7|              1|        7|TRUE   |NA    |
 |   73|Gen2EyeColor_NOTUSED                               |       -7|              1|       10|TRUE   |NA    |
-|   81|BabyDaddyInHH                                      |       -5|              0|        1|FALSE  |NA    |
-|   82|BabyDaddyAlive                                     |       -5|              0|        1|FALSE  |NA    |
-|   83|BabyDaddyEverLiveInHH                              |       -5|              1|        2|FALSE  |NA    |
-|   84|BabyDaddyLeftHHMonth                               |       -5|              1|       12|FALSE  |NA    |
-|   85|BabyDaddyLeftHHYearFourDigit                       |       -5|           1958|     2016|FALSE  |NA    |
-|   86|BabyDaddyDeathMonth                                |       -5|              1|       12|FALSE  |NA    |
-|   87|BabyDaddyDeathYearTwoDigit                         |       -5|             61|       93|FALSE  |NA    |
-|   88|BabyDaddyDeathYearFourDigit                        |       -5|           1961|     2016|FALSE  |NA    |
-|   89|BabyDaddyDistanceFromMotherFuzzyCeiling            |       -5|              1|        5|FALSE  |NA    |
-|   90|BabyDaddyHasAsthma                                 |       -5|              0|        2|FALSE  |NA    |
-|   91|BabyDaddyLeftHHMonthOrNeverInHH                    |       -5|              1|       96|FALSE  |NA    |
-|   92|BabyDaddyLeftHHYearTwoDigit                        |       -5|             57|       96|FALSE  |NA    |
+|   81|BabyDaddyInHH                                      |       -5|              0|        1|TRUE   |NA    |
+|   82|BabyDaddyAlive                                     |       -5|              0|        1|TRUE   |NA    |
+|   83|BabyDaddyEverLiveInHH                              |       -5|              1|        2|TRUE   |NA    |
+|   84|BabyDaddyLeftHHMonth                               |       -5|              1|       12|TRUE   |NA    |
+|   85|BabyDaddyLeftHHYearFourDigit                       |       -5|           1958|     2016|TRUE   |NA    |
+|   86|BabyDaddyDeathMonth                                |       -5|              1|       12|TRUE   |NA    |
+|   87|BabyDaddyDeathYearTwoDigit                         |       -5|             61|       93|TRUE   |NA    |
+|   88|BabyDaddyDeathYearFourDigit                        |       -5|           1961|     2016|TRUE   |NA    |
+|   89|BabyDaddyDistanceFromMotherFuzzyCeiling            |       -5|              1|        5|TRUE   |NA    |
+|   90|BabyDaddyHasAsthma                                 |       -5|              0|        2|TRUE   |NA    |
+|   91|BabyDaddyLeftHHMonthOrNeverInHH                    |       -5|              1|       96|TRUE   |NA    |
+|   92|BabyDaddyLeftHHYearTwoDigit                        |       -5|             57|       96|TRUE   |NA    |
 |  100|SubjectID                                          |        1|              1|  1267501|TRUE   |NA    |
 |  101|ExtendedFamilyID                                   |        1|              1|    12686|TRUE   |NA    |
 |  102|Gender                                             |       -3|              1|        2|TRUE   |NA    |
@@ -1886,7 +1886,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-04                                 
+ date     2018-01-06                                 
 ```
 
 ```
@@ -1931,7 +1931,7 @@ Packages -----------------------------------------------------------------------
  rlang        0.1.6      2017-12-21 CRAN (R 3.4.3)                  
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
- rprojroot    1.3-1      2017-12-18 CRAN (R 3.4.3)                  
+ rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
@@ -1947,5 +1947,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-04, 10:05 -0600 in 2 seconds.
-
+Report rendered by Will at 2018-01-06, 22:16 -0600 in 2 seconds.
