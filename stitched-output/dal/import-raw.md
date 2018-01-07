@@ -873,7 +873,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-06, 17:37 -0600 in 78 seconds.
+## File completed by `Will` at 2018-01-06, 17:58 -0600 in 85 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -928,6 +928,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 17:37:15 CST"
+## [1] "2018-01-06 17:58:01 CST"
 ```
 
