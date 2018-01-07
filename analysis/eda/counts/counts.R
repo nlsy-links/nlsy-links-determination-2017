@@ -62,7 +62,9 @@ DBI::dbDisconnect(channel); rm(channel, sql_item, sql_variable)
 ds_pretty <- ds %>%
   dplyr::mutate(
     row_count       = scales::comma(row_count),
-    column_count    = scales::comma(column_count)
+    column_count    = scales::comma(column_count),
+    space_total_kb  = scales::comma(space_total_kb),
+    space_used_kb   = scales::comma(space_used_kb )
   )
 
 ds_item <- ds_item %>%
@@ -78,7 +80,7 @@ ds_variable <- ds_variable %>%
 ds_pretty %>%
   knitr::kable(
     col.names   = gsub("_", " ", colnames(.)),
-    align       = "llrr",
+    align       = "llrrrr",
     digits      = 2,
     format      = "markdown"
   )

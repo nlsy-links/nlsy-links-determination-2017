@@ -49,60 +49,60 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Tables
 
-|schema name |table name                 | row count| column count|
-|:-----------|:--------------------------|---------:|------------:|
-|Archive     |tblArchiveDescription      |        56|            4|
-|Archive     |tblRelatedValuesArchive    |   794,486|           24|
-|dbo         |sysdiagrams                |         4|            5|
-|Enum        |tblLUBioparent-not-used    |         0|            2|
-|Enum        |tblLUExtractSource         |        11|            4|
-|Enum        |tblLUGender                |         3|            4|
-|Enum        |tblLUMarkerEvidence        |         8|            4|
-|Enum        |tblLUMarkerType            |        28|            5|
-|Enum        |tblLUMultipleBirth         |         5|            4|
-|Enum        |tblLURaceCohort            |         3|            4|
-|Enum        |tblLURelationshipPath      |         5|            4|
-|Enum        |tblLURosterGen1            |        67|            4|
-|Enum        |tblLUSurveySource          |         5|            4|
-|Enum        |tblLUTristate              |         3|            4|
-|Enum        |tblLUYesNo                 |         6|            4|
-|Extract     |tbl97Roster                |         0|          416|
-|Extract     |tblGen1Explicit            |    12,686|           96|
-|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
-|Extract     |tblGen1Implicit            |    12,686|          102|
-|Extract     |tblGen1Links               |    12,686|          117|
-|Extract     |tblGen1MzDzDistinction2010 |         0|            7|
-|Extract     |tblGen1Outcomes            |    12,686|           22|
-|Extract     |tblGen2FatherFromGen1      |    12,686|          959|
-|Extract     |tblGen2ImplicitFather      |    11,521|          111|
-|Extract     |tblGen2Links               |    11,521|          207|
-|Extract     |tblGen2LinksFromGen1       |    12,686|          123|
-|Extract     |tblGen2OutcomesHeight      |    11,521|           46|
-|Extract     |tblGen2OutcomesMath        |    11,521|           44|
-|Extract     |tblGen2OutcomesWeight      |    11,521|           31|
-|Extract     |tblLinks2004Gen1           |     3,890|            9|
-|Extract     |tblLinks2004Gen2           |    12,855|            5|
-|Metadata    |tblItem                    |       110|            7|
-|Metadata    |tblItem_97                 |         7|            7|
-|Metadata    |tblMzManual                |       208|            9|
-|Metadata    |tblRosterGen1Assignment    |        50|           16|
-|Metadata    |tblVariable                |     1,642|           10|
-|Metadata    |tblVariable_97             |        37|           10|
-|Process     |tblBabyDaddy               |   178,993|           11|
-|Process     |tblFatherOfGen2            |    52,038|            7|
-|Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblMarkerGen1              |   218,568|           10|
-|Process     |tblMarkerGen2              |   207,408|            8|
-|Process     |tblOutcome                 |   279,649|            5|
-|Process     |tblParentsOfGen1Current    |    12,686|           19|
-|Process     |tblParentsOfGen1Retro      |   482,068|            7|
-|Process     |tblRelatedStructure        |    85,672|            6|
-|Process     |tblRelatedValues           |    42,836|           24|
-|Process     |tblResponse                | 2,673,517|            9|
-|Process     |tblRosterGen1              |    10,604|           13|
-|Process     |tblSubject                 |    24,207|            5|
-|Process     |tblSubjectDetails          |    24,207|           15|
-|Process     |tblSurveyTime              |   605,175|            7|
+|schema name |table name                 | row count| column count| space total kb| space used kb|
+|:-----------|:--------------------------|---------:|------------:|--------------:|-------------:|
+|Archive     |tblArchiveDescription      |        56|            4|            144|            32|
+|Archive     |tblRelatedValuesArchive    |   794,486|           24|        140,432|       138,240|
+|dbo         |sysdiagrams                |         4|            5|            280|           160|
+|Enum        |tblLUBioparent-not-used    |         0|            2|              0|             0|
+|Enum        |tblLUExtractSource         |        11|            4|             72|            16|
+|Enum        |tblLUGender                |         3|            4|             72|            16|
+|Enum        |tblLUMarkerEvidence        |         8|            4|             72|            16|
+|Enum        |tblLUMarkerType            |        28|            5|             72|            16|
+|Enum        |tblLUMultipleBirth         |         5|            4|             72|            16|
+|Enum        |tblLURaceCohort            |         3|            4|             72|            16|
+|Enum        |tblLURelationshipPath      |         5|            4|             72|            16|
+|Enum        |tblLURosterGen1            |        67|            4|             72|            16|
+|Enum        |tblLUSurveySource          |         5|            4|             72|            16|
+|Enum        |tblLUTristate              |         3|            4|             72|            16|
+|Enum        |tblLUYesNo                 |         6|            4|             72|            16|
+|Extract     |tbl97Roster                |         0|          416|             72|            16|
+|Extract     |tblGen1Explicit            |    12,686|           96|            520|           408|
+|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|            592|           360|
+|Extract     |tblGen1Implicit            |    12,686|          102|            648|           552|
+|Extract     |tblGen1Links               |    12,686|          117|            968|           824|
+|Extract     |tblGen1MzDzDistinction2010 |         0|            7|             72|            16|
+|Extract     |tblGen1Outcomes            |    12,686|           22|            392|           248|
+|Extract     |tblGen2FatherFromGen1      |    12,686|          959|          6,728|         6,648|
+|Extract     |tblGen2ImplicitFather      |    11,521|          111|            584|           432|
+|Extract     |tblGen2Links               |    11,521|          207|            904|           816|
+|Extract     |tblGen2LinksFromGen1       |    12,686|          123|            584|           464|
+|Extract     |tblGen2OutcomesHeight      |    11,521|           46|            392|           256|
+|Extract     |tblGen2OutcomesMath        |    11,521|           44|            456|           304|
+|Extract     |tblGen2OutcomesWeight      |    11,521|           31|            328|           176|
+|Extract     |tblLinks2004Gen1           |     3,890|            9|            528|           208|
+|Extract     |tblLinks2004Gen2           |    12,855|            5|            784|           464|
+|Metadata    |tblItem                    |       110|            7|             72|            16|
+|Metadata    |tblItem_97                 |         7|            7|             72|            16|
+|Metadata    |tblMzManual                |       208|            9|            144|            56|
+|Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
+|Metadata    |tblVariable                |     1,642|           10|            272|           136|
+|Metadata    |tblVariable_97             |        37|           10|             72|            16|
+|Process     |tblBabyDaddy               |   178,993|           11|          8,392|         7,672|
+|Process     |tblFatherOfGen2            |    52,038|            7|          1,800|         1,616|
+|Process     |tblIRDemo1                 |         0|            5|              0|             0|
+|Process     |tblMarkerGen1              |   218,568|           10|         13,200|        11,528|
+|Process     |tblMarkerGen2              |   207,408|            8|         12,560|        10,336|
+|Process     |tblOutcome                 |   279,649|            5|         13,328|        12,160|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|          1,168|           776|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|         41,816|        34,712|
+|Process     |tblRelatedStructure        |    85,672|            6|          4,176|         3,720|
+|Process     |tblRelatedValues           |    42,836|           24|         10,504|        10,080|
+|Process     |tblResponse                | 2,673,517|            9|         78,216|        73,600|
+|Process     |tblRosterGen1              |    10,604|           13|            712|           528|
+|Process     |tblSubject                 |    24,207|            5|          1,680|         1,232|
+|Process     |tblSubjectDetails          |    24,207|           15|          1,544|         1,320|
+|Process     |tblSurveyTime              |   605,175|            7|         43,728|        39,648|
 
 ## Items
 
@@ -1947,4 +1947,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-06, 22:16 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-06, 22:39 -0600 in 2 seconds.

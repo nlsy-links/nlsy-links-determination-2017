@@ -44,9 +44,9 @@ database_inventory <- function( ) {
       s.Name                 AS schema_name,
       t.NAME                 AS table_name,
       p.rows                 AS row_count,
-      c.column_count
-      -- SUM(a.total_pages) * 8 AS space_total_kb,
-      -- SUM(a.used_pages ) * 8 AS space_used_kb
+      c.column_count,
+      SUM(a.total_pages) * 8 AS space_total_kb,
+      SUM(a.used_pages ) * 8 AS space_used_kb
     FROM sys.tables t
       INNER JOIN sys.indexes i ON t.OBJECT_ID = i.object_id
       INNER JOIN sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
