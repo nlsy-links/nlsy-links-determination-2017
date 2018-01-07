@@ -64,6 +64,10 @@
     <Compile Include="Assign\IAssignPass2.cs" />
     <Compile Include="Assign\EvidenceGen2.cs" />
     <Compile Include="Assign\RGen2Pass1.cs" />
+    <Compile Include="LinksDataSet.cs">
+      <DependentUpon>LinksDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Outcome.cs" />
     <Compile Include="PairShare.cs" />
     <Compile Include="ParentsOfGen1Current.cs" />

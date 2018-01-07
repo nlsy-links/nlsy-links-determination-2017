@@ -22,7 +22,21 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
+```
+
+```
+## Loading required namespace: readr
+```
+
+```r
 requireNamespace("tidyr"                  )
+```
+
+```
+## Loading required namespace: tidyr
+```
+
+```r
 requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
@@ -281,59 +295,20 @@ ds_table
 ```
 
 ```
-##    schema_name                 table_name row_count column_count
-## 1      Archive      tblArchiveDescription        56            4
-## 2      Archive    tblRelatedValuesArchive    756952           24
-## 3          dbo                sysdiagrams         4            5
-## 4         Enum    tblLUBioparent-not-used         0            2
-## 5         Enum         tblLUExtractSource        11            4
-## 6         Enum                tblLUGender         3            4
-## 7         Enum        tblLUMarkerEvidence         8            4
-## 8         Enum            tblLUMarkerType        28            5
-## 9         Enum         tblLUMultipleBirth         5            4
-## 10        Enum            tblLURaceCohort         3            4
-## 11        Enum      tblLURelationshipPath         5            4
-## 12        Enum            tblLURosterGen1        67            4
-## 13        Enum          tblLUSurveySource         5            4
-## 14        Enum              tblLUTristate         3            4
-## 15        Enum                 tblLUYesNo         6            4
-## 16     Extract                tbl97Roster         0          416
-## 17     Extract            tblGen1Explicit     12686           96
-## 18     Extract    tblGen1GeocodeSanitized      5302           29
-## 19     Extract            tblGen1Implicit     12686          102
-## 20     Extract               tblGen1Links     12686          117
-## 21     Extract tblGen1MzDzDistinction2010         0            7
-## 22     Extract            tblGen1Outcomes     12686           22
-## 23     Extract      tblGen2FatherFromGen1     12686          959
-## 24     Extract      tblGen2ImplicitFather     11521          111
-## 25     Extract               tblGen2Links     11521          207
-## 26     Extract       tblGen2LinksFromGen1     12686          123
-## 27     Extract      tblGen2OutcomesHeight     11521           46
-## 28     Extract        tblGen2OutcomesMath     11521           44
-## 29     Extract      tblGen2OutcomesWeight     11521           31
-## 30     Extract           tblLinks2004Gen1      3890            9
-## 31     Extract           tblLinks2004Gen2     12855            5
-## 32    Metadata                    tblItem       110            7
-## 33    Metadata                 tblItem_97         7            7
-## 34    Metadata                tblMzManual       208            9
-## 35    Metadata    tblRosterGen1Assignment        50           16
-## 36    Metadata                tblVariable      1642           10
-## 37    Metadata             tblVariable_97        37           10
-## 38     Process               tblBabyDaddy    178993           11
-## 39     Process            tblFatherOfGen2     52038            7
-## 40     Process                 tblIRDemo1         0            5
-## 41     Process              tblMarkerGen1    218568           10
-## 42     Process              tblMarkerGen2    207408            8
-## 43     Process                 tblOutcome    279649            5
-## 44     Process    tblParentsOfGen1Current     12686           19
-## 45     Process      tblParentsOfGen1Retro    482068            7
-## 46     Process        tblRelatedStructure     85672            6
-## 47     Process           tblRelatedValues     42836           24
-## 48     Process                tblResponse   2673517            9
-## 49     Process              tblRosterGen1     10604           13
-## 50     Process                 tblSubject     24207            5
-## 51     Process          tblSubjectDetails     24207           15
-## 52     Process              tblSurveyTime    605175            7
+## # A tibble: 52 x 6
+##    schema_name table_name              row_count column_count space~ spac~
+##  * <chr>       <chr>                       <int>        <int>  <int> <int>
+##  1 Archive     tblArchiveDescription          56            4    144    32
+##  2 Archive     tblRelatedValuesArchive    794486           24  30224 30048
+##  3 dbo         sysdiagrams                     4            5    280   160
+##  4 Enum        tblLUBioparent-not-used         0            2      0     0
+##  5 Enum        tblLUExtractSource             11            4     72    16
+##  6 Enum        tblLUGender                     3            4     72    16
+##  7 Enum        tblLUMarkerEvidence             8            4     72    16
+##  8 Enum        tblLUMarkerType                28            5     72    16
+##  9 Enum        tblLUMultipleBirth              5            4     72    16
+## 10 Enum        tblLURaceCohort                 3            4     72    16
+## # ... with 42 more rows
 ```
 
 ```r
@@ -1220,7 +1195,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-06, 19:51 -0600 in 57 seconds.
+## File completed by `Will` at 2018-01-06, 23:08 -0600 in 59 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1252,22 +1227,21 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          highr_0.6             plyr_1.8.4           
-##  [4] pillar_1.0.1          compiler_3.4.3        bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
-## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
-## [16] rlang_0.1.6           DBI_0.7               cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.16           withr_2.1.1.9000     
-## [22] dplyr_0.7.4           stringr_1.2.0         knitr_1.18           
-## [25] devtools_1.13.4       hms_0.4.0             bit64_0.9-7          
-## [28] tidyselect_0.2.3      glue_1.2.0            OuhscMunge_0.1.8.9005
-## [31] R6_2.2.2              tidyr_0.7.2           readr_1.1.1          
-## [34] purrr_0.2.4           blob_1.1.0            RODBC_1.3-15         
-## [37] backports_1.1.2       scales_0.5.0.9000     assertthat_0.2.0     
-## [40] testit_0.7.1          colorspace_1.3-2      config_0.2           
-## [43] utf8_1.1.3            stringi_1.1.6         munsell_0.4.3        
-## [46] markdown_0.8          crayon_1.3.4
+##  [1] Rcpp_0.12.14      pillar_1.0.1      compiler_3.4.3   
+##  [4] plyr_1.8.4        highr_0.6         bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
+## [10] bit_1.1-12        evaluate_0.10.1   tibble_1.4.1     
+## [13] pkgconfig_2.0.1   rlang_0.1.6       DBI_0.7          
+## [16] cli_1.0.0         rstudioapi_0.7    yaml_2.1.16      
+## [19] dplyr_0.7.4       stringr_1.2.0     knitr_1.18       
+## [22] hms_0.4.0         bit64_0.9-7       rprojroot_1.3-2  
+## [25] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
+## [28] tidyr_0.7.2       purrr_0.2.4       readr_1.1.1      
+## [31] blob_1.1.0        scales_0.5.0.9000 backports_1.1.2  
+## [34] RODBC_1.3-15      htmltools_0.3.6   rsconnect_0.8.5  
+## [37] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [40] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [43] crayon_1.3.4
 ```
 
 ```r
@@ -1275,6 +1249,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 19:51:19 CST"
+## [1] "2018-01-06 23:08:33 CST"
 ```
 
