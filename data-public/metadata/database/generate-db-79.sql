@@ -312,11 +312,7 @@ CREATE TABLE [Process].[tblSurveyTime](
 	[SurveyYear] [smallint] NOT NULL,
 	[SurveyDate] [date] NULL,
 	[AgeSelfReportYears] [float] NULL,
-	[AgeCalculateYears] [float] NULL,
- CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY NONCLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[AgeCalculateYears] [float] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3783,6 +3779,20 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [FK_tblSubjectDetails_tblLURaceCohort]
+GO
+ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [FK_tblSurveyTime_tblLUSurveySource] FOREIGN KEY([SurveySource])
+REFERENCES [Enum].[tblLUSurveySource] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblSurveyTime] CHECK CONSTRAINT [FK_tblSurveyTime_tblLUSurveySource]
+GO
+ALTER TABLE [Process].[tblSurveyTime]  WITH CHECK ADD  CONSTRAINT [FK_tblSurveyTime_tblSubject] FOREIGN KEY([SubjectTag])
+REFERENCES [Process].[tblSubject] ([SubjectTag])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblSurveyTime] CHECK CONSTRAINT [FK_tblSurveyTime_tblSubject]
 GO
 ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual_Ordered] CHECK  (([SubjectTag_S1]<[SubjectTag_S2]))
 GO

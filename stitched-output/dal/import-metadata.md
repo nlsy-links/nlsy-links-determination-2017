@@ -22,21 +22,7 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
-```
-
-```
-## Loading required namespace: readr
-```
-
-```r
 requireNamespace("tidyr"                  )
-```
-
-```
-## Loading required namespace: tidyr
-```
-
-```r
 requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
@@ -299,7 +285,7 @@ ds_table
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription          56            4    144    32
-##  2 Archive     tblRelatedValuesArchive    794486           24  30224 30048
+##  2 Archive     tblRelatedValuesArchive    826718           24  32528 32168
 ##  3 dbo         sysdiagrams                     4            5    280   160
 ##  4 Enum        tblLUBioparent-not-used         0            2      0     0
 ##  5 Enum        tblLUExtractSource             11            4     72    16
@@ -1195,7 +1181,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-06, 23:08 -0600 in 59 seconds.
+## File completed by `Will` at 2018-01-07, 13:09 -0600 in 45 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1230,18 +1216,18 @@ sessionInfo()
 ##  [1] Rcpp_0.12.14      pillar_1.0.1      compiler_3.4.3   
 ##  [4] plyr_1.8.4        highr_0.6         bindr_0.1        
 ##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
-## [10] bit_1.1-12        evaluate_0.10.1   tibble_1.4.1     
-## [13] pkgconfig_2.0.1   rlang_0.1.6       DBI_0.7          
-## [16] cli_1.0.0         rstudioapi_0.7    yaml_2.1.16      
-## [19] dplyr_0.7.4       stringr_1.2.0     knitr_1.18       
-## [22] hms_0.4.0         bit64_0.9-7       rprojroot_1.3-2  
-## [25] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
-## [28] tidyr_0.7.2       purrr_0.2.4       readr_1.1.1      
-## [31] blob_1.1.0        scales_0.5.0.9000 backports_1.1.2  
-## [34] RODBC_1.3-15      htmltools_0.3.6   rsconnect_0.8.5  
-## [37] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
-## [40] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
-## [43] crayon_1.3.4
+## [10] bit_1.1-12        checkmate_1.8.5   evaluate_0.10.1  
+## [13] tibble_1.4.1      pkgconfig_2.0.1   rlang_0.1.6      
+## [16] DBI_0.7           cli_1.0.0         rstudioapi_0.7   
+## [19] yaml_2.1.16       dplyr_0.7.4       stringr_1.2.0    
+## [22] knitr_1.18        hms_0.4.0         bit64_0.9-7      
+## [25] rprojroot_1.3-2   glue_1.2.0        R6_2.2.2         
+## [28] rmarkdown_1.8     tidyr_0.7.2       purrr_0.2.4      
+## [31] readr_1.1.1       blob_1.1.0        scales_0.5.0.9000
+## [34] backports_1.1.2   RODBC_1.3-15      htmltools_0.3.6  
+## [37] rsconnect_0.8.5   assertthat_0.2.0  testit_0.7.1     
+## [40] colorspace_1.3-2  utf8_1.1.3        stringi_1.1.6    
+## [43] munsell_0.4.3     markdown_0.8      crayon_1.3.4
 ```
 
 ```r
@@ -1249,6 +1235,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-06 23:08:33 CST"
+## [1] "2018-01-07 13:09:27 CST"
 ```
 

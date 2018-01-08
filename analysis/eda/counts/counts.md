@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-06"
+date: "Date: 2018-01-07"
 output:
   html_document:
     keep_md: yes
@@ -52,7 +52,7 @@ This report documents the basic properties of the input & output tables kinship 
 |schema name |table name                 | row count| column count| space total kb| space used kb|
 |:-----------|:--------------------------|---------:|------------:|--------------:|-------------:|
 |Archive     |tblArchiveDescription      |        56|            4|            144|            32|
-|Archive     |tblRelatedValuesArchive    |   794,486|           24|        140,432|       138,240|
+|Archive     |tblRelatedValuesArchive    |   869,554|           24|         34,832|        34,296|
 |dbo         |sysdiagrams                |         4|            5|            280|           160|
 |Enum        |tblLUBioparent-not-used    |         0|            2|              0|             0|
 |Enum        |tblLUExtractSource         |        11|            4|             72|            16|
@@ -88,21 +88,21 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
 |Metadata    |tblVariable                |     1,642|           10|            272|           136|
 |Metadata    |tblVariable_97             |        37|           10|             72|            16|
-|Process     |tblBabyDaddy               |   178,993|           11|          8,392|         7,672|
-|Process     |tblFatherOfGen2            |    52,038|            7|          1,800|         1,616|
-|Process     |tblIRDemo1                 |         0|            5|              0|             0|
-|Process     |tblMarkerGen1              |   218,568|           10|         13,200|        11,528|
-|Process     |tblMarkerGen2              |   207,408|            8|         12,560|        10,336|
-|Process     |tblOutcome                 |   279,649|            5|         13,328|        12,160|
-|Process     |tblParentsOfGen1Current    |    12,686|           19|          1,168|           776|
-|Process     |tblParentsOfGen1Retro      |   482,068|            7|         41,816|        34,712|
+|Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,160|
+|Process     |tblFatherOfGen2            |    52,038|            7|            456|           304|
+|Process     |tblIRDemo1                 |         0|            5|             72|            16|
+|Process     |tblMarkerGen1              |   218,568|           10|          7,504|         6,944|
+|Process     |tblMarkerGen2              |   207,408|            8|          7,376|         6,712|
+|Process     |tblOutcome                 |   279,649|            5|         10,320|         9,224|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|            784|           448|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|         30,616|        28,056|
 |Process     |tblRelatedStructure        |    85,672|            6|          4,176|         3,720|
-|Process     |tblRelatedValues           |    42,836|           24|         10,504|        10,080|
-|Process     |tblResponse                | 2,673,517|            9|         78,216|        73,600|
-|Process     |tblRosterGen1              |    10,604|           13|            712|           528|
+|Process     |tblRelatedValues           |    42,836|           24|          2,384|         1,888|
+|Process     |tblResponse                | 2,673,517|            9|        124,296|       117,472|
+|Process     |tblRosterGen1              |    10,604|           13|            720|           328|
 |Process     |tblSubject                 |    24,207|            5|          1,680|         1,232|
-|Process     |tblSubjectDetails          |    24,207|           15|          1,544|         1,320|
-|Process     |tblSurveyTime              |   605,175|            7|         43,728|        39,648|
+|Process     |tblSubjectDetails          |    24,207|           15|          1,424|         1,048|
+|Process     |tblSurveyTime              |   605,175|            7|         26,512|        24,136|
 
 ## Items
 
@@ -1886,7 +1886,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-06                                 
+ date     2018-01-07                                 
 ```
 
 ```
@@ -1947,4 +1947,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-06, 22:39 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-07, 17:31 -0600 in 2 seconds.

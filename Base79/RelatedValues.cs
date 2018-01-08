@@ -330,8 +330,9 @@ namespace Nls.Base79 {
 			}
 		}
 		private Int16? SurveyTimeMostRecent ( Int32 subjectTag ) {
-			LinksDataSet.vewSurveyTimeMostRecentRow dr = _dsLinks.vewSurveyTimeMostRecent.FindBySubjectTag(subjectTag);
-			if ( dr == null )
+            //LinksDataSet.vewSurveyTimeMostRecentRow dr = _dsLinks.vewSurveyTimeMostRecent.FindBySubjectTag(subjectTag);
+            LinksDataSet.vewSurveyTimeMostRecentRow dr = LinksDataSet.FindBySubjectTag(_dsLinks.vewSurveyTimeMostRecent, subjectTag);
+            if( dr == null )
 				return null;
 			else
 				return dr.SurveyYearMostRecent;
