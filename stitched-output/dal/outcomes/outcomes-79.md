@@ -33,22 +33,31 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 
 ```r
 # Constant values that won't change.
-sql_outcome <- "
-  SELECT -- TOP (100000)
-  	--o.ID
-    o.SubjectTag      AS subject_tag
-    --,s.Generation
-    ,o.SurveyYear     AS survey_year
-    --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-    --,o.Item
-    ,i.Label          AS item_label
-    ,o.Value          AS value
-  FROM Process.tblOutcome o
-    LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-    --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-    --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-  ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-"
+item_labels <- "
+    'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
+    'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
+    'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+    'Gen2CFatherAlive'
+  "
+
+
+sql_response <-   glue::glue("
+    SELECT --TOP (1000)
+    	r.SubjectTag       AS subject_tag
+    	--,r.ExtendedID      AS extended_id
+    	--,r.Generation      AS generation
+    	,r.SurveyYear      AS survey_year
+    	--,r.Item            AS item_id
+    	,i.Label           AS item_label
+    	,r.Value           AS value
+    	--,r.LoopIndex       AS loop_index
+    FROM Process.tblResponse r
+    	LEFT JOIN Metadata.tblItem i ON r.Item=i.ID
+    WHERE i.Label IN (
+      {item_labels} -- This is replaced by `glue::glue()`
+    )
+  ")
+
 sql_survey_time <- "
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -75,11 +84,21 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 
 ```r
 channel                   <- open_dsn_channel_odbc()
-ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+system.time({
+ds_response               <- DBI::dbGetQuery(channel, sql_response    )
+})
+```
+
+```
+##    user  system elapsed 
+##    0.51    0.02    2.44
+```
+
+```r
 ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     <- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_response, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
 ```
 
 ```r
@@ -92,11 +111,11 @@ dim(ds_survey_time)
 ```
 
 ```r
-dim(ds_outcome)
+dim(ds_response)
 ```
 
 ```
-## [1] 108569      4
+## [1] 279649      4
 ```
 
 ```r
@@ -126,7 +145,7 @@ ds_survey_time <- ds_survey_time %>%
 ds_subject_generation <- ds_subject_generation %>%
   tibble::as_tibble()
 
-ds_outcome <- ds_outcome %>%
+ds_response <- ds_response %>%
   tibble::as_tibble() %>%
   dplyr::mutate(
     item_label          = OuhscMunge::snake_case(item_label),
@@ -138,7 +157,7 @@ ds_outcome <- ds_outcome %>%
 ```
 
 ```r
-ds_subject <- ds_outcome %>%
+ds_subject <- ds_response %>%
   dplyr::group_by(subject_tag, item_label) %>%
   dplyr::summarize(
     value  = OuhscMunge::first_nonmissing(value)
@@ -157,7 +176,7 @@ ds_subject <- ds_outcome %>%
 ```
 
 ```r
-ds_subject_survey <- ds_outcome %>%
+ds_subject_survey <- ds_response %>%
   tidyr::spread(key=item_label, value=value) %>%
   dplyr::left_join(ds_survey_time, by=c("subject_tag", "survey_year")) %>%
   dplyr::mutate(
@@ -178,20 +197,20 @@ ds_subject_survey
 ```
 
 ```
-## # A tibble: 74,013 x 8
+## # A tibble: 118,822 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
 ##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1  22.1    NA       120    6.84  NA   
-##  2         200        1982          1  23.1    62.0     125   NA     NA   
-##  3         200        1985          1  26.1    62.0     118   NA     NA   
-##  4         300        1981          1  NA      NA        NA   49.4   NA   
-##  5         300        1982          1  20.6    70.0     160   NA     NA   
-##  6         300        1985          1  23.5    70.0     152   NA     NA   
-##  7         400        1981          1  18.6    NA       110   55.8   NA   
-##  8         400        1982          1  19.5    67.0     109   NA     NA   
-##  9         400        1985          1  22.7    67.0     126   NA     NA   
-## 10         401        1984          2  NA      NA        NA   NA      1.00
-## # ... with 74,003 more rows
+##  1         200        1981          1 22.1     NA       120    6.84     NA
+##  2         200        1982          1 23.1     62.0     125   NA        NA
+##  3         200        1985          1 26.1     62.0     118   NA        NA
+##  4         201        1998          2  5.20    NA        NA   NA        NA
+##  5         201        2000          2  7.20    NA        NA   NA        NA
+##  6         201        2002          2  9.30    NA        NA   NA        NA
+##  7         201        2004          2 11.3     NA        NA   NA        NA
+##  8         202        2000          2  5.60    NA        NA   NA        NA
+##  9         202        2002          2  7.60    NA        NA   NA        NA
+## 10         202        2004          2  9.60    NA        NA   NA        NA
+## # ... with 118,812 more rows
 ```
 
 ```r
@@ -202,20 +221,20 @@ summary(ds_subject)
 ```
 ##   subject_tag        generation    height_inches   weight_pounds  
 ##  Min.   :    200   Min.   :1.000   Min.   :48.00   Min.   : 53.0  
-##  1st Qu.: 322225   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
-##  Median : 624051   Median :1.000   Median :67.00   Median :140.0  
-##  Mean   : 619274   Mean   :1.358   Mean   :67.08   Mean   :145.6  
-##  3rd Qu.: 906175   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
+##  1st Qu.: 304727   1st Qu.:1.000   1st Qu.:64.00   1st Qu.:125.0  
+##  Median : 603352   Median :1.000   Median :67.00   Median :140.0  
+##  Mean   : 606991   Mean   :1.447   Mean   :67.08   Mean   :145.6  
+##  3rd Qu.: 896501   3rd Qu.:2.000   3rd Qu.:70.00   3rd Qu.:165.0  
 ##  Max.   :1268600   Max.   :2.000   Max.   :83.00   Max.   :375.0  
-##                                    NA's   :7190    NA's   :7063   
+##                                    NA's   :10346   NA's   :10219  
 ##  afqt_scaled_gen1  father_alive   
 ##  Min.   :  0.00   Min.   :-3.000  
 ##  1st Qu.: 16.77   1st Qu.: 1.000  
 ##  Median : 38.62   Median : 1.000  
-##  Mean   : 42.40   Mean   : 0.806  
+##  Mean   : 42.40   Mean   : 0.864  
 ##  3rd Qu.: 66.29   3rd Qu.: 1.000  
 ##  Max.   :100.00   Max.   : 1.000  
-##  NA's   :7648     NA's   :12552
+##  NA's   :10804    NA's   :15708
 ```
 
 ```r
@@ -234,13 +253,13 @@ summary(ds_subject_survey)
 
 ```
 ##   subject_tag       survey_year     generation         age       
-##  Min.   :    200   Min.   :1981   Min.   :1.000   Min.   : 0.00  
-##  1st Qu.: 325003   1st Qu.:1982   1st Qu.:1.000   1st Qu.:13.10  
-##  Median : 623802   Median :1985   Median :2.000   Median :19.20  
-##  Mean   : 607496   Mean   :1989   Mean   :1.522   Mean   :17.58  
-##  3rd Qu.: 868401   3rd Qu.:1996   3rd Qu.:2.000   3rd Qu.:22.60  
-##  Max.   :1268600   Max.   :2010   Max.   :2.000   Max.   :37.50  
-##                                                   NA's   :9980   
+##  Min.   :    200   Min.   :1981   Min.   :1.000   Min.   : 0.0   
+##  1st Qu.: 285625   1st Qu.:1985   1st Qu.:1.000   1st Qu.:11.4   
+##  Median : 579002   Median :1994   Median :2.000   Median :18.3   
+##  Mean   : 577511   Mean   :1994   Mean   :1.702   Mean   :17.1   
+##  3rd Qu.: 842100   3rd Qu.:2004   3rd Qu.:2.000   3rd Qu.:22.5   
+##  Max.   :1268600   Max.   :2010   Max.   :2.000   Max.   :38.0   
+##                                                   NA's   :10136  
 ##  height_inches   weight_pounds   afqt_scaled_gen1  father_alive  
 ##  Min.   :48.00   Min.   : 47.0   Min.   :  0.00   Min.   :-3.00  
 ##  1st Qu.:64.00   1st Qu.:125.0   1st Qu.: 16.77   1st Qu.: 1.00  
@@ -248,7 +267,7 @@ summary(ds_subject_survey)
 ##  Mean   :67.08   Mean   :148.5   Mean   : 42.40   Mean   : 0.82  
 ##  3rd Qu.:70.00   3rd Qu.:165.0   3rd Qu.: 66.29   3rd Qu.: 1.00  
 ##  Max.   :83.00   Max.   :375.0   Max.   :100.00   Max.   : 1.00  
-##  NA's   :51058   NA's   :38960   NA's   :62099    NA's   :35366
+##  NA's   :95867   NA's   :83769   NA's   :106908   NA's   :80175
 ```
 
 ```r
@@ -276,20 +295,20 @@ ds_slim_subject
 ```
 
 ```
-## # A tibble: 19,562 x 6
+## # A tibble: 22,718 x 6
 ##    subject_tag generation height_inches weight_pounds afqt_scale~ father_~
 ##          <int>      <int>         <dbl>         <dbl>       <dbl>    <dbl>
 ##  1         200          1          62.0           120        6.84    NA   
-##  2         300          1          70.0           160       49.4     NA   
-##  3         400          1          67.0           110       55.8     NA   
-##  4         401          2          NA              NA       NA        1.00
-##  5         500          1          63.0           130       96.8     NA   
-##  6         600          1          65.0           200       99.4     NA   
-##  7         700          1          67.0           131       47.4     NA   
-##  8         800          1          65.0           179       44.0     NA   
-##  9         801          2          NA              NA       NA        1.00
-## 10         802          2          NA              NA       NA        1.00
-## # ... with 19,552 more rows
+##  2         201          2          NA              NA       NA       NA   
+##  3         202          2          NA              NA       NA       NA   
+##  4         300          1          70.0           160       49.4     NA   
+##  5         301          2          NA              NA       NA       NA   
+##  6         302          2          NA              NA       NA       NA   
+##  7         303          2          NA              NA       NA       NA   
+##  8         400          1          67.0           110       55.8     NA   
+##  9         401          2          NA              NA       NA        1.00
+## 10         500          1          63.0           130       96.8     NA   
+## # ... with 22,708 more rows
 ```
 
 ```r
@@ -310,20 +329,20 @@ ds_slim_subject_survey
 ```
 
 ```
-## # A tibble: 74,013 x 8
+## # A tibble: 118,822 x 8
 ##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
 ##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1  22.1    NA       120    6.84  NA   
-##  2         200        1982          1  23.1    62.0     125   NA     NA   
-##  3         200        1985          1  26.1    62.0     118   NA     NA   
-##  4         300        1981          1  NA      NA        NA   49.4   NA   
-##  5         300        1982          1  20.6    70.0     160   NA     NA   
-##  6         300        1985          1  23.5    70.0     152   NA     NA   
-##  7         400        1981          1  18.6    NA       110   55.8   NA   
-##  8         400        1982          1  19.5    67.0     109   NA     NA   
-##  9         400        1985          1  22.7    67.0     126   NA     NA   
-## 10         401        1984          2  NA      NA        NA   NA      1.00
-## # ... with 74,003 more rows
+##  1         200        1981          1 22.1     NA       120    6.84     NA
+##  2         200        1982          1 23.1     62.0     125   NA        NA
+##  3         200        1985          1 26.1     62.0     118   NA        NA
+##  4         201        1998          2  5.20    NA        NA   NA        NA
+##  5         201        2000          2  7.20    NA        NA   NA        NA
+##  6         201        2002          2  9.30    NA        NA   NA        NA
+##  7         201        2004          2 11.3     NA        NA   NA        NA
+##  8         202        2000          2  5.60    NA        NA   NA        NA
+##  9         202        2002          2  7.60    NA        NA   NA        NA
+## 10         202        2004          2  9.60    NA        NA   NA        NA
+## # ... with 118,812 more rows
 ```
 
 ```r
@@ -366,29 +385,25 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2         DBI_0.7              magrittr_1.5        
-## [4] RODBC_1.3-15         plyr_1.8.4           xtable_1.8-2        
-## [7] colorspace_1.3-2     ggplot2_2.2.1.9000   NlsyLinks_2.0.7.9000
+## [1] purrr_0.2.4  tidyr_0.7.2  bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
-##  [4] bindr_0.1             tools_3.4.3           odbc_1.1.3           
-##  [7] digest_0.6.13         bit_1.1-12            evaluate_0.10.1      
-## [10] memoise_1.1.0         RSQLite_2.0           checkmate_1.8.5      
-## [13] tibble_1.4.1          gtable_0.2.0          lattice_0.20-35      
-## [16] pkgconfig_2.0.1       rlang_0.1.6           cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.16           pbivnorm_0.6.0       
-## [22] stringr_1.2.0         dplyr_0.7.4           knitr_1.18           
-## [25] hms_0.4.0             tidyselect_0.2.3      stats4_3.4.3         
-## [28] bit64_0.9-7           grid_3.4.3            glue_1.2.0           
-## [31] OuhscMunge_0.1.8.9005 R6_2.2.2              lavaan_0.5-23.1097   
-## [34] readr_1.1.1           tidyr_0.7.2           purrr_0.2.4          
-## [37] blob_1.1.0            backports_1.1.2       scales_0.5.0.9000    
-## [40] assertthat_0.2.0      testit_0.7.1          mnormt_1.5-5         
-## [43] config_0.2            labeling_0.3          quadprog_1.5-5       
-## [46] utf8_1.1.3            stringi_1.1.6         lazyeval_0.2.1       
-## [49] munsell_0.4.3         markdown_0.8          crayon_1.3.4         
-## [52] zoo_1.8-0
+##  [4] plyr_1.8.4            highr_0.6             bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
+## [10] bit_1.1-12            checkmate_1.8.5       evaluate_0.10.1      
+## [13] tibble_1.4.1          pkgconfig_2.0.1       rlang_0.1.6          
+## [16] DBI_0.7               cli_1.0.0             rstudioapi_0.7       
+## [19] yaml_2.1.16           dplyr_0.7.4           stringr_1.2.0        
+## [22] knitr_1.18            hms_0.4.0             tidyselect_0.2.3     
+## [25] bit64_0.9-7           rprojroot_1.3-2       OuhscMunge_0.1.8.9005
+## [28] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
+## [31] readr_1.1.1           blob_1.1.0            scales_0.5.0.9000    
+## [34] backports_1.1.2       RODBC_1.3-15          htmltools_0.3.6      
+## [37] rsconnect_0.8.5       assertthat_0.2.0      testit_0.7.1         
+## [40] colorspace_1.3-2      config_0.2            utf8_1.1.3           
+## [43] stringi_1.1.6         munsell_0.4.3         markdown_0.8         
+## [46] crayon_1.3.4
 ```
 
 ```r
@@ -396,6 +411,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-05 18:35:10 CST"
+## [1] "2018-01-07 19:24:54 CST"
 ```
 

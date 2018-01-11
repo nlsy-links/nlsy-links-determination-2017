@@ -21,22 +21,31 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
-sql_outcome <- "
-  SELECT -- TOP (100000)
-  	--o.ID
-    o.SubjectTag      AS subject_tag
-    --,s.Generation
-    ,o.SurveyYear     AS survey_year
-    --,ROUND(COALESCE(t.AgeCalculateYears, t.AgeSelfReportYears),1)     AS age
-    --,o.Item
-    ,i.Label          AS item_label
-    ,o.Value          AS value
-  FROM Process.tblOutcome o
-    LEFT JOIN Metadata.tblItem i        ON o.Item       = i.ID
-    --LEFT JOIN Process.tblSubject s      ON o.SubjectTag = s.SubjectTag
-    --LEFT JOIN Process.tblSurveyTime t   ON (o.SubjectTag = t.SubjectTag) AND (o.SurveyYear = t.SurveyYear)
-  ORDER BY o.SubjectTag, o.SurveyYear, i.Label
-"
+item_labels <- "
+    'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
+    'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
+    'Gen2WeightPoundsYA', 'Gen2PiatMathPercentile', 'Gen2PiatMathStandard',
+    'Gen2CFatherAlive'
+  "
+
+
+sql_response <-   glue::glue("
+    SELECT --TOP (1000)
+    	r.SubjectTag       AS subject_tag
+    	--,r.ExtendedID      AS extended_id
+    	--,r.Generation      AS generation
+    	,r.SurveyYear      AS survey_year
+    	--,r.Item            AS item_id
+    	,i.Label           AS item_label
+    	,r.Value           AS value
+    	--,r.LoopIndex       AS loop_index
+    FROM Process.tblResponse r
+    	LEFT JOIN Metadata.tblItem i ON r.Item=i.ID
+    WHERE i.Label IN (
+      {item_labels} -- This is replaced by `glue::glue()`
+    )
+  ")
+
 sql_survey_time <- "
   SELECT -- TOP (100000)
     t.SubjectTag          AS subject_tag
@@ -63,16 +72,18 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 # ---- load-data ---------------------------------------------------------------
 
 channel                   <- open_dsn_channel_odbc()
-ds_outcome                <- DBI::dbGetQuery(channel, sql_outcome    )
+system.time({
+ds_response               <- DBI::dbGetQuery(channel, sql_response    )
+})
 ds_survey_time            <- DBI::dbGetQuery(channel, sql_survey_time)
 ds_subject_generation     <- DBI::dbGetQuery(channel, sql_subject_generation)
 ds_algorithm_version      <- DBI::dbGetQuery(channel, sql_algorithm_version_max)
-DBI::dbDisconnect(channel); rm(channel, sql_outcome, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
+DBI::dbDisconnect(channel); rm(channel, sql_response, sql_survey_time, sql_subject_generation, sql_algorithm_version_max)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
 dim(ds_survey_time)
-dim(ds_outcome)
+dim(ds_response)
 dim(ds_subject_generation)
 ds_algorithm_version
 
@@ -85,7 +96,7 @@ ds_survey_time <- ds_survey_time %>%
 ds_subject_generation <- ds_subject_generation %>%
   tibble::as_tibble()
 
-ds_outcome <- ds_outcome %>%
+ds_response <- ds_response %>%
   tibble::as_tibble() %>%
   dplyr::mutate(
     item_label          = OuhscMunge::snake_case(item_label),
@@ -96,7 +107,7 @@ ds_outcome <- ds_outcome %>%
 # table(ds_outcome$item_label)
 
 # ---- groom-subject -----------------------------------------------------------
-ds_subject <- ds_outcome %>%
+ds_subject <- ds_response %>%
   dplyr::group_by(subject_tag, item_label) %>%
   dplyr::summarize(
     value  = OuhscMunge::first_nonmissing(value)
@@ -115,7 +126,7 @@ ds_subject <- ds_outcome %>%
 
 
 # ---- groom-subject-year ------------------------------------------------------
-ds_subject_survey <- ds_outcome %>%
+ds_subject_survey <- ds_response %>%
   tidyr::spread(key=item_label, value=value) %>%
   dplyr::left_join(ds_survey_time, by=c("subject_tag", "survey_year")) %>%
   dplyr::mutate(

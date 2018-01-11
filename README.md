@@ -32,10 +32,10 @@ Tables related to an *Subject*:
 Additional Information:
 1. Some metadata sets are described in [CSVs](data-public/metadata/tables).  The metadata tables are [uploaded to the database](utility/import-metadata.R),  [logged](stitched-output/utility/import-metadata.md), and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/stitched-output/utility/import-metadata.md).
 1. Other metadata sets that are hardcoded into the C#:
-    * [Enums](BaseAssembly/Enums.cs)
-    * [EnumResponses](BaseAssembly/EnumResponses.cs)
-    * [EnumResponsesGen1](BaseAssembly/EnumResponsesGen1.cs)
-    * [EnumResponsesGen2](BaseAssembly/EnumResponsesGen2.cs)
+    * [Enums](Base79/Enums.cs)
+    * [EnumResponses](Base79/EnumResponses.cs)
+    * [EnumResponsesGen1](Base79/EnumResponsesGen1.cs)
+    * [EnumResponsesGen2](Base79/EnumResponsesGen2.cs)
 1. Row & columns counts for each table are [available](analysis/eda/counts/counts.md) and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/analysis/eda/counts/counts.md).
 1. For the masochistically curious, the full database is described [in SQL]([item](data-public/metadata/database/generate-db.sql).
 

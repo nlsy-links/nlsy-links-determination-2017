@@ -32,22 +32,7 @@ open_dsn_channel_rodbc <- function( ) {
 
 database_inventory <- function( ) {
   sql_table <- "
-    ;WITH
-    t_row AS (
-      SELECT
-        sc.name        AS schema_name,
-        ta.name        AS table_name,
-        SUM(pa.rows)   AS row_count
-      FROM sys.tables ta
-        INNER JOIN sys.partitions pa ON pa.OBJECT_ID = ta.OBJECT_ID
-        INNER JOIN sys.schemas sc ON ta.schema_id = sc.schema_id
-      WHERE
-        ta.is_ms_shipped = 0
-        AND
-        pa.index_id IN (1, 0)
-      GROUP BY sc.name, ta.name
-    ),
-    t_column AS (
+    ;WITH t_column AS (
       SELECT
         TABLE_SCHEMA     AS schema_name,
         TABLE_NAME       AS table_name,
@@ -55,22 +40,37 @@ database_inventory <- function( ) {
       FROM INFORMATION_SCHEMA.COLUMNS
       GROUP BY TABLE_SCHEMA, TABLE_NAME
     )
-
     SELECT
-      t_row.schema_name,
-      t_row.table_name,
-      t_row.row_count,
-      t_column.column_count
-    FROM t_row
-      INNER JOIN t_column
-        ON t_row.schema_name=t_column.schema_name AND t_row.table_name=t_column.table_name
-    ORDER BY t_row.schema_name, t_row.table_name
+      s.Name                 AS schema_name,
+      t.NAME                 AS table_name,
+      p.rows                 AS row_count,
+      c.column_count,
+      SUM(a.total_pages) * 8 AS space_total_kb,
+      SUM(a.used_pages ) * 8 AS space_used_kb
+    FROM sys.tables t
+      INNER JOIN sys.indexes i ON t.OBJECT_ID = i.object_id
+      INNER JOIN sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
+      INNER JOIN sys.allocation_units a ON p.partition_id = a.container_id
+      LEFT  JOIN sys.schemas s ON t.schema_id = s.schema_id
+      LEFT  JOIN t_column c ON t.name=c.table_name AND s.name=c.schema_name
+    WHERE
+      t.NAME NOT LIKE 'dt%'
+      AND t.is_ms_shipped = 0
+      AND i.OBJECT_ID > 255
+    GROUP BY t.Name, s.Name, p.Rows, c.column_count
+    ORDER BY s.Name, t.Name
   "
 
-  channel            <- open_dsn_channel_rodbc()
-  ds    <- RODBC::sqlQuery(channel, sql_table, stringsAsFactors=F)
+  # channel   <- open_dsn_channel_odbc()
+  # ds        <- DBI::dbGetQuery(channel, sql_table)
+  # DBI::dbDisconnect(channel);# rm(channel, sql_table)
+
+  channel   <- open_dsn_channel_rodbc()
+  ds        <- RODBC::sqlQuery(channel, sql_table, stringsAsFactors=F)
   # ds_row_count       <- RODBC::sqlTables(channel)
   RODBC::odbcClose(channel); rm(channel, sql_table)
+
+  ds <- tibble::as_tibble(ds)
 
   return( ds )
 }

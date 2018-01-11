@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BA = Nls.BaseAssembly;
+using BA = Nls.Base79;
 
 namespace LinksGui {
 	public partial class MainWindow : Window {
@@ -42,7 +42,7 @@ namespace LinksGui {
 			_dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
             if( Convert.ToBoolean("true") ) {
-            //if( Convert.ToBoolean("false") ) {
+            //if( Convert.ToBoolean("false")) {
 				LoadExtractGen1Links();
 				LoadExtractGen1Explicit();
 				LoadExtractGen1Implicit();

@@ -16,10 +16,10 @@
     * `data-public/metadata/tables/item_79.csv`
     * `data-public/metadata/tables/variable_79.csv`
     * `data-public/metadata/tables/roster_assignment_79_gen1.csv`
-    * `BaseAssembly/Response.cs`    
-    * `BaseAssembly/BabyDaddy.cs`  
-    * `BaseAssembly/RelatedValues.cs`
-    * `BaseAssembly/Assign/RGen1Pass2.cs`
+    * `Base79/Response.cs`    
+    * `Base79/BabyDaddy.cs`  
+    * `Base79/RelatedValues.cs`
+    * `Base79/Assign/RGen1Pass2.cs`
 6. Forums
     * Showcase articles & products
     * Bridges different articles & projects (which may disqualify GitHub as the entry point)

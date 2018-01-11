@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-04"
+date: "Date: 2018-01-07"
 output:
   html_document:
     keep_md: yes
@@ -49,60 +49,60 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Tables
 
-|schema name |table name                 | row count| column count|
-|:-----------|:--------------------------|---------:|------------:|
-|Archive     |tblArchiveDescription      |        55|            4|
-|Archive     |tblRelatedValuesArchive    |   676,582|           24|
-|dbo         |sysdiagrams                |         4|            5|
-|Enum        |tblLUBioparent-not-used    |         0|            2|
-|Enum        |tblLUExtractSource         |        12|            4|
-|Enum        |tblLUGender                |         3|            4|
-|Enum        |tblLUMarkerEvidence        |         8|            4|
-|Enum        |tblLUMarkerType            |        28|            5|
-|Enum        |tblLUMultipleBirth         |         5|            4|
-|Enum        |tblLURaceCohort            |         3|            4|
-|Enum        |tblLURelationshipPath      |         5|            4|
-|Enum        |tblLURosterGen1            |        67|            4|
-|Enum        |tblLUSurveySource          |         5|            4|
-|Enum        |tblLUTristate              |         3|            4|
-|Enum        |tblLUYesNo                 |         6|            4|
-|Extract     |tbl97Roster                |         0|          416|
-|Extract     |tblGen1Explicit            |    12,686|           96|
-|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
-|Extract     |tblGen1Implicit            |    12,686|          102|
-|Extract     |tblGen1Links               |    12,686|          117|
-|Extract     |tblGen1MzDzDistinction2010 |         0|            7|
-|Extract     |tblGen1Outcomes            |    12,686|           22|
-|Extract     |tblGen2FatherFromGen1      |    12,686|          959|
-|Extract     |tblGen2ImplicitFather      |    11,521|          111|
-|Extract     |tblGen2Links               |    11,521|          207|
-|Extract     |tblGen2LinksFromGen1       |    12,686|          123|
-|Extract     |tblGen2OutcomesHeight      |    11,521|           46|
-|Extract     |tblGen2OutcomesMath        |    11,521|           44|
-|Extract     |tblGen2OutcomesWeight      |    11,521|           31|
-|Extract     |tblLinks2004Gen1           |     3,890|            9|
-|Extract     |tblLinks2004Gen2           |    12,855|            5|
-|Metadata    |tblItem                    |       110|            7|
-|Metadata    |tblItem_97                 |         7|            7|
-|Metadata    |tblMzManual                |       208|            9|
-|Metadata    |tblRosterGen1Assignment    |        50|           16|
-|Metadata    |tblVariable                |     1,642|           10|
-|Metadata    |tblVariable_97             |        37|           10|
-|Process     |tblBabyDaddy               |   178,993|           11|
-|Process     |tblFatherOfGen2            |    52,038|            7|
-|Process     |tblIRDemo1                 |         0|            5|
-|Process     |tblMarkerGen1              |   218,568|           10|
-|Process     |tblMarkerGen2              |   207,408|            8|
-|Process     |tblOutcome                 |   217,138|            5|
-|Process     |tblParentsOfGen1Current    |    12,686|           19|
-|Process     |tblParentsOfGen1Retro      |   482,068|            7|
-|Process     |tblRelatedStructure        |    85,672|            6|
-|Process     |tblRelatedValues           |    42,836|           24|
-|Process     |tblResponse                | 2,673,517|            9|
-|Process     |tblRosterGen1              |    10,604|           13|
-|Process     |tblSubject                 |    24,207|            5|
-|Process     |tblSubjectDetails          |    24,207|           15|
-|Process     |tblSurveyTime              |   605,175|            7|
+|schema name |table name                 | row count| column count| space total kb| space used kb|
+|:-----------|:--------------------------|---------:|------------:|--------------:|-------------:|
+|Archive     |tblArchiveDescription      |        56|            4|            144|            32|
+|Archive     |tblRelatedValuesArchive    |   869,554|           24|         34,832|        34,296|
+|dbo         |sysdiagrams                |         4|            5|            280|           160|
+|Enum        |tblLUBioparent-not-used    |         0|            2|              0|             0|
+|Enum        |tblLUExtractSource         |        11|            4|             72|            16|
+|Enum        |tblLUGender                |         3|            4|             72|            16|
+|Enum        |tblLUMarkerEvidence        |         8|            4|             72|            16|
+|Enum        |tblLUMarkerType            |        28|            5|             72|            16|
+|Enum        |tblLUMultipleBirth         |         5|            4|             72|            16|
+|Enum        |tblLURaceCohort            |         3|            4|             72|            16|
+|Enum        |tblLURelationshipPath      |         5|            4|             72|            16|
+|Enum        |tblLURosterGen1            |        67|            4|             72|            16|
+|Enum        |tblLUSurveySource          |         5|            4|             72|            16|
+|Enum        |tblLUTristate              |         3|            4|             72|            16|
+|Enum        |tblLUYesNo                 |         6|            4|             72|            16|
+|Extract     |tbl97Roster                |         0|          416|             72|            16|
+|Extract     |tblGen1Explicit            |    12,686|           96|            520|           408|
+|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|            592|           360|
+|Extract     |tblGen1Implicit            |    12,686|          102|            648|           552|
+|Extract     |tblGen1Links               |    12,686|          117|            968|           824|
+|Extract     |tblGen1MzDzDistinction2010 |         0|            7|             72|            16|
+|Extract     |tblGen1Outcomes            |    12,686|           22|            392|           248|
+|Extract     |tblGen2FatherFromGen1      |    12,686|          959|          6,728|         6,648|
+|Extract     |tblGen2ImplicitFather      |    11,521|          111|            584|           432|
+|Extract     |tblGen2Links               |    11,521|          207|            904|           816|
+|Extract     |tblGen2LinksFromGen1       |    12,686|          123|            584|           464|
+|Extract     |tblGen2OutcomesHeight      |    11,521|           46|            392|           256|
+|Extract     |tblGen2OutcomesMath        |    11,521|           44|            456|           304|
+|Extract     |tblGen2OutcomesWeight      |    11,521|           31|            328|           176|
+|Extract     |tblLinks2004Gen1           |     3,890|            9|            528|           208|
+|Extract     |tblLinks2004Gen2           |    12,855|            5|            784|           464|
+|Metadata    |tblItem                    |       110|            7|             72|            16|
+|Metadata    |tblItem_97                 |         7|            7|             72|            16|
+|Metadata    |tblMzManual                |       208|            9|            144|            56|
+|Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
+|Metadata    |tblVariable                |     1,642|           10|            272|           136|
+|Metadata    |tblVariable_97             |        37|           10|             72|            16|
+|Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,160|
+|Process     |tblFatherOfGen2            |    52,038|            7|            456|           304|
+|Process     |tblIRDemo1                 |         0|            5|             72|            16|
+|Process     |tblMarkerGen1              |   218,568|           10|          7,504|         6,944|
+|Process     |tblMarkerGen2              |   207,408|            8|          7,376|         6,712|
+|Process     |tblOutcome                 |   279,649|            5|         10,320|         9,224|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|            784|           448|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|         30,616|        28,056|
+|Process     |tblRelatedStructure        |    85,672|            6|          4,176|         3,720|
+|Process     |tblRelatedValues           |    42,836|           24|          2,384|         1,888|
+|Process     |tblResponse                | 2,673,517|            9|        124,296|       117,472|
+|Process     |tblRosterGen1              |    10,604|           13|            720|           328|
+|Process     |tblSubject                 |    24,207|            5|          1,680|         1,232|
+|Process     |tblSubjectDetails          |    24,207|           15|          1,424|         1,048|
+|Process     |tblSurveyTime              |   605,175|            7|         26,512|        24,136|
 
 ## Items
 
@@ -148,18 +148,18 @@ This report documents the basic properties of the input & output tables kinship 
 |   71|Gen1EyeColor                                       |       -5|              1|        9|TRUE   |NA    |
 |   72|Gen2HairColor_NOTUSED                              |       -7|              1|        7|TRUE   |NA    |
 |   73|Gen2EyeColor_NOTUSED                               |       -7|              1|       10|TRUE   |NA    |
-|   81|BabyDaddyInHH                                      |       -5|              0|        1|FALSE  |NA    |
-|   82|BabyDaddyAlive                                     |       -5|              0|        1|FALSE  |NA    |
-|   83|BabyDaddyEverLiveInHH                              |       -5|              1|        2|FALSE  |NA    |
-|   84|BabyDaddyLeftHHMonth                               |       -5|              1|       12|FALSE  |NA    |
-|   85|BabyDaddyLeftHHYearFourDigit                       |       -5|           1958|     2016|FALSE  |NA    |
-|   86|BabyDaddyDeathMonth                                |       -5|              1|       12|FALSE  |NA    |
-|   87|BabyDaddyDeathYearTwoDigit                         |       -5|             61|       93|FALSE  |NA    |
-|   88|BabyDaddyDeathYearFourDigit                        |       -5|           1961|     2016|FALSE  |NA    |
-|   89|BabyDaddyDistanceFromMotherFuzzyCeiling            |       -5|              1|        5|FALSE  |NA    |
-|   90|BabyDaddyHasAsthma                                 |       -5|              0|        2|FALSE  |NA    |
-|   91|BabyDaddyLeftHHMonthOrNeverInHH                    |       -5|              1|       96|FALSE  |NA    |
-|   92|BabyDaddyLeftHHYearTwoDigit                        |       -5|             57|       96|FALSE  |NA    |
+|   81|BabyDaddyInHH                                      |       -5|              0|        1|TRUE   |NA    |
+|   82|BabyDaddyAlive                                     |       -5|              0|        1|TRUE   |NA    |
+|   83|BabyDaddyEverLiveInHH                              |       -5|              1|        2|TRUE   |NA    |
+|   84|BabyDaddyLeftHHMonth                               |       -5|              1|       12|TRUE   |NA    |
+|   85|BabyDaddyLeftHHYearFourDigit                       |       -5|           1958|     2016|TRUE   |NA    |
+|   86|BabyDaddyDeathMonth                                |       -5|              1|       12|TRUE   |NA    |
+|   87|BabyDaddyDeathYearTwoDigit                         |       -5|             61|       93|TRUE   |NA    |
+|   88|BabyDaddyDeathYearFourDigit                        |       -5|           1961|     2016|TRUE   |NA    |
+|   89|BabyDaddyDistanceFromMotherFuzzyCeiling            |       -5|              1|        5|TRUE   |NA    |
+|   90|BabyDaddyHasAsthma                                 |       -5|              0|        2|TRUE   |NA    |
+|   91|BabyDaddyLeftHHMonthOrNeverInHH                    |       -5|              1|       96|TRUE   |NA    |
+|   92|BabyDaddyLeftHHYearTwoDigit                        |       -5|             57|       96|TRUE   |NA    |
 |  100|SubjectID                                          |        1|              1|  1267501|TRUE   |NA    |
 |  101|ExtendedFamilyID                                   |        1|              1|    12686|TRUE   |NA    |
 |  102|Gender                                             |       -3|              1|        2|TRUE   |NA    |
@@ -1886,7 +1886,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-04                                 
+ date     2018-01-07                                 
 ```
 
 ```
@@ -1931,7 +1931,7 @@ Packages -----------------------------------------------------------------------
  rlang        0.1.6      2017-12-21 CRAN (R 3.4.3)                  
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
- rprojroot    1.3-1      2017-12-18 CRAN (R 3.4.3)                  
+ rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
@@ -1947,5 +1947,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-04, 10:05 -0600 in 2 seconds.
-
+Report rendered by Will at 2018-01-07, 17:31 -0600 in 2 seconds.

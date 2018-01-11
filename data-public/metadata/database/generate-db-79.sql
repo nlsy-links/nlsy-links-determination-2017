@@ -153,17 +153,13 @@ CREATE TABLE [Process].[tblSubjectDetails](
 	[HasMzPossibly] [bit] NOT NULL,
 	[KidCountBio] [tinyint] NULL,
 	[KidCountInNls] [tinyint] NULL,
-	[Mob] [smalldatetime] NULL,
+	[Mob] [date] NULL,
 	[LastSurveyYearCompleted] [smallint] NULL,
 	[AgeAtLastSurvey] [float] NULL,
 	[IsDead] [bit] NOT NULL,
-	[DeathDate] [smalldatetime] NULL,
+	[DeathDate] [date] NULL,
 	[IsBiodadDead] [bit] NULL,
-	[BiodadDeathDate] [smalldatetime] NULL,
- CONSTRAINT [PK_tblSubject] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[BiodadDeathDate] [date] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -224,11 +220,7 @@ CREATE TABLE [Process].[tblRelatedValues](
 	[RPass1] [float] NULL,
 	[R] [float] NULL,
 	[RFull] [float] NULL,
-	[RPeek] [float] NULL,
- CONSTRAINT [PK_tblRelatedValues] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[RPeek] [float] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -264,11 +256,7 @@ CREATE TABLE [Process].[tblRosterGen1](
 	[ShareBiodad] [tinyint] NOT NULL,
 	[ShareBiomom] [tinyint] NOT NULL,
 	[ShareBiograndparent] [tinyint] NOT NULL,
-	[Inconsistent] [bit] NOT NULL,
- CONSTRAINT [PK_tblRosterGen1_1] PRIMARY KEY CLUSTERED 
-(
-	[RelatedID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Inconsistent] [bit] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -324,11 +312,7 @@ CREATE TABLE [Process].[tblSurveyTime](
 	[SurveyYear] [smallint] NOT NULL,
 	[SurveyDate] [date] NULL,
 	[AgeSelfReportYears] [float] NULL,
-	[AgeCalculateYears] [float] NULL,
- CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[AgeCalculateYears] [float] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -386,11 +370,7 @@ CREATE TABLE [Archive].[tblRelatedValuesArchive](
 	[RPass1] [float] NULL,
 	[R] [float] NULL,
 	[RFull] [float] NULL,
-	[RPeek] [float] NULL,
- CONSTRAINT [PK_Process.tblRelatedValuesArchive] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[RPeek] [float] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1095,11 +1075,7 @@ CREATE TABLE [Extract].[tblGen1Explicit](
 	[T2263500] [int] NULL,
 	[T2263600] [int] NULL,
 	[T2263700] [int] NULL,
-	[T2263800] [int] NULL,
- CONSTRAINT [PK_tblGen1Explicit] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[T2263800] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1135,12 +1111,7 @@ CREATE TABLE [Extract].[tblGen1GeocodeSanitized](
 	[BirthFatherStateEqual] [bit] NOT NULL,
 	[BirthFatherCountryMissing_1] [bit] NOT NULL,
 	[BirthFatherCountryMissing_2] [bit] NOT NULL,
-	[BirthFatherCountryEqual] [bit] NOT NULL,
- CONSTRAINT [PK_tblGen1GeocodeSanitized] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag_S1] ASC,
-	[SubjectTag_S2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[BirthFatherCountryEqual] [bit] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1249,11 +1220,7 @@ CREATE TABLE [Extract].[tblGen1Implicit](
 	[R2840800] [int] NULL,
 	[R2840900] [int] NULL,
 	[R2841000] [int] NULL,
-	[R2841100] [int] NULL,
- CONSTRAINT [PK_tblGen1Implicit] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[R2841100] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1377,11 +1344,7 @@ CREATE TABLE [Extract].[tblGen1Links](
 	[T4181100] [int] NULL,
 	[T4181101] [int] NULL,
 	[T4181102] [int] NULL,
-	[T5023600] [int] NULL,
- CONSTRAINT [PK_tblGen1Links] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[T5023600] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1395,12 +1358,7 @@ CREATE TABLE [Extract].[tblGen1MzDzDistinction2010](
 	[REstimatedFromImplicitAndExplicits] [real] NOT NULL,
 	[MultipleBirth] [tinyint] NOT NULL,
 	[IsMz] [tinyint] NOT NULL,
-	[RelationshipPath] [tinyint] NOT NULL,
- CONSTRAINT [PK_tblGen1MzDzDistinction2010] PRIMARY KEY CLUSTERED 
-(
-	[Subject1ID] ASC,
-	[Subject2ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[RelationshipPath] [tinyint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1429,11 +1387,7 @@ CREATE TABLE [Extract].[tblGen1Outcomes](
 	[T2054000] [int] NULL,
 	[T3024700] [int] NULL,
 	[T3024800] [int] NULL,
-	[T3024900] [int] NULL,
- CONSTRAINT [PK_tblGen1Outcomes] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[T3024900] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2399,11 +2353,7 @@ CREATE TABLE [Extract].[tblGen2FatherFromGen1](
 	[T3729800] [int] NULL,
 	[T3729900] [int] NULL,
 	[T3730000] [int] NULL,
-	[T3730100] [int] NULL,
- CONSTRAINT [PK_tblGen2FatherFromGen1] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[T3730100] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2521,11 +2471,7 @@ CREATE TABLE [Extract].[tblGen2ImplicitFather](
 	[Y2308800] [int] NULL,
 	[Y2308801] [int] NULL,
 	[Y2311700] [int] NULL,
-	[Y2531800] [int] NULL,
- CONSTRAINT [PK_tblGen2ImplicitFather] PRIMARY KEY CLUSTERED 
-(
-	[C0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Y2531800] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2739,11 +2685,7 @@ CREATE TABLE [Extract].[tblGen2Links](
 	[Y3003400] [int] NULL,
 	[Y3003500] [int] NULL,
 	[Y3003600] [int] NULL,
-	[Y3331900] [int] NULL,
- CONSTRAINT [PK_tblGen2Links] PRIMARY KEY CLUSTERED 
-(
-	[C0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Y3331900] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2873,11 +2815,7 @@ CREATE TABLE [Extract].[tblGen2LinksFromGen1](
 	[T2534200] [int] NULL,
 	[T2534300] [int] NULL,
 	[T2534400] [int] NULL,
-	[T2534500] [int] NULL,
- CONSTRAINT [PK_tblGen2LinksFromGen1] PRIMARY KEY CLUSTERED 
-(
-	[R0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[T2534500] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2930,11 +2868,7 @@ CREATE TABLE [Extract].[tblGen2OutcomesHeight](
 	[Y2207000] [int] NULL,
 	[Y2207100] [int] NULL,
 	[Y2544700] [int] NULL,
-	[Y2544800] [int] NULL,
- CONSTRAINT [PK_tblGen2OutcomesHeight] PRIMARY KEY CLUSTERED 
-(
-	[C0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Y2544800] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -2985,11 +2919,7 @@ CREATE TABLE [Extract].[tblGen2OutcomesMath](
 	[C3615200] [int] NULL,
 	[C3993600] [int] NULL,
 	[C3993700] [int] NULL,
-	[C3993800] [int] NULL,
- CONSTRAINT [PK_tblGen2OutcomesMath] PRIMARY KEY CLUSTERED 
-(
-	[C0000100] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[C3993800] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3043,12 +2973,7 @@ CREATE TABLE [Extract].[tblLinks2004Gen1](
 	[Sex2] [tinyint] NULL,
 	[RecommendedRelatedness] [real] NULL,
 	[SubjectTag_S1] [int] NOT NULL,
-	[SubjectTag_S2] [int] NOT NULL,
- CONSTRAINT [PK_tblLinks2004Gen1] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag_S1] ASC,
-	[SubjectTag_S2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[SubjectTag_S2] [int] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3060,12 +2985,7 @@ CREATE TABLE [Extract].[tblLinks2004Gen2](
 	[ID2] [int] NOT NULL,
 	[Sex1] [tinyint] NULL,
 	[Sex2] [tinyint] NULL,
-	[RecommendedRelatedness] [real] NULL,
- CONSTRAINT [PK_tblLinks2004Gen2] PRIMARY KEY CLUSTERED 
-(
-	[ID1] ASC,
-	[ID2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[RecommendedRelatedness] [real] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3205,14 +3125,10 @@ CREATE TABLE [Process].[tblBabyDaddy](
 	[BiodadInHH] [smallint] NOT NULL,
 	[BiodadAlive] [smallint] NOT NULL,
 	[BiodadEverLiveInHH] [smallint] NOT NULL,
-	[BiodadLeftHHDate] [smalldatetime] NULL,
-	[BiodadDeathDate] [smalldatetime] NULL,
+	[BiodadLeftHHDate] [date] NULL,
+	[BiodadDeathDate] [date] NULL,
 	[BiodadDistanceFromHH] [smallint] NULL,
-	[BiodadAsthma] [smallint] NOT NULL,
- CONSTRAINT [PK_tblFatherOfGen2] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[BiodadAsthma] [smallint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3226,11 +3142,7 @@ CREATE TABLE [Process].[tblFatherOfGen2](
 	[BiodadInHH] [smallint] NOT NULL,
 	[BiodadAlive] [smallint] NOT NULL,
 	[BiodadDistanceFromHH] [smallint] NULL,
-	[BiodadAsthma] [smallint] NOT NULL,
- CONSTRAINT [PK_tblFatherOfGen2_1] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[BiodadAsthma] [smallint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3242,11 +3154,7 @@ CREATE TABLE [Process].[tblIRDemo1](
 	[Item] [smallint] NOT NULL,
 	[Count] [smallint] NOT NULL,
 	[Variance] [float] NOT NULL,
-	[DateTimeCreated] [smalldatetime] NOT NULL,
- CONSTRAINT [PK_tblIRDemo1] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[DateTimeCreated] [date] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3264,10 +3172,6 @@ CREATE TABLE [Process].[tblMarkerGen1](
 	[ShareBiomomEvidence] [tinyint] NOT NULL,
 	[ShareBiodadEvidence] [tinyint] NOT NULL,
 	[ShareBioGrandparentEvidence] [tinyint] NOT NULL,
- CONSTRAINT [PK_tblMarkerGen1] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
  CONSTRAINT [IX_tblMarkerGen1_Unique] UNIQUE NONCLUSTERED 
 (
 	[RelatedID] ASC,
@@ -3289,10 +3193,6 @@ CREATE TABLE [Process].[tblMarkerGen2](
 	[MzEvidence] [tinyint] NOT NULL,
 	[ShareBiodadEvidence] [tinyint] NOT NULL,
 	[FromMother] [bit] NOT NULL,
- CONSTRAINT [PK_tblMarkerGen2] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
  CONSTRAINT [IX_tblMarkerGen2_Unique] UNIQUE NONCLUSTERED 
 (
 	[RelatedID] ASC,
@@ -3310,11 +3210,7 @@ CREATE TABLE [Process].[tblOutcome](
 	[SubjectTag] [int] NOT NULL,
 	[Item] [smallint] NOT NULL,
 	[SurveyYear] [smallint] NOT NULL,
-	[Value] [int] NOT NULL,
- CONSTRAINT [PK_tblOutcome] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Value] [int] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3340,11 +3236,7 @@ CREATE TABLE [Process].[tblParentsOfGen1Current](
 	[BiomomDeathAge] [tinyint] NULL,
 	[BiomomUSBorn] [smallint] NOT NULL,
 	[BiomomHighestGrade] [tinyint] NULL,
-	[AlwaysLivedWithBothBioparents] [smallint] NOT NULL,
- CONSTRAINT [PK_tblParentsOfGen1Current] PRIMARY KEY CLUSTERED 
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[AlwaysLivedWithBothBioparents] [smallint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3358,11 +3250,7 @@ CREATE TABLE [Process].[tblParentsOfGen1Retro](
 	[Bioparent] [smallint] NOT NULL,
 	[InHH] [bit] NULL,
 	[Age] [tinyint] NOT NULL,
-	[Year] [smallint] NOT NULL,
- CONSTRAINT [PK_tblParentsOfGen1Retro] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[Year] [smallint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -3378,19 +3266,39 @@ CREATE TABLE [Process].[tblResponse](
 	[SurveyYear] [smallint] NOT NULL,
 	[Item] [smallint] NOT NULL,
 	[Value] [int] NOT NULL,
-	[LoopIndex] [tinyint] NOT NULL,
- CONSTRAINT [PK_tblResponse] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	[LoopIndex] [tinyint] NOT NULL
 ) ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX [IX_Process.tblRelatedValuesArchive_Unique] ON [Archive].[tblRelatedValuesArchive]
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedValuesArchive_Unique] ON [Archive].[tblRelatedValuesArchive]
 (
 	[AlgorithmVersion] ASC,
 	[SubjectTag_S1] ASC,
 	[SubjectTag_S2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblGen1GeocodeSanitized_1] ON [Extract].[tblGen1GeocodeSanitized]
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblGen1MzDzDistinction2010] ON [Extract].[tblGen1MzDzDistinction2010]
+(
+	[Subject1ID] ASC,
+	[Subject2ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblLinks2004Gen1] ON [Extract].[tblLinks2004Gen1]
+(
+	[SubjectTag_S1] ASC,
+	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblLinks2004Gen2] ON [Extract].[tblLinks2004Gen2]
+(
+	[ID1] ASC,
+	[ID2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblMzManual_Unique] ON [Metadata].[tblMzManual]
 (
@@ -3403,6 +3311,13 @@ GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_79] ON [Metadata].[tblVariable]
 (
 	[VariableCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblBabyDaddy] ON [Process].[tblBabyDaddy]
+(
+	[SubjectTag] ASC,
+	[ChildLoopIndex] ASC,
+	[SurveyYear] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 CREATE NONCLUSTERED INDEX [IX_tblOutcome_Unique] ON [Process].[tblOutcome]
@@ -3431,10 +3346,20 @@ CREATE NONCLUSTERED INDEX [IX_tblParentsOfGen1Retro_UniqueYear] ON [Process].[tb
 	[Bioparent] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedStructure_Tags] ON [Process].[tblRelatedStructure]
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedStructure_Unique] ON [Process].[tblRelatedStructure]
 (
 	[SubjectTag_S1] ASC,
 	[SubjectTag_S2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedValues] ON [Process].[tblRelatedValues]
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRosterGen1] ON [Process].[tblRosterGen1]
+(
+	[RelatedID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubject_Unique] ON [Process].[tblSubject]
@@ -3443,11 +3368,76 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubject_Unique] ON [Process].[tblSubject
 	[Generation] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubjectDetails] ON [Process].[tblSubjectDetails]
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurveyTime]
 (
 	[SubjectTag] ASC,
 	[SurveyYear] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblRelatedValuesArchive] ON [Archive].[tblRelatedValuesArchive] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tbl97Roster] ON [Extract].[tbl97Roster] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1Explicit] ON [Extract].[tblGen1Explicit] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1GeocodeSanitized] ON [Extract].[tblGen1GeocodeSanitized] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1Implicit] ON [Extract].[tblGen1Implicit] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1Links] ON [Extract].[tblGen1Links] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1MzDzDistinction2010_1] ON [Extract].[tblGen1MzDzDistinction2010] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen1Outcomes] ON [Extract].[tblGen1Outcomes] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2FatherFromGen1] ON [Extract].[tblGen2FatherFromGen1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2ImplicitFather] ON [Extract].[tblGen2ImplicitFather] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2Links] ON [Extract].[tblGen2Links] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2LinksFromGen1] ON [Extract].[tblGen2LinksFromGen1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2OutcomesHeight] ON [Extract].[tblGen2OutcomesHeight] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2OutcomesMath] ON [Extract].[tblGen2OutcomesMath] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblGen2OutcomesWeight] ON [Extract].[tblGen2OutcomesWeight] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblLinks2004Gen1_1] ON [Extract].[tblLinks2004Gen1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblLinks2004Gen2_1] ON [Extract].[tblLinks2004Gen2] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblBabyDaddy] ON [Process].[tblBabyDaddy] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblFatherOfGen2] ON [Process].[tblFatherOfGen2] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblIRDemo1] ON [Process].[tblIRDemo1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblMarkerGen1] ON [Process].[tblMarkerGen1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblMarkerGen2] ON [Process].[tblMarkerGen2] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblOutcome] ON [Process].[tblOutcome] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblParentsOfGen1Current] ON [Process].[tblParentsOfGen1Current] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblParentsOfGen1Retro] ON [Process].[tblParentsOfGen1Retro] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblRelatedValues] ON [Process].[tblRelatedValues] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblResponse] ON [Process].[tblResponse] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblRosterGen1] ON [Process].[tblRosterGen1] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSubjectDetails] ON [Process].[tblSubjectDetails] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
+GO
+CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSurveyTime] ON [Process].[tblSurveyTime] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
 GO
 ALTER TABLE [Archive].[tblRelatedValuesArchive]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedValuesArchive_tblLURosterGen1Assignment] FOREIGN KEY([RosterAssignmentID])
 REFERENCES [Metadata].[tblRosterGen1Assignment] ([ID])
@@ -3620,6 +3610,13 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblMarkerGen2] CHECK CONSTRAINT [FK_tblMarkerGen2_tblRelatedStructure]
+GO
+ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblItem] FOREIGN KEY([Item])
+REFERENCES [Metadata].[tblItem] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblItem]
 GO
 ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblSubject] FOREIGN KEY([SubjectTag])
 REFERENCES [Process].[tblSubject] ([SubjectTag])
@@ -3938,8 +3935,12 @@ OR Item in (121, 122, 123, 124, 125)                                            
 OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
 OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
 OR Item in (9,10)                                                                                        --For MarkerGen2
-OR Item in (200,201,203)                                                                                 --For Gen1Outcomes
-OR Item in (500,501,502,503)                                                                             --For Gen2OutcomesHeight
+OR Item in (                                                                                             --Outcomes
+	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
+	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement
+	504,512,513,                                                                                           --Gen2WeightPoundsYA, Gen2PiatMathPercentile, Gen2PiatMathStandard
+	122                                                                                                    --Gen2CFatherAlive
+  )                
 
 END
 GO

@@ -7,7 +7,7 @@ This report was automatically generated with the R package **knitr**
 
 
 ```r
-# knitr::stitch_rmd(script="./dal/import-raw.R", output="./stitched-output/dal/import-raw.md") # dir.create(output="./stitched-output/dal/", recursive=T)
+# knitr::stitch_rmd(script="./dal/import-79-raw.R", output="./stitched-output/dal/import-raw.md") # dir.create(output="./stitched-output/dal/", recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 ```
 
@@ -67,6 +67,8 @@ checkmate::assert_character(ds_extract$file_name        , min.chars=10, any.miss
 ```
 
 ```r
+start_time <- Sys.time()
+
 ds_extract <- ds_extract %>%
   dplyr::mutate(
     path            = file.path(directory_in, file_name),
@@ -865,6 +867,13 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```r
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+
+duration_in_seconds <- round(as.numeric(difftime(Sys.time(), start_time, units="secs")))
+cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")
+```
+
+```
+## File completed by `Will` at 2018-01-07, 13:10 -0600 in 85 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -896,22 +905,21 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          highr_0.6             plyr_1.8.4           
-##  [4] pillar_1.0.1          compiler_3.4.3        bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            evaluate_0.10.1       tibble_1.4.1         
-## [13] checkmate_1.8.5       pkgconfig_2.0.1       rlang_0.1.6          
-## [16] DBI_0.7               cli_1.0.0             rstudioapi_0.7       
-## [19] yaml_2.1.16           dplyr_0.7.4           stringr_1.2.0        
-## [22] knitr_1.18            hms_0.4.0             bit64_0.9-7          
-## [25] rprojroot_1.3-1       glue_1.2.0            OuhscMunge_0.1.8.9005
-## [28] R6_2.2.2              rmarkdown_1.8         tidyr_0.7.2          
-## [31] readr_1.1.1           purrr_0.2.4           blob_1.1.0           
-## [34] scales_0.5.0.9000     backports_1.1.2       RODBC_1.3-15         
-## [37] htmltools_0.3.6       rsconnect_0.8.5       assertthat_0.2.0     
-## [40] testit_0.7.1          colorspace_1.3-2      utf8_1.1.2           
-## [43] stringi_1.1.6         munsell_0.4.3         markdown_0.8         
-## [46] crayon_1.3.4
+##  [1] Rcpp_0.12.14      pillar_1.0.1      compiler_3.4.3   
+##  [4] plyr_1.8.4        highr_0.6         bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
+## [10] bit_1.1-12        checkmate_1.8.5   evaluate_0.10.1  
+## [13] tibble_1.4.1      pkgconfig_2.0.1   rlang_0.1.6      
+## [16] DBI_0.7           cli_1.0.0         rstudioapi_0.7   
+## [19] yaml_2.1.16       dplyr_0.7.4       stringr_1.2.0    
+## [22] knitr_1.18        hms_0.4.0         bit64_0.9-7      
+## [25] rprojroot_1.3-2   glue_1.2.0        R6_2.2.2         
+## [28] rmarkdown_1.8     tidyr_0.7.2       purrr_0.2.4      
+## [31] readr_1.1.1       blob_1.1.0        scales_0.5.0.9000
+## [34] backports_1.1.2   RODBC_1.3-15      htmltools_0.3.6  
+## [37] rsconnect_0.8.5   assertthat_0.2.0  testit_0.7.1     
+## [40] colorspace_1.3-2  utf8_1.1.3        stringi_1.1.6    
+## [43] munsell_0.4.3     markdown_0.8      crayon_1.3.4
 ```
 
 ```r
@@ -919,6 +927,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-04 01:34:01 CST"
+## [1] "2018-01-07 13:10:52 CST"
 ```
 

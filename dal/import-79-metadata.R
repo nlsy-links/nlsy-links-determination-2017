@@ -54,6 +54,7 @@ lst_col_types <- list(
   # ),
   LUExtractSource = col_types_minimal,
   LUMarkerEvidence = col_types_minimal,
+  LUGender = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -162,6 +163,8 @@ col_types_mapping <- readr::cols_only(
 )
 
 # ---- load-data ---------------------------------------------------------------
+start_time <- Sys.time()
+
 ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
 ds_mapping
 
@@ -411,3 +414,6 @@ purrr::pmap_int(
 # Close channel
 DBI::dbDisconnect(channel); rm(channel)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+
+duration_in_seconds <- round(as.numeric(difftime(Sys.time(), start_time, units="secs")))
+cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")
