@@ -278,7 +278,7 @@ ds_file$entries %>%
 ## # A tibble: 3 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
-## 1   100 97-roster         T      <NA> 
+## 1     1 97-roster         T      <NA> 
 ## 2     2 97-links-implicit T      <NA> 
 ## 3     3 97-links-explicit T      <NA> 
 ## # A tibble: 8 x 4
@@ -380,16 +380,16 @@ ds_file$entries %>%
 ## # A tibble: 37 x 9
 ##    VariableCode  Item ExtractSource Surve~ Loop~ Tran~ Acti~ Notes Notes_2
 ##    <chr>        <int>         <int>  <int> <int> <int> <int> <chr> <chr>  
-##  1 R0000100         1           100   1997     1     1     1 PUBID YOUTH ~
-##  2 R0536300        10           100   1997     1     1     1 KEY!~ RS GEN~
-##  3 R0536401        11           100   1997     1     1     1 KEY!~ RS BIR~
-##  4 R0536402        12           100   1997     1     1     1 KEY!~ RS BIR~
-##  5 R1097800       101           100   1997     1     1     1 HHI2~ ID OF ~
-##  6 R1097900       101           100   1997     2     1     1 HHI2~ ID OF ~
-##  7 R1098000       101           100   1997     3     1     1 HHI2~ ID OF ~
-##  8 R1098100       101           100   1997     4     1     1 HHI2~ ID OF ~
-##  9 R1098200       101           100   1997     5     1     1 HHI2~ ID OF ~
-## 10 R1098300       101           100   1997     6     1     1 HHI2~ ID OF ~
+##  1 R0000100         1             1   1997     1     1     1 PUBID YOUTH ~
+##  2 R0536300        10             1   1997     1     1     1 KEY!~ RS GEN~
+##  3 R0536401        11             1   1997     1     1     1 KEY!~ RS BIR~
+##  4 R0536402        12             1   1997     1     1     1 KEY!~ RS BIR~
+##  5 R1097800       101             1   1997     1     1     1 HHI2~ ID OF ~
+##  6 R1097900       101             1   1997     2     1     1 HHI2~ ID OF ~
+##  7 R1098000       101             1   1997     3     1     1 HHI2~ ID OF ~
+##  8 R1098100       101             1   1997     4     1     1 HHI2~ ID OF ~
+##  9 R1098200       101             1   1997     5     1     1 HHI2~ ID OF ~
+## 10 R1098300       101             1   1997     6     1     1 HHI2~ ID OF ~
 ## # ... with 27 more rows
 ```
 
@@ -491,7 +491,7 @@ ds_enum %>%
 ## }
 ##  
 ## public enum ExtractSource {
-##     97-roster                                                    =   100, 
+##     97-roster                                                    =     1, 
 ##     97-links-implicit                                            =     2, 
 ##     97-links-explicit                                            =     3, 
 ## }
@@ -1014,7 +1014,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 16:51 -0600 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 17:03 -0600 in 2 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1070,6 +1070,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-12 16:51:57 CST"
+## [1] "2018-01-12 17:03:42 CST"
 ```
 
