@@ -22,6 +22,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-97"
+study                     <- "97"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -69,23 +70,23 @@ lst_col_types <- list(
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  RosterAssignment    = readr::cols_only(
-    ID                                  = readr::col_integer(),
-    ResponseLower                       = readr::col_integer(),
-    ResponseUpper                       = readr::col_integer(),
-    Freq                                = readr::col_integer(),
-    Resolved                            = readr::col_integer(),
-    R                                   = readr::col_double(),
-    RBoundLower                         = readr::col_double(),
-    RBoundUpper                         = readr::col_double(),
-    ShareBiodad                         = readr::col_integer(),
-    ShareBiomom                         = readr::col_integer(),
-    ShareBiograndparent                 = readr::col_integer(),
-    Inconsistent                        = readr::col_integer(),
-    Notes                               = readr::col_character(),
-    ResponseLowerLabel                  = readr::col_character(),
-    ResponseUpperLabel                  = readr::col_character()
-  ),
+  # RosterAssignment    = readr::cols_only(
+  #   ID                                  = readr::col_integer(),
+  #   ResponseLower                       = readr::col_integer(),
+  #   ResponseUpper                       = readr::col_integer(),
+  #   Freq                                = readr::col_integer(),
+  #   Resolved                            = readr::col_integer(),
+  #   R                                   = readr::col_double(),
+  #   RBoundLower                         = readr::col_double(),
+  #   RBoundUpper                         = readr::col_double(),
+  #   ShareBiodad                         = readr::col_integer(),
+  #   ShareBiomom                         = readr::col_integer(),
+  #   ShareBiograndparent                 = readr::col_integer(),
+  #   Inconsistent                        = readr::col_integer(),
+  #   Notes                               = readr::col_character(),
+  #   ResponseLowerLabel                  = readr::col_character(),
+  #   ResponseUpperLabel                  = readr::col_character()
+  # ),
   variable = readr::cols_only(
     # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -94,9 +95,9 @@ lst_col_types <- list(
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
-    Notes                               = readr::col_character(),
     Active                              = readr::col_integer(),
-    Notes                               = readr::col_character()
+    Notes                               = readr::col_character(),
+    Notes_2                             = readr::col_character()
   )
 )
 
@@ -129,7 +130,7 @@ ds_file
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 ds_entries <- ds_file %>%
-  dplyr::slice(1:9) %>%
+  # dplyr::slice(1:9) %>%
   dplyr::select(name, path, col_types) %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")
@@ -140,7 +141,7 @@ ds_entries
 # readr::problems(d)
 # ds_entries$entries[15]
 
-ds_table <- database_inventory()
+ds_table <- database_inventory(study)
 ds_table
 
 rm(directory_in) # rm(col_types_tulsa)
@@ -234,10 +235,10 @@ ds_table_process <- ds_table %>%
   )
 
 # Open channel
-channel <- open_dsn_channel_odbc()
+channel <- open_dsn_channel_odbc(study)
 DBI::dbGetInfo(channel)
 
-channel_rodbc <- open_dsn_channel_rodbc()
+channel_rodbc <- open_dsn_channel_rodbc(study)
 RODBC::odbcGetInfo(channel_rodbc)
 
 # Clear process tables
@@ -272,6 +273,7 @@ purrr::pmap_int(
     ds_file$entries,
     ds_file$table_name,
     ds_file$schema_name
+    # seq_len(nrow(ds_file))
   ),
   function( d, table_name, schema_name ) {
     # browser()
@@ -282,6 +284,7 @@ purrr::pmap_int(
     #   value   = d,
     #   append  = F
     # )
+    message("Writing to table ", table_name)
     RODBC::sqlSave(
       channel     = channel_rodbc,
       dat         = d,
@@ -294,16 +297,27 @@ purrr::pmap_int(
   }
 ) #%>%
 # purrr::set_names(ds_file$table_name)
-# a <- ds_file$entries[[15]]
+# a <- ds_file$entries[[13]]
 # table(a$ID)
+
 
 # odbc::dbWriteTable(
 #   conn    = channel,
-#   name    = DBI::SQL("Metadata.tblvariable_97"),
+#   name    = DBI::SQL("Metadata.tblRosterAssignment"),
 #   # name    = "tblvariable_97",
 #   # schema  = "Metadata",
-#   value   = ds_file$entries[[16]],
+#   value   = ds_file$entries[[13]],
 #   append  = T
+# )
+
+# RODBC::sqlSave(
+#   channel     = channel_rodbc,
+#   dat         = ds_file$entries[[13]][1:1, ],
+#   # tablename   = table_name,
+#   tablename   = "Metadata.tblRosterAssignment",
+#   safer       = TRUE,       # Don't keep the existing table.
+#   rownames    = FALSE,
+#   append      = TRUE
 # )
 
 # for( i in seq_len(nrow(ds_file)) ) {

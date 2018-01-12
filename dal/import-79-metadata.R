@@ -22,6 +22,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-79"
+study                     <- "79"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -171,7 +172,7 @@ ds_entries
 # readr::problems(d)
 # ds_entries$entries[15]
 
-ds_table <- database_inventory()
+ds_table <- database_inventory(study)
 ds_table
 
 rm(directory_in) # rm(col_types_tulsa)
@@ -276,10 +277,10 @@ ds_table_process <- ds_table %>%
   )
 
 # Open channel
-channel <- open_dsn_channel_odbc()
+channel <- open_dsn_channel_odbc(study)
 DBI::dbGetInfo(channel)
 
-channel_rodbc <- open_dsn_channel_rodbc()
+channel_rodbc <- open_dsn_channel_rodbc(study)
 RODBC::odbcGetInfo(channel_rodbc)
 
 # Clear process tables

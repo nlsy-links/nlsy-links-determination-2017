@@ -55,7 +55,6 @@ sql_variable_97 <- "
     v.VariableCode       AS variable_code,
     v.Item               AS item_id,
     i.Label              AS item_label,
-    v.Generation         AS generation,
     v.ExtractSource      AS extract_source_id,
     e.Label              AS extract_source_label,
     --v.SurveySource       AS survey_source_id,

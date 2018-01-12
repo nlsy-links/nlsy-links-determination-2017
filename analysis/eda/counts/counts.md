@@ -42,7 +42,7 @@ This report documents the basic properties of the input & output tables kinship 
 ## Notes 
 1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
 1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
-1. For the NLSY97, 0 variables are defined, and 0 variables are 'active'.
+1. For the NLSY97, 37 variables are defined, and 37 variables are 'active'.
 
 ## Unanswered Questions
 
@@ -89,7 +89,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblItem_97                 |         7|            7|             72|            16|
 |Metadata    |tblMzManual                |       208|            9|            144|            56|
 |Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
-|Metadata    |tblVariable                |     1,642|           10|            272|           136|
+|Metadata    |tblVariable                |     1,642|           10|            136|            88|
 |Metadata    |tblVariable_97             |        37|           10|             72|            16|
 |Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,056|
 |Process     |tblFatherOfGen2            |    52,038|            7|            456|           304|
@@ -1879,19 +1879,19 @@ This report documents the basic properties of the input & output tables kinship 
 |:-----------|:-----------------------|---------:|------------:|--------------:|-------------:|
 |Archive     |tblArchiveDescription   |         0|            4|              0|             0|
 |Archive     |tblRelatedValuesArchive |         0|           22|             72|            16|
-|Enum        |tblLUExtractSource      |         0|            4|              0|             0|
-|Enum        |tblLUGender             |         0|            4|              0|             0|
-|Enum        |tblLUMarkerEvidence     |         0|            4|              0|             0|
-|Enum        |tblLUMarkerType         |         0|            5|              0|             0|
-|Enum        |tblLUMultipleBirth      |         0|            4|              0|             0|
-|Enum        |tblLURaceCohort         |         0|            4|              0|             0|
-|Enum        |tblLURelationshipPath   |         0|            4|              0|             0|
-|Enum        |tblLURoster             |         0|            4|              0|             0|
-|Enum        |tblLUTristate           |         0|            4|              0|             0|
-|Enum        |tblLUYesNo              |         0|            4|              0|             0|
-|Metadata    |tblItem                 |         0|            7|              0|             0|
-|Metadata    |tblRosterAssignment     |         0|           16|              0|             0|
-|Metadata    |tblVariable             |         0|            9|              0|             0|
+|Enum        |tblLUExtractSource      |         3|            4|             72|            16|
+|Enum        |tblLUGender             |         3|            4|             72|            16|
+|Enum        |tblLUMarkerEvidence     |         8|            4|             72|            16|
+|Enum        |tblLUMarkerType         |        28|            5|             72|            16|
+|Enum        |tblLUMultipleBirth      |         5|            4|             72|            16|
+|Enum        |tblLURaceCohort         |         3|            4|             72|            16|
+|Enum        |tblLURelationshipPath   |         5|            4|             72|            16|
+|Enum        |tblLURoster             |        90|            4|             72|            16|
+|Enum        |tblLUTristate           |         3|            4|             72|            16|
+|Enum        |tblLUYesNo              |         6|            4|             72|            16|
+|Metadata    |tblItem                 |         7|            7|             72|            16|
+|Metadata    |tblMzManual             |       208|            8|             72|            40|
+|Metadata    |tblVariable             |        37|            9|             72|            16|
 |Process     |tblOutcome              |         0|            5|             72|            16|
 |Process     |tblRelatedStructure     |         0|            6|              0|             0|
 |Process     |tblRelatedValues        |         0|           23|             72|            16|
@@ -1903,13 +1903,57 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Items 97
 
-| ID|Label | MinValue| MinNonnegative| MaxValue|Active |Notes |
-|--:|:-----|--------:|--------------:|--------:|:------|:-----|
+|  ID|Label              | MinValue| MinNonnegative| MaxValue|Active |Notes                   |
+|---:|:------------------|--------:|--------------:|--------:|:------|:-----------------------|
+|   1|subject_id         |        1|              1|     9022|TRUE   |NA                      |
+|   2|extended_family_id |        1|              1|     9022|FALSE  |?Where does this exist? |
+|  10|gender             |        1|              1|        2|TRUE   |NA                      |
+|  11|dob_month          |        1|              1|       12|TRUE   |NA                      |
+|  12|dob_year           |     1980|           1980|     1984|TRUE   |NA                      |
+| 101|roster_crosswalk   |       -5|              1|       20|TRUE   |NA                      |
+| 102|hh_member_id       |       -4|              1|       17|TRUE   |NA                      |
 
 ## Variables 97
 
-|variable code | item id|item label | generation| extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
-|:-------------|-------:|:----------|----------:|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
+|variable code | item id|item label       | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
+|:-------------|-------:|:----------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
+|R0000100      |       1|subject_id       |               100|97-roster            |        1997|          1|TRUE      |TRUE            |PUBID          |
+|R0536300      |      10|gender           |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!SEX        |
+|R0536401      |      11|dob_month        |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R0536402      |      12|dob_year         |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R1097800      |     101|roster_crosswalk |               100|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1097900      |     101|roster_crosswalk |               100|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098000      |     101|roster_crosswalk |               100|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098100      |     101|roster_crosswalk |               100|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098200      |     101|roster_crosswalk |               100|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098300      |     101|roster_crosswalk |               100|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098400      |     101|roster_crosswalk |               100|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098500      |     101|roster_crosswalk |               100|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098600      |     101|roster_crosswalk |               100|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098700      |     101|roster_crosswalk |               100|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098800      |     101|roster_crosswalk |               100|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098900      |     101|roster_crosswalk |               100|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099000      |     101|roster_crosswalk |               100|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099100      |     101|roster_crosswalk |               100|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099200      |     101|roster_crosswalk |               100|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099300      |     101|roster_crosswalk |               100|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1101000      |     102|hh_member_id     |               100|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID        |
+|R1101100      |     102|hh_member_id     |               100|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID        |
+|R1101200      |     102|hh_member_id     |               100|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID        |
+|R1101300      |     102|hh_member_id     |               100|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID        |
+|R1101400      |     102|hh_member_id     |               100|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID        |
+|R1101500      |     102|hh_member_id     |               100|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID        |
+|R1101600      |     102|hh_member_id     |               100|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID        |
+|R1101700      |     102|hh_member_id     |               100|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID        |
+|R1101800      |     102|hh_member_id     |               100|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID        |
+|R1101900      |     102|hh_member_id     |               100|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID        |
+|R1102000      |     102|hh_member_id     |               100|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID        |
+|R1102100      |     102|hh_member_id     |               100|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID        |
+|R1102200      |     102|hh_member_id     |               100|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID        |
+|R1102300      |     102|hh_member_id     |               100|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID        |
+|R1102400      |     102|hh_member_id     |               100|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
+|R1102500      |     102|hh_member_id     |               100|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
+|R1102501      |     102|hh_member_id     |               100|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
 
 
 
@@ -1993,4 +2037,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-12, 12:09 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-12, 13:04 -0600 in 2 seconds.
