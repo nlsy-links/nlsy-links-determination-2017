@@ -22,28 +22,15 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
+study                     <- "97"
 directory_in              <- "data-unshared/raw"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
   ~table_name                       , ~file_name
-  ,"Extract.tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit.csv"
-  ,"Extract.tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit.csv"
-  ,"Extract.tblGen1Links"            , "nlsy79-gen1/Gen1Links.csv"
-  ,"Extract.tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes.csv"
-  ,"Extract.tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized.csv"
-  # # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1.csv"
-  # # tblGen1MzDzDistinction2010
-  # #
-  ,"Extract.tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1.csv"
-  ,"Extract.tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather.csv"
-  ,"Extract.tblGen2Links"            , "nlsy79-gen2/Gen2Links.csv"
-  ,"Extract.tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1.csv"
-  ,"Extract.tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight.csv"
-  ,"Extract.tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv"
-  ,"Extract.tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
-
-  # "Extract.tbl97Roster"             , "nlsy97/97-roster.csv"
+  ,"Extract.tblLinksExplicit"       , "nlsy97/97-links-explicit.csv"
+  ,"Extract.tblLinksImplicit"       , "nlsy97/97-links-implicit.csv"
+  ,"Extract.tblRoster"              , "nlsy97/97-roster.csv"
 )
 
 col_types_default <- readr::cols(
@@ -77,10 +64,10 @@ print(ds_extract, n=20)
 
 # ---- upload-to-db ----------------------------------------------------------
 
-channel_odbc <- open_dsn_channel_odbc()
+channel_odbc <- open_dsn_channel_odbc(study)
 DBI::dbGetInfo(channel_odbc)
 
-channel_rodbc <- open_dsn_channel_rodbc()
+channel_rodbc <- open_dsn_channel_rodbc(study)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`."))
@@ -144,7 +131,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # OuhscMunge::upload_sqls_rodbc(
   #   d               = d[1:100, ],
   #   table_name      = ds_extract$table_name[i] ,
-  #   dsn_name        = "local-nlsy-links-79",
+  #   dsn_name        = "local-nlsy-links-97",
   #   clear_table     = F,
   #   create_table    = T
   # )

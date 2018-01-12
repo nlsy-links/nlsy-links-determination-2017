@@ -16,8 +16,8 @@ requireNamespace("testit")
 path_sources <- c(
   # 97
   "dal/import-97-metadata.R",
-  "dal/import-97-raw.R",
-  "dal/outcomes/outcomes-97.R"
+  "dal/import-97-raw.R"#,
+  # "dal/outcomes/outcomes-97.R"
 )
 
 file.exists(path_sources)
