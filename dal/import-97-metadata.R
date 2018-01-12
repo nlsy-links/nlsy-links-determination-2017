@@ -21,7 +21,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
-directory_in              <- "data-public/metadata/tables-79"
+directory_in              <- "data-public/metadata/tables-97"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -57,47 +57,19 @@ lst_col_types <- list(
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
   LURosterGen1 = col_types_minimal,
-  LUSurveySource = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
     SubjectTag_S2                       = readr::col_integer(),
-    Generation                          = readr::col_integer(),
     MultipleBirthIfSameSex              = readr::col_integer(),
     IsMz                                = readr::col_integer(),
     Undecided                           = readr::col_integer(),
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  # RArchive = readr::cols_only(
-  #   ID                                = readr::col_integer(),
-  #   AlgorithmVersion                  = readr::col_integer(),
-  #   SubjectTag_S1                     = readr::col_integer(),
-  #   SubjectTag_S2                     = readr::col_integer(),
-  #   MultipleBirthIfSameSex            = readr::col_integer(),
-  #   IsMz                              = readr::col_integer(),
-  #   SameGeneration                    = readr::col_character(),
-  #   RosterAssignmentID                = readr::col_character(),
-  #   RRoster                           = readr::col_character(),
-  #   LastSurvey_S1                     = readr::col_integer(),
-  #   LastSurvey_S2                     = readr::col_integer(),
-  #   RImplicitPass1                    = readr::col_double(),
-  #   RImplicit                         = readr::col_double(),
-  #   RImplicitSubject                  = readr::col_double(),
-  #   RImplicitMother                   = readr::col_double(),
-  #   RImplicit2004                     = readr::col_double(),
-  #   RExplicitOldestSibVersion         = readr::col_double(),
-  #   RExplicitYoungestSibVersion       = readr::col_double(),
-  #   RExplicitPass1                    = readr::col_double(),
-  #   RExplicit                         = readr::col_double(),
-  #   RPass1                            = readr::col_double(),
-  #   R                                 = readr::col_double(),
-  #   RFull                             = readr::col_double(),
-  #   RPeek                             = readr::col_character()
-  # ),
-  RosterGen1Assignment    = readr::cols_only(
+  RosterAssignment    = readr::cols_only(
     ID                                  = readr::col_integer(),
     ResponseLower                       = readr::col_integer(),
     ResponseUpper                       = readr::col_integer(),
@@ -106,7 +78,6 @@ lst_col_types <- list(
     R                                   = readr::col_double(),
     RBoundLower                         = readr::col_double(),
     RBoundUpper                         = readr::col_double(),
-    SameGeneration                      = readr::col_integer(),
     ShareBiodad                         = readr::col_integer(),
     ShareBiomom                         = readr::col_integer(),
     ShareBiograndparent                 = readr::col_integer(),
@@ -119,9 +90,7 @@ lst_col_types <- list(
     # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
-    Generation                          = readr::col_integer(),
     ExtractSource                       = readr::col_integer(),
-    SurveySource                        = readr::col_integer(),
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
     Translate                           = readr::col_integer(),
@@ -167,7 +136,7 @@ ds_entries <- ds_file %>%
   )
 ds_entries
 
-# d <- readr::read_csv("data-public/metadata/tables/variable_79.csv", col_types=lst_col_types$variable_79, comment = "#")
+# d <- readr::read_csv("data-public/metadata/tables/variable_97.csv", col_types=lst_col_types$variable_97, comment = "#")
 # readr::problems(d)
 # ds_entries$entries[15]
 
@@ -249,17 +218,6 @@ ds_enum %>%
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
-# testit::assert("The month value must be nonmissing & since 2000", all(!is.na(ds$month) & (ds$month>="2012-01-01")))
-# testit::assert("The county_id value must be nonmissing & positive.", all(!is.na(ds$county_id) & (ds$county_id>0)))
-# testit::assert("The county_id value must be in [1, 77].", all(ds$county_id %in% seq_len(77L)))
-# testit::assert("The region_id value must be nonmissing & positive.", all(!is.na(ds$region_id) & (ds$region_id>0)))
-# testit::assert("The region_id value must be in [1, 20].", all(ds$region_id %in% seq_len(20L)))
-# testit::assert("The `fte` value must be nonmissing & positive.", all(!is.na(ds$fte) & (ds$fte>=0)))
-# # testit::assert("The `fmla_hours` value must be nonmissing & nonnegative", all(is.na(ds$fmla_hours) | (ds$fmla_hours>=0)))
-#
-# testit::assert("The County-month combination should be unique.", all(!duplicated(paste(ds$county_id, ds$month))))
-# testit::assert("The Region-County-month combination should be unique.", all(!duplicated(paste(ds$region_id, ds$county_id, ds$month))))
-# table(paste(ds$county_id, ds$month))[table(paste(ds$county_id, ds$month))>1]
 
 # ---- specify-columns-to-upload -----------------------------------------------
 
@@ -394,4 +352,4 @@ DBI::dbDisconnect(channel); rm(channel)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 
 duration_in_seconds <- round(as.numeric(difftime(Sys.time(), start_time, units="secs")))
-cat("`import-79-metadata.R` file completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")
+cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")

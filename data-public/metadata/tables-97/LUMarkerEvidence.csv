@@ -1,0 +1,9 @@
+ID,Label,Active,Notes
+0,Irrelevant          ,TRUE,
+1,StronglySupports    ,TRUE,
+2,Supports            ,TRUE,
+3,Consistent          ,TRUE,
+4,Ambiguous           ,TRUE,
+5,Missing             ,TRUE,
+6,Unlikely            ,TRUE,
+7,Disconfirms         ,TRUE,
