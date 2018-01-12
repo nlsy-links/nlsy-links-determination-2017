@@ -1889,6 +1889,9 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |        90|            4|             72|            16|
 |Enum        |tblLUTristate           |         3|            4|             72|            16|
 |Enum        |tblLUYesNo              |         6|            4|             72|            16|
+|Extract     |tblLinksExplicit        |     8,984|           89|          3,464|         3,440|
+|Extract     |tblLinksImplicit        |     8,984|           45|          1,800|         1,776|
+|Extract     |tblRoster               |     8,984|          416|         18,056|        18,048|
 |Metadata    |tblItem                 |         7|            7|             72|            16|
 |Metadata    |tblMzManual             |       208|            8|             72|            40|
 |Metadata    |tblVariable             |        37|            9|             72|            16|
@@ -1917,43 +1920,43 @@ This report documents the basic properties of the input & output tables kinship 
 
 |variable code | item id|item label       | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
 |:-------------|-------:|:----------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
-|R0000100      |       1|subject_id       |               100|97-roster            |        1997|          1|TRUE      |TRUE            |PUBID          |
-|R0536300      |      10|gender           |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!SEX        |
-|R0536401      |      11|dob_month        |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
-|R0536402      |      12|dob_year         |               100|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
-|R1097800      |     101|roster_crosswalk |               100|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1097900      |     101|roster_crosswalk |               100|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098000      |     101|roster_crosswalk |               100|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098100      |     101|roster_crosswalk |               100|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098200      |     101|roster_crosswalk |               100|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098300      |     101|roster_crosswalk |               100|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098400      |     101|roster_crosswalk |               100|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098500      |     101|roster_crosswalk |               100|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098600      |     101|roster_crosswalk |               100|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098700      |     101|roster_crosswalk |               100|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098800      |     101|roster_crosswalk |               100|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098900      |     101|roster_crosswalk |               100|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099000      |     101|roster_crosswalk |               100|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099100      |     101|roster_crosswalk |               100|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099200      |     101|roster_crosswalk |               100|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099300      |     101|roster_crosswalk |               100|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1101000      |     102|hh_member_id     |               100|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID        |
-|R1101100      |     102|hh_member_id     |               100|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID        |
-|R1101200      |     102|hh_member_id     |               100|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID        |
-|R1101300      |     102|hh_member_id     |               100|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID        |
-|R1101400      |     102|hh_member_id     |               100|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID        |
-|R1101500      |     102|hh_member_id     |               100|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID        |
-|R1101600      |     102|hh_member_id     |               100|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID        |
-|R1101700      |     102|hh_member_id     |               100|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID        |
-|R1101800      |     102|hh_member_id     |               100|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID        |
-|R1101900      |     102|hh_member_id     |               100|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID        |
-|R1102000      |     102|hh_member_id     |               100|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID        |
-|R1102100      |     102|hh_member_id     |               100|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID        |
-|R1102200      |     102|hh_member_id     |               100|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID        |
-|R1102300      |     102|hh_member_id     |               100|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID        |
-|R1102400      |     102|hh_member_id     |               100|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
-|R1102500      |     102|hh_member_id     |               100|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
-|R1102501      |     102|hh_member_id     |               100|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
+|R0000100      |       1|subject_id       |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |PUBID          |
+|R0536300      |      10|gender           |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!SEX        |
+|R0536401      |      11|dob_month        |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R0536402      |      12|dob_year         |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R1097800      |     101|roster_crosswalk |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1097900      |     101|roster_crosswalk |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098000      |     101|roster_crosswalk |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098100      |     101|roster_crosswalk |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098200      |     101|roster_crosswalk |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098300      |     101|roster_crosswalk |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098400      |     101|roster_crosswalk |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098500      |     101|roster_crosswalk |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098600      |     101|roster_crosswalk |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098700      |     101|roster_crosswalk |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098800      |     101|roster_crosswalk |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098900      |     101|roster_crosswalk |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099000      |     101|roster_crosswalk |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099100      |     101|roster_crosswalk |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099200      |     101|roster_crosswalk |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099300      |     101|roster_crosswalk |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1101000      |     102|hh_member_id     |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID        |
+|R1101100      |     102|hh_member_id     |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID        |
+|R1101200      |     102|hh_member_id     |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID        |
+|R1101300      |     102|hh_member_id     |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID        |
+|R1101400      |     102|hh_member_id     |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID        |
+|R1101500      |     102|hh_member_id     |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID        |
+|R1101600      |     102|hh_member_id     |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID        |
+|R1101700      |     102|hh_member_id     |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID        |
+|R1101800      |     102|hh_member_id     |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID        |
+|R1101900      |     102|hh_member_id     |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID        |
+|R1102000      |     102|hh_member_id     |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID        |
+|R1102100      |     102|hh_member_id     |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID        |
+|R1102200      |     102|hh_member_id     |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID        |
+|R1102300      |     102|hh_member_id     |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID        |
+|R1102400      |     102|hh_member_id     |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
+|R1102500      |     102|hh_member_id     |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
+|R1102501      |     102|hh_member_id     |                 1|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
 
 
 
@@ -1971,7 +1974,7 @@ Session info -------------------------------------------------------------------
  setting  value                                      
  version  R version 3.4.3 Patched (2017-12-05 r73849)
  system   x86_64, mingw32                            
- ui       RTerm                                      
+ ui       RStudio (1.1.393)                          
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
@@ -1993,8 +1996,10 @@ Packages -----------------------------------------------------------------------
  bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                  
  blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                  
  checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                  
+ cli          1.0.0      2017-11-05 CRAN (R 3.4.2)                  
  colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                  
  compiler     3.4.3      2017-12-06 local                           
+ crayon       1.3.4      2017-09-16 CRAN (R 3.4.1)                  
  datasets   * 3.4.3      2017-12-06 local                           
  DBI          0.7        2017-06-18 CRAN (R 3.4.2)                  
  devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                  
@@ -2009,6 +2014,7 @@ Packages -----------------------------------------------------------------------
  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                  
  knitr      * 1.18       2017-12-27 CRAN (R 3.4.3)                  
  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
+ markdown     0.8        2017-04-20 CRAN (R 3.4.2)                  
  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
@@ -2016,8 +2022,10 @@ Packages -----------------------------------------------------------------------
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
+ purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                  
  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
  Rcpp         0.12.14    2017-11-23 CRAN (R 3.4.2)                  
+ readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                  
  rlang        0.1.6      2017-12-21 CRAN (R 3.4.3)                  
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
@@ -2028,7 +2036,9 @@ Packages -----------------------------------------------------------------------
  stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
  testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)   
  tibble       1.4.1      2017-12-25 CRAN (R 3.4.3)                  
+ tidyr        0.7.2      2017-10-16 CRAN (R 3.4.2)                  
  tools        3.4.3      2017-12-06 local                           
+ utf8         1.1.3      2018-01-03 CRAN (R 3.4.3)                  
  utils      * 3.4.3      2017-12-06 local                           
  withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)
  yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                  
@@ -2037,4 +2047,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-12, 13:04 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-12, 17:09 -0600 in 2 seconds.

@@ -16,7 +16,8 @@ requireNamespace("testit")
 path_sources <- c(
   # 97
   "dal/import-97-metadata.R",
-  "dal/import-97-raw.R"#,
+  "dal/import-97-raw.R",
+  "analysis/eda/counts/counts.Rmd"
   # "dal/outcomes/outcomes-97.R"
 )
 
@@ -41,11 +42,13 @@ message("Preparing to run\n\t", paste(path_sources, collapse="\n\t"))
 # dir.create(output="./stitched-output/dal/", recursive=T)
 knitr::stitch_rmd(script="./dal/import-97-metadata.R", output="./stitched-output/dal/import-97-metadata.md")
 knitr::stitch_rmd(script="./dal/import-97-raw.R", output="./stitched-output/dal/import-97-raw.md")
+rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see below).
 
 stop("Now run the C# program, then come back to run the rest of the R scripts.")
 
 knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
 
+rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
 
 message("Completed flow-97 at ", Sys.time(), " (in ", round(elapsed_duration, 2), " mins.)")
 
