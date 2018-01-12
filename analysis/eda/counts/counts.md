@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-07"
+date: "Date: 2018-01-12"
 output:
   html_document:
     keep_md: yes
@@ -35,24 +35,27 @@ This report documents the basic properties of the input & output tables kinship 
 <!-- Tweak the datasets.   -->
 
 
+
+
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers 52 tables.
-1. 1,642 variables are defined, and 1,606 variables are 'active'.
+1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
+1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
+1. For the NLSY97, 0 variables are defined, and 0 variables are 'active'.
 
 ## Unanswered Questions
 
 ## Answered Questions
 
-# Results {.tabset .tabset-fade .tabset-pills}
+# Results NLSY79 {.tabset .tabset-fade .tabset-pills}
 
-## Tables
+## Tables 79
 
 |schema name |table name                 | row count| column count| space total kb| space used kb|
 |:-----------|:--------------------------|---------:|------------:|--------------:|-------------:|
 |Archive     |tblArchiveDescription      |        56|            4|            144|            32|
-|Archive     |tblRelatedValuesArchive    |   869,554|           24|         34,832|        34,296|
+|Archive     |tblRelatedValuesArchive    |   756,952|           24|         30,160|        29,816|
 |dbo         |sysdiagrams                |         4|            5|            280|           160|
 |Enum        |tblLUBioparent-not-used    |         0|            2|              0|             0|
 |Enum        |tblLUExtractSource         |        11|            4|             72|            16|
@@ -88,7 +91,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
 |Metadata    |tblVariable                |     1,642|           10|            272|           136|
 |Metadata    |tblVariable_97             |        37|           10|             72|            16|
-|Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,160|
+|Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,056|
 |Process     |tblFatherOfGen2            |    52,038|            7|            456|           304|
 |Process     |tblIRDemo1                 |         0|            5|             72|            16|
 |Process     |tblMarkerGen1              |   218,568|           10|          7,504|         6,944|
@@ -98,13 +101,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblParentsOfGen1Retro      |   482,068|            7|         30,616|        28,056|
 |Process     |tblRelatedStructure        |    85,672|            6|          4,176|         3,720|
 |Process     |tblRelatedValues           |    42,836|           24|          2,384|         1,888|
-|Process     |tblResponse                | 2,673,517|            9|        124,296|       117,472|
+|Process     |tblResponse                | 2,673,517|            9|        140,488|       132,016|
 |Process     |tblRosterGen1              |    10,604|           13|            720|           328|
 |Process     |tblSubject                 |    24,207|            5|          1,680|         1,232|
-|Process     |tblSubjectDetails          |    24,207|           15|          1,424|         1,048|
-|Process     |tblSurveyTime              |   605,175|            7|         26,512|        24,136|
+|Process     |tblSubjectDetails          |    24,207|           15|          1,488|         1,064|
+|Process     |tblSurveyTime              |   605,175|            7|         26,640|        24,144|
 
-## Items
+## Items 79
 
 |   ID|Label                                              | MinValue| MinNonnegative| MaxValue|Active |Notes |
 |----:|:--------------------------------------------------|--------:|--------------:|--------:|:------|:-----|
@@ -219,7 +222,7 @@ This report documents the basic properties of the input & output tables kinship 
 | 9998|Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED   |       -5|              7|        7|TRUE   |NA    |
 | 9999|NotTranslated                                      |        0|              0|        0|TRUE   |NA    |
 
-## Variables
+## Variables 79
 
 |variable code | item id|item label                                         | generation| extract source id|extract source label | survey source id|survey source label | survey year| loop index|translate |variable active |variable notes                                           |
 |:-------------|-------:|:--------------------------------------------------|----------:|-----------------:|:--------------------|----------------:|:-------------------|-----------:|----------:|:---------|:---------------|:--------------------------------------------------------|
@@ -1868,6 +1871,48 @@ This report documents the basic properties of the input & output tables kinship 
 
 
 
+# Results NLSY97 {.tabset .tabset-fade .tabset-pills}
+
+## Tables 97
+
+|schema name |table name              | row count| column count| space total kb| space used kb|
+|:-----------|:-----------------------|---------:|------------:|--------------:|-------------:|
+|Archive     |tblArchiveDescription   |         0|            4|              0|             0|
+|Archive     |tblRelatedValuesArchive |         0|           22|             72|            16|
+|Enum        |tblLUExtractSource      |         0|            4|              0|             0|
+|Enum        |tblLUGender             |         0|            4|              0|             0|
+|Enum        |tblLUMarkerEvidence     |         0|            4|              0|             0|
+|Enum        |tblLUMarkerType         |         0|            5|              0|             0|
+|Enum        |tblLUMultipleBirth      |         0|            4|              0|             0|
+|Enum        |tblLURaceCohort         |         0|            4|              0|             0|
+|Enum        |tblLURelationshipPath   |         0|            4|              0|             0|
+|Enum        |tblLURoster             |         0|            4|              0|             0|
+|Enum        |tblLUTristate           |         0|            4|              0|             0|
+|Enum        |tblLUYesNo              |         0|            4|              0|             0|
+|Metadata    |tblItem                 |         0|            7|              0|             0|
+|Metadata    |tblRosterAssignment     |         0|           16|              0|             0|
+|Metadata    |tblVariable             |         0|            9|              0|             0|
+|Process     |tblOutcome              |         0|            5|             72|            16|
+|Process     |tblRelatedStructure     |         0|            6|              0|             0|
+|Process     |tblRelatedValues        |         0|           23|             72|            16|
+|Process     |tblResponse             |         0|            9|             72|            16|
+|Process     |tblRoster               |         0|           13|              0|             0|
+|Process     |tblSubject              |         0|            4|              0|             0|
+|Process     |tblSubjectDetails       |         0|           15|             72|            16|
+|Process     |tblSurveyTime           |         0|            7|             72|            16|
+
+## Items 97
+
+| ID|Label | MinValue| MinNonnegative| MaxValue|Active |Notes |
+|--:|:-----|--------:|--------------:|--------:|:------|:-----|
+
+## Variables 97
+
+|variable code | item id|item label | generation| extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
+|:-------------|-------:|:----------|----------:|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
+
+
+
 # Session Information
 For the sake of documentation and reproducibility, the current report was rendered in the following environment.  Click the line below to expand.
 
@@ -1886,7 +1931,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-07                                 
+ date     2018-01-12                                 
 ```
 
 ```
@@ -1903,6 +1948,7 @@ Packages -----------------------------------------------------------------------
  bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                  
  bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                  
  blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                  
+ checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                  
  colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                  
  compiler     3.4.3      2017-12-06 local                           
  datasets   * 3.4.3      2017-12-06 local                           
@@ -1947,4 +1993,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-07, 17:31 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-12, 12:09 -0600 in 2 seconds.

@@ -1,22 +1,12 @@
-open_dsn_channel_odbc_79 <- function( ) {
+open_dsn_channel_odbc <- function( study ) {
   requireNamespace("odbc")
+
+  checkmate::assert_subset(study, c("79", "97"))
+  dsn <- dplyr::recode(study, "79"="local-nlsy-links-79", "97"="local-nlsy-links-97")
 
   channel <- DBI::dbConnect(
     drv   = odbc::odbc(),
-    dsn   = "local-nlsy-links-79"
-  )
-  testit::assert("The ODBC channel should open successfully.", exists("channel"))
-
-  return( channel )
-}
-# channel <- open_dsn_channel_odbc()
-# DBI::dbDisconnect(channel); rm(channel)
-open_dsn_channel_odbc_97 <- function( ) {
-  requireNamespace("odbc")
-
-  channel <- DBI::dbConnect(
-    drv   = odbc::odbc(),
-    dsn   = "local-nlsy-links-97"
+    dsn   = dsn#"local-nlsy-links-79"
   )
   testit::assert("The ODBC channel should open successfully.", exists("channel"))
 
@@ -25,26 +15,15 @@ open_dsn_channel_odbc_97 <- function( ) {
 # channel <- open_dsn_channel_odbc()
 # DBI::dbDisconnect(channel); rm(channel)
 
-open_dsn_channel_rodbc_79 <- function( ) {
+open_dsn_channel_rodbc <- function( study ) {
   requireNamespace("RODBC")
+
+  checkmate::assert_subset(study, c("79", "97"))
+  dsn <- dplyr::recode(study, "79"="local-nlsy-links-79", "97"="local-nlsy-links-97")
 
   channel <- RODBC::odbcConnect(
     # Uses Trusted/integrated authentication
-    dsn   = "local-nlsy-links-79"
-    # dsn = "BeeNlsLinks",
-    # uid = "NlsyReadWrite",
-    # pwd = "nophi"
-  )
-  testit::assert("The ODBC channel should open successfully.", channel != -1L)
-
-  return( channel )
-}
-open_dsn_channel_rodbc_97 <- function( ) {
-  requireNamespace("RODBC")
-
-  channel <- RODBC::odbcConnect(
-    # Uses Trusted/integrated authentication
-    dsn   = "local-nlsy-links-97"
+    dsn   = dsn #"local-nlsy-links-79"
     # dsn = "BeeNlsLinks",
     # uid = "NlsyReadWrite",
     # pwd = "nophi"
@@ -57,8 +36,8 @@ open_dsn_channel_rodbc_97 <- function( ) {
 # RODBC::odbcClose(channel); rm(channel)
 
 
-database_inventory <- function( channel ) {
-  testit::assert_true(exists("channel"))
+database_inventory <- function( study ) {
+  checkmate::assert_subset(study, c("79", "97"))
 
   sql_table <- "
     ;WITH t_column AS (
@@ -94,7 +73,7 @@ database_inventory <- function( channel ) {
   # ds        <- DBI::dbGetQuery(channel, sql_table)
   # DBI::dbDisconnect(channel);# rm(channel, sql_table)
 
-  #channel   <- open_dsn_channel_rodbc()
+  channel   <- open_dsn_channel_rodbc(study)
   ds        <- RODBC::sqlQuery(channel, sql_table, stringsAsFactors=F)
   # ds_row_count       <- RODBC::sqlTables(channel)
   RODBC::odbcClose(channel); rm(channel, sql_table)
@@ -103,3 +82,4 @@ database_inventory <- function( channel ) {
 
   return( ds )
 }
+# database_inventory("97")

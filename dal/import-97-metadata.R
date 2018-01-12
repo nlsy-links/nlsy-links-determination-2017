@@ -56,7 +56,7 @@ lst_col_types <- list(
   LUMultipleBirth = col_types_minimal,
   LURaceCohort = col_types_minimal,
   LURelationshipPath = col_types_minimal,
-  LURosterGen1 = col_types_minimal,
+  LURoster = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
   MzManual = readr::cols_only(
@@ -129,7 +129,7 @@ ds_file
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 ds_entries <- ds_file %>%
-  # dplyr::slice(15) %>%
+  dplyr::slice(1:9) %>%
   dplyr::select(name, path, col_types) %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")

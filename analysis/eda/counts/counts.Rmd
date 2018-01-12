@@ -65,29 +65,50 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 <!-- Tweak the datasets.   -->
 ```{r tweak-data, echo=echo_chunks, results='show', message=message_chunks}
 ```
+```{r groom-79, echo=echo_chunks, results='show', message=message_chunks}
+```
+```{r groom-97, echo=echo_chunks, results='show', message=message_chunks}
+```
 
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers `r nrow(ds)` tables.
-1. `r scales::comma(nrow(ds_variable))` variables are defined, and `r scales::comma(sum(ds_variable$variable_active))` variables are 'active'.
+1. The current report covers `r nrow(ds_79)` tables in the NLSY79 and `r nrow(ds_79)` tables in the NLSY97.
+1. For the NLSY79, `r scales::comma(nrow(ds_variable_79))` variables are defined, and `r scales::comma(sum(ds_variable_79$variable_active))` variables are 'active'.
+1. For the NLSY97, `r scales::comma(nrow(ds_variable_97))` variables are defined, and `r scales::comma(sum(ds_variable_97$variable_active))` variables are 'active'.
 
 ## Unanswered Questions
 
 ## Answered Questions
 
-# Results {.tabset .tabset-fade .tabset-pills}
+# Results NLSY79 {.tabset .tabset-fade .tabset-pills}
 
-## Tables
-```{r table, echo=echo_chunks, message=message_chunks, warning=TRUE}
+## Tables 79
+```{r table-79, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
-## Items
-```{r item, echo=echo_chunks, message=message_chunks, warning=TRUE}
+## Items 79
+```{r item-79, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
-## Variables
-```{r variable, echo=echo_chunks, message=message_chunks, warning=TRUE}
+## Variables 79
+```{r variable-79, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
+
+
+# Results NLSY97 {.tabset .tabset-fade .tabset-pills}
+
+## Tables 97
+```{r table-97, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
+## Items 97
+```{r item-97, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
+
+## Variables 97
+```{r variable-97, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
 
