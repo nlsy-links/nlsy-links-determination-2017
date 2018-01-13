@@ -409,20 +409,20 @@ ds_file$entries %>%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 37 x 9
+## # A tibble: 38 x 9
 ##    VariableCode  Item ExtractSource Surve~ Loop~ Tran~ Acti~ Notes Notes_2
 ##    <chr>        <int>         <int>  <int> <int> <int> <int> <chr> <chr>  
 ##  1 R0000100         1             1   1997     1     1     1 PUBID YOUTH ~
-##  2 R0536300        10             1   1997     1     1     1 KEY!~ RS GEN~
-##  3 R0536401        11             1   1997     1     1     1 KEY!~ RS BIR~
-##  4 R0536402        12             1   1997     1     1     1 KEY!~ RS BIR~
-##  5 R1097800       101             1   1997     1     1     1 HHI2~ ID OF ~
-##  6 R1097900       101             1   1997     2     1     1 HHI2~ ID OF ~
-##  7 R1098000       101             1   1997     3     1     1 HHI2~ ID OF ~
-##  8 R1098100       101             1   1997     4     1     1 HHI2~ ID OF ~
-##  9 R1098200       101             1   1997     5     1     1 HHI2~ ID OF ~
-## 10 R1098300       101             1   1997     6     1     1 HHI2~ ID OF ~
-## # ... with 27 more rows
+##  2 R1193000         2             3   1997     1     1     1 SIDC~ HOUSEH~
+##  3 R0536300        10             1   1997     1     1     1 KEY!~ RS GEN~
+##  4 R0536401        11             1   1997     1     1     1 KEY!~ RS BIR~
+##  5 R0536402        12             1   1997     1     1     1 KEY!~ RS BIR~
+##  6 R1097800       101             1   1997     1     1     1 HHI2~ ID OF ~
+##  7 R1097900       101             1   1997     2     1     1 HHI2~ ID OF ~
+##  8 R1098000       101             1   1997     3     1     1 HHI2~ ID OF ~
+##  9 R1098100       101             1   1997     4     1     1 HHI2~ ID OF ~
+## 10 R1098200       101             1   1997     5     1     1 HHI2~ ID OF ~
+## # ... with 28 more rows
 ```
 
 ```r
@@ -760,7 +760,7 @@ DBI::dbGetInfo(channel)
 ## [1] "03.80.0000"
 ## 
 ## $driver.version
-## [1] "14.00.0500"
+## [1] "14.00.1000"
 ## 
 ## $odbcdriver.version
 ## [1] "03.80"
@@ -781,7 +781,7 @@ RODBC::odbcGetInfo(channel_rodbc)
 ##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
 ## "Microsoft SQL Server"           "13.00.4206"                "03.80" 
 ##       Data_Source_Name            Driver_Name             Driver_Ver 
-##  "local-nlsy-links-97"      "msodbcsql13.dll"           "14.00.0500" 
+##  "local-nlsy-links-97"      "msodbcsql13.dll"           "14.00.1000" 
 ##               ODBC_Ver            Server_Name 
 ##           "03.80.0000" "GIMBLE\\EXPRESS_2016"
 ```
@@ -1046,7 +1046,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 17:09 -0600 in 3 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 21:36 -0600 in 4 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1094,6 +1094,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-12 17:09:16 CST"
+## [1] "2018-01-12 21:36:43 CST"
 ```
 

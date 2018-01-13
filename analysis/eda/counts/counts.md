@@ -42,7 +42,7 @@ This report documents the basic properties of the input & output tables kinship 
 ## Notes 
 1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
 1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
-1. For the NLSY97, 37 variables are defined, and 37 variables are 'active'.
+1. For the NLSY97, 38 variables are defined, and 38 variables are 'active'.
 
 ## Unanswered Questions
 
@@ -1889,12 +1889,12 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |        90|            4|             72|            16|
 |Enum        |tblLUTristate           |         3|            4|             72|            16|
 |Enum        |tblLUYesNo              |         6|            4|             72|            16|
-|Extract     |tblLinksExplicit        |     8,984|           89|          3,464|         3,440|
-|Extract     |tblLinksImplicit        |     8,984|           45|          1,800|         1,776|
-|Extract     |tblRoster               |     8,984|          416|         18,056|        18,048|
+|Extract     |tblLinksExplicit        |     8,984|           35|          1,480|         1,424|
+|Extract     |tblLinksImplicit        |     8,984|           42|          1,736|         1,680|
+|Extract     |tblRoster               |     8,984|          418|         24,008|        24,008|
 |Metadata    |tblItem                 |         7|            7|             72|            16|
 |Metadata    |tblMzManual             |       208|            8|             72|            40|
-|Metadata    |tblVariable             |        37|            9|             72|            16|
+|Metadata    |tblVariable             |        38|            9|             72|            16|
 |Process     |tblOutcome              |         0|            5|             72|            16|
 |Process     |tblRelatedStructure     |         0|            6|              0|             0|
 |Process     |tblRelatedValues        |         0|           23|             72|            16|
@@ -1918,45 +1918,46 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Variables 97
 
-|variable code | item id|item label       | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
-|:-------------|-------:|:----------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
-|R0000100      |       1|subject_id       |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |PUBID          |
-|R0536300      |      10|gender           |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!SEX        |
-|R0536401      |      11|dob_month        |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
-|R0536402      |      12|dob_year         |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
-|R1097800      |     101|roster_crosswalk |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1097900      |     101|roster_crosswalk |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098000      |     101|roster_crosswalk |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098100      |     101|roster_crosswalk |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098200      |     101|roster_crosswalk |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098300      |     101|roster_crosswalk |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098400      |     101|roster_crosswalk |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098500      |     101|roster_crosswalk |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098600      |     101|roster_crosswalk |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098700      |     101|roster_crosswalk |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098800      |     101|roster_crosswalk |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1098900      |     101|roster_crosswalk |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099000      |     101|roster_crosswalk |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099100      |     101|roster_crosswalk |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099200      |     101|roster_crosswalk |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1099300      |     101|roster_crosswalk |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID    |
-|R1101000      |     102|hh_member_id     |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID        |
-|R1101100      |     102|hh_member_id     |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID        |
-|R1101200      |     102|hh_member_id     |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID        |
-|R1101300      |     102|hh_member_id     |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID        |
-|R1101400      |     102|hh_member_id     |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID        |
-|R1101500      |     102|hh_member_id     |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID        |
-|R1101600      |     102|hh_member_id     |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID        |
-|R1101700      |     102|hh_member_id     |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID        |
-|R1101800      |     102|hh_member_id     |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID        |
-|R1101900      |     102|hh_member_id     |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID        |
-|R1102000      |     102|hh_member_id     |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID        |
-|R1102100      |     102|hh_member_id     |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID        |
-|R1102200      |     102|hh_member_id     |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID        |
-|R1102300      |     102|hh_member_id     |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID        |
-|R1102400      |     102|hh_member_id     |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
-|R1102500      |     102|hh_member_id     |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
-|R1102501      |     102|hh_member_id     |                 1|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
+|variable code | item id|item label         | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes |
+|:-------------|-------:|:------------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:--------------|
+|R0000100      |       1|subject_id         |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |PUBID          |
+|R0536300      |      10|gender             |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!SEX        |
+|R0536401      |      11|dob_month          |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R0536402      |      12|dob_year           |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |KEY!BDATE      |
+|R1097800      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1097900      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098000      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098100      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098200      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098300      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098400      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098500      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098600      |     101|roster_crosswalk   |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098700      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098800      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1098900      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099000      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099100      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099200      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1099300      |     101|roster_crosswalk   |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID    |
+|R1101000      |     102|hh_member_id       |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID        |
+|R1101100      |     102|hh_member_id       |                 1|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID        |
+|R1101200      |     102|hh_member_id       |                 1|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID        |
+|R1101300      |     102|hh_member_id       |                 1|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID        |
+|R1101400      |     102|hh_member_id       |                 1|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID        |
+|R1101500      |     102|hh_member_id       |                 1|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID        |
+|R1101600      |     102|hh_member_id       |                 1|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID        |
+|R1101700      |     102|hh_member_id       |                 1|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID        |
+|R1101800      |     102|hh_member_id       |                 1|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID        |
+|R1101900      |     102|hh_member_id       |                 1|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID        |
+|R1102000      |     102|hh_member_id       |                 1|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID        |
+|R1102100      |     102|hh_member_id       |                 1|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID        |
+|R1102200      |     102|hh_member_id       |                 1|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID        |
+|R1102300      |     102|hh_member_id       |                 1|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID        |
+|R1102400      |     102|hh_member_id       |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
+|R1102500      |     102|hh_member_id       |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
+|R1102501      |     102|hh_member_id       |                 1|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
+|R1193000      |       2|extended_family_id |                 3|97-links-explicit    |        1997|          1|TRUE      |TRUE            |SIDCODE        |
 
 
 
@@ -2047,4 +2048,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-12, 17:09 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-12, 21:37 -0600 in 2 seconds.

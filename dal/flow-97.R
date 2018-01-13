@@ -14,7 +14,6 @@ requireNamespace("testit")
 
 # ---- declare-globals ---------------------------------------------------------
 path_sources <- c(
-  # 97
   "dal/import-97-metadata.R",
   "dal/import-97-raw.R",
   "analysis/eda/counts/counts.Rmd"
