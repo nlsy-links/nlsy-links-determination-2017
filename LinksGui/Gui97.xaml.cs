@@ -89,11 +89,11 @@ namespace LinksGui {
             //WriteXml(_dsLinks.tblSubject);
         }
         private void btnRelatedStructure_Click( object sender, RoutedEventArgs e ) {
-            //BA.RelatedStructure related = new BA.RelatedStructure(_dsLinks);
-            //string message = related.Go();
-            //Trace.WriteLine(message);
-            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            ////WriteXml(_dsLinks.tblRelatedStructure);
+            BA.RelatedStructure related = new BA.RelatedStructure(_dsLinks);
+            string message = related.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblRelatedStructure);
         }
         private void btnResponse_Click( object sender, RoutedEventArgs e ) {
             //BA.Response response = new BA.Response(_dsImport, _dsLinks);
@@ -152,7 +152,7 @@ namespace LinksGui {
             sw.Start();
             //Int32 SubjectCount = _taSubject.Update(_dsLinks);
             BulkUpdate(schemaName, _dsLinks.tblSubject, LoadSubject);
-        //    BulkUpdate(schemaName, _dsLinks.tblRelatedStructure, LoadRelatedStructure);
+            BulkUpdate(schemaName, _dsLinks.tblRelatedStructure, LoadRelatedStructure);
         //    //Int32 responseCount = _taResponse.Update(_dsLinks);
 
         //    BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
@@ -237,16 +237,16 @@ namespace LinksGui {
         ///////////////////////////
 
         private void LoadSubject( ) {
-            //BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
-            //ta.Fill(_dsLinks.tblSubject);
-            //CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
-            //tblSubjectViewSource.View.MoveCurrentToFirst();
+            BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
+            ta.Fill(_dsLinks.tblSubject);
+            CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
+            tblSubjectViewSource.View.MoveCurrentToFirst();
         }
         private void LoadRelatedStructure ( ) {
-            //BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
-            //ta.Fill(_dsLinks.tblRelatedStructure);
-            //CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
-            //tblRelatedStructureViewSource.View.MoveCurrentToFirst();
+            BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
+            ta.Fill(_dsLinks.tblRelatedStructure);
+            CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
+            tblRelatedStructureViewSource.View.MoveCurrentToFirst();
         }
         private void LoadResponse ( ) {
             ////BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();

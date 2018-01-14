@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonCalculations.cs" />
+    <Compile Include="CommonFunctions.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ImportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -63,6 +65,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RelatedStructure.cs" />
     <Compile Include="Subject.cs" />
   </ItemGroup>
   <ItemGroup>
