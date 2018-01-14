@@ -46,15 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Import97.Designer.cs">
+    <Compile Include="ImportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Import97.xsd</DependentUpon>
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Links97.Designer.cs">
+    <Compile Include="LinksDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Links97.xsd</DependentUpon>
+      <DependentUpon>LinksDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -65,27 +65,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Import97.xsc">
-      <DependentUpon>Import97.xsd</DependentUpon>
+    <None Include="ImportDataSet.xsc">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Import97.xsd">
+    <None Include="ImportDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Import97.Designer.cs</LastGenOutput>
+      <LastGenOutput>ImportDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Import97.xss">
-      <DependentUpon>Import97.xsd</DependentUpon>
+    <None Include="ImportDataSet.xss">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Links97.xsc">
-      <DependentUpon>Links97.xsd</DependentUpon>
+    <None Include="LinksDataSet.xsc">
+      <DependentUpon>LinksDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Links97.xsd">
+    <None Include="LinksDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Links97.Designer.cs</LastGenOutput>
+      <LastGenOutput>LinksDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Links97.xss">
-      <DependentUpon>Links97.xsd</DependentUpon>
+    <None Include="LinksDataSet.xss">
+      <DependentUpon>LinksDataSet.xsd</DependentUpon>
     </None>
     <None Include="NlsSigningKey.snk" />
     <None Include="Properties\Settings.settings">

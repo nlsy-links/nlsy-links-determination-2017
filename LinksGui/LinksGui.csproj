@@ -174,6 +174,8 @@
     <None Include="NlsSigningKey.snk" />
     <None Include="Properties\DataSources\Nls.Base79.ImportDataSet.datasource" />
     <None Include="Properties\DataSources\Nls.Base79.LinksDataSet.datasource" />
+    <None Include="Properties\DataSources\Nls.Base97.Import97.datasource" />
+    <None Include="Properties\DataSources\Nls.Base97.Links97.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,6 +186,10 @@
     <ProjectReference Include="..\Base79\Base79.csproj">
       <Project>{7E417BFB-2F16-41D4-B3AD-3DE8897E8BF0}</Project>
       <Name>Base79</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Base97\Base97.csproj">
+      <Project>{bdd35d54-987b-47e3-aeae-c461ac6db24e}</Project>
+      <Name>Base97</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

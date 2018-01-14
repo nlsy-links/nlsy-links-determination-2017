@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BA = Nls.Base79;
+using BA = Nls.Base97;
 
 namespace LinksGui {
 	public partial class Gui97 : Window {
@@ -62,14 +62,14 @@ namespace LinksGui {
             //LoadLinks2004Gen1();//Needed for RelatedValues
             //LoadLinks2004Gen2();//Needed for RelatedValues
             ////LoadLinks2004Gen1Mz();//Needed for RelatedValues
-            //LoadItem();
-            //LoadVariable();
-            //LoadMzManual();
+            LoadItem();
+            LoadVariable();
+            LoadMzManual();
             //LoadRosterAssignment();
 
-            //LoadSubject();
-            //LoadRelatedStructure();
-            //LoadResponse();
+            LoadSubject();
+            LoadRelatedStructure();
+            LoadResponse();
             //LoadSurveyTime();
             //LoadSurveyTimeMostRecent(); //Needed for tblRelated
             //LoadRosterGen1();
@@ -80,7 +80,7 @@ namespace LinksGui {
             //LoadSubjectDetails();
             //LoadMarkerGen1();
             //LoadMarkerGen2();
-            //LoadRelatedValues();
+            LoadRelatedValues();
             //LoadRelatedValuesNextVersionNumber();
             sw.Stop();
             string message = string.Format("DataSets loaded (Elapsed time: {0})", sw.Elapsed.ToString());
@@ -88,104 +88,64 @@ namespace LinksGui {
             Console.Beep(3000, 100);
             Console.Beep(300, 100);
             Console.Beep(3000, 100);
+            Nls.Base97.LinksDataSet links97 = ((Nls.Base97.LinksDataSet)(this.FindResource("links97")));
         }
         #region Fill & Update
         private void btnSubject_Click( object sender, RoutedEventArgs e ) {
-            string message = BA.Subject.CreateSubject(_dsImport, _dsLinks);
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblSubject);
+            //string message = BA.Subject.CreateSubject(_dsImport, _dsLinks);
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblSubject);
         }
         private void btnRelatedStructure_Click( object sender, RoutedEventArgs e ) {
-            BA.RelatedStructure related = new BA.RelatedStructure(_dsLinks);
-            string message = related.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblRelatedStructure);
+            //BA.RelatedStructure related = new BA.RelatedStructure(_dsLinks);
+            //string message = related.Go();
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblRelatedStructure);
         }
         private void btnResponse_Click( object sender, RoutedEventArgs e ) {
-            BA.Response response = new BA.Response(_dsImport, _dsLinks);
-            string message = response.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblResponse);
+            //BA.Response response = new BA.Response(_dsImport, _dsLinks);
+            //string message = response.Go();
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblResponse);
         }
         private void btnSurveyTime_Click( object sender, RoutedEventArgs e ) {
-            BA.SurveyTime surveyTime = new BA.SurveyTime(_dsLinks);
-            string message = surveyTime.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblSurveyTime);
+            //BA.SurveyTime surveyTime = new BA.SurveyTime(_dsLinks);
+            //string message = surveyTime.Go();
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblSurveyTime);
         }
         private void btnRosterGen1_Click( object sender, RoutedEventArgs e ) {
-            BA.RosterGen1 roster = new BA.RosterGen1(_dsLinks);
-            string message = roster.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblRosterGen1);
+            //BA.RosterGen1 roster = new BA.RosterGen1(_dsLinks);
+            //string message = roster.Go();
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblRosterGen1);
         }
-        private void btnParentsOfGen1Retro_Click( object sender, RoutedEventArgs e ) {
-            BA.ParentsOfGen1Retro retro = new BA.ParentsOfGen1Retro(_dsLinks);
-            string message = retro.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblParentsOfGen1Retro);
-        }
-        private void btnParentsOfGen1Current_Click( object sender, RoutedEventArgs e ) {
-            BA.ParentsOfGen1Current current = new BA.ParentsOfGen1Current(_dsLinks);
-            string message = current.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblParentsOfGen1Current);
-        }
-        private void btnBabyDaddy_Click( object sender, RoutedEventArgs e ) {
-            BA.BabyDaddy babyDaddy = new BA.BabyDaddy(_dsLinks);
-            string message = babyDaddy.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblBabyDaddy);
-        }
-        private void btnFatherOfGen2_Click( object sender, RoutedEventArgs e ) {
-            BA.FatherOfGen2 fatherOfGen2 = new BA.FatherOfGen2(_dsLinks);
-            string message = fatherOfGen2.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblFatherOfGen2);
-        }
-        private void btnSubjectDetails_Click( object sender, RoutedEventArgs e ) {
-            BA.SubjectDetails subjectDetails = new BA.SubjectDetails(_dsLinks);
-            string message = subjectDetails.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblSubjectDetails);
-        }
-        private void btnMarkerGen1_Click( object sender, RoutedEventArgs e ) {
-            BA.MarkerGen1 marker = new BA.MarkerGen1(_dsLinks, _dsImport);
-            string message = marker.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblMarkerGen2);
-        }
-        private void btnMarkerGen2_Click( object sender, RoutedEventArgs e ) {
-            BA.MarkerGen2 marker = new BA.MarkerGen2(_dsLinks);
-            string message = marker.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblMarkerGen2);
-        }
+    
+        //private void btnSubjectDetails_Click( object sender, RoutedEventArgs e ) {
+        //    BA.SubjectDetails subjectDetails = new BA.SubjectDetails(_dsLinks);
+        //    string message = subjectDetails.Go();
+        //    Trace.WriteLine(message);
+        //    if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+        //    //WriteXml(_dsLinks.tblSubjectDetails);
+        //}
         private void btnRelatedValues_Click( object sender, RoutedEventArgs e ) {
-            BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
-            string message = related.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblRelatedValues);
+        //    BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
+        //    string message = related.Go();
+        //    Trace.WriteLine(message);
+        //    if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+        //    //WriteXml(_dsLinks.tblRelatedValues);
         }
         private void btnOutcome_Click( object sender, RoutedEventArgs e ) {
-            BA.Outcome outcome = new BA.Outcome(_dsLinks);
-            string message = outcome.Go();
-            Trace.WriteLine(message);
-            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblRelatedValues);
+            //BA.Outcome outcome = new BA.Outcome(_dsLinks);
+            //string message = outcome.Go();
+            //Trace.WriteLine(message);
+            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            ////WriteXml(_dsLinks.tblRelatedValues);
         }
         private void btnRelatedValuesArchive_Click ( object sender, RoutedEventArgs e ) {            
         //    Int16 algorithmVersion = Int16.Parse(txtAlogrithmNumber.Text);
@@ -313,18 +273,18 @@ namespace LinksGui {
         //    BA.ImportDataSetTableAdapters.tblGen2OutcomesMathTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2OutcomesMathTableAdapter();
         //    ta.Fill(_dsImport.tblGen2OutcomesMath);
         //}
-        //private void LoadItem ( ) {
-        //    BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
-        //    ta.Fill(_dsLinks.tblItem);
-        //}
-        //private void LoadVariable ( ) {
-        //    BA.LinksDataSetTableAdapters.tblVariableTableAdapter ta = new BA.LinksDataSetTableAdapters.tblVariableTableAdapter();
-        //    ta.Fill(_dsLinks.tblVariable);
-        //}
-        //private void LoadMzManual ( ) {
-        //    BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();
-        //    ta.Fill(_dsLinks.tblMzManual);
-        //}
+        private void LoadItem( ) {
+            BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
+            ta.Fill(_dsLinks.tblItem);
+        }
+        private void LoadVariable( ) {
+            BA.LinksDataSetTableAdapters.tblVariableTableAdapter ta = new BA.LinksDataSetTableAdapters.tblVariableTableAdapter();
+            ta.Fill(_dsLinks.tblVariable);
+        }
+        private void LoadMzManual( ) {
+            BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();
+            ta.Fill(_dsLinks.tblMzManual);
+        }
         //private void LoadRosterAssignment ( ) {
         //    BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter();
         //    ta.Fill(_dsLinks.tblRosterGen1Assignment);
@@ -332,33 +292,33 @@ namespace LinksGui {
 
         ///////////////////////////
 
-        //private void LoadSubject ( ) {
-        //    BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
-        //    ta.Fill(_dsLinks.tblSubject);
-        //    CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
-        //    tblSubjectViewSource.View.MoveCurrentToFirst();
-        //}
-        //private void LoadRelatedStructure ( ) {
-        //    BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
-        //    ta.Fill(_dsLinks.tblRelatedStructure);
-        //    CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
-        //    tblRelatedStructureViewSource.View.MoveCurrentToFirst();
-        //}
-        //private void LoadResponse ( ) {
-        //    //BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
-        //    SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    //_cnn.Open();
-        //    //SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
-        //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        //    adapter.Fill(_dsLinks.tblResponse);
-        //    //_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
-        //    //_cnn.Close();
+        private void LoadSubject( ) {
+            BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
+            ta.Fill(_dsLinks.tblSubject);
+            CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
+            tblSubjectViewSource.View.MoveCurrentToFirst();
+        }
+        private void LoadRelatedStructure ( ) {
+            BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
+            ta.Fill(_dsLinks.tblRelatedStructure);
+            CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
+            tblRelatedStructureViewSource.View.MoveCurrentToFirst();
+        }
+        private void LoadResponse ( ) {
+            //BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
+            SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //_cnn.Open();
+            //SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(_dsLinks.tblResponse);
+            //_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
+            //_cnn.Close();
 
-        //    //_taResponse.Fill(_dsLinks.tblResponse);
-        //    CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
-        //    tblResponseViewSource.View.MoveCurrentToFirst();
-        //}
+            //_taResponse.Fill(_dsLinks.tblResponse);
+            CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
+            tblResponseViewSource.View.MoveCurrentToFirst();
+        }
         //private void AcceptResponseChanges ( ) {
         //    _dsLinks.tblResponse.AcceptChanges();
         //}
@@ -373,16 +333,16 @@ namespace LinksGui {
         //    ta.Fill(_dsLinks.vewSurveyTimeMostRecent);
         //}
 
-        //private void LoadRelatedValues ( ) {
-        //    BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
-        //    ta.Fill(_dsLinks.tblRelatedValues);
-        //    CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
-        //    vs.View.MoveCurrentToFirst();
-        //}
-        //private void LoadOutcomes ( ) {
-        //    BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
-        //    ta.Fill(_dsLinks.tblOutcome);
-        //}
+        private void LoadRelatedValues( ) {
+            BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
+            ta.Fill(_dsLinks.tblRelatedValues);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
+            vs.View.MoveCurrentToFirst();
+        }
+        private void LoadOutcomes( ) {
+            BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
+            ta.Fill(_dsLinks.tblOutcome);
+        }
         //private void LoadRelatedValuesNextVersionNumber ( ) {
         //    Int16 currentMaxVersion = Int16.MinValue;
         //    using ( SqlCommand cmd = new SqlCommand("Process.prcArchiveMaxVersion", _cnn) ) {
