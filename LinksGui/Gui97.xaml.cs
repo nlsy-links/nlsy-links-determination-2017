@@ -45,17 +45,9 @@ namespace LinksGui {
 
             if( Convert.ToBoolean("true") ) {
                 //if( Convert.ToBoolean("false")) {
-                //LoadExtractGen1Links();
-                //LoadExtractGen1Explicit();
-                //LoadExtractGen1Implicit();
-                //LoadExtractGen2Links();
-                //LoadExtractGen2LinksFromGen1();
-                //LoadExtractGen2ImplicitFather();
-                //LoadExtractGen2FatherFromGen1();
-                //LoadExtractGen1Outcomes();
-                //LoadExtractGen2OutcomesHeight();
-                //LoadExtractGen2OutcomesWeight();
-                //LoadExtractGen2OutcomesMath();
+                LoadExtractRoster();
+                LoadExtractLinksExplicit();
+                LoadExtractLinksImplicit();
             }
 
             //LoadGeocodeSanitized();//Needed for MarkerGen1
@@ -91,10 +83,10 @@ namespace LinksGui {
         }
         #region Fill & Update
         private void btnSubject_Click( object sender, RoutedEventArgs e ) {
-            //string message = BA.Subject.CreateSubject(_dsImport, _dsLinks);
-            //Trace.WriteLine(message);
-            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            ////WriteXml(_dsLinks.tblSubject);
+            string message = BA.Subject.CreateSubject(_dsImport, _dsLinks);
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblSubject);
         }
         private void btnRelatedStructure_Click( object sender, RoutedEventArgs e ) {
             //BA.RelatedStructure related = new BA.RelatedStructure(_dsLinks);
@@ -155,11 +147,11 @@ namespace LinksGui {
         }
 
         private void btnUpdateAllTables_Click ( object sender, RoutedEventArgs e ) {
-        //    const string schemaName = "Process";
-        //    Stopwatch sw = new Stopwatch();
-        //    sw.Start();
-        //    //Int32 SubjectCount = _taSubject.Update(_dsLinks);
-        //    BulkUpdate(schemaName, _dsLinks.tblSubject, LoadSubject);
+            const string schemaName = "Process";
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            //Int32 SubjectCount = _taSubject.Update(_dsLinks);
+            BulkUpdate(schemaName, _dsLinks.tblSubject, LoadSubject);
         //    BulkUpdate(schemaName, _dsLinks.tblRelatedStructure, LoadRelatedStructure);
         //    //Int32 responseCount = _taResponse.Update(_dsLinks);
 
@@ -177,101 +169,54 @@ namespace LinksGui {
         //    BulkUpdate(schemaName, _dsLinks.tblOutcome, LoadOutcomes);
         //    BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
 
-        //    sw.Stop();
-        //    //string message = string.Format("The follow records were affected for each table ({0} Elapsed):\n{1:N0} tblSubject\n{2:N0} tblResponse", sw.Elapsed.ToString(), -999, -999);
-        //    string message = string.Format("Elapsed time for BulkCopy operations: {0}", sw.Elapsed.ToString());
-        //    Trace.WriteLine(message);
-        //    MessageBox.Show(message);
+            sw.Stop();
+            //string message = string.Format("The follow records were affected for each table ({0} Elapsed):\n{1:N0} tblSubject\n{2:N0} tblResponse", sw.Elapsed.ToString(), -999, -999);
+            string message = string.Format("Elapsed time for BulkCopy operations: {0}", sw.Elapsed.ToString());
+            Trace.WriteLine(message);
+            MessageBox.Show(message);
         }
-        //private void BulkUpdate ( string schemaName, DataTable dt, Action loadMethod ) {
-        //    const Int32 batchSize = 10000;
-        //    bool hasChanges = true;
-        //    try {
-        //        hasChanges = dt.GetChanges() != null;
-        //    }
-        //    catch ( OutOfMemoryException ex ) {
-        //        Debug.WriteLine(ex.ToString());//If this fails from, then there were changes.
-        //        throw new Exception("There were changes to the database.", ex);
-        //    }
+        private void BulkUpdate( string schemaName, DataTable dt, Action loadMethod ) {
+            const Int32 batchSize = 10000;
+            bool hasChanges = true;
+            try {
+                hasChanges = dt.GetChanges() != null;
+            } catch( OutOfMemoryException ex ) {
+                Debug.WriteLine(ex.ToString());//If this fails from, then there were changes.
+                throw new Exception("There were changes to the database.", ex);
+            }
 
-        //    if ( hasChanges ) {
-        //        try {
-        //            _cnn.Open();
-        //            SqlBulkCopy blk = new SqlBulkCopy(_cnn, SqlBulkCopyOptions.CheckConstraints, null);//Pass a null transaction.
-        //            blk.DestinationTableName = schemaName + "." + dt.TableName;
-        //            blk.NotifyAfter = 100;
-        //            blk.BulkCopyTimeout = _cnn.ConnectionTimeout;
-        //            blk.BatchSize = batchSize;
-        //            blk.WriteToServer(dt);
-        //            blk.Close();
-        //            if ( loadMethod != null ) loadMethod();
-        //        }
-        //        catch {
-        //            throw;
-        //        }
-        //        finally {
-        //            _cnn.Close();
-        //        }
-        //    }//End if(dt.GetChanges() ! =null)
-        //}
+            if( hasChanges ) {
+                try {
+                    _cnn.Open();
+                    SqlBulkCopy blk = new SqlBulkCopy(_cnn, SqlBulkCopyOptions.CheckConstraints, null);//Pass a null transaction.
+                    blk.DestinationTableName = schemaName + "." + dt.TableName;
+                    blk.NotifyAfter = 100;
+                    blk.BulkCopyTimeout = _cnn.ConnectionTimeout;
+                    blk.BatchSize = batchSize;
+                    blk.WriteToServer(dt);
+                    blk.Close();
+                    if( loadMethod != null ) loadMethod();
+                } catch {
+                    throw;
+                } finally {
+                    _cnn.Close();
+                }
+            }//End if(dt.GetChanges() ! =null)
+        }
         #endregion
         #region Load DataTables
-        //private void LoadExtractGen1Links ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen1LinksTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1LinksTableAdapter();
-        //    ta.Fill(_dsImport.tblGen1Links);
-        //}
-        //private void LoadExtractGen1Explicit ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen1ExplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1ExplicitTableAdapter();
-        //    ta.Fill(_dsImport.tblGen1Explicit);
-        //}
-        //private void LoadExtractGen1Implicit ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen1ImplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1ImplicitTableAdapter();
-        //    ta.Fill(_dsImport.tblGen1Implicit);
-        //}
-        //private void LoadExtractGen2Links ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2LinksTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2LinksTableAdapter();
-        //    ta.Fill(_dsImport.tblGen2Links);
-        //}
-        //private void LoadExtractGen2LinksFromGen1 ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2LinksFromGen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2LinksFromGen1TableAdapter();
-        //    ta.Fill(_dsImport.tblGen2LinksFromGen1);
-        //}
-        //private void LoadExtractGen2ImplicitFather ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2ImplicitFatherTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2ImplicitFatherTableAdapter();
-        //    ta.Fill(_dsImport.tblGen2ImplicitFather);
-        //}
-        //private void LoadExtractGen2FatherFromGen1 ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1TableAdapter();
-        //    ta.Fill(_dsImport.tblGen2FatherFromGen1);
-        //}
-        //private void LoadGeocodeSanitized ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter();
-        //    ta.Fill(_dsImport.tblGen1GeocodeSanitized);
-        //}
-        //private void LoadLinks2004Gen1 ( ) {
-        //    BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinks2004Gen1TableAdapter();
-        //    ta.Fill(_dsImport.tblLinks2004Gen1);
-        //}
-        //private void LoadLinks2004Gen2 ( ) {
-        //    BA.ImportDataSetTableAdapters.tblLinks2004Gen2TableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinks2004Gen2TableAdapter();
-        //    ta.Fill(_dsImport.tblLinks2004Gen2);
-        //}
-        //private void LoadExtractGen1Outcomes ( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen1OutcomesTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1OutcomesTableAdapter();
-        //    ta.Fill(_dsImport.tblGen1Outcomes);
-        //}
-        //private void LoadExtractGen2OutcomesHeight( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2OutcomesHeightTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2OutcomesHeightTableAdapter();
-        //    ta.Fill(_dsImport.tblGen2OutcomesHeight);
-        //}
-        //private void LoadExtractGen2OutcomesWeight( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2OutcomesWeightTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2OutcomesWeightTableAdapter();
-        //    ta.Fill(_dsImport.tblGen2OutcomesWeight);
-        //}
-        //private void LoadExtractGen2OutcomesMath( ) {
-        //    BA.ImportDataSetTableAdapters.tblGen2OutcomesMathTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2OutcomesMathTableAdapter();
-        //    ta.Fill(_dsImport.tblGen2OutcomesMath);
-        //}
+        private void LoadExtractRoster( ) {
+            BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
+            ta.Fill(_dsImport.tblRoster);
+        }
+        private void LoadExtractLinksExplicit( ) {
+            BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
+            ta.Fill(_dsImport.tblLinksExplicit);
+        }
+        private void LoadExtractLinksImplicit( ) {
+            BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
+            ta.Fill(_dsImport.tblLinksImplicit);
+        }
         private void LoadItem( ) {
             BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
             ta.Fill(_dsLinks.tblItem);

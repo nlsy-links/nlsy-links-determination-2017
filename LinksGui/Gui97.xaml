@@ -17,6 +17,9 @@
         <CollectionViewSource x:Key="tblResponseViewSource" Source="{Binding tblResponse, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblRelatedValuesViewSource" Source="{Binding tblRelatedValues, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblOutcomeViewSource" Source="{Binding tblOutcome, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRosterViewSource" Source="{Binding tblRoster, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblLinksExplicitViewSource" Source="{Binding tblLinksExplicit, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblLinksImplicitViewSource" Source="{Binding tblLinksImplicit, Source={StaticResource importDataSet}}"/>
 
 
     </Window.Resources>
@@ -71,8 +74,14 @@
         </Grid>
         <Button x:Name="btnUpdateAllTables" Content="Update All Tables"  Grid.Row="2" Click="btnUpdateAllTables_Click" Background="#FFF5D600" />
         <TabControl x:Name="tabControlTop"  Grid.Row="0" Background="Transparent"  RenderTransformOrigin="0.415,0.678">
-            <TabItem Header="Gen2O-Math" x:Name="tabGen2OutcomesMath"  >
-                <DataGrid />
+            <TabItem Header="Roster" x:Name="tabRoster" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterViewSource}}" />
+            </TabItem>
+            <TabItem Header="LinksExplicit" x:Name="tabLinksExplicit" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksExplicitViewSource}}" />
+            </TabItem>
+            <TabItem Header="LinksImplicit" x:Name="tabLinksImplicit" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksImplicitViewSource}}" />
             </TabItem>
             <TabItem Header="Item" x:Name="tabItem" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}" />

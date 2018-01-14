@@ -29,7 +29,7 @@ namespace Nls.Base79 {
 		public const Int32 ExtendedIDMax = Gen1IDMax;
 		public const Int32 Gen2IDMin = 201;
 		public const Int32 Gen2IDMax = 1267501; //Sync with tblLUItem //1267302 for Year2004 females   //1251601//1268601 is the biggest for the whole NLSY
-		public const Int32 SubjectIDDigitsMax = 7;    //For 1251601
+		public const Int32 SubjectIDDigitsMax = 7;    //Accommodate the Gen2 SubjectTag '1251601'
 		#endregion
 		#region  Expected Counts
 		public const Int32 Gen1Count = Gen1IDMax;
