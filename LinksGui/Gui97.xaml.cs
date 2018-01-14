@@ -96,10 +96,10 @@ namespace LinksGui {
             //WriteXml(_dsLinks.tblRelatedStructure);
         }
         private void btnResponse_Click( object sender, RoutedEventArgs e ) {
-            //BA.Response response = new BA.Response(_dsImport, _dsLinks);
-            //string message = response.Go();
-            //Trace.WriteLine(message);
-            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            BA.Response response = new BA.Response(_dsImport, _dsLinks);
+            string message = response.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             ////WriteXml(_dsLinks.tblResponse);
         }
         private void btnSurveyTime_Click( object sender, RoutedEventArgs e ) {
@@ -153,9 +153,9 @@ namespace LinksGui {
             //Int32 SubjectCount = _taSubject.Update(_dsLinks);
             BulkUpdate(schemaName, _dsLinks.tblSubject, LoadSubject);
             BulkUpdate(schemaName, _dsLinks.tblRelatedStructure, LoadRelatedStructure);
-        //    //Int32 responseCount = _taResponse.Update(_dsLinks);
+            //Int32 responseCount = _taResponse.Update(_dsLinks);
 
-        //    BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
+            BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
         //    BulkUpdate(schemaName, _dsLinks.tblSurveyTime, LoadSurveyTime);
         //    BulkUpdate(schemaName, _dsLinks.tblRosterGen1, LoadRosterGen1);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Retro, LoadParentsOfGen1Retro);
@@ -249,23 +249,23 @@ namespace LinksGui {
             tblRelatedStructureViewSource.View.MoveCurrentToFirst();
         }
         private void LoadResponse ( ) {
-            ////BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
-            //SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
-            //cmd.CommandType = CommandType.StoredProcedure;
-            ////_cnn.Open();
-            ////SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
-            //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            //adapter.Fill(_dsLinks.tblResponse);
-            ////_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
-            ////_cnn.Close();
+            //BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
+            SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //_cnn.Open();
+            //SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(_dsLinks.tblResponse);
+            //_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
+            //_cnn.Close();
 
-            ////_taResponse.Fill(_dsLinks.tblResponse);
-            //CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
-            //tblResponseViewSource.View.MoveCurrentToFirst();
+            //_taResponse.Fill(_dsLinks.tblResponse);
+            CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
+            tblResponseViewSource.View.MoveCurrentToFirst();
         }
-        //private void AcceptResponseChanges ( ) {
-        //    _dsLinks.tblResponse.AcceptChanges();
-        //}
+        private void AcceptResponseChanges( ) {
+            _dsLinks.tblResponse.AcceptChanges();
+        }
         //private void LoadSurveyTime ( ) {
         //    BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter();
         //    ta.Fill(_dsLinks.tblSurveyTime);
