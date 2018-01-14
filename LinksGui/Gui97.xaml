@@ -9,12 +9,18 @@
 
 
         <Base79:LinksDataSet x:Key="linksDataSet1"/>
-        <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding tblItem, Source={StaticResource linksDataSet1}}"/>
-        <CollectionViewSource x:Key="tblItemViewSource1" Source="{Binding tblItem, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding tblItem, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblVariableViewSource" Source="{Binding tblVariable, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblMzManualViewSource" Source="{Binding tblMzManual, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblSubjectViewSource" Source="{Binding tblSubject, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRelatedStructureViewSource" Source="{Binding tblRelatedStructure, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblResponseViewSource" Source="{Binding tblResponse, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRelatedValuesViewSource" Source="{Binding tblRelatedValues, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblOutcomeViewSource" Source="{Binding tblOutcome, Source={StaticResource linksDataSet}}"/>
 
 
     </Window.Resources>
-    <Grid x:Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblItemViewSource1}">
+    <Grid x:Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblMzManualViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -69,13 +75,13 @@
                 <DataGrid />
             </TabItem>
             <TabItem Header="Item" x:Name="tabItem" >
-                <DataGrid ItemsSource="{Binding}" />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}" />
             </TabItem>
             <TabItem Header="Variable" x:Name="tabVariable" >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource}}" />
             </TabItem>
             <TabItem Header="MzManual" x:Name="tabMzManual" >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding}" />
             </TabItem>
             <TabItem Header="LURoster" x:Name="tabLURoster" >
                 <DataGrid />
@@ -83,22 +89,22 @@
         </TabControl>
         <TabControl x:Name="tabControlBottom"  Grid.Row="3" Background="Transparent">
             <TabItem Header="Subject" x:Name="tabSubject"  >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}" />
             </TabItem>
             <TabItem Header="RStructure" x:Name="tabRelated"  >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedStructureViewSource}}" />
             </TabItem>
             <TabItem Header="Response" x:Name="tabResponse"  >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblResponseViewSource}}" />
             </TabItem>
             <TabItem Header="SurveyTime" x:Name="SurveyTime"  >
                 <DataGrid />
             </TabItem>
             <TabItem Header="RValues" x:Name="tabRelatedValues" >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}" />
             </TabItem>
             <TabItem Header="Outcome" x:Name="tabOutcome"  >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblOutcomeViewSource}}" />
             </TabItem>
 
         </TabControl>
