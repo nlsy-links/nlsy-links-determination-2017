@@ -1,7 +1,7 @@
-﻿<Window x:Class="LinksGui.Gui79"
+﻿<Window x:Class="LinksGui.Gui97"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Determine 79" Height="546" Width="1157" xmlns:my="clr-namespace:Nls.Base79;assembly=Base79" Loaded="Window_Loaded" xmlns:my1="clr-namespace:LinksGui">
+        Title="Determine 97" Height="546" Width="1157" xmlns:my="clr-namespace:Nls.Base79;assembly=Base79" Loaded="Window_Loaded" xmlns:my1="clr-namespace:LinksGui">
     <Window.Resources>
         <my:ImportDataSet x:Key="importDataSet" />
         <CollectionViewSource x:Key="tblGen1LinksViewSource" Source="{Binding Path=tblGen1Links, Source={StaticResource importDataSet}}" />
@@ -81,30 +81,7 @@
             </Button>
             <Button Content="Button1" Height="19" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="btnCombine1" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine1_Click" />
             <Button Content="Button2" Height="19" HorizontalAlignment="Left" Margin="0,19,0,0" Name="btnCombine2" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine2_Click" />
-            <Button Name="btnRosterGen1" Grid.Column="5" Click="btnRosterGen1_Click">
-                <TextBlock>Roster<LineBreak/>Gen1</TextBlock>
-            </Button>
-            <Button Name="btnParentsOfGen1Retro" Grid.Column="6" Click="btnParentsOfGen1Retro_Click">
-                <TextBlock>G1Rents<LineBreak/>Retro</TextBlock>
-            </Button>
-            <Button Name="btnParentsOfGen1Current" Grid.Column="7" Click="btnParentsOfGen1Current_Click">
-                <TextBlock>G1Rents<LineBreak/>Current</TextBlock>
-            </Button>
-            <Button Name="btnBabyDaddy" Grid.Column="8" Click="btnBabyDaddy_Click">
-                <TextBlock>Baby<LineBreak/>Daddy</TextBlock>
-            </Button>
-            <Button Name="btnFatherOfGen2" Grid.Column="9" Click="btnFatherOfGen2_Click">
-                <TextBlock>Father<LineBreak/>Of Gen2</TextBlock>
-            </Button>
-            <Button Name="btnSubjectDetails" Grid.Column="10" Click="btnSubjectDetails_Click">
-                <TextBlock>Subject<LineBreak/>Details</TextBlock>
-            </Button>
-            <Button Name="btnMarkerGen1" Grid.Column="11" Click="btnMarkerGen1_Click">
-                <TextBlock>Marker<LineBreak/>Gen1</TextBlock>
-            </Button>
-            <Button Name="btnMarkerGen2" Grid.Column="12" Click="btnMarkerGen2_Click">
-                <TextBlock>Marker<LineBreak/>Gen2</TextBlock>
-            </Button>
+           
             <Button Name="btnRelatedValues" Grid.Column="13" Click="btnRelatedValues_Click">
                 <TextBlock>Related<LineBreak/>Values</TextBlock>
             </Button>
@@ -118,123 +95,23 @@
         </Grid>
         <Button Name="btnUpdateAllTables" Content="Update All Tables"  Grid.Row="2" Click="btnUpdateAllTables_Click" Background="#FFF5D600" />
         <TabControl Name="tabControlTop"  Grid.Row="0" Background="Transparent" SelectedIndex="{Binding Mode=OneWay, Source={StaticResource tblGen1LinksViewSource}}" RenderTransformOrigin="0.415,0.678">
-            <TabItem Header="Gen1Links" Name="tabGen1Links" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1LinksViewSource}}" />
-            </TabItem>
-            <TabItem Header="Gen1Explicit" Name="tabGen1Explicit" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1ExplicitViewSource}}" />
-            </TabItem>
-            <TabItem Header="Gen1Implicit" Name="tabGen1Implicit" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1ImplicitViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Gen2Links" Name="tabGen2Links" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2LinksViewSource}}" />
-            </TabItem>
-            <TabItem Header="Gen2Links F G1" Name="tabGen2FromGen1">
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2LinksFromGen1ViewSource}}" />
-            </TabItem>
-            <TabItem Header="Gen2ImplicitFather" Name="tabGen2ImplicitFather">
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2ImplicitFatherViewSource}}" />
-            </TabItem>
-            <TabItem Header="Gen2FatherFromGen1" Name="tabGen2FatherFromGen1" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2FatherFromGen1ViewSource}}" />
-            </TabItem>
-            <TabItem Header="Geocode" Name="tabGeocode" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1GeocodeSanitizedViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Links2004Gen1" Name="tabLinks2004Gen1" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinks2004Gen1ViewSource}}" />
-            </TabItem>
-            <TabItem Header="Links2004Gen2" Name="tabLinks2004Gen2" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinks2004Gen2ViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Gen1O" Name="tabGen1Outcomes" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1OutcomesViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Gen2O-Height" Name="tabGen2OutcomesHeight" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2OutcomesHeightViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Gen2O-Weight" Name="tabGen2OutcomesWeight" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2OutcomesWeightViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Gen2O-Math" Name="tabGen2OutcomesMath" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2OutcomesMathViewSource}}" />
-            </TabItem>
-            <TabItem Header="Item" Name="tabItem" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Variable" Name="tabVariable" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource}}"/>
-            </TabItem>
-            <TabItem Header="MzManual" Name="tabMzManual" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblMzManualViewSource}}" />
-            </TabItem>
-            <TabItem Header="LURoster" Name="tabLURoster" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterGen1AssignmentViewSource}}"/>
-            </TabItem>
+            <TabItem Header="Gen2O-Math" Name="tabGen2OutcomesMath" />
+            <TabItem Header="Item" Name="tabItem" />
+            <TabItem Header="Variable" Name="tabVariable" />
+            <TabItem Header="MzManual" Name="tabMzManual" />
+            <TabItem Header="LURoster" Name="tabLURoster" />
 
         </TabControl>
         <TabControl Name="tabControlBottom"  Grid.Row="3" Background="Transparent" SelectedIndex="{Binding Mode=OneWay, Source={StaticResource tblOutcomeViewSource}}">
-            <TabItem Header="Subject" Name="tabSubject" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}"/>
-            </TabItem>
-            <TabItem Header="RStructure" Name="tabRelated" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedStructureViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Response" Name="tabResponse" >
-                <DataGrid  ItemsSource="{Binding Source={StaticResource tblResponseViewSource}}"/>
-            </TabItem>
-            <TabItem Header="SurveyTime" Name="SurveyTime" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblSurveyTimeViewSource}}" />
-            </TabItem>
-            <TabItem Header="RosterG1" Name="tabRosterGen1" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterGen1AssignmentViewSource1}}"/>
-            </TabItem>
-            <TabItem Header="G1RentsRetro" Name="tabGen1ParentsRetro" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblParentsOfGen1RetroViewSource}}"/>
-            </TabItem>
-            <TabItem Header="G1RentsCurrent" Name="tabGen1ParentsCurrent" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblParentsOfGen1CurrentViewSource}}"/>
-            </TabItem>
-            <TabItem Header="BabyDaddy" Name="tabBabyDaddy" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblBabyDaddyViewSource}}"/>
-            </TabItem>
-            <TabItem Header="FatherOfG2" Name="tabFatherOfGen2" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblFatherOfGen2ViewSource}}"/>
-            </TabItem>
-            <TabItem Header="SubjectDetails" Name="tabSubjectDetails" >
-                <DataGrid  ItemsSource="{Binding Source={StaticResource tblSubjectDetailsViewSource}}"/>
-            </TabItem>
-            <TabItem Header="MarkerG1" Name="tabMarkerGen1" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblMarkerGen1ViewSource}}"/>
-            </TabItem>
-            <TabItem Header="MarkerG2" Name="tabMarkerGen2" >
-                <DataGrid  ItemsSource="{Binding Source={StaticResource tblMarkerGen2ViewSource}}"/>
-            </TabItem>
-            <TabItem Header="RValues" Name="tabRelatedValues" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}"/>
-            </TabItem>
-            <TabItem Header="Outcomes" Name="tabOutcome" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblOutcomeViewSource}}"/>
-            </TabItem>
+            <TabItem Header="Subject" Name="tabSubject" />
+            <TabItem Header="RStructure" Name="tabRelated" />
+            <TabItem Header="Response" Name="tabResponse" />
+            <TabItem Header="SurveyTime" Name="SurveyTime" />
+            <TabItem Header="RValues" Name="tabRelatedValues" />
+            <TabItem Header="Outcomes" Name="tabOutcome" />
 
         </TabControl>
 
     </Grid>
 </Window>
 
-
-<!--<TabItem Header="Response" Name="tabResponse" >
-	<DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource tblResponseViewSource}}" Name="tblResponseDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" >
-		<DataGrid.Columns>
-			<DataGridTextColumn x:Name="iDColumn2" Binding="{Binding Path=ID}" Header="ID" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="subjectTagColumn2" Binding="{Binding Path=SubjectTag}" Header="Subject Tag" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="surveyYearColumn2" Binding="{Binding Path=SurveyYear}" Header="Survey Year" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="itemColumn" Binding="{Binding Path=Item}" Header="Item" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="valueColumn1" Binding="{Binding Path=Value}" Header="Value" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="subjectReferencedColumn1" Binding="{Binding Path=SubjectReferenced}" Header="Subject Referenced" Width="SizeToHeader" />
-			<DataGridTextColumn x:Name="loopIndexColumn2" Binding="{Binding Path=LoopIndex}" Header="Loop Index" Width="SizeToHeader" />
-		</DataGrid.Columns>
-	</DataGrid>
-</TabItem>-->
-    

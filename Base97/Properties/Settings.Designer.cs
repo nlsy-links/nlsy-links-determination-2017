@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LinksGui.Properties {
+namespace Nls.Base97.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,22 +26,11 @@ namespace LinksGui.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\express_2016;Initial Catalog=NlsyLinks79;Integrated Security=T" +
-            "rue;Connect Timeout=60")]
-        public string Nlsy79ConnectionStringGui {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\Express_2016;Initial Catalog=NlsyLinks97;Integrated Security=T" +
+            "rue")]
+        public string Nlsy97ConnectionStringBase {
             get {
-                return ((string)(this["Nlsy79ConnectionStringGui"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\express_2016;Initial Catalog=NlsyLinks97;Integrated Security=T" +
-            "rue;Connect Timeout=60")]
-        public string Nlsy97ConnectionStringGui {
-            get {
-                return ((string)(this["Nlsy97ConnectionStringGui"]));
+                return ((string)(this["Nlsy97ConnectionStringBase"]));
             }
         }
     }
