@@ -26,8 +26,6 @@ namespace Nls.Base97 {
         
         private tblItemDataTable tabletblItem;
         
-        private tblSurveyTimeDataTable tabletblSurveyTime;
-        
         private tblMzManualDataTable tabletblMzManual;
         
         private tblVariableDataTable tabletblVariable;
@@ -46,11 +44,9 @@ namespace Nls.Base97 {
         
         private tblSubjectDetailsDataTable tabletblSubjectDetails;
         
-        private tblArchiveDescriptionDataTable tabletblArchiveDescription;
+        private tblSurveyTimeDataTable tabletblSurveyTime;
         
         private tblRelatedValuesArchiveDataTable tabletblRelatedValuesArchive;
-        
-        private global::System.Data.DataRelation relationFK_tblSurveyTime_tblSubject;
         
         private global::System.Data.DataRelation relationFK_tblVariable_tblItem;
         
@@ -69,6 +65,8 @@ namespace Nls.Base97 {
         private global::System.Data.DataRelation relationFK_tblResponse_tblSubject;
         
         private global::System.Data.DataRelation relationFK_tblRoster_tblRelatedStructure;
+        
+        private global::System.Data.DataRelation relationFK_tblSurveyTime_tblSubject;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -101,9 +99,6 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblItem"] != null)) {
                     base.Tables.Add(new tblItemDataTable(ds.Tables["tblItem"]));
                 }
-                if ((ds.Tables["tblSurveyTime"] != null)) {
-                    base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
-                }
                 if ((ds.Tables["tblMzManual"] != null)) {
                     base.Tables.Add(new tblMzManualDataTable(ds.Tables["tblMzManual"]));
                 }
@@ -131,8 +126,8 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblSubjectDetails"] != null)) {
                     base.Tables.Add(new tblSubjectDetailsDataTable(ds.Tables["tblSubjectDetails"]));
                 }
-                if ((ds.Tables["tblArchiveDescription"] != null)) {
-                    base.Tables.Add(new tblArchiveDescriptionDataTable(ds.Tables["tblArchiveDescription"]));
+                if ((ds.Tables["tblSurveyTime"] != null)) {
+                    base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
                 }
                 if ((ds.Tables["tblRelatedValuesArchive"] != null)) {
                     base.Tables.Add(new tblRelatedValuesArchiveDataTable(ds.Tables["tblRelatedValuesArchive"]));
@@ -162,16 +157,6 @@ namespace Nls.Base97 {
         public tblItemDataTable tblItem {
             get {
                 return this.tabletblItem;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblSurveyTimeDataTable tblSurveyTime {
-            get {
-                return this.tabletblSurveyTime;
             }
         }
         
@@ -269,9 +254,9 @@ namespace Nls.Base97 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblArchiveDescriptionDataTable tblArchiveDescription {
+        public tblSurveyTimeDataTable tblSurveyTime {
             get {
-                return this.tabletblArchiveDescription;
+                return this.tabletblSurveyTime;
             }
         }
         
@@ -355,9 +340,6 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblItem"] != null)) {
                     base.Tables.Add(new tblItemDataTable(ds.Tables["tblItem"]));
                 }
-                if ((ds.Tables["tblSurveyTime"] != null)) {
-                    base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
-                }
                 if ((ds.Tables["tblMzManual"] != null)) {
                     base.Tables.Add(new tblMzManualDataTable(ds.Tables["tblMzManual"]));
                 }
@@ -385,8 +367,8 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblSubjectDetails"] != null)) {
                     base.Tables.Add(new tblSubjectDetailsDataTable(ds.Tables["tblSubjectDetails"]));
                 }
-                if ((ds.Tables["tblArchiveDescription"] != null)) {
-                    base.Tables.Add(new tblArchiveDescriptionDataTable(ds.Tables["tblArchiveDescription"]));
+                if ((ds.Tables["tblSurveyTime"] != null)) {
+                    base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
                 }
                 if ((ds.Tables["tblRelatedValuesArchive"] != null)) {
                     base.Tables.Add(new tblRelatedValuesArchiveDataTable(ds.Tables["tblRelatedValuesArchive"]));
@@ -428,12 +410,6 @@ namespace Nls.Base97 {
             if ((initTable == true)) {
                 if ((this.tabletblItem != null)) {
                     this.tabletblItem.InitVars();
-                }
-            }
-            this.tabletblSurveyTime = ((tblSurveyTimeDataTable)(base.Tables["tblSurveyTime"]));
-            if ((initTable == true)) {
-                if ((this.tabletblSurveyTime != null)) {
-                    this.tabletblSurveyTime.InitVars();
                 }
             }
             this.tabletblMzManual = ((tblMzManualDataTable)(base.Tables["tblMzManual"]));
@@ -490,10 +466,10 @@ namespace Nls.Base97 {
                     this.tabletblSubjectDetails.InitVars();
                 }
             }
-            this.tabletblArchiveDescription = ((tblArchiveDescriptionDataTable)(base.Tables["tblArchiveDescription"]));
+            this.tabletblSurveyTime = ((tblSurveyTimeDataTable)(base.Tables["tblSurveyTime"]));
             if ((initTable == true)) {
-                if ((this.tabletblArchiveDescription != null)) {
-                    this.tabletblArchiveDescription.InitVars();
+                if ((this.tabletblSurveyTime != null)) {
+                    this.tabletblSurveyTime.InitVars();
                 }
             }
             this.tabletblRelatedValuesArchive = ((tblRelatedValuesArchiveDataTable)(base.Tables["tblRelatedValuesArchive"]));
@@ -502,7 +478,6 @@ namespace Nls.Base97 {
                     this.tabletblRelatedValuesArchive.InitVars();
                 }
             }
-            this.relationFK_tblSurveyTime_tblSubject = this.Relations["FK_tblSurveyTime_tblSubject"];
             this.relationFK_tblVariable_tblItem = this.Relations["FK_tblVariable_tblItem"];
             this.relationFK_tblOutcome_tblItem = this.Relations["FK_tblOutcome_tblItem"];
             this.relationFK_tblOutcome_tblSubject = this.Relations["FK_tblOutcome_tblSubject"];
@@ -512,6 +487,7 @@ namespace Nls.Base97 {
             this.relationFK_tblResponse_tblItem = this.Relations["FK_tblResponse_tblItem"];
             this.relationFK_tblResponse_tblSubject = this.Relations["FK_tblResponse_tblSubject"];
             this.relationFK_tblRoster_tblRelatedStructure = this.Relations["FK_tblRoster_tblRelatedStructure"];
+            this.relationFK_tblSurveyTime_tblSubject = this.Relations["FK_tblSurveyTime_tblSubject"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -524,8 +500,6 @@ namespace Nls.Base97 {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tabletblItem = new tblItemDataTable();
             base.Tables.Add(this.tabletblItem);
-            this.tabletblSurveyTime = new tblSurveyTimeDataTable();
-            base.Tables.Add(this.tabletblSurveyTime);
             this.tabletblMzManual = new tblMzManualDataTable();
             base.Tables.Add(this.tabletblMzManual);
             this.tabletblVariable = new tblVariableDataTable();
@@ -544,14 +518,10 @@ namespace Nls.Base97 {
             base.Tables.Add(this.tabletblSubject);
             this.tabletblSubjectDetails = new tblSubjectDetailsDataTable();
             base.Tables.Add(this.tabletblSubjectDetails);
-            this.tabletblArchiveDescription = new tblArchiveDescriptionDataTable();
-            base.Tables.Add(this.tabletblArchiveDescription);
+            this.tabletblSurveyTime = new tblSurveyTimeDataTable();
+            base.Tables.Add(this.tabletblSurveyTime);
             this.tabletblRelatedValuesArchive = new tblRelatedValuesArchiveDataTable();
             base.Tables.Add(this.tabletblRelatedValuesArchive);
-            this.relationFK_tblSurveyTime_tblSubject = new global::System.Data.DataRelation("FK_tblSurveyTime_tblSubject", new global::System.Data.DataColumn[] {
-                        this.tabletblSubject.SubjectTagColumn}, new global::System.Data.DataColumn[] {
-                        this.tabletblSurveyTime.SubjectTagColumn}, false);
-            this.Relations.Add(this.relationFK_tblSurveyTime_tblSubject);
             this.relationFK_tblVariable_tblItem = new global::System.Data.DataRelation("FK_tblVariable_tblItem", new global::System.Data.DataColumn[] {
                         this.tabletblItem.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletblVariable.ItemColumn}, false);
@@ -588,17 +558,15 @@ namespace Nls.Base97 {
                         this.tabletblRelatedStructure.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletblRoster.RelatedIDColumn}, false);
             this.Relations.Add(this.relationFK_tblRoster_tblRelatedStructure);
+            this.relationFK_tblSurveyTime_tblSubject = new global::System.Data.DataRelation("FK_tblSurveyTime_tblSubject", new global::System.Data.DataColumn[] {
+                        this.tabletblSubject.SubjectTagColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletblSurveyTime.SubjectTagColumn}, false);
+            this.Relations.Add(this.relationFK_tblSurveyTime_tblSubject);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblItem() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializetblSurveyTime() {
             return false;
         }
         
@@ -658,7 +626,7 @@ namespace Nls.Base97 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializetblArchiveDescription() {
+        private bool ShouldSerializetblSurveyTime() {
             return false;
         }
         
@@ -727,9 +695,6 @@ namespace Nls.Base97 {
         public delegate void tblItemRowChangeEventHandler(object sender, tblItemRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void tblSurveyTimeRowChangeEventHandler(object sender, tblSurveyTimeRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblMzManualRowChangeEventHandler(object sender, tblMzManualRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -757,7 +722,7 @@ namespace Nls.Base97 {
         public delegate void tblSubjectDetailsRowChangeEventHandler(object sender, tblSubjectDetailsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void tblArchiveDescriptionRowChangeEventHandler(object sender, tblArchiveDescriptionRowChangeEvent e);
+        public delegate void tblSurveyTimeRowChangeEventHandler(object sender, tblSurveyTimeRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblRelatedValuesArchiveRowChangeEventHandler(object sender, tblRelatedValuesArchiveRowChangeEvent e);
@@ -1071,359 +1036,6 @@ namespace Nls.Base97 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tblItemDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblSurveyTimeDataTable : global::System.Data.TypedTableBase<tblSurveyTimeRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnSubjectTag;
-            
-            private global::System.Data.DataColumn columnSurveySource;
-            
-            private global::System.Data.DataColumn columnSurveyYear;
-            
-            private global::System.Data.DataColumn columnSurveyDate;
-            
-            private global::System.Data.DataColumn columnAgeSelfReportYears;
-            
-            private global::System.Data.DataColumn columnAgeCalculateYears;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeDataTable() {
-                this.TableName = "tblSurveyTime";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblSurveyTimeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected tblSurveyTimeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SubjectTagColumn {
-                get {
-                    return this.columnSubjectTag;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SurveySourceColumn {
-                get {
-                    return this.columnSurveySource;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SurveyYearColumn {
-                get {
-                    return this.columnSurveyYear;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SurveyDateColumn {
-                get {
-                    return this.columnSurveyDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AgeSelfReportYearsColumn {
-                get {
-                    return this.columnAgeSelfReportYears;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AgeCalculateYearsColumn {
-                get {
-                    return this.columnAgeCalculateYears;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow this[int index] {
-                get {
-                    return ((tblSurveyTimeRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddtblSurveyTimeRow(tblSurveyTimeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow AddtblSurveyTimeRow(tblSubjectRow parenttblSubjectRowByFK_tblSurveyTime_tblSubject, byte SurveySource, short SurveyYear, System.DateTime SurveyDate, double AgeSelfReportYears, double AgeCalculateYears) {
-                tblSurveyTimeRow rowtblSurveyTimeRow = ((tblSurveyTimeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        SurveySource,
-                        SurveyYear,
-                        SurveyDate,
-                        AgeSelfReportYears,
-                        AgeCalculateYears};
-                if ((parenttblSubjectRowByFK_tblSurveyTime_tblSubject != null)) {
-                    columnValuesArray[1] = parenttblSubjectRowByFK_tblSurveyTime_tblSubject[0];
-                }
-                rowtblSurveyTimeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblSurveyTimeRow);
-                return rowtblSurveyTimeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow FindBySubjectTagSurveyYear(int SubjectTag, short SurveyYear) {
-                return ((tblSurveyTimeRow)(this.Rows.Find(new object[] {
-                            SubjectTag,
-                            SurveyYear})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                tblSurveyTimeDataTable cln = ((tblSurveyTimeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new tblSurveyTimeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnSubjectTag = base.Columns["SubjectTag"];
-                this.columnSurveySource = base.Columns["SurveySource"];
-                this.columnSurveyYear = base.Columns["SurveyYear"];
-                this.columnSurveyDate = base.Columns["SurveyDate"];
-                this.columnAgeSelfReportYears = base.Columns["AgeSelfReportYears"];
-                this.columnAgeCalculateYears = base.Columns["AgeCalculateYears"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnSubjectTag = new global::System.Data.DataColumn("SubjectTag", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSubjectTag);
-                this.columnSurveySource = new global::System.Data.DataColumn("SurveySource", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSurveySource);
-                this.columnSurveyYear = new global::System.Data.DataColumn("SurveyYear", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSurveyYear);
-                this.columnSurveyDate = new global::System.Data.DataColumn("SurveyDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSurveyDate);
-                this.columnAgeSelfReportYears = new global::System.Data.DataColumn("AgeSelfReportYears", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAgeSelfReportYears);
-                this.columnAgeCalculateYears = new global::System.Data.DataColumn("AgeCalculateYears", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAgeCalculateYears);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSubjectTag,
-                                this.columnSurveyYear}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnSubjectTag.AllowDBNull = false;
-                this.columnSurveySource.AllowDBNull = false;
-                this.columnSurveyYear.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow NewtblSurveyTimeRow() {
-                return ((tblSurveyTimeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblSurveyTimeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(tblSurveyTimeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.tblSurveyTimeRowChanged != null)) {
-                    this.tblSurveyTimeRowChanged(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.tblSurveyTimeRowChanging != null)) {
-                    this.tblSurveyTimeRowChanging(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.tblSurveyTimeRowDeleted != null)) {
-                    this.tblSurveyTimeRowDeleted(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.tblSurveyTimeRowDeleting != null)) {
-                    this.tblSurveyTimeRowDeleting(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovetblSurveyTimeRow(tblSurveyTimeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                LinksDataSet ds = new LinksDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblSurveyTimeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3484,10 +3096,6 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnExtendedID;
             
-            private global::System.Data.DataColumn columnGeneration;
-            
-            private global::System.Data.DataColumn columnSurveySource;
-            
             private global::System.Data.DataColumn columnSurveyYear;
             
             private global::System.Data.DataColumn columnItem;
@@ -3550,22 +3158,6 @@ namespace Nls.Base97 {
             public global::System.Data.DataColumn ExtendedIDColumn {
                 get {
                     return this.columnExtendedID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn GenerationColumn {
-                get {
-                    return this.columnGeneration;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SurveySourceColumn {
-                get {
-                    return this.columnSurveySource;
                 }
             }
             
@@ -3638,14 +3230,12 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblResponseRow AddtblResponseRow(tblSubjectRow parenttblSubjectRowByFK_tblResponse_tblSubject, short ExtendedID, byte Generation, byte SurveySource, short SurveyYear, tblItemRow parenttblItemRowByFK_tblResponse_tblItem, int Value, byte LoopIndex) {
+            public tblResponseRow AddtblResponseRow(tblSubjectRow parenttblSubjectRowByFK_tblResponse_tblSubject, short ExtendedID, short SurveyYear, tblItemRow parenttblItemRowByFK_tblResponse_tblItem, int Value, byte LoopIndex) {
                 tblResponseRow rowtblResponseRow = ((tblResponseRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         ExtendedID,
-                        Generation,
-                        SurveySource,
                         SurveyYear,
                         null,
                         Value,
@@ -3654,7 +3244,7 @@ namespace Nls.Base97 {
                     columnValuesArray[1] = parenttblSubjectRowByFK_tblResponse_tblSubject[0];
                 }
                 if ((parenttblItemRowByFK_tblResponse_tblItem != null)) {
-                    columnValuesArray[6] = parenttblItemRowByFK_tblResponse_tblItem[0];
+                    columnValuesArray[4] = parenttblItemRowByFK_tblResponse_tblItem[0];
                 }
                 rowtblResponseRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblResponseRow);
@@ -3681,8 +3271,6 @@ namespace Nls.Base97 {
                 this.columnID = base.Columns["ID"];
                 this.columnSubjectTag = base.Columns["SubjectTag"];
                 this.columnExtendedID = base.Columns["ExtendedID"];
-                this.columnGeneration = base.Columns["Generation"];
-                this.columnSurveySource = base.Columns["SurveySource"];
                 this.columnSurveyYear = base.Columns["SurveyYear"];
                 this.columnItem = base.Columns["Item"];
                 this.columnValue = base.Columns["Value"];
@@ -3698,10 +3286,6 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnSubjectTag);
                 this.columnExtendedID = new global::System.Data.DataColumn("ExtendedID", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExtendedID);
-                this.columnGeneration = new global::System.Data.DataColumn("Generation", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGeneration);
-                this.columnSurveySource = new global::System.Data.DataColumn("SurveySource", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSurveySource);
                 this.columnSurveyYear = new global::System.Data.DataColumn("SurveyYear", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSurveyYear);
                 this.columnItem = new global::System.Data.DataColumn("Item", typeof(short), null, global::System.Data.MappingType.Element);
@@ -3721,8 +3305,6 @@ namespace Nls.Base97 {
                 this.columnID.ReadOnly = true;
                 this.columnSubjectTag.AllowDBNull = false;
                 this.columnExtendedID.AllowDBNull = false;
-                this.columnGeneration.AllowDBNull = false;
-                this.columnSurveySource.AllowDBNull = false;
                 this.columnSurveyYear.AllowDBNull = false;
                 this.columnItem.AllowDBNull = false;
                 this.columnValue.AllowDBNull = false;
@@ -5051,20 +4633,26 @@ namespace Nls.Base97 {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblArchiveDescriptionDataTable : global::System.Data.TypedTableBase<tblArchiveDescriptionRow> {
+        public partial class tblSurveyTimeDataTable : global::System.Data.TypedTableBase<tblSurveyTimeRow> {
             
             private global::System.Data.DataColumn columnID;
             
-            private global::System.Data.DataColumn columnAlgorithmVersion;
+            private global::System.Data.DataColumn columnSubjectTag;
             
-            private global::System.Data.DataColumn columnDescription;
+            private global::System.Data.DataColumn columnSurveySource;
             
-            private global::System.Data.DataColumn columnDate;
+            private global::System.Data.DataColumn columnSurveyYear;
+            
+            private global::System.Data.DataColumn columnSurveyDate;
+            
+            private global::System.Data.DataColumn columnAgeSelfReportYears;
+            
+            private global::System.Data.DataColumn columnAgeCalculateYears;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionDataTable() {
-                this.TableName = "tblArchiveDescription";
+            public tblSurveyTimeDataTable() {
+                this.TableName = "tblSurveyTime";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -5072,7 +4660,7 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblArchiveDescriptionDataTable(global::System.Data.DataTable table) {
+            internal tblSurveyTimeDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -5089,7 +4677,7 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected tblArchiveDescriptionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected tblSurveyTimeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -5104,25 +4692,49 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AlgorithmVersionColumn {
+            public global::System.Data.DataColumn SubjectTagColumn {
                 get {
-                    return this.columnAlgorithmVersion;
+                    return this.columnSubjectTag;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescriptionColumn {
+            public global::System.Data.DataColumn SurveySourceColumn {
                 get {
-                    return this.columnDescription;
+                    return this.columnSurveySource;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DateColumn {
+            public global::System.Data.DataColumn SurveyYearColumn {
                 get {
-                    return this.columnDate;
+                    return this.columnSurveyYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SurveyDateColumn {
+                get {
+                    return this.columnSurveyDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AgeSelfReportYearsColumn {
+                get {
+                    return this.columnAgeSelfReportYears;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AgeCalculateYearsColumn {
+                get {
+                    return this.columnAgeCalculateYears;
                 }
             }
             
@@ -5137,55 +4749,62 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRow this[int index] {
+            public tblSurveyTimeRow this[int index] {
                 get {
-                    return ((tblArchiveDescriptionRow)(this.Rows[index]));
+                    return ((tblSurveyTimeRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblArchiveDescriptionRowChangeEventHandler tblArchiveDescriptionRowChanging;
+            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblArchiveDescriptionRowChangeEventHandler tblArchiveDescriptionRowChanged;
+            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblArchiveDescriptionRowChangeEventHandler tblArchiveDescriptionRowDeleting;
+            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblArchiveDescriptionRowChangeEventHandler tblArchiveDescriptionRowDeleted;
+            public event tblSurveyTimeRowChangeEventHandler tblSurveyTimeRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddtblArchiveDescriptionRow(tblArchiveDescriptionRow row) {
+            public void AddtblSurveyTimeRow(tblSurveyTimeRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRow AddtblArchiveDescriptionRow(short AlgorithmVersion, string Description, System.DateTime Date) {
-                tblArchiveDescriptionRow rowtblArchiveDescriptionRow = ((tblArchiveDescriptionRow)(this.NewRow()));
+            public tblSurveyTimeRow AddtblSurveyTimeRow(tblSubjectRow parenttblSubjectRowByFK_tblSurveyTime_tblSubject, byte SurveySource, short SurveyYear, System.DateTime SurveyDate, double AgeSelfReportYears, double AgeCalculateYears) {
+                tblSurveyTimeRow rowtblSurveyTimeRow = ((tblSurveyTimeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        AlgorithmVersion,
-                        Description,
-                        Date};
-                rowtblArchiveDescriptionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblArchiveDescriptionRow);
-                return rowtblArchiveDescriptionRow;
+                        null,
+                        SurveySource,
+                        SurveyYear,
+                        SurveyDate,
+                        AgeSelfReportYears,
+                        AgeCalculateYears};
+                if ((parenttblSubjectRowByFK_tblSurveyTime_tblSubject != null)) {
+                    columnValuesArray[1] = parenttblSubjectRowByFK_tblSurveyTime_tblSubject[0];
+                }
+                rowtblSurveyTimeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblSurveyTimeRow);
+                return rowtblSurveyTimeRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRow FindByID(short ID) {
-                return ((tblArchiveDescriptionRow)(this.Rows.Find(new object[] {
-                            ID})));
+            public tblSurveyTimeRow FindBySubjectTagSurveyYear(int SubjectTag, short SurveyYear) {
+                return ((tblSurveyTimeRow)(this.Rows.Find(new object[] {
+                            SubjectTag,
+                            SurveyYear})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                tblArchiveDescriptionDataTable cln = ((tblArchiveDescriptionDataTable)(base.Clone()));
+                tblSurveyTimeDataTable cln = ((tblSurveyTimeDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5193,66 +4812,75 @@ namespace Nls.Base97 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new tblArchiveDescriptionDataTable();
+                return new tblSurveyTimeDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
-                this.columnAlgorithmVersion = base.Columns["AlgorithmVersion"];
-                this.columnDescription = base.Columns["Description"];
-                this.columnDate = base.Columns["Date"];
+                this.columnSubjectTag = base.Columns["SubjectTag"];
+                this.columnSurveySource = base.Columns["SurveySource"];
+                this.columnSurveyYear = base.Columns["SurveyYear"];
+                this.columnSurveyDate = base.Columns["SurveyDate"];
+                this.columnAgeSelfReportYears = base.Columns["AgeSelfReportYears"];
+                this.columnAgeCalculateYears = base.Columns["AgeCalculateYears"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(short), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnAlgorithmVersion = new global::System.Data.DataColumn("AlgorithmVersion", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAlgorithmVersion);
-                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescription);
-                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDate);
+                this.columnSubjectTag = new global::System.Data.DataColumn("SubjectTag", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubjectTag);
+                this.columnSurveySource = new global::System.Data.DataColumn("SurveySource", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSurveySource);
+                this.columnSurveyYear = new global::System.Data.DataColumn("SurveyYear", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSurveyYear);
+                this.columnSurveyDate = new global::System.Data.DataColumn("SurveyDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSurveyDate);
+                this.columnAgeSelfReportYears = new global::System.Data.DataColumn("AgeSelfReportYears", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAgeSelfReportYears);
+                this.columnAgeCalculateYears = new global::System.Data.DataColumn("AgeCalculateYears", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAgeCalculateYears);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
+                                this.columnSubjectTag,
+                                this.columnSurveyYear}, true));
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = -1;
                 this.columnID.AutoIncrementStep = -1;
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnAlgorithmVersion.AllowDBNull = false;
-                this.columnDescription.AllowDBNull = false;
-                this.columnDescription.MaxLength = 2147483647;
+                this.columnSubjectTag.AllowDBNull = false;
+                this.columnSurveySource.AllowDBNull = false;
+                this.columnSurveyYear.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRow NewtblArchiveDescriptionRow() {
-                return ((tblArchiveDescriptionRow)(this.NewRow()));
+            public tblSurveyTimeRow NewtblSurveyTimeRow() {
+                return ((tblSurveyTimeRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblArchiveDescriptionRow(builder);
+                return new tblSurveyTimeRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(tblArchiveDescriptionRow);
+                return typeof(tblSurveyTimeRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.tblArchiveDescriptionRowChanged != null)) {
-                    this.tblArchiveDescriptionRowChanged(this, new tblArchiveDescriptionRowChangeEvent(((tblArchiveDescriptionRow)(e.Row)), e.Action));
+                if ((this.tblSurveyTimeRowChanged != null)) {
+                    this.tblSurveyTimeRowChanged(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5260,8 +4888,8 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.tblArchiveDescriptionRowChanging != null)) {
-                    this.tblArchiveDescriptionRowChanging(this, new tblArchiveDescriptionRowChangeEvent(((tblArchiveDescriptionRow)(e.Row)), e.Action));
+                if ((this.tblSurveyTimeRowChanging != null)) {
+                    this.tblSurveyTimeRowChanging(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5269,8 +4897,8 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.tblArchiveDescriptionRowDeleted != null)) {
-                    this.tblArchiveDescriptionRowDeleted(this, new tblArchiveDescriptionRowChangeEvent(((tblArchiveDescriptionRow)(e.Row)), e.Action));
+                if ((this.tblSurveyTimeRowDeleted != null)) {
+                    this.tblSurveyTimeRowDeleted(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5278,14 +4906,14 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.tblArchiveDescriptionRowDeleting != null)) {
-                    this.tblArchiveDescriptionRowDeleting(this, new tblArchiveDescriptionRowChangeEvent(((tblArchiveDescriptionRow)(e.Row)), e.Action));
+                if ((this.tblSurveyTimeRowDeleting != null)) {
+                    this.tblSurveyTimeRowDeleting(this, new tblSurveyTimeRowChangeEvent(((tblSurveyTimeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovetblArchiveDescriptionRow(tblArchiveDescriptionRow row) {
+            public void RemovetblSurveyTimeRow(tblSurveyTimeRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -5312,7 +4940,7 @@ namespace Nls.Base97 {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblArchiveDescriptionDataTable";
+                attribute2.FixedValue = "tblSurveyTimeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6094,160 +5722,6 @@ namespace Nls.Base97 {
                 else {
                     return ((tblResponseRow[])(base.GetChildRows(this.Table.ChildRelations["FK_tblResponse_tblItem"])));
                 }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class tblSurveyTimeRow : global::System.Data.DataRow {
-            
-            private tblSurveyTimeDataTable tabletblSurveyTime;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblSurveyTimeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tabletblSurveyTime = ((tblSurveyTimeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this.tabletblSurveyTime.IDColumn]));
-                }
-                set {
-                    this[this.tabletblSurveyTime.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SubjectTag {
-                get {
-                    return ((int)(this[this.tabletblSurveyTime.SubjectTagColumn]));
-                }
-                set {
-                    this[this.tabletblSurveyTime.SubjectTagColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte SurveySource {
-                get {
-                    return ((byte)(this[this.tabletblSurveyTime.SurveySourceColumn]));
-                }
-                set {
-                    this[this.tabletblSurveyTime.SurveySourceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short SurveyYear {
-                get {
-                    return ((short)(this[this.tabletblSurveyTime.SurveyYearColumn]));
-                }
-                set {
-                    this[this.tabletblSurveyTime.SurveyYearColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime SurveyDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tabletblSurveyTime.SurveyDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SurveyDate\' in table \'tblSurveyTime\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSurveyTime.SurveyDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double AgeSelfReportYears {
-                get {
-                    try {
-                        return ((double)(this[this.tabletblSurveyTime.AgeSelfReportYearsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AgeSelfReportYears\' in table \'tblSurveyTime\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSurveyTime.AgeSelfReportYearsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double AgeCalculateYears {
-                get {
-                    try {
-                        return ((double)(this[this.tabletblSurveyTime.AgeCalculateYearsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AgeCalculateYears\' in table \'tblSurveyTime\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSurveyTime.AgeCalculateYearsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSubjectRow tblSubjectRow {
-                get {
-                    return ((tblSubjectRow)(this.GetParentRow(this.Table.ParentRelations["FK_tblSurveyTime_tblSubject"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_tblSurveyTime_tblSubject"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSurveyDateNull() {
-                return this.IsNull(this.tabletblSurveyTime.SurveyDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSurveyDateNull() {
-                this[this.tabletblSurveyTime.SurveyDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAgeSelfReportYearsNull() {
-                return this.IsNull(this.tabletblSurveyTime.AgeSelfReportYearsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAgeSelfReportYearsNull() {
-                this[this.tabletblSurveyTime.AgeSelfReportYearsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAgeCalculateYearsNull() {
-                return this.IsNull(this.tabletblSurveyTime.AgeCalculateYearsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAgeCalculateYearsNull() {
-                this[this.tabletblSurveyTime.AgeCalculateYearsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7438,28 +6912,6 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte Generation {
-                get {
-                    return ((byte)(this[this.tabletblResponse.GenerationColumn]));
-                }
-                set {
-                    this[this.tabletblResponse.GenerationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte SurveySource {
-                get {
-                    return ((byte)(this[this.tabletblResponse.SurveySourceColumn]));
-                }
-                set {
-                    this[this.tabletblResponse.SurveySourceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short SurveyYear {
                 get {
                     return ((short)(this[this.tabletblResponse.SurveyYearColumn]));
@@ -7771,17 +7223,6 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow[] GettblSurveyTimeRows() {
-                if ((this.Table.ChildRelations["FK_tblSurveyTime_tblSubject"] == null)) {
-                    return new tblSurveyTimeRow[0];
-                }
-                else {
-                    return ((tblSurveyTimeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_tblSurveyTime_tblSubject"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblOutcomeRow[] GettblOutcomeRows() {
                 if ((this.Table.ChildRelations["FK_tblOutcome_tblSubject"] == null)) {
                     return new tblOutcomeRow[0];
@@ -7821,6 +7262,17 @@ namespace Nls.Base97 {
                 }
                 else {
                     return ((tblResponseRow[])(base.GetChildRows(this.Table.ChildRelations["FK_tblResponse_tblSubject"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblSurveyTimeRow[] GettblSurveyTimeRows() {
+                if ((this.Table.ChildRelations["FK_tblSurveyTime_tblSubject"] == null)) {
+                    return new tblSurveyTimeRow[0];
+                }
+                else {
+                    return ((tblSurveyTimeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_tblSurveyTime_tblSubject"])));
                 }
             }
         }
@@ -8145,76 +7597,154 @@ namespace Nls.Base97 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class tblArchiveDescriptionRow : global::System.Data.DataRow {
+        public partial class tblSurveyTimeRow : global::System.Data.DataRow {
             
-            private tblArchiveDescriptionDataTable tabletblArchiveDescription;
+            private tblSurveyTimeDataTable tabletblSurveyTime;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblArchiveDescriptionRow(global::System.Data.DataRowBuilder rb) : 
+            internal tblSurveyTimeRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabletblArchiveDescription = ((tblArchiveDescriptionDataTable)(this.Table));
+                this.tabletblSurveyTime = ((tblSurveyTimeDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short ID {
+            public int ID {
                 get {
-                    return ((short)(this[this.tabletblArchiveDescription.IDColumn]));
+                    return ((int)(this[this.tabletblSurveyTime.IDColumn]));
                 }
                 set {
-                    this[this.tabletblArchiveDescription.IDColumn] = value;
+                    this[this.tabletblSurveyTime.IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short AlgorithmVersion {
+            public int SubjectTag {
                 get {
-                    return ((short)(this[this.tabletblArchiveDescription.AlgorithmVersionColumn]));
+                    return ((int)(this[this.tabletblSurveyTime.SubjectTagColumn]));
                 }
                 set {
-                    this[this.tabletblArchiveDescription.AlgorithmVersionColumn] = value;
+                    this[this.tabletblSurveyTime.SubjectTagColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Description {
+            public byte SurveySource {
                 get {
-                    return ((string)(this[this.tabletblArchiveDescription.DescriptionColumn]));
+                    return ((byte)(this[this.tabletblSurveyTime.SurveySourceColumn]));
                 }
                 set {
-                    this[this.tabletblArchiveDescription.DescriptionColumn] = value;
+                    this[this.tabletblSurveyTime.SurveySourceColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Date {
+            public short SurveyYear {
+                get {
+                    return ((short)(this[this.tabletblSurveyTime.SurveyYearColumn]));
+                }
+                set {
+                    this[this.tabletblSurveyTime.SurveyYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime SurveyDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletblArchiveDescription.DateColumn]));
+                        return ((global::System.DateTime)(this[this.tabletblSurveyTime.SurveyDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'tblArchiveDescription\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SurveyDate\' in table \'tblSurveyTime\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblArchiveDescription.DateColumn] = value;
+                    this[this.tabletblSurveyTime.SurveyDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDateNull() {
-                return this.IsNull(this.tabletblArchiveDescription.DateColumn);
+            public double AgeSelfReportYears {
+                get {
+                    try {
+                        return ((double)(this[this.tabletblSurveyTime.AgeSelfReportYearsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AgeSelfReportYears\' in table \'tblSurveyTime\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSurveyTime.AgeSelfReportYearsColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDateNull() {
-                this[this.tabletblArchiveDescription.DateColumn] = global::System.Convert.DBNull;
+            public double AgeCalculateYears {
+                get {
+                    try {
+                        return ((double)(this[this.tabletblSurveyTime.AgeCalculateYearsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AgeCalculateYears\' in table \'tblSurveyTime\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSurveyTime.AgeCalculateYearsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblSubjectRow tblSubjectRow {
+                get {
+                    return ((tblSubjectRow)(this.GetParentRow(this.Table.ParentRelations["FK_tblSurveyTime_tblSubject"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_tblSurveyTime_tblSubject"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSurveyDateNull() {
+                return this.IsNull(this.tabletblSurveyTime.SurveyDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSurveyDateNull() {
+                this[this.tabletblSurveyTime.SurveyDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAgeSelfReportYearsNull() {
+                return this.IsNull(this.tabletblSurveyTime.AgeSelfReportYearsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAgeSelfReportYearsNull() {
+                this[this.tabletblSurveyTime.AgeSelfReportYearsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAgeCalculateYearsNull() {
+                return this.IsNull(this.tabletblSurveyTime.AgeCalculateYearsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAgeCalculateYearsNull() {
+                this[this.tabletblSurveyTime.AgeCalculateYearsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8794,40 +8324,6 @@ namespace Nls.Base97 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class tblSurveyTimeRowChangeEvent : global::System.EventArgs {
-            
-            private tblSurveyTimeRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRowChangeEvent(tblSurveyTimeRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSurveyTimeRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class tblMzManualRowChangeEvent : global::System.EventArgs {
             
             private tblMzManualRow eventRow;
@@ -9134,22 +8630,22 @@ namespace Nls.Base97 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class tblArchiveDescriptionRowChangeEvent : global::System.EventArgs {
+        public class tblSurveyTimeRowChangeEvent : global::System.EventArgs {
             
-            private tblArchiveDescriptionRow eventRow;
+            private tblSurveyTimeRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRowChangeEvent(tblArchiveDescriptionRow row, global::System.Data.DataRowAction action) {
+            public tblSurveyTimeRowChangeEvent(tblSurveyTimeRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblArchiveDescriptionRow Row {
+            public tblSurveyTimeRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -9635,264 +9131,6 @@ SELECT ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes FROM Metadat
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string Label, int MinValue, global::System.Nullable<int> MinNonnegative, int MaxValue, string Active, string Notes, short Original_ID, string Original_Label, int Original_MinValue, global::System.Nullable<int> Original_MinNonnegative, int Original_MaxValue, string Original_Active, string Original_Notes) {
             return this.Update(Original_ID, Label, MinValue, MinNonnegative, MaxValue, Active, Notes, Original_ID, Original_Label, Original_MinValue, Original_MinNonnegative, Original_MaxValue, Original_Active, Original_Notes);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblSurveyTimeTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public tblSurveyTimeTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblSurveyTime";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("SubjectTag", "SubjectTag");
-            tableMapping.ColumnMappings.Add("SurveySource", "SurveySource");
-            tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
-            tableMapping.ColumnMappings.Add("SurveyDate", "SurveyDate");
-            tableMapping.ColumnMappings.Add("AgeSelfReportYears", "AgeSelfReportYears");
-            tableMapping.ColumnMappings.Add("AgeCalculateYears", "AgeCalculateYears");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Process].[tblSurveyTime] ([SubjectTag], [SurveySource], [SurveyYear]" +
-                ", [SurveyDate], [AgeSelfReportYears], [AgeCalculateYears]) VALUES (@SubjectTag, " +
-                "@SurveySource, @SurveyYear, @SurveyDate, @AgeSelfReportYears, @AgeCalculateYears" +
-                ")";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveySource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveySource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeSelfReportYears", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeSelfReportYears", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeCalculateYears", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeCalculateYears", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.Base97.Properties.Settings.Default.Nlsy97ConnectionStringBase;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, SurveySource, SurveyYear, SurveyDate, AgeSelfReportYears, " +
-                "AgeCalculateYears FROM Process.tblSurveyTime";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(LinksDataSet.tblSurveyTimeDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual LinksDataSet.tblSurveyTimeDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            LinksDataSet.tblSurveyTimeDataTable dataTable = new LinksDataSet.tblSurveyTimeDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(LinksDataSet.tblSurveyTimeDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(LinksDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "tblSurveyTime");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SubjectTag, byte SurveySource, short SurveyYear, global::System.Nullable<global::System.DateTime> SurveyDate, global::System.Nullable<double> AgeSelfReportYears, global::System.Nullable<double> AgeCalculateYears) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(SurveySource));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((short)(SurveyYear));
-            if ((SurveyDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(SurveyDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((AgeSelfReportYears.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(AgeSelfReportYears.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((AgeCalculateYears.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(AgeCalculateYears.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -11889,8 +11127,6 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("SubjectTag", "SubjectTag");
             tableMapping.ColumnMappings.Add("ExtendedID", "ExtendedID");
-            tableMapping.ColumnMappings.Add("Generation", "Generation");
-            tableMapping.ColumnMappings.Add("SurveySource", "SurveySource");
             tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
             tableMapping.ColumnMappings.Add("Item", "Item");
             tableMapping.ColumnMappings.Add("Value", "Value");
@@ -11898,14 +11134,12 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Process].[tblResponse] ([SubjectTag], [ExtendedID], [Generation], [S" +
-                "urveySource], [SurveyYear], [Item], [Value], [LoopIndex]) VALUES (@SubjectTag, @" +
-                "ExtendedID, @Generation, @SurveySource, @SurveyYear, @Item, @Value, @LoopIndex)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Process].[tblResponse] ([SubjectTag], [ExtendedID], [SurveyYear], [I" +
+                "tem], [Value], [LoopIndex]) VALUES (@SubjectTag, @ExtendedID, @SurveyYear, @Item" +
+                ", @Value, @LoopIndex)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Generation", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Generation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveySource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveySource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11925,8 +11159,8 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, ExtendedID, Generation, SurveySource, SurveyYear, Item, Va" +
-                "lue, LoopIndex FROM Process.tblResponse";
+            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex FROM Proces" +
+                "s.tblResponse";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11987,15 +11221,13 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SubjectTag, short ExtendedID, byte Generation, byte SurveySource, short SurveyYear, short Item, int Value, byte LoopIndex) {
+        public virtual int Insert(int SubjectTag, short ExtendedID, short SurveyYear, short Item, int Value, byte LoopIndex) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
             this.Adapter.InsertCommand.Parameters[1].Value = ((short)(ExtendedID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(Generation));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(SurveySource));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((short)(SurveyYear));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((short)(Item));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(Value));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((byte)(LoopIndex));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((short)(SurveyYear));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((short)(Item));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Value));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(LoopIndex));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12916,7 +12148,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender FROM Process.tblSubject WHERE (
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblArchiveDescriptionTableAdapter : global::System.ComponentModel.Component {
+    public partial class tblSurveyTimeTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -12930,7 +12162,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender FROM Process.tblSubject WHERE (
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public tblArchiveDescriptionTableAdapter() {
+        public tblSurveyTimeTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -13027,45 +12259,28 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender FROM Process.tblSubject WHERE (
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblArchiveDescription";
+            tableMapping.DataSetTable = "tblSurveyTime";
             tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("AlgorithmVersion", "AlgorithmVersion");
-            tableMapping.ColumnMappings.Add("Description", "Description");
-            tableMapping.ColumnMappings.Add("Date", "Date");
+            tableMapping.ColumnMappings.Add("SubjectTag", "SubjectTag");
+            tableMapping.ColumnMappings.Add("SurveySource", "SurveySource");
+            tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
+            tableMapping.ColumnMappings.Add("SurveyDate", "SurveyDate");
+            tableMapping.ColumnMappings.Add("AgeSelfReportYears", "AgeSelfReportYears");
+            tableMapping.ColumnMappings.Add("AgeCalculateYears", "AgeCalculateYears");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Archive].[tblArchiveDescription] WHERE (([ID] = @Original_ID) AND ([" +
-                "AlgorithmVersion] = @Original_AlgorithmVersion) AND ((@IsNull_Date = 1 AND [Date" +
-                "] IS NULL) OR ([Date] = @Original_Date)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AlgorithmVersion", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AlgorithmVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Date", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Archive].[tblArchiveDescription] ([AlgorithmVersion], [Description]," +
-                " [Date]) VALUES (@AlgorithmVersion, @Description, @Date);\r\nSELECT ID, AlgorithmV" +
-                "ersion, Description, Date FROM Archive.tblArchiveDescription WHERE (ID = SCOPE_I" +
-                "DENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Process].[tblSurveyTime] ([SubjectTag], [SurveySource], [SurveyYear]" +
+                ", [SurveyDate], [AgeSelfReportYears], [AgeCalculateYears]) VALUES (@SubjectTag, " +
+                "@SurveySource, @SurveyYear, @SurveyDate, @AgeSelfReportYears, @AgeCalculateYears" +
+                ")";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AlgorithmVersion", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AlgorithmVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Archive].[tblArchiveDescription] SET [AlgorithmVersion] = @AlgorithmVersion, [Description] = @Description, [Date] = @Date WHERE (([ID] = @Original_ID) AND ([AlgorithmVersion] = @Original_AlgorithmVersion) AND ((@IsNull_Date = 1 AND [Date] IS NULL) OR ([Date] = @Original_Date)));
-SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescription WHERE (ID = @ID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AlgorithmVersion", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AlgorithmVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AlgorithmVersion", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AlgorithmVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Date", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveySource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveySource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeSelfReportYears", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeSelfReportYears", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeCalculateYears", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeCalculateYears", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13081,8 +12296,8 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescription" +
-                "";
+            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, SurveySource, SurveyYear, SurveyDate, AgeSelfReportYears, " +
+                "AgeCalculateYears FROM Process.tblSurveyTime";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13090,7 +12305,7 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(LinksDataSet.tblArchiveDescriptionDataTable dataTable) {
+        public virtual int Fill(LinksDataSet.tblSurveyTimeDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -13103,9 +12318,9 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual LinksDataSet.tblArchiveDescriptionDataTable GetData() {
+        public virtual LinksDataSet.tblSurveyTimeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            LinksDataSet.tblArchiveDescriptionDataTable dataTable = new LinksDataSet.tblArchiveDescriptionDataTable();
+            LinksDataSet.tblSurveyTimeDataTable dataTable = new LinksDataSet.tblSurveyTimeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13113,7 +12328,7 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(LinksDataSet.tblArchiveDescriptionDataTable dataTable) {
+        public virtual int Update(LinksDataSet.tblSurveyTimeDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -13121,7 +12336,7 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(LinksDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "tblArchiveDescription");
+            return this.Adapter.Update(dataSet, "tblSurveyTime");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13142,51 +12357,28 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(short Original_ID, short Original_AlgorithmVersion, global::System.Nullable<global::System.DateTime> Original_Date) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((short)(Original_ID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_AlgorithmVersion));
-            if ((Original_Date.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_Date.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(short AlgorithmVersion, string Description, global::System.Nullable<global::System.DateTime> Date) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((short)(AlgorithmVersion));
-            if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
+        public virtual int Insert(int SubjectTag, byte SurveySource, short SurveyYear, global::System.Nullable<global::System.DateTime> SurveyDate, global::System.Nullable<double> AgeSelfReportYears, global::System.Nullable<double> AgeCalculateYears) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(SurveySource));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((short)(SurveyYear));
+            if ((SurveyDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(SurveyDate.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Description));
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((Date.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(Date.Value));
+            if ((AgeSelfReportYears.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(AgeSelfReportYears.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((AgeCalculateYears.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(AgeCalculateYears.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -13202,59 +12394,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(short AlgorithmVersion, string Description, global::System.Nullable<global::System.DateTime> Date, short Original_ID, short Original_AlgorithmVersion, global::System.Nullable<global::System.DateTime> Original_Date, short ID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((short)(AlgorithmVersion));
-            if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Description));
-            }
-            if ((Date.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(Date.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((short)(Original_AlgorithmVersion));
-            if ((Original_Date.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_Date.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((short)(ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(short AlgorithmVersion, string Description, global::System.Nullable<global::System.DateTime> Date, short Original_ID, short Original_AlgorithmVersion, global::System.Nullable<global::System.DateTime> Original_Date) {
-            return this.Update(AlgorithmVersion, Description, Date, Original_ID, Original_AlgorithmVersion, Original_Date, Original_ID);
         }
     }
     
@@ -13657,8 +12796,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         
         private tblItemTableAdapter _tblItemTableAdapter;
         
-        private tblSurveyTimeTableAdapter _tblSurveyTimeTableAdapter;
-        
         private tblMzManualTableAdapter _tblMzManualTableAdapter;
         
         private tblVariableTableAdapter _tblVariableTableAdapter;
@@ -13677,7 +12814,7 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         
         private tblSubjectDetailsTableAdapter _tblSubjectDetailsTableAdapter;
         
-        private tblArchiveDescriptionTableAdapter _tblArchiveDescriptionTableAdapter;
+        private tblSurveyTimeTableAdapter _tblSurveyTimeTableAdapter;
         
         private tblRelatedValuesArchiveTableAdapter _tblRelatedValuesArchiveTableAdapter;
         
@@ -13707,20 +12844,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
             }
             set {
                 this._tblItemTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblSurveyTimeTableAdapter tblSurveyTimeTableAdapter {
-            get {
-                return this._tblSurveyTimeTableAdapter;
-            }
-            set {
-                this._tblSurveyTimeTableAdapter = value;
             }
         }
         
@@ -13855,12 +12978,12 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public tblArchiveDescriptionTableAdapter tblArchiveDescriptionTableAdapter {
+        public tblSurveyTimeTableAdapter tblSurveyTimeTableAdapter {
             get {
-                return this._tblArchiveDescriptionTableAdapter;
+                return this._tblSurveyTimeTableAdapter;
             }
             set {
-                this._tblArchiveDescriptionTableAdapter = value;
+                this._tblSurveyTimeTableAdapter = value;
             }
         }
         
@@ -13901,10 +13024,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                             && (this._tblItemTableAdapter.Connection != null))) {
                     return this._tblItemTableAdapter.Connection;
                 }
-                if (((this._tblSurveyTimeTableAdapter != null) 
-                            && (this._tblSurveyTimeTableAdapter.Connection != null))) {
-                    return this._tblSurveyTimeTableAdapter.Connection;
-                }
                 if (((this._tblMzManualTableAdapter != null) 
                             && (this._tblMzManualTableAdapter.Connection != null))) {
                     return this._tblMzManualTableAdapter.Connection;
@@ -13941,9 +13060,9 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                             && (this._tblSubjectDetailsTableAdapter.Connection != null))) {
                     return this._tblSubjectDetailsTableAdapter.Connection;
                 }
-                if (((this._tblArchiveDescriptionTableAdapter != null) 
-                            && (this._tblArchiveDescriptionTableAdapter.Connection != null))) {
-                    return this._tblArchiveDescriptionTableAdapter.Connection;
+                if (((this._tblSurveyTimeTableAdapter != null) 
+                            && (this._tblSurveyTimeTableAdapter.Connection != null))) {
+                    return this._tblSurveyTimeTableAdapter.Connection;
                 }
                 if (((this._tblRelatedValuesArchiveTableAdapter != null) 
                             && (this._tblRelatedValuesArchiveTableAdapter.Connection != null))) {
@@ -13963,9 +13082,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
             get {
                 int count = 0;
                 if ((this._tblItemTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._tblSurveyTimeTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tblMzManualTableAdapter != null)) {
@@ -13995,7 +13111,7 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 if ((this._tblSubjectDetailsTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._tblArchiveDescriptionTableAdapter != null)) {
+                if ((this._tblSurveyTimeTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tblRelatedValuesArchiveTableAdapter != null)) {
@@ -14036,15 +13152,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblRelatedStructureTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tblSurveyTimeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblSurveyTimeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -14111,12 +13218,12 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblArchiveDescriptionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblArchiveDescription.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tblSurveyTimeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tblArchiveDescriptionTableAdapter.Update(updatedRows));
+                    result = (result + this._tblSurveyTimeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -14160,14 +13267,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblRelatedStructureTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tblSurveyTimeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblSurveyTimeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -14227,11 +13326,11 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblArchiveDescriptionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblArchiveDescription.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tblSurveyTimeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tblArchiveDescriptionTableAdapter.Update(addedRows));
+                    result = (result + this._tblSurveyTimeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -14261,11 +13360,11 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblArchiveDescriptionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblArchiveDescription.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tblSurveyTimeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tblArchiveDescriptionTableAdapter.Update(deletedRows));
+                    result = (result + this._tblSurveyTimeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -14322,14 +13421,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblMzManualTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tblSurveyTimeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblSurveyTimeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -14401,11 +13492,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tblSurveyTimeTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblSurveyTimeTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._tblMzManualTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblMzManualTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -14451,8 +13537,8 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tblArchiveDescriptionTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblArchiveDescriptionTableAdapter.Connection) == false))) {
+            if (((this._tblSurveyTimeTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblSurveyTimeTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -14500,15 +13586,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     if (this._tblItemTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblItemTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblItemTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tblSurveyTimeTableAdapter != null)) {
-                    revertConnections.Add(this._tblSurveyTimeTableAdapter, this._tblSurveyTimeTableAdapter.Connection);
-                    this._tblSurveyTimeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblSurveyTimeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblSurveyTimeTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblMzManualTableAdapter != null)) {
@@ -14592,13 +13669,13 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblSubjectDetailsTableAdapter.Adapter);
                     }
                 }
-                if ((this._tblArchiveDescriptionTableAdapter != null)) {
-                    revertConnections.Add(this._tblArchiveDescriptionTableAdapter, this._tblArchiveDescriptionTableAdapter.Connection);
-                    this._tblArchiveDescriptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblArchiveDescriptionTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblArchiveDescriptionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblArchiveDescriptionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblArchiveDescriptionTableAdapter.Adapter);
+                if ((this._tblSurveyTimeTableAdapter != null)) {
+                    revertConnections.Add(this._tblSurveyTimeTableAdapter, this._tblSurveyTimeTableAdapter.Connection);
+                    this._tblSurveyTimeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblSurveyTimeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblSurveyTimeTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblRelatedValuesArchiveTableAdapter != null)) {
@@ -14672,10 +13749,6 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     this._tblItemTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblItemTableAdapter]));
                     this._tblItemTableAdapter.Transaction = null;
                 }
-                if ((this._tblSurveyTimeTableAdapter != null)) {
-                    this._tblSurveyTimeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSurveyTimeTableAdapter]));
-                    this._tblSurveyTimeTableAdapter.Transaction = null;
-                }
                 if ((this._tblMzManualTableAdapter != null)) {
                     this._tblMzManualTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblMzManualTableAdapter]));
                     this._tblMzManualTableAdapter.Transaction = null;
@@ -14712,9 +13785,9 @@ SELECT ID, AlgorithmVersion, Description, Date FROM Archive.tblArchiveDescriptio
                     this._tblSubjectDetailsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSubjectDetailsTableAdapter]));
                     this._tblSubjectDetailsTableAdapter.Transaction = null;
                 }
-                if ((this._tblArchiveDescriptionTableAdapter != null)) {
-                    this._tblArchiveDescriptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblArchiveDescriptionTableAdapter]));
-                    this._tblArchiveDescriptionTableAdapter.Transaction = null;
+                if ((this._tblSurveyTimeTableAdapter != null)) {
+                    this._tblSurveyTimeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSurveyTimeTableAdapter]));
+                    this._tblSurveyTimeTableAdapter.Transaction = null;
                 }
                 if ((this._tblRelatedValuesArchiveTableAdapter != null)) {
                     this._tblRelatedValuesArchiveTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblRelatedValuesArchiveTableAdapter]));
