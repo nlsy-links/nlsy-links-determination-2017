@@ -1,60 +1,20 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:my="clr-namespace:Nls.Base97;assembly=Base97" xmlns:my1="clr-namespace:LinksGui" xmlns:Base97="clr-namespace:Nls.Base97;assembly=Base97" x:Class="LinksGui.Gui97"
+        xmlns:my="clr-namespace:Nls.Base97;assembly=Base97" xmlns:my1="clr-namespace:LinksGui" xmlns:Base97="clr-namespace:Nls.Base97;assembly=Base97" xmlns:Base79="clr-namespace:Nls.Base79;assembly=Base79" x:Class="LinksGui.Gui97"
         Title="Determine 97" Height="546" Width="1157" Loaded="Window_Loaded">
     <Window.Resources>
-        <my:ImportDataSet x:Key="importDataSet" />
-        <CollectionViewSource x:Key="tblGen1LinksViewSource" Source="{Binding tblGen1Links, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2LinksViewSource" Source="{Binding tblGen2Links, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2ImplicitFatherViewSource" Source="{Binding tblGen2ImplicitFather, Source={StaticResource importDataSet}}" />
-        <my:LinksDataSet x:Key="linksDataSet" />
-        <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding tblItem, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblVariableViewSource" Source="{Binding tblVariable, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblSubjectViewSource" Source="{Binding tblSubject, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblRelatedStructureViewSource" Source="{Binding tblRelatedStructure, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblResponseViewSource" Source="{Binding tblResponse, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblSurveyTimeViewSource" Source="{Binding tblSurveyTime, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblMarkerGen1ViewSource" Source="{Binding tblMarkerGen1, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblMarkerGen2ViewSource" Source="{Binding tblMarkerGen2, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblRelatedValuesViewSource" Source="{Binding tblRelatedValues, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2LinksFromGen1ViewSource" Source="{Binding tblGen2LinksFromGen1, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblSubjectDetailsViewSource" Source="{Binding tblSubjectDetails, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblMzManualViewSource" Source="{Binding tblMzManual, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblLinks2004Gen2ViewSource" Source="{Binding tblLinks2004Gen2, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2FatherFromGen1ViewSource" Source="{Binding tblGen2FatherFromGen1, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblBabyDaddyViewSource" Source="{Binding tblBabyDaddy, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblFatherOfGen2ViewSource" Source="{Binding tblFatherOfGen2, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblLinks2004Gen1ViewSource" Source="{Binding tblLinks2004Gen1, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen1MzDzDistinction2010ViewSource" Source="{Binding tblGen1MzDzDistinction2010, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblRosterGen1ViewSource" Source="{Binding tblRosterGen1, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblRosterGen1ViewSource1" Source="{Binding tblRosterGen1, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblLURosterGen1AssignmentViewSource" Source="{Binding tblLURosterGen1Assignment, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblLURosterGen1AssignmentViewSource1" Source="{Binding tblLURosterGen1Assignment, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblGen1OutcomesViewSource" Source="{Binding tblGen1Outcomes, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblOutcomesViewSource" Source="{Binding tblOutcomes, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2OutcomesHeightViewSource" Source="{Binding tblGen2OutcomesHeight, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen1ExplicitViewSource" Source="{Binding tblGen1Explicit, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblGen1ImplicitViewSource" Source="{Binding tblGen1Implicit, Source={StaticResource importDataSet}}" />
-        <CollectionViewSource x:Key="tblParentsOfGen1RetroViewSource" Source="{Binding tblParentsOfGen1Retro, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblParentsOfGen1CurrentViewSource" Source="{Binding tblParentsOfGen1Current, Source={StaticResource linksDataSet}}" />
-        <CollectionViewSource x:Key="tblGen2OutcomesWeightViewSource" Source="{Binding tblGen2OutcomesWeight, Source={StaticResource importDataSet}}"/>
-        <CollectionViewSource x:Key="tblGen2OutcomesMathViewSource" Source="{Binding tblGen2OutcomesMath, Source={StaticResource importDataSet}}"/>
-        <CollectionViewSource x:Key="tblGen1GeocodeSanitizedViewSource" Source="{Binding tblGen1GeocodeSanitized, Source={StaticResource importDataSet}}"/>
-        <CollectionViewSource x:Key="tblRosterGen1AssignmentViewSource" Source="{Binding tblRosterGen1Assignment, Source={StaticResource importDataSet}}"/>
-        <CollectionViewSource x:Key="tblOutcomeViewSource" Source="{Binding tblOutcome, Source={StaticResource linksDataSet}}"/>
-        <CollectionViewSource x:Key="tblRosterGen1AssignmentViewSource1" Source="{Binding tblRosterGen1Assignment, Source={StaticResource linksDataSet}}"/>
-        <Base97:LinksDataSet x:Key="links97"/>
-        <CollectionViewSource x:Key="tblItemViewSource1" Source="{Binding tblItem, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblVariableViewSource1" Source="{Binding tblVariable, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblMzManualViewSource1" Source="{Binding tblMzManual, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblSubjectViewSource1" Source="{Binding tblSubject, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblRelatedStructureViewSource1" Source="{Binding tblRelatedStructure, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblResponseViewSource1" Source="{Binding tblResponse, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblRelatedValuesViewSource1" Source="{Binding tblRelatedValues, Source={StaticResource links97}}"/>
-        <CollectionViewSource x:Key="tblOutcomeViewSource1" Source="{Binding tblOutcome, Source={StaticResource links97}}"/>
+        <Base97:ImportDataSet x:Key="importDataSet" />
+        <Base97:LinksDataSet x:Key="linksDataSet" />
+
+
+        <Base79:LinksDataSet x:Key="linksDataSet1"/>
+        <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding tblItem, Source={StaticResource linksDataSet1}}"/>
+        <CollectionViewSource x:Key="tblItemViewSource1" Source="{Binding tblItem, Source={StaticResource linksDataSet}}"/>
+
+
     </Window.Resources>
-    <Grid x:Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblGen2LinksViewSource}">
+    <Grid x:Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblItemViewSource1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -109,13 +69,13 @@
                 <DataGrid />
             </TabItem>
             <TabItem Header="Item" x:Name="tabItem" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource1}}" />
+                <DataGrid ItemsSource="{Binding}" />
             </TabItem>
             <TabItem Header="Variable" x:Name="tabVariable" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="MzManual" x:Name="tabMzManual" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblMzManualViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="LURoster" x:Name="tabLURoster" >
                 <DataGrid />
@@ -123,22 +83,22 @@
         </TabControl>
         <TabControl x:Name="tabControlBottom"  Grid.Row="3" Background="Transparent">
             <TabItem Header="Subject" x:Name="tabSubject"  >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="RStructure" x:Name="tabRelated"  >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedStructureViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="Response" x:Name="tabResponse"  >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblResponseViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="SurveyTime" x:Name="SurveyTime"  >
                 <DataGrid />
             </TabItem>
             <TabItem Header="RValues" x:Name="tabRelatedValues" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource1}}" />
+                <DataGrid />
             </TabItem>
             <TabItem Header="Outcome" x:Name="tabOutcome"  >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblOutcomeViewSource1}}" />
+                <DataGrid />
             </TabItem>
 
         </TabControl>

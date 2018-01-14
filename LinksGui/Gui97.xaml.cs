@@ -88,7 +88,6 @@ namespace LinksGui {
             Console.Beep(3000, 100);
             Console.Beep(300, 100);
             Console.Beep(3000, 100);
-            Nls.Base97.LinksDataSet links97 = ((Nls.Base97.LinksDataSet)(this.FindResource("links97")));
         }
         #region Fill & Update
         private void btnSubject_Click( object sender, RoutedEventArgs e ) {
@@ -293,31 +292,31 @@ namespace LinksGui {
         ///////////////////////////
 
         private void LoadSubject( ) {
-            BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
-            ta.Fill(_dsLinks.tblSubject);
-            CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
-            tblSubjectViewSource.View.MoveCurrentToFirst();
+            //BA.LinksDataSetTableAdapters.tblSubjectTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectTableAdapter();
+            //ta.Fill(_dsLinks.tblSubject);
+            //CollectionViewSource tblSubjectViewSource = ((CollectionViewSource)(this.FindResource("tblSubjectViewSource")));
+            //tblSubjectViewSource.View.MoveCurrentToFirst();
         }
         private void LoadRelatedStructure ( ) {
-            BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
-            ta.Fill(_dsLinks.tblRelatedStructure);
-            CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
-            tblRelatedStructureViewSource.View.MoveCurrentToFirst();
+            //BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedStructureTableAdapter();
+            //ta.Fill(_dsLinks.tblRelatedStructure);
+            //CollectionViewSource tblRelatedStructureViewSource = ((CollectionViewSource)(this.FindResource("tblRelatedStructureViewSource")));
+            //tblRelatedStructureViewSource.View.MoveCurrentToFirst();
         }
         private void LoadResponse ( ) {
-            //BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
-            SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            //_cnn.Open();
-            //SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            adapter.Fill(_dsLinks.tblResponse);
-            //_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
-            //_cnn.Close();
+            ////BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
+            //SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            ////_cnn.Open();
+            ////SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
+            //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //adapter.Fill(_dsLinks.tblResponse);
+            ////_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
+            ////_cnn.Close();
 
-            //_taResponse.Fill(_dsLinks.tblResponse);
-            CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
-            tblResponseViewSource.View.MoveCurrentToFirst();
+            ////_taResponse.Fill(_dsLinks.tblResponse);
+            //CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
+            //tblResponseViewSource.View.MoveCurrentToFirst();
         }
         //private void AcceptResponseChanges ( ) {
         //    _dsLinks.tblResponse.AcceptChanges();
@@ -334,14 +333,14 @@ namespace LinksGui {
         //}
 
         private void LoadRelatedValues( ) {
-            BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
-            ta.Fill(_dsLinks.tblRelatedValues);
-            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
-            vs.View.MoveCurrentToFirst();
+            //BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
+            //ta.Fill(_dsLinks.tblRelatedValues);
+            //CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
+            //vs.View.MoveCurrentToFirst();
         }
         private void LoadOutcomes( ) {
-            BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
-            ta.Fill(_dsLinks.tblOutcome);
+            //BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
+            //ta.Fill(_dsLinks.tblOutcome);
         }
         //private void LoadRelatedValuesNextVersionNumber ( ) {
         //    Int16 currentMaxVersion = Int16.MinValue;
