@@ -46,6 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Import97.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Import97.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Links97.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Links97.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -55,6 +65,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Import97.xsc">
+      <DependentUpon>Import97.xsd</DependentUpon>
+    </None>
+    <None Include="Import97.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Import97.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Import97.xss">
+      <DependentUpon>Import97.xsd</DependentUpon>
+    </None>
+    <None Include="Links97.xsc">
+      <DependentUpon>Links97.xsd</DependentUpon>
+    </None>
+    <None Include="Links97.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Links97.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Links97.xss">
+      <DependentUpon>Links97.xsd</DependentUpon>
+    </None>
     <None Include="NlsSigningKey.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
