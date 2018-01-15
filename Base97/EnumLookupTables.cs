@@ -4,7 +4,7 @@ namespace Nls.Base97 {
     //}
     public enum Item : short {
         subject_id = 1,
-        // extended_family_id                                        =     2, // ?Where does this exist?
+        extended_family_id = 2,
         gender = 10,
         dob_month = 11,
         dob_year = 12,
