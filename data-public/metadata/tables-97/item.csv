@@ -4,6 +4,7 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
   10,gender,1,1,2,TRUE,
   11,dob_month,1,1,12,TRUE,
   12,dob_year,1980,1980,1984,TRUE,
+  13,sample_cohort,0,0,0,FALSE,
   20,InterviewDateDay,-7,1,31,TRUE,
   21,InterviewDateMonth,-7,1,12,TRUE,
   22,InterviewDateYear,-7,86,2016,TRUE,

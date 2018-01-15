@@ -21,6 +21,7 @@ namespace Nls.Base97 {
         Roster = 1,
         LinksExplicit = 2,
         LinksImplicit = 3,
+        SurveyTime = 4,
     }
     //public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
     //    No = 0,
