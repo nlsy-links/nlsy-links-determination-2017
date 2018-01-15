@@ -2,9 +2,16 @@
 namespace Nls.Base97 {
     //public enum MarkerType : byte {
     //}
-    //public enum Item : short {
-    //    NotTranslated = 9999,
-    //}
+    public enum Item : short {
+        subject_id = 1,
+        // extended_family_id                                        =     2, // ?Where does this exist?
+        gender = 10,
+        dob_month = 11,
+        dob_year = 12,
+        roster_crosswalk = 101,
+        hh_member_id = 102,
+        NotTranslated = 9999,
+    }
     public enum ExtractSource : byte {
         Roster = 1,
         LinksExplicit = 2,

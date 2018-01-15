@@ -70,6 +70,7 @@
     <Compile Include="RelatedStructure.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="SurveyTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
