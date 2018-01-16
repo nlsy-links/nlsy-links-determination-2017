@@ -408,7 +408,7 @@ ds_table &lt;- database_inventory(study)
 ds_table
 </code></pre>
 
-<pre><code>## # A tibble: 28 x 6
+<pre><code>## # A tibble: 23 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * &lt;chr&gt;       &lt;chr&gt;                       &lt;int&gt;        &lt;int&gt;  &lt;int&gt; &lt;int&gt;
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -421,7 +421,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 18 more rows
+## # ... with 13 more rows
 </code></pre>
 
 <pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
@@ -1180,7 +1180,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:02 -0600 in 2 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:24 -0600 in 4 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1230,7 +1230,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-16 14:02:02 CST&quot;
+<pre><code>## [1] &quot;2018-01-16 14:24:47 CST&quot;
 </code></pre>
 
 </body>

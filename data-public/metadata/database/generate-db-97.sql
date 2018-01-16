@@ -359,6 +359,7 @@ CREATE TABLE [Extract].[tblLinksExplicit](
 	[R0825200] [int] NULL,
 	[R0825300] [int] NULL,
 	[R0825400] [int] NULL,
+	[R1193000] [int] NULL,
  CONSTRAINT [PK_tblLinksExplicit] PRIMARY KEY CLUSTERED 
 (
 	[R0000100] ASC
@@ -376,6 +377,7 @@ CREATE TABLE [Extract].[tblLinksImplicit](
 	[R0557300] [int] NULL,
 	[R0563400] [int] NULL,
 	[R0563500] [int] NULL,
+	[R1193000] [int] NULL,
 	[R1193300] [int] NULL,
 	[R1193500] [int] NULL,
 	[R1205400] [int] NULL,
@@ -739,6 +741,7 @@ CREATE TABLE [Extract].[tblRoster](
 	[R1192900] [int] NULL,
 	[R1192901] [int] NULL,
 	[R1192902] [int] NULL,
+	[R1193000] [int] NULL,
 	[R1193300] [int] NULL,
 	[R1315800] [int] NULL,
 	[R1315900] [int] NULL,
@@ -851,6 +854,9 @@ CREATE TABLE [Extract].[tblSurveyTime](
 	[R0000200] [int] NULL,
 	[R0000201] [int] NULL,
 	[R0000202] [int] NULL,
+	[R0536300] [int] NULL,
+	[R0536401] [int] NULL,
+	[R0536402] [int] NULL,
 	[R0541100] [int] NULL,
 	[R0541101] [int] NULL,
 	[R0541102] [int] NULL,
@@ -860,6 +866,8 @@ CREATE TABLE [Extract].[tblSurveyTime](
 	[R1209400] [int] NULL,
 	[R1209401] [int] NULL,
 	[R1209402] [int] NULL,
+	[R1235800] [int] NULL,
+	[R1482600] [int] NULL,
 	[R1490000] [int] NULL,
 	[R1490001] [int] NULL,
 	[R1490002] [int] NULL,
@@ -1140,7 +1148,7 @@ GO
 CREATE TABLE [Process].[tblSurveyTime](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[SubjectTag] [int] NOT NULL,
-	[SurveySource] [tinyint] NOT NULL,
+	[SurveyTaken] [bit] NOT NULL,
 	[SurveyYear] [smallint] NOT NULL,
 	[SurveyDate] [date] NULL,
 	[AgeSelfReportYears] [float] NULL,

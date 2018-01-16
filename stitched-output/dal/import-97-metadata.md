@@ -222,7 +222,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 28 x 6
+## # A tibble: 23 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -235,7 +235,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 18 more rows
+## # ... with 13 more rows
 ```
 
 ```r
@@ -1030,7 +1030,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:02 -0600 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:24 -0600 in 4 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1085,6 +1085,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 14:02:02 CST"
+## [1] "2018-01-16 14:24:47 CST"
 ```
 
