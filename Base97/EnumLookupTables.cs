@@ -8,6 +8,7 @@ namespace Nls.Base97 {
         gender = 10,
         dob_month = 11,
         dob_year = 12,
+        // sample_cohort                                             =    13, 
         InterviewDateDay = 20,
         InterviewDateMonth = 21,
         InterviewDateYear = 22,
