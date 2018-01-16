@@ -15,7 +15,7 @@ namespace Nls.Base97 {
         AgeAtInterviewDateMonths = 23,
         AgeAtInterviewDateYears = 24,
         roster_crosswalk = 101,
-        hh_member_id = 102, 
+        hh_member_id = 102,
     }
     public enum ExtractSource : byte {
         Demographics = 1,

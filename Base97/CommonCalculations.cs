@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace Nls.Base97 {
-	public static class CommonCalculations {
-		public static Int32 PermutationOf2 ( Int32 topValue ) {
-			if ( topValue <= 0 ) throw new ArgumentOutOfRangeException("topValue", topValue, "The value must be larger than zero.");
-			return topValue * (topValue - 1);
-		}
+    public static class CommonCalculations {
+        public static Int32 PermutationOf2( Int32 topValue ) {
+            if( topValue <= 0 ) throw new ArgumentOutOfRangeException("topValue", topValue, "The value must be larger than zero.");
+            return topValue * (topValue - 1);
+        }
 
 
         //public static bool Gen2SubjectsHaveCommonMother ( Int32 subject1ID, Int32 subject2ID ) {
@@ -29,5 +29,5 @@ namespace Nls.Base97 {
             if( distinctCount != items.Length ) throw new ArgumentException("The items should be unique, and not contain duplicates.", "items");
             return itemIDsString;
         }
-	}
+    }
 }

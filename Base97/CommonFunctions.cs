@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Nls.Base97 {
-	public static class CommonFunctions {
+    public static class CommonFunctions {
 
         //private readonly static MarkerEvidence[] _green = { MarkerEvidence.StronglySupports, MarkerEvidence.Supports };
         //private readonly static MarkerEvidence[] _yellow = { MarkerEvidence.Consistent, MarkerEvidence.Ambiguous, MarkerEvidence.Irrelevant, MarkerEvidence.Missing };
@@ -69,13 +69,13 @@ namespace Nls.Base97 {
         //    }
         //}
 
-		public static Int16[] CreateExtendedFamilyIDs ( LinksDataSet dsLinks ) {
-			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
-			if ( dsLinks.tblSubject.Count <= 0 ) throw new ArgumentException("The tblSubject is empty.", "dsLinks");
-			IEnumerable<Int16> ids = (from dr in dsLinks.tblSubject
-											  select dr.ExtendedID).Distinct();
-			return ids.ToArray();
-		}
-	
-	}
+        public static Int16[] CreateExtendedFamilyIDs( LinksDataSet dsLinks ) {
+            if( dsLinks == null ) throw new ArgumentNullException("dsLinks");
+            if( dsLinks.tblSubject.Count <= 0 ) throw new ArgumentException("The tblSubject is empty.", "dsLinks");
+            IEnumerable<Int16> ids = (from dr in dsLinks.tblSubject
+                                      select dr.ExtendedID).Distinct();
+            return ids.ToArray();
+        }
+
+    }
 }

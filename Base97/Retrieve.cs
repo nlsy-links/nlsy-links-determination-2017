@@ -5,156 +5,156 @@ using System.Linq;
 using System.Text;
 
 namespace Nls.Base97 {
-	public static class Retrieve {
-		#region Response
-		internal static Int32 Response ( Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length == 1, "Exactly one row should be returned.");
-			return drsRaw[0].Value;
-		}
-		internal static Int32 Response ( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName,
-				surveyYear, dt.SurveyYearColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
-			return drsRaw[0].Value;
-		}
-		internal static Int32 Response ( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName,
-				surveyYear, dt.SurveyYearColumn.ColumnName,
-				loopIndex, dt.LoopIndexColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
-			return drsRaw[0].Value;
-		}
-		#endregion
-		#region ResponseNullPossible
-		internal static Int32? ResponseNullPossible ( Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
-			if ( drsRaw.Length == 0 )
-				return null;
-			else
-				return drsRaw[0].Value;
-		}
-		internal static Int32? ResponseNullPossible ( Int16 surveyYear, Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName,
-				surveyYear, dt.SurveyYearColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
-			if ( drsRaw.Length == 0 )
-				return null;
-			else
-				return drsRaw[0].Value;
-		}
-		internal static Int32? ResponseNullPossible ( Int16 surveyYear, Item itemID, Int32 subjectTag, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName,
-				surveyYear, dt.SurveyYearColumn.ColumnName,
-				loopIndex, dt.LoopIndexColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
-			if ( drsRaw.Length == 0 )
-				return null;
-			else
-				return drsRaw[0].Value;
-		}
-		internal static Int32? ResponseNullPossible ( Item itemID, Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
-			if ( drsRaw.Length == 0 )
-				return null;
-			else
-				return drsRaw[0].Value;
-		}
-		internal static Int32? ResponseNullPossible ( Int16 surveyYear, Item itemID,  Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
-			if ( dt == null ) throw new ArgumentNullException("dt");
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
-				subjectTag, dt.SubjectTagColumn.ColumnName,
-				(Int16)itemID, dt.ItemColumn.ColumnName,
-				surveyYear, dt.SurveyYearColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
-			Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
-			if ( drsRaw.Length == 0 )
-				return null;
-			else
-				return drsRaw[0].Value;
-		}
-		#endregion
-		#region ResponseSubset
-		internal static void VerifyResponsesExistForItem ( Item[] items, LinksDataSet dsLinks ) {
-			Int32 distinctCount = items.Distinct().Count();
-			if ( distinctCount != items.Length ) throw new ArgumentException("Not all items are unique.");
+    public static class Retrieve {
+        #region Response
+        internal static Int32 Response( Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length == 1, "Exactly one row should be returned.");
+            return drsRaw[0].Value;
+        }
+        internal static Int32 Response( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName,
+                surveyYear, dt.SurveyYearColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
+            return drsRaw[0].Value;
+        }
+        internal static Int32 Response( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName,
+                surveyYear, dt.SurveyYearColumn.ColumnName,
+                loopIndex, dt.LoopIndexColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
+            return drsRaw[0].Value;
+        }
+        #endregion
+        #region ResponseNullPossible
+        internal static Int32? ResponseNullPossible( Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
+            if( drsRaw.Length == 0 )
+                return null;
+            else
+                return drsRaw[0].Value;
+        }
+        internal static Int32? ResponseNullPossible( Int16 surveyYear, Item itemID, Int32 subjectTag, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName,
+                surveyYear, dt.SurveyYearColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
+            if( drsRaw.Length == 0 )
+                return null;
+            else
+                return drsRaw[0].Value;
+        }
+        internal static Int32? ResponseNullPossible( Int16 surveyYear, Item itemID, Int32 subjectTag, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName,
+                surveyYear, dt.SurveyYearColumn.ColumnName,
+                loopIndex, dt.LoopIndexColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
+            if( drsRaw.Length == 0 )
+                return null;
+            else
+                return drsRaw[0].Value;
+        }
+        internal static Int32? ResponseNullPossible( Item itemID, Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
+            if( drsRaw.Length == 0 )
+                return null;
+            else
+                return drsRaw[0].Value;
+        }
+        internal static Int32? ResponseNullPossible( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, LinksDataSet.tblResponseDataTable dt ) {
+            if( dt == null ) throw new ArgumentNullException("dt");
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
+                subjectTag, dt.SubjectTagColumn.ColumnName,
+                (Int16)itemID, dt.ItemColumn.ColumnName,
+                surveyYear, dt.SurveyYearColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
+            Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
+            if( drsRaw.Length == 0 )
+                return null;
+            else
+                return drsRaw[0].Value;
+        }
+        #endregion
+        #region ResponseSubset
+        internal static void VerifyResponsesExistForItem( Item[] items, LinksDataSet dsLinks ) {
+            Int32 distinctCount = items.Distinct().Count();
+            if( distinctCount != items.Length ) throw new ArgumentException("Not all items are unique.");
 
-			foreach ( Item item in items ) {
-				string select = string.Format("{0}={1}", Convert.ToInt16(item), dsLinks.tblResponse.ItemColumn.ColumnName);
-				LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dsLinks.tblResponse.Select(select);
-				if ( !(drs.Length >= 1) ) throw new ArgumentOutOfRangeException("items", item, "The " + item.ToString() + " was not found in the local copy of dtResponse.");
-			}
-		}
-		internal static LinksDataSet.tblResponseDataTable SubjectsRelevantResponseRows ( Int32 subjectTag, string itemIDsString, Int32 minRowCount, LinksDataSet.tblResponseDataTable dtResponse ) {
-			string select = string.Format("{0}={1} AND {2} in ({3})",
-				subjectTag, dtResponse.SubjectTagColumn.ColumnName,
-				dtResponse.ItemColumn.ColumnName, itemIDsString);
-			LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
-			Trace.Assert(drs.Length >= minRowCount, "There should be at least " + minRowCount + " row(s) returned.");
+            foreach( Item item in items ) {
+                string select = string.Format("{0}={1}", Convert.ToInt16(item), dsLinks.tblResponse.ItemColumn.ColumnName);
+                LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dsLinks.tblResponse.Select(select);
+                if( !(drs.Length >= 1) ) throw new ArgumentOutOfRangeException("items", item, "The " + item.ToString() + " was not found in the local copy of dtResponse.");
+            }
+        }
+        internal static LinksDataSet.tblResponseDataTable SubjectsRelevantResponseRows( Int32 subjectTag, string itemIDsString, Int32 minRowCount, LinksDataSet.tblResponseDataTable dtResponse ) {
+            string select = string.Format("{0}={1} AND {2} in ({3})",
+                subjectTag, dtResponse.SubjectTagColumn.ColumnName,
+                dtResponse.ItemColumn.ColumnName, itemIDsString);
+            LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
+            Trace.Assert(drs.Length >= minRowCount, "There should be at least " + minRowCount + " row(s) returned.");
 
-			LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
-			foreach ( LinksDataSet.tblResponseRow dr in drs ) {
-				dt.ImportRow(dr);
-			}
-			return dt;
-		}
-		internal static LinksDataSet.tblResponseDataTable ExtendedFamilyRelevantResponseRows ( Int32 extendedFamilyID, string itemIDsString, Int32 minRowCount, LinksDataSet.tblResponseDataTable dtResponse ) {
-			string select = string.Format("{0}={1} AND {2} in ({3})",
-				extendedFamilyID, dtResponse.ExtendedIDColumn.ColumnName,
-				dtResponse.ItemColumn.ColumnName, itemIDsString);
-			LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
+            LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
+            foreach( LinksDataSet.tblResponseRow dr in drs ) {
+                dt.ImportRow(dr);
+            }
+            return dt;
+        }
+        internal static LinksDataSet.tblResponseDataTable ExtendedFamilyRelevantResponseRows( Int32 extendedFamilyID, string itemIDsString, Int32 minRowCount, LinksDataSet.tblResponseDataTable dtResponse ) {
+            string select = string.Format("{0}={1} AND {2} in ({3})",
+                extendedFamilyID, dtResponse.ExtendedIDColumn.ColumnName,
+                dtResponse.ItemColumn.ColumnName, itemIDsString);
+            LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
 
-			Trace.Assert(drs.Length >= 0, "There should be at least " + minRowCount + "  row(s) returned.");
+            Trace.Assert(drs.Length >= 0, "There should be at least " + minRowCount + "  row(s) returned.");
 
-			LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
-			foreach ( LinksDataSet.tblResponseRow dr in drs ) {
-				dt.ImportRow(dr);
-			}
-			return dt;
-		}
-		#endregion
-		#region Other
-		internal static LinksDataSet.tblSubjectRow[] SubjectsInExtendFamily ( Int16 extendedID, LinksDataSet.tblSubjectDataTable dtSubject ) {
-			string select = string.Format("{0}={1}", extendedID, dtSubject.ExtendedIDColumn.ColumnName);
-			LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])dtSubject.Select(select);
-			Trace.Assert(drs.Length > 0, "At least one member of the extended family should be returned.");
-			return drs;
-		}
-		internal static LinksDataSet.tblRelatedStructureRow[] RelatedStructureInExtendedFamily ( Int16 extendedID, LinksDataSet.tblRelatedStructureDataTable dtStructure ) {
-			string select = string.Format("{0}={1}",
-				extendedID, dtStructure.ExtendedIDColumn.ColumnName);
-			return (LinksDataSet.tblRelatedStructureRow[])dtStructure.Select(select);
-		}
+            LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
+            foreach( LinksDataSet.tblResponseRow dr in drs ) {
+                dt.ImportRow(dr);
+            }
+            return dt;
+        }
+        #endregion
+        #region Other
+        internal static LinksDataSet.tblSubjectRow[] SubjectsInExtendFamily( Int16 extendedID, LinksDataSet.tblSubjectDataTable dtSubject ) {
+            string select = string.Format("{0}={1}", extendedID, dtSubject.ExtendedIDColumn.ColumnName);
+            LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])dtSubject.Select(select);
+            Trace.Assert(drs.Length > 0, "At least one member of the extended family should be returned.");
+            return drs;
+        }
+        internal static LinksDataSet.tblRelatedStructureRow[] RelatedStructureInExtendedFamily( Int16 extendedID, LinksDataSet.tblRelatedStructureDataTable dtStructure ) {
+            string select = string.Format("{0}={1}",
+                extendedID, dtStructure.ExtendedIDColumn.ColumnName);
+            return (LinksDataSet.tblRelatedStructureRow[])dtStructure.Select(select);
+        }
 
         //internal static EnumResponses.Gen1Roster Gen1Roster1979 ( LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dt ) {//LinksDataSet.tblSubjectRow drSubject1, LinksDataSet.tblSubjectRow drSubject2 ) {
         //    if ( dt == null ) throw new ArgumentNullException("dt");
@@ -223,6 +223,6 @@ namespace Nls.Base97 {
         //            throw new InvalidOperationException();
         //    }
         //}
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace Nls.Base97 {
     namespace EnumResponses {
-        public enum Gender: int {
+        public enum Gender : int {
             InvalidSkip = -3,
             Male = 1,
             Female = 2,
