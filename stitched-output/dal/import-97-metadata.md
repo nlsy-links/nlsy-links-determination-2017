@@ -1068,7 +1068,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:48 -0600 in 3 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 15:21 -0600 in 3 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1116,6 +1116,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 14:48:33 CST"
+## [1] "2018-01-16 15:21:39 CST"
 ```
 

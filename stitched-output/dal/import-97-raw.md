@@ -35,16 +35,16 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 ```r
 # Constant values that won't change.
 study                     <- "97"
-directory_in              <- "data-unshared/raw"
+directory_in              <- "data-unshared/raw/nlsy97"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name_qualified             , ~file_name
-  ,"Extract.tblDemographics"        , "nlsy97/97-demographics.csv"
-  ,"Extract.tblRoster"              , "nlsy97/97-roster.csv"
-  ,"Extract.tblSurveyTime"          , "nlsy97/97-survey-time.csv"
-  ,"Extract.tblLinksExplicit"       , "nlsy97/97-links-explicit.csv"
-  ,"Extract.tblLinksImplicit"       , "nlsy97/97-links-implicit.csv"
+  ~table_name_qualified             , ~file_name_base
+  ,"Extract.tblDemographics"        , "97-demographics"
+  ,"Extract.tblRoster"              , "97-roster"
+  ,"Extract.tblSurveyTime"          , "97-survey-time"
+  ,"Extract.tblLinksExplicit"       , "97-links-explicit"
+  ,"Extract.tblLinksImplicit"       , "97-links-implicit"
 )
 
 col_types_default <- readr::cols(
@@ -52,7 +52,7 @@ col_types_default <- readr::cols(
 )
 
 checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.missing=F, unique=T)
-checkmate::assert_character(ds_extract$file_name            , min.chars=10, any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
 
 
 sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
@@ -71,8 +71,10 @@ start_time <- Sys.time()
 ds_extract <- ds_extract %>%
   dplyr::mutate(
     table_name      = sub("^Extract\\.(\\w+)$", "\\1", table_name_qualified),
-    path            = file.path(directory_in, file_name),
-    extract_exist   = file.exists(path),
+    path_zip        = file.path(directory_in, paste0(file_name_base, ".zip")),
+    name_csv        = paste0(file_name_base, ".csv"),
+    path_csv        = file.path(directory_in, name_csv),
+    extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
     sql_not_null    = glue::glue(sql_template_not_null),
@@ -84,14 +86,31 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 5 x 9
-##   table_name_qualified     file~ tabl~ path  extr~ sql_~ sql_~ sql_~ sql_~
-##   <chr>                    <chr> <chr> <chr> <lgl> <chr> <chr> <chr> <chr>
-## 1 Extract.tblDemographics  nlsy~ tblD~ data~ T     SELE~ TRUN~ " AL~ "  A~
-## 2 Extract.tblRoster        nlsy~ tblR~ data~ T     SELE~ TRUN~ " AL~ "  A~
-## 3 Extract.tblSurveyTime    nlsy~ tblS~ data~ T     SELE~ TRUN~ " AL~ "  A~
-## 4 Extract.tblLinksExplicit nlsy~ tblL~ data~ T     SELE~ TRUN~ " AL~ "  A~
-## 5 Extract.tblLinksImplicit nlsy~ tblL~ data~ T     SELE~ TRUN~ " AL~ "  A~
+## # A tibble: 5 x 11
+##   table~ file_~ table~ path_~ name~ path~ extr~ sql_~ sql_~ sql_~ sql_pri~
+##   <chr>  <chr>  <chr>  <chr>  <chr> <chr> <lgl> <chr> <chr> <chr> <chr>   
+## 1 Extra~ 97-de~ tblDe~ data-~ 97-d~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+## 2 Extra~ 97-ro~ tblRo~ data-~ 97-r~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+## 3 Extra~ 97-su~ tblSu~ data-~ 97-s~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+## 4 Extra~ 97-li~ tblLi~ data-~ 97-l~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+## 5 Extra~ 97-li~ tblLi~ data-~ 97-l~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+```
+
+```r
+ds_extract %>%
+  dplyr::select(table_name_qualified, path_zip) %>%
+  print(n=20)
+```
+
+```
+## # A tibble: 5 x 2
+##   table_name_qualified     path_zip                                      
+##   <chr>                    <chr>                                         
+## 1 Extract.tblDemographics  data-unshared/raw/nlsy97/97-demographics.zip  
+## 2 Extract.tblRoster        data-unshared/raw/nlsy97/97-roster.zip        
+## 3 Extract.tblSurveyTime    data-unshared/raw/nlsy97/97-survey-time.zip   
+## 4 Extract.tblLinksExplicit data-unshared/raw/nlsy97/97-links-explicit.zip
+## 5 Extract.tblLinksImplicit data-unshared/raw/nlsy97/97-links-implicit.zip
 ```
 
 ```r
@@ -159,9 +178,14 @@ DBI::dbGetInfo(channel_odbc)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
-  message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name_qualified[i]}`."))
+  message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
-  d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
+  # unzip("data-unshared/raw/nlsy97/97-demographics.zip", files="97-demographics.csv", exdir="data-unshared/raw/nlsy97")
+  unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+
+  d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
+  # d2 <- readr::read_csv("data-unshared/raw/nlsy97/97-demographics.zip"  )
+
 
   columns_to_drop_specific <- colnames(d) %>%
     intersect(columns_to_drop)
@@ -239,7 +263,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Uploading from `nlsy97/97-demographics.csv` to `Extract.tblDemographics`.
+## Uploading from `data-unshared/raw/nlsy97/97-demographics.zip` to `Extract.tblDemographics`.
 ```
 
 ```
@@ -275,7 +299,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Uploading from `nlsy97/97-roster.csv` to `Extract.tblRoster`.
+## Uploading from `data-unshared/raw/nlsy97/97-roster.zip` to `Extract.tblRoster`.
 ```
 
 ```
@@ -336,7 +360,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Uploading from `nlsy97/97-survey-time.csv` to `Extract.tblSurveyTime`.
+## Uploading from `data-unshared/raw/nlsy97/97-survey-time.zip` to `Extract.tblSurveyTime`.
 ```
 
 ```
@@ -394,7 +418,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Uploading from `nlsy97/97-links-explicit.csv` to `Extract.tblLinksExplicit`.
+## Uploading from `data-unshared/raw/nlsy97/97-links-explicit.zip` to `Extract.tblLinksExplicit`.
 ```
 
 ```
@@ -436,7 +460,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Uploading from `nlsy97/97-links-implicit.csv` to `Extract.tblLinksImplicit`.
+## Uploading from `data-unshared/raw/nlsy97/97-links-implicit.zip` to `Extract.tblLinksImplicit`.
 ```
 
 ```
@@ -488,7 +512,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-16, 14:48 -0600 in 26 seconds.
+## File completed by `Will` at 2018-01-16, 15:22 -0600 in 26 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -536,6 +560,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 14:48:59 CST"
+## [1] "2018-01-16 15:22:05 CST"
 ```
 

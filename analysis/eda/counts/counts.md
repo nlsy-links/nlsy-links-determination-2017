@@ -1953,13 +1953,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblVariable             |       127|            9|
 |Process     |tblOutcome              |         0|            5|
-|Process     |tblRelatedStructure     |     5,038|            6|
+|Process     |tblRelatedStructure     |         0|            6|
 |Process     |tblRelatedValues        |         0|           23|
-|Process     |tblResponse             |   815,425|            7|
+|Process     |tblResponse             |         0|            7|
 |Process     |tblRoster               |         0|           13|
-|Process     |tblSubject              |     8,984|            4|
+|Process     |tblSubject              |         0|            4|
 |Process     |tblSubjectDetails       |         0|           15|
-|Process     |tblSurveyTime           |   152,728|            7|
+|Process     |tblSurveyTime           |         0|            7|
 
 ## Items 97
 
@@ -2139,13 +2139,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblVariable             |             72|            32|
 |Process     |tblOutcome              |             72|            16|
-|Process     |tblRelatedStructure     |            528|           256|
+|Process     |tblRelatedStructure     |            272|            48|
 |Process     |tblRelatedValues        |             72|            16|
 |Process     |tblResponse             |             72|            16|
 |Process     |tblRoster               |              0|             0|
-|Process     |tblSubject              |            592|           344|
+|Process     |tblSubject              |            272|            48|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,520|         4,848|
+|Process     |tblSurveyTime           |            272|            48|
 
 
 # Session Information
@@ -2218,7 +2218,6 @@ Packages -----------------------------------------------------------------------
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
- rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
@@ -2236,4 +2235,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 14:53 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-16, 15:22 -0600 in 2 seconds.

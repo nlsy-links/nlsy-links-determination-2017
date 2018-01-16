@@ -23,16 +23,16 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 study                     <- "97"
-directory_in              <- "data-unshared/raw"
+directory_in              <- "data-unshared/raw/nlsy97"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~table_name_qualified             , ~file_name
-  ,"Extract.tblDemographics"        , "nlsy97/97-demographics.csv"
-  ,"Extract.tblRoster"              , "nlsy97/97-roster.csv"
-  ,"Extract.tblSurveyTime"          , "nlsy97/97-survey-time.csv"
-  ,"Extract.tblLinksExplicit"       , "nlsy97/97-links-explicit.csv"
-  ,"Extract.tblLinksImplicit"       , "nlsy97/97-links-implicit.csv"
+  ~table_name_qualified             , ~file_name_base
+  ,"Extract.tblDemographics"        , "97-demographics"
+  ,"Extract.tblRoster"              , "97-roster"
+  ,"Extract.tblSurveyTime"          , "97-survey-time"
+  ,"Extract.tblLinksExplicit"       , "97-links-explicit"
+  ,"Extract.tblLinksImplicit"       , "97-links-implicit"
 )
 
 col_types_default <- readr::cols(
@@ -40,7 +40,7 @@ col_types_default <- readr::cols(
 )
 
 checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.missing=F, unique=T)
-checkmate::assert_character(ds_extract$file_name            , min.chars=10, any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
 
 
 sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
@@ -58,8 +58,10 @@ start_time <- Sys.time()
 ds_extract <- ds_extract %>%
   dplyr::mutate(
     table_name      = sub("^Extract\\.(\\w+)$", "\\1", table_name_qualified),
-    path            = file.path(directory_in, file_name),
-    extract_exist   = file.exists(path),
+    path_zip        = file.path(directory_in, paste0(file_name_base, ".zip")),
+    name_csv        = paste0(file_name_base, ".csv"),
+    path_csv        = file.path(directory_in, name_csv),
+    extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
     sql_not_null    = glue::glue(sql_template_not_null),
@@ -68,6 +70,10 @@ ds_extract <- ds_extract %>%
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
 
 print(ds_extract, n=20)
+
+ds_extract %>%
+  dplyr::select(table_name_qualified, path_zip) %>%
+  print(n=20)
 
 # ---- tweak-data --------------------------------------------------------------
 ds_inventory <- ds_inventory %>%
@@ -89,9 +95,14 @@ DBI::dbGetInfo(channel_odbc)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
-  message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name_qualified[i]}`."))
+  message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
-  d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
+  # unzip("data-unshared/raw/nlsy97/97-demographics.zip", files="97-demographics.csv", exdir="data-unshared/raw/nlsy97")
+  unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+
+  d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
+  # d2 <- readr::read_csv("data-unshared/raw/nlsy97/97-demographics.zip"  )
+
 
   columns_to_drop_specific <- colnames(d) %>%
     intersect(columns_to_drop)
