@@ -21,7 +21,8 @@ namespace Nls.Base97 {
 			Int32 recordsAdded = 0;
 			foreach ( Int16 extendedID in CommonFunctions.CreateExtendedFamilyIDs(_dsLinks) ) {
 				recordsAdded += UnpackExtendedFamily(extendedID);
-			}
+            }
+            Trace.Assert(recordsAdded == Constants.HousematesPathCount, "The count of added housemates should be correct.");
 
 			sw.Stop();
 			string message = string.Format("{0:N0} Related paths were processed.\n\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());

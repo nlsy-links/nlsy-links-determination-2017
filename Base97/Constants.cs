@@ -30,12 +30,12 @@ namespace Nls.Base97 {
         #region  Expected Counts
         public const Int32 Gen1Count = 8984;
 
-        //public const Int32 HousematesPathCount = 5302;//Single entered;
+        public const Int32 HousematesPathCount = 5038;//Single entered;
 
         #endregion
         #region Counts
         //public const Int32 Gen1IDSiblingCountMin = 1;
-        public const Int32 SurveyTimeCount = 0; //Set this to zero for now, so it compiles.  An error will be thrown later.
+        public const Int32 SurveyTimeCount = 152728; //8,984 kids times 17 years
         #endregion
         #region Survey Details
         //public const Int16 Gen1MobSurveyYearPreferred = 1981;

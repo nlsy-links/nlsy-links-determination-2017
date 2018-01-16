@@ -445,7 +445,7 @@ namespace LinksGui {
             string path = @"F:\Projects\Nls\Links2011\StableComparisonData\" + dt.TableName + timeCode + ".xml";
             dt.WriteXml(path, XmlWriteMode.WriteSchema);
         }
-        private void btnCombine1_Click( object sender, RoutedEventArgs e ) {
+        private void btnSetup_Click( object sender, RoutedEventArgs e ) {
             Stopwatch sw = new Stopwatch();
             sw.Start();
             e.Source = _combinedButtonTag;

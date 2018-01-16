@@ -79,7 +79,7 @@
             <Button Name="btnSurveyTime" Grid.Column="3" Click="btnSurveyTime_Click">
                 <TextBlock>Survey<LineBreak/>Time</TextBlock>
             </Button>
-            <Button Content="Button1" Height="19" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="btnCombine1" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine1_Click" />
+            <Button Content="Setup" Height="19" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="btnSetup" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnSetup_Click" />
             <Button Content="Button2" Height="19" HorizontalAlignment="Left" Margin="0,19,0,0" Name="btnCombine2" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine2_Click" />
             <Button Name="btnRosterGen1" Grid.Column="5" Click="btnRosterGen1_Click">
                 <TextBlock>Roster<LineBreak/>Gen1</TextBlock>

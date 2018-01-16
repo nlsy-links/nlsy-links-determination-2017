@@ -318,21 +318,21 @@ namespace LinksGui {
         //    string path = @"F:\Projects\Nls\Links2011\StableComparisonData\" + dt.TableName + timeCode + ".xml";
         //    dt.WriteXml(path, XmlWriteMode.WriteSchema);
         //}
-        private void btnCombine1_Click ( object sender, RoutedEventArgs e ) {
-        //    Stopwatch sw = new Stopwatch();
-        //    sw.Start();
-        //    e.Source = _combinedButtonTag;
+        private void btnSetup_Click( object sender, RoutedEventArgs e ) {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            e.Source = _combinedButtonTag;
 
-        //    btnSubject_Click(sender, e);
-        //    btnRelatedStructure_Click(sender, e);
-        //    btnResponse_Click(sender, e);
-        //    btnSurveyTime_Click(sender, e);
+            btnSubject_Click(sender, e);
+            btnRelatedStructure_Click(sender, e);
+            btnResponse_Click(sender, e);
+            btnSurveyTime_Click(sender, e);
 
-        //    sw.Stop();
-        //    string message = string.Format("Elapsed time for btnCombine1 operations: {0}", sw.Elapsed.ToString());
-        //    btnUpdateAllTables_Click(sender, e);
-        //    Trace.WriteLine(message);
-        //    MessageBox.Show(message);
+            sw.Stop();
+            string message = string.Format("Elapsed time for btnCombine1 operations: {0}", sw.Elapsed.ToString());
+            btnUpdateAllTables_Click(sender, e);
+            Trace.WriteLine(message);
+            MessageBox.Show(message);
         }
         private void btnCombine2_Click ( object sender, RoutedEventArgs e ) {
         //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter taSurveyTimeRecent = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
