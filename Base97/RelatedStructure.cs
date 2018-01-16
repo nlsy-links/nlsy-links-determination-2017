@@ -67,7 +67,6 @@ namespace Nls.Base97 {
 			return 1;
 		}
 
-
 		#endregion
 	}
 }

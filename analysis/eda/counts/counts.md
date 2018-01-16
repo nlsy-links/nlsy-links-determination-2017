@@ -1953,13 +1953,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblVariable             |       127|            9|
 |Process     |tblOutcome              |         0|            5|
-|Process     |tblRelatedStructure     |         0|            6|
+|Process     |tblRelatedStructure     |     5,038|            6|
 |Process     |tblRelatedValues        |         0|           23|
-|Process     |tblResponse             |         0|            7|
+|Process     |tblResponse             |   815,425|            7|
 |Process     |tblRoster               |         0|           13|
-|Process     |tblSubject              |         0|            4|
+|Process     |tblSubject              |     8,984|            4|
 |Process     |tblSubjectDetails       |         0|           15|
-|Process     |tblSurveyTime           |         0|            7|
+|Process     |tblSurveyTime           |   152,728|            7|
 
 ## Items 97
 
@@ -2139,13 +2139,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblVariable             |             72|            32|
 |Process     |tblOutcome              |             72|            16|
-|Process     |tblRelatedStructure     |            272|            48|
+|Process     |tblRelatedStructure     |            528|           256|
 |Process     |tblRelatedValues        |             72|            16|
 |Process     |tblResponse             |             72|            16|
 |Process     |tblRoster               |              0|             0|
-|Process     |tblSubject              |            272|            48|
+|Process     |tblSubject              |            592|           344|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |            272|            48|
+|Process     |tblSurveyTime           |          5,840|         4,960|
 
 
 # Session Information
@@ -2207,6 +2207,7 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
+ OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2236,4 +2237,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 15:35 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-16, 15:55 -0600 in 6 seconds.
