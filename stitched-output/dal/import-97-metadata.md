@@ -22,13 +22,45 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
+```
+
+```
+## Loading required namespace: readr
+```
+
+```r
 requireNamespace("tidyr"                  )
+```
+
+```
+## Loading required namespace: tidyr
+```
+
+```r
 requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
+```
+
+```
+## Loading required namespace: dplyr
+```
+
+```r
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+```
+
+```
+## Loading required namespace: RODBC
+```
+
+```r
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+```
+
+```
+## Loading required namespace: odbc
 ```
 
 ```r
@@ -222,7 +254,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 23 x 6
+## # A tibble: 28 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -235,7 +267,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 13 more rows
+## # ... with 18 more rows
 ```
 
 ```r
@@ -265,22 +297,25 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 13 x 7
-##       ID Label                    MinValue MinNonnega~ MaxVal~ Acti~ Notes
-##    <int> <chr>                       <int>       <int>   <int> <lgl> <chr>
-##  1     1 subject_id                      1           1    9022 T     <NA> 
-##  2     2 extended_family_id              1           1    9022 T     <NA> 
-##  3    10 gender                          1           1       2 T     <NA> 
-##  4    11 DateOfBirthMonth                1           1      12 T     <NA> 
-##  5    12 DateOfBirthYear              1980        1980    1984 T     <NA> 
-##  6    13 sample_cohort                   0           0       1 T     <NA> 
-##  7    20 InterviewDateDay            -   7           1      31 T     <NA> 
-##  8    21 InterviewDateMonth          -   7           1      12 T     <NA> 
-##  9    22 InterviewDateYear           -   7          86    2016 T     <NA> 
-## 10    23 AgeAtInterviewDateMonths    -   5         146     500 T     <NA> 
-## 11    24 AgeAtInterviewDateYears     -   5          12      40 T     <NA> 
-## 12   101 roster_crosswalk            -   5           1      20 T     <NA> 
-## 13   102 hh_member_id                -   4           1      17 T     <NA> 
+## # A tibble: 16 x 7
+##       ID Label                            MinValue MinN~ MaxV~ Acti~ Notes
+##    <int> <chr>                               <int> <int> <int> <lgl> <chr>
+##  1     1 subject_id                              1     1  9022 T     <NA> 
+##  2     2 extended_family_id                      1     1  9022 T     <NA> 
+##  3    10 gender                                  1     1     2 T     <NA> 
+##  4    11 DateOfBirthMonth                        1     1    12 T     <NA> 
+##  5    12 DateOfBirthYear                      1980  1980  1984 T     <NA> 
+##  6    13 sample_cohort                           0     0     1 T     <NA> 
+##  7    20 InterviewDateDay                    -   7     1    31 T     <NA> 
+##  8    21 InterviewDateMonth                  -   7     1    12 T     <NA> 
+##  9    22 InterviewDateYear                   -   7    86  2016 T     <NA> 
+## 10    23 AgeAtInterviewDateMonths            -   5   146   500 T     <NA> 
+## 11    24 AgeAtInterviewDateYears             -   5    12    40 T     <NA> 
+## 12   101 roster_crosswalk                    -   5     1    20 T     <NA> 
+## 13   102 hh_member_id                        -   4     1    17 T     <NA> 
+## 14  1020 InterviewDateDayParent_NOTUSED      -   4     1    31 F     <NA> 
+## 15  1021 InterviewDateMonthParent_NOTUSED    -   4     1     9 F     <NA> 
+## 16  1022 InterviewDateYearParent_NOTUSED     -   4  1997  1998 F     <NA> 
 ## # A tibble: 5 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
@@ -502,6 +537,9 @@ ds_enum %>%
 ##     AgeAtInterviewDateYears                                      =    24, 
 ##     roster_crosswalk                                             =   101, 
 ##     hh_member_id                                                 =   102, 
+##     // InterviewDateDayParent_NOTUSED                            =  1020, 
+##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
+##     // InterviewDateYearParent_NOTUSED                           =  1022, 
 ## }
 ##  
 ## public enum ExtractSource {
@@ -1030,7 +1068,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:24 -0600 in 4 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:48 -0600 in 3 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1059,25 +1097,18 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14      highr_0.6         pillar_1.0.1     
-##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
-##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
-## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
-## [13] tibble_1.4.1      checkmate_1.8.5   pkgconfig_2.0.1  
-## [16] rlang_0.1.6       rstudioapi_0.7    DBI_0.7          
-## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
-## [22] dplyr_0.7.4       stringr_1.2.0     devtools_1.13.4  
-## [25] hms_0.4.0         bit64_0.9-7       rprojroot_1.3-2  
-## [28] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
-## [31] tidyr_0.7.2       readr_1.1.1       purrr_0.2.4      
-## [34] blob_1.1.0        backports_1.1.2   scales_0.5.0.9000
-## [37] RODBC_1.3-15      htmltools_0.3.6   rsconnect_0.8.5  
-## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
-## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
-## [46] markdown_0.8      crayon_1.3.4
+##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
+##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
+##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
+## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
+## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
+## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
+## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
+## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
+## [33] pkgconfig_2.0.1
 ```
 
 ```r
@@ -1085,6 +1116,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 14:24:47 CST"
+## [1] "2018-01-16 14:48:33 CST"
 ```
 

@@ -267,11 +267,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 19       19        1        4     1984       17        1        1
 ## 20       20        1       12     1980       18        1        1
 ## # ... with 8,964 more rows
-## [1] "2018-01-16 14:24:48 CST"
-```
-
-```
-## The table `Extract.tblDemographics` was written over dsn `local-nlsy-links-97` in 0.06 minutes.
+## [1] 1
 ```
 
 ```
@@ -332,11 +328,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R1122000 <int>, R1122100 <int>, R1122200 <int>, R1122300 <int>,
 ## #   R1122400 <int>, R1122500 <int>, R1122600 <int>, R1122700 <int>,
 ## #   R1122800 <int>, R1122900 <int>, R1123000 <int>, ...
-## [1] "2018-01-16 14:25:03 CST"
-```
-
-```
-## The table `Extract.tblRoster` was written over dsn `local-nlsy-links-97` in 0.25 minutes.
+## [1] 1
 ```
 
 ```
@@ -394,11 +386,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   T8123600 <int>, T8154000 <int>, T8154001 <int>, T8154002 <int>,
 ## #   U0001700 <int>, U0001800 <int>, U0036300 <int>, U0036301 <int>,
 ## #   U0036302 <int>
-## [1] "2018-01-16 14:25:21 CST"
-```
-
-```
-## The table `Extract.tblSurveyTime` was written over dsn `local-nlsy-links-97` in 0.128 minutes.
+## [1] 1
 ```
 
 ```
@@ -440,11 +428,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R0824500 <int>, R0824600 <int>, R0824700 <int>, R0824800 <int>,
 ## #   R0824900 <int>, R0825000 <int>, R0825100 <int>, R0825200 <int>,
 ## #   R0825300 <int>, R0825400 <int>, R1193000 <int>
-## [1] "2018-01-16 14:25:30 CST"
-```
-
-```
-## The table `Extract.tblLinksExplicit` was written over dsn `local-nlsy-links-97` in 0.073 minutes.
+## [1] 1
 ```
 
 ```
@@ -488,11 +472,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   Z0491200 <int>, Z0494800 <int>, Z0494900 <int>, Z0495000 <int>,
 ## #   Z0495100 <int>, Z0498500 <int>, Z0498700 <int>, Z0499200 <int>,
 ## #   Z0499400 <int>, Z0499500 <int>
-## [1] "2018-01-16 14:25:36 CST"
-```
-
-```
-## The table `Extract.tblLinksImplicit` was written over dsn `local-nlsy-links-97` in 0.065 minutes.
+## [1] 1
 ```
 
 ```
@@ -508,7 +488,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-16, 14:25 -0600 in 52 seconds.
+## File completed by `Will` at 2018-01-16, 14:48 -0600 in 26 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -537,25 +517,18 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          highr_0.6             pillar_1.0.1         
-##  [4] compiler_3.4.3        plyr_1.8.4            bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
-## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
-## [16] rlang_0.1.6           rstudioapi_0.7        DBI_0.7              
-## [19] cli_1.0.0             yaml_2.1.16           withr_2.1.1.9000     
-## [22] dplyr_0.7.4           stringr_1.2.0         devtools_1.13.4      
-## [25] hms_0.4.0             bit64_0.9-7           rprojroot_1.3-2      
-## [28] OuhscMunge_0.1.8.9005 glue_1.2.0            R6_2.2.2             
-## [31] rmarkdown_1.8         tidyr_0.7.2           readr_1.1.1          
-## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
-## [37] scales_0.5.0.9000     RODBC_1.3-15          htmltools_0.3.6      
-## [40] rsconnect_0.8.5       assertthat_0.2.0      testit_0.7.1         
-## [43] colorspace_1.3-2      utf8_1.1.3            stringi_1.1.6        
-## [46] munsell_0.4.3         markdown_0.8          crayon_1.3.4
+##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
+##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
+##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
+## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
+## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
+## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
+## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
+## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
+## [33] markdown_0.8     pkgconfig_2.0.1
 ```
 
 ```r
@@ -563,6 +536,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 14:25:40 CST"
+## [1] "2018-01-16 14:48:59 CST"
 ```
 

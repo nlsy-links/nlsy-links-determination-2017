@@ -71,11 +71,13 @@ namespace Nls.Base97 {
                 bool surveyTaken = DetermineSurveyTaken(surveyYear, drSubject, dtResponse);
 				Overrides.SubjectYear subjectYear = new Overrides.SubjectYear(drSubject.SubjectID, surveyYear);
                 //bool invalidSkipOverride = false;
-                
-				surveyDate = DetermineSurveyDate(surveyYear, drSubject, dtResponse);
-                ageSelfReport = AgeSelfReportYears(subjectTag, surveyYear, dtResponse);
-                //if ( !invalidSkipOverride ) {
-				ageCalculated = CalculateAge(surveyDate, mob);
+
+                if( surveyTaken ) {
+                    surveyDate = DetermineSurveyDate(surveyYear, drSubject, dtResponse);
+                    ageSelfReport = AgeSelfReportYears(subjectTag, surveyYear, dtResponse);
+                    //if ( !invalidSkipOverride ) {
+                    ageCalculated = CalculateAge(surveyDate, mob);
+                }
 
                 AddRow(subjectTag, surveyTaken, surveyYear, surveyDate, ageSelfReport, ageCalculated);
 				recordsProcessed += 1;

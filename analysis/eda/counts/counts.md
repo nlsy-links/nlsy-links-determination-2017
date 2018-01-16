@@ -1949,7 +1949,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksImplicit        |     8,984|           43|
 |Extract     |tblRoster               |     8,984|          414|
 |Extract     |tblSurveyTime           |     8,984|           98|
-|Metadata    |tblItem                 |        13|            7|
+|Metadata    |tblItem                 |        16|            7|
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblVariable             |       127|            9|
 |Process     |tblOutcome              |         0|            5|
@@ -1959,157 +1959,160 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |         0|           13|
 |Process     |tblSubject              |     8,984|            4|
 |Process     |tblSubjectDetails       |         0|           15|
-|Process     |tblSurveyTime           |         0|            7|
+|Process     |tblSurveyTime           |   152,728|            7|
 
 ## Items 97
 
-|  ID|Label                    | MinValue| MinNonnegative| MaxValue|Active |Notes |
-|---:|:------------------------|--------:|--------------:|--------:|:------|:-----|
-|   1|subject_id               |        1|              1|     9022|TRUE   |NA    |
-|   2|extended_family_id       |        1|              1|     9022|TRUE   |NA    |
-|  10|gender                   |        1|              1|        2|TRUE   |NA    |
-|  11|DateOfBirthMonth         |        1|              1|       12|TRUE   |NA    |
-|  12|DateOfBirthYear          |     1980|           1980|     1984|TRUE   |NA    |
-|  13|sample_cohort            |        0|              0|        1|TRUE   |NA    |
-|  20|InterviewDateDay         |       -7|              1|       31|TRUE   |NA    |
-|  21|InterviewDateMonth       |       -7|              1|       12|TRUE   |NA    |
-|  22|InterviewDateYear        |       -7|             86|     2016|TRUE   |NA    |
-|  23|AgeAtInterviewDateMonths |       -5|            146|      500|TRUE   |NA    |
-|  24|AgeAtInterviewDateYears  |       -5|             12|       40|TRUE   |NA    |
-| 101|roster_crosswalk         |       -5|              1|       20|TRUE   |NA    |
-| 102|hh_member_id             |       -4|              1|       17|TRUE   |NA    |
+|   ID|Label                            | MinValue| MinNonnegative| MaxValue|Active |Notes |
+|----:|:--------------------------------|--------:|--------------:|--------:|:------|:-----|
+|    1|subject_id                       |        1|              1|     9022|TRUE   |NA    |
+|    2|extended_family_id               |        1|              1|     9022|TRUE   |NA    |
+|   10|gender                           |        1|              1|        2|TRUE   |NA    |
+|   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA    |
+|   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA    |
+|   13|sample_cohort                    |        0|              0|        1|TRUE   |NA    |
+|   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA    |
+|   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA    |
+|   22|InterviewDateYear                |       -7|             86|     2016|TRUE   |NA    |
+|   23|AgeAtInterviewDateMonths         |       -5|            146|      500|TRUE   |NA    |
+|   24|AgeAtInterviewDateYears          |       -5|             12|       40|TRUE   |NA    |
+|  101|roster_crosswalk                 |       -5|              1|       20|TRUE   |NA    |
+|  102|hh_member_id                     |       -4|              1|       17|TRUE   |NA    |
+| 1020|InterviewDateDayParent_NOTUSED   |       -4|              1|       31|FALSE  |NA    |
+| 1021|InterviewDateMonthParent_NOTUSED |       -4|              1|        9|FALSE  |NA    |
+| 1022|InterviewDateYearParent_NOTUSED  |       -4|           1997|     1998|FALSE  |NA    |
 
 ## Variables 97
 
-|variable code | item id|item label               | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes          |
-|:-------------|-------:|:------------------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:-----------------------|
-|R0000100      |       1|subject_id               |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |PUBID                   |
-|R0000200      |      20|InterviewDateDay         |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_D              |
-|R0000201      |      21|InterviewDateMonth       |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_M              |
-|R0000202      |      22|InterviewDateYear        |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_Y              |
-|R0536300      |      10|gender                   |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!SEX                 |
-|R0536401      |      11|DateOfBirthMonth         |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!BDATE               |
-|R0536402      |      12|DateOfBirthYear          |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!BDATE               |
-|R0541100      |      20|InterviewDateDay         |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_D              |
-|R0541101      |      21|InterviewDateMonth       |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_M              |
-|R0541102      |      22|InterviewDateYear        |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_Y              |
-|R1097800      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1097900      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098000      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098100      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098200      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098300      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098400      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098500      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098600      |     101|roster_crosswalk         |                 2|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098700      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098800      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1098900      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1099000      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1099100      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1099200      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1099300      |     101|roster_crosswalk         |                 2|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID             |
-|R1101000      |     102|hh_member_id             |                 2|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID                 |
-|R1101100      |     102|hh_member_id             |                 2|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID                 |
-|R1101200      |     102|hh_member_id             |                 2|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID                 |
-|R1101300      |     102|hh_member_id             |                 2|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID                 |
-|R1101400      |     102|hh_member_id             |                 2|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID                 |
-|R1101500      |     102|hh_member_id             |                 2|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID                 |
-|R1101600      |     102|hh_member_id             |                 2|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID                 |
-|R1101700      |     102|hh_member_id             |                 2|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID                 |
-|R1101800      |     102|hh_member_id             |                 2|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID                 |
-|R1101900      |     102|hh_member_id             |                 2|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID                 |
-|R1102000      |     102|hh_member_id             |                 2|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID                 |
-|R1102100      |     102|hh_member_id             |                 2|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID                 |
-|R1102200      |     102|hh_member_id             |                 2|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID                 |
-|R1102300      |     102|hh_member_id             |                 2|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID                 |
-|R1102400      |     102|hh_member_id             |                 2|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID                 |
-|R1102500      |     102|hh_member_id             |                 2|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID                 |
-|R1102501      |     102|hh_member_id             |                 2|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID                 |
-|R1193000      |       2|extended_family_id       |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |SIDCODE                 |
-|R1193900      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|R1194100      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|R1235800      |      13|sample_cohort            |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |CV_SAMPLE_TYPE          |
-|R1490000      |      20|InterviewDateDay         |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~D              |
-|R1490001      |      21|InterviewDateMonth       |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~M              |
-|R1490002      |      22|InterviewDateYear        |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|R2553400      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|R2553500      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|R2730000      |      20|InterviewDateDay         |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~D              |
-|R2730001      |      21|InterviewDateMonth       |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~M              |
-|R2730002      |      22|InterviewDateYear        |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|R3876200      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|R3876300      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|R3990000      |      20|InterviewDateDay         |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~D              |
-|R3990001      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~M              |
-|R3990002      |      22|InterviewDateYear        |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|R5453600      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|R5453700      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|R5650000      |      20|InterviewDateDay         |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~D              |
-|R5650001      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~M              |
-|R5650002      |      22|InterviewDateYear        |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|R7215900      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|R7216000      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S0000100      |      20|InterviewDateDay         |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~D              |
-|S0000101      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~M              |
-|S0000102      |      22|InterviewDateYear        |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|S1531300      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|S1531400      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S2000900      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
-|S2001000      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S2075300      |      20|InterviewDateDay         |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~D              |
-|S2075301      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~M              |
-|S2075302      |      22|InterviewDateYear        |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|S3801000      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|S3801100      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S3872500      |      20|InterviewDateDay         |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~D              |
-|S3872501      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~M              |
-|S3872502      |      22|InterviewDateYear        |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|S5400900      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|S5401000      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S5462300      |      20|InterviewDateDay         |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~D              |
-|S5462301      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~M              |
-|S5462302      |      22|InterviewDateYear        |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|S7501100      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|S7501200      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|S7565300      |      20|InterviewDateDay         |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~D              |
-|S7565301      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~M              |
-|S7565302      |      22|InterviewDateYear        |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T0008400      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T0008500      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T0049800      |      20|InterviewDateDay         |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T0049801      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T0049802      |      22|InterviewDateYear        |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T2011000      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T2011100      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T2030500      |      20|InterviewDateDay         |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T2030501      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T2030502      |      22|InterviewDateYear        |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T3601400      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T3601500      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T3631300      |      20|InterviewDateDay         |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T3631301      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T3631302      |      22|InterviewDateYear        |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T5201300      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T5201400      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T5229100      |      20|InterviewDateDay         |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T5229101      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T5229102      |      22|InterviewDateYear        |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T6651200      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T6651300      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T6680900      |      20|InterviewDateDay         |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T6680901      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T6680902      |      22|InterviewDateYear        |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|T8123500      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|T8123600      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|T8154000      |      20|InterviewDateDay         |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~D              |
-|T8154001      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~M              |
-|T8154002      |      22|InterviewDateYear        |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~Y              |
-|U0001700      |      23|AgeAtInterviewDateMonths |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
-|U0001800      |      24|AgeAtInterviewDateYears  |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
-|U0036300      |      20|InterviewDateDay         |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~D              |
-|U0036301      |      21|InterviewDateMonth       |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~M              |
-|U0036302      |      22|InterviewDateYear        |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|variable code | item id|item label                       | extract source id|extract source label | survey year| loop index|translate |variable active |variable notes          |
+|:-------------|-------:|:--------------------------------|-----------------:|:--------------------|-----------:|----------:|:---------|:---------------|:-----------------------|
+|R0000100      |       1|subject_id                       |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |PUBID                   |
+|R0000200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_D              |
+|R0000201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_M              |
+|R0000202      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |YINF-900_Y              |
+|R0536300      |      10|gender                           |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!SEX                 |
+|R0536401      |      11|DateOfBirthMonth                 |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!BDATE               |
+|R0536402      |      12|DateOfBirthYear                  |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |KEY!BDATE               |
+|R0541100      |    1020|InterviewDateDayParent_NOTUSED   |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_D              |
+|R0541101      |    1021|InterviewDateMonthParent_NOTUSED |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_M              |
+|R0541102      |    1022|InterviewDateYearParent_NOTUSED  |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |PINF-015_Y              |
+|R1097800      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1097900      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098000      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098100      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098200      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098300      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098400      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098500      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098600      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098700      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098800      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1098900      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1099000      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1099100      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1099200      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1099300      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_HHI1ID             |
+|R1101000      |     102|hh_member_id                     |                 2|97-roster            |        1997|          1|TRUE      |TRUE            |HHI2_ID                 |
+|R1101100      |     102|hh_member_id                     |                 2|97-roster            |        1997|          2|TRUE      |TRUE            |HHI2_ID                 |
+|R1101200      |     102|hh_member_id                     |                 2|97-roster            |        1997|          3|TRUE      |TRUE            |HHI2_ID                 |
+|R1101300      |     102|hh_member_id                     |                 2|97-roster            |        1997|          4|TRUE      |TRUE            |HHI2_ID                 |
+|R1101400      |     102|hh_member_id                     |                 2|97-roster            |        1997|          5|TRUE      |TRUE            |HHI2_ID                 |
+|R1101500      |     102|hh_member_id                     |                 2|97-roster            |        1997|          6|TRUE      |TRUE            |HHI2_ID                 |
+|R1101600      |     102|hh_member_id                     |                 2|97-roster            |        1997|          7|TRUE      |TRUE            |HHI2_ID                 |
+|R1101700      |     102|hh_member_id                     |                 2|97-roster            |        1997|          8|TRUE      |TRUE            |HHI2_ID                 |
+|R1101800      |     102|hh_member_id                     |                 2|97-roster            |        1997|          9|TRUE      |TRUE            |HHI2_ID                 |
+|R1101900      |     102|hh_member_id                     |                 2|97-roster            |        1997|         10|TRUE      |TRUE            |HHI2_ID                 |
+|R1102000      |     102|hh_member_id                     |                 2|97-roster            |        1997|         11|TRUE      |TRUE            |HHI2_ID                 |
+|R1102100      |     102|hh_member_id                     |                 2|97-roster            |        1997|         12|TRUE      |TRUE            |HHI2_ID                 |
+|R1102200      |     102|hh_member_id                     |                 2|97-roster            |        1997|         13|TRUE      |TRUE            |HHI2_ID                 |
+|R1102300      |     102|hh_member_id                     |                 2|97-roster            |        1997|         14|TRUE      |TRUE            |HHI2_ID                 |
+|R1102400      |     102|hh_member_id                     |                 2|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID                 |
+|R1102500      |     102|hh_member_id                     |                 2|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID                 |
+|R1102501      |     102|hh_member_id                     |                 2|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID                 |
+|R1193000      |       2|extended_family_id               |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |SIDCODE                 |
+|R1193900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|R1194100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1997|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|R1235800      |      13|sample_cohort                    |                 1|97-demographics      |        1997|          1|TRUE      |TRUE            |CV_SAMPLE_TYPE          |
+|R1490000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~D              |
+|R1490001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~M              |
+|R1490002      |      22|InterviewDateYear                |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|R2553400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|R2553500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1998|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|R2730000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~D              |
+|R2730001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~M              |
+|R2730002      |      22|InterviewDateYear                |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|R3876200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|R3876300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1999|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|R3990000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~D              |
+|R3990001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~M              |
+|R3990002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|R5453600      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|R5453700      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2000|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|R5650000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~D              |
+|R5650001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~M              |
+|R5650002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|R7215900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|R7216000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2001|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S0000100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~D              |
+|S0000101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~M              |
+|S0000102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|S1531300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|S1531400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2002|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S2000900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |CV_AGE(MONTHS)_INT_DATE |
+|S2001000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S2075300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~D              |
+|S2075301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~M              |
+|S2075302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2003|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|S3801000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|S3801100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S3872500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~D              |
+|S3872501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~M              |
+|S3872502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2004|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|S5400900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|S5401000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S5462300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~D              |
+|S5462301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~M              |
+|S5462302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2005|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|S7501100      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|S7501200      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|S7565300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~D              |
+|S7565301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~M              |
+|S7565302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2006|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T0008400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T0008500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T0049800      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T0049801      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T0049802      |      22|InterviewDateYear                |                 3|97-survey-time       |        2007|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T2011000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T2011100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T2030500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T2030501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T2030502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2008|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T3601400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T3601500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T3631300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T3631301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T3631302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2009|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T5201300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T5201400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T5229100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T5229101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T5229102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2010|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T6651200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T6651300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T6680900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T6680901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T6680902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2011|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|T8123500      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|T8123600      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|T8154000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~D              |
+|T8154001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~M              |
+|T8154002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2013|          1|TRUE      |TRUE            |YINTDATE~Y              |
+|U0001700      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |CV_AGE_MONTHS_INT_DATE  |
+|U0001800      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |CV_AGE_INT_DATE         |
+|U0036300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~D              |
+|U0036301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~M              |
+|U0036302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2015|          1|TRUE      |TRUE            |YINTDATE~Y              |
 
 ## Table Sizes 97
 
@@ -2127,11 +2130,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |             72|            16|
 |Enum        |tblLUTristate           |             72|            16|
 |Enum        |tblLUYesNo              |             72|            16|
-|Extract     |tblDemographics         |            456|           352|
-|Extract     |tblLinksExplicit        |          1,544|         1,432|
-|Extract     |tblLinksImplicit        |          1,800|         1,688|
-|Extract     |tblRoster               |         18,120|        18,016|
-|Extract     |tblSurveyTime           |          3,912|         3,800|
+|Extract     |tblDemographics         |            392|           352|
+|Extract     |tblLinksExplicit        |          1,480|         1,432|
+|Extract     |tblLinksImplicit        |          1,736|         1,688|
+|Extract     |tblRoster               |         18,056|        18,048|
+|Extract     |tblSurveyTime           |          3,848|         3,800|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblVariable             |             72|            32|
@@ -2142,7 +2145,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |              0|             0|
 |Process     |tblSubject              |            592|           344|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |             72|            16|
+|Process     |tblSurveyTime           |          5,520|         4,848|
 
 
 # Session Information
@@ -2204,7 +2207,6 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
- OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2216,7 +2218,6 @@ Packages -----------------------------------------------------------------------
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
- rsconnect    0.8.5      2017-08-23 CRAN (R 3.4.2)                  
  rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
@@ -2235,4 +2236,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 14:29 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-16, 14:53 -0600 in 1 seconds.
