@@ -18,16 +18,16 @@ namespace Nls.Base97 {
         //    Int16 motherIDOfSubject2 = MotherIDOfGen2Subject(subject2ID);
         //    return Convert.ToBoolean(motherIDOfSubject1 == motherIDOfSubject2);
         //}
-        //public static string ConvertItemsToString ( Item[] items) {
-        //    if ( items == null ) throw new ArgumentNullException("items");
-        //    string itemIDsString = "";
-        //    for ( Int32 i = 0; i < items.Length; i++ ) {
-        //        if ( i > 0 ) itemIDsString += ",";
-        //        itemIDsString += Convert.ToInt16(items[i]);
-        //    }
-        //    Int32 distinctCount = (from item in items select item).Distinct().Count();
-        //    if ( distinctCount != items.Length ) throw new ArgumentException("The items should be unique, and not contain duplicates.", "items");
-        //    return itemIDsString;
-        //}
+        public static string ConvertItemsToString( Item[] items ) {
+            if( items == null ) throw new ArgumentNullException("items");
+            string itemIDsString = "";
+            for( Int32 i = 0; i < items.Length; i++ ) {
+                if( i > 0 ) itemIDsString += ",";
+                itemIDsString += Convert.ToInt16(items[i]);
+            }
+            Int32 distinctCount = (from item in items select item).Distinct().Count();
+            if( distinctCount != items.Length ) throw new ArgumentException("The items should be unique, and not contain duplicates.", "items");
+            return itemIDsString;
+        }
 	}
 }

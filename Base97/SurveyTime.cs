@@ -59,7 +59,7 @@ namespace Nls.Base97 {
 		private Int32 ProcessSubject ( LinksDataSet.tblSubjectRow drSubject ) {
 			Int32 subjectTag = drSubject.SubjectTag;
 			Int32 recordsProcessed = 0;
-			Int16[] surveyYears = ItemYears.Gen1AndGen2;// SubjectWaves(subjectTag);
+            Int16[] surveyYears = ItemYears.Survey;// SubjectWaves(subjectTag);
 			LinksDataSet.tblResponseDataTable dtResponse = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, _itemIDsString, 1, _ds.tblResponse);
 			DateTime? mob = Mob.Retrieve(drSubject, dtResponse);
 
@@ -68,25 +68,29 @@ namespace Nls.Base97 {
 				float? ageSelfReport = null;
 				float? ageCalculated = null;
 
-				SurveySource source = DetermineSurveySource(surveyYear, drSubject, dtResponse);
-				OverridesGen1.SubjectYear subjectYear = new OverridesGen1.SubjectYear(drSubject.SubjectID, surveyYear);
-				bool invalidSkipOverride = false;
-				if ( (drSubject.Generation == (byte)Sample.Nlsy79Gen1) && (_overrides.Contains(subjectYear)) ) {
-					source = SurveySource.Gen1;
-					invalidSkipOverride = true;
-				}
+                bool surveyTaken = DetermineSurveyTaken(surveyYear, drSubject, dtResponse);
+				Overrides.SubjectYear subjectYear = new Overrides.SubjectYear(drSubject.SubjectID, surveyYear);
+                //bool invalidSkipOverride = false;
+                
+				surveyDate = DetermineSurveyDate(surveyYear, drSubject, dtResponse);
+                ageSelfReport = AgeSelfReportYears(subjectTag, surveyYear, dtResponse);
+                //if ( !invalidSkipOverride ) {
+				ageCalculated = CalculateAge(surveyDate, mob);
 
-				if ( source != SurveySource.NoInterview ) {
-					surveyDate = DetermineSurveyDate(source, surveyYear, drSubject, dtResponse);
-					ageSelfReport = DetermineAgeSelfReport(source, subjectTag, dtResponse, surveyYear);
-					if ( !invalidSkipOverride )
-						ageCalculated = CalculateAge(surveyDate, mob);
-				}
-				AddRow(subjectTag, source, surveyYear, surveyDate, ageSelfReport, ageCalculated);
+                AddRow(subjectTag, surveyTaken, surveyYear, surveyDate, ageSelfReport, ageCalculated);
 				recordsProcessed += 1;
 			}
 			return recordsProcessed;
 		}
+        private bool DetermineSurveyTaken( Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}>0",
+                surveyYear, _ds.tblResponse.SurveyYearColumn.ColumnName,
+                (byte)Item.InterviewDateMonth, _ds.tblResponse.ItemColumn.ColumnName,
+                _ds.tblResponse.ValueColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsResponse = (LinksDataSet.tblResponseRow[])dtResponseForSubject.Select(select);
+            Trace.Assert(drsResponse.Length <= 1, string.Format("There should be at most one row with a positive value for InterviewDateMonth (SubjectTag:{0}, SurveyYear:{1}).", drSubject.SubjectTag, surveyYear));
+            return (drsResponse.Length == 1);
+        }
 		private static DateTime? DetermineSurveyDate ( Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
 			Int32 maxRecords = 1;
 			Int32? monthReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateMonth, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
@@ -103,21 +107,6 @@ namespace Nls.Base97 {
 			dayReported = Math.Min(28, dayReported.Value);
 			DateTime interviewDate = new DateTime(yearReported.Value, monthReported.Value, dayReported.Value);
 			return interviewDate;
-		}
-		private static float? DetermineAgeSelfReport ( Int32 subjectTag, LinksDataSet.tblResponseDataTable dtResponse, Int16 surveyYear ) {
-			float? ageSelfReportYears;
-			switch ( source ) {
-				case SurveySource.Gen2C:
-					ageSelfReportYears = AgeSelfReportMonths(subjectTag, surveyYear, dtResponse);
-					break;
-				case SurveySource.Gen1:
-				case SurveySource.Gen2YA:
-					ageSelfReportYears = AgeSelfReportYears(subjectTag, surveyYear, dtResponse);
-					break;
-				default: throw new ArgumentOutOfRangeException("source", source, "The SurveySource value was not recognized.");
-			}
-			if ( ageSelfReportYears.HasValue && ageSelfReportYears.Value < 0 ) throw new InvalidOperationException(string.Format("The self-reported age for SubjectTag {0} is {1}.", subjectTag, ageSelfReportYears.Value));
-			return ageSelfReportYears;
 		}
 		private static float? CalculateAge ( DateTime? interviewDate, DateTime? mob ) {
 			if ( !mob.HasValue )
@@ -166,11 +155,12 @@ namespace Nls.Base97 {
 				return ageInYears;
 			}
 		}
-		private void AddRow ( Int32 subjectTag,  Int16 surveyYear, DateTime? surveyDate, float? ageSelfReport, float? calculatedAge ) {
+		private void AddRow ( Int32 subjectTag, bool surveyTaken, Int16 surveyYear, DateTime? surveyDate, float? ageSelfReport, float? calculatedAge ) {
 			lock ( _ds.tblSurveyTime ) {
 				LinksDataSet.tblSurveyTimeRow drNew = _ds.tblSurveyTime.NewtblSurveyTimeRow();
 				drNew.SubjectTag = subjectTag;
-				drNew.SurveyYear = surveyYear;
+                drNew.SurveyTaken = surveyTaken;
+                drNew.SurveyYear = surveyYear;
 
 				if ( surveyDate.HasValue ) drNew.SurveyDate = surveyDate.Value;
 				else drNew.SetSurveyDateNull();
@@ -192,14 +182,12 @@ namespace Nls.Base97 {
 			if ( dsLinks == null ) throw new ArgumentNullException("dsLinks");
 			if ( dsLinks.tblSurveyTime.Count <= 0 ) throw new ArgumentException("There should be at least one row in tblSurveyTime.");
 
-			string select = string.Format("{0}={1} AND {2}>0",
-				subjectTag, dsLinks.tblSurveyTime.SubjectTagColumn.ColumnName,
-				dsLinks.tblSurveyTime.SurveySourceColumn.ColumnName);
+			string select = string.Format("{0}={1}", subjectTag, dsLinks.tblSurveyTime.SubjectTagColumn.ColumnName);
 			LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])dsLinks.tblSurveyTime.Select(select);
 			//Trace.Assert(drs.Length > 0, "There should be at least one row returned.");
 			SubjectSurvey[] ss = new SubjectSurvey[drs.Length];
 			for ( Int32 i = 0; i < drs.Length; i++ ) {
-				ss[i] = new SubjectSurvey(drs[i].SurveyYear, (SurveySource)drs[i].SurveySource);
+				ss[i] = new SubjectSurvey(drs[i].SurveyYear);
 			}
 			return ss;
 		}
@@ -214,11 +202,11 @@ namespace Nls.Base97 {
 			Trace.Assert(drs.Length == 1, "There should be exactly one row returned.");
 			
 			if( drs[0].IsSurveyDateNull() ) {
-				Trace.Assert(drs[0].SurveySource == 0, "If the Survey Date is null, the Survey Source should be zero.");
+				Trace.Assert(!drs[0].SurveyTaken, "If the Survey Date is null, the Survey Source should be zero.");
 				return null;
 			}
 			else {
-				Trace.Assert(drs[0].SurveySource > 0, "If the Survey Date is not null, the Survey Source should be nonzero.");
+                Trace.Assert(drs[0].SurveyTaken, "If the Survey Date is not null, the Survey Source should be nonzero.");
 				return drs[0].SurveyDate;
 			}
 		}

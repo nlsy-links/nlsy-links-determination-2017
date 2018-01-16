@@ -13,7 +13,7 @@ namespace Nls.Base97 {
 			sw.Start();
 
 			Int32 subjectRecordsAddedCount = 0;
-            foreach( ImportDataSet.tblRosterRow drGen1 in dsImport.tblRoster ) {
+            foreach( ImportDataSet.tblDemographicsRow drGen1 in dsImport.tblDemographics ) {
 				LinksDataSet.tblSubjectRow drBare = dsLinks.tblSubject.NewtblSubjectRow();
 				drBare.SubjectID = (Int32)drGen1[Constants.SubjectIDColumn];
                 drBare.SubjectTag = drBare.SubjectID;
