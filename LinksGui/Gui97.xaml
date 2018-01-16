@@ -20,6 +20,9 @@
         <CollectionViewSource x:Key="tblRosterViewSource" Source="{Binding tblRoster, Source={StaticResource importDataSet}}"/>
         <CollectionViewSource x:Key="tblLinksExplicitViewSource" Source="{Binding tblLinksExplicit, Source={StaticResource importDataSet}}"/>
         <CollectionViewSource x:Key="tblLinksImplicitViewSource" Source="{Binding tblLinksImplicit, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblDemographicsViewSource" Source="{Binding tblDemographics, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblSurveyTimeViewSource" Source="{Binding tblSurveyTime, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblSurveyTimeViewSource1" Source="{Binding tblSurveyTime, Source={StaticResource linksDataSet}}"/>
 
 
     </Window.Resources>
@@ -74,8 +77,14 @@
         </Grid>
         <Button x:Name="btnUpdateAllTables" Content="Update All Tables"  Grid.Row="2" Click="btnUpdateAllTables_Click" Background="#FFF5D600" />
         <TabControl x:Name="tabControlTop"  Grid.Row="0" Background="Transparent"  RenderTransformOrigin="0.415,0.678">
+            <TabItem Header="Demographics" x:Name="tabDemographics" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblDemographicsViewSource}}" />
+            </TabItem>
             <TabItem Header="Roster" x:Name="tabRoster" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterViewSource}}" />
+            </TabItem>
+            <TabItem Header="SurveyTime" x:Name="tabSurveyTime" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSurveyTimeViewSource}}" />
             </TabItem>
             <TabItem Header="LinksExplicit" x:Name="tabLinksExplicit" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksExplicitViewSource}}" />
@@ -107,7 +116,7 @@
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblResponseViewSource}}" />
             </TabItem>
             <TabItem Header="SurveyTime" x:Name="SurveyTime"  >
-                <DataGrid />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSurveyTimeViewSource1}}" />
             </TabItem>
             <TabItem Header="RValues" x:Name="tabRelatedValues" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}" />

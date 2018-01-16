@@ -35,16 +35,14 @@ namespace Nls.Base97 {
         #endregion
         #region Counts
         //public const Int32 Gen1IDSiblingCountMin = 1;
-        //public const Int32 SurveyTimeCount = 605175; 
+        public const Int32 SurveyTimeCount = 0; //Set this to zero for now, so it compiles.  An error will be thrown later.
         #endregion
         #region Survey Details
         //public const Int16 Gen1MobSurveyYearPreferred = 1981;
         //public const Int16 Gen1MobSurveyYearBackup = 1979;//See http://www.nlsinfo.org/nlsy79/docs/79html/79text/age.htm
 
-        //public const Int32 Gen1BirthYearMin = 55;//R0410300 (in 1981) is preferred over R000050 (in 1979).  See http://www.nlsinfo.org/nlsy79/docs/79html/79text/age.htm
-        //public const Int32 Gen1BirthYearMax = 65;
-        //public const Int32 Gen2BirthYearMin = 1970;//C000570
-        //public const Int32 Gen2BirthYearMax = 2014;
+        public const Int32 BirthYearMin = 1980; //R05364.02
+        public const Int32 BirthYearMax = 1984;
 
         public static readonly Int32[] PassoverResponses = { -4, -5 };
         //public static readonly Int32[] PassoverResponsesNoNegatives = { -1, -2, -3, -4, -5 };
