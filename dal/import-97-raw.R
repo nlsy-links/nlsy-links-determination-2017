@@ -97,54 +97,58 @@ channel_rodbc <- open_dsn_channel_rodbc(study)
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
+  # Create temp zip file
   temp_directory  <- tempdir()
   temp_csv        <- file.path(temp_directory, ds_extract$name_csv[i])
-  # unzip("data-unshared/raw/nlsy97/97-demographics.zip", files="97-demographics.csv", exdir="data-unshared/raw/nlsy97")
-  # utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
-  # d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
-
   utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=temp_directory)
   if( !file.exists(temp_csv) ) stop("The decompressed csv, `", temp_csv, "` was not found.")
+
+  # Read the temp csv, and delete it
+  # d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
   d <- readr::read_csv(temp_csv, col_types=col_types_default)
   unlink(temp_csv)
 
-  # d2 <- readr::read_csv("data-unshared/raw/nlsy97/97-demographics.zip"  )
-
-
-  columns_to_drop_specific <- colnames(d) %>%
-    intersect(columns_to_drop)
-  # %>%
-    # glue::glue("{.}")
-
+  # Drop pre-specified columns from all extracts
+  columns_to_drop_specific <- intersect(colnames(d), columns_to_drop)
   if( length(columns_to_drop_specific) >= 1L ) {
     d <- d %>%
       dplyr::select_(.dots=paste0("-", columns_to_drop_specific))
   }
 
-
+  # Print diagnostic info
   # print(dim(d))
   # purrr::map_chr(d, class)
   print(d, n=20)
 
+  # Write the table to teh database.  Different operations, depending if the table existings already.
   if( ds_extract$table_name_qualified[i] %in% ds_inventory$table_name_qualified ) {
     #RODBC::sqlQuery(channel_odbc, ds_extract$sql_truncate[i], errors=FALSE)
     # d_peek <- RODBC::sqlQuery(channel_odbc, ds_extract$sql_select[i], errors=FALSE)
 
+    # Remove existing records
     DBI::dbGetQuery(channel_odbc, ds_extract$sql_truncate[i])
 
+    # Compare columns in the database table and in the extract.
     d_peek <- DBI::dbGetQuery(channel_odbc, ds_extract$sql_select[i])
     peek <- colnames(d_peek)
     # peek <- DBI::dbListFields(channel_odbc, ds_extract$table_name_qualified[i])
-
     missing_in_extract    <- setdiff(peek       , colnames(d))
     missing_in_database   <- setdiff(colnames(d), peek       )
+    testit::assert("All columns in the database should be in the extract.", length(missing_in_extract )==0L )
+    testit::assert("All columns in the extract should be in the database.", length(missing_in_database)==0L)
 
-    # d_column <- tibble::tibble(
-    #   db        = colnames(d),
-    #   extract   = peek
-    # ) %>%
-    #   dplyr::filter(db != extract)
+    # Write to the database
+    RODBC::sqlSave(
+      channel     = channel_rodbc,
+      dat         = d,
+      tablename   = ds_extract$table_name_qualified[i],
+      safer       = TRUE,       # Don't keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    ) %>%
+    print()
 
+    # I'd like to use the odbc package, but it's still having problems with schema names.
     # system.time({
     # DBI::dbWriteTable(
     #   conn    = channel_odbc,
@@ -155,19 +159,8 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     # )
     # })
 
-    system.time({
-    RODBC::sqlSave(
-      channel     = channel_rodbc,
-      dat         = d,
-      tablename   = ds_extract$table_name_qualified[i],
-      safer       = TRUE,       # Don't keep the existing table.
-      rownames    = FALSE,
-      append      = TRUE
-    ) %>%
-    print()
-    })
-
   } else {
+    # If the table doesn't already exist in the database, create it.
     OuhscMunge::upload_sqls_rodbc(
       d               = d,
       # d               = d[1:100, ],
@@ -177,13 +170,14 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
       create_table    = T
     )
 
+    # Make the subject id the primary key.
     DBI::dbGetQuery(channel_odbc, ds_extract$sql_not_null[i])
     DBI::dbGetQuery(channel_odbc, ds_extract$sql_primary_key[i])
-
   }
 
   message(glue::glue("Tibble size: {format(object.size(d), units='MB')}"))
 }
+# Diconnect the connections/channels.
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 
