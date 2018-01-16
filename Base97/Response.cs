@@ -29,7 +29,9 @@ namespace Nls.Base97 {
 			sw.Start();
 			CheckVariableExistInImportedDataTables();
 			Int32 reponseRecordsAddedCount = 0;
-			reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Roster, false, Constants.PassoverResponses, _dsImport.tblRoster);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Demographics, false, Constants.PassoverResponses, _dsImport.tblDemographics);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Roster, false, Constants.PassoverResponses, _dsImport.tblRoster);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.SurveyTime, false, Constants.PassoverResponses, _dsImport.tblSurveyTime);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.LinksExplicit, false, Constants.PassoverResponses, _dsImport.tblLinksExplicit);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.LinksImplicit, false, Constants.PassoverResponses, _dsImport.tblLinksImplicit);
 			sw.Stop();
@@ -89,7 +91,9 @@ namespace Nls.Base97 {
 		}
 		private string ConverExtractSourceToTableName ( ExtractSource extractSource ) {
 			switch ( extractSource ) {
+                case ExtractSource.Demographics: return _dsImport.tblDemographics.TableName;
                 case ExtractSource.Roster: return _dsImport.tblRoster.TableName;
+                case ExtractSource.SurveyTime: return _dsImport.tblSurveyTime.TableName;
 				case ExtractSource.LinksExplicit: return _dsImport.tblLinksExplicit.TableName;
 				case ExtractSource.LinksImplicit: return _dsImport.tblLinksImplicit.TableName;
 

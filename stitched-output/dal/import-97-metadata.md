@@ -22,45 +22,13 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
-```
-
-```
-## Loading required namespace: readr
-```
-
-```r
 requireNamespace("tidyr"                  )
-```
-
-```
-## Loading required namespace: tidyr
-```
-
-```r
 requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
-```
-
-```
-## Loading required namespace: dplyr
-```
-
-```r
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
-```
-
-```
-## Loading required namespace: RODBC
-```
-
-```r
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
-```
-
-```
-## Loading required namespace: odbc
 ```
 
 ```r
@@ -229,8 +197,8 @@ ds_entries
 ## # A tibble: 13 x 4
 ##    name               path                          col_types  entries    
 ##    <chr>              <chr>                         <list>     <list>     
-##  1 item               data-public/metadata/tables-~ <S3: col_~ <tibble [7~
-##  2 LUExtractSource    data-public/metadata/tables-~ <S3: col_~ <tibble [3~
+##  1 item               data-public/metadata/tables-~ <S3: col_~ <tibble [1~
+##  2 LUExtractSource    data-public/metadata/tables-~ <S3: col_~ <tibble [5~
 ##  3 LUMarkerEvidence   data-public/metadata/tables-~ <S3: col_~ <tibble [8~
 ##  4 LUGender           data-public/metadata/tables-~ <S3: col_~ <tibble [3~
 ##  5 LUMarkerType       data-public/metadata/tables-~ <S3: col_~ <tibble [2~
@@ -241,7 +209,7 @@ ds_entries
 ## 10 LUTristate         data-public/metadata/tables-~ <S3: col_~ <tibble [3~
 ## 11 LUYesNo            data-public/metadata/tables-~ <S3: col_~ <tibble [6~
 ## 12 MzManual           data-public/metadata/tables-~ <S3: col_~ <tibble [2~
-## 13 variable           data-public/metadata/tables-~ <S3: col_~ <tibble [3~
+## 13 variable           data-public/metadata/tables-~ <S3: col_~ <tibble [1~
 ```
 
 ```r
@@ -254,12 +222,12 @@ ds_table
 ```
 
 ```
-## # A tibble: 26 x 6
+## # A tibble: 28 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
 ##  2 Archive     tblRelatedValuesArchive         0           22     72    16
-##  3 Enum        tblLUExtractSource              3            4     72    16
+##  3 Enum        tblLUExtractSource              5            4     72    16
 ##  4 Enum        tblLUGender                     3            4     72    16
 ##  5 Enum        tblLUMarkerEvidence             8            4     72    16
 ##  6 Enum        tblLUMarkerType                28            5     72    16
@@ -267,7 +235,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 16 more rows
+## # ... with 18 more rows
 ```
 
 ```r
@@ -297,22 +265,30 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 7 x 7
-##      ID Label              MinValue MinNonnegative MaxValue Active Notes  
-##   <int> <chr>                 <int>          <int>    <int> <lgl>  <chr>  
-## 1     1 subject_id                1              1     9022 T      <NA>   
-## 2     2 extended_family_id        1              1     9022 F      ?Where~
-## 3    10 gender                    1              1        2 T      <NA>   
-## 4    11 dob_month                 1              1       12 T      <NA>   
-## 5    12 dob_year               1980           1980     1984 T      <NA>   
-## 6   101 roster_crosswalk      -   5              1       20 T      <NA>   
-## 7   102 hh_member_id          -   4              1       17 T      <NA>   
-## # A tibble: 3 x 4
+## # A tibble: 13 x 7
+##       ID Label                    MinValue MinNonnega~ MaxVal~ Acti~ Notes
+##    <int> <chr>                       <int>       <int>   <int> <lgl> <chr>
+##  1     1 subject_id                      1           1    9022 T     <NA> 
+##  2     2 extended_family_id              1           1    9022 T     <NA> 
+##  3    10 gender                          1           1       2 T     <NA> 
+##  4    11 DateOfBirthMonth                1           1      12 T     <NA> 
+##  5    12 DateOfBirthYear              1980        1980    1984 T     <NA> 
+##  6    13 sample_cohort                   0           0       1 T     <NA> 
+##  7    20 InterviewDateDay            -   7           1      31 T     <NA> 
+##  8    21 InterviewDateMonth          -   7           1      12 T     <NA> 
+##  9    22 InterviewDateYear           -   7          86    2016 T     <NA> 
+## 10    23 AgeAtInterviewDateMonths    -   5         146     500 T     <NA> 
+## 11    24 AgeAtInterviewDateYears     -   5          12      40 T     <NA> 
+## 12   101 roster_crosswalk            -   5           1      20 T     <NA> 
+## 13   102 hh_member_id                -   4           1      17 T     <NA> 
+## # A tibble: 5 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
-## 1     1 97-roster         T      <NA> 
-## 2     2 97-links-implicit T      <NA> 
-## 3     3 97-links-explicit T      <NA> 
+## 1     1 97-demographics   T      <NA> 
+## 2     2 97-roster         T      <NA> 
+## 3     3 97-survey-time    T      <NA> 
+## 4     4 97-links-explicit T      <NA> 
+## 5     5 97-links-implicit T      <NA> 
 ## # A tibble: 8 x 4
 ##      ID Label            Active Notes
 ##   <int> <chr>            <lgl>  <chr>
@@ -409,20 +385,20 @@ ds_file$entries %>%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 38 x 9
-##    VariableCode  Item ExtractSource Surve~ Loop~ Tran~ Acti~ Notes Notes_2
-##    <chr>        <int>         <int>  <int> <int> <int> <int> <chr> <chr>  
-##  1 R0000100         1             1   1997     1     1     1 PUBID YOUTH ~
-##  2 R1193000         2             3   1997     1     1     1 SIDC~ HOUSEH~
-##  3 R0536300        10             1   1997     1     1     1 KEY!~ RS GEN~
-##  4 R0536401        11             1   1997     1     1     1 KEY!~ RS BIR~
-##  5 R0536402        12             1   1997     1     1     1 KEY!~ RS BIR~
-##  6 R1097800       101             1   1997     1     1     1 HHI2~ ID OF ~
-##  7 R1097900       101             1   1997     2     1     1 HHI2~ ID OF ~
-##  8 R1098000       101             1   1997     3     1     1 HHI2~ ID OF ~
-##  9 R1098100       101             1   1997     4     1     1 HHI2~ ID OF ~
-## 10 R1098200       101             1   1997     5     1     1 HHI2~ ID OF ~
-## # ... with 28 more rows
+## # A tibble: 127 x 9
+##    VariableCode  Item ExtractSource Surve~ LoopI~ Tran~ Acti~ Notes Notes~
+##    <chr>        <int>         <int>  <int>  <int> <int> <int> <chr> <chr> 
+##  1 R0000100         1             1   1997      1     1     1 PUBID YOUTH~
+##  2 R1193000         2             1   1997      1     1     1 SIDC~ HOUSE~
+##  3 R0536300        10             1   1997      1     1     1 KEY!~ RS GE~
+##  4 R0536401        11             1   1997      1     1     1 KEY!~ RS BI~
+##  5 R0536402        12             1   1997      1     1     1 KEY!~ RS BI~
+##  6 R1235800        13             1   1997      1     1     1 CV_S~ SAMPL~
+##  7 R1097800       101             2   1997      1     1     1 HHI2~ ID OF~
+##  8 R1097900       101             2   1997      2     1     1 HHI2~ ID OF~
+##  9 R1098000       101             2   1997      3     1     1 HHI2~ ID OF~
+## 10 R1098100       101             2   1997      4     1     1 HHI2~ ID OF~
+## # ... with 117 more rows
 ```
 
 ```r
@@ -514,18 +490,26 @@ ds_enum %>%
 ## 
 ## public enum Item {
 ##     subject_id                                                   =     1, 
-##     // extended_family_id                                        =     2, // ?Where does this exist?
+##     extended_family_id                                           =     2, 
 ##     gender                                                       =    10, 
-##     dob_month                                                    =    11, 
-##     dob_year                                                     =    12, 
+##     DateOfBirthMonth                                             =    11, 
+##     DateOfBirthYear                                              =    12, 
+##     sample_cohort                                                =    13, 
+##     InterviewDateDay                                             =    20, 
+##     InterviewDateMonth                                           =    21, 
+##     InterviewDateYear                                            =    22, 
+##     AgeAtInterviewDateMonths                                     =    23, 
+##     AgeAtInterviewDateYears                                      =    24, 
 ##     roster_crosswalk                                             =   101, 
 ##     hh_member_id                                                 =   102, 
 ## }
 ##  
 ## public enum ExtractSource {
-##     97-roster                                                    =     1, 
-##     97-links-implicit                                            =     2, 
-##     97-links-explicit                                            =     3, 
+##     97-demographics                                              =     1, 
+##     97-roster                                                    =     2, 
+##     97-survey-time                                               =     3, 
+##     97-links-explicit                                            =     4, 
+##     97-links-implicit                                            =     5, 
 ## }
 ##  
 ## public enum MarkerEvidence {
@@ -1046,7 +1030,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 21:36 -0600 in 4 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:02 -0600 in 2 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1075,18 +1059,25 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14      highr_0.6         pillar_1.0.1     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
+## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
+## [13] tibble_1.4.1      checkmate_1.8.5   pkgconfig_2.0.1  
+## [16] rlang_0.1.6       rstudioapi_0.7    DBI_0.7          
+## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
+## [22] dplyr_0.7.4       stringr_1.2.0     devtools_1.13.4  
+## [25] hms_0.4.0         bit64_0.9-7       rprojroot_1.3-2  
+## [28] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
+## [31] tidyr_0.7.2       readr_1.1.1       purrr_0.2.4      
+## [34] blob_1.1.0        backports_1.1.2   scales_0.5.0.9000
+## [37] RODBC_1.3-15      htmltools_0.3.6   rsconnect_0.8.5  
+## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [46] markdown_0.8      crayon_1.3.4
 ```
 
 ```r
@@ -1094,6 +1085,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-12 21:36:43 CST"
+## [1] "2018-01-16 14:02:02 CST"
 ```
 

@@ -45,7 +45,9 @@ namespace LinksGui {
 
             if( Convert.ToBoolean("true") ) {
                 //if( Convert.ToBoolean("false")) {
+                LoadExtractDemographics();
                 LoadExtractRoster();
+                LoadExtractSurveyTime();
                 LoadExtractLinksExplicit();
                 LoadExtractLinksImplicit();
             }
@@ -62,7 +64,7 @@ namespace LinksGui {
             LoadSubject();
             LoadRelatedStructure();
             LoadResponse();
-            //LoadSurveyTime();
+            LoadSurveyTime();
             //LoadSurveyTimeMostRecent(); //Needed for tblRelated
             //LoadRosterGen1();
             //LoadParentsOfGen1Retro();
@@ -103,11 +105,11 @@ namespace LinksGui {
             ////WriteXml(_dsLinks.tblResponse);
         }
         private void btnSurveyTime_Click( object sender, RoutedEventArgs e ) {
-            //BA.SurveyTime surveyTime = new BA.SurveyTime(_dsLinks);
-            //string message = surveyTime.Go();
-            //Trace.WriteLine(message);
-            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            ////WriteXml(_dsLinks.tblSurveyTime);
+            BA.SurveyTime surveyTime = new BA.SurveyTime(_dsLinks);
+            string message = surveyTime.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblSurveyTime);
         }
         private void btnRosterGen1_Click( object sender, RoutedEventArgs e ) {
             //BA.RosterGen1 roster = new BA.RosterGen1(_dsLinks);
@@ -156,7 +158,7 @@ namespace LinksGui {
             //Int32 responseCount = _taResponse.Update(_dsLinks);
 
             BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
-        //    BulkUpdate(schemaName, _dsLinks.tblSurveyTime, LoadSurveyTime);
+            BulkUpdate(schemaName, _dsLinks.tblSurveyTime, LoadSurveyTime);
         //    BulkUpdate(schemaName, _dsLinks.tblRosterGen1, LoadRosterGen1);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Retro, LoadParentsOfGen1Retro);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Current, LoadParentsOfGen1Current);
@@ -205,9 +207,17 @@ namespace LinksGui {
         }
         #endregion
         #region Load DataTables
+        private void LoadExtractDemographics( ) {
+            BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter();
+            ta.Fill(_dsImport.tblDemographics);
+        }
         private void LoadExtractRoster( ) {
             BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
             ta.Fill(_dsImport.tblRoster);
+        }
+        private void LoadExtractSurveyTime( ) {
+            BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter ta = new BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter();
+            ta.Fill(_dsImport.tblSurveyTime);
         }
         private void LoadExtractLinksExplicit( ) {
             BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
@@ -266,12 +276,12 @@ namespace LinksGui {
         private void AcceptResponseChanges( ) {
             _dsLinks.tblResponse.AcceptChanges();
         }
-        //private void LoadSurveyTime ( ) {
-        //    BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter();
-        //    ta.Fill(_dsLinks.tblSurveyTime);
-        //    CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblSurveyTimeViewSource")));
-        //    vs.View.MoveCurrentToFirst();
-        //}
+        private void LoadSurveyTime( ) {
+            BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSurveyTimeTableAdapter();
+            ta.Fill(_dsLinks.tblSurveyTime);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblSurveyTimeViewSource")));
+            vs.View.MoveCurrentToFirst();
+        }
         //private void LoadSurveyTimeMostRecent ( ) {
         //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter ta = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
         //    ta.Fill(_dsLinks.vewSurveyTimeMostRecent);

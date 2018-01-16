@@ -217,36 +217,13 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace(&quot;readr&quot;                  )
-</code></pre>
-
-<pre><code>## Loading required namespace: readr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;tidyr&quot;                  )
-</code></pre>
-
-<pre><code>## Loading required namespace: tidyr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;tibble&quot;                 )
+requireNamespace(&quot;tidyr&quot;                  )
+requireNamespace(&quot;tibble&quot;                 )
 requireNamespace(&quot;purrr&quot;                  )
 requireNamespace(&quot;dplyr&quot;                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
-</code></pre>
-
-<pre><code>## Loading required namespace: dplyr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
+requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
 requireNamespace(&quot;RODBC&quot;                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
-</code></pre>
-
-<pre><code>## Loading required namespace: RODBC
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;odbc&quot;                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
-</code></pre>
-
-<pre><code>## Loading required namespace: odbc
+requireNamespace(&quot;odbc&quot;                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
 </code></pre>
 
 <pre><code class="r"># Constant values that won&#39;t change.
@@ -408,8 +385,8 @@ ds_entries
 <pre><code>## # A tibble: 13 x 4
 ##    name               path                          col_types  entries    
 ##    &lt;chr&gt;              &lt;chr&gt;                         &lt;list&gt;     &lt;list&gt;     
-##  1 item               data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [7~
-##  2 LUExtractSource    data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
+##  1 item               data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [1~
+##  2 LUExtractSource    data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [5~
 ##  3 LUMarkerEvidence   data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [8~
 ##  4 LUGender           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
 ##  5 LUMarkerType       data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [2~
@@ -420,7 +397,7 @@ ds_entries
 ## 10 LUTristate         data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
 ## 11 LUYesNo            data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [6~
 ## 12 MzManual           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [2~
-## 13 variable           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
+## 13 variable           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [1~
 </code></pre>
 
 <pre><code class="r"># d &lt;- readr::read_csv(&quot;data-public/metadata/tables/variable_97.csv&quot;, col_types=lst_col_types$variable_97, comment = &quot;#&quot;)
@@ -431,12 +408,12 @@ ds_table &lt;- database_inventory(study)
 ds_table
 </code></pre>
 
-<pre><code>## # A tibble: 26 x 6
+<pre><code>## # A tibble: 28 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * &lt;chr&gt;       &lt;chr&gt;                       &lt;int&gt;        &lt;int&gt;  &lt;int&gt; &lt;int&gt;
 ##  1 Archive     tblArchiveDescription           0            4      0     0
 ##  2 Archive     tblRelatedValuesArchive         0           22     72    16
-##  3 Enum        tblLUExtractSource              3            4     72    16
+##  3 Enum        tblLUExtractSource              5            4     72    16
 ##  4 Enum        tblLUGender                     3            4     72    16
 ##  5 Enum        tblLUMarkerEvidence             8            4     72    16
 ##  6 Enum        tblLUMarkerType                28            5     72    16
@@ -444,7 +421,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 16 more rows
+## # ... with 18 more rows
 </code></pre>
 
 <pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
@@ -471,22 +448,30 @@ ds_file$entries %&gt;%
   purrr::walk(print)
 </code></pre>
 
-<pre><code>## # A tibble: 7 x 7
-##      ID Label              MinValue MinNonnegative MaxValue Active Notes  
-##   &lt;int&gt; &lt;chr&gt;                 &lt;int&gt;          &lt;int&gt;    &lt;int&gt; &lt;lgl&gt;  &lt;chr&gt;  
-## 1     1 subject_id                1              1     9022 T      &lt;NA&gt;   
-## 2     2 extended_family_id        1              1     9022 F      ?Where~
-## 3    10 gender                    1              1        2 T      &lt;NA&gt;   
-## 4    11 dob_month                 1              1       12 T      &lt;NA&gt;   
-## 5    12 dob_year               1980           1980     1984 T      &lt;NA&gt;   
-## 6   101 roster_crosswalk      -   5              1       20 T      &lt;NA&gt;   
-## 7   102 hh_member_id          -   4              1       17 T      &lt;NA&gt;   
-## # A tibble: 3 x 4
+<pre><code>## # A tibble: 13 x 7
+##       ID Label                    MinValue MinNonnega~ MaxVal~ Acti~ Notes
+##    &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;       &lt;int&gt;   &lt;int&gt; &lt;lgl&gt; &lt;chr&gt;
+##  1     1 subject_id                      1           1    9022 T     &lt;NA&gt; 
+##  2     2 extended_family_id              1           1    9022 T     &lt;NA&gt; 
+##  3    10 gender                          1           1       2 T     &lt;NA&gt; 
+##  4    11 DateOfBirthMonth                1           1      12 T     &lt;NA&gt; 
+##  5    12 DateOfBirthYear              1980        1980    1984 T     &lt;NA&gt; 
+##  6    13 sample_cohort                   0           0       1 T     &lt;NA&gt; 
+##  7    20 InterviewDateDay            -   7           1      31 T     &lt;NA&gt; 
+##  8    21 InterviewDateMonth          -   7           1      12 T     &lt;NA&gt; 
+##  9    22 InterviewDateYear           -   7          86    2016 T     &lt;NA&gt; 
+## 10    23 AgeAtInterviewDateMonths    -   5         146     500 T     &lt;NA&gt; 
+## 11    24 AgeAtInterviewDateYears     -   5          12      40 T     &lt;NA&gt; 
+## 12   101 roster_crosswalk            -   5           1      20 T     &lt;NA&gt; 
+## 13   102 hh_member_id                -   4           1      17 T     &lt;NA&gt; 
+## # A tibble: 5 x 4
 ##      ID Label             Active Notes
 ##   &lt;int&gt; &lt;chr&gt;             &lt;lgl&gt;  &lt;chr&gt;
-## 1     1 97-roster         T      &lt;NA&gt; 
-## 2     2 97-links-implicit T      &lt;NA&gt; 
-## 3     3 97-links-explicit T      &lt;NA&gt; 
+## 1     1 97-demographics   T      &lt;NA&gt; 
+## 2     2 97-roster         T      &lt;NA&gt; 
+## 3     3 97-survey-time    T      &lt;NA&gt; 
+## 4     4 97-links-explicit T      &lt;NA&gt; 
+## 5     5 97-links-implicit T      &lt;NA&gt; 
 ## # A tibble: 8 x 4
 ##      ID Label            Active Notes
 ##   &lt;int&gt; &lt;chr&gt;            &lt;lgl&gt;  &lt;chr&gt;
@@ -583,20 +568,20 @@ ds_file$entries %&gt;%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 38 x 9
-##    VariableCode  Item ExtractSource Surve~ Loop~ Tran~ Acti~ Notes Notes_2
-##    &lt;chr&gt;        &lt;int&gt;         &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1 R0000100         1             1   1997     1     1     1 PUBID YOUTH ~
-##  2 R1193000         2             3   1997     1     1     1 SIDC~ HOUSEH~
-##  3 R0536300        10             1   1997     1     1     1 KEY!~ RS GEN~
-##  4 R0536401        11             1   1997     1     1     1 KEY!~ RS BIR~
-##  5 R0536402        12             1   1997     1     1     1 KEY!~ RS BIR~
-##  6 R1097800       101             1   1997     1     1     1 HHI2~ ID OF ~
-##  7 R1097900       101             1   1997     2     1     1 HHI2~ ID OF ~
-##  8 R1098000       101             1   1997     3     1     1 HHI2~ ID OF ~
-##  9 R1098100       101             1   1997     4     1     1 HHI2~ ID OF ~
-## 10 R1098200       101             1   1997     5     1     1 HHI2~ ID OF ~
-## # ... with 28 more rows
+## # A tibble: 127 x 9
+##    VariableCode  Item ExtractSource Surve~ LoopI~ Tran~ Acti~ Notes Notes~
+##    &lt;chr&gt;        &lt;int&gt;         &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 R0000100         1             1   1997      1     1     1 PUBID YOUTH~
+##  2 R1193000         2             1   1997      1     1     1 SIDC~ HOUSE~
+##  3 R0536300        10             1   1997      1     1     1 KEY!~ RS GE~
+##  4 R0536401        11             1   1997      1     1     1 KEY!~ RS BI~
+##  5 R0536402        12             1   1997      1     1     1 KEY!~ RS BI~
+##  6 R1235800        13             1   1997      1     1     1 CV_S~ SAMPL~
+##  7 R1097800       101             2   1997      1     1     1 HHI2~ ID OF~
+##  8 R1097900       101             2   1997      2     1     1 HHI2~ ID OF~
+##  9 R1098000       101             2   1997      3     1     1 HHI2~ ID OF~
+## 10 R1098100       101             2   1997      4     1     1 HHI2~ ID OF~
+## # ... with 117 more rows
 </code></pre>
 
 <pre><code class="r"># ds_file %&gt;%
@@ -682,18 +667,26 @@ ds_enum %&gt;%
 <pre><code>## 
 ## public enum Item {
 ##     subject_id                                                   =     1, 
-##     // extended_family_id                                        =     2, // ?Where does this exist?
+##     extended_family_id                                           =     2, 
 ##     gender                                                       =    10, 
-##     dob_month                                                    =    11, 
-##     dob_year                                                     =    12, 
+##     DateOfBirthMonth                                             =    11, 
+##     DateOfBirthYear                                              =    12, 
+##     sample_cohort                                                =    13, 
+##     InterviewDateDay                                             =    20, 
+##     InterviewDateMonth                                           =    21, 
+##     InterviewDateYear                                            =    22, 
+##     AgeAtInterviewDateMonths                                     =    23, 
+##     AgeAtInterviewDateYears                                      =    24, 
 ##     roster_crosswalk                                             =   101, 
 ##     hh_member_id                                                 =   102, 
 ## }
 ##  
 ## public enum ExtractSource {
-##     97-roster                                                    =     1, 
-##     97-links-implicit                                            =     2, 
-##     97-links-explicit                                            =     3, 
+##     97-demographics                                              =     1, 
+##     97-roster                                                    =     2, 
+##     97-survey-time                                               =     3, 
+##     97-links-explicit                                            =     4, 
+##     97-links-implicit                                            =     5, 
 ## }
 ##  
 ## public enum MarkerEvidence {
@@ -1187,7 +1180,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-12, 21:36 -0600 in 4 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 14:02 -0600 in 2 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1213,24 +1206,31 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14      highr_0.6         pillar_1.0.1     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.3        digest_0.6.13    
+## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
+## [13] tibble_1.4.1      checkmate_1.8.5   pkgconfig_2.0.1  
+## [16] rlang_0.1.6       rstudioapi_0.7    DBI_0.7          
+## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
+## [22] dplyr_0.7.4       stringr_1.2.0     devtools_1.13.4  
+## [25] hms_0.4.0         bit64_0.9-7       rprojroot_1.3-2  
+## [28] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
+## [31] tidyr_0.7.2       readr_1.1.1       purrr_0.2.4      
+## [34] blob_1.1.0        backports_1.1.2   scales_0.5.0.9000
+## [37] RODBC_1.3-15      htmltools_0.3.6   rsconnect_0.8.5  
+## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [46] markdown_0.8      crayon_1.3.4
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-12 21:36:43 CST&quot;
+<pre><code>## [1] &quot;2018-01-16 14:02:02 CST&quot;
 </code></pre>
 
 </body>
