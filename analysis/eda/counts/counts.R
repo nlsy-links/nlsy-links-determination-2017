@@ -122,11 +122,12 @@ ds_variable_97 <- ds_variable_97 %>%
     translate       = as.logical(translate)
   )
 
-# ---- table-79 ---------------------------------------------------------------
+# ---- table-79-structure ---------------------------------------------------------------
 ds_pretty_79 %>%
+  dplyr::select(schema_name, table_name, row_count, column_count) %>%
   knitr::kable(
     col.names   = gsub("_", " ", colnames(.)),
-    align       = "llrrrr",
+    align       = "llrr",
     digits      = 2,
     format      = "markdown"
   )
@@ -147,12 +148,22 @@ ds_variable_79 %>%
     format      = "markdown"
   )
 
-
-# ---- table-97 ---------------------------------------------------------------
-ds_pretty_97 %>%
+# ---- table-79-size ---------------------------------------------------------------
+ds_pretty_79 %>%
+  dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
   knitr::kable(
     col.names   = gsub("_", " ", colnames(.)),
-    align       = "llrrrr",
+    align       = "llrr",
+    digits      = 2,
+    format      = "markdown"
+  )
+
+# ---- table-97-structure ---------------------------------------------------------------
+ds_pretty_97 %>%
+  dplyr::select(schema_name, table_name, row_count, column_count) %>%
+  knitr::kable(
+    col.names   = gsub("_", " ", colnames(.)),
+    align       = "llrr",
     digits      = 2,
     format      = "markdown"
   )
@@ -172,3 +183,14 @@ ds_variable_97 %>%
     # align       = "r",
     format      = "markdown"
   )
+
+# ---- table-97-size ---------------------------------------------------------------
+ds_pretty_97 %>%
+  dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
+  knitr::kable(
+    col.names   = gsub("_", " ", colnames(.)),
+    align       = "llrr",
+    digits      = 2,
+    format      = "markdown"
+  )
+

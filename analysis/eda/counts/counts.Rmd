@@ -84,7 +84,7 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 # Results NLSY79 {.tabset .tabset-fade .tabset-pills}
 
 ## Tables 79
-```{r table-79, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```{r table-79-structure, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
 ## Items 79
@@ -95,12 +95,14 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 ```{r variable-79, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
-
+## Table Sizes 79
+```{r table-79-size, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
 
 # Results NLSY97 {.tabset .tabset-fade .tabset-pills}
 
 ## Tables 97
-```{r table-97, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```{r table-97-structure, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
 ## Items 97
@@ -111,6 +113,9 @@ read_chunk("./analysis/eda/counts/counts.R") #This allows knitr to call chunks t
 ```{r variable-97, echo=echo_chunks, message=message_chunks, warning=TRUE}
 ```
 
+## Table Sizes 97
+```{r table-97-size, echo=echo_chunks, message=message_chunks, warning=TRUE}
+```
 
 
 # Session Information
