@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-12"
+date: "Date: 2018-01-16"
 output:
   html_document:
     keep_md: yes
@@ -1889,18 +1889,18 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |        90|            4|             72|            16|
 |Enum        |tblLUTristate           |         3|            4|             72|            16|
 |Enum        |tblLUYesNo              |         6|            4|             72|            16|
-|Extract     |tblLinksExplicit        |     8,984|           35|          1,480|         1,424|
-|Extract     |tblLinksImplicit        |     8,984|           42|          1,736|         1,680|
-|Extract     |tblRoster               |     8,984|          418|         24,008|        24,008|
+|Extract     |tblLinksExplicit        |     8,984|           35|          1,480|         1,400|
+|Extract     |tblLinksImplicit        |     8,984|           42|          1,736|         1,656|
+|Extract     |tblRoster               |     8,984|          418|         18,120|        18,016|
 |Metadata    |tblItem                 |         7|            7|             72|            16|
 |Metadata    |tblMzManual             |       208|            8|             72|            40|
 |Metadata    |tblVariable             |        38|            9|             72|            16|
 |Process     |tblOutcome              |         0|            5|             72|            16|
-|Process     |tblRelatedStructure     |         0|            6|              0|             0|
+|Process     |tblRelatedStructure     |     5,038|            6|            528|           256|
 |Process     |tblRelatedValues        |         0|           23|             72|            16|
-|Process     |tblResponse             |         0|            9|             72|            16|
+|Process     |tblResponse             |   126,610|            7|             72|            16|
 |Process     |tblRoster               |         0|           13|              0|             0|
-|Process     |tblSubject              |         0|            4|              0|             0|
+|Process     |tblSubject              |     8,984|            4|            592|           344|
 |Process     |tblSubjectDetails       |         0|           15|             72|            16|
 |Process     |tblSurveyTime           |         0|            7|             72|            16|
 
@@ -1957,7 +1957,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R1102400      |     102|hh_member_id       |                 1|97-roster            |        1997|         15|TRUE      |TRUE            |HHI2_ID        |
 |R1102500      |     102|hh_member_id       |                 1|97-roster            |        1997|         16|TRUE      |TRUE            |HHI2_ID        |
 |R1102501      |     102|hh_member_id       |                 1|97-roster            |        1997|         17|TRUE      |TRUE            |HHI2_ID        |
-|R1193000      |       2|extended_family_id |                 3|97-links-explicit    |        1997|          1|TRUE      |TRUE            |SIDCODE        |
+|R1193000      |       2|extended_family_id |                 1|97-roster            |        1997|          1|TRUE      |TRUE            |SIDCODE        |
 
 
 
@@ -1979,7 +1979,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-12                                 
+ date     2018-01-16                                 
 ```
 
 ```
@@ -2003,6 +2003,7 @@ Packages -----------------------------------------------------------------------
  crayon       1.3.4      2017-09-16 CRAN (R 3.4.1)                  
  datasets   * 3.4.3      2017-12-06 local                           
  DBI          0.7        2017-06-18 CRAN (R 3.4.2)                  
+ dbplyr       1.2.0      2018-01-03 CRAN (R 3.4.3)                  
  devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                  
  digest       0.6.13     2017-12-14 CRAN (R 3.4.3)                  
  dplyr        0.7.4      2017-09-28 CRAN (R 3.4.2)                  
@@ -2015,11 +2016,10 @@ Packages -----------------------------------------------------------------------
  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                  
  knitr      * 1.18       2017-12-27 CRAN (R 3.4.3)                  
  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
- markdown     0.8        2017-04-20 CRAN (R 3.4.2)                  
  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
- odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
+ odbc       * 1.1.3      2017-10-05 CRAN (R 3.4.2)                  
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2031,6 +2031,7 @@ Packages -----------------------------------------------------------------------
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
+ rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
@@ -2048,4 +2049,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-12, 21:37 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-16, 10:08 -0600 in 3 seconds.

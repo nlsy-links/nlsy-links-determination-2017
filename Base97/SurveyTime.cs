@@ -87,37 +87,16 @@ namespace Nls.Base97 {
 			}
 			return recordsProcessed;
 		}
-		private SurveySource DetermineSurveySource ( Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
-			string select = string.Format("{0}={1} AND {2}={3} AND {4}>0",
-				surveyYear, _ds.tblResponse.SurveyYearColumn.ColumnName,
-				(byte)Item.InterviewDateMonth, _ds.tblResponse.ItemColumn.ColumnName,
-				_ds.tblResponse.ValueColumn.ColumnName);
-			LinksDataSet.tblResponseRow[] drsResponse = (LinksDataSet.tblResponseRow[])dtResponseForSubject.Select(select);
-			Trace.Assert(drsResponse.Length <= 1, string.Format("There should be at most one row with a positive value for InterviewDateMonth (SubjectTag:{0}, SurveyYear:{1}).", drSubject.SubjectTag, surveyYear));
-			if ( drsResponse.Length == 0 ) {
-				return SurveySource.NoInterview;
-			}
-			else {
-				SurveySource source = (SurveySource)drsResponse[0].SurveySource;
-				switch ( source ) {
-					case SurveySource.Gen1: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen1, "The subject should be Gen1."); break;
-					case SurveySource.Gen2C: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen2, "The subject should be Gen2."); break;
-					case SurveySource.Gen2YA: Trace.Assert(drSubject.Generation == (byte)Sample.Nlsy79Gen2, "The subject should be Gen2."); break;
-					default: throw new InvalidOperationException("The determined SurveySource was not recognized.");//The NotInterviewed shouldn't be possible for this switch.
-				}
-				return source;
-			}
-		}
-		private static DateTime? DetermineSurveyDate ( SurveySource source, Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
+		private static DateTime? DetermineSurveyDate ( Int16 surveyYear, LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtResponseForSubject ) {
 			Int32 maxRecords = 1;
-			Int32? monthReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateMonth, source, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
+			Int32? monthReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateMonth, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
 			if ( !monthReported.HasValue || monthReported < 0 ) return null;
 
-			Int32? dayReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateDay, source, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
+			Int32? dayReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateDay, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
 			if ( !dayReported.HasValue || dayReported < 0 ) dayReported = Constants.DefaultDayOfMonth;
 			//Trace.Fail("There shouldn't be any interview date that missing a day, but not a month.");
 
-			Int32? yearReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateYear, source, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
+			Int32? yearReported = Retrieve.ResponseNullPossible(surveyYear, Item.InterviewDateYear, drSubject.SubjectTag, maxRecords, dtResponseForSubject);
 			if ( yearReported < 0 || !yearReported.HasValue ) yearReported = surveyYear;
 			else if ( 0 < yearReported && yearReported < 1900 ) yearReported = 1900 + yearReported;//The 1993 Gen1 Survey reports it like '93', instead of '1993'.
 
@@ -125,7 +104,7 @@ namespace Nls.Base97 {
 			DateTime interviewDate = new DateTime(yearReported.Value, monthReported.Value, dayReported.Value);
 			return interviewDate;
 		}
-		private static float? DetermineAgeSelfReport ( SurveySource source, Int32 subjectTag, LinksDataSet.tblResponseDataTable dtResponse, Int16 surveyYear ) {
+		private static float? DetermineAgeSelfReport ( Int32 subjectTag, LinksDataSet.tblResponseDataTable dtResponse, Int16 surveyYear ) {
 			float? ageSelfReportYears;
 			switch ( source ) {
 				case SurveySource.Gen2C:
