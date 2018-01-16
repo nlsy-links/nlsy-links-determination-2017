@@ -2218,6 +2218,7 @@ Packages -----------------------------------------------------------------------
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
+ rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
@@ -2235,4 +2236,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 15:22 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-16, 15:35 -0600 in 2 seconds.

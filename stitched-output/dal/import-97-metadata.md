@@ -22,45 +22,13 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"                  )
-```
-
-```
-## Loading required namespace: readr
-```
-
-```r
 requireNamespace("tidyr"                  )
-```
-
-```
-## Loading required namespace: tidyr
-```
-
-```r
 requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
-```
-
-```
-## Loading required namespace: dplyr
-```
-
-```r
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
-```
-
-```
-## Loading required namespace: RODBC
-```
-
-```r
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
-```
-
-```
-## Loading required namespace: odbc
 ```
 
 ```r
@@ -1068,7 +1036,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 15:21 -0600 in 3 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 15:34 -0600 in 3 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1100,15 +1068,15 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
+##  [5] hms_0.4.0        odbc_1.1.3       bit_1.1-12       testit_0.7.1    
+##  [9] R6_2.2.2         rlang_0.1.6      stringr_1.2.0    blob_1.1.0      
+## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.3      
+## [17] cli_1.0.0        DBI_0.7          yaml_2.1.16      bit64_0.9-7     
+## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
+## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
+## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
+## [33] backports_1.1.2  pkgconfig_2.0.1
 ```
 
 ```r
@@ -1116,6 +1084,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 15:21:39 CST"
+## [1] "2018-01-16 15:34:34 CST"
 ```
 

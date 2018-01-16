@@ -73,7 +73,7 @@ ds_extract <- ds_extract %>%
     table_name      = sub("^Extract\\.(\\w+)$", "\\1", table_name_qualified),
     path_zip        = file.path(directory_in, paste0(file_name_base, ".zip")),
     name_csv        = paste0(file_name_base, ".csv"),
-    path_csv        = file.path(directory_in, name_csv),
+    # path_csv        = file.path(directory_in, name_csv),
     extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
@@ -86,14 +86,14 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 5 x 11
-##   table~ file_~ table~ path_~ name~ path~ extr~ sql_~ sql_~ sql_~ sql_pri~
-##   <chr>  <chr>  <chr>  <chr>  <chr> <chr> <lgl> <chr> <chr> <chr> <chr>   
-## 1 Extra~ 97-de~ tblDe~ data-~ 97-d~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
-## 2 Extra~ 97-ro~ tblRo~ data-~ 97-r~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
-## 3 Extra~ 97-su~ tblSu~ data-~ 97-s~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
-## 4 Extra~ 97-li~ tblLi~ data-~ 97-l~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
-## 5 Extra~ 97-li~ tblLi~ data-~ 97-l~ data~ T     SELE~ TRUN~ " AL~ "  ALTE~
+## # A tibble: 5 x 10
+##   table~ file_~ table~ path_z~ name~ extr~ sql_s~ sql_~ sql_n~ sql_primar~
+##   <chr>  <chr>  <chr>  <chr>   <chr> <lgl> <chr>  <chr> <chr>  <chr>      
+## 1 Extra~ 97-de~ tblDe~ data-u~ 97-d~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
+## 2 Extra~ 97-ro~ tblRo~ data-u~ 97-r~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
+## 3 Extra~ 97-su~ tblSu~ data-u~ 97-s~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
+## 4 Extra~ 97-li~ tblLi~ data-u~ 97-l~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
+## 5 Extra~ 97-li~ tblLi~ data-u~ 97-l~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
 ```
 
 ```r
@@ -180,10 +180,17 @@ channel_rodbc <- open_dsn_channel_rodbc(study)
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
+  temp_directory  <- tempdir()
+  temp_csv        <- file.path(temp_directory, ds_extract$name_csv[i])
   # unzip("data-unshared/raw/nlsy97/97-demographics.zip", files="97-demographics.csv", exdir="data-unshared/raw/nlsy97")
-  unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+  # utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+  # d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
 
-  d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
+  utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=temp_directory)
+  if( !file.exists(temp_csv) ) stop("The decompressed csv, `", temp_csv, "` was not found.")
+  d <- readr::read_csv(temp_csv, col_types=col_types_default)
+  unlink(temp_csv)
+
   # d2 <- readr::read_csv("data-unshared/raw/nlsy97/97-demographics.zip"  )
 
 
@@ -512,7 +519,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-16, 15:22 -0600 in 26 seconds.
+## File completed by `Will` at 2018-01-16, 15:35 -0600 in 28 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -544,15 +551,15 @@ sessionInfo()
 ## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] markdown_0.8     pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
+##  [5] hms_0.4.0        odbc_1.1.3       bit_1.1-12       testit_0.7.1    
+##  [9] R6_2.2.2         rlang_0.1.6      stringr_1.2.0    blob_1.1.0      
+## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.3      
+## [17] cli_1.0.0        DBI_0.7          yaml_2.1.16      bit64_0.9-7     
+## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
+## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
+## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
+## [33] backports_1.1.2  markdown_0.8     pkgconfig_2.0.1
 ```
 
 ```r
@@ -560,6 +567,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 15:22:05 CST"
+## [1] "2018-01-16 15:35:03 CST"
 ```
 

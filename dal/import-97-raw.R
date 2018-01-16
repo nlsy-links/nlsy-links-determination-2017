@@ -60,7 +60,7 @@ ds_extract <- ds_extract %>%
     table_name      = sub("^Extract\\.(\\w+)$", "\\1", table_name_qualified),
     path_zip        = file.path(directory_in, paste0(file_name_base, ".zip")),
     name_csv        = paste0(file_name_base, ".csv"),
-    path_csv        = file.path(directory_in, name_csv),
+    # path_csv        = file.path(directory_in, name_csv),
     extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
@@ -97,10 +97,17 @@ channel_rodbc <- open_dsn_channel_rodbc(study)
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
+  temp_directory  <- tempdir()
+  temp_csv        <- file.path(temp_directory, ds_extract$name_csv[i])
   # unzip("data-unshared/raw/nlsy97/97-demographics.zip", files="97-demographics.csv", exdir="data-unshared/raw/nlsy97")
-  unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+  # utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=directory_in)
+  # d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
 
-  d <- readr::read_csv(ds_extract$path_csv[i], col_types=col_types_default)
+  utils::unzip(ds_extract$path_zip[i], files=ds_extract$name_csv[i], exdir=temp_directory)
+  if( !file.exists(temp_csv) ) stop("The decompressed csv, `", temp_csv, "` was not found.")
+  d <- readr::read_csv(temp_csv, col_types=col_types_default)
+  unlink(temp_csv)
+
   # d2 <- readr::read_csv("data-unshared/raw/nlsy97/97-demographics.zip"  )
 
 
