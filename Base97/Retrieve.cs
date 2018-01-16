@@ -26,13 +26,14 @@ namespace Nls.Base97 {
             Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
             return drsRaw[0].Value;
         }
-        internal static Int32 Response( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
+        internal static Int32 Response( Int16 surveyYear, Item itemID, Int32 subjectTag, Int32 maxRows, byte loopIndex1, byte loopIndex2, LinksDataSet.tblResponseDataTable dt ) {
             if( dt == null ) throw new ArgumentNullException("dt");
-            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7} AND {8}={9}",
                 subjectTag, dt.SubjectTagColumn.ColumnName,
                 (Int16)itemID, dt.ItemColumn.ColumnName,
                 surveyYear, dt.SurveyYearColumn.ColumnName,
-                loopIndex, dt.LoopIndexColumn.ColumnName);
+                loopIndex1, dt.LoopIndex2Column.ColumnName,
+                loopIndex2, dt.LoopIndex2Column.ColumnName);
             LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
             Trace.Assert(drsRaw.Length <= maxRows, "At most, " + maxRows + " row(s) should be returned.");
             return drsRaw[0].Value;
@@ -64,13 +65,14 @@ namespace Nls.Base97 {
             else
                 return drsRaw[0].Value;
         }
-        internal static Int32? ResponseNullPossible( Int16 surveyYear, Item itemID, Int32 subjectTag, byte loopIndex, LinksDataSet.tblResponseDataTable dt ) {
+        internal static Int32? ResponseNullPossible( Int16 surveyYear, Item itemID, Int32 subjectTag, byte loopIndex1, byte loopIndex2, LinksDataSet.tblResponseDataTable dt ) {
             if( dt == null ) throw new ArgumentNullException("dt");
-            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
+            string select = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7} AND {8}={9}",
                 subjectTag, dt.SubjectTagColumn.ColumnName,
                 (Int16)itemID, dt.ItemColumn.ColumnName,
                 surveyYear, dt.SurveyYearColumn.ColumnName,
-                loopIndex, dt.LoopIndexColumn.ColumnName);
+                loopIndex1, dt.LoopIndex1Column.ColumnName,
+                loopIndex2, dt.LoopIndex2Column.ColumnName);
             LinksDataSet.tblResponseRow[] drsRaw = (LinksDataSet.tblResponseRow[])dt.Select(select);
             Trace.Assert(drsRaw.Length <= 1, "At most one row should be returned.");
             if( drsRaw.Length == 0 )

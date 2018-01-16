@@ -98,7 +98,8 @@ lst_col_types <- list(
     Translate                           = readr::col_integer(),
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character(),
-    Notes_2                             = readr::col_character()
+    QuestionName                        = readr::col_character(),
+    VariableTitle                       = readr::col_character()
   )
 )
 
@@ -220,6 +221,9 @@ ds_enum %>%
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
+
+stop("check uniqueness variable metadata")
+
 
 # ---- specify-columns-to-upload -----------------------------------------------
 

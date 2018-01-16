@@ -93,7 +93,7 @@
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}" />
             </TabItem>
             <TabItem Header="Variable" x:Name="tabVariable" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource}}" />
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource}}"   />
             </TabItem>
             <TabItem Header="MzManual" x:Name="tabMzManual" >
                 <DataGrid ItemsSource="{Binding}" />

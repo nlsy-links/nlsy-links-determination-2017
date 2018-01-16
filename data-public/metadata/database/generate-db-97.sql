@@ -1000,12 +1000,14 @@ CREATE TABLE [Metadata].[tblVariable](
 	[Item] [smallint] NOT NULL,
 	[ExtractSource] [tinyint] NOT NULL,
 	[SurveyYear] [smallint] NOT NULL,
-	[LoopIndex] [tinyint] NOT NULL,
+	[LoopIndex1] [tinyint] NOT NULL,
+	[LoopIndex2] [tinyint] NOT NULL,
 	[Translate] [bit] NOT NULL,
 	[Active] [bit] NOT NULL,
 	[Notes] [varchar](255) NULL,
-	[Notes_2] [varchar](255) NULL,
- CONSTRAINT [PK_tblVariable_79] PRIMARY KEY CLUSTERED 
+	[QuestionName] [varchar](255) NOT NULL,
+	[VariableTitle] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_tblVariable] PRIMARY KEY CLUSTERED 
 (
 	[VariableCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -1081,7 +1083,8 @@ CREATE TABLE [Process].[tblResponse](
 	[SurveyYear] [smallint] NOT NULL,
 	[Item] [smallint] NOT NULL,
 	[Value] [int] NOT NULL,
-	[LoopIndex] [tinyint] NOT NULL
+	[LoopIndex1] [tinyint] NOT NULL,
+	[LoopIndex2] [tinyint] NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1161,6 +1164,14 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedValuesArchive_Unique] ON [Archive
 	[SubjectTag_S1] ASC,
 	[SubjectTag_S2] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IX_tblVariable_Unique] ON [Metadata].[tblVariable]
+(
+	[Item] ASC,
+	[SurveyYear] ASC,
+	[LoopIndex1] ASC,
+	[LoopIndex2] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 CREATE NONCLUSTERED INDEX [IX_tblOutcome_Unique] ON [Process].[tblOutcome]
 (
@@ -1415,11 +1426,11 @@ CREATE PROCEDURE [Process].[prcResponseRetrieveSubset]
 AS
 BEGIN
 	SET NOCOUNT ON;-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
-SELECT     ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex
+SELECT     ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex1, LoopIndex2
 FROM         Process.tblResponse
 WHERE Item in (0) --For RelatedValues
 
-OR Item in (13,14,15,16,17,20, 21,22,100)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
+OR Item in (11, 12, 20, 21, 22, 23,24)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
 OR Item in (1,2)                                                                                         --For Roster
 OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
 OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,

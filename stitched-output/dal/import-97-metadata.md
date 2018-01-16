@@ -105,11 +105,13 @@ lst_col_types <- list(
     Item                                = readr::col_integer(),
     ExtractSource                       = readr::col_integer(),
     SurveyYear                          = readr::col_integer(),
-    LoopIndex                           = readr::col_integer(),
+    LoopIndex1                          = readr::col_integer(),
+    LoopIndex2                          = readr::col_integer(),
     Translate                           = readr::col_integer(),
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character(),
-    Notes_2                             = readr::col_character()
+    QuestionName                        = readr::col_character(),
+    VariableTitle                       = readr::col_character()
   )
 )
 
@@ -388,19 +390,19 @@ ds_file$entries %>%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 127 x 9
-##    VariableCode  Item ExtractSource Surve~ LoopI~ Tran~ Acti~ Notes Notes~
-##    <chr>        <int>         <int>  <int>  <int> <int> <int> <chr> <chr> 
-##  1 R0000100         1             1   1997      1     1     1 PUBID YOUTH~
-##  2 R1193000         2             1   1997      1     1     1 SIDC~ HOUSE~
-##  3 R0536300        10             1   1997      1     1     1 KEY!~ RS GE~
-##  4 R0536401        11             1   1997      1     1     1 KEY!~ RS BI~
-##  5 R0536402        12             1   1997      1     1     1 KEY!~ RS BI~
-##  6 R1235800        13             1   1997      1     1     1 CV_S~ SAMPL~
-##  7 R1097800       101             2   1997      1     1     1 HHI2~ ID OF~
-##  8 R1097900       101             2   1997      2     1     1 HHI2~ ID OF~
-##  9 R1098000       101             2   1997      3     1     1 HHI2~ ID OF~
-## 10 R1098100       101             2   1997      4     1     1 HHI2~ ID OF~
+## # A tibble: 127 x 11
+##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
+##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
+##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
+##  2 R1193~     2      1   1997     1     1     1     1 <NA>  SIDC~ HOUSEHO~
+##  3 R0536~    10      1   1997     1     1     1     1 <NA>  KEY!~ RS GEND~
+##  4 R0536~    11      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
+##  5 R0536~    12      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
+##  6 R1235~    13      1   1997     1     1     1     1 <NA>  CV_S~ SAMPLE ~
+##  7 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
+##  8 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
+##  9 R1098~   101      2   1997     3     1     1     1 <NA>  HHI2~ HHI2_HH~
+## 10 R1098~   101      2   1997     4     1     1     1 <NA>  HHI2~ HHI2_HH~
 ## # ... with 117 more rows
 ```
 
@@ -1036,7 +1038,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 15:51 -0600 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 17:24 -0600 in 2 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1091,6 +1093,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 15:51:24 CST"
+## [1] "2018-01-16 17:24:02 CST"
 ```
 

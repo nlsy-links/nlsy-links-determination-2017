@@ -59,7 +59,8 @@ sql_variable_97 <- "
     e.Label              AS extract_source_label,
     --v.SurveySource       AS survey_source_id,
     v.SurveyYear         AS survey_year,
-    v.LoopIndex          AS loop_index,
+    v.LoopIndex1         AS loop_index_1,
+    v.LoopIndex2         AS loop_index_2,
     v.Translate          AS translate,
     v.Active             AS variable_active,
     v.Notes              AS variable_notes

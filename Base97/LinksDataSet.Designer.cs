@@ -1806,7 +1806,9 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnSurveyYear;
             
-            private global::System.Data.DataColumn columnLoopIndex;
+            private global::System.Data.DataColumn columnLoopIndex1;
+            
+            private global::System.Data.DataColumn columnLoopIndex2;
             
             private global::System.Data.DataColumn columnTranslate;
             
@@ -1814,7 +1816,9 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnNotes;
             
-            private global::System.Data.DataColumn columnNotes_2;
+            private global::System.Data.DataColumn columnQuestionName;
+            
+            private global::System.Data.DataColumn columnVariableTitle;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1883,9 +1887,17 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LoopIndexColumn {
+            public global::System.Data.DataColumn LoopIndex1Column {
                 get {
-                    return this.columnLoopIndex;
+                    return this.columnLoopIndex1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LoopIndex2Column {
+                get {
+                    return this.columnLoopIndex2;
                 }
             }
             
@@ -1915,9 +1927,17 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Notes_2Column {
+            public global::System.Data.DataColumn QuestionNameColumn {
                 get {
-                    return this.columnNotes_2;
+                    return this.columnQuestionName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VariableTitleColumn {
+                get {
+                    return this.columnVariableTitle;
                 }
             }
             
@@ -1958,18 +1978,20 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblVariableRow AddtblVariableRow(string VariableCode, tblItemRow parenttblItemRowByFK_tblVariable_tblItem, byte ExtractSource, short SurveyYear, byte LoopIndex, bool Translate, bool Active, string Notes, string Notes_2) {
+            public tblVariableRow AddtblVariableRow(string VariableCode, tblItemRow parenttblItemRowByFK_tblVariable_tblItem, byte ExtractSource, short SurveyYear, byte LoopIndex1, byte LoopIndex2, bool Translate, bool Active, string Notes, string QuestionName, string VariableTitle) {
                 tblVariableRow rowtblVariableRow = ((tblVariableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         VariableCode,
                         null,
                         ExtractSource,
                         SurveyYear,
-                        LoopIndex,
+                        LoopIndex1,
+                        LoopIndex2,
                         Translate,
                         Active,
                         Notes,
-                        Notes_2};
+                        QuestionName,
+                        VariableTitle};
                 if ((parenttblItemRowByFK_tblVariable_tblItem != null)) {
                     columnValuesArray[1] = parenttblItemRowByFK_tblVariable_tblItem[0];
                 }
@@ -2006,11 +2028,13 @@ namespace Nls.Base97 {
                 this.columnItem = base.Columns["Item"];
                 this.columnExtractSource = base.Columns["ExtractSource"];
                 this.columnSurveyYear = base.Columns["SurveyYear"];
-                this.columnLoopIndex = base.Columns["LoopIndex"];
+                this.columnLoopIndex1 = base.Columns["LoopIndex1"];
+                this.columnLoopIndex2 = base.Columns["LoopIndex2"];
                 this.columnTranslate = base.Columns["Translate"];
                 this.columnActive = base.Columns["Active"];
                 this.columnNotes = base.Columns["Notes"];
-                this.columnNotes_2 = base.Columns["Notes_2"];
+                this.columnQuestionName = base.Columns["QuestionName"];
+                this.columnVariableTitle = base.Columns["VariableTitle"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2028,16 +2052,20 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnExtractSource);
                 this.columnSurveyYear = new global::System.Data.DataColumn("SurveyYear", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSurveyYear);
-                this.columnLoopIndex = new global::System.Data.DataColumn("LoopIndex", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLoopIndex);
+                this.columnLoopIndex1 = new global::System.Data.DataColumn("LoopIndex1", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLoopIndex1);
+                this.columnLoopIndex2 = new global::System.Data.DataColumn("LoopIndex2", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLoopIndex2);
                 this.columnTranslate = new global::System.Data.DataColumn("Translate", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTranslate);
                 this.columnActive = new global::System.Data.DataColumn("Active", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActive);
                 this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNotes);
-                this.columnNotes_2 = new global::System.Data.DataColumn("Notes_2", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNotes_2);
+                this.columnQuestionName = new global::System.Data.DataColumn("QuestionName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuestionName);
+                this.columnVariableTitle = new global::System.Data.DataColumn("VariableTitle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVariableTitle);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnVariableCode}, true));
                 this.columnVariableCode.AllowDBNull = false;
@@ -2046,11 +2074,15 @@ namespace Nls.Base97 {
                 this.columnItem.AllowDBNull = false;
                 this.columnExtractSource.AllowDBNull = false;
                 this.columnSurveyYear.AllowDBNull = false;
-                this.columnLoopIndex.AllowDBNull = false;
+                this.columnLoopIndex1.AllowDBNull = false;
+                this.columnLoopIndex2.AllowDBNull = false;
                 this.columnTranslate.AllowDBNull = false;
                 this.columnActive.AllowDBNull = false;
                 this.columnNotes.MaxLength = 255;
-                this.columnNotes_2.MaxLength = 255;
+                this.columnQuestionName.AllowDBNull = false;
+                this.columnQuestionName.MaxLength = 255;
+                this.columnVariableTitle.AllowDBNull = false;
+                this.columnVariableTitle.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3455,7 +3487,9 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnValue;
             
-            private global::System.Data.DataColumn columnLoopIndex;
+            private global::System.Data.DataColumn columnLoopIndex1;
+            
+            private global::System.Data.DataColumn columnLoopIndex2;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3540,9 +3574,17 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LoopIndexColumn {
+            public global::System.Data.DataColumn LoopIndex1Column {
                 get {
-                    return this.columnLoopIndex;
+                    return this.columnLoopIndex1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LoopIndex2Column {
+                get {
+                    return this.columnLoopIndex2;
                 }
             }
             
@@ -3583,7 +3625,7 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblResponseRow AddtblResponseRow(tblSubjectRow parenttblSubjectRowByFK_tblResponse_tblSubject, short ExtendedID, short SurveyYear, tblItemRow parenttblItemRowByFK_tblResponse_tblItem, int Value, byte LoopIndex) {
+            public tblResponseRow AddtblResponseRow(tblSubjectRow parenttblSubjectRowByFK_tblResponse_tblSubject, short ExtendedID, short SurveyYear, tblItemRow parenttblItemRowByFK_tblResponse_tblItem, int Value, byte LoopIndex1, byte LoopIndex2) {
                 tblResponseRow rowtblResponseRow = ((tblResponseRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3592,7 +3634,8 @@ namespace Nls.Base97 {
                         SurveyYear,
                         null,
                         Value,
-                        LoopIndex};
+                        LoopIndex1,
+                        LoopIndex2};
                 if ((parenttblSubjectRowByFK_tblResponse_tblSubject != null)) {
                     columnValuesArray[1] = parenttblSubjectRowByFK_tblResponse_tblSubject[0];
                 }
@@ -3627,7 +3670,8 @@ namespace Nls.Base97 {
                 this.columnSurveyYear = base.Columns["SurveyYear"];
                 this.columnItem = base.Columns["Item"];
                 this.columnValue = base.Columns["Value"];
-                this.columnLoopIndex = base.Columns["LoopIndex"];
+                this.columnLoopIndex1 = base.Columns["LoopIndex1"];
+                this.columnLoopIndex2 = base.Columns["LoopIndex2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3649,8 +3693,10 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnItem);
                 this.columnValue = new global::System.Data.DataColumn("Value", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValue);
-                this.columnLoopIndex = new global::System.Data.DataColumn("LoopIndex", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLoopIndex);
+                this.columnLoopIndex1 = new global::System.Data.DataColumn("LoopIndex1", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLoopIndex1);
+                this.columnLoopIndex2 = new global::System.Data.DataColumn("LoopIndex2", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLoopIndex2);
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = -1;
                 this.columnID.AutoIncrementStep = -1;
@@ -3661,7 +3707,8 @@ namespace Nls.Base97 {
                 this.columnSurveyYear.AllowDBNull = false;
                 this.columnItem.AllowDBNull = false;
                 this.columnValue.AllowDBNull = false;
-                this.columnLoopIndex.AllowDBNull = false;
+                this.columnLoopIndex1.AllowDBNull = false;
+                this.columnLoopIndex2.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5798,12 +5845,23 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte LoopIndex {
+            public byte LoopIndex1 {
                 get {
-                    return ((byte)(this[this.tabletblVariable.LoopIndexColumn]));
+                    return ((byte)(this[this.tabletblVariable.LoopIndex1Column]));
                 }
                 set {
-                    this[this.tabletblVariable.LoopIndexColumn] = value;
+                    this[this.tabletblVariable.LoopIndex1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte LoopIndex2 {
+                get {
+                    return ((byte)(this[this.tabletblVariable.LoopIndex2Column]));
+                }
+                set {
+                    this[this.tabletblVariable.LoopIndex2Column] = value;
                 }
             }
             
@@ -5847,17 +5905,23 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Notes_2 {
+            public string QuestionName {
                 get {
-                    try {
-                        return ((string)(this[this.tabletblVariable.Notes_2Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Notes_2\' in table \'tblVariable\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tabletblVariable.QuestionNameColumn]));
                 }
                 set {
-                    this[this.tabletblVariable.Notes_2Column] = value;
+                    this[this.tabletblVariable.QuestionNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string VariableTitle {
+                get {
+                    return ((string)(this[this.tabletblVariable.VariableTitleColumn]));
+                }
+                set {
+                    this[this.tabletblVariable.VariableTitleColumn] = value;
                 }
             }
             
@@ -5882,18 +5946,6 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNotesNull() {
                 this[this.tabletblVariable.NotesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNotes_2Null() {
-                return this.IsNull(this.tabletblVariable.Notes_2Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNotes_2Null() {
-                this[this.tabletblVariable.Notes_2Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -6821,12 +6873,23 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte LoopIndex {
+            public byte LoopIndex1 {
                 get {
-                    return ((byte)(this[this.tabletblResponse.LoopIndexColumn]));
+                    return ((byte)(this[this.tabletblResponse.LoopIndex1Column]));
                 }
                 set {
-                    this[this.tabletblResponse.LoopIndexColumn] = value;
+                    this[this.tabletblResponse.LoopIndex1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte LoopIndex2 {
+                get {
+                    return ((byte)(this[this.tabletblResponse.LoopIndex2Column]));
+                }
+                set {
+                    this[this.tabletblResponse.LoopIndex2Column] = value;
                 }
             }
             
@@ -9197,66 +9260,74 @@ SELECT ID, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSex, IsMz, Undecided
             tableMapping.ColumnMappings.Add("Item", "Item");
             tableMapping.ColumnMappings.Add("ExtractSource", "ExtractSource");
             tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
-            tableMapping.ColumnMappings.Add("LoopIndex", "LoopIndex");
+            tableMapping.ColumnMappings.Add("LoopIndex1", "LoopIndex1");
+            tableMapping.ColumnMappings.Add("LoopIndex2", "LoopIndex2");
             tableMapping.ColumnMappings.Add("Translate", "Translate");
             tableMapping.ColumnMappings.Add("Active", "Active");
             tableMapping.ColumnMappings.Add("Notes", "Notes");
-            tableMapping.ColumnMappings.Add("Notes_2", "Notes_2");
+            tableMapping.ColumnMappings.Add("QuestionName", "QuestionName");
+            tableMapping.ColumnMappings.Add("VariableTitle", "VariableTitle");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Metadata].[tblVariable] WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_Notes_2 = 1 AND [Notes_2] IS NULL) OR ([Notes_2] = @Original_Notes_2)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Metadata].[tblVariable] WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex1] = @Original_LoopIndex1) AND ([LoopIndex2] = @Original_LoopIndex2) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([QuestionName] = @Original_QuestionName) AND ([VariableTitle] = @Original_VariableTitle))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VariableCode", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ExtractSource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtractSource", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Translate", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Translate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes_2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes_2", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_QuestionName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuestionName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VariableTitle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableTitle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Metadata].[tblVariable] ([VariableCode], [Item], [ExtractSource], [SurveyYear], [LoopIndex], [Translate], [Active], [Notes], [Notes_2]) VALUES (@VariableCode, @Item, @ExtractSource, @SurveyYear, @LoopIndex, @Translate, @Active, @Notes, @Notes_2);
-SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Active, Notes, Notes_2 FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Metadata].[tblVariable] ([VariableCode], [Item], [ExtractSource], [SurveyYear], [LoopIndex1], [LoopIndex2], [Translate], [Active], [Notes], [QuestionName], [VariableTitle]) VALUES (@VariableCode, @Item, @ExtractSource, @SurveyYear, @LoopIndex1, @LoopIndex2, @Translate, @Active, @Notes, @QuestionName, @VariableTitle);
+SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Translate, Active, Notes, QuestionName, VariableTitle FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VariableCode", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtractSource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtractSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Translate", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Translate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes_2", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuestionName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuestionName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VariableTitle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Metadata].[tblVariable] SET [VariableCode] = @VariableCode, [Item] = @Item, [ExtractSource] = @ExtractSource, [SurveyYear] = @SurveyYear, [LoopIndex] = @LoopIndex, [Translate] = @Translate, [Active] = @Active, [Notes] = @Notes, [Notes_2] = @Notes_2 WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex] = @Original_LoopIndex) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_Notes_2 = 1 AND [Notes_2] IS NULL) OR ([Notes_2] = @Original_Notes_2)));
-SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Active, Notes, Notes_2 FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Metadata].[tblVariable] SET [VariableCode] = @VariableCode, [Item] = @Item, [ExtractSource] = @ExtractSource, [SurveyYear] = @SurveyYear, [LoopIndex1] = @LoopIndex1, [LoopIndex2] = @LoopIndex2, [Translate] = @Translate, [Active] = @Active, [Notes] = @Notes, [QuestionName] = @QuestionName, [VariableTitle] = @VariableTitle WHERE (([VariableCode] = @Original_VariableCode) AND ([Item] = @Original_Item) AND ([ExtractSource] = @Original_ExtractSource) AND ([SurveyYear] = @Original_SurveyYear) AND ([LoopIndex1] = @Original_LoopIndex1) AND ([LoopIndex2] = @Original_LoopIndex2) AND ([Translate] = @Original_Translate) AND ([Active] = @Original_Active) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([QuestionName] = @Original_QuestionName) AND ([VariableTitle] = @Original_VariableTitle));
+SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Translate, Active, Notes, QuestionName, VariableTitle FROM Metadata.tblVariable WHERE (VariableCode = @VariableCode)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VariableCode", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtractSource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtractSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Translate", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Translate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes_2", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuestionName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuestionName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VariableTitle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VariableCode", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ExtractSource", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtractSource", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoopIndex2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Translate", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Translate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes_2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes_2", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes_2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_QuestionName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuestionName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VariableTitle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VariableTitle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9272,8 +9343,8 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Activ" +
-                "e, Notes, Notes_2 FROM Metadata.tblVariable";
+            this._commandCollection[0].CommandText = "SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Tra" +
+                "nslate, Active, Notes, QuestionName, VariableTitle FROM Metadata.tblVariable";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9334,7 +9405,7 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_VariableCode, short Original_Item, byte Original_ExtractSource, short Original_SurveyYear, byte Original_LoopIndex, bool Original_Translate, bool Original_Active, string Original_Notes, string Original_Notes_2) {
+        public virtual int Delete(string Original_VariableCode, short Original_Item, byte Original_ExtractSource, short Original_SurveyYear, byte Original_LoopIndex1, byte Original_LoopIndex2, bool Original_Translate, bool Original_Active, string Original_Notes, string Original_QuestionName, string Original_VariableTitle) {
             if ((Original_VariableCode == null)) {
                 throw new global::System.ArgumentNullException("Original_VariableCode");
             }
@@ -9344,24 +9415,29 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
             this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_Item));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((byte)(Original_ExtractSource));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((short)(Original_SurveyYear));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((byte)(Original_LoopIndex));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_Translate));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Active));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((byte)(Original_LoopIndex1));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((byte)(Original_LoopIndex2));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Translate));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_Active));
             if ((Original_Notes == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Notes));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Notes));
             }
-            if ((Original_Notes_2 == null)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((Original_QuestionName == null)) {
+                throw new global::System.ArgumentNullException("Original_QuestionName");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_Notes_2));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_QuestionName));
+            }
+            if ((Original_VariableTitle == null)) {
+                throw new global::System.ArgumentNullException("Original_VariableTitle");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_VariableTitle));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9383,7 +9459,7 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string VariableCode, short Item, byte ExtractSource, short SurveyYear, byte LoopIndex, bool Translate, bool Active, string Notes, string Notes_2) {
+        public virtual int Insert(string VariableCode, short Item, byte ExtractSource, short SurveyYear, byte LoopIndex1, byte LoopIndex2, bool Translate, bool Active, string Notes, string QuestionName, string VariableTitle) {
             if ((VariableCode == null)) {
                 throw new global::System.ArgumentNullException("VariableCode");
             }
@@ -9393,20 +9469,27 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
             this.Adapter.InsertCommand.Parameters[1].Value = ((short)(Item));
             this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(ExtractSource));
             this.Adapter.InsertCommand.Parameters[3].Value = ((short)(SurveyYear));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(LoopIndex));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Translate));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Active));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(LoopIndex1));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(LoopIndex2));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Translate));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(Active));
             if ((Notes == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Notes));
-            }
-            if ((Notes_2 == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Notes_2));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Notes));
+            }
+            if ((QuestionName == null)) {
+                throw new global::System.ArgumentNullException("QuestionName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(QuestionName));
+            }
+            if ((VariableTitle == null)) {
+                throw new global::System.ArgumentNullException("VariableTitle");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(VariableTitle));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9433,20 +9516,24 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
                     short Item, 
                     byte ExtractSource, 
                     short SurveyYear, 
-                    byte LoopIndex, 
+                    byte LoopIndex1, 
+                    byte LoopIndex2, 
                     bool Translate, 
                     bool Active, 
                     string Notes, 
-                    string Notes_2, 
+                    string QuestionName, 
+                    string VariableTitle, 
                     string Original_VariableCode, 
                     short Original_Item, 
                     byte Original_ExtractSource, 
                     short Original_SurveyYear, 
-                    byte Original_LoopIndex, 
+                    byte Original_LoopIndex1, 
+                    byte Original_LoopIndex2, 
                     bool Original_Translate, 
                     bool Original_Active, 
                     string Original_Notes, 
-                    string Original_Notes_2) {
+                    string Original_QuestionName, 
+                    string Original_VariableTitle) {
             if ((VariableCode == null)) {
                 throw new global::System.ArgumentNullException("VariableCode");
             }
@@ -9456,48 +9543,60 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
             this.Adapter.UpdateCommand.Parameters[1].Value = ((short)(Item));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(ExtractSource));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(SurveyYear));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(LoopIndex));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Translate));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Active));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(LoopIndex1));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((byte)(LoopIndex2));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Translate));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Active));
             if ((Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Notes));
-            }
-            if ((Notes_2 == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Notes_2));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Notes));
+            }
+            if ((QuestionName == null)) {
+                throw new global::System.ArgumentNullException("QuestionName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(QuestionName));
+            }
+            if ((VariableTitle == null)) {
+                throw new global::System.ArgumentNullException("VariableTitle");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(VariableTitle));
             }
             if ((Original_VariableCode == null)) {
                 throw new global::System.ArgumentNullException("Original_VariableCode");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_VariableCode));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_VariableCode));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((short)(Original_Item));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(Original_ExtractSource));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((short)(Original_SurveyYear));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(Original_LoopIndex));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_Translate));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_Active));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((short)(Original_Item));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(Original_ExtractSource));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((short)(Original_SurveyYear));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((byte)(Original_LoopIndex1));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((byte)(Original_LoopIndex2));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_Translate));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_Active));
             if ((Original_Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Notes));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Notes));
             }
-            if ((Original_Notes_2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            if ((Original_QuestionName == null)) {
+                throw new global::System.ArgumentNullException("Original_QuestionName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Notes_2));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_QuestionName));
+            }
+            if ((Original_VariableTitle == null)) {
+                throw new global::System.ArgumentNullException("Original_VariableTitle");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_VariableTitle));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9523,21 +9622,25 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Acti
                     short Item, 
                     byte ExtractSource, 
                     short SurveyYear, 
-                    byte LoopIndex, 
+                    byte LoopIndex1, 
+                    byte LoopIndex2, 
                     bool Translate, 
                     bool Active, 
                     string Notes, 
-                    string Notes_2, 
+                    string QuestionName, 
+                    string VariableTitle, 
                     string Original_VariableCode, 
                     short Original_Item, 
                     byte Original_ExtractSource, 
                     short Original_SurveyYear, 
-                    byte Original_LoopIndex, 
+                    byte Original_LoopIndex1, 
+                    byte Original_LoopIndex2, 
                     bool Original_Translate, 
                     bool Original_Active, 
                     string Original_Notes, 
-                    string Original_Notes_2) {
-            return this.Update(Original_VariableCode, Item, ExtractSource, SurveyYear, LoopIndex, Translate, Active, Notes, Notes_2, Original_VariableCode, Original_Item, Original_ExtractSource, Original_SurveyYear, Original_LoopIndex, Original_Translate, Original_Active, Original_Notes, Original_Notes_2);
+                    string Original_QuestionName, 
+                    string Original_VariableTitle) {
+            return this.Update(Original_VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Translate, Active, Notes, QuestionName, VariableTitle, Original_VariableCode, Original_Item, Original_ExtractSource, Original_SurveyYear, Original_LoopIndex1, Original_LoopIndex2, Original_Translate, Original_Active, Original_Notes, Original_QuestionName, Original_VariableTitle);
         }
     }
     
@@ -10647,20 +10750,22 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
             tableMapping.ColumnMappings.Add("Item", "Item");
             tableMapping.ColumnMappings.Add("Value", "Value");
-            tableMapping.ColumnMappings.Add("LoopIndex", "LoopIndex");
+            tableMapping.ColumnMappings.Add("LoopIndex1", "LoopIndex1");
+            tableMapping.ColumnMappings.Add("LoopIndex2", "LoopIndex2");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [Process].[tblResponse] ([SubjectTag], [ExtendedID], [SurveyYear], [I" +
-                "tem], [Value], [LoopIndex]) VALUES (@SubjectTag, @ExtendedID, @SurveyYear, @Item" +
-                ", @Value, @LoopIndex)";
+                "tem], [Value], [LoopIndex1], [LoopIndex2]) VALUES (@SubjectTag, @ExtendedID, @Su" +
+                "rveyYear, @Item, @Value, @LoopIndex1, @LoopIndex2)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Item", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Item", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoopIndex2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoopIndex2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10676,8 +10781,8 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex FROM Proces" +
-                "s.tblResponse";
+            this._commandCollection[0].CommandText = "SELECT ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex1, LoopIndex" +
+                "2 FROM Process.tblResponse";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10738,13 +10843,14 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SubjectTag, short ExtendedID, short SurveyYear, short Item, int Value, byte LoopIndex) {
+        public virtual int Insert(int SubjectTag, short ExtendedID, short SurveyYear, short Item, int Value, byte LoopIndex1, byte LoopIndex2) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
             this.Adapter.InsertCommand.Parameters[1].Value = ((short)(ExtendedID));
             this.Adapter.InsertCommand.Parameters[2].Value = ((short)(SurveyYear));
             this.Adapter.InsertCommand.Parameters[3].Value = ((short)(Item));
             this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Value));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(LoopIndex));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(LoopIndex1));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(LoopIndex2));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

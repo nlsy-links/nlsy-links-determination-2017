@@ -299,11 +299,13 @@ lst_col_types &lt;- list(
     Item                                = readr::col_integer(),
     ExtractSource                       = readr::col_integer(),
     SurveyYear                          = readr::col_integer(),
-    LoopIndex                           = readr::col_integer(),
+    LoopIndex1                          = readr::col_integer(),
+    LoopIndex2                          = readr::col_integer(),
     Translate                           = readr::col_integer(),
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character(),
-    Notes_2                             = readr::col_character()
+    QuestionName                        = readr::col_character(),
+    VariableTitle                       = readr::col_character()
   )
 )
 
@@ -571,19 +573,19 @@ ds_file$entries %&gt;%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 127 x 9
-##    VariableCode  Item ExtractSource Surve~ LoopI~ Tran~ Acti~ Notes Notes~
-##    &lt;chr&gt;        &lt;int&gt;         &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 R0000100         1             1   1997      1     1     1 PUBID YOUTH~
-##  2 R1193000         2             1   1997      1     1     1 SIDC~ HOUSE~
-##  3 R0536300        10             1   1997      1     1     1 KEY!~ RS GE~
-##  4 R0536401        11             1   1997      1     1     1 KEY!~ RS BI~
-##  5 R0536402        12             1   1997      1     1     1 KEY!~ RS BI~
-##  6 R1235800        13             1   1997      1     1     1 CV_S~ SAMPL~
-##  7 R1097800       101             2   1997      1     1     1 HHI2~ ID OF~
-##  8 R1097900       101             2   1997      2     1     1 HHI2~ ID OF~
-##  9 R1098000       101             2   1997      3     1     1 HHI2~ ID OF~
-## 10 R1098100       101             2   1997      4     1     1 HHI2~ ID OF~
+## # A tibble: 127 x 11
+##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
+##    &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   
+##  1 R0000~     1      1   1997     1     1     1     1 &lt;NA&gt;  PUBID YOUTH C~
+##  2 R1193~     2      1   1997     1     1     1     1 &lt;NA&gt;  SIDC~ HOUSEHO~
+##  3 R0536~    10      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS GEND~
+##  4 R0536~    11      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS BIRT~
+##  5 R0536~    12      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS BIRT~
+##  6 R1235~    13      1   1997     1     1     1     1 &lt;NA&gt;  CV_S~ SAMPLE ~
+##  7 R1097~   101      2   1997     1     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
+##  8 R1097~   101      2   1997     2     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
+##  9 R1098~   101      2   1997     3     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
+## 10 R1098~   101      2   1997     4     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
 ## # ... with 117 more rows
 </code></pre>
 
@@ -1186,7 +1188,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 15:51 -0600 in 2 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 17:24 -0600 in 2 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1236,7 +1238,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-16 15:51:24 CST&quot;
+<pre><code>## [1] &quot;2018-01-16 17:24:02 CST&quot;
 </code></pre>
 
 </body>
