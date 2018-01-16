@@ -16,10 +16,10 @@ namespace Nls.Base97 {
 		#region Fields
 		private readonly LinksDataSet _ds;
 		private readonly Item[] _items = { Item.AgeAtInterviewDateMonths, Item.AgeAtInterviewDateYears, 
-													Item.DateOfBirthMonth, Item.DateOfBirthYearGen1, Item.DateOfBirthYearGen2,
+													Item.DateOfBirthMonth, Item.DateOfBirthYear,
 													Item.InterviewDateDay, Item.InterviewDateMonth, Item.InterviewDateYear};
 		private readonly string _itemIDsString = "";
-        private static IList<OverridesGen1.SubjectYear> _overrides = OverridesGen1.InverviewDateInvalidSkip;
+        private static IList<Overrides.SubjectYear> _overrides = Overrides.InverviewDateInvalidSkip;
         private const float ageBiasCorrectionInYears = 0.5f;
         private const float ageBiasCorrectionInMonths = 0.5f;
 		#endregion
@@ -161,17 +161,15 @@ namespace Nls.Base97 {
 				return null;
 			}
 			else {
-				Trace.Assert(drsResponse[0].Generation == (byte)Sample.Nlsy79Gen2, "Only Gen2 subjects should be answering this item (specifically the Cs -not the YAs).");
 				float ageInYears = (float)((drsResponse[0].Value + ageBiasCorrectionInMonths) / monthsPerYear);
 				Trace.Assert(ageInYears > 0, "Age should be positive (non-null) value, at this point of the execution.");
 				return ageInYears;
 			}
 		}
-		private void AddRow ( Int32 subjectTag, SurveySource surveySource, Int16 surveyYear, DateTime? surveyDate, float? ageSelfReport, float? calculatedAge ) {
+		private void AddRow ( Int32 subjectTag,  Int16 surveyYear, DateTime? surveyDate, float? ageSelfReport, float? calculatedAge ) {
 			lock ( _ds.tblSurveyTime ) {
 				LinksDataSet.tblSurveyTimeRow drNew = _ds.tblSurveyTime.NewtblSurveyTimeRow();
 				drNew.SubjectTag = subjectTag;
-				drNew.SurveySource = (byte)surveySource;
 				drNew.SurveyYear = surveyYear;
 
 				if ( surveyDate.HasValue ) drNew.SurveyDate = surveyDate.Value;
@@ -223,15 +221,6 @@ namespace Nls.Base97 {
 				Trace.Assert(drs[0].SurveySource > 0, "If the Survey Date is not null, the Survey Source should be nonzero.");
 				return drs[0].SurveyDate;
 			}
-		}
-		public static SurveySource DetermineSurveySource ( Int16 surveyYear, SubjectSurvey[] subjectSurveys ) {
-			IEnumerable<SurveySource> sources = from ss in subjectSurveys
-															where ss.SurveyYear == surveyYear
-															select ss.SurveySource;
-			if ( sources.Count() <= 0 )
-				return SurveySource.NoInterview;
-			else
-				return sources.Single();
 		}
 		#endregion
 	}
