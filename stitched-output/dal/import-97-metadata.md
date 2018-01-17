@@ -224,7 +224,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 28 x 6
+## # A tibble: 27 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -237,7 +237,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURelationshipPath           5            4     72    16
 ## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 18 more rows
+## # ... with 17 more rows
 ```
 
 ```r
@@ -267,29 +267,20 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 20 x 7
-##       ID Label                            MinValue MinN~ MaxV~ Acti~ Notes
-##    <int> <chr>                               <int> <int> <int> <lgl> <chr>
-##  1     1 subject_id                              1     1  9022 T     <NA> 
-##  2     2 extended_family_id                      1     1  9022 T     <NA> 
-##  3     3 hh_internal_id                          1     1     5 T     <NA> 
-##  4    10 gender                                  1     1     2 T     <NA> 
-##  5    11 DateOfBirthMonth                        1     1    12 T     <NA> 
-##  6    12 DateOfBirthYear                      1980  1980  1984 T     <NA> 
-##  7    13 sample_cohort                           0     0     1 T     <NA> 
-##  8    20 InterviewDateDay                    -   7     1    31 T     <NA> 
-##  9    21 InterviewDateMonth                  -   7     1    12 T     <NA> 
-## 10    22 InterviewDateYear                   -   7    86  2016 T     <NA> 
-## 11    23 AgeAtInterviewDateMonths            -   5   146   500 T     <NA> 
-## 12    24 AgeAtInterviewDateYears             -   5    12    40 T     <NA> 
-## 13   101 roster_crosswalk                    -   5     1    20 T     <NA> 
-## 14   102 hh_member_id                        -   4     1    17 T     <NA> 
-## 15   103 hh_informant                        -   4     0     1 T     <NA> 
-## 16   104 roster_relationship                 -   4     0    99 T     16 x~
-## 17   105 hh_unique_id                        -   4     0   122 T     HHI2~
-## 18  1020 InterviewDateDayParent_NOTUSED      -   4     1    31 F     <NA> 
-## 19  1021 InterviewDateMonthParent_NOTUSED    -   4     1     9 F     <NA> 
-## 20  1022 InterviewDateYearParent_NOTUSED     -   4  1997  1998 F     <NA> 
+## # A tibble: 21 x 7
+##       ID Label              MinValue MinNonnegative MaxValue Active Notes
+##    <int> <chr>                 <int>          <int>    <int> <lgl>  <chr>
+##  1     1 subject_id                1              1     9022 T      <NA> 
+##  2     2 extended_family_id        1              1     9022 T      <NA> 
+##  3     3 hh_internal_id            1              1        5 T      <NA> 
+##  4    10 gender                    1              1        2 T      <NA> 
+##  5    11 DateOfBirthMonth          1              1       12 T      <NA> 
+##  6    12 DateOfBirthYear        1980           1980     1984 T      <NA> 
+##  7    13 sample_cohort             0              0        1 T      <NA> 
+##  8    20 InterviewDateDay      -   7              1       31 T      <NA> 
+##  9    21 InterviewDateMonth    -   7              1       12 T      <NA> 
+## 10    22 InterviewDateYear     -   7             86     2016 T      <NA> 
+## # ... with 11 more rows
 ## # A tibble: 5 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
@@ -394,7 +385,7 @@ ds_file$entries %>%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
-## # A tibble: 417 x 11
+## # A tibble: 434 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
 ##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
@@ -407,7 +398,7 @@ ds_file$entries %>%
 ##  8 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
 ##  9 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
 ## 10 R1098~   101      2   1997     3     1     1     1 <NA>  HHI2~ HHI2_HH~
-## # ... with 407 more rows
+## # ... with 424 more rows
 ```
 
 ```r
@@ -513,8 +504,9 @@ ds_enum %>%
 ##     roster_crosswalk                                             =   101, 
 ##     hh_member_id                                                 =   102, 
 ##     hh_informant                                                 =   103, 
-##     roster_relationship                                          =   104, // 16 x 16 square
-##     hh_unique_id                                                 =   105, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
+##     roster_relationship_2_dim                                    =   104, // 16 x 16 square
+##     roster_relationship_1_dim                                    =   105, // 16 x 16 square
+##     hh_unique_id                                                 =   106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
 ##     // InterviewDateDayParent_NOTUSED                            =  1020, 
 ##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
 ##     // InterviewDateYearParent_NOTUSED                           =  1022, 
@@ -1074,7 +1066,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 22:01 -0600 in 4 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 22:36 -0600 in 13 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1129,6 +1121,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 22:01:56 CST"
+## [1] "2018-01-16 22:36:30 CST"
 ```
 

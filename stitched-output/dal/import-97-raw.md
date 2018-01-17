@@ -353,7 +353,11 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R1121900 <int>, R1122000 <int>, R1122100 <int>, R1122200 <int>,
 ## #   R1122300 <int>, R1122400 <int>, R1122500 <int>, R1122600 <int>,
 ## #   R1122700 <int>, R1122800 <int>, R1122900 <int>, ...
-## [1] 1
+## [1] "2018-01-16 22:36:44 CST"
+```
+
+```
+## The table `Extract.tblRoster` was written over dsn `local-nlsy-links-97` in 0.222 minutes.
 ```
 
 ```
@@ -514,7 +518,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-16, 22:02 -0600 in 32 seconds.
+## File completed by `Will` at 2018-01-16, 22:37 -0600 in 36 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -569,6 +573,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 22:02:29 CST"
+## [1] "2018-01-16 22:37:07 CST"
 ```
 
