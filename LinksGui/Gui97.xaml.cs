@@ -43,8 +43,8 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            if( Convert.ToBoolean("true") ) {
-                //if( Convert.ToBoolean("false")) {
+            //if( Convert.ToBoolean("true") ) {
+            if( Convert.ToBoolean("false")) {
                 LoadExtractDemographics();
                 LoadExtractRoster();
                 LoadExtractSurveyTime();
@@ -66,7 +66,7 @@ namespace LinksGui {
             LoadResponse();
             LoadSurveyTime();
             //LoadSurveyTimeMostRecent(); //Needed for tblRelated
-            //LoadRosterGen1();
+            LoadRoster();
             //LoadParentsOfGen1Retro();
             //LoadParentsOfGen1Current();
             //LoadBabyDaddy();
@@ -111,12 +111,12 @@ namespace LinksGui {
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             //WriteXml(_dsLinks.tblSurveyTime);
         }
-        private void btnRosterGen1_Click( object sender, RoutedEventArgs e ) {
-            //BA.RosterGen1 roster = new BA.RosterGen1(_dsLinks);
-            //string message = roster.Go();
-            //Trace.WriteLine(message);
-            //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            ////WriteXml(_dsLinks.tblRosterGen1);
+        private void btnRoster_Click( object sender, RoutedEventArgs e ) {
+            BA.Roster roster = new BA.Roster(_dsLinks);
+            string message = roster.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblRosterGen1);
         }
     
         //private void btnSubjectDetails_Click( object sender, RoutedEventArgs e ) {
@@ -159,7 +159,7 @@ namespace LinksGui {
 
             BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
             BulkUpdate(schemaName, _dsLinks.tblSurveyTime, LoadSurveyTime);
-        //    BulkUpdate(schemaName, _dsLinks.tblRosterGen1, LoadRosterGen1);
+            BulkUpdate(schemaName, _dsLinks.tblRoster, LoadRoster);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Retro, LoadParentsOfGen1Retro);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Current, LoadParentsOfGen1Current);
         //    BulkUpdate(schemaName, _dsLinks.tblBabyDaddy, LoadBabyDaddy);
@@ -286,6 +286,12 @@ namespace LinksGui {
         //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter ta = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
         //    ta.Fill(_dsLinks.vewSurveyTimeMostRecent);
         //}
+        private void LoadRoster( ) {
+            BA.LinksDataSetTableAdapters.tblRosterTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterTableAdapter();
+            ta.Fill(_dsLinks.tblRoster);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRosterViewSource")));
+            vs.View.MoveCurrentToFirst();
+        }
 
         private void LoadRelatedValues( ) {
             //BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();

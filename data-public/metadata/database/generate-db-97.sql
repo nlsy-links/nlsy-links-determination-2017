@@ -245,21 +245,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Enum].[tblLURelationshipPath](
-	[ID] [tinyint] NOT NULL,
-	[Label] [char](20) NOT NULL,
-	[Active] [varchar](5) NOT NULL,
-	[Notes] [varchar](255) NULL,
- CONSTRAINT [PK_tblLURelationshipPath] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Enum].[tblLURoster](
 	[ID] [smallint] NOT NULL,
 	[Label] [varchar](255) NOT NULL,
@@ -307,6 +292,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblDemographics](
 	[R0000100] [int] NOT NULL,
+	[R0533400] [int] NOT NULL,
 	[R0536300] [int] NOT NULL,
 	[R0536401] [int] NOT NULL,
 	[R0536402] [int] NOT NULL,
@@ -426,7 +412,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblRoster](
 	[R0000100] [int] NOT NULL,
-	[R0533400] [int] NOT NULL,
 	[R0536300] [int] NOT NULL,
 	[R1097800] [int] NOT NULL,
 	[R1097900] [int] NOT NULL,
@@ -1087,6 +1072,8 @@ CREATE TABLE [Process].[tblRelatedStructure](
 	[SubjectTag_S2] [int] NOT NULL,
 	[RelationshipPath] [tinyint] NOT NULL,
 	[EverSharedHouse] [bit] NOT NULL,
+	[hh_internal_id_s1] [tinyint] NOT NULL,
+	[hh_internal_id_s2] [tinyint] NOT NULL,
  CONSTRAINT [PK_tblRelatednessStructure] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -1155,7 +1142,11 @@ CREATE TABLE [Process].[tblRoster](
 	[ShareBiodad] [tinyint] NOT NULL,
 	[ShareBiomom] [tinyint] NOT NULL,
 	[ShareBiograndparent] [tinyint] NOT NULL,
-	[Inconsistent] [bit] NOT NULL
+	[Inconsistent] [bit] NOT NULL,
+ CONSTRAINT [PK_tblRoster_1] PRIMARY KEY CLUSTERED 
+(
+	[RelatedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1167,6 +1158,7 @@ CREATE TABLE [Process].[tblSubject](
 	[ExtendedID] [smallint] NOT NULL,
 	[SubjectID] [int] NOT NULL,
 	[Gender] [tinyint] NOT NULL,
+	[hh_internal_id] [tinyint] NOT NULL,
  CONSTRAINT [PK_Process.tblSubject] PRIMARY KEY CLUSTERED 
 (
 	[SubjectTag] ASC
@@ -1298,13 +1290,6 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [Process].[tblOutcome] CHECK CONSTRAINT [FK_tblOutcome_tblSubject]
 GO
-ALTER TABLE [Process].[tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [FK_tblRelatedStructure_tblLURelationshipPath] FOREIGN KEY([RelationshipPath])
-REFERENCES [Enum].[tblLURelationshipPath] ([ID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [Process].[tblRelatedStructure] CHECK CONSTRAINT [FK_tblRelatedStructure_tblLURelationshipPath]
-GO
 ALTER TABLE [Process].[tblRelatedStructure]  WITH NOCHECK ADD  CONSTRAINT [FK_tblRelatedStructure_tblSubject_Subject1] FOREIGN KEY([SubjectTag_S1])
 REFERENCES [Process].[tblSubject] ([SubjectTag])
 GO
@@ -1396,6 +1381,14 @@ ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable
 GO
 ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_VariableCodeLength]
 GO
+ALTER TABLE [Process].[tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [CK_tblRelatedStructure_different_internal_ids] CHECK  (([hh_internal_id_s1]<>[hh_internal_id_s2]))
+GO
+ALTER TABLE [Process].[tblRelatedStructure] CHECK CONSTRAINT [CK_tblRelatedStructure_different_internal_ids]
+GO
+ALTER TABLE [Process].[tblRelatedStructure]  WITH CHECK ADD  CONSTRAINT [CK_tblRelatedStructure_different_tags] CHECK  (([SubjectTag_S1]<>[SubjectTag_S2]))
+GO
+ALTER TABLE [Process].[tblRelatedStructure] CHECK CONSTRAINT [CK_tblRelatedStructure_different_tags]
+GO
 ALTER TABLE [Process].[tblResponse]  WITH CHECK ADD  CONSTRAINT [CK_tblResponse_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2016)))
 GO
 ALTER TABLE [Process].[tblResponse] CHECK CONSTRAINT [CK_tblResponse_SurveyYear]
@@ -1482,20 +1475,20 @@ FROM         Process.tblResponse
 WHERE Item in (0) --For RelatedValues
 
 OR Item in (11, 12, 20, 21, 22, 23,24)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
-OR Item in (1,2)                                                                                         --For Roster
-OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
-OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
-OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
-OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
-OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
-OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
-OR Item in (9,10)                                                                                        --For MarkerGen2
-OR Item in (                                                                                             --Outcomes
-	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
-	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement
-	504,512,513,                                                                                           --Gen2WeightPoundsYA, Gen2PiatMathPercentile, Gen2PiatMathStandard
-	122                                                                                                    --Gen2CFatherAlive
-  )                
+OR Item in (105)                                                                                         --For Roster
+--OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
+--OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
+--OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
+--OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
+--OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
+--OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
+--OR Item in (9,10)                                                                                        --For MarkerGen2
+--OR Item in (                                                                                             --Outcomes
+--	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
+--	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement
+--	504,512,513,                                                                                           --Gen2WeightPoundsYA, Gen2PiatMathPercentile, Gen2PiatMathStandard
+--	122                                                                                                    --Gen2CFatherAlive
+--  )                
 
 END
 GO

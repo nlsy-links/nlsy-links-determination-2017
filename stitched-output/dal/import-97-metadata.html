@@ -262,7 +262,6 @@ lst_col_types &lt;- list(
   ),
   LUMultipleBirth = col_types_minimal,
   LURaceCohort = col_types_minimal,
-  LURelationshipPath = col_types_minimal,
   LURoster = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
@@ -325,23 +324,22 @@ ds_mapping &lt;- readr::read_csv(file.path(directory_in, &quot;_mapping.csv&quot
 ds_mapping
 </code></pre>
 
-<pre><code>## # A tibble: 14 x 5
-##    table_name         schema_name enum_name        c_sharp_type convert_t~
-##    &lt;chr&gt;              &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;        &lt;lgl&gt;     
-##  1 item               Metadata    Item             short        T         
-##  2 LUExtractSource    Enum        ExtractSource    byte         T         
-##  3 LUGender           Enum        Gender           byte         T         
-##  4 LUMarkerEvidence   Enum        MarkerEvidence   byte         T         
-##  5 LUMarkerType       Enum        MarkerType       byte         T         
-##  6 LUMultipleBirth    Enum        MultipleBirth    byte         T         
-##  7 LURaceCohort       Enum        RaceCohort       byte         T         
-##  8 LURelationshipPath Enum        RelationshipPath byte         T         
-##  9 LURoster           Enum        RosterGen1       short        T         
-## 10 LUTristate         Enum        Tristate         byte         T         
-## 11 LUYesNo            Enum        YesNo            short        T         
-## 12 MzManual           Metadata    NA_character     NA_character F         
-## 13 #RosterAssignment  Metadata    NA_character     NA_character F         
-## 14 variable           Metadata    NA_character     NA_character F
+<pre><code>## # A tibble: 13 x 5
+##    table_name        schema_name enum_name      c_sharp_type convert_to_e~
+##    &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;        &lt;lgl&gt;        
+##  1 item              Metadata    Item           short        T            
+##  2 LUExtractSource   Enum        ExtractSource  byte         T            
+##  3 LUGender          Enum        Gender         byte         T            
+##  4 LUMarkerEvidence  Enum        MarkerEvidence byte         T            
+##  5 LUMarkerType      Enum        MarkerType     byte         T            
+##  6 LUMultipleBirth   Enum        MultipleBirth  byte         T            
+##  7 LURaceCohort      Enum        RaceCohort     byte         T            
+##  8 LURoster          Enum        RosterGen1     short        T            
+##  9 LUTristate        Enum        Tristate       byte         T            
+## 10 LUYesNo           Enum        YesNo          short        T            
+## 11 MzManual          Metadata    NA_character   NA_character F            
+## 12 #RosterAssignment Metadata    NA_character   NA_character F            
+## 13 variable          Metadata    NA_character   NA_character F
 </code></pre>
 
 <pre><code class="r">ds_file &lt;- lst_col_types %&gt;%
@@ -355,22 +353,21 @@ ds_mapping
 ds_file
 </code></pre>
 
-<pre><code>## # A tibble: 13 x 4
-##    name               path                               col_types   exis~
-##    &lt;chr&gt;              &lt;chr&gt;                              &lt;list&gt;      &lt;lgl&gt;
-##  1 item               data-public/metadata/tables-97/it~ &lt;S3: col_s~ T    
-##  2 LUExtractSource    data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  3 LUMarkerEvidence   data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  4 LUGender           data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  5 LUMarkerType       data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  6 LUMultipleBirth    data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  7 LURaceCohort       data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  8 LURelationshipPath data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-##  9 LURoster           data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-## 10 LUTristate         data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-## 11 LUYesNo            data-public/metadata/tables-97/LU~ &lt;S3: col_s~ T    
-## 12 MzManual           data-public/metadata/tables-97/Mz~ &lt;S3: col_s~ T    
-## 13 variable           data-public/metadata/tables-97/va~ &lt;S3: col_s~ T
+<pre><code>## # A tibble: 12 x 4
+##    name             path                                 col_types   exis~
+##    &lt;chr&gt;            &lt;chr&gt;                                &lt;list&gt;      &lt;lgl&gt;
+##  1 item             data-public/metadata/tables-97/item~ &lt;S3: col_s~ T    
+##  2 LUExtractSource  data-public/metadata/tables-97/LUEx~ &lt;S3: col_s~ T    
+##  3 LUMarkerEvidence data-public/metadata/tables-97/LUMa~ &lt;S3: col_s~ T    
+##  4 LUGender         data-public/metadata/tables-97/LUGe~ &lt;S3: col_s~ T    
+##  5 LUMarkerType     data-public/metadata/tables-97/LUMa~ &lt;S3: col_s~ T    
+##  6 LUMultipleBirth  data-public/metadata/tables-97/LUMu~ &lt;S3: col_s~ T    
+##  7 LURaceCohort     data-public/metadata/tables-97/LURa~ &lt;S3: col_s~ T    
+##  8 LURoster         data-public/metadata/tables-97/LURo~ &lt;S3: col_s~ T    
+##  9 LUTristate       data-public/metadata/tables-97/LUTr~ &lt;S3: col_s~ T    
+## 10 LUYesNo          data-public/metadata/tables-97/LUYe~ &lt;S3: col_s~ T    
+## 11 MzManual         data-public/metadata/tables-97/MzMa~ &lt;S3: col_s~ T    
+## 12 variable         data-public/metadata/tables-97/vari~ &lt;S3: col_s~ T
 </code></pre>
 
 <pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
@@ -384,22 +381,21 @@ ds_entries &lt;- ds_file %&gt;%
 ds_entries
 </code></pre>
 
-<pre><code>## # A tibble: 13 x 4
-##    name               path                          col_types  entries    
-##    &lt;chr&gt;              &lt;chr&gt;                         &lt;list&gt;     &lt;list&gt;     
-##  1 item               data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [2~
-##  2 LUExtractSource    data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [5~
-##  3 LUMarkerEvidence   data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [8~
-##  4 LUGender           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
-##  5 LUMarkerType       data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [2~
-##  6 LUMultipleBirth    data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [5~
-##  7 LURaceCohort       data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
-##  8 LURelationshipPath data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [5~
-##  9 LURoster           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [9~
-## 10 LUTristate         data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [3~
-## 11 LUYesNo            data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [6~
-## 12 MzManual           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [2~
-## 13 variable           data-public/metadata/tables-~ &lt;S3: col_~ &lt;tibble [4~
+<pre><code>## # A tibble: 12 x 4
+##    name             path                           col_types  entries     
+##    &lt;chr&gt;            &lt;chr&gt;                          &lt;list&gt;     &lt;list&gt;      
+##  1 item             data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [21~
+##  2 LUExtractSource  data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [5 ~
+##  3 LUMarkerEvidence data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [8 ~
+##  4 LUGender         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [3 ~
+##  5 LUMarkerType     data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [28~
+##  6 LUMultipleBirth  data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [5 ~
+##  7 LURaceCohort     data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [3 ~
+##  8 LURoster         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [90~
+##  9 LUTristate       data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [3 ~
+## 10 LUYesNo          data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [6 ~
+## 11 MzManual         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [20~
+## 12 variable         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [43~
 </code></pre>
 
 <pre><code class="r"># d &lt;- readr::read_csv(&quot;data-public/metadata/tables/variable_97.csv&quot;, col_types=lst_col_types$variable_97, comment = &quot;#&quot;)
@@ -410,7 +406,7 @@ ds_table &lt;- database_inventory(study)
 ds_table
 </code></pre>
 
-<pre><code>## # A tibble: 28 x 6
+<pre><code>## # A tibble: 27 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * &lt;chr&gt;       &lt;chr&gt;                       &lt;int&gt;        &lt;int&gt;  &lt;int&gt; &lt;int&gt;
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -421,9 +417,9 @@ ds_table
 ##  6 Enum        tblLUMarkerType                28            5     72    16
 ##  7 Enum        tblLUMultipleBirth              5            4     72    16
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
-##  9 Enum        tblLURelationshipPath           5            4     72    16
-## 10 Enum        tblLURoster                    90            4     72    16
-## # ... with 18 more rows
+##  9 Enum        tblLURoster                    90            4     72    16
+## 10 Enum        tblLUTristate                   3            4     72    16
+## # ... with 17 more rows
 </code></pre>
 
 <pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
@@ -517,27 +513,19 @@ ds_file$entries %&gt;%
 ## 1     1 Hispanic T      &lt;NA&gt; 
 ## 2     2 Black    T      &lt;NA&gt; 
 ## 3     3 Nbnh     T      &lt;NA&gt; 
-## # A tibble: 5 x 4
-##      ID Label          Active Notes                               
-##   &lt;int&gt; &lt;chr&gt;          &lt;lgl&gt;  &lt;chr&gt;                               
-## 1     1 Gen1Housemates T      &lt;NA&gt;                                
-## 2     2 Gen2Siblings   T      &lt;NA&gt;                                
-## 3     3 Gen2Cousins    T      &lt;NA&gt;                                
-## 4     4 ParentChild    T      &lt;NA&gt;                                
-## 5     5 AuntNiece      T      Actually (Uncle|Aunt)-(Nephew|Niece)
 ## # A tibble: 90 x 4
 ##       ID Label           Active Notes
 ##    &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;  &lt;chr&gt;
 ##  1    -4 valid_skip      T      &lt;NA&gt; 
-##  2     0 Identity        T      &lt;NA&gt; 
-##  3     1 Wife            T      &lt;NA&gt; 
-##  4     2 Husband         T      &lt;NA&gt; 
-##  5     3 Mother          T      &lt;NA&gt; 
-##  6     4 Father          T      &lt;NA&gt; 
-##  7     7 Step-mother     T      &lt;NA&gt; 
-##  8     8 Step-father     T      &lt;NA&gt; 
-##  9     5 Adoptive mother T      &lt;NA&gt; 
-## 10     6 Adoptive father T      &lt;NA&gt; 
+##  2     0 self            T      &lt;NA&gt; 
+##  3     1 wife            T      &lt;NA&gt; 
+##  4     2 husband         T      &lt;NA&gt; 
+##  5     3 mother          T      &lt;NA&gt; 
+##  6     4 father          T      &lt;NA&gt; 
+##  7     7 mother_step     T      &lt;NA&gt; 
+##  8     8 father_step     T      &lt;NA&gt; 
+##  9     5 mother_adoptive T      &lt;NA&gt; 
+## 10     6 father_adoptive T      &lt;NA&gt; 
 ## # ... with 80 more rows
 ## # A tibble: 3 x 4
 ##      ID Label     Active Notes
@@ -606,19 +594,16 @@ ds_file$entries %&gt;%
 ds_file$table_name
 </code></pre>
 
-<pre><code>##  [1] &quot;tblitem&quot;               &quot;tblLUExtractSource&quot;   
-##  [3] &quot;tblLUMarkerEvidence&quot;   &quot;tblLUGender&quot;          
-##  [5] &quot;tblLUMarkerType&quot;       &quot;tblLUMultipleBirth&quot;   
-##  [7] &quot;tblLURaceCohort&quot;       &quot;tblLURelationshipPath&quot;
-##  [9] &quot;tblLURoster&quot;           &quot;tblLUTristate&quot;        
-## [11] &quot;tblLUYesNo&quot;            &quot;tblMzManual&quot;          
-## [13] &quot;tblvariable&quot;
+<pre><code>##  [1] &quot;tblitem&quot;             &quot;tblLUExtractSource&quot;  &quot;tblLUMarkerEvidence&quot;
+##  [4] &quot;tblLUGender&quot;         &quot;tblLUMarkerType&quot;     &quot;tblLUMultipleBirth&quot; 
+##  [7] &quot;tblLURaceCohort&quot;     &quot;tblLURoster&quot;         &quot;tblLUTristate&quot;      
+## [10] &quot;tblLUYesNo&quot;          &quot;tblMzManual&quot;         &quot;tblvariable&quot;
 </code></pre>
 
 <pre><code class="r">ds_file
 </code></pre>
 
-<pre><code>## # A tibble: 13 x 11
+<pre><code>## # A tibble: 12 x 11
 ##    name   path    col_t~ exists sche~ enum~ c_sh~ conv~ tabl~ sql_d~ entr~
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;list&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;lis&gt;
 ##  1 item   data-p~ &lt;S3: ~ T      Meta~ Item  short T     tbli~ DELET~ &lt;tib~
@@ -628,12 +613,11 @@ ds_file$table_name
 ##  5 LUMar~ data-p~ &lt;S3: ~ T      Enum  Mark~ byte  T     tblL~ DELET~ &lt;tib~
 ##  6 LUMul~ data-p~ &lt;S3: ~ T      Enum  Mult~ byte  T     tblL~ DELET~ &lt;tib~
 ##  7 LURac~ data-p~ &lt;S3: ~ T      Enum  Race~ byte  T     tblL~ DELET~ &lt;tib~
-##  8 LURel~ data-p~ &lt;S3: ~ T      Enum  Rela~ byte  T     tblL~ DELET~ &lt;tib~
-##  9 LURos~ data-p~ &lt;S3: ~ T      Enum  Rost~ short T     tblL~ DELET~ &lt;tib~
-## 10 LUTri~ data-p~ &lt;S3: ~ T      Enum  Tris~ byte  T     tblL~ DELET~ &lt;tib~
-## 11 LUYes~ data-p~ &lt;S3: ~ T      Enum  YesNo short T     tblL~ DELET~ &lt;tib~
-## 12 MzMan~ data-p~ &lt;S3: ~ T      Meta~ NA_c~ NA_c~ F     tblM~ DELET~ &lt;tib~
-## 13 varia~ data-p~ &lt;S3: ~ T      Meta~ NA_c~ NA_c~ F     tblv~ DELET~ &lt;tib~
+##  8 LURos~ data-p~ &lt;S3: ~ T      Enum  Rost~ short T     tblL~ DELET~ &lt;tib~
+##  9 LUTri~ data-p~ &lt;S3: ~ T      Enum  Tris~ byte  T     tblL~ DELET~ &lt;tib~
+## 10 LUYes~ data-p~ &lt;S3: ~ T      Enum  YesNo short T     tblL~ DELET~ &lt;tib~
+## 11 MzMan~ data-p~ &lt;S3: ~ T      Meta~ NA_c~ NA_c~ F     tblM~ DELET~ &lt;tib~
+## 12 varia~ data-p~ &lt;S3: ~ T      Meta~ NA_c~ NA_c~ F     tblv~ DELET~ &lt;tib~
 </code></pre>
 
 <pre><code class="r">create_enum_body &lt;- function( d ) {
@@ -759,105 +743,97 @@ ds_enum %&gt;%
 ##     Nbnh                                                         =     3, 
 ## }
 ##  
-## public enum RelationshipPath {
-##     Gen1Housemates                                               =     1, 
-##     Gen2Siblings                                                 =     2, 
-##     Gen2Cousins                                                  =     3, 
-##     ParentChild                                                  =     4, 
-##     AuntNiece                                                    =     5, // Actually (Uncle|Aunt)-(Nephew|Niece)
-## }
-##  
 ## public enum RosterGen1 {
 ##     valid_skip                                                   =    -4, 
-##     Identity                                                     =     0, 
-##     Wife                                                         =     1, 
-##     Husband                                                      =     2, 
-##     Mother                                                       =     3, 
-##     Father                                                       =     4, 
-##     Step-mother                                                  =     7, 
-##     Step-father                                                  =     8, 
-##     Adoptive mother                                              =     5, 
-##     Adoptive father                                              =     6, 
-##     Foster mother                                                =     9, 
-##     Foster father                                                =    10, 
-##     Mother-in-law                                                =    11, 
-##     Father-in-law                                                =    12, 
-##     Sister (FULL)                                                =    13, 
-##     Brother (FULL)                                               =    14, 
-##     Sister (HALF - Same mother)                                  =    15, 
-##     Sister (HALF - Same father)                                  =    16, 
-##     Sister (HALF - don&#39;t know)                                   =    17, 
-##     Brother (HALF - Same mother)                                 =    18, 
-##     Brother (HALF - Same father)                                 =    19, 
-##     Brother (HALF - don&#39;t know)                                  =    20, 
-##     Sister (STEP)                                                =    21, 
-##     Brother (STEP)                                               =    22, 
-##     Sister (ADOPTIVE)                                            =    23, 
-##     Brother (ADOPTIVE)                                           =    24, 
-##     Sister (FOSTER)                                              =    25, 
-##     Brother (FOSTER)                                             =    26, 
-##     Brother-in-law                                               =    27, 
-##     Sister-in-law                                                =    28, 
-##     Maternal Grandmother                                         =    29, 
-##     Paternal Grandmother                                         =    30, 
-##     Social Grandmother                                           =    31, 
-##     Grandmother (don&#39;t know or refused)                          =    32, 
-##     Maternal Grandfather                                         =    33, 
-##     Paternal Grandfather                                         =    34, 
-##     Social Grandfather                                           =    35, 
-##     Grandfather (don&#39;t know or refused)                          =    36, 
-##     Maternal Great-Grandmother                                   =    37, 
-##     Paternal Great-Grandmother                                   =    38, 
-##     Social Great-Grandmother                                     =    39, 
-##     Great-Grandmother (don&#39;t know or refused)                    =    40, 
-##     Maternal Great-Grandfather                                   =    41, 
-##     Paternal Great-Grandfather                                   =    42, 
-##     Social Great-Grandfather                                     =    43, 
-##     Great-Grandfather (don&#39;t know or refused)                    =    44, 
-##     Great Great Grandmother                                      =    45, 
-##     Great Great Grandfather                                      =    46, 
-##     Granddaughter (Biological or social)                         =    47, 
-##     Grandson (Biological or social)                              =    48, 
-##     Daughter (Biological)                                        =    49, 
-##     Son (Biological)                                             =    50, 
-##     Step-daughter                                                =    51, 
-##     Step-son                                                     =    52, 
-##     Adoptive daughter                                            =    53, 
-##     Adoptive son                                                 =    54, 
-##     Foster daughter                                              =    55, 
-##     Foster son                                                   =    56, 
-##     Daughter of lover/partner                                    =    57, 
-##     Son of lover/partner                                         =    58, 
-##     Daughter-in-law                                              =    59, 
-##     Son-in-law                                                   =    60, 
-##     Grandmother-in-law                                           =    61, 
-##     Grandfather-in-law                                           =    62, 
-##     Aunt-in-law                                                  =    63, 
-##     Uncle-in-law                                                 =    64, 
-##     Cousin-in-law                                                =    65, 
-##     Great-Grandmother-in-law                                     =    66, 
-##     Great-Grandfather-in-law                                     =    67, 
-##     Roommate                                                     =    68, 
-##     Lover/partner                                                =    69, 
-##     Aunt (biological or social)                                  =    70, 
-##     Great Aunt                                                   =    71, 
-##     Uncle (biological or social)                                 =    72, 
-##     Great Uncle                                                  =    73, 
-##     Niece (biological or social)                                 =    74, 
-##     Step Niece (biological or social)                            =    75, 
-##     Foster Niece (biological or social)                          =    76, 
-##     Adoptive Niece (biological or social)                        =    77, 
-##     Nephew (biological or social)                                =    78, 
-##     Step Nephew (biological or social)                           =    79, 
-##     Foster Nephew (biological or social)                         =    80, 
-##     Adoptive Nephew (biological or social)                       =    81, 
-##     Female cousin (biological or social)                         =    82, 
-##     Male cousin (biological or social)                           =    83, 
-##     Other relative                                               =    84, 
-##     Other non-relative                                           =    85, 
-##     Great Grandson                                               =    86, 
-##     Great Granddaughter                                          =    87, 
-##     RELATIONSHIP MISSING                                         =    99, 
+##     self                                                         =     0, 
+##     wife                                                         =     1, 
+##     husband                                                      =     2, 
+##     mother                                                       =     3, 
+##     father                                                       =     4, 
+##     mother_step                                                  =     7, 
+##     father_step                                                  =     8, 
+##     mother_adoptive                                              =     5, 
+##     father_adoptive                                              =     6, 
+##     mother_foster                                                =     9, 
+##     father_foster                                                =    10, 
+##     mother_in_law                                                =    11, 
+##     father_in_law                                                =    12, 
+##     sister_full                                                  =    13, 
+##     brother_full                                                 =    14, 
+##     sister_half_same_mother                                      =    15, 
+##     sister_half_same_father                                      =    16, 
+##     sister_half_unsure                                           =    17, 
+##     brother_half_same_mother                                     =    18, 
+##     brother_half_same_father                                     =    19, 
+##     brother_half_unsure                                          =    20, 
+##     sister_step                                                  =    21, 
+##     brother_step                                                 =    22, 
+##     sister_adoptive                                              =    23, 
+##     brother_adoptive                                             =    24, 
+##     sister_foster                                                =    25, 
+##     brother_foster                                               =    26, 
+##     brother_in_law                                               =    27, 
+##     sister_in_law                                                =    28, 
+##     grandmother_maternal                                         =    29, 
+##     grandmother_paternal                                         =    30, 
+##     grandmother_social                                           =    31, 
+##     grandmother_unsure                                           =    32, 
+##     grandfather_maternal                                         =    33, 
+##     grandfather_paternal                                         =    34, 
+##     grandfather_social                                           =    35, 
+##     grandfather_unsure                                           =    36, 
+##     great_grandmother                                            =    37, 
+##     great_grandfather                                            =    38, 
+##     great_grandmother_social                                     =    39, 
+##     great_grandmother_unsure                                     =    40, 
+##     great_grandfather_maternal                                   =    41, 
+##     great_grandfather_paternal                                   =    42, 
+##     great_grandfather_social                                     =    43, 
+##     great_grandfather_unsure                                     =    44, 
+##     great_great_grandmother                                      =    45, 
+##     great_great_grandfather                                      =    46, 
+##     granddaughter                                                =    47, 
+##     grandson                                                     =    48, 
+##     daughter_bio                                                 =    49, 
+##     son_bio                                                      =    50, 
+##     daughter_step                                                =    51, 
+##     son_step                                                     =    52, 
+##     daughter_adoptive                                            =    53, 
+##     son_adoptive                                                 =    54, 
+##     daughter_foster                                              =    55, 
+##     son_foster                                                   =    56, 
+##     daughter_of_partner                                          =    57, 
+##     son_of_partner                                               =    58, 
+##     daughter_in_law                                              =    59, 
+##     son_in_law                                                   =    60, 
+##     grandmother_in_law                                           =    61, 
+##     grandfather_in_law                                           =    62, 
+##     aunt_in_law                                                  =    63, 
+##     uncle_in_law                                                 =    64, 
+##     cousin_in_law                                                =    65, 
+##     great_grandmother_in_law                                     =    66, 
+##     great_grandfather_in_law                                     =    67, 
+##     roommate                                                     =    68, 
+##     partner                                                      =    69, 
+##     aunt_unsure                                                  =    70, 
+##     great_aunt                                                   =    71, 
+##     uncle_unsure                                                 =    72, 
+##     great_uncle                                                  =    73, 
+##     niece_unsure                                                 =    74, 
+##     niece_step                                                   =    75, 
+##     niece_foster                                                 =    76, 
+##     niece_adoptive                                               =    77, 
+##     nephew_unsure                                                =    78, 
+##     nephew_step                                                  =    79, 
+##     nephew_foster                                                =    80, 
+##     nephew_adoptive                                              =    81, 
+##     cousin_female_unsure                                         =    82, 
+##     cousin_male_unsure                                           =    83, 
+##     relative_other                                               =    84, 
+##     nonrelative_other                                            =    85, 
+##     great_grandson                                               =    86, 
+##     great_granddaughter                                          =    87, 
+##     relationship_missing                                         =    99, 
 ## }
 ##  
 ## public enum Tristate {
@@ -1036,9 +1012,6 @@ delete_results_metadata
 ## $tblLURoster
 ## data frame with 0 columns and 0 rows
 ## 
-## $tblLURelationshipPath
-## data frame with 0 columns and 0 rows
-## 
 ## $tblLURaceCohort
 ## data frame with 0 columns and 0 rows
 ## 
@@ -1122,9 +1095,6 @@ purrr::pmap_int(
 <pre><code>## Writing to table tblLURaceCohort
 </code></pre>
 
-<pre><code>## Writing to table tblLURelationshipPath
-</code></pre>
-
 <pre><code>## Writing to table tblLURoster
 </code></pre>
 
@@ -1140,7 +1110,7 @@ purrr::pmap_int(
 <pre><code>## Writing to table tblvariable
 </code></pre>
 
-<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1 1 1
 </code></pre>
 
 <pre><code class="r"># purrr::set_names(ds_file$table_name)
@@ -1216,7 +1186,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 10:11 -0600 in 3 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 12:16 -0600 in 3 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1266,7 +1236,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-17 10:11:25 CST&quot;
+<pre><code>## [1] &quot;2018-01-17 12:16:45 CST&quot;
 </code></pre>
 
 </body>
