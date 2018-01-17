@@ -1,5 +1,7 @@
 ID,Label,Title,Active,Notes
 -4,valid_skip,"valid_skip",TRUE,
+-2,do_not_know,"Don't Know",TRUE,
+-1,refusal,"refusal",TRUE,
 0,self,"Identity",TRUE,
 1,wife,"Wife",TRUE,
 2,husband,"Husband",TRUE,
