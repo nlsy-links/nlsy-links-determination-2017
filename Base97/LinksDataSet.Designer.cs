@@ -30,6 +30,8 @@ namespace Nls.Base97 {
         
         private tblMzManualDataTable tabletblMzManual;
         
+        private tblRosterAssignmentDataTable tabletblRosterAssignment;
+        
         private tblVariableDataTable tabletblVariable;
         
         private tblOutcomeDataTable tabletblOutcome;
@@ -103,6 +105,9 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblMzManual"] != null)) {
                     base.Tables.Add(new tblMzManualDataTable(ds.Tables["tblMzManual"]));
                 }
+                if ((ds.Tables["tblRosterAssignment"] != null)) {
+                    base.Tables.Add(new tblRosterAssignmentDataTable(ds.Tables["tblRosterAssignment"]));
+                }
                 if ((ds.Tables["tblVariable"] != null)) {
                     base.Tables.Add(new tblVariableDataTable(ds.Tables["tblVariable"]));
                 }
@@ -172,6 +177,16 @@ namespace Nls.Base97 {
         public tblMzManualDataTable tblMzManual {
             get {
                 return this.tabletblMzManual;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblRosterAssignmentDataTable tblRosterAssignment {
+            get {
+                return this.tabletblRosterAssignment;
             }
         }
         
@@ -331,6 +346,9 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblMzManual"] != null)) {
                     base.Tables.Add(new tblMzManualDataTable(ds.Tables["tblMzManual"]));
                 }
+                if ((ds.Tables["tblRosterAssignment"] != null)) {
+                    base.Tables.Add(new tblRosterAssignmentDataTable(ds.Tables["tblRosterAssignment"]));
+                }
                 if ((ds.Tables["tblVariable"] != null)) {
                     base.Tables.Add(new tblVariableDataTable(ds.Tables["tblVariable"]));
                 }
@@ -404,6 +422,12 @@ namespace Nls.Base97 {
             if ((initTable == true)) {
                 if ((this.tabletblMzManual != null)) {
                     this.tabletblMzManual.InitVars();
+                }
+            }
+            this.tabletblRosterAssignment = ((tblRosterAssignmentDataTable)(base.Tables["tblRosterAssignment"]));
+            if ((initTable == true)) {
+                if ((this.tabletblRosterAssignment != null)) {
+                    this.tabletblRosterAssignment.InitVars();
                 }
             }
             this.tabletblVariable = ((tblVariableDataTable)(base.Tables["tblVariable"]));
@@ -480,6 +504,8 @@ namespace Nls.Base97 {
             base.Tables.Add(this.tabletblSurveyTime);
             this.tabletblMzManual = new tblMzManualDataTable();
             base.Tables.Add(this.tabletblMzManual);
+            this.tabletblRosterAssignment = new tblRosterAssignmentDataTable();
+            base.Tables.Add(this.tabletblRosterAssignment);
             this.tabletblVariable = new tblVariableDataTable();
             base.Tables.Add(this.tabletblVariable);
             this.tabletblOutcome = new tblOutcomeDataTable();
@@ -553,6 +579,12 @@ namespace Nls.Base97 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblMzManual() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblRosterAssignment() {
             return false;
         }
         
@@ -667,6 +699,9 @@ namespace Nls.Base97 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblMzManualRowChangeEventHandler(object sender, tblMzManualRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblRosterAssignmentRowChangeEventHandler(object sender, tblRosterAssignmentRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblVariableRowChangeEventHandler(object sender, tblVariableRowChangeEvent e);
@@ -1716,6 +1751,504 @@ namespace Nls.Base97 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tblMzManualDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblRosterAssignmentDataTable : global::System.Data.TypedTableBase<tblRosterAssignmentRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnResponseLower;
+            
+            private global::System.Data.DataColumn columnResponseUpper;
+            
+            private global::System.Data.DataColumn columnFreq;
+            
+            private global::System.Data.DataColumn columnResolved;
+            
+            private global::System.Data.DataColumn columnR;
+            
+            private global::System.Data.DataColumn columnRBoundLower;
+            
+            private global::System.Data.DataColumn columnRBoundUpper;
+            
+            private global::System.Data.DataColumn columnSameGeneration;
+            
+            private global::System.Data.DataColumn columnShareBiodad;
+            
+            private global::System.Data.DataColumn columnShareBiomom;
+            
+            private global::System.Data.DataColumn columnShareBiograndparent;
+            
+            private global::System.Data.DataColumn columnInconsistent;
+            
+            private global::System.Data.DataColumn columnNotes;
+            
+            private global::System.Data.DataColumn columnResponseLowerLabel;
+            
+            private global::System.Data.DataColumn columnResponseUpperLabel;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentDataTable() {
+                this.TableName = "tblRosterAssignment";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblRosterAssignmentDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblRosterAssignmentDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResponseLowerColumn {
+                get {
+                    return this.columnResponseLower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResponseUpperColumn {
+                get {
+                    return this.columnResponseUpper;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FreqColumn {
+                get {
+                    return this.columnFreq;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResolvedColumn {
+                get {
+                    return this.columnResolved;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RColumn {
+                get {
+                    return this.columnR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RBoundLowerColumn {
+                get {
+                    return this.columnRBoundLower;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RBoundUpperColumn {
+                get {
+                    return this.columnRBoundUpper;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SameGenerationColumn {
+                get {
+                    return this.columnSameGeneration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBiodadColumn {
+                get {
+                    return this.columnShareBiodad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBiomomColumn {
+                get {
+                    return this.columnShareBiomom;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBiograndparentColumn {
+                get {
+                    return this.columnShareBiograndparent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InconsistentColumn {
+                get {
+                    return this.columnInconsistent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NotesColumn {
+                get {
+                    return this.columnNotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResponseLowerLabelColumn {
+                get {
+                    return this.columnResponseLowerLabel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ResponseUpperLabelColumn {
+                get {
+                    return this.columnResponseUpperLabel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRow this[int index] {
+                get {
+                    return ((tblRosterAssignmentRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblRosterAssignmentRowChangeEventHandler tblRosterAssignmentRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblRosterAssignmentRowChangeEventHandler tblRosterAssignmentRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblRosterAssignmentRowChangeEventHandler tblRosterAssignmentRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblRosterAssignmentRowChangeEventHandler tblRosterAssignmentRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblRosterAssignmentRow(tblRosterAssignmentRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRow AddtblRosterAssignmentRow(
+                        byte ID, 
+                        short ResponseLower, 
+                        short ResponseUpper, 
+                        short Freq, 
+                        bool Resolved, 
+                        double R, 
+                        double RBoundLower, 
+                        double RBoundUpper, 
+                        byte SameGeneration, 
+                        byte ShareBiodad, 
+                        byte ShareBiomom, 
+                        byte ShareBiograndparent, 
+                        bool Inconsistent, 
+                        string Notes, 
+                        string ResponseLowerLabel, 
+                        string ResponseUpperLabel) {
+                tblRosterAssignmentRow rowtblRosterAssignmentRow = ((tblRosterAssignmentRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        ResponseLower,
+                        ResponseUpper,
+                        Freq,
+                        Resolved,
+                        R,
+                        RBoundLower,
+                        RBoundUpper,
+                        SameGeneration,
+                        ShareBiodad,
+                        ShareBiomom,
+                        ShareBiograndparent,
+                        Inconsistent,
+                        Notes,
+                        ResponseLowerLabel,
+                        ResponseUpperLabel};
+                rowtblRosterAssignmentRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblRosterAssignmentRow);
+                return rowtblRosterAssignmentRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRow FindByID(byte ID) {
+                return ((tblRosterAssignmentRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblRosterAssignmentDataTable cln = ((tblRosterAssignmentDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblRosterAssignmentDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnResponseLower = base.Columns["ResponseLower"];
+                this.columnResponseUpper = base.Columns["ResponseUpper"];
+                this.columnFreq = base.Columns["Freq"];
+                this.columnResolved = base.Columns["Resolved"];
+                this.columnR = base.Columns["R"];
+                this.columnRBoundLower = base.Columns["RBoundLower"];
+                this.columnRBoundUpper = base.Columns["RBoundUpper"];
+                this.columnSameGeneration = base.Columns["SameGeneration"];
+                this.columnShareBiodad = base.Columns["ShareBiodad"];
+                this.columnShareBiomom = base.Columns["ShareBiomom"];
+                this.columnShareBiograndparent = base.Columns["ShareBiograndparent"];
+                this.columnInconsistent = base.Columns["Inconsistent"];
+                this.columnNotes = base.Columns["Notes"];
+                this.columnResponseLowerLabel = base.Columns["ResponseLowerLabel"];
+                this.columnResponseUpperLabel = base.Columns["ResponseUpperLabel"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnResponseLower = new global::System.Data.DataColumn("ResponseLower", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResponseLower);
+                this.columnResponseUpper = new global::System.Data.DataColumn("ResponseUpper", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResponseUpper);
+                this.columnFreq = new global::System.Data.DataColumn("Freq", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFreq);
+                this.columnResolved = new global::System.Data.DataColumn("Resolved", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResolved);
+                this.columnR = new global::System.Data.DataColumn("R", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR);
+                this.columnRBoundLower = new global::System.Data.DataColumn("RBoundLower", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRBoundLower);
+                this.columnRBoundUpper = new global::System.Data.DataColumn("RBoundUpper", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRBoundUpper);
+                this.columnSameGeneration = new global::System.Data.DataColumn("SameGeneration", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSameGeneration);
+                this.columnShareBiodad = new global::System.Data.DataColumn("ShareBiodad", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBiodad);
+                this.columnShareBiomom = new global::System.Data.DataColumn("ShareBiomom", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBiomom);
+                this.columnShareBiograndparent = new global::System.Data.DataColumn("ShareBiograndparent", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBiograndparent);
+                this.columnInconsistent = new global::System.Data.DataColumn("Inconsistent", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInconsistent);
+                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNotes);
+                this.columnResponseLowerLabel = new global::System.Data.DataColumn("ResponseLowerLabel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResponseLowerLabel);
+                this.columnResponseUpperLabel = new global::System.Data.DataColumn("ResponseUpperLabel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResponseUpperLabel);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnResponseLower.AllowDBNull = false;
+                this.columnResponseUpper.AllowDBNull = false;
+                this.columnFreq.AllowDBNull = false;
+                this.columnResolved.AllowDBNull = false;
+                this.columnRBoundLower.AllowDBNull = false;
+                this.columnRBoundUpper.AllowDBNull = false;
+                this.columnSameGeneration.AllowDBNull = false;
+                this.columnShareBiodad.AllowDBNull = false;
+                this.columnShareBiomom.AllowDBNull = false;
+                this.columnShareBiograndparent.AllowDBNull = false;
+                this.columnInconsistent.AllowDBNull = false;
+                this.columnNotes.MaxLength = 255;
+                this.columnResponseLowerLabel.MaxLength = 50;
+                this.columnResponseUpperLabel.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRow NewtblRosterAssignmentRow() {
+                return ((tblRosterAssignmentRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblRosterAssignmentRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblRosterAssignmentRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblRosterAssignmentRowChanged != null)) {
+                    this.tblRosterAssignmentRowChanged(this, new tblRosterAssignmentRowChangeEvent(((tblRosterAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblRosterAssignmentRowChanging != null)) {
+                    this.tblRosterAssignmentRowChanging(this, new tblRosterAssignmentRowChangeEvent(((tblRosterAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblRosterAssignmentRowDeleted != null)) {
+                    this.tblRosterAssignmentRowDeleted(this, new tblRosterAssignmentRowChangeEvent(((tblRosterAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblRosterAssignmentRowDeleting != null)) {
+                    this.tblRosterAssignmentRowDeleting(this, new tblRosterAssignmentRowChangeEvent(((tblRosterAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblRosterAssignmentRow(tblRosterAssignmentRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                LinksDataSet ds = new LinksDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblRosterAssignmentDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4063,6 +4596,13 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterRow FindByRelatedID(int RelatedID) {
+                return ((tblRosterRow)(this.Rows.Find(new object[] {
+                            RelatedID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 tblRosterDataTable cln = ((tblRosterDataTable)(base.Clone()));
                 cln.InitVars();
@@ -4122,7 +4662,10 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnShareBiograndparent);
                 this.columnInconsistent = new global::System.Data.DataColumn("Inconsistent", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInconsistent);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnRelatedID}, true));
                 this.columnRelatedID.AllowDBNull = false;
+                this.columnRelatedID.Unique = true;
                 this.columnRosterAssignmentID.AllowDBNull = false;
                 this.columnResponseLower.AllowDBNull = false;
                 this.columnResponseUpper.AllowDBNull = false;
@@ -5485,6 +6028,267 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNotesNull() {
                 this[this.tabletblMzManual.NotesColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblRosterAssignmentRow : global::System.Data.DataRow {
+            
+            private tblRosterAssignmentDataTable tabletblRosterAssignment;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblRosterAssignmentRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblRosterAssignment = ((tblRosterAssignmentDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ID {
+                get {
+                    return ((byte)(this[this.tabletblRosterAssignment.IDColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short ResponseLower {
+                get {
+                    return ((short)(this[this.tabletblRosterAssignment.ResponseLowerColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ResponseLowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short ResponseUpper {
+                get {
+                    return ((short)(this[this.tabletblRosterAssignment.ResponseUpperColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ResponseUpperColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short Freq {
+                get {
+                    return ((short)(this[this.tabletblRosterAssignment.FreqColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.FreqColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Resolved {
+                get {
+                    return ((bool)(this[this.tabletblRosterAssignment.ResolvedColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ResolvedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double R {
+                get {
+                    try {
+                        return ((double)(this[this.tabletblRosterAssignment.RColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'R\' in table \'tblRosterAssignment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblRosterAssignment.RColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double RBoundLower {
+                get {
+                    return ((double)(this[this.tabletblRosterAssignment.RBoundLowerColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.RBoundLowerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double RBoundUpper {
+                get {
+                    return ((double)(this[this.tabletblRosterAssignment.RBoundUpperColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.RBoundUpperColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte SameGeneration {
+                get {
+                    return ((byte)(this[this.tabletblRosterAssignment.SameGenerationColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.SameGenerationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBiodad {
+                get {
+                    return ((byte)(this[this.tabletblRosterAssignment.ShareBiodadColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ShareBiodadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBiomom {
+                get {
+                    return ((byte)(this[this.tabletblRosterAssignment.ShareBiomomColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ShareBiomomColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBiograndparent {
+                get {
+                    return ((byte)(this[this.tabletblRosterAssignment.ShareBiograndparentColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ShareBiograndparentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Inconsistent {
+                get {
+                    return ((bool)(this[this.tabletblRosterAssignment.InconsistentColumn]));
+                }
+                set {
+                    this[this.tabletblRosterAssignment.InconsistentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Notes {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblRosterAssignment.NotesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Notes\' in table \'tblRosterAssignment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblRosterAssignment.NotesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ResponseLowerLabel {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblRosterAssignment.ResponseLowerLabelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ResponseLowerLabel\' in table \'tblRosterAssignment\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ResponseLowerLabelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ResponseUpperLabel {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblRosterAssignment.ResponseUpperLabelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ResponseUpperLabel\' in table \'tblRosterAssignment\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblRosterAssignment.ResponseUpperLabelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRNull() {
+                return this.IsNull(this.tabletblRosterAssignment.RColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRNull() {
+                this[this.tabletblRosterAssignment.RColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNotesNull() {
+                return this.IsNull(this.tabletblRosterAssignment.NotesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNotesNull() {
+                this[this.tabletblRosterAssignment.NotesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsResponseLowerLabelNull() {
+                return this.IsNull(this.tabletblRosterAssignment.ResponseLowerLabelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetResponseLowerLabelNull() {
+                this[this.tabletblRosterAssignment.ResponseLowerLabelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsResponseUpperLabelNull() {
+                return this.IsNull(this.tabletblRosterAssignment.ResponseUpperLabelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetResponseUpperLabelNull() {
+                this[this.tabletblRosterAssignment.ResponseUpperLabelColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7375,6 +8179,40 @@ namespace Nls.Base97 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblRosterAssignmentRowChangeEvent : global::System.EventArgs {
+            
+            private tblRosterAssignmentRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRowChangeEvent(tblRosterAssignmentRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRosterAssignmentRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class tblVariableRowChangeEvent : global::System.EventArgs {
             
             private tblVariableRow eventRow;
@@ -8758,6 +9596,652 @@ SELECT ID, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSex, IsMz, Undecided
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int SubjectTag_S1, int SubjectTag_S2, byte MultipleBirthIfSameSex, byte IsMz, bool Undecided, global::System.Nullable<bool> Related, string Notes, int Original_ID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_MultipleBirthIfSameSex, byte Original_IsMz, bool Original_Undecided, global::System.Nullable<bool> Original_Related, string Original_Notes) {
             return this.Update(Original_ID, SubjectTag_S1, SubjectTag_S2, MultipleBirthIfSameSex, IsMz, Undecided, Related, Notes, Original_ID, Original_SubjectTag_S1, Original_SubjectTag_S2, Original_MultipleBirthIfSameSex, Original_IsMz, Original_Undecided, Original_Related, Original_Notes);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblRosterAssignmentTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public tblRosterAssignmentTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tblRosterAssignment";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("ResponseLower", "ResponseLower");
+            tableMapping.ColumnMappings.Add("ResponseUpper", "ResponseUpper");
+            tableMapping.ColumnMappings.Add("Freq", "Freq");
+            tableMapping.ColumnMappings.Add("Resolved", "Resolved");
+            tableMapping.ColumnMappings.Add("R", "R");
+            tableMapping.ColumnMappings.Add("RBoundLower", "RBoundLower");
+            tableMapping.ColumnMappings.Add("RBoundUpper", "RBoundUpper");
+            tableMapping.ColumnMappings.Add("SameGeneration", "SameGeneration");
+            tableMapping.ColumnMappings.Add("ShareBiodad", "ShareBiodad");
+            tableMapping.ColumnMappings.Add("ShareBiomom", "ShareBiomom");
+            tableMapping.ColumnMappings.Add("ShareBiograndparent", "ShareBiograndparent");
+            tableMapping.ColumnMappings.Add("Inconsistent", "Inconsistent");
+            tableMapping.ColumnMappings.Add("Notes", "Notes");
+            tableMapping.ColumnMappings.Add("ResponseLowerLabel", "ResponseLowerLabel");
+            tableMapping.ColumnMappings.Add("ResponseUpperLabel", "ResponseUpperLabel");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Metadata].[tblRosterAssignment] WHERE (([ID] = @Original_ID) AND ([ResponseLower] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND ([Freq] = @Original_Freq) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBoundLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareBiomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiograndparent) AND ([Inconsistent] = @Original_Inconsistent) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_ResponseLowerLabel = 1 AND [ResponseLowerLabel] IS NULL) OR ([ResponseLowerLabel] = @Original_ResponseLowerLabel)) AND ((@IsNull_ResponseUpperLabel = 1 AND [ResponseUpperLabel] IS NULL) OR ([ResponseUpperLabel] = @Original_ResponseUpperLabel)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Freq", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Freq", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_R", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResponseLowerLabel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLowerLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResponseUpperLabel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpperLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Metadata].[tblRosterAssignment] ([ID], [ResponseLower], [ResponseUpper], [Freq], [Resolved], [R], [RBoundLower], [RBoundUpper], [SameGeneration], [ShareBiodad], [ShareBiomom], [ShareBiograndparent], [Inconsistent], [Notes], [ResponseLowerLabel], [ResponseUpperLabel]) VALUES (@ID, @ResponseLower, @ResponseUpper, @Freq, @Resolved, @R, @RBoundLower, @RBoundUpper, @SameGeneration, @ShareBiodad, @ShareBiomom, @ShareBiograndparent, @Inconsistent, @Notes, @ResponseLowerLabel, @ResponseUpperLabel);
+SELECT ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundUpper, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent, Notes, ResponseLowerLabel, ResponseUpperLabel FROM Metadata.tblRosterAssignment WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Freq", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Freq", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseLowerLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseUpperLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [Metadata].[tblRosterAssignment] SET [ID] = @ID, [ResponseLower] = @Respon" +
+                "seLower, [ResponseUpper] = @ResponseUpper, [Freq] = @Freq, [Resolved] = @Resolve" +
+                "d, [R] = @R, [RBoundLower] = @RBoundLower, [RBoundUpper] = @RBoundUpper, [SameGe" +
+                "neration] = @SameGeneration, [ShareBiodad] = @ShareBiodad, [ShareBiomom] = @Shar" +
+                "eBiomom, [ShareBiograndparent] = @ShareBiograndparent, [Inconsistent] = @Inconsi" +
+                "stent, [Notes] = @Notes, [ResponseLowerLabel] = @ResponseLowerLabel, [ResponseUp" +
+                "perLabel] = @ResponseUpperLabel WHERE (([ID] = @Original_ID) AND ([ResponseLower" +
+                "] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND" +
+                " ([Freq] = @Original_Freq) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R" +
+                " = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBo" +
+                "undLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @O" +
+                "riginal_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareB" +
+                "iomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiog" +
+                "randparent) AND ([Inconsistent] = @Original_Inconsistent) AND ((@IsNull_Notes = " +
+                "1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_ResponseLow" +
+                "erLabel = 1 AND [ResponseLowerLabel] IS NULL) OR ([ResponseLowerLabel] = @Origin" +
+                "al_ResponseLowerLabel)) AND ((@IsNull_ResponseUpperLabel = 1 AND [ResponseUpperL" +
+                "abel] IS NULL) OR ([ResponseUpperLabel] = @Original_ResponseUpperLabel)));\r\nSELE" +
+                "CT ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundUpper" +
+                ", SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent, N" +
+                "otes, ResponseLowerLabel, ResponseUpperLabel FROM Metadata.tblRosterAssignment W" +
+                "HERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Freq", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Freq", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseLowerLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseUpperLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Freq", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Freq", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_R", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResponseLowerLabel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLowerLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLowerLabel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResponseUpperLabel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpperLabel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpperLabel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Nls.Base97.Properties.Settings.Default.Nlsy97ConnectionStringBase;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundUp" +
+                "per, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent" +
+                ", Notes, ResponseLowerLabel, ResponseUpperLabel FROM Metadata.tblRosterAssignmen" +
+                "t";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(LinksDataSet.tblRosterAssignmentDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual LinksDataSet.tblRosterAssignmentDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            LinksDataSet.tblRosterAssignmentDataTable dataTable = new LinksDataSet.tblRosterAssignmentDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LinksDataSet.tblRosterAssignmentDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LinksDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "tblRosterAssignment");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    byte Original_ID, 
+                    short Original_ResponseLower, 
+                    short Original_ResponseUpper, 
+                    short Original_Freq, 
+                    bool Original_Resolved, 
+                    global::System.Nullable<double> Original_R, 
+                    double Original_RBoundLower, 
+                    double Original_RBoundUpper, 
+                    byte Original_SameGeneration, 
+                    byte Original_ShareBiodad, 
+                    byte Original_ShareBiomom, 
+                    byte Original_ShareBiograndparent, 
+                    bool Original_Inconsistent, 
+                    string Original_Notes, 
+                    string Original_ResponseLowerLabel, 
+                    string Original_ResponseUpperLabel) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((byte)(Original_ID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_ResponseLower));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((short)(Original_ResponseUpper));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((short)(Original_Freq));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Resolved));
+            if ((Original_R.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_R.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((double)(Original_RBoundLower));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_RBoundUpper));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((byte)(Original_SameGeneration));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((byte)(Original_ShareBiodad));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((byte)(Original_ShareBiomom));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((byte)(Original_ShareBiograndparent));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((bool)(Original_Inconsistent));
+            if ((Original_Notes == null)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_Notes));
+            }
+            if ((Original_ResponseLowerLabel == null)) {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_ResponseLowerLabel));
+            }
+            if ((Original_ResponseUpperLabel == null)) {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_ResponseUpperLabel));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(
+                    byte ID, 
+                    short ResponseLower, 
+                    short ResponseUpper, 
+                    short Freq, 
+                    bool Resolved, 
+                    global::System.Nullable<double> R, 
+                    double RBoundLower, 
+                    double RBoundUpper, 
+                    byte SameGeneration, 
+                    byte ShareBiodad, 
+                    byte ShareBiomom, 
+                    byte ShareBiograndparent, 
+                    bool Inconsistent, 
+                    string Notes, 
+                    string ResponseLowerLabel, 
+                    string ResponseUpperLabel) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((byte)(ID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((short)(ResponseLower));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((short)(ResponseUpper));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((short)(Freq));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Resolved));
+            if ((R.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(R.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((double)(RBoundLower));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((double)(RBoundUpper));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(SameGeneration));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((byte)(ShareBiodad));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((byte)(ShareBiomom));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((byte)(ShareBiograndparent));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(Inconsistent));
+            if ((Notes == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(Notes));
+            }
+            if ((ResponseLowerLabel == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(ResponseLowerLabel));
+            }
+            if ((ResponseUpperLabel == null)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(ResponseUpperLabel));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    byte ID, 
+                    short ResponseLower, 
+                    short ResponseUpper, 
+                    short Freq, 
+                    bool Resolved, 
+                    global::System.Nullable<double> R, 
+                    double RBoundLower, 
+                    double RBoundUpper, 
+                    byte SameGeneration, 
+                    byte ShareBiodad, 
+                    byte ShareBiomom, 
+                    byte ShareBiograndparent, 
+                    bool Inconsistent, 
+                    string Notes, 
+                    string ResponseLowerLabel, 
+                    string ResponseUpperLabel, 
+                    byte Original_ID, 
+                    short Original_ResponseLower, 
+                    short Original_ResponseUpper, 
+                    short Original_Freq, 
+                    bool Original_Resolved, 
+                    global::System.Nullable<double> Original_R, 
+                    double Original_RBoundLower, 
+                    double Original_RBoundUpper, 
+                    byte Original_SameGeneration, 
+                    byte Original_ShareBiodad, 
+                    byte Original_ShareBiomom, 
+                    byte Original_ShareBiograndparent, 
+                    bool Original_Inconsistent, 
+                    string Original_Notes, 
+                    string Original_ResponseLowerLabel, 
+                    string Original_ResponseUpperLabel) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((byte)(ID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((short)(ResponseLower));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(ResponseUpper));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(Freq));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Resolved));
+            if ((R.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(R.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((double)(RBoundLower));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((double)(RBoundUpper));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(SameGeneration));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(ShareBiodad));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(ShareBiomom));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(ShareBiograndparent));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Inconsistent));
+            if ((Notes == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Notes));
+            }
+            if ((ResponseLowerLabel == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(ResponseLowerLabel));
+            }
+            if ((ResponseUpperLabel == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(ResponseUpperLabel));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((byte)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((short)(Original_ResponseLower));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((short)(Original_ResponseUpper));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((short)(Original_Freq));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_Resolved));
+            if ((Original_R.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((double)(Original_R.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((double)(Original_RBoundLower));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((double)(Original_RBoundUpper));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((byte)(Original_SameGeneration));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((byte)(Original_ShareBiodad));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((byte)(Original_ShareBiomom));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((byte)(Original_ShareBiograndparent));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((bool)(Original_Inconsistent));
+            if ((Original_Notes == null)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_Notes));
+            }
+            if ((Original_ResponseLowerLabel == null)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((string)(Original_ResponseLowerLabel));
+            }
+            if ((Original_ResponseUpperLabel == null)) {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_ResponseUpperLabel));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    short ResponseLower, 
+                    short ResponseUpper, 
+                    short Freq, 
+                    bool Resolved, 
+                    global::System.Nullable<double> R, 
+                    double RBoundLower, 
+                    double RBoundUpper, 
+                    byte SameGeneration, 
+                    byte ShareBiodad, 
+                    byte ShareBiomom, 
+                    byte ShareBiograndparent, 
+                    bool Inconsistent, 
+                    string Notes, 
+                    string ResponseLowerLabel, 
+                    string ResponseUpperLabel, 
+                    byte Original_ID, 
+                    short Original_ResponseLower, 
+                    short Original_ResponseUpper, 
+                    short Original_Freq, 
+                    bool Original_Resolved, 
+                    global::System.Nullable<double> Original_R, 
+                    double Original_RBoundLower, 
+                    double Original_RBoundUpper, 
+                    byte Original_SameGeneration, 
+                    byte Original_ShareBiodad, 
+                    byte Original_ShareBiomom, 
+                    byte Original_ShareBiograndparent, 
+                    bool Original_Inconsistent, 
+                    string Original_Notes, 
+                    string Original_ResponseLowerLabel, 
+                    string Original_ResponseUpperLabel) {
+            return this.Update(Original_ID, ResponseLower, ResponseUpper, Freq, Resolved, R, RBoundLower, RBoundUpper, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent, Notes, ResponseLowerLabel, ResponseUpperLabel, Original_ID, Original_ResponseLower, Original_ResponseUpper, Original_Freq, Original_Resolved, Original_R, Original_RBoundLower, Original_RBoundUpper, Original_SameGeneration, Original_ShareBiodad, Original_ShareBiomom, Original_ShareBiograndparent, Original_Inconsistent, Original_Notes, Original_ResponseLowerLabel, Original_ResponseUpperLabel);
         }
     }
     
@@ -10663,9 +12147,28 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             tableMapping.ColumnMappings.Add("ShareBiograndparent", "ShareBiograndparent");
             tableMapping.ColumnMappings.Add("Inconsistent", "Inconsistent");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblRoster] WHERE (([RelatedID] = @Original_RelatedID) AND ([RosterAssignmentID] = @Original_RosterAssignmentID) AND ([ResponseLower] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBoundLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareBiomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiograndparent) AND ([Inconsistent] = @Original_Inconsistent))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RelatedID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelatedID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RosterAssignmentID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RosterAssignmentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_R", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblRoster] ([RelatedID], [RosterAssignmentID], [ResponseLower], [ResponseUpper], [Resolved], [R], [RBoundLower], [RBoundUpper], [SameGeneration], [ShareBiodad], [ShareBiomom], [ShareBiograndparent], [Inconsistent]) VALUES (@RelatedID, @RosterAssignmentID, @ResponseLower, @ResponseUpper, @Resolved, @R, @RBoundLower, @RBoundUpper, @SameGeneration, @ShareBiodad, @ShareBiomom, @ShareBiograndparent, @Inconsistent)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblRoster] ([RelatedID], [RosterAssignmentID], [ResponseLower], [ResponseUpper], [Resolved], [R], [RBoundLower], [RBoundUpper], [SameGeneration], [ShareBiodad], [ShareBiomom], [ShareBiograndparent], [Inconsistent]) VALUES (@RelatedID, @RosterAssignmentID, @ResponseLower, @ResponseUpper, @Resolved, @R, @RBoundLower, @RBoundUpper, @SameGeneration, @ShareBiodad, @ShareBiomom, @ShareBiograndparent, @Inconsistent);
+SELECT RelatedID, RosterAssignmentID, ResponseLower, ResponseUpper, Resolved, R, RBoundLower, RBoundUpper, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent FROM Process.tblRoster WHERE (RelatedID = @RelatedID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RelatedID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelatedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RosterAssignmentID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RosterAssignmentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10680,6 +12183,38 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Process].[tblRoster] SET [RelatedID] = @RelatedID, [RosterAssignmentID] = @RosterAssignmentID, [ResponseLower] = @ResponseLower, [ResponseUpper] = @ResponseUpper, [Resolved] = @Resolved, [R] = @R, [RBoundLower] = @RBoundLower, [RBoundUpper] = @RBoundUpper, [SameGeneration] = @SameGeneration, [ShareBiodad] = @ShareBiodad, [ShareBiomom] = @ShareBiomom, [ShareBiograndparent] = @ShareBiograndparent, [Inconsistent] = @Inconsistent WHERE (([RelatedID] = @Original_RelatedID) AND ([RosterAssignmentID] = @Original_RosterAssignmentID) AND ([ResponseLower] = @Original_ResponseLower) AND ([ResponseUpper] = @Original_ResponseUpper) AND ([Resolved] = @Original_Resolved) AND ((@IsNull_R = 1 AND [R] IS NULL) OR ([R] = @Original_R)) AND ([RBoundLower] = @Original_RBoundLower) AND ([RBoundUpper] = @Original_RBoundUpper) AND ([SameGeneration] = @Original_SameGeneration) AND ([ShareBiodad] = @Original_ShareBiodad) AND ([ShareBiomom] = @Original_ShareBiomom) AND ([ShareBiograndparent] = @Original_ShareBiograndparent) AND ([Inconsistent] = @Original_Inconsistent));
+SELECT RelatedID, RosterAssignmentID, ResponseLower, ResponseUpper, Resolved, R, RBoundLower, RBoundUpper, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent FROM Process.tblRoster WHERE (RelatedID = @RelatedID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RelatedID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelatedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RosterAssignmentID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RosterAssignmentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RelatedID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelatedID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RosterAssignmentID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RosterAssignmentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseLower", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResponseUpper", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResponseUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Resolved", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Resolved", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_R", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundLower", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundLower", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RBoundUpper", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RBoundUpper", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiodad", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodad", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiomom", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShareBiograndparent", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiograndparent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Inconsistent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Inconsistent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10757,6 +12292,47 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_RelatedID, byte Original_RosterAssignmentID, short Original_ResponseLower, short Original_ResponseUpper, bool Original_Resolved, global::System.Nullable<double> Original_R, double Original_RBoundLower, double Original_RBoundUpper, byte Original_SameGeneration, byte Original_ShareBiodad, byte Original_ShareBiomom, byte Original_ShareBiograndparent, bool Original_Inconsistent) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_RelatedID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((byte)(Original_RosterAssignmentID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((short)(Original_ResponseLower));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((short)(Original_ResponseUpper));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Resolved));
+            if ((Original_R.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_R.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((double)(Original_RBoundLower));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_RBoundUpper));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((byte)(Original_SameGeneration));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((byte)(Original_ShareBiodad));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((byte)(Original_ShareBiomom));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((byte)(Original_ShareBiograndparent));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((bool)(Original_Inconsistent));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(int RelatedID, byte RosterAssignmentID, short ResponseLower, short ResponseUpper, bool Resolved, global::System.Nullable<double> R, double RBoundLower, double RBoundUpper, byte SameGeneration, byte ShareBiodad, byte ShareBiomom, byte ShareBiograndparent, bool Inconsistent) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(RelatedID));
@@ -10791,6 +12367,124 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int RelatedID, 
+                    byte RosterAssignmentID, 
+                    short ResponseLower, 
+                    short ResponseUpper, 
+                    bool Resolved, 
+                    global::System.Nullable<double> R, 
+                    double RBoundLower, 
+                    double RBoundUpper, 
+                    byte SameGeneration, 
+                    byte ShareBiodad, 
+                    byte ShareBiomom, 
+                    byte ShareBiograndparent, 
+                    bool Inconsistent, 
+                    int Original_RelatedID, 
+                    byte Original_RosterAssignmentID, 
+                    short Original_ResponseLower, 
+                    short Original_ResponseUpper, 
+                    bool Original_Resolved, 
+                    global::System.Nullable<double> Original_R, 
+                    double Original_RBoundLower, 
+                    double Original_RBoundUpper, 
+                    byte Original_SameGeneration, 
+                    byte Original_ShareBiodad, 
+                    byte Original_ShareBiomom, 
+                    byte Original_ShareBiograndparent, 
+                    bool Original_Inconsistent) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(RelatedID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((byte)(RosterAssignmentID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(ResponseLower));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(ResponseUpper));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Resolved));
+            if ((R.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(R.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((double)(RBoundLower));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((double)(RBoundUpper));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(SameGeneration));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(ShareBiodad));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(ShareBiomom));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(ShareBiograndparent));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Inconsistent));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_RelatedID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((byte)(Original_RosterAssignmentID));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((short)(Original_ResponseLower));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((short)(Original_ResponseUpper));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_Resolved));
+            if ((Original_R.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_R.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(Original_RBoundLower));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((double)(Original_RBoundUpper));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((byte)(Original_SameGeneration));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_ShareBiodad));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((byte)(Original_ShareBiomom));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((byte)(Original_ShareBiograndparent));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_Inconsistent));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    byte RosterAssignmentID, 
+                    short ResponseLower, 
+                    short ResponseUpper, 
+                    bool Resolved, 
+                    global::System.Nullable<double> R, 
+                    double RBoundLower, 
+                    double RBoundUpper, 
+                    byte SameGeneration, 
+                    byte ShareBiodad, 
+                    byte ShareBiomom, 
+                    byte ShareBiograndparent, 
+                    bool Inconsistent, 
+                    int Original_RelatedID, 
+                    byte Original_RosterAssignmentID, 
+                    short Original_ResponseLower, 
+                    short Original_ResponseUpper, 
+                    bool Original_Resolved, 
+                    global::System.Nullable<double> Original_R, 
+                    double Original_RBoundLower, 
+                    double Original_RBoundUpper, 
+                    byte Original_SameGeneration, 
+                    byte Original_ShareBiodad, 
+                    byte Original_ShareBiomom, 
+                    byte Original_ShareBiograndparent, 
+                    bool Original_Inconsistent) {
+            return this.Update(Original_RelatedID, RosterAssignmentID, ResponseLower, ResponseUpper, Resolved, R, RBoundLower, RBoundUpper, SameGeneration, ShareBiodad, ShareBiomom, ShareBiograndparent, Inconsistent, Original_RelatedID, Original_RosterAssignmentID, Original_ResponseLower, Original_ResponseUpper, Original_Resolved, Original_R, Original_RBoundLower, Original_RBoundUpper, Original_SameGeneration, Original_ShareBiodad, Original_ShareBiomom, Original_ShareBiograndparent, Original_Inconsistent);
         }
     }
     
@@ -11449,6 +13143,8 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
         
         private tblMzManualTableAdapter _tblMzManualTableAdapter;
         
+        private tblRosterAssignmentTableAdapter _tblRosterAssignmentTableAdapter;
+        
         private tblVariableTableAdapter _tblVariableTableAdapter;
         
         private tblOutcomeTableAdapter _tblOutcomeTableAdapter;
@@ -11519,6 +13215,20 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             }
             set {
                 this._tblMzManualTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tblRosterAssignmentTableAdapter tblRosterAssignmentTableAdapter {
+            get {
+                return this._tblRosterAssignmentTableAdapter;
+            }
+            set {
+                this._tblRosterAssignmentTableAdapter = value;
             }
         }
         
@@ -11665,6 +13375,10 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                             && (this._tblMzManualTableAdapter.Connection != null))) {
                     return this._tblMzManualTableAdapter.Connection;
                 }
+                if (((this._tblRosterAssignmentTableAdapter != null) 
+                            && (this._tblRosterAssignmentTableAdapter.Connection != null))) {
+                    return this._tblRosterAssignmentTableAdapter.Connection;
+                }
                 if (((this._tblVariableTableAdapter != null) 
                             && (this._tblVariableTableAdapter.Connection != null))) {
                     return this._tblVariableTableAdapter.Connection;
@@ -11717,6 +13431,9 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                     count = (count + 1);
                 }
                 if ((this._tblMzManualTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tblRosterAssignmentTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tblVariableTableAdapter != null)) {
@@ -11796,6 +13513,15 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblMzManualTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tblRosterAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblRosterAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblRosterAssignmentTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -11900,6 +13626,14 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblMzManualTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tblRosterAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblRosterAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblRosterAssignmentTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -12009,6 +13743,14 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._tblRosterAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblRosterAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblRosterAssignmentTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tblMzManualTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tblMzManual.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -12100,6 +13842,11 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             }
             if (((this._tblMzManualTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblMzManualTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._tblRosterAssignmentTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblRosterAssignmentTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -12200,6 +13947,15 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                     if (this._tblMzManualTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblMzManualTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblMzManualTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tblRosterAssignmentTableAdapter != null)) {
+                    revertConnections.Add(this._tblRosterAssignmentTableAdapter, this._tblRosterAssignmentTableAdapter.Connection);
+                    this._tblRosterAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblRosterAssignmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblRosterAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblRosterAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblRosterAssignmentTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblVariableTableAdapter != null)) {
@@ -12343,6 +14099,10 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                 if ((this._tblMzManualTableAdapter != null)) {
                     this._tblMzManualTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblMzManualTableAdapter]));
                     this._tblMzManualTableAdapter.Transaction = null;
+                }
+                if ((this._tblRosterAssignmentTableAdapter != null)) {
+                    this._tblRosterAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblRosterAssignmentTableAdapter]));
+                    this._tblRosterAssignmentTableAdapter.Transaction = null;
                 }
                 if ((this._tblVariableTableAdapter != null)) {
                     this._tblVariableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblVariableTableAdapter]));

@@ -10,5 +10,5 @@ LURoster,Enum,RosterGen1,EnumResponseGen1.cs,short,TRUE
 LUTristate,Enum,Tristate,EnumLookupTables.cs,byte,TRUE
 LUYesNo,Enum,YesNo,EnumLookupTables.cs,short,TRUE
 MzManual,Metadata,NA_character,NA_character,NA_character,FALSE
-#RosterAssignment,Metadata,NA_character,NA_character,NA_character,FALSE
+RosterAssignment,Metadata,NA_character,NA_character,NA_character,FALSE
 variable,Metadata,NA_character,NA_character,NA_character,FALSE

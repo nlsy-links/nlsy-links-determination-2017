@@ -21,6 +21,7 @@
         <CollectionViewSource x:Key="tblSurveyTimeViewSource" Source="{Binding tblSurveyTime, Source={StaticResource importDataSet}}"/>
         <CollectionViewSource x:Key="tblSurveyTimeViewSource1" Source="{Binding tblSurveyTime, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblRosterViewSource1" Source="{Binding tblRoster, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRosterAssignmentViewSource" Source="{Binding tblRosterAssignment, Source={StaticResource linksDataSet}}"/>
 
 
     </Window.Resources>
@@ -99,8 +100,8 @@
             <TabItem Header="MzManual" x:Name="tabMzManual" >
                 <DataGrid ItemsSource="{Binding}" />
             </TabItem>
-            <TabItem Header="LURoster" x:Name="tabLURoster" >
-                <DataGrid />
+            <TabItem Header="Roster Assign" x:Name="tabLURoster" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterAssignmentViewSource}}" />
             </TabItem>
         </TabControl>
         <TabControl x:Name="tabControlBottom"  Grid.Row="3" Background="Transparent">

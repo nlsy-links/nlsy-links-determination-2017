@@ -1940,8 +1940,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLUMarkerType         |        28|            5|
 |Enum        |tblLUMultipleBirth      |         5|            4|
 |Enum        |tblLURaceCohort         |         3|            4|
-|Enum        |tblLURelationshipPath   |         5|            4|
-|Enum        |tblLURoster             |        90|            4|
+|Enum        |tblLURoster             |        92|            4|
 |Enum        |tblLUTristate           |         3|            4|
 |Enum        |tblLUYesNo              |         6|            4|
 |Extract     |tblDemographics         |     8,984|            8|
@@ -1951,12 +1950,13 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblSurveyTime           |     8,984|           98|
 |Metadata    |tblItem                 |        21|            7|
 |Metadata    |tblMzManual             |       208|            8|
+|Metadata    |tblRosterAssignment     |        31|           16|
 |Metadata    |tblVariable             |       434|           11|
 |Process     |tblOutcome              |         0|            5|
-|Process     |tblRelatedStructure     |     5,038|            6|
+|Process     |tblRelatedStructure     |     5,038|            8|
 |Process     |tblRelatedValues        |         0|           23|
 |Process     |tblResponse             | 1,156,770|            8|
-|Process     |tblRoster               |         0|           13|
+|Process     |tblRoster               |     5,038|           13|
 |Process     |tblSubject              |     8,984|            5|
 |Process     |tblSubjectDetails       |         0|           15|
 |Process     |tblSurveyTime           |   152,728|            7|
@@ -2438,7 +2438,6 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLUMarkerType         |             72|            16|
 |Enum        |tblLUMultipleBirth      |             72|            16|
 |Enum        |tblLURaceCohort         |             72|            16|
-|Enum        |tblLURelationshipPath   |             72|            16|
 |Enum        |tblLURoster             |             72|            16|
 |Enum        |tblLUTristate           |             72|            16|
 |Enum        |tblLUYesNo              |             72|            16|
@@ -2449,15 +2448,16 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblSurveyTime           |          3,848|         3,800|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
+|Metadata    |tblRosterAssignment     |             72|            16|
 |Metadata    |tblVariable             |            144|           120|
 |Process     |tblOutcome              |             72|            16|
-|Process     |tblRelatedStructure     |            528|           256|
+|Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |         22,856|        21,776|
-|Process     |tblRoster               |              0|             0|
+|Process     |tblResponse             |         45,704|        43,544|
+|Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,392|         4,784|
+|Process     |tblSurveyTime           |          5,520|         4,872|
 
 
 # Session Information
@@ -2549,4 +2549,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-17, 10:15 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-17, 17:44 -0600 in 1 seconds.

@@ -43,8 +43,8 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            //if( Convert.ToBoolean("true") ) {
-            if( Convert.ToBoolean("false")) {
+            if( Convert.ToBoolean("true") ) {
+            //if( Convert.ToBoolean("false")) {
                 LoadExtractDemographics();
                 LoadExtractRoster();
                 LoadExtractSurveyTime();
@@ -59,7 +59,7 @@ namespace LinksGui {
             LoadItem();
             LoadVariable();
             LoadMzManual();
-            //LoadRosterAssignment();
+            LoadRosterAssignment();
 
             LoadSubject();
             LoadRelatedStructure();
@@ -239,10 +239,10 @@ namespace LinksGui {
             BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();
             ta.Fill(_dsLinks.tblMzManual);
         }
-        //private void LoadRosterAssignment ( ) {
-        //    BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterGen1AssignmentTableAdapter();
-        //    ta.Fill(_dsLinks.tblRosterGen1Assignment);
-        //}
+        private void LoadRosterAssignment( ) {
+            BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter();
+            ta.Fill(_dsLinks.tblRosterAssignment);
+        }
 
         ///////////////////////////
 

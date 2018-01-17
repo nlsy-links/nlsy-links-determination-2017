@@ -1,32 +1,32 @@
-ID,ResponseLower,ResponseUpper,Freq,Resolved,R,RBoundLower,RBoundUpper,ShareBiodad,ShareBiomom,ShareBiograndparent,Inconsistent,Notes,ResponseLowerLabel,ResponseUpperLabel
-1,-2,-1,2,,,,,,,,,,do_not_know,refusal
-2,-1,-1,2,,,,,,,,,,refusal,refusal
-3,13,13,1034,,,,,,,,,,sister_full,sister_full
-4,13,14,2034,,,,,,,,,,sister_full,brother_full
-5,14,14,1154,,,,,,,,,,brother_full,brother_full
-6,15,15,48,,,,,,,,,,sister_half_same_mother,sister_half_same_mother
-7,15,18,132,,,,,,,,,,sister_half_same_mother,brother_half_same_mother
-8,16,19,2,,,,,,,,,,sister_half_same_father,brother_half_same_father
-9,18,18,62,,,,,,,,,,brother_half_same_mother,brother_half_same_mother
-10,19,19,8,,,,,,,,,,brother_half_same_father,brother_half_same_father
-11,21,21,38,,,,,,,,,,sister_step,sister_step
-12,21,22,80,,,,,,,,,,sister_step,brother_step
-13,22,22,58,,,,,,,,,,brother_step,brother_step
-14,23,23,6,,,,,,,,,,sister_adoptive,sister_adoptive
-15,23,24,20,,,,,,,,,,sister_adoptive,brother_adoptive
-16,24,24,14,,,,,,,,,,brother_adoptive,brother_adoptive
-17,25,25,28,,,,,,,,,,sister_foster,sister_foster
-18,25,26,12,,,,,,,,,,sister_foster,brother_foster
-19,26,26,22,,,,,,,,,,brother_foster,brother_foster
-20,28,28,4,,,,,,,,,,sister_in_law,sister_in_law
-21,57,85,2,,,,,,,,,,daughter_of_partner,nonrelative_other
-22,68,68,2,,,,,,,,,,roommate,roommate
-23,69,69,4,,,,,,,,,,partner,partner
-24,70,74,6,,,,,,,,,,aunt_unsure,niece_unsure
-25,70,78,2,,,,,,,,,,aunt_unsure,nephew_unsure
-26,72,74,10,,,,,,,,,,uncle_unsure,niece_unsure
-27,72,78,14,,,,,,,,,,uncle_unsure,nephew_unsure
-28,82,82,48,,,,,,,,,,cousin_female_unsure,cousin_female_unsure
-29,82,83,76,,,,,,,,,,cousin_female_unsure,cousin_male_unsure
-30,83,83,56,,,,,,,,,,cousin_male_unsure,cousin_male_unsure
-31,85,85,58,,,,,,,,,,nonrelative_other,nonrelative_other
+ID,ResponseLower,ResponseUpper,Freq,Resolved,R,RBoundLower,RBoundUpper,SameGeneration,ShareBiodad,ShareBiomom,ShareBiograndparent,Inconsistent,Notes,ResponseLowerLabel,ResponseUpperLabel
+1,-2,-1,2,0,NA,0,1,255,255,255,255,1,,do_not_know,refusal
+2,-1,-1,2,0,NA,0,1,255,255,255,255,1,,refusal,refusal
+3,13,13,1034,1,NA,0.5,1,1,1,1,1,1,could be MZ,sister_full,sister_full
+4,13,14,2034,1,0.5,0.5,0.5,1,1,1,1,1,,sister_full,brother_full
+5,14,14,1154,1,NA,0.5,1,1,1,1,1,1,could be MZ,brother_full,brother_full
+6,15,15,48,1,0.25,0.25,0.25,1,0,1,1,1,,sister_half_same_mother,sister_half_same_mother
+7,15,18,132,1,0.25,0.25,0.25,1,0,1,1,1,,sister_half_same_mother,brother_half_same_mother
+8,16,19,2,1,0.25,0.25,0.25,1,1,0,1,1,,sister_half_same_father,brother_half_same_father
+9,18,18,62,1,0.25,0.25,0.25,1,0,1,1,1,,brother_half_same_mother,brother_half_same_mother
+10,19,19,8,1,0.25,0.25,0.25,1,1,0,1,1,,brother_half_same_father,brother_half_same_father
+11,21,21,38,1,0,0,0,1,0,0,0,1,,sister_step,sister_step
+12,21,22,80,1,0,0,0,1,0,0,0,1,,sister_step,brother_step
+13,22,22,58,1,0,0,0,1,0,0,0,1,,brother_step,brother_step
+14,23,23,6,1,0,0,0,1,0,0,0,1,,sister_adoptive,sister_adoptive
+15,23,24,20,1,0,0,0,1,0,0,0,1,,sister_adoptive,brother_adoptive
+16,24,24,14,1,0,0,0,1,0,0,0,1,,brother_adoptive,brother_adoptive
+17,25,25,28,1,0,0,0,1,0,0,0,1,,sister_foster,sister_foster
+18,25,26,12,1,0,0,0,1,0,0,0,1,,sister_foster,brother_foster
+19,26,26,22,1,0,0,0,1,0,0,0,1,,brother_foster,brother_foster
+20,28,28,4,1,0,0,0,1,0,0,0,1,,sister_in_law,sister_in_law
+21,57,85,2,1,0,0,0,0,0,0,0,1,,daughter_of_partner,nonrelative_other
+22,68,68,2,1,0,0,0,1,0,0,0,1,,roommate,roommate
+23,69,69,4,1,0,0,0,1,0,0,0,1,,partner,partner
+24,70,74,6,0,NA,0,0.25,0,255,255,255,1,,aunt_unsure,niece_unsure
+25,70,78,2,0,NA,0,0.25,0,255,255,255,1,,aunt_unsure,nephew_unsure
+26,72,74,10,0,NA,0,0.25,0,255,255,255,1,,uncle_unsure,niece_unsure
+27,72,78,14,0,NA,0,0.25,0,255,255,255,1,,uncle_unsure,nephew_unsure
+28,82,82,48,0,NA,0,0.125,1,255,255,255,1,approx same generation,cousin_female_unsure,cousin_female_unsure
+29,82,83,76,0,NA,0,0.125,1,255,255,255,1,approx same generation,cousin_female_unsure,cousin_male_unsure
+30,83,83,56,0,NA,0,0.125,1,255,255,255,1,approx same generation,cousin_male_unsure,cousin_male_unsure
+31,85,85,58,1,0,0,0,255,0,0,0,1,,nonrelative_other,nonrelative_other
