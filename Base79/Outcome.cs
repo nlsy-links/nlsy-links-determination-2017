@@ -13,7 +13,7 @@ namespace Nls.Base79 {
         private readonly Item[] _itemsGen1 = { 
             Item.Gen1HeightInches, Item.Gen1WeightPounds, Item.Gen1AfqtScaled3Decimals
         };
-    
+
         private readonly Item[] _itemsGen2 = { 
             //Item.Gen2HeightInchesTotal, 
             Item.Gen2HeightFeetOnly, Item.Gen2HeightInchesRemainder, //Item.Gen2HeightInchesTotalMotherSupplement,
@@ -40,7 +40,7 @@ namespace Nls.Base79 {
             //_itemsGen2.CopyTo(_items, _itemsGen1.Length);
             //CommonCalculations.ConvertItemsToString(_items);
 
-            _itemIDsStringGen1     = CommonCalculations.ConvertItemsToString(_itemsGen1);
+            _itemIDsStringGen1 = CommonCalculations.ConvertItemsToString(_itemsGen1);
             _itemIDsStringGen2 = CommonCalculations.ConvertItemsToString(_itemsGen2);
             _itemIDsString = _itemIDsStringGen1 + ", " + _itemIDsStringGen2;
 
@@ -77,7 +77,7 @@ namespace Nls.Base79 {
         #endregion
         #region Private Methods
         private Int32 ProcessSubject( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended ) {
-            const Int32 minRowCount=0;
+            const Int32 minRowCount = 0;
             string itemString = "";
             if( drSubject.Generation == (byte)Sample.Nlsy79Gen1 )
                 itemString = _itemIDsStringGen1;
@@ -87,7 +87,7 @@ namespace Nls.Base79 {
                 throw new InvalidOperationException("The execution should not have gotten here.  The value of Generation was not recognized.");
 
             LinksDataSet.tblResponseDataTable dt = Retrieve.SubjectsRelevantResponseRows(drSubject.SubjectTag, itemString, minRowCount, dtExtended);
-            foreach( LinksDataSet.tblResponseRow dr in dt){
+            foreach( LinksDataSet.tblResponseRow dr in dt ) {
                 AddRow(drSubject.SubjectTag, dr.Item, dr.SurveyYear, dr.Value);
             }
             return dt.Count;
