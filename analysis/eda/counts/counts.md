@@ -2137,7 +2137,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblSurveyTime           |          3,848|         3,800|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
-|Metadata    |tblVariable             |            272|            48|
+|Metadata    |tblVariable             |            144|            48|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           256|
 |Process     |tblRelatedValues        |             72|            16|
@@ -2145,7 +2145,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |              0|             0|
 |Process     |tblSubject              |            592|           344|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,712|         4,928|
+|Process     |tblSurveyTime           |          5,840|         4,936|
 
 
 # Session Information
@@ -2207,7 +2207,6 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
- OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2219,7 +2218,6 @@ Packages -----------------------------------------------------------------------
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
- rsconnect    0.8.5      2017-08-23 CRAN (R 3.4.2)                  
  rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
  stats      * 3.4.3      2017-12-06 local                           
@@ -2238,4 +2236,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 17:37 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-16, 19:35 -0600 in 1 seconds.

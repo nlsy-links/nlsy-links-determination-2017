@@ -222,8 +222,32 @@ ds_enum %>%
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
 
-stop("check uniqueness variable metadata")
+d_item <- ds_file  %>%
+  dplyr::filter(name=="item") %>%
+  dplyr::pull(entries) %>%
+  purrr::flatten_df()
 
+checkmate::assert_integer(  d_item$ID                     , lower=1, upper=2^15        , any.missing=F, unique=T)
+checkmate::assert_character(d_item$Label                  , pattern="^\\w+"            , any.missing=F, unique=T)
+
+
+d_variable <- ds_file  %>%
+  dplyr::filter(name=="variable") %>%
+  dplyr::pull(entries) %>%
+  purrr::flatten_df() %>%
+  dplyr::mutate(
+    item_found    = (Item %in% d_item$ID )
+    # item_found    = match(Item, d_item$ID )
+  )
+  # dplyr::left_join(d_item[, c("ID")], by=c("Item"="ID"))
+
+checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
+checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
+testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
+# sum(duplicated(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)))
+checkmate::assert_character(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2), any.missing=F, unique=T)
+
+rm(d_item, d_variable)
 
 # ---- specify-columns-to-upload -----------------------------------------------
 
