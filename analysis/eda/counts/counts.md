@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-16"
+date: "Date: 2018-01-17"
 output:
   html_document:
     keep_md: yes
@@ -1944,10 +1944,10 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |        90|            4|
 |Enum        |tblLUTristate           |         3|            4|
 |Enum        |tblLUYesNo              |         6|            4|
-|Extract     |tblDemographics         |     8,984|            7|
+|Extract     |tblDemographics         |     8,984|            8|
 |Extract     |tblLinksExplicit        |     8,984|           36|
 |Extract     |tblLinksImplicit        |     8,984|           43|
-|Extract     |tblRoster               |     8,984|          465|
+|Extract     |tblRoster               |     8,984|          464|
 |Extract     |tblSurveyTime           |     8,984|           98|
 |Metadata    |tblItem                 |        21|            7|
 |Metadata    |tblMzManual             |       208|            8|
@@ -1957,7 +1957,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRelatedValues        |         0|           23|
 |Process     |tblResponse             | 1,156,770|            8|
 |Process     |tblRoster               |         0|           13|
-|Process     |tblSubject              |     8,984|            4|
+|Process     |tblSubject              |     8,984|            5|
 |Process     |tblSubjectDetails       |         0|           15|
 |Process     |tblSurveyTime           |   152,728|            7|
 
@@ -1995,7 +1995,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R0000200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0000201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0000202      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
-|R0533400      |       3|hh_internal_id                   |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0533400      |       3|hh_internal_id                   |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536300      |      10|gender                           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536401      |      11|DateOfBirthMonth                 |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536402      |      12|DateOfBirthYear                  |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
@@ -2442,7 +2442,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLURoster             |             72|            16|
 |Enum        |tblLUTristate           |             72|            16|
 |Enum        |tblLUYesNo              |             72|            16|
-|Extract     |tblDemographics         |            392|           352|
+|Extract     |tblDemographics         |            392|           384|
 |Extract     |tblLinksExplicit        |          1,480|         1,432|
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
 |Extract     |tblRoster               |         18,056|        18,048|
@@ -2453,11 +2453,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           256|
 |Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |         15,240|        14,520|
+|Process     |tblResponse             |         22,856|        21,776|
 |Process     |tblRoster               |              0|             0|
-|Process     |tblSubject              |            592|           344|
+|Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,712|         4,888|
+|Process     |tblSurveyTime           |          5,392|         4,784|
 
 
 # Session Information
@@ -2478,7 +2478,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-16                                 
+ date     2018-01-17                                 
 ```
 
 ```
@@ -2519,6 +2519,7 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
+ OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2548,4 +2549,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 23:33 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-17, 10:15 -0600 in 1 seconds.

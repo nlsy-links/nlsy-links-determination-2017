@@ -217,36 +217,13 @@ library(magrittr            , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace(&quot;readr&quot;                  )
-</code></pre>
-
-<pre><code>## Loading required namespace: readr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;tidyr&quot;                  )
-</code></pre>
-
-<pre><code>## Loading required namespace: tidyr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;tibble&quot;                 )
+requireNamespace(&quot;tidyr&quot;                  )
+requireNamespace(&quot;tibble&quot;                 )
 requireNamespace(&quot;purrr&quot;                  )
 requireNamespace(&quot;dplyr&quot;                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
-</code></pre>
-
-<pre><code>## Loading required namespace: dplyr
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
+requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
 requireNamespace(&quot;RODBC&quot;                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
-</code></pre>
-
-<pre><code>## Loading required namespace: RODBC
-</code></pre>
-
-<pre><code class="r">requireNamespace(&quot;odbc&quot;                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
-</code></pre>
-
-<pre><code>## Loading required namespace: odbc
+requireNamespace(&quot;odbc&quot;                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
 </code></pre>
 
 <pre><code class="r"># Constant values that won&#39;t change.
@@ -596,7 +573,7 @@ ds_file$entries %&gt;%
 ##    &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   
 ##  1 R0000~     1      1   1997     1     1     1     1 &lt;NA&gt;  PUBID YOUTH C~
 ##  2 R1193~     2      1   1997     1     1     1     1 &lt;NA&gt;  SIDC~ HOUSEHO~
-##  3 R0533~     3      2   1997     1     1     1     1 &lt;NA&gt;  YOUT~ YOUTH, ~
+##  3 R0533~     3      1   1997     1     1     1     1 &lt;NA&gt;  YOUT~ YOUTH, ~
 ##  4 R0536~    10      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS GEND~
 ##  5 R0536~    11      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS BIRT~
 ##  6 R0536~    12      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ RS BIRT~
@@ -1239,7 +1216,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-16, 23:28 -0600 in 4 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 10:11 -0600 in 3 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1265,24 +1242,31 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14          highr_0.6             pillar_1.0.1         
+##  [4] compiler_3.4.3        plyr_1.8.4            bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
+## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
+## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
+## [16] rlang_0.1.6           rstudioapi_0.7        DBI_0.7              
+## [19] cli_1.0.0             yaml_2.1.16           withr_2.1.1.9000     
+## [22] dplyr_0.7.4           stringr_1.2.0         devtools_1.13.4      
+## [25] hms_0.4.0             bit64_0.9-7           rprojroot_1.3-2      
+## [28] OuhscMunge_0.1.8.9005 glue_1.2.0            R6_2.2.2             
+## [31] rmarkdown_1.8         tidyr_0.7.2           readr_1.1.1          
+## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
+## [37] scales_0.5.0.9000     RODBC_1.3-15          htmltools_0.3.6      
+## [40] assertthat_0.2.0      testit_0.7.1          colorspace_1.3-2     
+## [43] utf8_1.1.3            stringi_1.1.6         munsell_0.4.3        
+## [46] markdown_0.8          crayon_1.3.4
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-16 23:28:04 CST&quot;
+<pre><code>## [1] &quot;2018-01-17 10:11:25 CST&quot;
 </code></pre>
 
 </body>

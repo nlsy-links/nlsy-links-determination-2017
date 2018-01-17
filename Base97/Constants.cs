@@ -14,6 +14,7 @@ namespace Nls.Base97 {
         public const double DaysPerYear = 365.25; //Account for leap year.
         //public const Int32 SurveyYearEternal = 2008;//For things that aren' associated with a survey year, like birth date or gender.
         public const string SubjectIDColumn = "R0000100";            //In tblRoster
+        public const string hh_internal_id_column = "R0533400";	 //In tblRoster	
         public const string ExtendedFamilyIDColumn = "R1193000";	 //In tblRoster	
         public const string GenderColumn = "R0536300";               //In tblRoster
 

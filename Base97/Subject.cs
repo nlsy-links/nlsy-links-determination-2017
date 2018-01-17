@@ -19,6 +19,7 @@ namespace Nls.Base97 {
                 drBare.SubjectTag = drBare.SubjectID;
                 drBare.ExtendedID = Convert.ToInt16(drGen1[Constants.ExtendedFamilyIDColumn]);
                 drBare.Gender = Convert.ToByte(drGen1[Constants.GenderColumn]);
+                drBare.hh_internal_id = Convert.ToByte(drGen1[Constants.hh_internal_id_column]);
                 dsLinks.tblSubject.AddtblSubjectRow(drBare);
                 subjectRecordsAddedCount += 1;
             }
