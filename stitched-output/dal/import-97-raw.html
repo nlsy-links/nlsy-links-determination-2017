@@ -482,59 +482,59 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 <pre><code>## Uploading from `data-unshared/raw/nlsy97/97-roster.zip` to `Extract.tblRoster`.
 </code></pre>
 
-<pre><code>## # A tibble: 8,984 x 414
-##    R000~ R053~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~
+<pre><code>## # A tibble: 8,984 x 465
+##    R000~ R053~ R053~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2     6     1     4     2     3     5    -4    -4    -4    -4
-##  2     2     1     3     2     1     4    -4    -4    -4    -4    -4    -4
-##  3     3     2     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  4     4     2     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     1     3     1     2     4    -4    -4    -4    -4    -4    -4
-##  6     6     2     3     4     1     2     5    -4    -4    -4    -4    -4
-##  7     7     1     3     4     1     2     5    -4    -4    -4    -4    -4
-##  8     8     2     3     4     5     2     1    -4    -4    -4    -4    -4
-##  9     9     1     3     4     5     2     1    -4    -4    -4    -4    -4
-## 10    10     1     3     4     5     2     1    -4    -4    -4    -4    -4
-## 11    11     2     2     1     3    -4    -4    -4    -4    -4    -4    -4
-## 12    12     1     4     1     3     2    -4    -4    -4    -4    -4    -4
-## 13    13     1     2     1     3     4     5    -4    -4    -4    -4    -4
-## 14    14     1     3     1     2     4    -4    -4    -4    -4    -4    -4
-## 15    15     2     3     1     2     4    -4    -4    -4    -4    -4    -4
-## 16    16     1     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     2     4     1     2     3     5     6     7     8    -4    -4
-## 18    18     1     6     2     1     3     4     5    -4    -4    -4    -4
-## 19    19     1     6     2     1     3     4     5    -4    -4    -4    -4
-## 20    20     1     2     3     4     1    -4    -4    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 402 more variables: R1098800 &lt;int&gt;,
-## #   R1098900 &lt;int&gt;, R1099000 &lt;int&gt;, R1099100 &lt;int&gt;, R1099200 &lt;int&gt;,
-## #   R1099300 &lt;int&gt;, R1101000 &lt;int&gt;, R1101100 &lt;int&gt;, R1101200 &lt;int&gt;,
-## #   R1101300 &lt;int&gt;, R1101400 &lt;int&gt;, R1101500 &lt;int&gt;, R1101600 &lt;int&gt;,
-## #   R1101700 &lt;int&gt;, R1101800 &lt;int&gt;, R1101900 &lt;int&gt;, R1102000 &lt;int&gt;,
-## #   R1102100 &lt;int&gt;, R1102200 &lt;int&gt;, R1102300 &lt;int&gt;, R1102400 &lt;int&gt;,
-## #   R1102500 &lt;int&gt;, R1102501 &lt;int&gt;, R1102600 &lt;int&gt;, R1102700 &lt;int&gt;,
-## #   R1102800 &lt;int&gt;, R1102900 &lt;int&gt;, R1103000 &lt;int&gt;, R1103100 &lt;int&gt;,
-## #   R1103200 &lt;int&gt;, R1103300 &lt;int&gt;, R1103400 &lt;int&gt;, R1103500 &lt;int&gt;,
-## #   R1103600 &lt;int&gt;, R1103700 &lt;int&gt;, R1103800 &lt;int&gt;, R1103900 &lt;int&gt;,
-## #   R1104000 &lt;int&gt;, R1104100 &lt;int&gt;, R1117000 &lt;int&gt;, R1117100 &lt;int&gt;,
-## #   R1117200 &lt;int&gt;, R1117300 &lt;int&gt;, R1117400 &lt;int&gt;, R1117500 &lt;int&gt;,
-## #   R1117600 &lt;int&gt;, R1117700 &lt;int&gt;, R1117800 &lt;int&gt;, R1117900 &lt;int&gt;,
-## #   R1118000 &lt;int&gt;, R1118100 &lt;int&gt;, R1118200 &lt;int&gt;, R1118300 &lt;int&gt;,
-## #   R1118400 &lt;int&gt;, R1118500 &lt;int&gt;, R1118600 &lt;int&gt;, R1118700 &lt;int&gt;,
-## #   R1118800 &lt;int&gt;, R1118900 &lt;int&gt;, R1119000 &lt;int&gt;, R1119100 &lt;int&gt;,
-## #   R1119200 &lt;int&gt;, R1119300 &lt;int&gt;, R1119400 &lt;int&gt;, R1119500 &lt;int&gt;,
-## #   R1119600 &lt;int&gt;, R1119700 &lt;int&gt;, R1119800 &lt;int&gt;, R1119900 &lt;int&gt;,
-## #   R1120000 &lt;int&gt;, R1120100 &lt;int&gt;, R1120200 &lt;int&gt;, R1120300 &lt;int&gt;,
-## #   R1120400 &lt;int&gt;, R1120500 &lt;int&gt;, R1120600 &lt;int&gt;, R1120700 &lt;int&gt;,
-## #   R1120800 &lt;int&gt;, R1120900 &lt;int&gt;, R1121000 &lt;int&gt;, R1121100 &lt;int&gt;,
-## #   R1121200 &lt;int&gt;, R1121300 &lt;int&gt;, R1121400 &lt;int&gt;, R1121500 &lt;int&gt;,
-## #   R1121600 &lt;int&gt;, R1121700 &lt;int&gt;, R1121800 &lt;int&gt;, R1121900 &lt;int&gt;,
-## #   R1122000 &lt;int&gt;, R1122100 &lt;int&gt;, R1122200 &lt;int&gt;, R1122300 &lt;int&gt;,
-## #   R1122400 &lt;int&gt;, R1122500 &lt;int&gt;, R1122600 &lt;int&gt;, R1122700 &lt;int&gt;,
-## #   R1122800 &lt;int&gt;, R1122900 &lt;int&gt;, R1123000 &lt;int&gt;, ...
+##  1     1     1     2     6     1     4     2     3     5    -4    -4    -4
+##  2     2     1     1     3     2     1     4    -4    -4    -4    -4    -4
+##  3     3     1     2     2     1    -4    -4    -4    -4    -4    -4    -4
+##  4     4     1     2     2     1    -4    -4    -4    -4    -4    -4    -4
+##  5     5     1     1     3     1     2     4    -4    -4    -4    -4    -4
+##  6     6     1     2     3     4     1     2     5    -4    -4    -4    -4
+##  7     7     2     1     3     4     1     2     5    -4    -4    -4    -4
+##  8     8     1     2     3     4     5     2     1    -4    -4    -4    -4
+##  9     9     2     1     3     4     5     2     1    -4    -4    -4    -4
+## 10    10     3     1     3     4     5     2     1    -4    -4    -4    -4
+## 11    11     1     2     2     1     3    -4    -4    -4    -4    -4    -4
+## 12    12     1     1     4     1     3     2    -4    -4    -4    -4    -4
+## 13    13     1     1     2     1     3     4     5    -4    -4    -4    -4
+## 14    14     1     1     3     1     2     4    -4    -4    -4    -4    -4
+## 15    15     1     2     3     1     2     4    -4    -4    -4    -4    -4
+## 16    16     1     1     2     1    -4    -4    -4    -4    -4    -4    -4
+## 17    17     1     2     4     1     2     3     5     6     7     8    -4
+## 18    18     1     1     6     2     1     3     4     5    -4    -4    -4
+## 19    19     2     1     6     2     1     3     4     5    -4    -4    -4
+## 20    20     1     1     2     3     4     1    -4    -4    -4    -4    -4
+## # ... with 8,964 more rows, and 453 more variables: R1098700 &lt;int&gt;,
+## #   R1098800 &lt;int&gt;, R1098900 &lt;int&gt;, R1099000 &lt;int&gt;, R1099100 &lt;int&gt;,
+## #   R1099200 &lt;int&gt;, R1099300 &lt;int&gt;, R1101000 &lt;int&gt;, R1101100 &lt;int&gt;,
+## #   R1101200 &lt;int&gt;, R1101300 &lt;int&gt;, R1101400 &lt;int&gt;, R1101500 &lt;int&gt;,
+## #   R1101600 &lt;int&gt;, R1101700 &lt;int&gt;, R1101800 &lt;int&gt;, R1101900 &lt;int&gt;,
+## #   R1102000 &lt;int&gt;, R1102100 &lt;int&gt;, R1102200 &lt;int&gt;, R1102300 &lt;int&gt;,
+## #   R1102400 &lt;int&gt;, R1102500 &lt;int&gt;, R1102501 &lt;int&gt;, R1102600 &lt;int&gt;,
+## #   R1102700 &lt;int&gt;, R1102800 &lt;int&gt;, R1102900 &lt;int&gt;, R1103000 &lt;int&gt;,
+## #   R1103100 &lt;int&gt;, R1103200 &lt;int&gt;, R1103300 &lt;int&gt;, R1103400 &lt;int&gt;,
+## #   R1103500 &lt;int&gt;, R1103600 &lt;int&gt;, R1103700 &lt;int&gt;, R1103800 &lt;int&gt;,
+## #   R1103900 &lt;int&gt;, R1104000 &lt;int&gt;, R1104100 &lt;int&gt;, R1117000 &lt;int&gt;,
+## #   R1117100 &lt;int&gt;, R1117200 &lt;int&gt;, R1117300 &lt;int&gt;, R1117400 &lt;int&gt;,
+## #   R1117500 &lt;int&gt;, R1117600 &lt;int&gt;, R1117700 &lt;int&gt;, R1117800 &lt;int&gt;,
+## #   R1117900 &lt;int&gt;, R1118000 &lt;int&gt;, R1118100 &lt;int&gt;, R1118200 &lt;int&gt;,
+## #   R1118300 &lt;int&gt;, R1118400 &lt;int&gt;, R1118500 &lt;int&gt;, R1118600 &lt;int&gt;,
+## #   R1118700 &lt;int&gt;, R1118800 &lt;int&gt;, R1118900 &lt;int&gt;, R1119000 &lt;int&gt;,
+## #   R1119100 &lt;int&gt;, R1119200 &lt;int&gt;, R1119300 &lt;int&gt;, R1119400 &lt;int&gt;,
+## #   R1119500 &lt;int&gt;, R1119600 &lt;int&gt;, R1119700 &lt;int&gt;, R1119800 &lt;int&gt;,
+## #   R1119900 &lt;int&gt;, R1120000 &lt;int&gt;, R1120100 &lt;int&gt;, R1120200 &lt;int&gt;,
+## #   R1120300 &lt;int&gt;, R1120400 &lt;int&gt;, R1120500 &lt;int&gt;, R1120600 &lt;int&gt;,
+## #   R1120700 &lt;int&gt;, R1120800 &lt;int&gt;, R1120900 &lt;int&gt;, R1121000 &lt;int&gt;,
+## #   R1121100 &lt;int&gt;, R1121200 &lt;int&gt;, R1121300 &lt;int&gt;, R1121400 &lt;int&gt;,
+## #   R1121500 &lt;int&gt;, R1121600 &lt;int&gt;, R1121700 &lt;int&gt;, R1121800 &lt;int&gt;,
+## #   R1121900 &lt;int&gt;, R1122000 &lt;int&gt;, R1122100 &lt;int&gt;, R1122200 &lt;int&gt;,
+## #   R1122300 &lt;int&gt;, R1122400 &lt;int&gt;, R1122500 &lt;int&gt;, R1122600 &lt;int&gt;,
+## #   R1122700 &lt;int&gt;, R1122800 &lt;int&gt;, R1122900 &lt;int&gt;, ...
 ## [1] 1
 </code></pre>
 
-<pre><code>## Tibble size: 14.4 Mb
+<pre><code>## Tibble size: 16.2 Mb
 </code></pre>
 
 <pre><code>## Uploading from `data-unshared/raw/nlsy97/97-survey-time.zip` to `Extract.tblSurveyTime`.
@@ -680,7 +680,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;File completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## File completed by `Will` at 2018-01-16, 19:30 -0600 in 31 seconds.
+<pre><code>## File completed by `Will` at 2018-01-16, 22:02 -0600 in 32 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -706,24 +706,31 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
-##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
-##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
-## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
-## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
-## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
-## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
-## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
-## [33] markdown_0.8     pkgconfig_2.0.1
+##  [1] Rcpp_0.12.14          highr_0.6             pillar_1.0.1         
+##  [4] compiler_3.4.3        plyr_1.8.4            bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
+## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
+## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
+## [16] rlang_0.1.6           rstudioapi_0.7        DBI_0.7              
+## [19] cli_1.0.0             yaml_2.1.16           withr_2.1.1.9000     
+## [22] dplyr_0.7.4           stringr_1.2.0         devtools_1.13.4      
+## [25] hms_0.4.0             bit64_0.9-7           rprojroot_1.3-2      
+## [28] OuhscMunge_0.1.8.9005 glue_1.2.0            R6_2.2.2             
+## [31] rmarkdown_1.8         tidyr_0.7.2           readr_1.1.1          
+## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
+## [37] scales_0.5.0.9000     RODBC_1.3-15          htmltools_0.3.6      
+## [40] assertthat_0.2.0      testit_0.7.1          colorspace_1.3-2     
+## [43] utf8_1.1.3            stringi_1.1.6         munsell_0.4.3        
+## [46] markdown_0.8          crayon_1.3.4
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-16 19:30:30 CST&quot;
+<pre><code>## [1] &quot;2018-01-16 22:02:29 CST&quot;
 </code></pre>
 
 </body>

@@ -13,9 +13,9 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
   24,AgeAtInterviewDateYears,-5,12,40,TRUE,
  101,roster_crosswalk,-5,1,20,TRUE,
  102,hh_member_id,-4,1,17,TRUE,
- 103,hh_informant_NOTUSED,-4,0,1,TRUE,
- 104,roster_relationship_NOTUSED,-4,0,99,TRUE,16 x 16 square
- 105,hh_unique_id_NOTUSED,-4,0,121,TRUE,"HHI2: People living in the Household - sorted, UID; HH member's unique ID"
+ 103,hh_informant,-4,0,1,TRUE,
+ 104,roster_relationship,-4,0,99,TRUE,16 x 16 square
+ 105,hh_unique_id,-4,0,122,TRUE,"HHI2: People living in the Household - sorted, UID; HH member's unique ID"
 1020,InterviewDateDayParent_NOTUSED,-4,1,31,FALSE,
 1021,InterviewDateMonthParent_NOTUSED,-4,1,9,FALSE,
 1022,InterviewDateYearParent_NOTUSED,-4,1997,1998,FALSE,

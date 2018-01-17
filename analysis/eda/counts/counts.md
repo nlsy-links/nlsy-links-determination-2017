@@ -42,7 +42,7 @@ This report documents the basic properties of the input & output tables kinship 
 ## Notes 
 1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
 1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
-1. For the NLSY97, 127 variables are defined, and 127 variables are 'active'.
+1. For the NLSY97, 417 variables are defined, and 417 variables are 'active'.
 
 ## Unanswered Questions
 
@@ -1947,15 +1947,15 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblDemographics         |     8,984|            7|
 |Extract     |tblLinksExplicit        |     8,984|           36|
 |Extract     |tblLinksImplicit        |     8,984|           43|
-|Extract     |tblRoster               |     8,984|          414|
+|Extract     |tblRoster               |     8,984|          465|
 |Extract     |tblSurveyTime           |     8,984|           98|
-|Metadata    |tblItem                 |        16|            7|
+|Metadata    |tblItem                 |        20|            7|
 |Metadata    |tblMzManual             |       208|            8|
-|Metadata    |tblVariable             |       127|           11|
+|Metadata    |tblVariable             |       417|           11|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            6|
 |Process     |tblRelatedValues        |         0|           23|
-|Process     |tblResponse             |   815,425|            8|
+|Process     |tblResponse             | 1,115,876|            8|
 |Process     |tblRoster               |         0|           13|
 |Process     |tblSubject              |     8,984|            4|
 |Process     |tblSubjectDetails       |         0|           15|
@@ -1963,24 +1963,28 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Items 97
 
-|   ID|Label                            | MinValue| MinNonnegative| MaxValue|Active |Notes |
-|----:|:--------------------------------|--------:|--------------:|--------:|:------|:-----|
-|    1|subject_id                       |        1|              1|     9022|TRUE   |NA    |
-|    2|extended_family_id               |        1|              1|     9022|TRUE   |NA    |
-|   10|gender                           |        1|              1|        2|TRUE   |NA    |
-|   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA    |
-|   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA    |
-|   13|sample_cohort                    |        0|              0|        1|TRUE   |NA    |
-|   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA    |
-|   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA    |
-|   22|InterviewDateYear                |       -7|             86|     2016|TRUE   |NA    |
-|   23|AgeAtInterviewDateMonths         |       -5|            146|      500|TRUE   |NA    |
-|   24|AgeAtInterviewDateYears          |       -5|             12|       40|TRUE   |NA    |
-|  101|roster_crosswalk                 |       -5|              1|       20|TRUE   |NA    |
-|  102|hh_member_id                     |       -4|              1|       17|TRUE   |NA    |
-| 1020|InterviewDateDayParent_NOTUSED   |       -4|              1|       31|FALSE  |NA    |
-| 1021|InterviewDateMonthParent_NOTUSED |       -4|              1|        9|FALSE  |NA    |
-| 1022|InterviewDateYearParent_NOTUSED  |       -4|           1997|     1998|FALSE  |NA    |
+|   ID|Label                            | MinValue| MinNonnegative| MaxValue|Active |Notes                                                                     |
+|----:|:--------------------------------|--------:|--------------:|--------:|:------|:-------------------------------------------------------------------------|
+|    1|subject_id                       |        1|              1|     9022|TRUE   |NA                                                                        |
+|    2|extended_family_id               |        1|              1|     9022|TRUE   |NA                                                                        |
+|    3|hh_internal_id                   |        1|              1|        5|TRUE   |NA                                                                        |
+|   10|gender                           |        1|              1|        2|TRUE   |NA                                                                        |
+|   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA                                                                        |
+|   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA                                                                        |
+|   13|sample_cohort                    |        0|              0|        1|TRUE   |NA                                                                        |
+|   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA                                                                        |
+|   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA                                                                        |
+|   22|InterviewDateYear                |       -7|             86|     2016|TRUE   |NA                                                                        |
+|   23|AgeAtInterviewDateMonths         |       -5|            146|      500|TRUE   |NA                                                                        |
+|   24|AgeAtInterviewDateYears          |       -5|             12|       40|TRUE   |NA                                                                        |
+|  101|roster_crosswalk                 |       -5|              1|       20|TRUE   |NA                                                                        |
+|  102|hh_member_id                     |       -4|              1|       17|TRUE   |NA                                                                        |
+|  103|hh_informant                     |       -4|              0|        1|TRUE   |NA                                                                        |
+|  104|roster_relationship              |       -4|              0|       99|TRUE   |16 x 16 square                                                            |
+|  105|hh_unique_id                     |       -4|              0|      122|TRUE   |HHI2: People living in the Household - sorted, UID; HH member's unique ID |
+| 1020|InterviewDateDayParent_NOTUSED   |       -4|              1|       31|FALSE  |NA                                                                        |
+| 1021|InterviewDateMonthParent_NOTUSED |       -4|              1|        9|FALSE  |NA                                                                        |
+| 1022|InterviewDateYearParent_NOTUSED  |       -4|           1997|     1998|FALSE  |NA                                                                        |
 
 ## Variables 97
 
@@ -1990,6 +1994,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R0000200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0000201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0000202      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0533400      |       3|hh_internal_id                   |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536300      |      10|gender                           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536401      |      11|DateOfBirthMonth                 |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536402      |      12|DateOfBirthYear                  |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
@@ -2029,6 +2034,295 @@ This report documents the basic properties of the input & output tables kinship 
 |R1102400      |     102|hh_member_id                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
 |R1102500      |     102|hh_member_id                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
 |R1102501      |     102|hh_member_id                     |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
+|R1102600      |     103|hh_informant                     |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1102700      |     103|hh_informant                     |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1102800      |     103|hh_informant                     |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1102900      |     103|hh_informant                     |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1103000      |     103|hh_informant                     |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1103100      |     103|hh_informant                     |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1103200      |     103|hh_informant                     |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1103300      |     103|hh_informant                     |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1103400      |     103|hh_informant                     |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1103500      |     103|hh_informant                     |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1103600      |     103|hh_informant                     |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1103700      |     103|hh_informant                     |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1103800      |     103|hh_informant                     |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1103900      |     103|hh_informant                     |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1104000      |     103|hh_informant                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1104100      |     103|hh_informant                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1117000      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1117100      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R1117200      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R1117300      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R1117400      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R1117500      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R1117600      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R1117700      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R1117800      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R1117900      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           10|TRUE      |TRUE            |NA             |
+|R1118000      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           11|TRUE      |TRUE            |NA             |
+|R1118100      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           12|TRUE      |TRUE            |NA             |
+|R1118200      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           13|TRUE      |TRUE            |NA             |
+|R1118300      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           14|TRUE      |TRUE            |NA             |
+|R1118400      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           15|TRUE      |TRUE            |NA             |
+|R1118500      |     104|roster_relationship              |                 2|97-roster            |        1997|            1|           16|TRUE      |TRUE            |NA             |
+|R1118600      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1118700      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            2|TRUE      |TRUE            |NA             |
+|R1118800      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            3|TRUE      |TRUE            |NA             |
+|R1118900      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            4|TRUE      |TRUE            |NA             |
+|R1119000      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            5|TRUE      |TRUE            |NA             |
+|R1119100      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            6|TRUE      |TRUE            |NA             |
+|R1119200      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            7|TRUE      |TRUE            |NA             |
+|R1119300      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            8|TRUE      |TRUE            |NA             |
+|R1119400      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|            9|TRUE      |TRUE            |NA             |
+|R1119500      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           10|TRUE      |TRUE            |NA             |
+|R1119600      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           11|TRUE      |TRUE            |NA             |
+|R1119700      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           12|TRUE      |TRUE            |NA             |
+|R1119800      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           13|TRUE      |TRUE            |NA             |
+|R1119900      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           14|TRUE      |TRUE            |NA             |
+|R1120000      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           15|TRUE      |TRUE            |NA             |
+|R1120100      |     104|roster_relationship              |                 2|97-roster            |        1997|           10|           16|TRUE      |TRUE            |NA             |
+|R1120200      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1120300      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            2|TRUE      |TRUE            |NA             |
+|R1120400      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            3|TRUE      |TRUE            |NA             |
+|R1120500      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            4|TRUE      |TRUE            |NA             |
+|R1120600      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            5|TRUE      |TRUE            |NA             |
+|R1120700      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            6|TRUE      |TRUE            |NA             |
+|R1120800      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            7|TRUE      |TRUE            |NA             |
+|R1120900      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            8|TRUE      |TRUE            |NA             |
+|R1121000      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|            9|TRUE      |TRUE            |NA             |
+|R1121100      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           10|TRUE      |TRUE            |NA             |
+|R1121200      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           11|TRUE      |TRUE            |NA             |
+|R1121300      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           12|TRUE      |TRUE            |NA             |
+|R1121400      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           13|TRUE      |TRUE            |NA             |
+|R1121500      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           14|TRUE      |TRUE            |NA             |
+|R1121600      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           15|TRUE      |TRUE            |NA             |
+|R1121700      |     104|roster_relationship              |                 2|97-roster            |        1997|           11|           16|TRUE      |TRUE            |NA             |
+|R1121800      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1121900      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            2|TRUE      |TRUE            |NA             |
+|R1122000      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            3|TRUE      |TRUE            |NA             |
+|R1122100      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            4|TRUE      |TRUE            |NA             |
+|R1122200      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            5|TRUE      |TRUE            |NA             |
+|R1122300      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            6|TRUE      |TRUE            |NA             |
+|R1122400      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            7|TRUE      |TRUE            |NA             |
+|R1122500      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            8|TRUE      |TRUE            |NA             |
+|R1122600      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|            9|TRUE      |TRUE            |NA             |
+|R1122700      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           10|TRUE      |TRUE            |NA             |
+|R1122800      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           11|TRUE      |TRUE            |NA             |
+|R1122900      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           12|TRUE      |TRUE            |NA             |
+|R1123000      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           13|TRUE      |TRUE            |NA             |
+|R1123100      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           14|TRUE      |TRUE            |NA             |
+|R1123200      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           15|TRUE      |TRUE            |NA             |
+|R1123300      |     104|roster_relationship              |                 2|97-roster            |        1997|           12|           16|TRUE      |TRUE            |NA             |
+|R1123400      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1123500      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            2|TRUE      |TRUE            |NA             |
+|R1123600      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            3|TRUE      |TRUE            |NA             |
+|R1123700      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            4|TRUE      |TRUE            |NA             |
+|R1123800      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            5|TRUE      |TRUE            |NA             |
+|R1123900      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            6|TRUE      |TRUE            |NA             |
+|R1124000      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            7|TRUE      |TRUE            |NA             |
+|R1124100      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            8|TRUE      |TRUE            |NA             |
+|R1124200      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|            9|TRUE      |TRUE            |NA             |
+|R1124300      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           10|TRUE      |TRUE            |NA             |
+|R1124400      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           11|TRUE      |TRUE            |NA             |
+|R1124500      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           12|TRUE      |TRUE            |NA             |
+|R1124600      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           13|TRUE      |TRUE            |NA             |
+|R1124700      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           14|TRUE      |TRUE            |NA             |
+|R1124800      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           15|TRUE      |TRUE            |NA             |
+|R1124900      |     104|roster_relationship              |                 2|97-roster            |        1997|           13|           16|TRUE      |TRUE            |NA             |
+|R1125000      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1125100      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            2|TRUE      |TRUE            |NA             |
+|R1125200      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            3|TRUE      |TRUE            |NA             |
+|R1125300      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            4|TRUE      |TRUE            |NA             |
+|R1125400      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            5|TRUE      |TRUE            |NA             |
+|R1125500      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            6|TRUE      |TRUE            |NA             |
+|R1125600      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            7|TRUE      |TRUE            |NA             |
+|R1125700      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            8|TRUE      |TRUE            |NA             |
+|R1125800      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|            9|TRUE      |TRUE            |NA             |
+|R1125900      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           10|TRUE      |TRUE            |NA             |
+|R1126000      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           11|TRUE      |TRUE            |NA             |
+|R1126100      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           12|TRUE      |TRUE            |NA             |
+|R1126200      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           13|TRUE      |TRUE            |NA             |
+|R1126300      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           14|TRUE      |TRUE            |NA             |
+|R1126400      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           15|TRUE      |TRUE            |NA             |
+|R1126500      |     104|roster_relationship              |                 2|97-roster            |        1997|           14|           16|TRUE      |TRUE            |NA             |
+|R1126600      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1126700      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            2|TRUE      |TRUE            |NA             |
+|R1126800      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            3|TRUE      |TRUE            |NA             |
+|R1126900      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            4|TRUE      |TRUE            |NA             |
+|R1127000      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            5|TRUE      |TRUE            |NA             |
+|R1127100      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            6|TRUE      |TRUE            |NA             |
+|R1127200      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            7|TRUE      |TRUE            |NA             |
+|R1127300      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            8|TRUE      |TRUE            |NA             |
+|R1127400      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|            9|TRUE      |TRUE            |NA             |
+|R1127500      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           10|TRUE      |TRUE            |NA             |
+|R1127600      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           11|TRUE      |TRUE            |NA             |
+|R1127700      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           12|TRUE      |TRUE            |NA             |
+|R1127800      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           13|TRUE      |TRUE            |NA             |
+|R1127900      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           14|TRUE      |TRUE            |NA             |
+|R1128000      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           15|TRUE      |TRUE            |NA             |
+|R1128100      |     104|roster_relationship              |                 2|97-roster            |        1997|           15|           16|TRUE      |TRUE            |NA             |
+|R1128200      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1128300      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            2|TRUE      |TRUE            |NA             |
+|R1128400      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            3|TRUE      |TRUE            |NA             |
+|R1128500      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            4|TRUE      |TRUE            |NA             |
+|R1128600      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            5|TRUE      |TRUE            |NA             |
+|R1128700      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            6|TRUE      |TRUE            |NA             |
+|R1128800      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            7|TRUE      |TRUE            |NA             |
+|R1128900      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            8|TRUE      |TRUE            |NA             |
+|R1129000      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|            9|TRUE      |TRUE            |NA             |
+|R1129100      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           10|TRUE      |TRUE            |NA             |
+|R1129200      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           11|TRUE      |TRUE            |NA             |
+|R1129300      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           12|TRUE      |TRUE            |NA             |
+|R1129400      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           13|TRUE      |TRUE            |NA             |
+|R1129500      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           14|TRUE      |TRUE            |NA             |
+|R1129600      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           15|TRUE      |TRUE            |NA             |
+|R1129700      |     104|roster_relationship              |                 2|97-roster            |        1997|           16|           16|TRUE      |TRUE            |NA             |
+|R1131900      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1132000      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            2|TRUE      |TRUE            |NA             |
+|R1132100      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R1132200      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R1132300      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R1132400      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R1132500      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R1132600      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R1132700      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|            9|TRUE      |TRUE            |NA             |
+|R1132800      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           10|TRUE      |TRUE            |NA             |
+|R1132900      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           11|TRUE      |TRUE            |NA             |
+|R1133000      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           12|TRUE      |TRUE            |NA             |
+|R1133100      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           13|TRUE      |TRUE            |NA             |
+|R1133200      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           14|TRUE      |TRUE            |NA             |
+|R1133300      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           15|TRUE      |TRUE            |NA             |
+|R1133400      |     104|roster_relationship              |                 2|97-roster            |        1997|            2|           16|TRUE      |TRUE            |NA             |
+|R1134200      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1134300      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            2|TRUE      |TRUE            |NA             |
+|R1134400      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            3|TRUE      |TRUE            |NA             |
+|R1134500      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R1134600      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R1134700      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R1134800      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R1134900      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R1135000      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|            9|TRUE      |TRUE            |NA             |
+|R1135100      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           10|TRUE      |TRUE            |NA             |
+|R1135200      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           11|TRUE      |TRUE            |NA             |
+|R1135300      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           12|TRUE      |TRUE            |NA             |
+|R1135400      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           13|TRUE      |TRUE            |NA             |
+|R1135500      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           14|TRUE      |TRUE            |NA             |
+|R1135600      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           15|TRUE      |TRUE            |NA             |
+|R1135700      |     104|roster_relationship              |                 2|97-roster            |        1997|            3|           16|TRUE      |TRUE            |NA             |
+|R1135800      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1135900      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            2|TRUE      |TRUE            |NA             |
+|R1136000      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            3|TRUE      |TRUE            |NA             |
+|R1136100      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            4|TRUE      |TRUE            |NA             |
+|R1136200      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R1136300      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R1136400      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R1136500      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R1136600      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R1136700      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           10|TRUE      |TRUE            |NA             |
+|R1136800      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           11|TRUE      |TRUE            |NA             |
+|R1136900      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           12|TRUE      |TRUE            |NA             |
+|R1137000      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           13|TRUE      |TRUE            |NA             |
+|R1137100      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           14|TRUE      |TRUE            |NA             |
+|R1137200      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           15|TRUE      |TRUE            |NA             |
+|R1137300      |     104|roster_relationship              |                 2|97-roster            |        1997|            4|           16|TRUE      |TRUE            |NA             |
+|R1137400      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1137500      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            2|TRUE      |TRUE            |NA             |
+|R1137600      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            3|TRUE      |TRUE            |NA             |
+|R1137700      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            4|TRUE      |TRUE            |NA             |
+|R1137800      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            5|TRUE      |TRUE            |NA             |
+|R1137900      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R1138000      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R1138100      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R1138200      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|            9|TRUE      |TRUE            |NA             |
+|R1138300      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           10|TRUE      |TRUE            |NA             |
+|R1138400      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           11|TRUE      |TRUE            |NA             |
+|R1138500      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           12|TRUE      |TRUE            |NA             |
+|R1138600      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           13|TRUE      |TRUE            |NA             |
+|R1138700      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           14|TRUE      |TRUE            |NA             |
+|R1138800      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           15|TRUE      |TRUE            |NA             |
+|R1138900      |     104|roster_relationship              |                 2|97-roster            |        1997|            5|           16|TRUE      |TRUE            |NA             |
+|R1139000      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1139100      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            2|TRUE      |TRUE            |NA             |
+|R1139200      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            3|TRUE      |TRUE            |NA             |
+|R1139300      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            4|TRUE      |TRUE            |NA             |
+|R1139400      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            5|TRUE      |TRUE            |NA             |
+|R1139500      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            6|TRUE      |TRUE            |NA             |
+|R1139600      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R1139700      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R1139800      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|            9|TRUE      |TRUE            |NA             |
+|R1139900      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           10|TRUE      |TRUE            |NA             |
+|R1140000      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           11|TRUE      |TRUE            |NA             |
+|R1140100      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           12|TRUE      |TRUE            |NA             |
+|R1140200      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           13|TRUE      |TRUE            |NA             |
+|R1140300      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           14|TRUE      |TRUE            |NA             |
+|R1140400      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           15|TRUE      |TRUE            |NA             |
+|R1140500      |     104|roster_relationship              |                 2|97-roster            |        1997|            6|           16|TRUE      |TRUE            |NA             |
+|R1140600      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1140700      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            2|TRUE      |TRUE            |NA             |
+|R1140800      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            3|TRUE      |TRUE            |NA             |
+|R1140900      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            4|TRUE      |TRUE            |NA             |
+|R1141000      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            5|TRUE      |TRUE            |NA             |
+|R1141100      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            6|TRUE      |TRUE            |NA             |
+|R1141200      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            7|TRUE      |TRUE            |NA             |
+|R1141300      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R1141400      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|            9|TRUE      |TRUE            |NA             |
+|R1141500      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           10|TRUE      |TRUE            |NA             |
+|R1141600      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           11|TRUE      |TRUE            |NA             |
+|R1141700      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           12|TRUE      |TRUE            |NA             |
+|R1141800      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           13|TRUE      |TRUE            |NA             |
+|R1141900      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           14|TRUE      |TRUE            |NA             |
+|R1142000      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           15|TRUE      |TRUE            |NA             |
+|R1142100      |     104|roster_relationship              |                 2|97-roster            |        1997|            7|           16|TRUE      |TRUE            |NA             |
+|R1142200      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1142300      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            2|TRUE      |TRUE            |NA             |
+|R1142400      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            3|TRUE      |TRUE            |NA             |
+|R1142500      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            4|TRUE      |TRUE            |NA             |
+|R1142600      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            5|TRUE      |TRUE            |NA             |
+|R1142700      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            6|TRUE      |TRUE            |NA             |
+|R1142800      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            7|TRUE      |TRUE            |NA             |
+|R1142900      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            8|TRUE      |TRUE            |NA             |
+|R1143000      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|            9|TRUE      |TRUE            |NA             |
+|R1143100      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           10|TRUE      |TRUE            |NA             |
+|R1143200      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           11|TRUE      |TRUE            |NA             |
+|R1143300      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           12|TRUE      |TRUE            |NA             |
+|R1143400      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           13|TRUE      |TRUE            |NA             |
+|R1143500      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           14|TRUE      |TRUE            |NA             |
+|R1143600      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           15|TRUE      |TRUE            |NA             |
+|R1143700      |     104|roster_relationship              |                 2|97-roster            |        1997|            8|           16|TRUE      |TRUE            |NA             |
+|R1143800      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1143900      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            2|TRUE      |TRUE            |NA             |
+|R1144000      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            3|TRUE      |TRUE            |NA             |
+|R1144100      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            4|TRUE      |TRUE            |NA             |
+|R1144200      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            5|TRUE      |TRUE            |NA             |
+|R1144300      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            6|TRUE      |TRUE            |NA             |
+|R1144400      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            7|TRUE      |TRUE            |NA             |
+|R1144500      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            8|TRUE      |TRUE            |NA             |
+|R1144600      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|            9|TRUE      |TRUE            |NA             |
+|R1144700      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R1144800      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           11|TRUE      |TRUE            |NA             |
+|R1144900      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           12|TRUE      |TRUE            |NA             |
+|R1145000      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           13|TRUE      |TRUE            |NA             |
+|R1145100      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           14|TRUE      |TRUE            |NA             |
+|R1145200      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           15|TRUE      |TRUE            |NA             |
+|R1145300      |     104|roster_relationship              |                 2|97-roster            |        1997|            9|           16|TRUE      |TRUE            |NA             |
+|R1162100      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1162200      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1162300      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1162400      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1162500      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1162600      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1162700      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1162800      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1162900      |     105|hh_unique_id                     |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1163000      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1163100      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1163200      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1163300      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1163400      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1163500      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1163600      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1163601      |     105|hh_unique_id                     |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
 |R1193000      |       2|extended_family_id               |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1193900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1194100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
@@ -2137,15 +2431,15 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblSurveyTime           |          3,848|         3,800|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
-|Metadata    |tblVariable             |            144|            48|
+|Metadata    |tblVariable             |            144|           112|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           256|
 |Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |             72|            16|
+|Process     |tblResponse             |          7,624|         7,264|
 |Process     |tblRoster               |              0|             0|
 |Process     |tblSubject              |            592|           344|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,840|         4,936|
+|Process     |tblSurveyTime           |          5,456|         4,744|
 
 
 # Session Information
@@ -2207,6 +2501,7 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
+ OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2236,4 +2531,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 19:35 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-16, 22:27 -0600 in 2 seconds.

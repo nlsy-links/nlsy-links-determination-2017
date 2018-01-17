@@ -426,6 +426,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblRoster](
 	[R0000100] [int] NOT NULL,
+	[R0533400] [int] NULL,
 	[R0536300] [int] NULL,
 	[R1097800] [int] NULL,
 	[R1097900] [int] NULL,

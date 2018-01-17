@@ -242,6 +242,7 @@ d_variable <- ds_file  %>%
   # dplyr::left_join(d_item[, c("ID")], by=c("Item"="ID"))
 
 checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
+checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
 checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
 testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
 # sum(duplicated(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)))
