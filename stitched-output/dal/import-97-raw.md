@@ -55,7 +55,13 @@ checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.
 checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
 
 
-sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
+# sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
+# sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [{variable_code}] INTEGER NOT NULL"
+# sql_template_not_null <- "
+#   ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL
+#   ALTER TABLE {table_name_qualified} ALTER COLUMN [R0536300] INTEGER NOT NULL
+# "
+
 sql_template_primary_key <- "
   ALTER TABLE {table_name_qualified} ADD CONSTRAINT
   	PK_{table_name} PRIMARY KEY CLUSTERED ( R0000100 )
@@ -77,7 +83,7 @@ ds_extract <- ds_extract %>%
     extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
-    sql_not_null    = glue::glue(sql_template_not_null),
+    # sql_not_null    = glue::glue(sql_template_not_null),
     sql_primary_key = glue::glue(sql_template_primary_key)
   )
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
@@ -86,14 +92,14 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 5 x 10
-##   table~ file_~ table~ path_z~ name~ extr~ sql_s~ sql_~ sql_n~ sql_primar~
-##   <chr>  <chr>  <chr>  <chr>   <chr> <lgl> <chr>  <chr> <chr>  <chr>      
-## 1 Extra~ 97-de~ tblDe~ data-u~ 97-d~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
-## 2 Extra~ 97-ro~ tblRo~ data-u~ 97-r~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
-## 3 Extra~ 97-su~ tblSu~ data-u~ 97-s~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
-## 4 Extra~ 97-li~ tblLi~ data-u~ 97-l~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
-## 5 Extra~ 97-li~ tblLi~ data-u~ 97-l~ T     SELEC~ TRUN~ " ALT~ "  ALTER T~
+## # A tibble: 5 x 9
+##   table_name_qualified     file~ tabl~ path~ name~ extr~ sql_~ sql_~ sql_~
+##   <chr>                    <chr> <chr> <chr> <chr> <lgl> <chr> <chr> <chr>
+## 1 Extract.tblDemographics  97-d~ tblD~ data~ 97-d~ T     SELE~ TRUN~ "  A~
+## 2 Extract.tblRoster        97-r~ tblR~ data~ 97-r~ T     SELE~ TRUN~ "  A~
+## 3 Extract.tblSurveyTime    97-s~ tblS~ data~ 97-s~ T     SELE~ TRUN~ "  A~
+## 4 Extract.tblLinksExplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ "  A~
+## 5 Extract.tblLinksImplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ "  A~
 ```
 
 ```r
@@ -179,6 +185,7 @@ DBI::dbGetInfo(channel_odbc)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
+# for( i in 1 ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
   # Create temp zip file
@@ -254,8 +261,22 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
       create_table    = T
     )
 
+    colnames(d)
+
+    sql_template_not_null <- "
+      ALTER TABLE {table_name_qualified} ALTER COLUMN [{variable_code}] INTEGER NOT NULL
+    "
+    # sql_template_not_null <- "
+    #   ALTER TABLE {%s} ALTER COLUMN [{%s}] INTEGER NOT NULL
+    # "
+    sql_not_null <- glue::glue(sql_template_not_null, table_name_qualified=ds_extract$table_name_qualified[i] , variable_code=colnames(d))
+    sql_not_null <- paste(sql_not_null, collapse="; ")
+    # sql_not_null <- sprintf(sql_template_not_null, table_name_qualified=ds_extract$table_name_qualified[i] , variable_code=colnames(d))
+    # sql_not_null
+
     # Make the subject id the primary key.
-    DBI::dbGetQuery(channel_odbc, ds_extract$sql_not_null[i])
+    # DBI::dbGetQuery(channel_odbc, ds_extract$sql_not_null[i])
+    DBI::dbGetQuery(channel_odbc, sql_not_null)
     DBI::dbGetQuery(channel_odbc, ds_extract$sql_primary_key[i])
   }
 
@@ -353,11 +374,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R1121900 <int>, R1122000 <int>, R1122100 <int>, R1122200 <int>,
 ## #   R1122300 <int>, R1122400 <int>, R1122500 <int>, R1122600 <int>,
 ## #   R1122700 <int>, R1122800 <int>, R1122900 <int>, ...
-## [1] "2018-01-16 22:36:44 CST"
-```
-
-```
-## The table `Extract.tblRoster` was written over dsn `local-nlsy-links-97` in 0.222 minutes.
+## [1] 1
 ```
 
 ```
@@ -518,7 +535,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-16, 22:37 -0600 in 36 seconds.
+## File completed by `Will` at 2018-01-16, 23:28 -0600 in 34 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -547,25 +564,18 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          highr_0.6             pillar_1.0.1         
-##  [4] compiler_3.4.3        plyr_1.8.4            bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
-## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
-## [16] rlang_0.1.6           rstudioapi_0.7        DBI_0.7              
-## [19] cli_1.0.0             yaml_2.1.16           withr_2.1.1.9000     
-## [22] dplyr_0.7.4           stringr_1.2.0         devtools_1.13.4      
-## [25] hms_0.4.0             bit64_0.9-7           rprojroot_1.3-2      
-## [28] OuhscMunge_0.1.8.9005 glue_1.2.0            R6_2.2.2             
-## [31] rmarkdown_1.8         tidyr_0.7.2           readr_1.1.1          
-## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
-## [37] scales_0.5.0.9000     RODBC_1.3-15          htmltools_0.3.6      
-## [40] assertthat_0.2.0      testit_0.7.1          colorspace_1.3-2     
-## [43] utf8_1.1.3            stringi_1.1.6         munsell_0.4.3        
-## [46] markdown_0.8          crayon_1.3.4
+##  [1] Rcpp_0.12.14     knitr_1.18       bindr_0.1        hms_0.4.0       
+##  [5] odbc_1.1.3       bit_1.1-12       testit_0.7.1     R6_2.2.2        
+##  [9] rlang_0.1.6      blob_1.1.0       stringr_1.2.0    dplyr_0.7.4     
+## [13] tools_3.4.3      checkmate_1.8.5  utf8_1.1.3       cli_1.0.0       
+## [17] DBI_0.7          yaml_2.1.16      bit64_0.9-7      assertthat_0.2.0
+## [21] tibble_1.4.1     crayon_1.3.4     purrr_0.2.4      readr_1.1.1     
+## [25] tidyr_0.7.2      RODBC_1.3-15     glue_1.2.0       evaluate_0.10.1 
+## [29] stringi_1.1.6    compiler_3.4.3   pillar_1.0.1     backports_1.1.2 
+## [33] markdown_0.8     pkgconfig_2.0.1
 ```
 
 ```r
@@ -573,6 +583,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-16 22:37:07 CST"
+## [1] "2018-01-16 23:28:39 CST"
 ```
 

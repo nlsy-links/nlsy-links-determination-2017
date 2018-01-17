@@ -2445,11 +2445,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblDemographics         |            392|           352|
 |Extract     |tblLinksExplicit        |          1,480|         1,432|
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
-|Extract     |tblRoster               |         18,120|        18,016|
+|Extract     |tblRoster               |         18,056|        18,048|
 |Extract     |tblSurveyTime           |          3,848|         3,800|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
-|Metadata    |tblVariable             |            144|           112|
+|Metadata    |tblVariable             |            144|           120|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           256|
 |Process     |tblRelatedValues        |             72|            16|
@@ -2457,7 +2457,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |              0|             0|
 |Process     |tblSubject              |            592|           344|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,776|         5,000|
+|Process     |tblSurveyTime           |          5,712|         4,888|
 
 
 # Session Information
@@ -2519,7 +2519,6 @@ Packages -----------------------------------------------------------------------
  methods    * 3.4.3      2017-12-06 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
  odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
- OuhscMunge   0.1.8.9005 2017-12-21 local                           
  pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
@@ -2549,4 +2548,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-16, 22:44 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-16, 23:33 -0600 in 2 seconds.

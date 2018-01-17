@@ -43,7 +43,13 @@ checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.
 checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
 
 
-sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
+# sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
+# sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [{variable_code}] INTEGER NOT NULL"
+# sql_template_not_null <- "
+#   ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL
+#   ALTER TABLE {table_name_qualified} ALTER COLUMN [R0536300] INTEGER NOT NULL
+# "
+
 sql_template_primary_key <- "
   ALTER TABLE {table_name_qualified} ADD CONSTRAINT
   	PK_{table_name} PRIMARY KEY CLUSTERED ( R0000100 )
@@ -64,7 +70,7 @@ ds_extract <- ds_extract %>%
     extract_exist   = file.exists(path_zip),
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
-    sql_not_null    = glue::glue(sql_template_not_null),
+    # sql_not_null    = glue::glue(sql_template_not_null),
     sql_primary_key = glue::glue(sql_template_primary_key)
   )
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
@@ -81,6 +87,11 @@ ds_inventory <- ds_inventory %>%
     table_name_qualified  =  glue::glue("{schema_name}.{table_name}")
   )
 
+
+# ---- inspect -----------------------------------------------------------------
+
+
+
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
 
@@ -95,6 +106,7 @@ DBI::dbGetInfo(channel_odbc)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
 for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
+# for( i in 1 ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
   # Create temp zip file
@@ -170,8 +182,23 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
       create_table    = T
     )
 
+    colnames(d)
+
+    sql_template_not_null <- "
+      ALTER TABLE {table_name_qualified} ALTER COLUMN [{variable_code}] INTEGER NOT NULL
+    "
+    # sql_template_not_null <- "
+    #   ALTER TABLE {%s} ALTER COLUMN [{%s}] INTEGER NOT NULL
+    # "
+    sql_not_null <- glue::glue(sql_template_not_null, table_name_qualified=ds_extract$table_name_qualified[i] , variable_code=colnames(d))
+    sql_not_null <- paste(sql_not_null, collapse="; ")
+    # sql_not_null <- sprintf(sql_template_not_null, table_name_qualified=ds_extract$table_name_qualified[i] , variable_code=colnames(d))
+    # sql_not_null
+
+
     # Make the subject id the primary key.
-    DBI::dbGetQuery(channel_odbc, ds_extract$sql_not_null[i])
+    # DBI::dbGetQuery(channel_odbc, ds_extract$sql_not_null[i])
+    DBI::dbGetQuery(channel_odbc, sql_not_null)
     DBI::dbGetQuery(channel_odbc, ds_extract$sql_primary_key[i])
   }
 
