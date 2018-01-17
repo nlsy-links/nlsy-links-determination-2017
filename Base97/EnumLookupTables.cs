@@ -5,6 +5,7 @@ namespace Nls.Base97 {
     public enum Item : short {
         subject_id = 1,
         extended_family_id = 2,
+        hh_internal_id = 3,
         gender = 10,
         DateOfBirthMonth = 11,
         DateOfBirthYear = 12,
@@ -16,6 +17,13 @@ namespace Nls.Base97 {
         AgeAtInterviewDateYears = 24,
         roster_crosswalk = 101,
         hh_member_id = 102,
+        hh_informant = 103,
+        roster_relationship_2_dim = 104, // 16 x 16 square
+        roster_relationship_1_dim = 105, // 1 x 16 vector
+        hh_unique_id = 106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
+        // InterviewDateDayParent_NOTUSED                            =  1020, 
+        // InterviewDateMonthParent_NOTUSED                          =  1021, 
+        // InterviewDateYearParent_NOTUSED                           =  1022, 
     }
     public enum ExtractSource : byte {
         Demographics = 1,
@@ -31,11 +39,11 @@ namespace Nls.Base97 {
     //    TwinOrTrip = 4, // Currently Then Gen1 algorithm doesn't distinguish.
     //    DoNotKnow = 255,
     //}
-    //public enum Tristate : byte {
-    //    No = 0,
-    //    Yes = 1,
-    //    DoNotKnow = 255,
-    //}
+    public enum Tristate : byte {
+        No = 0,
+        Yes = 1,
+        DoNotKnow = 255,
+    }
     //public enum Gender : byte {
     //    Male = 1,
     //    Female = 2,
@@ -63,4 +71,5 @@ namespace Nls.Base97 {
     //    No = 0,
     //    Yes = 1,
     //}
+
 }

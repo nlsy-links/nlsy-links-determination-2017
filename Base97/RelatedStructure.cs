@@ -63,6 +63,8 @@ namespace Nls.Base97 {
             drNew.SubjectTag_S2 = drSubject2.SubjectTag;
             drNew.RelationshipPath = (byte)1;
             drNew.EverSharedHouse = true;
+            drNew.hh_internal_id_s1 = drSubject1.hh_internal_id;
+            drNew.hh_internal_id_s2 = drSubject2.hh_internal_id;
             _dsLinks.tblRelatedStructure.AddtblRelatedStructureRow(drNew);
             return 1;
         }

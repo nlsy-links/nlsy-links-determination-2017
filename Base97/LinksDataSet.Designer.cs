@@ -2515,6 +2515,10 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnEverSharedHouse;
             
+            private global::System.Data.DataColumn columnhh_internal_id_s1;
+            
+            private global::System.Data.DataColumn columnhh_internal_id_s2;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblRelatedStructureDataTable() {
@@ -2598,6 +2602,22 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn hh_internal_id_s1Column {
+                get {
+                    return this.columnhh_internal_id_s1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn hh_internal_id_s2Column {
+                get {
+                    return this.columnhh_internal_id_s2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2633,7 +2653,7 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblRelatedStructureRow AddtblRelatedStructureRow(short ExtendedID, tblSubjectRow parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1, tblSubjectRow parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2, byte RelationshipPath, bool EverSharedHouse) {
+            public tblRelatedStructureRow AddtblRelatedStructureRow(short ExtendedID, tblSubjectRow parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1, tblSubjectRow parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2, byte RelationshipPath, bool EverSharedHouse, byte hh_internal_id_s1, byte hh_internal_id_s2) {
                 tblRelatedStructureRow rowtblRelatedStructureRow = ((tblRelatedStructureRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2641,7 +2661,9 @@ namespace Nls.Base97 {
                         null,
                         null,
                         RelationshipPath,
-                        EverSharedHouse};
+                        EverSharedHouse,
+                        hh_internal_id_s1,
+                        hh_internal_id_s2};
                 if ((parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1 != null)) {
                     columnValuesArray[2] = parenttblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1[0];
                 }
@@ -2683,6 +2705,8 @@ namespace Nls.Base97 {
                 this.columnSubjectTag_S2 = base.Columns["SubjectTag_S2"];
                 this.columnRelationshipPath = base.Columns["RelationshipPath"];
                 this.columnEverSharedHouse = base.Columns["EverSharedHouse"];
+                this.columnhh_internal_id_s1 = base.Columns["hh_internal_id_s1"];
+                this.columnhh_internal_id_s2 = base.Columns["hh_internal_id_s2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2700,6 +2724,10 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnRelationshipPath);
                 this.columnEverSharedHouse = new global::System.Data.DataColumn("EverSharedHouse", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEverSharedHouse);
+                this.columnhh_internal_id_s1 = new global::System.Data.DataColumn("hh_internal_id_s1", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhh_internal_id_s1);
+                this.columnhh_internal_id_s2 = new global::System.Data.DataColumn("hh_internal_id_s2", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhh_internal_id_s2);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -2713,6 +2741,8 @@ namespace Nls.Base97 {
                 this.columnSubjectTag_S2.AllowDBNull = false;
                 this.columnRelationshipPath.AllowDBNull = false;
                 this.columnEverSharedHouse.AllowDBNull = false;
+                this.columnhh_internal_id_s1.AllowDBNull = false;
+                this.columnhh_internal_id_s2.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5791,6 +5821,28 @@ namespace Nls.Base97 {
                 }
                 set {
                     this[this.tabletblRelatedStructure.EverSharedHouseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte hh_internal_id_s1 {
+                get {
+                    return ((byte)(this[this.tabletblRelatedStructure.hh_internal_id_s1Column]));
+                }
+                set {
+                    this[this.tabletblRelatedStructure.hh_internal_id_s1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte hh_internal_id_s2 {
+                get {
+                    return ((byte)(this[this.tabletblRelatedStructure.hh_internal_id_s2Column]));
+                }
+                set {
+                    this[this.tabletblRelatedStructure.hh_internal_id_s2Column] = value;
                 }
             }
             
@@ -9579,10 +9631,12 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Tr
             tableMapping.ColumnMappings.Add("SubjectTag_S2", "SubjectTag_S2");
             tableMapping.ColumnMappings.Add("RelationshipPath", "RelationshipPath");
             tableMapping.ColumnMappings.Add("EverSharedHouse", "EverSharedHouse");
+            tableMapping.ColumnMappings.Add("hh_internal_id_s1", "hh_internal_id_s1");
+            tableMapping.ColumnMappings.Add("hh_internal_id_s2", "hh_internal_id_s2");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblRelatedStructure] WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([RelationshipPath] = @Original_RelationshipPath) AND ([EverSharedHouse] = @Original_EverSharedHouse))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblRelatedStructure] WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([RelationshipPath] = @Original_RelationshipPath) AND ([EverSharedHouse] = @Original_EverSharedHouse) AND ([hh_internal_id_s1] = @Original_hh_internal_id_s1) AND ([hh_internal_id_s2] = @Original_hh_internal_id_s2))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9590,32 +9644,40 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Tr
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag_S2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RelationshipPath", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelationshipPath", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EverSharedHouse", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EverSharedHouse", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hh_internal_id_s1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hh_internal_id_s2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblRelatedStructure] ([ExtendedID], [SubjectTag_S1], [SubjectTag_S2], [RelationshipPath], [EverSharedHouse]) VALUES (@ExtendedID, @SubjectTag_S1, @SubjectTag_S2, @RelationshipPath, @EverSharedHouse);
-SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse FROM Process.tblRelatedStructure WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblRelatedStructure] ([ExtendedID], [SubjectTag_S1], [SubjectTag_S2], [RelationshipPath], [EverSharedHouse], [hh_internal_id_s1], [hh_internal_id_s2]) VALUES (@ExtendedID, @SubjectTag_S1, @SubjectTag_S2, @RelationshipPath, @EverSharedHouse, @hh_internal_id_s1, @hh_internal_id_s2);
+SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse, hh_internal_id_s1, hh_internal_id_s2 FROM Process.tblRelatedStructure WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag_S1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag_S2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RelationshipPath", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelationshipPath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EverSharedHouse", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EverSharedHouse", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hh_internal_id_s1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hh_internal_id_s2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Process].[tblRelatedStructure] SET [ExtendedID] = @ExtendedID, [SubjectTag_S1] = @SubjectTag_S1, [SubjectTag_S2] = @SubjectTag_S2, [RelationshipPath] = @RelationshipPath, [EverSharedHouse] = @EverSharedHouse WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([RelationshipPath] = @Original_RelationshipPath) AND ([EverSharedHouse] = @Original_EverSharedHouse));
-SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse FROM Process.tblRelatedStructure WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Process].[tblRelatedStructure] SET [ExtendedID] = @ExtendedID, [SubjectTag_S1] = @SubjectTag_S1, [SubjectTag_S2] = @SubjectTag_S2, [RelationshipPath] = @RelationshipPath, [EverSharedHouse] = @EverSharedHouse, [hh_internal_id_s1] = @hh_internal_id_s1, [hh_internal_id_s2] = @hh_internal_id_s2 WHERE (([ID] = @Original_ID) AND ([ExtendedID] = @Original_ExtendedID) AND ([SubjectTag_S1] = @Original_SubjectTag_S1) AND ([SubjectTag_S2] = @Original_SubjectTag_S2) AND ([RelationshipPath] = @Original_RelationshipPath) AND ([EverSharedHouse] = @Original_EverSharedHouse) AND ([hh_internal_id_s1] = @Original_hh_internal_id_s1) AND ([hh_internal_id_s2] = @Original_hh_internal_id_s2));
+SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse, hh_internal_id_s1, hh_internal_id_s2 FROM Process.tblRelatedStructure WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag_S1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag_S2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RelationshipPath", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelationshipPath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EverSharedHouse", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EverSharedHouse", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hh_internal_id_s1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hh_internal_id_s2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag_S1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag_S2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag_S2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RelationshipPath", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelationshipPath", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EverSharedHouse", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EverSharedHouse", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hh_internal_id_s1", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hh_internal_id_s2", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hh_internal_id_s2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -9633,7 +9695,7 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShared" +
-                "House FROM Process.tblRelatedStructure";
+                "House, hh_internal_id_s1, hh_internal_id_s2 FROM Process.tblRelatedStructure";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9694,13 +9756,15 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, short Original_ExtendedID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_RelationshipPath, bool Original_EverSharedHouse) {
+        public virtual int Delete(int Original_ID, short Original_ExtendedID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_RelationshipPath, bool Original_EverSharedHouse, byte Original_hh_internal_id_s1, byte Original_hh_internal_id_s2) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_ExtendedID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_SubjectTag_S1));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_SubjectTag_S2));
             this.Adapter.DeleteCommand.Parameters[4].Value = ((byte)(Original_RelationshipPath));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_EverSharedHouse));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_hh_internal_id_s1));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((byte)(Original_hh_internal_id_s2));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9721,12 +9785,14 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(short ExtendedID, int SubjectTag_S1, int SubjectTag_S2, byte RelationshipPath, bool EverSharedHouse) {
+        public virtual int Insert(short ExtendedID, int SubjectTag_S1, int SubjectTag_S2, byte RelationshipPath, bool EverSharedHouse, byte hh_internal_id_s1, byte hh_internal_id_s2) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((short)(ExtendedID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SubjectTag_S1));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(SubjectTag_S2));
             this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(RelationshipPath));
             this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(EverSharedHouse));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(hh_internal_id_s1));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(hh_internal_id_s2));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9747,19 +9813,39 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(short ExtendedID, int SubjectTag_S1, int SubjectTag_S2, byte RelationshipPath, bool EverSharedHouse, int Original_ID, short Original_ExtendedID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_RelationshipPath, bool Original_EverSharedHouse, int ID) {
+        public virtual int Update(
+                    short ExtendedID, 
+                    int SubjectTag_S1, 
+                    int SubjectTag_S2, 
+                    byte RelationshipPath, 
+                    bool EverSharedHouse, 
+                    byte hh_internal_id_s1, 
+                    byte hh_internal_id_s2, 
+                    int Original_ID, 
+                    short Original_ExtendedID, 
+                    int Original_SubjectTag_S1, 
+                    int Original_SubjectTag_S2, 
+                    byte Original_RelationshipPath, 
+                    bool Original_EverSharedHouse, 
+                    byte Original_hh_internal_id_s1, 
+                    byte Original_hh_internal_id_s2, 
+                    int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((short)(ExtendedID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SubjectTag_S1));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(SubjectTag_S2));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((byte)(RelationshipPath));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(EverSharedHouse));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((short)(Original_ExtendedID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_SubjectTag_S1));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_SubjectTag_S2));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(Original_RelationshipPath));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_EverSharedHouse));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((byte)(hh_internal_id_s1));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(hh_internal_id_s2));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((short)(Original_ExtendedID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_SubjectTag_S1));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_SubjectTag_S2));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(Original_RelationshipPath));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_EverSharedHouse));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(Original_hh_internal_id_s1));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((byte)(Original_hh_internal_id_s2));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9780,8 +9866,8 @@ SELECT ID, ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverShare
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(short ExtendedID, int SubjectTag_S1, int SubjectTag_S2, byte RelationshipPath, bool EverSharedHouse, int Original_ID, short Original_ExtendedID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_RelationshipPath, bool Original_EverSharedHouse) {
-            return this.Update(ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse, Original_ID, Original_ExtendedID, Original_SubjectTag_S1, Original_SubjectTag_S2, Original_RelationshipPath, Original_EverSharedHouse, Original_ID);
+        public virtual int Update(short ExtendedID, int SubjectTag_S1, int SubjectTag_S2, byte RelationshipPath, bool EverSharedHouse, byte hh_internal_id_s1, byte hh_internal_id_s2, int Original_ID, short Original_ExtendedID, int Original_SubjectTag_S1, int Original_SubjectTag_S2, byte Original_RelationshipPath, bool Original_EverSharedHouse, byte Original_hh_internal_id_s1, byte Original_hh_internal_id_s2) {
+            return this.Update(ExtendedID, SubjectTag_S1, SubjectTag_S2, RelationshipPath, EverSharedHouse, hh_internal_id_s1, hh_internal_id_s2, Original_ID, Original_ExtendedID, Original_SubjectTag_S1, Original_SubjectTag_S2, Original_RelationshipPath, Original_EverSharedHouse, Original_hh_internal_id_s1, Original_hh_internal_id_s2, Original_ID);
         }
     }
     

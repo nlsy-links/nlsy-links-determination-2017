@@ -6,7 +6,6 @@ LUMarkerEvidence,Enum,MarkerEvidence,EnumLookupTables.cs,byte,TRUE
 LUMarkerType,Enum,MarkerType,EnumLookupTables.cs,byte,TRUE
 LUMultipleBirth,Enum,MultipleBirth,EnumLookupTables.cs,byte,TRUE
 LURaceCohort,Enum,RaceCohort,EnumLookupTables.cs,byte,TRUE
-LURelationshipPath,Enum,RelationshipPath,EnumLookupTables.cs,byte,TRUE
 LURoster,Enum,RosterGen1,EnumResponseGen1.cs,short,TRUE
 LUTristate,Enum,Tristate,EnumLookupTables.cs,byte,TRUE
 LUYesNo,Enum,YesNo,EnumLookupTables.cs,short,TRUE

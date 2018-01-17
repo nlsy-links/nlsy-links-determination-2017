@@ -56,7 +56,6 @@ lst_col_types <- list(
   ),
   LUMultipleBirth = col_types_minimal,
   LURaceCohort = col_types_minimal,
-  LURelationshipPath = col_types_minimal,
   LURoster = col_types_minimal,
   LUTristate = col_types_minimal,
   LUYesNo = col_types_minimal,
