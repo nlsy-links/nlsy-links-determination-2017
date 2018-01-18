@@ -1076,6 +1076,29 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [Process].[tblMarker](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[ExtendedID] [smallint] NOT NULL,
+	[RelatedID] [int] NOT NULL,
+	[MarkerType] [tinyint] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[MzEvidence] [tinyint] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiomomEvidence] [tinyint] NOT NULL,
+	[ShareBiodadEvidence] [tinyint] NOT NULL,
+	[ShareBioGrandparentEvidence] [tinyint] NOT NULL,
+ CONSTRAINT [IX_tblMarker_Unique] UNIQUE NONCLUSTERED 
+(
+	[RelatedID] ASC,
+	[MarkerType] ASC,
+	[SurveyYear] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [Process].[tblOutcome](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[SubjectTag] [int] NOT NULL,
@@ -1201,7 +1224,7 @@ CREATE TABLE [Process].[tblSubjectDetails](
 	[AgeAtLastSurvey] [float] NOT NULL,
 	[SimilarAgeCount] [tinyint] NOT NULL,
 	[HasMzPossibly] [bit] NOT NULL,
-	[SiblingCountInNls] [tinyint] NOT NULL,
+	[SiblingPotentialCountInNls] [tinyint] NOT NULL,
 	[BirthOrderInNls] [tinyint] NOT NULL,
 	[KidCountBio] [tinyint] NOT NULL,
 	[IsDead] [bit] NOT NULL,
@@ -1327,6 +1350,50 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [FK_tblVariable_tblLUExtractSource]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence] FOREIGN KEY([ShareBioGrandparentEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Biodad] FOREIGN KEY([ShareBiodadEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Biodad]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Biomom] FOREIGN KEY([ShareBiomomEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Biomom]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Mz] FOREIGN KEY([MzEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_Mz]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_ShareBiodad] FOREIGN KEY([ShareBiodadEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_ShareBiodad]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_ShareBiomom] FOREIGN KEY([ShareBiomomEvidence])
+REFERENCES [Enum].[tblLUMarkerEvidence] ([ID])
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerEvidence_ShareBiomom]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblLUMarkerType] FOREIGN KEY([MarkerType])
+REFERENCES [Enum].[tblLUMarkerType] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblLUMarkerType]
+GO
+ALTER TABLE [Process].[tblMarker]  WITH CHECK ADD  CONSTRAINT [FK_tblMarker_tblRelatedStructure] FOREIGN KEY([RelatedID])
+REFERENCES [Process].[tblRelatedStructure] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Process].[tblMarker] CHECK CONSTRAINT [FK_tblMarker_tblRelatedStructure]
 GO
 ALTER TABLE [Process].[tblOutcome]  WITH CHECK ADD  CONSTRAINT [FK_tblOutcome_tblItem] FOREIGN KEY([Item])
 REFERENCES [Metadata].[tblItem] ([ID])
@@ -1489,7 +1556,7 @@ ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSub
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_Mob]
 GO
-ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_SiblingCountInNls] CHECK  (((0)<=[SiblingCountInNls] AND [SiblingCountInNls]<=(13)))
+ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_SiblingCountInNls] CHECK  (((0)<=[SiblingPotentialCountInNls] AND [SiblingPotentialCountInNls]<=(13)))
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_SiblingCountInNls]
 GO
