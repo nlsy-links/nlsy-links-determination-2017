@@ -1947,7 +1947,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksExplicit        |     8,984|           36|
 |Extract     |tblLinksImplicit        |     8,984|           43|
 |Extract     |tblRoster               |     8,984|          464|
-|Extract     |tblSurveyTime           |     8,984|           98|
+|Extract     |tblSurveyTime           |     8,984|           94|
 |Metadata    |tblItem                 |        21|            7|
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
@@ -1992,9 +1992,6 @@ This report documents the basic properties of the input & output tables kinship 
 |variable code | item id|item label                       | extract source id|extract source label | survey year| loop index 1| loop index 2|translate |variable active |variable notes |
 |:-------------|-------:|:--------------------------------|-----------------:|:--------------------|-----------:|------------:|------------:|:---------|:---------------|:--------------|
 |R0000100      |       1|subject_id                       |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
-|R0000200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
-|R0000201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
-|R0000202      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0533400      |       3|hh_internal_id                   |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536300      |      10|gender                           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R0536401      |      11|DateOfBirthMonth                 |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
@@ -2327,6 +2324,9 @@ This report documents the basic properties of the input & output tables kinship 
 |R1193000      |       2|extended_family_id               |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1193900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1194100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209402      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1235800      |      13|sample_cohort                    |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1315800      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1315900      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
@@ -2345,86 +2345,86 @@ This report documents the basic properties of the input & output tables kinship 
 |R1317200      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
 |R1317300      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
 |R1317400      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
-|R1490000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
-|R1490001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
-|R1490002      |      22|InterviewDateYear                |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
 |R2553400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
 |R2553500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
-|R2730000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
-|R2730001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
-|R2730002      |      22|InterviewDateYear                |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R2568300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2568301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2568302      |      22|InterviewDateYear                |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
 |R3876200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
 |R3876300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
-|R3990000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
-|R3990001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
-|R3990002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R3890300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3890301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3890302      |      22|InterviewDateYear                |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
 |R5453600      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
 |R5453700      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
-|R5650000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
-|R5650001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
-|R5650002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R5472300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5472301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5472302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
 |R7215900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
 |R7216000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
-|S0000100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
-|S0000101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
-|S0000102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|R7236100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7236101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7236102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
 |S1531300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
 |S1531400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
 |S2000900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
 |S2001000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
-|S2075300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
-|S2075301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
-|S2075302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020800      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020801      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020802      |      22|InterviewDateYear                |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
 |S3801000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
 |S3801100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
-|S3872500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
-|S3872501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
-|S3872502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
 |S5400900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
 |S5401000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
-|S5462300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
-|S5462301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
-|S5462302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
 |S7501100      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
 |S7501200      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
-|S7565300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
-|S7565301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
-|S7565302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
 |T0008400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
 |T0008500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
-|T0049800      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
-|T0049801      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
-|T0049802      |      22|InterviewDateYear                |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
 |T2011000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
 |T2011100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
-|T2030500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
-|T2030501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
-|T2030502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
 |T3601400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
 |T3601500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
-|T3631300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
-|T3631301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
-|T3631302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
 |T5201300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
 |T5201400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
-|T5229100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
-|T5229101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
-|T5229102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
 |T6651200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
 |T6651300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
-|T6680900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
-|T6680901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
-|T6680902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
 |T8123500      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
 |T8123600      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
-|T8154000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
-|T8154001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
-|T8154002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
 |U0001700      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
 |U0001800      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
-|U0036300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
-|U0036301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
-|U0036302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013202      |      22|InterviewDateYear                |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
 
 ## Table Sizes 97
 
@@ -2445,7 +2445,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksExplicit        |          1,480|         1,432|
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
 |Extract     |tblRoster               |         18,056|        18,048|
-|Extract     |tblSurveyTime           |          3,848|         3,800|
+|Extract     |tblSurveyTime           |          3,720|         3,616|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblRosterAssignment     |             72|            16|
@@ -2453,11 +2453,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |         45,704|        43,544|
+|Process     |tblResponse             |         53,320|        50,800|
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,520|         4,872|
+|Process     |tblSurveyTime           |          5,712|         5,040|
 
 
 # Session Information
@@ -2549,4 +2549,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-17, 18:27 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-17, 20:32 -0600 in 1 seconds.

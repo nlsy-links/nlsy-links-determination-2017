@@ -561,56 +561,58 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 <pre><code>## Uploading from `data-unshared/raw/nlsy97/97-survey-time.zip` to `Extract.tblSurveyTime`.
 </code></pre>
 
-<pre><code>## # A tibble: 8,984 x 98
-##    R000~ R000~ R000~ R000~ R053~ R053~ R053~ R054~ R054~ R054~ R119~ R119~
+<pre><code>## # A tibble: 8,984 x 94
+##    R000~ R000~ R000~ R000~ R053~ R054~ R054~ R054~ R119~ R119~ R119~ R120~
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1    23     7  1997     2     9  1981    29     7  1997     1   190
-##  2     2     2     5  1994     1     7  1982   - 4    -4 -   4     2   178
-##  3     3    23     4  1997     2     9  1983    30     4  1997     3   163
-##  4     4    17     2  1997     2     2  1981    21     2  1997     4   192
-##  5     5     7     4  1998     1    10  1982     7     4  1998     6   186
-##  6     6    23     9  1997     2     1  1982    23     9  1997     8   188
-##  7     7    23     9  1997     1     4  1983    23     9  1997     8   173
-##  8     8    25     4  1998     2     6  1981    16     4  1998     9   202
-##  9     9    24     4  1998     1    10  1982    16     4  1998     9   186
-## 10    10    22     4  1998     1     3  1984    16     4  1998     9   169
-## 11    11     6     7  1997     2     6  1982     6     7  1997    10   181
-## 12    12     8     7  1997     1    10  1981    16     7  1997    11   189
-## 13    13     8     9  1997     1    11  1984   - 4    -4 -   4    12   154
-## 14    14    17     8  1997     1     7  1980    17     8  1997    13   205
-## 15    15     1     4  1998     2     1  1983   - 4    -4 -   4    14   183
-## 16    16    13     4  1997     1     2  1982    13     4  1997    15   182
-## 17    17    25     3  1997     2    11  1981    18     4  1997    16   184
-## 18    18     9     3  1997     1     2  1982     1     4  1997    17   181
-## 19    19     9     3  1997     1     4  1984     1     4  1997    17   155
-## 20    20     1     4  1997     1    12  1980     1     4  1997    18   196
-## # ... with 8,964 more rows, and 86 more variables: R1194100 &lt;int&gt;,
-## #   R1209400 &lt;int&gt;, R1209401 &lt;int&gt;, R1209402 &lt;int&gt;, R1235800 &lt;int&gt;,
-## #   R1482600 &lt;int&gt;, R1490000 &lt;int&gt;, R1490001 &lt;int&gt;, R1490002 &lt;int&gt;,
-## #   R2553400 &lt;int&gt;, R2553500 &lt;int&gt;, R2730000 &lt;int&gt;, R2730001 &lt;int&gt;,
-## #   R2730002 &lt;int&gt;, R3876200 &lt;int&gt;, R3876300 &lt;int&gt;, R3990000 &lt;int&gt;,
-## #   R3990001 &lt;int&gt;, R3990002 &lt;int&gt;, R5453600 &lt;int&gt;, R5453700 &lt;int&gt;,
-## #   R5650000 &lt;int&gt;, R5650001 &lt;int&gt;, R5650002 &lt;int&gt;, R7215900 &lt;int&gt;,
-## #   R7216000 &lt;int&gt;, S0000100 &lt;int&gt;, S0000101 &lt;int&gt;, S0000102 &lt;int&gt;,
-## #   S1531300 &lt;int&gt;, S1531400 &lt;int&gt;, S2000900 &lt;int&gt;, S2001000 &lt;int&gt;,
-## #   S2075300 &lt;int&gt;, S2075301 &lt;int&gt;, S2075302 &lt;int&gt;, S3801000 &lt;int&gt;,
-## #   S3801100 &lt;int&gt;, S3872500 &lt;int&gt;, S3872501 &lt;int&gt;, S3872502 &lt;int&gt;,
-## #   S5400900 &lt;int&gt;, S5401000 &lt;int&gt;, S5462300 &lt;int&gt;, S5462301 &lt;int&gt;,
-## #   S5462302 &lt;int&gt;, S7501100 &lt;int&gt;, S7501200 &lt;int&gt;, S7565300 &lt;int&gt;,
-## #   S7565301 &lt;int&gt;, S7565302 &lt;int&gt;, T0008400 &lt;int&gt;, T0008500 &lt;int&gt;,
-## #   T0049800 &lt;int&gt;, T0049801 &lt;int&gt;, T0049802 &lt;int&gt;, T2011000 &lt;int&gt;,
-## #   T2011100 &lt;int&gt;, T2030500 &lt;int&gt;, T2030501 &lt;int&gt;, T2030502 &lt;int&gt;,
-## #   T3601400 &lt;int&gt;, T3601500 &lt;int&gt;, T3631300 &lt;int&gt;, T3631301 &lt;int&gt;,
-## #   T3631302 &lt;int&gt;, T5201300 &lt;int&gt;, T5201400 &lt;int&gt;, T5229100 &lt;int&gt;,
-## #   T5229101 &lt;int&gt;, T5229102 &lt;int&gt;, T6651200 &lt;int&gt;, T6651300 &lt;int&gt;,
-## #   T6680900 &lt;int&gt;, T6680901 &lt;int&gt;, T6680902 &lt;int&gt;, T8123500 &lt;int&gt;,
-## #   T8123600 &lt;int&gt;, T8154000 &lt;int&gt;, T8154001 &lt;int&gt;, T8154002 &lt;int&gt;,
-## #   U0001700 &lt;int&gt;, U0001800 &lt;int&gt;, U0036300 &lt;int&gt;, U0036301 &lt;int&gt;,
-## #   U0036302 &lt;int&gt;
-## [1] 1
+##  1     1    23     7  1997     2    29     7  1997     1   190    15    23
+##  2     2     2     5  1994     1   - 4    -4 -   4     2   178    14     2
+##  3     3    23     4  1997     2    30     4  1997     3   163    13    23
+##  4     4    17     2  1997     2    21     2  1997     4   192    15    17
+##  5     5     7     4  1998     1     7     4  1998     6   186    15     7
+##  6     6    23     9  1997     2    23     9  1997     8   188    15    23
+##  7     7    23     9  1997     1    23     9  1997     8   173    14    23
+##  8     8    25     4  1998     2    16     4  1998     9   202    16    25
+##  9     9    24     4  1998     1    16     4  1998     9   186    15    24
+## 10    10    22     4  1998     1    16     4  1998     9   169    14    22
+## 11    11     6     7  1997     2     6     7  1997    10   181    15     6
+## 12    12     8     7  1997     1    16     7  1997    11   189    15     8
+## 13    13     8     9  1997     1   - 4    -4 -   4    12   154    12     8
+## 14    14    17     8  1997     1    17     8  1997    13   205    17    17
+## 15    15     1     4  1998     2   - 4    -4 -   4    14   183    15     1
+## 16    16    13     4  1997     1    13     4  1997    15   182    15    13
+## 17    17    25     3  1997     2    18     4  1997    16   184    15    25
+## 18    18     9     3  1997     1     1     4  1997    17   181    15     9
+## 19    19     9     3  1997     1     1     4  1997    17   155    12     9
+## 20    20     1     4  1997     1     1     4  1997    18   196    16     1
+## # ... with 8,964 more rows, and 82 more variables: R1209401 &lt;int&gt;,
+## #   R1209402 &lt;int&gt;, R2553400 &lt;int&gt;, R2553500 &lt;int&gt;, R2568300 &lt;int&gt;,
+## #   R2568301 &lt;int&gt;, R2568302 &lt;int&gt;, R3876200 &lt;int&gt;, R3876300 &lt;int&gt;,
+## #   R3890300 &lt;int&gt;, R3890301 &lt;int&gt;, R3890302 &lt;int&gt;, R5453600 &lt;int&gt;,
+## #   R5453700 &lt;int&gt;, R5472300 &lt;int&gt;, R5472301 &lt;int&gt;, R5472302 &lt;int&gt;,
+## #   R7215900 &lt;int&gt;, R7216000 &lt;int&gt;, R7236100 &lt;int&gt;, R7236101 &lt;int&gt;,
+## #   R7236102 &lt;int&gt;, S1531300 &lt;int&gt;, S1531400 &lt;int&gt;, S1550900 &lt;int&gt;,
+## #   S1550901 &lt;int&gt;, S1550902 &lt;int&gt;, S2000900 &lt;int&gt;, S2001000 &lt;int&gt;,
+## #   S2020800 &lt;int&gt;, S2020801 &lt;int&gt;, S2020802 &lt;int&gt;, S3801000 &lt;int&gt;,
+## #   S3801100 &lt;int&gt;, S3822000 &lt;int&gt;, S3822001 &lt;int&gt;, S3822002 &lt;int&gt;,
+## #   S5400900 &lt;int&gt;, S5401000 &lt;int&gt;, S5422000 &lt;int&gt;, S5422001 &lt;int&gt;,
+## #   S5422002 &lt;int&gt;, S7501100 &lt;int&gt;, S7501200 &lt;int&gt;, S7524100 &lt;int&gt;,
+## #   S7524101 &lt;int&gt;, S7524102 &lt;int&gt;, T0008400 &lt;int&gt;, T0008500 &lt;int&gt;,
+## #   T0024500 &lt;int&gt;, T0024501 &lt;int&gt;, T0024502 &lt;int&gt;, T2011000 &lt;int&gt;,
+## #   T2011100 &lt;int&gt;, T2019400 &lt;int&gt;, T2019401 &lt;int&gt;, T2019402 &lt;int&gt;,
+## #   T3601400 &lt;int&gt;, T3601500 &lt;int&gt;, T3610000 &lt;int&gt;, T3610001 &lt;int&gt;,
+## #   T3610002 &lt;int&gt;, T5201300 &lt;int&gt;, T5201400 &lt;int&gt;, T5210400 &lt;int&gt;,
+## #   T5210401 &lt;int&gt;, T5210402 &lt;int&gt;, T6651200 &lt;int&gt;, T6651300 &lt;int&gt;,
+## #   T6661400 &lt;int&gt;, T6661401 &lt;int&gt;, T6661402 &lt;int&gt;, T8123500 &lt;int&gt;,
+## #   T8123600 &lt;int&gt;, T8132900 &lt;int&gt;, T8132901 &lt;int&gt;, T8132902 &lt;int&gt;,
+## #   U0001700 &lt;int&gt;, U0001800 &lt;int&gt;, U0013200 &lt;int&gt;, U0013201 &lt;int&gt;,
+## #   U0013202 &lt;int&gt;
+## [1] &quot;2018-01-17 20:13:29 CST&quot;
 </code></pre>
 
-<pre><code>## Tibble size: 3.4 Mb
+<pre><code>## The table `Extract.tblSurveyTime` was written over dsn `local-nlsy-links-97` in 0.081 minutes.
+</code></pre>
+
+<pre><code>## Tibble size: 3.3 Mb
 </code></pre>
 
 <pre><code>## Uploading from `data-unshared/raw/nlsy97/97-links-explicit.zip` to `Extract.tblLinksExplicit`.
@@ -701,7 +703,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;File completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## File completed by `Will` at 2018-01-17, 12:17 -0600 in 29 seconds.
+<pre><code>## File completed by `Will` at 2018-01-17, 20:13 -0600 in 30 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -751,7 +753,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-17 12:17:15 CST&quot;
+<pre><code>## [1] &quot;2018-01-17 20:13:40 CST&quot;
 </code></pre>
 
 </body>

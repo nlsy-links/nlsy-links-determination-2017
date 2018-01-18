@@ -81,23 +81,24 @@ lst_col_types <- list(
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  # RosterAssignment    = readr::cols_only(
-  #   ID                                  = readr::col_integer(),
-  #   ResponseLower                       = readr::col_integer(),
-  #   ResponseUpper                       = readr::col_integer(),
-  #   Freq                                = readr::col_integer(),
-  #   Resolved                            = readr::col_integer(),
-  #   R                                   = readr::col_double(),
-  #   RBoundLower                         = readr::col_double(),
-  #   RBoundUpper                         = readr::col_double(),
-  #   ShareBiodad                         = readr::col_integer(),
-  #   ShareBiomom                         = readr::col_integer(),
-  #   ShareBiograndparent                 = readr::col_integer(),
-  #   Inconsistent                        = readr::col_integer(),
-  #   Notes                               = readr::col_character(),
-  #   ResponseLowerLabel                  = readr::col_character(),
-  #   ResponseUpperLabel                  = readr::col_character()
-  # ),
+  RosterAssignment    = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    ResponseLower                       = readr::col_integer(),
+    ResponseUpper                       = readr::col_integer(),
+    Freq                                = readr::col_integer(),
+    Resolved                            = readr::col_integer(),
+    R                                   = readr::col_double(),
+    RBoundLower                         = readr::col_double(),
+    RBoundUpper                         = readr::col_double(),
+    SameGeneration                      = readr::col_double(),
+    ShareBiodad                         = readr::col_integer(),
+    ShareBiomom                         = readr::col_integer(),
+    ShareBiograndparent                 = readr::col_integer(),
+    Inconsistent                        = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    ResponseLowerLabel                  = readr::col_character(),
+    ResponseUpperLabel                  = readr::col_character()
+  ),
   variable = readr::cols_only(
     # ID                                  = readr::col_integer(),
     VariableCode                        = readr::col_character(),
@@ -133,21 +134,21 @@ ds_mapping
 
 ```
 ## # A tibble: 13 x 5
-##    table_name        schema_name enum_name      c_sharp_type convert_to_e~
-##    <chr>             <chr>       <chr>          <chr>        <lgl>        
-##  1 item              Metadata    Item           short        T            
-##  2 LUExtractSource   Enum        ExtractSource  byte         T            
-##  3 LUGender          Enum        Gender         byte         T            
-##  4 LUMarkerEvidence  Enum        MarkerEvidence byte         T            
-##  5 LUMarkerType      Enum        MarkerType     byte         T            
-##  6 LUMultipleBirth   Enum        MultipleBirth  byte         T            
-##  7 LURaceCohort      Enum        RaceCohort     byte         T            
-##  8 LURoster          Enum        RosterGen1     short        T            
-##  9 LUTristate        Enum        Tristate       byte         T            
-## 10 LUYesNo           Enum        YesNo          short        T            
-## 11 MzManual          Metadata    NA_character   NA_character F            
-## 12 #RosterAssignment Metadata    NA_character   NA_character F            
-## 13 variable          Metadata    NA_character   NA_character F
+##    table_name       schema_name enum_name      c_sharp_type convert_to_en~
+##    <chr>            <chr>       <chr>          <chr>        <lgl>         
+##  1 item             Metadata    Item           short        T             
+##  2 LUExtractSource  Enum        ExtractSource  byte         T             
+##  3 LUGender         Enum        Gender         byte         T             
+##  4 LUMarkerEvidence Enum        MarkerEvidence byte         T             
+##  5 LUMarkerType     Enum        MarkerType     byte         T             
+##  6 LUMultipleBirth  Enum        MultipleBirth  byte         T             
+##  7 LURaceCohort     Enum        RaceCohort     byte         T             
+##  8 LURoster         Enum        RosterGen1     short        T             
+##  9 LUTristate       Enum        Tristate       byte         T             
+## 10 LUYesNo          Enum        YesNo          short        T             
+## 11 MzManual         Metadata    NA_character   NA_character F             
+## 12 RosterAssignment Metadata    NA_character   NA_character F             
+## 13 variable         Metadata    NA_character   NA_character F
 ```
 
 ```r
@@ -163,7 +164,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 13 x 4
 ##    name             path                                 col_types   exis~
 ##    <chr>            <chr>                                <list>      <lgl>
 ##  1 item             data-public/metadata/tables-97/item~ <S3: col_s~ T    
@@ -177,7 +178,8 @@ ds_file
 ##  9 LUTristate       data-public/metadata/tables-97/LUTr~ <S3: col_s~ T    
 ## 10 LUYesNo          data-public/metadata/tables-97/LUYe~ <S3: col_s~ T    
 ## 11 MzManual         data-public/metadata/tables-97/MzMa~ <S3: col_s~ T    
-## 12 variable         data-public/metadata/tables-97/vari~ <S3: col_s~ T
+## 12 RosterAssignment data-public/metadata/tables-97/Rost~ <S3: col_s~ T    
+## 13 variable         data-public/metadata/tables-97/vari~ <S3: col_s~ T
 ```
 
 ```r
@@ -193,7 +195,7 @@ ds_entries
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 13 x 4
 ##    name             path                           col_types  entries     
 ##    <chr>            <chr>                          <list>     <list>      
 ##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [21~
@@ -203,11 +205,12 @@ ds_entries
 ##  5 LUMarkerType     data-public/metadata/tables-9~ <S3: col_~ <tibble [28~
 ##  6 LUMultipleBirth  data-public/metadata/tables-9~ <S3: col_~ <tibble [5 ~
 ##  7 LURaceCohort     data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
-##  8 LURoster         data-public/metadata/tables-9~ <S3: col_~ <tibble [90~
+##  8 LURoster         data-public/metadata/tables-9~ <S3: col_~ <tibble [92~
 ##  9 LUTristate       data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
 ## 10 LUYesNo          data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
 ## 11 MzManual         data-public/metadata/tables-9~ <S3: col_~ <tibble [20~
-## 12 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [43~
+## 12 RosterAssignment data-public/metadata/tables-9~ <S3: col_~ <tibble [31~
+## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [43~
 ```
 
 ```r
@@ -231,7 +234,7 @@ ds_table
 ##  6 Enum        tblLUMarkerType                28            5     72    16
 ##  7 Enum        tblLUMultipleBirth              5            4     72    16
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
-##  9 Enum        tblLURoster                    90            4     72    16
+##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
 ## # ... with 17 more rows
 ```
@@ -330,20 +333,20 @@ ds_file$entries %>%
 ## 1     1 Hispanic T      <NA> 
 ## 2     2 Black    T      <NA> 
 ## 3     3 Nbnh     T      <NA> 
-## # A tibble: 90 x 4
-##       ID Label           Active Notes
-##    <int> <chr>           <lgl>  <chr>
-##  1    -4 valid_skip      T      <NA> 
-##  2     0 self            T      <NA> 
-##  3     1 wife            T      <NA> 
-##  4     2 husband         T      <NA> 
-##  5     3 mother          T      <NA> 
-##  6     4 father          T      <NA> 
-##  7     7 mother_step     T      <NA> 
-##  8     8 father_step     T      <NA> 
-##  9     5 mother_adoptive T      <NA> 
-## 10     6 father_adoptive T      <NA> 
-## # ... with 80 more rows
+## # A tibble: 92 x 4
+##       ID Label       Active Notes
+##    <int> <chr>       <lgl>  <chr>
+##  1    -4 valid_skip  T      <NA> 
+##  2    -2 do_not_know T      <NA> 
+##  3    -1 refusal     T      <NA> 
+##  4     0 self        T      <NA> 
+##  5     1 wife        T      <NA> 
+##  6     2 husband     T      <NA> 
+##  7     3 mother      T      <NA> 
+##  8     4 father      T      <NA> 
+##  9     7 mother_step T      <NA> 
+## 10     8 father_step T      <NA> 
+## # ... with 82 more rows
 ## # A tibble: 3 x 4
 ##      ID Label     Active Notes
 ##   <int> <chr>     <lgl>  <chr>
@@ -373,6 +376,22 @@ ds_file$entries %>%
 ##  9    13         77502         77503         2     1      0     1 1994-20~
 ## 10    14         93001         93002         2     1      0     1 1994-20~
 ## # ... with 198 more rows
+## # A tibble: 31 x 16
+##       ID Respo~ Respo~  Freq Resol~      R RBoun~ RBou~ SameG~ Shar~ Shar~
+##    <int>  <int>  <int> <int>  <int>  <dbl>  <dbl> <dbl>  <dbl> <int> <int>
+##  1     1    - 2    - 1     2      0 NA      0     1.00  255      255   255
+##  2     2    - 1    - 1     2      0 NA      0     1.00  255      255   255
+##  3     3     13     13  1034      1 NA      0.500 1.00    1.00     1     1
+##  4     4     13     14  2034      1  0.500  0.500 0.500   1.00     1     1
+##  5     5     14     14  1154      1 NA      0.500 1.00    1.00     1     1
+##  6     6     15     15    48      1  0.250  0.250 0.250   1.00     0     1
+##  7     7     15     18   132      1  0.250  0.250 0.250   1.00     0     1
+##  8     8     16     19     2      1  0.250  0.250 0.250   1.00     1     0
+##  9     9     18     18    62      1  0.250  0.250 0.250   1.00     0     1
+## 10    10     19     19     8      1  0.250  0.250 0.250   1.00     1     0
+## # ... with 21 more rows, and 5 more variables: ShareBiograndparent <int>,
+## #   Inconsistent <int>, Notes <chr>, ResponseLowerLabel <chr>,
+## #   ResponseUpperLabel <chr>
 ## # A tibble: 434 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
@@ -416,7 +435,8 @@ ds_file$table_name
 ##  [1] "tblitem"             "tblLUExtractSource"  "tblLUMarkerEvidence"
 ##  [4] "tblLUGender"         "tblLUMarkerType"     "tblLUMultipleBirth" 
 ##  [7] "tblLURaceCohort"     "tblLURoster"         "tblLUTristate"      
-## [10] "tblLUYesNo"          "tblMzManual"         "tblvariable"
+## [10] "tblLUYesNo"          "tblMzManual"         "tblRosterAssignment"
+## [13] "tblvariable"
 ```
 
 ```r
@@ -424,7 +444,7 @@ ds_file
 ```
 
 ```
-## # A tibble: 12 x 11
+## # A tibble: 13 x 11
 ##    name   path    col_t~ exists sche~ enum~ c_sh~ conv~ tabl~ sql_d~ entr~
 ##    <chr>  <chr>   <list> <lgl>  <chr> <chr> <chr> <lgl> <chr> <chr>  <lis>
 ##  1 item   data-p~ <S3: ~ T      Meta~ Item  short T     tbli~ DELET~ <tib~
@@ -438,7 +458,8 @@ ds_file
 ##  9 LUTri~ data-p~ <S3: ~ T      Enum  Tris~ byte  T     tblL~ DELET~ <tib~
 ## 10 LUYes~ data-p~ <S3: ~ T      Enum  YesNo short T     tblL~ DELET~ <tib~
 ## 11 MzMan~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblM~ DELET~ <tib~
-## 12 varia~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblv~ DELET~ <tib~
+## 12 Roste~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblR~ DELET~ <tib~
+## 13 varia~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblv~ DELET~ <tib~
 ```
 
 ```r
@@ -568,6 +589,8 @@ ds_enum %>%
 ##  
 ## public enum RosterGen1 {
 ##     valid_skip                                                   =    -4, 
+##     do_not_know                                                  =    -2, 
+##     refusal                                                      =    -1, 
 ##     self                                                         =     0, 
 ##     wife                                                         =     1, 
 ##     husband                                                      =     2, 
@@ -833,6 +856,9 @@ delete_results_metadata
 ## $tblvariable
 ## data frame with 0 columns and 0 rows
 ## 
+## $tblRosterAssignment
+## data frame with 0 columns and 0 rows
+## 
 ## $tblMzManual
 ## data frame with 0 columns and 0 rows
 ## 
@@ -953,11 +979,15 @@ purrr::pmap_int(
 ```
 
 ```
+## Writing to table tblRosterAssignment
+```
+
+```
 ## Writing to table tblvariable
 ```
 
 ```
-##  [1] 1 1 1 1 1 1 1 1 1 1 1 1
+##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1
 ```
 
 ```r
@@ -1035,7 +1065,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 12:16 -0600 in 3 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 20:13 -0600 in 15 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1090,6 +1120,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-17 12:16:45 CST"
+## [1] "2018-01-17 20:13:10 CST"
 ```
 
