@@ -1,7 +1,11 @@
 ﻿using System;
 namespace Nls.Base97 {
     public enum MarkerType : byte {
-        roster=1
+        Roster = 1,
+        ShareBiomom = 2,
+        ShareBiodad = 3,
+        DobSeparation = 5,
+        GenderAgreement = 6,
     }
     public enum Item : short {
         subject_id = 1,
@@ -34,13 +38,13 @@ namespace Nls.Base97 {
         LinksExplicit = 4,
         LinksImplicit = 5,
     }
-    //public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
-    //    No = 0,
-    //    Twin = 2,
-    //    Trip = 3,
-    //    TwinOrTrip = 4, // Currently Then Gen1 algorithm doesn't distinguish.
-    //    DoNotKnow = 255,
-    //}
+    public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
+        No = 0,
+        Twin = 2,
+        Trip = 3,
+        TwinOrTrip = 4, // Currently Then Gen1 algorithm doesn't distinguish.
+        DoNotKnow = 255,
+    }
     public enum Tristate : byte {
         No = 0,
         Yes = 1,

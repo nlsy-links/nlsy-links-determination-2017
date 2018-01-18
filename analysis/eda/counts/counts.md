@@ -1952,6 +1952,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
 |Metadata    |tblVariable             |       435|           11|
+|Process     |tblMarker               |     5,038|           10|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            8|
 |Process     |tblRelatedValues        |         0|           23|
@@ -2452,6 +2453,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblRosterAssignment     |             72|            16|
 |Metadata    |tblVariable             |            144|           120|
+|Process     |tblMarker               |            528|           344|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |             72|            16|
@@ -2551,4 +2553,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-18, 00:55 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-18, 10:47 -0600 in 2 seconds.

@@ -65,7 +65,7 @@ namespace LinksGui {
             LoadRelatedStructure();
             LoadResponse();
             LoadSurveyTime();
-            //LoadSurveyTimeMostRecent(); //Needed for tblRelated
+            LoadSurveyTimeMostRecent(); //Needed for tblRelated
             LoadRoster();
             //LoadParentsOfGen1Retro();
             //LoadParentsOfGen1Current();
@@ -133,11 +133,11 @@ namespace LinksGui {
             //WriteXml(_dsLinks.tblMarker);
         }
         private void btnRelatedValues_Click( object sender, RoutedEventArgs e ) {
-        //    BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
-        //    string message = related.Go();
-        //    Trace.WriteLine(message);
-        //    if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-        //    //WriteXml(_dsLinks.tblRelatedValues);
+            BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
+            string message = related.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblRelatedValues);
         }
         private void btnOutcome_Click( object sender, RoutedEventArgs e ) {
             //BA.Outcome outcome = new BA.Outcome(_dsLinks);
@@ -172,7 +172,7 @@ namespace LinksGui {
         //    BulkUpdate(schemaName, _dsLinks.tblFatherOfGen2, LoadFatherOfGen2);
             BulkUpdate(schemaName, _dsLinks.tblSubjectDetails, LoadSubjectDetails);
             BulkUpdate(schemaName, _dsLinks.tblMarker, LoadMarker);
-        //    BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
+            BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
         //    BulkUpdate(schemaName, _dsLinks.tblOutcome, LoadOutcomes);
         //    BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
 
@@ -287,10 +287,10 @@ namespace LinksGui {
             CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblSurveyTimeViewSource")));
             vs.View.MoveCurrentToFirst();
         }
-        //private void LoadSurveyTimeMostRecent ( ) {
-        //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter ta = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
-        //    ta.Fill(_dsLinks.vewSurveyTimeMostRecent);
-        //}
+        private void LoadSurveyTimeMostRecent( ) {
+            BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter ta = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
+            ta.Fill(_dsLinks.vewSurveyTimeMostRecent);
+        }
         private void LoadRoster( ) {
             BA.LinksDataSetTableAdapters.tblRosterTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterTableAdapter();
             ta.Fill(_dsLinks.tblRoster);
@@ -311,10 +311,10 @@ namespace LinksGui {
         }
 
         private void LoadRelatedValues( ) {
-            //BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
-            //ta.Fill(_dsLinks.tblRelatedValues);
-            //CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
-            //vs.View.MoveCurrentToFirst();
+            BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
+            ta.Fill(_dsLinks.tblRelatedValues);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRelatedValuesViewSource")));
+            vs.View.MoveCurrentToFirst();
         }
         private void LoadOutcomes( ) {
             //BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
@@ -358,11 +358,11 @@ namespace LinksGui {
             MessageBox.Show(message);
         }
         private void btnCombine2_Click ( object sender, RoutedEventArgs e ) {
-        //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter taSurveyTimeRecent = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
+            BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter taSurveyTimeRecent = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             e.Source = _combinedButtonTag;
-        //    taSurveyTimeRecent.Fill(_dsLinks.vewSurveyTimeMostRecent);
+            taSurveyTimeRecent.Fill(_dsLinks.vewSurveyTimeMostRecent);
 
         //    btnRosterGen1_Click(sender, e);
         //    btnParentsOfGen1Retro_Click(sender, e);

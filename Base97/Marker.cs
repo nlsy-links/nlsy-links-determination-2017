@@ -19,7 +19,7 @@ namespace Nls.Base97 {
             if( dsLinks == null ) throw new ArgumentNullException("dsLinks");
             if( dsLinks.tblSubject.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblSubject.");
             if( dsLinks.tblRelatedStructure.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblRelatedStructure.");
-            if( dsLinks.tblRoster.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblRosterGen1.");
+            if( dsLinks.tblRoster.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblRoster.");
             //if( dsLinks.tblParentsOfGen1Current.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblParentsOfGen1Current.");
             //if( dsLinks.tblParentsOfGen1Retro.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblParentsOfGen1Retro.");
             //if( dsImport.tblGen1GeocodeSanitized.Count <= 0 ) throw new ArgumentException("There shouldn't be zero rows in tblGeocodeSanitized.");
@@ -359,7 +359,7 @@ namespace Nls.Base97 {
         //    return 1;
         //}
         private Int32 FromRoster( LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dtSubject1 ) {
-            const MarkerType markerType = MarkerType.roster;
+            const MarkerType markerType = MarkerType.Roster;
             MarkerSummary roster = Roster.RetrieveSummary(drRelated.ID, _dsLinks.tblRoster);
 
             MarkerEvidence mzEvidence;

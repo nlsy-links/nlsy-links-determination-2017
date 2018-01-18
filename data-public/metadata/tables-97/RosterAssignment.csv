@@ -1,9 +1,9 @@
 ID,ResponseLower,ResponseUpper,Freq,Resolved,R,RBoundLower,RBoundUpper,SameGeneration,ShareBiodad,ShareBiomom,ShareBiograndparent,Inconsistent,Notes,ResponseLowerLabel,ResponseUpperLabel
 1,-2,-1,2,0,NA,0,1,255,255,255,255,1,,do_not_know,refusal
 2,-1,-1,2,0,NA,0,1,255,255,255,255,1,,refusal,refusal
-3,13,13,1034,1,NA,0.5,1,1,1,1,1,1,could be MZ,sister_full,sister_full
+3,13,13,1034,0,NA,0.5,1,1,1,1,1,1,could be MZ,sister_full,sister_full
 4,13,14,2034,1,0.5,0.5,0.5,1,1,1,1,1,,sister_full,brother_full
-5,14,14,1154,1,NA,0.5,1,1,1,1,1,1,could be MZ,brother_full,brother_full
+5,14,14,1154,0,NA,0.5,1,1,1,1,1,1,could be MZ,brother_full,brother_full
 6,15,15,48,1,0.25,0.25,0.25,1,0,1,1,1,,sister_half_same_mother,sister_half_same_mother
 7,15,18,132,1,0.25,0.25,0.25,1,0,1,1,1,,sister_half_same_mother,brother_half_same_mother
 8,16,19,2,1,0.25,0.25,0.25,1,1,0,1,1,,sister_half_same_father,brother_half_same_father

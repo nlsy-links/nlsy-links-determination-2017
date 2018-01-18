@@ -41,19 +41,19 @@ namespace Nls.Base97 {
         //    else
         //        return priority2;//Which still may be 'DoNotKnow'
         //}
-        //public static float? TranslateToR ( Tristate shareBiomom, Tristate shareBiodad, bool mustDecide ) {
-        //    if ( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.DoNotKnow ) return null;
-        //    else if ( shareBiomom == Tristate.No && shareBiodad == Tristate.No ) return RCoefficients.NotRelated;
-        //    else if ( shareBiomom == Tristate.Yes && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingFull;
-        //    else if ( shareBiomom == Tristate.No && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingHalf;
-        //    else if ( shareBiomom == Tristate.Yes && shareBiodad == Tristate.No ) return RCoefficients.SiblingHalf;
-        //    else if ( !mustDecide ) return null;
-        //    else if ( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.No ) return RCoefficients.SiblingHalfOrLess; //What does the team think about this?
-        //    else if ( shareBiomom == Tristate.No && shareBiodad == Tristate.DoNotKnow ) return RCoefficients.SiblingHalfOrLess; //What does the team think about this?
-        //    else if ( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingAmbiguous;
-        //    else if ( shareBiomom == Tristate.Yes && shareBiodad == Tristate.DoNotKnow ) return RCoefficients.SiblingAmbiguous;
-        //    else throw new InvalidOperationException("All conditions should have been caught.");
-        //}
+        public static float? TranslateToR( Tristate shareBiomom, Tristate shareBiodad, bool mustDecide ) {
+            if( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.DoNotKnow ) return null;
+            else if( shareBiomom == Tristate.No && shareBiodad == Tristate.No ) return RCoefficients.NotRelated;
+            else if( shareBiomom == Tristate.Yes && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingFull;
+            else if( shareBiomom == Tristate.No && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingHalf;
+            else if( shareBiomom == Tristate.Yes && shareBiodad == Tristate.No ) return RCoefficients.SiblingHalf;
+            else if( !mustDecide ) return null;
+            else if( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.No ) return RCoefficients.SiblingHalfOrLess; //What does the team think about this?
+            else if( shareBiomom == Tristate.No && shareBiodad == Tristate.DoNotKnow ) return RCoefficients.SiblingHalfOrLess; //What does the team think about this?
+            else if( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingAmbiguous;
+            else if( shareBiomom == Tristate.Yes && shareBiodad == Tristate.DoNotKnow ) return RCoefficients.SiblingAmbiguous;
+            else throw new InvalidOperationException("All conditions should have been caught.");
+        }
         //public static YesNo ReverseYesNo ( YesNo yn ) {
         //    switch ( yn ) {
         //        case YesNo.Yes: return YesNo.No;

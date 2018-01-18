@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assign\Evidence.cs" />
+    <Compile Include="Assign\IAssignPass1.cs" />
+    <Compile Include="Assign\IAssignPass2.cs" />
+    <Compile Include="Assign\RPass2.cs" />
+    <Compile Include="Assign\RPass1.cs" />
     <Compile Include="CommonCalculations.cs" />
     <Compile Include="CommonFunctions.cs" />
     <Compile Include="Constants.cs" />
@@ -73,7 +77,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RCoefficients.cs" />
     <Compile Include="RelatedStructure.cs" />
+    <Compile Include="RelatedValues.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Retrieve.cs" />
     <Compile Include="Roster.cs" />

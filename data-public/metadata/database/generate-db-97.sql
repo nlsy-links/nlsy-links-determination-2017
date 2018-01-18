@@ -110,6 +110,35 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [Process].[tblSurveyTime](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectTag] [int] NOT NULL,
+	[SurveyTaken] [bit] NOT NULL,
+	[SurveyYear] [smallint] NOT NULL,
+	[SurveyDate] [date] NULL,
+	[AgeSelfReportYears] [float] NULL,
+	[AgeCalculateYears] [float] NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [Process].[vewSurveyTimeMostRecent]
+WITH SCHEMABINDING  
+AS
+SELECT     TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent
+FROM         Process.tblSurveyTime
+WHERE     (SurveyTaken = 1)
+GROUP BY SubjectTag
+ORDER BY SubjectTag
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [Archive].[tblArchiveDescription](
 	[ID] [smallint] IDENTITY(1,1) NOT NULL,
 	[AlgorithmVersion] [smallint] NOT NULL,
@@ -1235,20 +1264,6 @@ CREATE TABLE [Process].[tblSubjectDetails](
 (
 	[SubjectTag] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Process].[tblSurveyTime](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[SubjectTag] [int] NOT NULL,
-	[SurveyTaken] [bit] NOT NULL,
-	[SurveyYear] [smallint] NOT NULL,
-	[SurveyDate] [date] NULL,
-	[AgeSelfReportYears] [float] NULL,
-	[AgeCalculateYears] [float] NULL
 ) ON [PRIMARY]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblRelatedValuesArchive_Unique] ON [Archive].[tblRelatedValuesArchive]
