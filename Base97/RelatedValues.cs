@@ -29,7 +29,7 @@ namespace Nls.Base97 {
             Int32 housematesCount = Housemates();
 
             if( housematesCount > 0 ) Trace.Assert(housematesCount == Constants.HousematesPathCount, "The number of Housemate paths should be correct.");
-    
+
             sw.Stop();
             return string.Format("{0:N0} RelatedValues records were processed.\nElapsed time: {1}", housematesCount, sw.Elapsed.ToString());
         }
@@ -115,7 +115,7 @@ namespace Nls.Base97 {
         //    string message = string.Format("{0:N0} RelatedValues records were archived.\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
         //    return message;
         //}
-        public static LinksDataSet.tblRelatedValuesRow RetrieveRRow( LinksDataSet ds,  Int32 subject1Tag, Int32 subject2Tag ) {
+        public static LinksDataSet.tblRelatedValuesRow RetrieveRRow( LinksDataSet ds, Int32 subject1Tag, Int32 subject2Tag ) {
             if( ds.tblRelatedValues.Count <= 0 ) throw new ArgumentException("tblRelatedValues should have more than one row.", "ds");
 
             Int32 subjectTagSmaller = Int32.MinValue;
@@ -156,7 +156,7 @@ namespace Nls.Base97 {
             });
             return recordsAdded;
         }
-        private LinksDataSet.tblRelatedStructureRow[] SelectLefthand(  ) {
+        private LinksDataSet.tblRelatedStructureRow[] SelectLefthand( ) {
             //"Lefthand" is my slang for the lower/smaller SubjectTag corresponds to Subject1.
             string select = string.Format("{0} < {1}",
                  _dsLinks.tblRelatedStructure.SubjectTag_S1Column.ColumnName, _dsLinks.tblRelatedStructure.SubjectTag_S2Column.ColumnName);
@@ -195,20 +195,27 @@ namespace Nls.Base97 {
                 drNew.ShareBiomomPass1 = (byte)assignPass1.ShareBiomomPass1;
                 drNew.ShareBiodadPass1 = (byte)assignPass1.ShareBiodadPass1;
 
-                if( assignPass1.RImplicitPass1.HasValue ) drNew.RImplicitPass1 = assignPass1.RImplicitPass1.Value;
-                else drNew.SetRImplicitPass1Null();
-                
-                if( assignPass1.RExplicitOldestSibVersion.HasValue ) drNew.RExplicitOlderSibVersion = assignPass1.RExplicitOldestSibVersion.Value;
-                else drNew.SetRExplicitOlderSibVersionNull();
+                const float r_dummy = .666F;
+                drNew.RImplicitPass1 = r_dummy;
+                drNew.RExplicitOlderSibVersion = r_dummy;
+                drNew.RExplicitYoungerSibVersion = r_dummy;
+                drNew.RExplicitPass1 = r_dummy;
+                drNew.RPass1 = r_dummy;
 
-                if( assignPass1.RExplicitYoungestSibVersion.HasValue ) drNew.RExplicitYoungerSibVersion = assignPass1.RExplicitYoungestSibVersion.Value;
-                else drNew.SetRExplicitYoungerSibVersionNull();
+                //if( assignPass1.RImplicitPass1.HasValue ) drNew.RImplicitPass1 = assignPass1.RImplicitPass1.Value;
+                //else drNew.SetRImplicitPass1Null();
 
-                if( assignPass1.RExplicitPass1.HasValue ) drNew.RExplicitPass1 = assignPass1.RExplicitPass1.Value;
-                else drNew.SetRExplicitPass1Null();
+                //if( assignPass1.RExplicitOldestSibVersion.HasValue ) drNew.RExplicitOlderSibVersion = assignPass1.RExplicitOldestSibVersion.Value;
+                //else drNew.SetRExplicitOlderSibVersionNull();
 
-                if( assignPass1.RPass1Candidate.HasValue ) drNew.RPass1 = assignPass1.RPass1Candidate.Value;
-                else drNew.SetRPass1Null();
+                //if( assignPass1.RExplicitYoungestSibVersion.HasValue ) drNew.RExplicitYoungerSibVersion = assignPass1.RExplicitYoungestSibVersion.Value;
+                //else drNew.SetRExplicitYoungerSibVersionNull();
+
+                //if( assignPass1.RExplicitPass1.HasValue ) drNew.RExplicitPass1 = assignPass1.RExplicitPass1.Value;
+                //else drNew.SetRExplicitPass1Null();
+
+                //if( assignPass1.RPass1Candidate.HasValue ) drNew.RPass1 = assignPass1.RPass1Candidate.Value;
+                //else drNew.SetRPass1Null();
 
                 //The following will be set during Pass2 (below)
                 drNew.SetRImplicitNull();
@@ -225,26 +232,36 @@ namespace Nls.Base97 {
             lock( _dsLinks.tblRelatedValues ) {
                 LinksDataSet.tblRelatedValuesRow drUpdated = _dsLinks.tblRelatedValues.FindByID(relatedID);
                 //lock ( drUpdated ) {
-                if( assignPass2.RImplicit.HasValue ) drUpdated.RImplicit = assignPass2.RImplicit.Value;
-                else drUpdated.SetRImplicitNull();
 
-                if( assignPass2.RImplicitSubject.HasValue ) drUpdated.RImplicitSubject = assignPass2.RImplicitSubject.Value;
-                else drUpdated.SetRImplicitSubjectNull();
+                const float r_dummy = .666F;
+                drUpdated.RImplicit = r_dummy;
+                drUpdated.RImplicitSubject = r_dummy;
+                drUpdated.RImplicitMother = r_dummy;
+                drUpdated.RExplicit = r_dummy;
+                drUpdated.R = r_dummy;
+                drUpdated.RFull = r_dummy;
+                drUpdated.RPeek = r_dummy;
 
-                if( assignPass2.RImplicitMother.HasValue ) drUpdated.RImplicitMother = assignPass2.RImplicitMother.Value;
-                else drUpdated.SetRImplicitMotherNull();
+                //if( assignPass2.RImplicit.HasValue ) drUpdated.RImplicit = assignPass2.RImplicit.Value;
+                //else drUpdated.SetRImplicitNull();
 
-                if( assignPass2.RExplicit.HasValue ) drUpdated.RExplicit = assignPass2.RExplicit.Value;
-                else drUpdated.SetRExplicitNull();
+                //if( assignPass2.RImplicitSubject.HasValue ) drUpdated.RImplicitSubject = assignPass2.RImplicitSubject.Value;
+                //else drUpdated.SetRImplicitSubjectNull();
 
-                if( assignPass2.R.HasValue ) drUpdated.R = assignPass2.R.Value;
-                else drUpdated.SetRNull();
+                //if( assignPass2.RImplicitMother.HasValue ) drUpdated.RImplicitMother = assignPass2.RImplicitMother.Value;
+                //else drUpdated.SetRImplicitMotherNull();
 
-                if( assignPass2.RFull.HasValue ) drUpdated.RFull = assignPass2.RFull.Value;
-                else drUpdated.SetRFullNull();
+                //if( assignPass2.RExplicit.HasValue ) drUpdated.RExplicit = assignPass2.RExplicit.Value;
+                //else drUpdated.SetRExplicitNull();
 
-                if( assignPass2.RPeek.HasValue ) drUpdated.RPeek = assignPass2.RPeek.Value;
-                else drUpdated.SetRPeekNull();
+                //if( assignPass2.R.HasValue ) drUpdated.R = assignPass2.R.Value;
+                //else drUpdated.SetRNull();
+
+                //if( assignPass2.RFull.HasValue ) drUpdated.RFull = assignPass2.RFull.Value;
+                //else drUpdated.SetRFullNull();
+
+                //if( assignPass2.RPeek.HasValue ) drUpdated.RPeek = assignPass2.RPeek.Value;
+                //else drUpdated.SetRPeekNull();
             }
         }
         private Int16? SurveyTimeMostRecent( Int32 subjectTag ) {

@@ -223,7 +223,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 28 x 6
+## # A tibble: 29 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -233,10 +233,10 @@ ds_table
 ##  5 Enum        tblLUMarkerEvidence             8            4     72    16
 ##  6 Enum        tblLUMarkerType                28            5     72    16
 ##  7 Enum        tblLUMultipleBirth              5            4     72    16
-##  8 Enum        tblLURaceCohort                 3            4     72    16
+##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 18 more rows
+## # ... with 19 more rows
 ```
 
 ```r
@@ -267,18 +267,18 @@ ds_file$entries %>%
 
 ```
 ## # A tibble: 22 x 7
-##       ID Label              MinValue MinNonnegative MaxValue Active Notes 
-##    <int> <chr>                 <int>          <int>    <int> <lgl>  <chr> 
-##  1     1 subject_id                1              1     9022 T      <NA>  
-##  2     2 extended_family_id        1              1     9022 T      <NA>  
-##  3     3 hh_internal_id            1              1        5 T      <NA>  
-##  4    10 gender                    1              1        2 T      <NA>  
-##  5    11 DateOfBirthMonth          1              1       12 T      <NA>  
-##  6    12 DateOfBirthYear        1980           1980     1984 T      <NA>  
-##  7    13 sample_cohort             0              0        1 T      <NA>  
-##  8    14 race_cohort               1              1        4 T      race-~
-##  9    20 InterviewDateDay      -   7              1       31 T      <NA>  
-## 10    21 InterviewDateMonth    -   7              1       12 T      <NA>  
+##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
+##    <int> <chr>                     <int>          <int>  <int> <lgl> <chr>
+##  1     1 subject_id                    1              1   9022 T     <NA> 
+##  2     2 extended_family_id            1              1   9022 T     <NA> 
+##  3     3 hh_internal_id                1              1      5 T     <NA> 
+##  4    10 gender                        1              1      2 T     <NA> 
+##  5    11 DateOfBirthMonth              1              1     12 T     <NA> 
+##  6    12 DateOfBirthYear            1980           1980   1984 T     <NA> 
+##  7    13 cross_sectional_cohort        0              0      1 T     <NA> 
+##  8    14 race_cohort                   1              1      4 T     race~
+##  9    20 InterviewDateDay          -   7              1     31 T     <NA> 
+## 10    21 InterviewDateMonth        -   7              1     12 T     <NA> 
 ## # ... with 12 more rows
 ## # A tibble: 5 x 4
 ##      ID Label             Active Notes
@@ -308,7 +308,7 @@ ds_file$entries %>%
 ## # A tibble: 28 x 5
 ##       ID Label               Explicit Active Notes
 ##    <int> <chr>                  <int> <lgl>  <chr>
-##  1     1 RosterGen1                 1 T      <NA> 
+##  1     1 Roster                     1 T      <NA> 
 ##  2     2 ShareBiomom                1 T      <NA> 
 ##  3     3 ShareBiodad                1 T      <NA> 
 ##  4     5 DobSeparation              0 T      <NA> 
@@ -325,7 +325,7 @@ ds_file$entries %>%
 ## 1     0 No         T      <NA>                                            
 ## 2     2 Twin       T      <NA>                                            
 ## 3     3 Trip       T      <NA>                                            
-## 4     4 TwinOrTrip T      Currently Then Gen1 algorithm doesn't distingui~
+## 4     4 TwinOrTrip F      Currently Then Gen1 algorithm doesn't distingui~
 ## 5   255 DoNotKnow  T      <NA>                                            
 ## # A tibble: 4 x 4
 ##      ID Label    Active Notes
@@ -382,9 +382,9 @@ ds_file$entries %>%
 ##    <int>  <int>  <int> <int>  <int>  <dbl>  <dbl> <dbl>  <dbl> <int> <int>
 ##  1     1    - 2    - 1     2      0 NA      0     1.00  255      255   255
 ##  2     2    - 1    - 1     2      0 NA      0     1.00  255      255   255
-##  3     3     13     13  1034      1 NA      0.500 1.00    1.00     1     1
+##  3     3     13     13  1034      0 NA      0.500 1.00    1.00     1     1
 ##  4     4     13     14  2034      1  0.500  0.500 0.500   1.00     1     1
-##  5     5     14     14  1154      1 NA      0.500 1.00    1.00     1     1
+##  5     5     14     14  1154      0 NA      0.500 1.00    1.00     1     1
 ##  6     6     15     15    48      1  0.250  0.250 0.250   1.00     0     1
 ##  7     7     15     18   132      1  0.250  0.250 0.250   1.00     0     1
 ##  8     8     16     19     2      1  0.250  0.250 0.250   1.00     1     0
@@ -501,7 +501,7 @@ ds_enum %>%
 ##     gender                                                       =    10, 
 ##     DateOfBirthMonth                                             =    11, 
 ##     DateOfBirthYear                                              =    12, 
-##     sample_cohort                                                =    13, 
+##     cross_sectional_cohort                                       =    13, 
 ##     race_cohort                                                  =    14, // race-ethnicity
 ##     InterviewDateDay                                             =    20, 
 ##     InterviewDateMonth                                           =    21, 
@@ -545,7 +545,7 @@ ds_enum %>%
 ## }
 ##  
 ## public enum MarkerType {
-##     RosterGen1                                                   =     1, 
+##     Roster                                                       =     1, 
 ##     ShareBiomom                                                  =     2, 
 ##     ShareBiodad                                                  =     3, 
 ##     DobSeparation                                                =     5, 
@@ -579,7 +579,7 @@ ds_enum %>%
 ##     No                                                           =     0, 
 ##     Twin                                                         =     2, 
 ##     Trip                                                         =     3, 
-##     TwinOrTrip                                                   =     4, // Currently Then Gen1 algorithm doesn't distinguish.
+##     // TwinOrTrip                                                =     4, // Currently Then Gen1 algorithm doesn't distinguish.
 ##     DoNotKnow                                                    =   255, 
 ## }
 ##  
@@ -841,6 +841,9 @@ delete_results_process
 ## 
 ## $tblOutcome
 ## data frame with 0 columns and 0 rows
+## 
+## $tblMarker
+## data frame with 0 columns and 0 rows
 ```
 
 ```r
@@ -1068,7 +1071,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 22:50 -0600 in 17 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-18, 10:53 -0600 in 18 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1123,6 +1126,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-17 22:50:23 CST"
+## [1] "2018-01-18 10:53:37 CST"
 ```
 

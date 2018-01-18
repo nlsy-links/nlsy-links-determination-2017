@@ -409,7 +409,7 @@ ds_table &lt;- database_inventory(study)
 ds_table
 </code></pre>
 
-<pre><code>## # A tibble: 28 x 6
+<pre><code>## # A tibble: 29 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * &lt;chr&gt;       &lt;chr&gt;                       &lt;int&gt;        &lt;int&gt;  &lt;int&gt; &lt;int&gt;
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -419,10 +419,10 @@ ds_table
 ##  5 Enum        tblLUMarkerEvidence             8            4     72    16
 ##  6 Enum        tblLUMarkerType                28            5     72    16
 ##  7 Enum        tblLUMultipleBirth              5            4     72    16
-##  8 Enum        tblLURaceCohort                 3            4     72    16
+##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 18 more rows
+## # ... with 19 more rows
 </code></pre>
 
 <pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
@@ -450,18 +450,18 @@ ds_file$entries %&gt;%
 </code></pre>
 
 <pre><code>## # A tibble: 22 x 7
-##       ID Label              MinValue MinNonnegative MaxValue Active Notes 
-##    &lt;int&gt; &lt;chr&gt;                 &lt;int&gt;          &lt;int&gt;    &lt;int&gt; &lt;lgl&gt;  &lt;chr&gt; 
-##  1     1 subject_id                1              1     9022 T      &lt;NA&gt;  
-##  2     2 extended_family_id        1              1     9022 T      &lt;NA&gt;  
-##  3     3 hh_internal_id            1              1        5 T      &lt;NA&gt;  
-##  4    10 gender                    1              1        2 T      &lt;NA&gt;  
-##  5    11 DateOfBirthMonth          1              1       12 T      &lt;NA&gt;  
-##  6    12 DateOfBirthYear        1980           1980     1984 T      &lt;NA&gt;  
-##  7    13 sample_cohort             0              0        1 T      &lt;NA&gt;  
-##  8    14 race_cohort               1              1        4 T      race-~
-##  9    20 InterviewDateDay      -   7              1       31 T      &lt;NA&gt;  
-## 10    21 InterviewDateMonth    -   7              1       12 T      &lt;NA&gt;  
+##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
+##    &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;          &lt;int&gt;  &lt;int&gt; &lt;lgl&gt; &lt;chr&gt;
+##  1     1 subject_id                    1              1   9022 T     &lt;NA&gt; 
+##  2     2 extended_family_id            1              1   9022 T     &lt;NA&gt; 
+##  3     3 hh_internal_id                1              1      5 T     &lt;NA&gt; 
+##  4    10 gender                        1              1      2 T     &lt;NA&gt; 
+##  5    11 DateOfBirthMonth              1              1     12 T     &lt;NA&gt; 
+##  6    12 DateOfBirthYear            1980           1980   1984 T     &lt;NA&gt; 
+##  7    13 cross_sectional_cohort        0              0      1 T     &lt;NA&gt; 
+##  8    14 race_cohort                   1              1      4 T     race~
+##  9    20 InterviewDateDay          -   7              1     31 T     &lt;NA&gt; 
+## 10    21 InterviewDateMonth        -   7              1     12 T     &lt;NA&gt; 
 ## # ... with 12 more rows
 ## # A tibble: 5 x 4
 ##      ID Label             Active Notes
@@ -491,7 +491,7 @@ ds_file$entries %&gt;%
 ## # A tibble: 28 x 5
 ##       ID Label               Explicit Active Notes
 ##    &lt;int&gt; &lt;chr&gt;                  &lt;int&gt; &lt;lgl&gt;  &lt;chr&gt;
-##  1     1 RosterGen1                 1 T      &lt;NA&gt; 
+##  1     1 Roster                     1 T      &lt;NA&gt; 
 ##  2     2 ShareBiomom                1 T      &lt;NA&gt; 
 ##  3     3 ShareBiodad                1 T      &lt;NA&gt; 
 ##  4     5 DobSeparation              0 T      &lt;NA&gt; 
@@ -508,7 +508,7 @@ ds_file$entries %&gt;%
 ## 1     0 No         T      &lt;NA&gt;                                            
 ## 2     2 Twin       T      &lt;NA&gt;                                            
 ## 3     3 Trip       T      &lt;NA&gt;                                            
-## 4     4 TwinOrTrip T      Currently Then Gen1 algorithm doesn&#39;t distingui~
+## 4     4 TwinOrTrip F      Currently Then Gen1 algorithm doesn&#39;t distingui~
 ## 5   255 DoNotKnow  T      &lt;NA&gt;                                            
 ## # A tibble: 4 x 4
 ##      ID Label    Active Notes
@@ -565,9 +565,9 @@ ds_file$entries %&gt;%
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
 ##  1     1    - 2    - 1     2      0 NA      0     1.00  255      255   255
 ##  2     2    - 1    - 1     2      0 NA      0     1.00  255      255   255
-##  3     3     13     13  1034      1 NA      0.500 1.00    1.00     1     1
+##  3     3     13     13  1034      0 NA      0.500 1.00    1.00     1     1
 ##  4     4     13     14  2034      1  0.500  0.500 0.500   1.00     1     1
-##  5     5     14     14  1154      1 NA      0.500 1.00    1.00     1     1
+##  5     5     14     14  1154      0 NA      0.500 1.00    1.00     1     1
 ##  6     6     15     15    48      1  0.250  0.250 0.250   1.00     0     1
 ##  7     7     15     18   132      1  0.250  0.250 0.250   1.00     0     1
 ##  8     8     16     19     2      1  0.250  0.250 0.250   1.00     1     0
@@ -678,7 +678,7 @@ ds_enum %&gt;%
 ##     gender                                                       =    10, 
 ##     DateOfBirthMonth                                             =    11, 
 ##     DateOfBirthYear                                              =    12, 
-##     sample_cohort                                                =    13, 
+##     cross_sectional_cohort                                       =    13, 
 ##     race_cohort                                                  =    14, // race-ethnicity
 ##     InterviewDateDay                                             =    20, 
 ##     InterviewDateMonth                                           =    21, 
@@ -722,7 +722,7 @@ ds_enum %&gt;%
 ## }
 ##  
 ## public enum MarkerType {
-##     RosterGen1                                                   =     1, 
+##     Roster                                                       =     1, 
 ##     ShareBiomom                                                  =     2, 
 ##     ShareBiodad                                                  =     3, 
 ##     DobSeparation                                                =     5, 
@@ -756,7 +756,7 @@ ds_enum %&gt;%
 ##     No                                                           =     0, 
 ##     Twin                                                         =     2, 
 ##     Trip                                                         =     3, 
-##     TwinOrTrip                                                   =     4, // Currently Then Gen1 algorithm doesn&#39;t distinguish.
+##     // TwinOrTrip                                                =     4, // Currently Then Gen1 algorithm doesn&#39;t distinguish.
 ##     DoNotKnow                                                    =   255, 
 ## }
 ##  
@@ -1010,6 +1010,9 @@ delete_results_process
 ## 
 ## $tblOutcome
 ## data frame with 0 columns and 0 rows
+## 
+## $tblMarker
+## data frame with 0 columns and 0 rows
 </code></pre>
 
 <pre><code class="r"># Delete metadata tables
@@ -1218,7 +1221,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 22:50 -0600 in 17 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-18, 10:53 -0600 in 18 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1268,7 +1271,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-17 22:50:23 CST&quot;
+<pre><code>## [1] &quot;2018-01-18 10:53:37 CST&quot;
 </code></pre>
 
 </body>

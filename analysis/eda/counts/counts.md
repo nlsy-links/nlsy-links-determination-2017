@@ -1955,7 +1955,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblMarker               |     5,038|           10|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            8|
-|Process     |tblRelatedValues        |         0|           23|
+|Process     |tblRelatedValues        |     2,519|           23|
 |Process     |tblResponse             | 1,165,754|            8|
 |Process     |tblRoster               |     5,038|           13|
 |Process     |tblSubject              |     8,984|            5|
@@ -1972,7 +1972,7 @@ This report documents the basic properties of the input & output tables kinship 
 |   10|gender                           |        1|              1|        2|TRUE   |NA                                                                        |
 |   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA                                                                        |
 |   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA                                                                        |
-|   13|sample_cohort                    |        0|              0|        1|TRUE   |NA                                                                        |
+|   13|cross_sectional_cohort           |        0|              0|        1|TRUE   |NA                                                                        |
 |   14|race_cohort                      |        1|              1|        4|TRUE   |race-ethnicity                                                            |
 |   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA                                                                        |
 |   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA                                                                        |
@@ -2329,7 +2329,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R1209400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1209401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1209402      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
-|R1235800      |      13|sample_cohort                    |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1235800      |      13|cross_sectional_cohort           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1315800      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1315900      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
 |R1316000      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
@@ -2453,15 +2453,15 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblRosterAssignment     |             72|            16|
 |Metadata    |tblVariable             |            144|           120|
-|Process     |tblMarker               |            528|           344|
+|Process     |tblMarker               |            528|           352|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
-|Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |         60,936|        58,056|
+|Process     |tblRelatedValues        |            272|            88|
+|Process     |tblResponse             |         68,552|        65,312|
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
-|Process     |tblSubjectDetails       |            784|           544|
-|Process     |tblSurveyTime           |          5,456|         4,832|
+|Process     |tblSubjectDetails       |            720|           544|
+|Process     |tblSurveyTime           |          5,584|         4,904|
 
 
 # Session Information
@@ -2553,4 +2553,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-18, 10:47 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-18, 11:14 -0600 in 2 seconds.
