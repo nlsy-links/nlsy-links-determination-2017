@@ -80,19 +80,19 @@ namespace Nls.Base97 {
             sw.Start();
             Retrieve.VerifyResponsesExistForItem(_items, _ds);
             Int32 recordsAddedTotal = 0;
-            //_ds.tblSubjectDetails.BeginLoadData();
+            _ds.tblSubjectDetails.BeginLoadData();
             Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_ds);
-            //Parallel.ForEach(extendedIDs, ( extendedID ) => {//
-            foreach( Int16 extendedID in extendedIDs ) {
+            Parallel.ForEach(extendedIDs, ( extendedID ) => {//
+                //foreach( Int16 extendedID in extendedIDs ) {
                 LinksDataSet.tblResponseDataTable dtExtended = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, minRowCount, _ds.tblResponse);
                 LinksDataSet.tblSubjectRow[] subjectsInExtendedFamily = Retrieve.SubjectsInExtendFamily(extendedID, _ds.tblSubject);
                 foreach( LinksDataSet.tblSubjectRow drSubject in subjectsInExtendedFamily ) {
                     Int32 recordsAddedForLoop = ProcessSubject(drSubject, dtExtended, subjectsInExtendedFamily);
                     Interlocked.Add(ref recordsAddedTotal, recordsAddedForLoop);
                 }
-            }
-            //});
-            //_ds.tblSubjectDetails.EndLoadData();
+                //}
+            });
+            _ds.tblSubjectDetails.EndLoadData();
             Trace.Assert(recordsAddedTotal == Constants.Gen1Count, "The number of 97 subjects should be correct.");
 
             sw.Stop();
@@ -106,15 +106,15 @@ namespace Nls.Base97 {
             EnumResponses.RaceCohort race = (EnumResponses.RaceCohort)(Retrieve.Response(Item.race_cohort, drSubject.SubjectTag, dtExtended));
             DateTime? mob = Mob.Retrieve(drSubject, dtExtended);
 
-            //byte siblingCountInNls = DetermineSiblingCountInNls(drSubject);
-            //BirthCondition condition = DetermineNlsBirthOrder(drSubject, dtExtended, siblingCountInNls);
-            //byte birthOrderInNls = condition.Order;
-            //byte similarAgeCount = condition.SimilarAgeCount;
-            //bool hasMzPossibly = condition.HasMzPossibly;
+            byte siblingPotentialCountInNls = DetermineSiblingCountInNls(drSubject);
+            BirthCondition condition = DetermineBirthCondition(drSubject, dtExtended, siblingPotentialCountInNls);
+            byte birthOrderInNls = condition.Order;
+            byte similarAgeCount = condition.SimilarAgeCount;
+            bool hasMzPossibly = condition.HasMzPossibly;
 
-            //LastSurvey lastSurvey = LastSurveyCompleted(subjectTag);//This call takes 12 minutes total.
-            Int16? lastSurveyYear = 1999;// lastSurvey.LastSurveyYear;
-            float? lastAge = 66;// lastSurvey.AgeAtLastSurvey;
+            LastSurvey lastSurvey = LastSurveyCompleted(subjectTag);//This call takes 12 minutes total.
+            Int16? lastSurveyYear = lastSurvey.LastSurveyYear;
+            float? lastAge = lastSurvey.AgeAtLastSurvey;
 
             //byte? kidCountBio = DetermineBioKidCount(drSubject, dtExtended, lastAge);
             //byte? kidCountInNls = DetermineNlsKidCount(drSubject, subjectsInExtendedFamily);
@@ -126,7 +126,7 @@ namespace Nls.Base97 {
             //bool? isBiodadDead = biodadDeath.IsDead;
             //DateTime? biodadDeathDate = biodadDeath.DeathDate;
 
-            AddRow(subjectTag, cross_section, race, mob, lastSurveyYear, lastAge);
+            AddRow(subjectTag, cross_section, race, siblingPotentialCountInNls, birthOrderInNls, similarAgeCount, hasMzPossibly, mob, lastSurveyYear, lastAge);
             //AddRow(subjectTag, cross_section, race, siblingCountInNls, birthOrderInNls, similarAgeCount, hasMzPossibly, kidCountBio, kidCountInNls, mob, lastSurveyYear, lastAge, isDead, deathDate, isBiodadDead, biodadDeathDate);
             return 1;
         }
@@ -171,90 +171,46 @@ namespace Nls.Base97 {
 
         ////    return new DeathCondition(null, null);
         ////}
-        ////private byte DetermineSiblingCountInNls( LinksDataSet.tblSubjectRow drSubject ) {
-        ////    string select = string.Format("{0}={1}", drSubject.ExtendedID, _ds.tblSubject.ExtendedIDColumn.ColumnName);
-        ////    LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
-        ////    Trace.Assert(drs.Length > 0, "At least one row should be returned.");
-        ////    switch( (Sample)drSubject.Generation ) {
-        ////        case Sample.Nlsy79Gen1:
-        ////            return (byte)drs.Length;
-        ////        case Sample.Nlsy79Gen2:
-        ////            byte siblingCount = 0;
-        ////            Int32 motherID = CommonCalculations.MotherIDOfGen2Subject(drSubject.SubjectTag);
+        private byte DetermineSiblingCountInNls( LinksDataSet.tblSubjectRow drSubject ) {
+            string select = string.Format("{0}={1}", drSubject.ExtendedID, _ds.tblSubject.ExtendedIDColumn.ColumnName);
+            LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
+            Trace.Assert(drs.Length > 0, "At least one row should be returned.");
 
-        ////            foreach( LinksDataSet.tblSubjectRow dr in drs ) {
-        ////                if( motherID == CommonCalculations.MotherIDOfGen2Subject(dr.SubjectTag) )
-        ////                    siblingCount += 1;
-        ////            }
-        ////            return siblingCount;
-        ////        default:
-        ////            throw new InvalidOperationException("The Generation value was not recognized.");
-        ////    }
-        ////}
-        ////private BirthCondition DetermineNlsBirthOrder( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, byte siblingCountInNls ) {//, LinksDataSet.tblResponseDataTable dtResponse 
-        ////    string select = string.Format("{0}={1}", drSubject.ExtendedID, dtExtended.ExtendedIDColumn.ColumnName);
-        ////    LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
-        ////    byte orderTally = 1;
-        ////    byte similarAgeTally = 0;
-        ////    bool hasMzPossibly = false;
-        ////    DateTime? mobOfSubject = Mob.Retrieve(drSubject, dtExtended); //There shouldn't be any missing Mobs in Gen1.
+            return (byte)drs.Length;
 
-        ////    switch( (Sample)drSubject.Generation ) {
-        ////        case Sample.Nlsy79Gen1:
-        ////            Trace.Assert(drs.Length == siblingCountInNls, "The number of returned rows should match 'siblingCountInNls'.");
+        }
+        private BirthCondition DetermineBirthCondition( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, byte siblingPotentialCountInNls ) {//, LinksDataSet.tblResponseDataTable dtResponse 
+            string select = string.Format("{0}={1}", drSubject.ExtendedID, dtExtended.ExtendedIDColumn.ColumnName);
+            LinksDataSet.tblSubjectRow[] drs = (LinksDataSet.tblSubjectRow[])_ds.tblSubject.Select(select);
+            byte orderTally = 1;
+            byte similarAgeTally = 0;
+            bool hasMzPossibly = false;
+            DateTime? mobOfSubject = Mob.Retrieve(drSubject, dtExtended); //There shouldn't be any missing Mobs in Gen1.
 
-        ////            foreach( LinksDataSet.tblSubjectRow dr in drs ) {
-        ////                DateTime mobOfSibling = Mob.Retrieve(dr, dtExtended).Value;//There aren't any missings Mobs in Gen1.
-        ////                double ageDifferenceInDays = mobOfSubject.Value.Subtract(mobOfSibling).TotalDays;
-        ////                if( ageDifferenceInDays > 0 )//This should account for twins and the subject himself.
-        ////                    orderTally += 1;
-        ////                if( Math.Abs(ageDifferenceInDays) <= Constants.MaxDaysBetweenTwinBirths ) {
-        ////                    similarAgeTally += 1;//This counts themselves; eg, a only child will still have a value of one.
-        ////                    hasMzPossibly = hasMzPossibly || DetermineMzPossibility(drSubject, dr);
-        ////                }
-        ////            }
-        ////            break;
-        ////        case Sample.Nlsy79Gen2:
-        ////            Trace.Assert(drs.Length >= siblingCountInNls, "The number of returned rows should be equal or greater than 'siblingCountInNls'.");
-        ////            Int32 motherIDV1 = CommonCalculations.MotherIDOfGen2Subject(drSubject.SubjectTag);
-        ////            Int32 motherIDV2 = Retrieve.Response(Item.Gen1MomOfGen2Subject, drSubject.SubjectTag, dtExtended);
-        ////            Trace.Assert(motherIDV1 == motherIDV2, "The mother IDs should match.");
 
-        ////            if( OverridesGen2.MissingBirthOrderInvalidSkip.Contains(drSubject.SubjectTag) ) {
-        ////                Trace.Assert(Mob.Retrieve(drSubject, dtExtended) == null, "Subject should be overriden here only if their MOB is missing in the NLS.");
-        ////                orderTally = (byte)CommonFunctions.LastTwoDigitsOfGen2SubjectID(drSubject);
-        ////                similarAgeTally = 1;
-        ////            } else {
-        ////                foreach( LinksDataSet.tblSubjectRow dr in drs ) {
-        ////                    if( CommonCalculations.Gen2SubjectsHaveCommonMother(drSubject.SubjectID, dr.SubjectID) ) {
-        ////                        DateTime mobOfSibling = Mob.Retrieve(dr, dtExtended).Value;//There aren't any missings Mobs in Gen1.
-        ////                        double ageDifferenceInDays = mobOfSubject.Value.Subtract(mobOfSibling).TotalDays;
-        ////                        if( ageDifferenceInDays > 0 )//This should account for twins and the subject himself.
-        ////                            orderTally += 1; //Twins will be tied.  This contrasts with Variable C00058.00 (which had problems anyway, as of August 2011)
-        ////                        if( Math.Abs(ageDifferenceInDays) <= Constants.MaxDaysBetweenTwinBirths ) {
-        ////                            similarAgeTally += 1;//This counts themselves; eg, a only child will still have a value of one.
-        ////                            hasMzPossibly = hasMzPossibly || DetermineMzPossibility(drSubject, dr);
-        ////                        }
-        ////                    }
-        ////                }
-        ////                //Int32 xrndMachineCheck = Retrieve.Response(Item.BirthOrderInNlsGen2, drSubject.SubjectTag, dtExtended);//C00058.00
-        ////                //if ( xrndMachineCheck != orderTally ) Debug.WriteLine("SubjectTag {0}: orderTally={1}, xrnd={2}", drSubject.SubjectTag, orderTally, xrndMachineCheck);
-        ////                //return orderTally;
-        ////            }
-        ////            break;
-        ////        default:
-        ////            throw new InvalidOperationException("The Generation value was not recognized.");
-        ////    }
-        ////    return new BirthCondition(orderTally, similarAgeTally, hasMzPossibly);
-        ////}
-        //private static bool DetermineMzPossibility( LinksDataSet.tblSubjectRow dr1, LinksDataSet.tblSubjectRow dr2 ) {
-        //    if( dr1.SubjectTag == dr2.SubjectTag ) {
-        //        return false;//The rows point to the same subject;
-        //    } else if( dr1.Gender != dr2.Gender ) {
-        //        return false; //Mzs can't have different genders.
-        //    }
-        //    return true;
-        //}
+            Trace.Assert(drs.Length == siblingPotentialCountInNls, "The number of returned rows should match 'siblingCountInNls'.");
+
+            foreach( LinksDataSet.tblSubjectRow dr in drs ) {
+                DateTime mobOfSibling = Mob.Retrieve(dr, dtExtended).Value;//There aren't any missings Mobs in Gen1.
+                double ageDifferenceInDays = mobOfSubject.Value.Subtract(mobOfSibling).TotalDays;
+                if( ageDifferenceInDays > 0 )//This should account for twins and the subject himself.
+                    orderTally += 1;
+                if( Math.Abs(ageDifferenceInDays) <= Constants.MaxDaysBetweenTwinBirths ) {
+                    similarAgeTally += 1;//This counts themselves; eg, a only child will still have a value of one.
+                    hasMzPossibly = hasMzPossibly || DetermineMzPossibility(drSubject, dr);
+                }
+            }
+
+            return new BirthCondition(orderTally, similarAgeTally, hasMzPossibly);
+        }
+        private static bool DetermineMzPossibility( LinksDataSet.tblSubjectRow dr1, LinksDataSet.tblSubjectRow dr2 ) {
+            if( dr1.SubjectTag == dr2.SubjectTag ) {
+                return false;//The rows point to the same subject;
+            } else if( dr1.Gender != dr2.Gender ) {
+                return false; //Mzs can't have different genders.
+            }
+            return true;
+        }
         ////private static byte? DetermineBioKidCount( LinksDataSet.tblSubjectRow drSubject, LinksDataSet.tblResponseDataTable dtExtended, float? lastAge ) {
         ////    switch( (Sample)drSubject.Generation ) {
         ////        case Sample.Nlsy79Gen1:
@@ -294,21 +250,21 @@ namespace Nls.Base97 {
         ////    }
         ////}
 
-        //private LastSurvey LastSurveyCoupleted( Int32 subjectTag ) {
-        //    string select = string.Format("{0}={1} AND {2}=1",
-        //        subjectTag, _ds.tblSurveyTime.SubjectTagColumn.ColumnName,
-        //        _ds.tblSurveyTime.SurveyTakenColumn.ColumnName);
-        //    string sort = _ds.tblSurveyTime.SurveyYearColumn.ColumnName + " DESC";
-        //    LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])_ds.tblSurveyTime.Select(select, sort);
-        //    if( drs.Length <= 0 )
-        //        return new LastSurvey(null, null);
-        //    else
-        //        return new LastSurvey(drs[0].SurveyYear, (float)drs[0].AgeCalculateYears); //There's only one case where the calculated age is missing; in this case it's not their last survey, so it doesn't matter here.
-        //}
+        private LastSurvey LastSurveyCompleted( Int32 subjectTag ) {
+            string select = string.Format("{0}={1} AND {2}=1",
+                subjectTag, _ds.tblSurveyTime.SubjectTagColumn.ColumnName,
+                _ds.tblSurveyTime.SurveyTakenColumn.ColumnName);
+            string sort = _ds.tblSurveyTime.SurveyYearColumn.ColumnName + " DESC";
+            LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])_ds.tblSurveyTime.Select(select, sort);
+            if( drs.Length <= 0 )
+                return new LastSurvey(null, null);
+            else
+                return new LastSurvey(drs[0].SurveyYear, (float)drs[0].AgeCalculateYears); //There's only one case where the calculated age is missing; in this case it's not their last survey, so it doesn't matter here.
+        }
         //private void AddRow( Int32 subjectTag, EnumResponses.RaceCohort raceCohort, byte siblingCountInNls, byte birthOrderInNls, byte similarAgeCount, bool hasMzPossibly, byte? kidCountBio, byte? kidCountInNls,
         //    DateTime? mob, Int16? lastSurveyYearCompleted, float? ageAtLastSurvey,
         //    bool isDead, DateTime? deathDate, bool? isBiodadDead, DateTime? biodadDeathDate ) {
-        private void AddRow( Int32 subjectTag, bool cross_sectional, EnumResponses.RaceCohort raceCohort, //byte siblingCountInNls, byte birthOrderInNls, byte similarAgeCount, bool hasMzPossibly, byte? kidCountBio, byte? kidCountInNls,
+        private void AddRow( Int32 subjectTag, bool cross_sectional, EnumResponses.RaceCohort raceCohort, byte siblingPotentialCountInNls, byte birthOrderInNls, byte similarAgeCount, bool hasMzPossibly, //byte? kidCountBio, byte? kidCountInNls,
             DateTime? mob, Int16? lastSurveyYearCompleted, float? ageAtLastSurvey//,
             //bool isDead, DateTime? deathDate, bool? isBiodadDead, DateTime? biodadDeathDate 
             ) {
@@ -318,10 +274,10 @@ namespace Nls.Base97 {
                 drNew.SubjectTag = subjectTag;
                 drNew.CrossSectionalCohort = cross_sectional;
                 drNew.RaceCohort = Convert.ToByte(raceCohort);
-                drNew.SiblingCountInNls = 0;// siblingCountInNls;
-                drNew.BirthOrderInNls = 14;// birthOrderInNls;
-                drNew.SimilarAgeCount = 0;// similarAgeCount;
-                drNew.HasMzPossibly = true;// hasMzPossibly;
+                drNew.SiblingPotentialCountInNls = siblingPotentialCountInNls;
+                drNew.BirthOrderInNls = birthOrderInNls;
+                drNew.SimilarAgeCount = similarAgeCount;
+                drNew.HasMzPossibly = hasMzPossibly;
 
 
                 drNew.KidCountBio = 11;
@@ -330,16 +286,9 @@ namespace Nls.Base97 {
 
 
                 drNew.Mob = mob.Value;
-                //if( mob.HasValue ) drNew.Mob = mob.Value;
-                //else drNew.SetMobNull();
+                drNew.LastSurveyYearCompleted = lastSurveyYearCompleted.Value;
+                drNew.AgeAtLastSurvey = (float)ageAtLastSurvey;
 
-                drNew.LastSurveyYearCompleted = lastSurveyYearCompleted.Value; 
-                //if( lastSurveyYearCompleted.HasValue ) drNew.LastSurveyYearCompleted = lastSurveyYearCompleted.Value;
-                //else drNew.SetLastSurveyYearCompletedNull();
-
-                drNew.AgeAtLastSurvey = (float)ageAtLastSurvey; 
-                //if( ageAtLastSurvey.HasValue ) drNew.AgeAtLastSurvey = (float)ageAtLastSurvey;
-                //else drNew.SetAgeAtLastSurveyNull();
 
                 drNew.IsDead = true;// isDead;
 

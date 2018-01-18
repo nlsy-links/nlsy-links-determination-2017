@@ -2458,7 +2458,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblResponse             |         60,936|        58,056|
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
-|Process     |tblSubjectDetails       |            720|           544|
+|Process     |tblSubjectDetails       |            784|           544|
 |Process     |tblSurveyTime           |          5,456|         4,832|
 
 
@@ -2551,4 +2551,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-18, 00:01 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-18, 00:55 -0600 in 2 seconds.

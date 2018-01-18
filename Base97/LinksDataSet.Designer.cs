@@ -5144,7 +5144,7 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnHasMzPossibly;
             
-            private global::System.Data.DataColumn columnSiblingCountInNls;
+            private global::System.Data.DataColumn columnSiblingPotentialCountInNls;
             
             private global::System.Data.DataColumn columnBirthOrderInNls;
             
@@ -5257,9 +5257,9 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SiblingCountInNlsColumn {
+            public global::System.Data.DataColumn SiblingPotentialCountInNlsColumn {
                 get {
-                    return this.columnSiblingCountInNls;
+                    return this.columnSiblingPotentialCountInNls;
                 }
             }
             
@@ -5348,7 +5348,7 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSubjectDetailsRow AddtblSubjectDetailsRow(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, System.DateTime DeathDate, bool IsBiodadDead, System.DateTime BiodadDeathDate) {
+            public tblSubjectDetailsRow AddtblSubjectDetailsRow(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingPotentialCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, System.DateTime DeathDate, bool IsBiodadDead, System.DateTime BiodadDeathDate) {
                 tblSubjectDetailsRow rowtblSubjectDetailsRow = ((tblSubjectDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SubjectTag,
@@ -5359,7 +5359,7 @@ namespace Nls.Base97 {
                         AgeAtLastSurvey,
                         SimilarAgeCount,
                         HasMzPossibly,
-                        SiblingCountInNls,
+                        SiblingPotentialCountInNls,
                         BirthOrderInNls,
                         KidCountBio,
                         IsDead,
@@ -5403,7 +5403,7 @@ namespace Nls.Base97 {
                 this.columnAgeAtLastSurvey = base.Columns["AgeAtLastSurvey"];
                 this.columnSimilarAgeCount = base.Columns["SimilarAgeCount"];
                 this.columnHasMzPossibly = base.Columns["HasMzPossibly"];
-                this.columnSiblingCountInNls = base.Columns["SiblingCountInNls"];
+                this.columnSiblingPotentialCountInNls = base.Columns["SiblingPotentialCountInNls"];
                 this.columnBirthOrderInNls = base.Columns["BirthOrderInNls"];
                 this.columnKidCountBio = base.Columns["KidCountBio"];
                 this.columnIsDead = base.Columns["IsDead"];
@@ -5431,8 +5431,8 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnSimilarAgeCount);
                 this.columnHasMzPossibly = new global::System.Data.DataColumn("HasMzPossibly", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHasMzPossibly);
-                this.columnSiblingCountInNls = new global::System.Data.DataColumn("SiblingCountInNls", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSiblingCountInNls);
+                this.columnSiblingPotentialCountInNls = new global::System.Data.DataColumn("SiblingPotentialCountInNls", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSiblingPotentialCountInNls);
                 this.columnBirthOrderInNls = new global::System.Data.DataColumn("BirthOrderInNls", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBirthOrderInNls);
                 this.columnKidCountBio = new global::System.Data.DataColumn("KidCountBio", typeof(byte), null, global::System.Data.MappingType.Element);
@@ -5456,7 +5456,7 @@ namespace Nls.Base97 {
                 this.columnAgeAtLastSurvey.AllowDBNull = false;
                 this.columnSimilarAgeCount.AllowDBNull = false;
                 this.columnHasMzPossibly.AllowDBNull = false;
-                this.columnSiblingCountInNls.AllowDBNull = false;
+                this.columnSiblingPotentialCountInNls.AllowDBNull = false;
                 this.columnBirthOrderInNls.AllowDBNull = false;
                 this.columnKidCountBio.AllowDBNull = false;
                 this.columnIsDead.AllowDBNull = false;
@@ -7865,12 +7865,12 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte SiblingCountInNls {
+            public byte SiblingPotentialCountInNls {
                 get {
-                    return ((byte)(this[this.tabletblSubjectDetails.SiblingCountInNlsColumn]));
+                    return ((byte)(this[this.tabletblSubjectDetails.SiblingPotentialCountInNlsColumn]));
                 }
                 set {
-                    this[this.tabletblSubjectDetails.SiblingCountInNlsColumn] = value;
+                    this[this.tabletblSubjectDetails.SiblingPotentialCountInNlsColumn] = value;
                 }
             }
             
@@ -12865,7 +12865,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             tableMapping.ColumnMappings.Add("AgeAtLastSurvey", "AgeAtLastSurvey");
             tableMapping.ColumnMappings.Add("SimilarAgeCount", "SimilarAgeCount");
             tableMapping.ColumnMappings.Add("HasMzPossibly", "HasMzPossibly");
-            tableMapping.ColumnMappings.Add("SiblingCountInNls", "SiblingCountInNls");
+            tableMapping.ColumnMappings.Add("SiblingPotentialCountInNls", "SiblingPotentialCountInNls");
             tableMapping.ColumnMappings.Add("BirthOrderInNls", "BirthOrderInNls");
             tableMapping.ColumnMappings.Add("KidCountBio", "KidCountBio");
             tableMapping.ColumnMappings.Add("IsDead", "IsDead");
@@ -12875,7 +12875,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblSubjectDetails] WHERE (([SubjectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([Mob] = @Original_Mob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted) AND ([AgeAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCount] = @Original_SimilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ([SiblingCountInNls] = @Original_SiblingCountInNls) AND ([BirthOrderInNls] = @Original_BirthOrderInNls) AND ([KidCountBio] = @Original_KidCountBio) AND ([IsDead] = @Original_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] = @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL) OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblSubjectDetails] WHERE (([SubjectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([Mob] = @Original_Mob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted) AND ([AgeAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCount] = @Original_SimilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ([SiblingPotentialCountInNls] = @Original_SiblingPotentialCountInNls) AND ([BirthOrderInNls] = @Original_BirthOrderInNls) AND ([KidCountBio] = @Original_KidCountBio) AND ([IsDead] = @Original_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] = @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL) OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDate)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12885,7 +12885,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingPotentialCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingPotentialCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12897,8 +12897,8 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BiodadDeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblSubjectDetails] ([SubjectTag], [RaceCohort], [CrossSectionalCohort], [Mob], [LastSurveyYearCompleted], [AgeAtLastSurvey], [SimilarAgeCount], [HasMzPossibly], [SiblingCountInNls], [BirthOrderInNls], [KidCountBio], [IsDead], [DeathDate], [IsBiodadDead], [BiodadDeathDate]) VALUES (@SubjectTag, @RaceCohort, @CrossSectionalCohort, @Mob, @LastSurveyYearCompleted, @AgeAtLastSurvey, @SimilarAgeCount, @HasMzPossibly, @SiblingCountInNls, @BirthOrderInNls, @KidCountBio, @IsDead, @DeathDate, @IsBiodadDead, @BiodadDeathDate);
-SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails WHERE (SubjectTag = @SubjectTag)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblSubjectDetails] ([SubjectTag], [RaceCohort], [CrossSectionalCohort], [Mob], [LastSurveyYearCompleted], [AgeAtLastSurvey], [SimilarAgeCount], [HasMzPossibly], [SiblingPotentialCountInNls], [BirthOrderInNls], [KidCountBio], [IsDead], [DeathDate], [IsBiodadDead], [BiodadDeathDate]) VALUES (@SubjectTag, @RaceCohort, @CrossSectionalCohort, @Mob, @LastSurveyYearCompleted, @AgeAtLastSurvey, @SimilarAgeCount, @HasMzPossibly, @SiblingPotentialCountInNls, @BirthOrderInNls, @KidCountBio, @IsDead, @DeathDate, @IsBiodadDead, @BiodadDeathDate);
+SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingPotentialCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails WHERE (SubjectTag = @SubjectTag)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12908,7 +12908,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingPotentialCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingPotentialCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12921,24 +12921,25 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                 " = @RaceCohort, [CrossSectionalCohort] = @CrossSectionalCohort, [Mob] = @Mob, [L" +
                 "astSurveyYearCompleted] = @LastSurveyYearCompleted, [AgeAtLastSurvey] = @AgeAtLa" +
                 "stSurvey, [SimilarAgeCount] = @SimilarAgeCount, [HasMzPossibly] = @HasMzPossibly" +
-                ", [SiblingCountInNls] = @SiblingCountInNls, [BirthOrderInNls] = @BirthOrderInNls" +
-                ", [KidCountBio] = @KidCountBio, [IsDead] = @IsDead, [DeathDate] = @DeathDate, [I" +
-                "sBiodadDead] = @IsBiodadDead, [BiodadDeathDate] = @BiodadDeathDate WHERE (([Subj" +
-                "ectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([" +
-                "CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([Mob] = @Original_M" +
-                "ob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted) AND ([Ag" +
-                "eAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCount] = @Original_S" +
-                "imilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ([SiblingCou" +
-                "ntInNls] = @Original_SiblingCountInNls) AND ([BirthOrderInNls] = @Original_Birth" +
-                "OrderInNls) AND ([KidCountBio] = @Original_KidCountBio) AND ([IsDead] = @Origina" +
-                "l_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] =" +
-                " @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL" +
-                ") OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = " +
-                "1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDa" +
-                "te)));\r\nSELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYear" +
-                "Completed, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, B" +
-                "irthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FR" +
-                "OM Process.tblSubjectDetails WHERE (SubjectTag = @SubjectTag)";
+                ", [SiblingPotentialCountInNls] = @SiblingPotentialCountInNls, [BirthOrderInNls] " +
+                "= @BirthOrderInNls, [KidCountBio] = @KidCountBio, [IsDead] = @IsDead, [DeathDate" +
+                "] = @DeathDate, [IsBiodadDead] = @IsBiodadDead, [BiodadDeathDate] = @BiodadDeath" +
+                "Date WHERE (([SubjectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_" +
+                "RaceCohort) AND ([CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([" +
+                "Mob] = @Original_Mob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearC" +
+                "ompleted) AND ([AgeAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCo" +
+                "unt] = @Original_SimilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly" +
+                ") AND ([SiblingPotentialCountInNls] = @Original_SiblingPotentialCountInNls) AND " +
+                "([BirthOrderInNls] = @Original_BirthOrderInNls) AND ([KidCountBio] = @Original_K" +
+                "idCountBio) AND ([IsDead] = @Original_IsDead) AND ((@IsNull_DeathDate = 1 AND [D" +
+                "eathDate] IS NULL) OR ([DeathDate] = @Original_DeathDate)) AND ((@IsNull_IsBioda" +
+                "dDead = 1 AND [IsBiodadDead] IS NULL) OR ([IsBiodadDead] = @Original_IsBiodadDea" +
+                "d)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([Biodad" +
+                "DeathDate] = @Original_BiodadDeathDate)));\r\nSELECT SubjectTag, RaceCohort, Cross" +
+                "SectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount," +
+                " HasMzPossibly, SiblingPotentialCountInNls, BirthOrderInNls, KidCountBio, IsDead" +
+                ", DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails WHERE " +
+                "(SubjectTag = @SubjectTag)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12948,7 +12949,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingPotentialCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingPotentialCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12963,7 +12964,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingPotentialCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingPotentialCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12988,7 +12989,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails";
+            this._commandCollection[0].CommandText = @"SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingPotentialCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13049,7 +13050,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_SubjectTag, byte Original_RaceCohort, bool Original_CrossSectionalCohort, System.DateTime Original_Mob, short Original_LastSurveyYearCompleted, double Original_AgeAtLastSurvey, byte Original_SimilarAgeCount, bool Original_HasMzPossibly, byte Original_SiblingCountInNls, byte Original_BirthOrderInNls, byte Original_KidCountBio, bool Original_IsDead, global::System.Nullable<global::System.DateTime> Original_DeathDate, global::System.Nullable<bool> Original_IsBiodadDead, global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
+        public virtual int Delete(int Original_SubjectTag, byte Original_RaceCohort, bool Original_CrossSectionalCohort, System.DateTime Original_Mob, short Original_LastSurveyYearCompleted, double Original_AgeAtLastSurvey, byte Original_SimilarAgeCount, bool Original_HasMzPossibly, byte Original_SiblingPotentialCountInNls, byte Original_BirthOrderInNls, byte Original_KidCountBio, bool Original_IsDead, global::System.Nullable<global::System.DateTime> Original_DeathDate, global::System.Nullable<bool> Original_IsBiodadDead, global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SubjectTag));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((byte)(Original_RaceCohort));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_CrossSectionalCohort));
@@ -13058,7 +13059,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this.Adapter.DeleteCommand.Parameters[5].Value = ((double)(Original_AgeAtLastSurvey));
             this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_SimilarAgeCount));
             this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_HasMzPossibly));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((byte)(Original_SiblingCountInNls));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((byte)(Original_SiblingPotentialCountInNls));
             this.Adapter.DeleteCommand.Parameters[9].Value = ((byte)(Original_BirthOrderInNls));
             this.Adapter.DeleteCommand.Parameters[10].Value = ((byte)(Original_KidCountBio));
             this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_IsDead));
@@ -13106,7 +13107,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, global::System.Nullable<global::System.DateTime> DeathDate, global::System.Nullable<bool> IsBiodadDead, global::System.Nullable<global::System.DateTime> BiodadDeathDate) {
+        public virtual int Insert(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingPotentialCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, global::System.Nullable<global::System.DateTime> DeathDate, global::System.Nullable<bool> IsBiodadDead, global::System.Nullable<global::System.DateTime> BiodadDeathDate) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
             this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(RaceCohort));
             this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(CrossSectionalCohort));
@@ -13115,7 +13116,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this.Adapter.InsertCommand.Parameters[5].Value = ((double)(AgeAtLastSurvey));
             this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(SimilarAgeCount));
             this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(HasMzPossibly));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(SiblingCountInNls));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(SiblingPotentialCountInNls));
             this.Adapter.InsertCommand.Parameters[9].Value = ((byte)(BirthOrderInNls));
             this.Adapter.InsertCommand.Parameters[10].Value = ((byte)(KidCountBio));
             this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(IsDead));
@@ -13166,7 +13167,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     double AgeAtLastSurvey, 
                     byte SimilarAgeCount, 
                     bool HasMzPossibly, 
-                    byte SiblingCountInNls, 
+                    byte SiblingPotentialCountInNls, 
                     byte BirthOrderInNls, 
                     byte KidCountBio, 
                     bool IsDead, 
@@ -13181,7 +13182,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     double Original_AgeAtLastSurvey, 
                     byte Original_SimilarAgeCount, 
                     bool Original_HasMzPossibly, 
-                    byte Original_SiblingCountInNls, 
+                    byte Original_SiblingPotentialCountInNls, 
                     byte Original_BirthOrderInNls, 
                     byte Original_KidCountBio, 
                     bool Original_IsDead, 
@@ -13196,7 +13197,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(AgeAtLastSurvey));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(SimilarAgeCount));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(HasMzPossibly));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(SiblingCountInNls));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(SiblingPotentialCountInNls));
             this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(BirthOrderInNls));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(KidCountBio));
             this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(IsDead));
@@ -13226,7 +13227,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(Original_AgeAtLastSurvey));
             this.Adapter.UpdateCommand.Parameters[21].Value = ((byte)(Original_SimilarAgeCount));
             this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_HasMzPossibly));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_SiblingCountInNls));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_SiblingPotentialCountInNls));
             this.Adapter.UpdateCommand.Parameters[24].Value = ((byte)(Original_BirthOrderInNls));
             this.Adapter.UpdateCommand.Parameters[25].Value = ((byte)(Original_KidCountBio));
             this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_IsDead));
@@ -13282,7 +13283,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     double AgeAtLastSurvey, 
                     byte SimilarAgeCount, 
                     bool HasMzPossibly, 
-                    byte SiblingCountInNls, 
+                    byte SiblingPotentialCountInNls, 
                     byte BirthOrderInNls, 
                     byte KidCountBio, 
                     bool IsDead, 
@@ -13297,14 +13298,14 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     double Original_AgeAtLastSurvey, 
                     byte Original_SimilarAgeCount, 
                     bool Original_HasMzPossibly, 
-                    byte Original_SiblingCountInNls, 
+                    byte Original_SiblingPotentialCountInNls, 
                     byte Original_BirthOrderInNls, 
                     byte Original_KidCountBio, 
                     bool Original_IsDead, 
                     global::System.Nullable<global::System.DateTime> Original_DeathDate, 
                     global::System.Nullable<bool> Original_IsBiodadDead, 
                     global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
-            return this.Update(Original_SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate, Original_SubjectTag, Original_RaceCohort, Original_CrossSectionalCohort, Original_Mob, Original_LastSurveyYearCompleted, Original_AgeAtLastSurvey, Original_SimilarAgeCount, Original_HasMzPossibly, Original_SiblingCountInNls, Original_BirthOrderInNls, Original_KidCountBio, Original_IsDead, Original_DeathDate, Original_IsBiodadDead, Original_BiodadDeathDate);
+            return this.Update(Original_SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingPotentialCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate, Original_SubjectTag, Original_RaceCohort, Original_CrossSectionalCohort, Original_Mob, Original_LastSurveyYearCompleted, Original_AgeAtLastSurvey, Original_SimilarAgeCount, Original_HasMzPossibly, Original_SiblingPotentialCountInNls, Original_BirthOrderInNls, Original_KidCountBio, Original_IsDead, Original_DeathDate, Original_IsBiodadDead, Original_BiodadDeathDate);
         }
     }
     
