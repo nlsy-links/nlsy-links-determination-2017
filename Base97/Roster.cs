@@ -43,17 +43,17 @@ namespace Nls.Base97 {
                 Int16 responseLower = Math.Min((Int16)response1on2, (Int16)response2on1);
                 Int16 responseUpper = Math.Max((Int16)response1on2, (Int16)response2on1);
 
-                //LinksDataSet.tblRosterAssignmentRow drLU = RetrieveAssignmentRow(responseLower, responseUpper);
-                //float r = float.MinValue;
-                //if( drLU.IsRNull() ) r = float.NaN;
-                //else r = (float)drLU.R;
+                LinksDataSet.tblRosterAssignmentRow drLU = RetrieveAssignmentRow(responseLower, responseUpper);
+                float r = float.MinValue;
+                if( drLU.IsRNull() ) r = float.NaN;
+                else r = (float)drLU.R;
 
-                const float r_dummy = .666F;
+                //const float r_dummy = .666F;
 
-                //AddRosterRow(drRelated.ID, drLU.ID, responseLower, responseUpper, drLU.Resolved, r, (float)drLU.RBoundLower, (float)drLU.RBoundUpper,
-                //    (Tristate)drLU.SameGeneration, (Tristate)drLU.ShareBiodad, (Tristate)drLU.ShareBiomom, (Tristate)drLU.ShareBiograndparent, drLU.Inconsistent);
-                AddRosterRow(drRelated.ID, 1, responseLower, responseUpper, false, r_dummy, r_dummy, r_dummy,
-                    Tristate.DoNotKnow, Tristate.DoNotKnow, Tristate.DoNotKnow, Tristate.DoNotKnow, true);
+                AddRosterRow(drRelated.ID, drLU.ID, responseLower, responseUpper, drLU.Resolved, r, (float)drLU.RBoundLower, (float)drLU.RBoundUpper,
+                    (Tristate)drLU.SameGeneration, (Tristate)drLU.ShareBiodad, (Tristate)drLU.ShareBiomom, (Tristate)drLU.ShareBiograndparent, drLU.Inconsistent);
+                //AddRosterRow(drRelated.ID, 1, responseLower, responseUpper, false, r_dummy, r_dummy, r_dummy,
+                //    Tristate.DoNotKnow, Tristate.DoNotKnow, Tristate.DoNotKnow, Tristate.DoNotKnow, true);
                 recordsAdded += 1;
             }
             sw.Stop();
@@ -76,28 +76,28 @@ namespace Nls.Base97 {
         #endregion
         #region Private Methods -Tier 1
         private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 internal_id_2, LinksDataSet.tblResponseDataTable dtFamily ) {
-            //const Item itemID = Item.IDOfOther1979RosterGen1;
+            //const Item itemID = Item.unique_id;
             const Item itemRelationship = Item.roster_relationship_1_dim;
-            Int32 surveyYearCount = 1;  //The roster was asked only in 1979.
+            Int32 surveyYearCount = 1;  //The roster was asked only in 1997.
 
             string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
                 subject1Tag, dtFamily.SubjectTagColumn.ColumnName,
-                (byte)itemRelationship, dtFamily.ItemColumn.ColumnName,
-                internal_id_2, dtFamily.LoopIndex1Column.ColumnName);
+                internal_id_2, dtFamily.LoopIndex1Column.ColumnName,
+                (byte)itemRelationship, dtFamily.ItemColumn.ColumnName);
             LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtFamily.Select(selectToShareResponse);
             Trace.Assert(drsForShareResponse.Length == surveyYearCount, "Exactly one row should be returned for the Item.Roster item to Subject2");
             
             return (EnumResponses.RosterChoice)drsForShareResponse[0].Value;
         }
-        //private LinksDataSet.tblRosterAssignmentRow RetrieveAssignmentRow( Int16 responseLower, Int16 responseUpper ) {
-        //    string select = string.Format("{0}={1} AND {2}={3}",
-        //        responseLower, _dsLinks.tblRosterAssignment.ResponseLowerColumn,
-        //        responseUpper, _dsLinks.tblRosterAssignment.ResponseUpperColumn);
+        private LinksDataSet.tblRosterAssignmentRow RetrieveAssignmentRow( Int16 responseLower, Int16 responseUpper ) {
+            string select = string.Format("{0}={1} AND {2}={3}",
+                responseLower, _dsLinks.tblRosterAssignment.ResponseLowerColumn,
+                responseUpper, _dsLinks.tblRosterAssignment.ResponseUpperColumn);
 
-        //    LinksDataSet.tblRosterAssignmentRow[] drs = (LinksDataSet.tblRosterAssignmentRow[])_dsLinks.tblRosterAssignment.Select(select);
-        //    Trace.Assert(drs.Length == 1, "Exactly one row should be returned for the Roster assignment");
-        //    return drs[0];
-        //}
+            LinksDataSet.tblRosterAssignmentRow[] drs = (LinksDataSet.tblRosterAssignmentRow[])_dsLinks.tblRosterAssignment.Select(select);
+            Trace.Assert(drs.Length == 1, "Exactly one row should be returned for the Roster assignment");
+            return drs[0];
+        }
         #endregion
         #region Tier 2
         private void AddRosterRow( Int32 relatedID, byte rosterAssignmentID, Int16 responseLower, Int16 responseUpper, bool resolved, float r, float rBoundLower, float rBoundUpper,

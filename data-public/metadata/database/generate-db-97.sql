@@ -1031,6 +1031,33 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [Metadata].[tblRosterAssignment](
+	[ID] [tinyint] NOT NULL,
+	[ResponseLower] [smallint] NOT NULL,
+	[ResponseUpper] [smallint] NOT NULL,
+	[Freq] [smallint] NOT NULL,
+	[Resolved] [bit] NOT NULL,
+	[R] [float] NULL,
+	[RBoundLower] [float] NOT NULL,
+	[RBoundUpper] [float] NOT NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[ShareBiodad] [tinyint] NOT NULL,
+	[ShareBiomom] [tinyint] NOT NULL,
+	[ShareBiograndparent] [tinyint] NOT NULL,
+	[Inconsistent] [bit] NOT NULL,
+	[Notes] [varchar](255) NULL,
+	[ResponseLowerLabel] [varchar](50) NULL,
+	[ResponseUpperLabel] [varchar](50) NULL,
+ CONSTRAINT [PK_tblroster_assignment] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [Metadata].[tblVariable](
 	[VariableCode] [char](8) NOT NULL,
 	[Item] [smallint] NOT NULL,
@@ -1262,6 +1289,38 @@ CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSubjectDetails] ON [Process].[tblSubj
 GO
 CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSurveyTime] ON [Process].[tblSurveyTime] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
 GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLURoster] FOREIGN KEY([ResponseLower])
+REFERENCES [Enum].[tblLURoster] ([ID])
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLURoster]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLURoster1] FOREIGN KEY([ResponseUpper])
+REFERENCES [Enum].[tblLURoster] ([ID])
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLURoster1]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate] FOREIGN KEY([SameGeneration])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate1] FOREIGN KEY([ShareBiodad])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate1]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate2] FOREIGN KEY([ShareBiomom])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate2]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate3] FOREIGN KEY([ShareBiograndparent])
+REFERENCES [Enum].[tblLUTristate] ([ID])
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [FK_tblLURosterAssignment_tblLUTristate3]
+GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [FK_tblVariable_tblItem] FOREIGN KEY([Item])
 REFERENCES [Metadata].[tblItem] ([ID])
 ON UPDATE CASCADE
@@ -1372,6 +1431,18 @@ GO
 ALTER TABLE [Metadata].[tblMzManual]  WITH CHECK ADD  CONSTRAINT [CK_tblMzManual_Ordered] CHECK  (([SubjectTag_S1]<[SubjectTag_S2]))
 GO
 ALTER TABLE [Metadata].[tblMzManual] CHECK CONSTRAINT [CK_tblMzManual_Ordered]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterAssignment_R] CHECK  (([R] IS NULL OR (0)<=[R] AND [R]<=(1)))
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [CK_tblLURosterAssignment_R]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterAssignment_RBoundLower] CHECK  (((0)<=[RBoundLower] AND [RBoundLower]<=(0.5)))
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [CK_tblLURosterAssignment_RBoundLower]
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment]  WITH CHECK ADD  CONSTRAINT [CK_tblLURosterAssignment_RBoundUpper] CHECK  (((0)<=[RBoundUpper] AND [RBoundUpper]<=(1)))
+GO
+ALTER TABLE [Metadata].[tblRosterAssignment] CHECK CONSTRAINT [CK_tblLURosterAssignment_RBoundUpper]
 GO
 ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2030)))
 GO
