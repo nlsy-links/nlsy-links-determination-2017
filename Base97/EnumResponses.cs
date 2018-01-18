@@ -7,6 +7,12 @@ namespace Nls.Base97 {
             Male = 1,
             Female = 2,
         }
+        public enum RaceCohort : byte {
+            Black = 1,
+            Hispanic = 2,
+            Mixed = 3,
+            Nbnh = 4, 
+        }
         public enum RosterChoice : short {//Int16
             valid_skip = -4,
             self = 0,

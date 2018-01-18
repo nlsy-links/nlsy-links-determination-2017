@@ -22,6 +22,7 @@
         <CollectionViewSource x:Key="tblSurveyTimeViewSource1" Source="{Binding tblSurveyTime, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblRosterViewSource1" Source="{Binding tblRoster, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblRosterAssignmentViewSource" Source="{Binding tblRosterAssignment, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblSubjectDetailsViewSource" Source="{Binding tblSubjectDetails, Source={StaticResource linksDataSet}}"/>
 
 
     </Window.Resources>
@@ -63,6 +64,9 @@
             <Button Content="Setup" Height="19" HorizontalAlignment="Left" Margin="0,-1,0,0" x:Name="btnSetup" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnSetup_Click" />
             <Button Content="Button2" Height="19" HorizontalAlignment="Left" Margin="0,19,0,0" x:Name="btnCombine2" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine2_Click" />
             <Button Name="btnRoster" Content="Roster" Grid.Column="5" Click="btnRoster_Click"/>
+            <Button Name="btnSubjectDetails" Grid.Column="10" Click="btnSubjectDetails_Click">
+                <TextBlock>Subject<LineBreak/>Details</TextBlock>
+            </Button>
             <Button x:Name="btnRelatedValues" Grid.Column="13" Click="btnRelatedValues_Click">
                 <TextBlock><Run Text="Related"/><LineBreak/><Run Text="Values"/></TextBlock>
             </Button>
@@ -119,6 +123,9 @@
             </TabItem>
             <TabItem Header="Roster" Name="tabRosterGen1" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterViewSource1}}"/>
+            </TabItem>
+            <TabItem Header="SubjectDetails" Name="tabSubjectDetails" >
+                <DataGrid  ItemsSource="{Binding Source={StaticResource tblSubjectDetailsViewSource}}"/>
             </TabItem>
             <TabItem Header="RValues" x:Name="tabRelatedValues" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}" />

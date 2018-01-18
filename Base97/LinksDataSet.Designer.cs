@@ -5132,23 +5132,23 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnRaceCohort;
             
-            private global::System.Data.DataColumn columnSiblingCountInNls;
-            
-            private global::System.Data.DataColumn columnBirthOrderInNls;
-            
-            private global::System.Data.DataColumn columnSimilarAgeCount;
-            
-            private global::System.Data.DataColumn columnHasMzPossibly;
-            
-            private global::System.Data.DataColumn columnKidCountBio;
-            
-            private global::System.Data.DataColumn columnKidCountInNls;
+            private global::System.Data.DataColumn columnCrossSectionalCohort;
             
             private global::System.Data.DataColumn columnMob;
             
             private global::System.Data.DataColumn columnLastSurveyYearCompleted;
             
             private global::System.Data.DataColumn columnAgeAtLastSurvey;
+            
+            private global::System.Data.DataColumn columnSimilarAgeCount;
+            
+            private global::System.Data.DataColumn columnHasMzPossibly;
+            
+            private global::System.Data.DataColumn columnSiblingCountInNls;
+            
+            private global::System.Data.DataColumn columnBirthOrderInNls;
+            
+            private global::System.Data.DataColumn columnKidCountBio;
             
             private global::System.Data.DataColumn columnIsDead;
             
@@ -5209,49 +5209,9 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SiblingCountInNlsColumn {
+            public global::System.Data.DataColumn CrossSectionalCohortColumn {
                 get {
-                    return this.columnSiblingCountInNls;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BirthOrderInNlsColumn {
-                get {
-                    return this.columnBirthOrderInNls;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SimilarAgeCountColumn {
-                get {
-                    return this.columnSimilarAgeCount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn HasMzPossiblyColumn {
-                get {
-                    return this.columnHasMzPossibly;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn KidCountBioColumn {
-                get {
-                    return this.columnKidCountBio;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn KidCountInNlsColumn {
-                get {
-                    return this.columnKidCountInNls;
+                    return this.columnCrossSectionalCohort;
                 }
             }
             
@@ -5276,6 +5236,46 @@ namespace Nls.Base97 {
             public global::System.Data.DataColumn AgeAtLastSurveyColumn {
                 get {
                     return this.columnAgeAtLastSurvey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SimilarAgeCountColumn {
+                get {
+                    return this.columnSimilarAgeCount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HasMzPossiblyColumn {
+                get {
+                    return this.columnHasMzPossibly;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SiblingCountInNlsColumn {
+                get {
+                    return this.columnSiblingCountInNls;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BirthOrderInNlsColumn {
+                get {
+                    return this.columnBirthOrderInNls;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn KidCountBioColumn {
+                get {
+                    return this.columnKidCountBio;
                 }
             }
             
@@ -5348,20 +5348,20 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSubjectDetailsRow AddtblSubjectDetailsRow(int SubjectTag, byte RaceCohort, byte SiblingCountInNls, byte BirthOrderInNls, byte SimilarAgeCount, bool HasMzPossibly, byte KidCountBio, byte KidCountInNls, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, bool IsDead, System.DateTime DeathDate, bool IsBiodadDead, System.DateTime BiodadDeathDate) {
+            public tblSubjectDetailsRow AddtblSubjectDetailsRow(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, System.DateTime DeathDate, bool IsBiodadDead, System.DateTime BiodadDeathDate) {
                 tblSubjectDetailsRow rowtblSubjectDetailsRow = ((tblSubjectDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SubjectTag,
                         RaceCohort,
-                        SiblingCountInNls,
-                        BirthOrderInNls,
-                        SimilarAgeCount,
-                        HasMzPossibly,
-                        KidCountBio,
-                        KidCountInNls,
+                        CrossSectionalCohort,
                         Mob,
                         LastSurveyYearCompleted,
                         AgeAtLastSurvey,
+                        SimilarAgeCount,
+                        HasMzPossibly,
+                        SiblingCountInNls,
+                        BirthOrderInNls,
+                        KidCountBio,
                         IsDead,
                         DeathDate,
                         IsBiodadDead,
@@ -5397,15 +5397,15 @@ namespace Nls.Base97 {
             internal void InitVars() {
                 this.columnSubjectTag = base.Columns["SubjectTag"];
                 this.columnRaceCohort = base.Columns["RaceCohort"];
-                this.columnSiblingCountInNls = base.Columns["SiblingCountInNls"];
-                this.columnBirthOrderInNls = base.Columns["BirthOrderInNls"];
-                this.columnSimilarAgeCount = base.Columns["SimilarAgeCount"];
-                this.columnHasMzPossibly = base.Columns["HasMzPossibly"];
-                this.columnKidCountBio = base.Columns["KidCountBio"];
-                this.columnKidCountInNls = base.Columns["KidCountInNls"];
+                this.columnCrossSectionalCohort = base.Columns["CrossSectionalCohort"];
                 this.columnMob = base.Columns["Mob"];
                 this.columnLastSurveyYearCompleted = base.Columns["LastSurveyYearCompleted"];
                 this.columnAgeAtLastSurvey = base.Columns["AgeAtLastSurvey"];
+                this.columnSimilarAgeCount = base.Columns["SimilarAgeCount"];
+                this.columnHasMzPossibly = base.Columns["HasMzPossibly"];
+                this.columnSiblingCountInNls = base.Columns["SiblingCountInNls"];
+                this.columnBirthOrderInNls = base.Columns["BirthOrderInNls"];
+                this.columnKidCountBio = base.Columns["KidCountBio"];
                 this.columnIsDead = base.Columns["IsDead"];
                 this.columnDeathDate = base.Columns["DeathDate"];
                 this.columnIsBiodadDead = base.Columns["IsBiodadDead"];
@@ -5419,24 +5419,24 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnSubjectTag);
                 this.columnRaceCohort = new global::System.Data.DataColumn("RaceCohort", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRaceCohort);
-                this.columnSiblingCountInNls = new global::System.Data.DataColumn("SiblingCountInNls", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSiblingCountInNls);
-                this.columnBirthOrderInNls = new global::System.Data.DataColumn("BirthOrderInNls", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBirthOrderInNls);
-                this.columnSimilarAgeCount = new global::System.Data.DataColumn("SimilarAgeCount", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSimilarAgeCount);
-                this.columnHasMzPossibly = new global::System.Data.DataColumn("HasMzPossibly", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHasMzPossibly);
-                this.columnKidCountBio = new global::System.Data.DataColumn("KidCountBio", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnKidCountBio);
-                this.columnKidCountInNls = new global::System.Data.DataColumn("KidCountInNls", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnKidCountInNls);
+                this.columnCrossSectionalCohort = new global::System.Data.DataColumn("CrossSectionalCohort", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCrossSectionalCohort);
                 this.columnMob = new global::System.Data.DataColumn("Mob", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMob);
                 this.columnLastSurveyYearCompleted = new global::System.Data.DataColumn("LastSurveyYearCompleted", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLastSurveyYearCompleted);
                 this.columnAgeAtLastSurvey = new global::System.Data.DataColumn("AgeAtLastSurvey", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAgeAtLastSurvey);
+                this.columnSimilarAgeCount = new global::System.Data.DataColumn("SimilarAgeCount", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSimilarAgeCount);
+                this.columnHasMzPossibly = new global::System.Data.DataColumn("HasMzPossibly", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHasMzPossibly);
+                this.columnSiblingCountInNls = new global::System.Data.DataColumn("SiblingCountInNls", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSiblingCountInNls);
+                this.columnBirthOrderInNls = new global::System.Data.DataColumn("BirthOrderInNls", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBirthOrderInNls);
+                this.columnKidCountBio = new global::System.Data.DataColumn("KidCountBio", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKidCountBio);
                 this.columnIsDead = new global::System.Data.DataColumn("IsDead", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsDead);
                 this.columnDeathDate = new global::System.Data.DataColumn("DeathDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -5450,10 +5450,15 @@ namespace Nls.Base97 {
                 this.columnSubjectTag.AllowDBNull = false;
                 this.columnSubjectTag.Unique = true;
                 this.columnRaceCohort.AllowDBNull = false;
-                this.columnSiblingCountInNls.AllowDBNull = false;
-                this.columnBirthOrderInNls.AllowDBNull = false;
+                this.columnCrossSectionalCohort.AllowDBNull = false;
+                this.columnMob.AllowDBNull = false;
+                this.columnLastSurveyYearCompleted.AllowDBNull = false;
+                this.columnAgeAtLastSurvey.AllowDBNull = false;
                 this.columnSimilarAgeCount.AllowDBNull = false;
                 this.columnHasMzPossibly.AllowDBNull = false;
+                this.columnSiblingCountInNls.AllowDBNull = false;
+                this.columnBirthOrderInNls.AllowDBNull = false;
+                this.columnKidCountBio.AllowDBNull = false;
                 this.columnIsDead.AllowDBNull = false;
             }
             
@@ -7794,23 +7799,45 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte SiblingCountInNls {
+            public bool CrossSectionalCohort {
                 get {
-                    return ((byte)(this[this.tabletblSubjectDetails.SiblingCountInNlsColumn]));
+                    return ((bool)(this[this.tabletblSubjectDetails.CrossSectionalCohortColumn]));
                 }
                 set {
-                    this[this.tabletblSubjectDetails.SiblingCountInNlsColumn] = value;
+                    this[this.tabletblSubjectDetails.CrossSectionalCohortColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte BirthOrderInNls {
+            public System.DateTime Mob {
                 get {
-                    return ((byte)(this[this.tabletblSubjectDetails.BirthOrderInNlsColumn]));
+                    return ((global::System.DateTime)(this[this.tabletblSubjectDetails.MobColumn]));
                 }
                 set {
-                    this[this.tabletblSubjectDetails.BirthOrderInNlsColumn] = value;
+                    this[this.tabletblSubjectDetails.MobColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short LastSurveyYearCompleted {
+                get {
+                    return ((short)(this[this.tabletblSubjectDetails.LastSurveyYearCompletedColumn]));
+                }
+                set {
+                    this[this.tabletblSubjectDetails.LastSurveyYearCompletedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double AgeAtLastSurvey {
+                get {
+                    return ((double)(this[this.tabletblSubjectDetails.AgeAtLastSurveyColumn]));
+                }
+                set {
+                    this[this.tabletblSubjectDetails.AgeAtLastSurveyColumn] = value;
                 }
             }
             
@@ -7838,82 +7865,34 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte SiblingCountInNls {
+                get {
+                    return ((byte)(this[this.tabletblSubjectDetails.SiblingCountInNlsColumn]));
+                }
+                set {
+                    this[this.tabletblSubjectDetails.SiblingCountInNlsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte BirthOrderInNls {
+                get {
+                    return ((byte)(this[this.tabletblSubjectDetails.BirthOrderInNlsColumn]));
+                }
+                set {
+                    this[this.tabletblSubjectDetails.BirthOrderInNlsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte KidCountBio {
                 get {
-                    try {
-                        return ((byte)(this[this.tabletblSubjectDetails.KidCountBioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'KidCountBio\' in table \'tblSubjectDetails\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tabletblSubjectDetails.KidCountBioColumn]));
                 }
                 set {
                     this[this.tabletblSubjectDetails.KidCountBioColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte KidCountInNls {
-                get {
-                    try {
-                        return ((byte)(this[this.tabletblSubjectDetails.KidCountInNlsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'KidCountInNls\' in table \'tblSubjectDetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSubjectDetails.KidCountInNlsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Mob {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tabletblSubjectDetails.MobColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Mob\' in table \'tblSubjectDetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSubjectDetails.MobColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short LastSurveyYearCompleted {
-                get {
-                    try {
-                        return ((short)(this[this.tabletblSubjectDetails.LastSurveyYearCompletedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LastSurveyYearCompleted\' in table \'tblSubjectDetails\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSubjectDetails.LastSurveyYearCompletedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double AgeAtLastSurvey {
-                get {
-                    try {
-                        return ((double)(this[this.tabletblSubjectDetails.AgeAtLastSurveyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AgeAtLastSurvey\' in table \'tblSubjectDetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSubjectDetails.AgeAtLastSurveyColumn] = value;
                 }
             }
             
@@ -7974,66 +7953,6 @@ namespace Nls.Base97 {
                 set {
                     this[this.tabletblSubjectDetails.BiodadDeathDateColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsKidCountBioNull() {
-                return this.IsNull(this.tabletblSubjectDetails.KidCountBioColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetKidCountBioNull() {
-                this[this.tabletblSubjectDetails.KidCountBioColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsKidCountInNlsNull() {
-                return this.IsNull(this.tabletblSubjectDetails.KidCountInNlsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetKidCountInNlsNull() {
-                this[this.tabletblSubjectDetails.KidCountInNlsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMobNull() {
-                return this.IsNull(this.tabletblSubjectDetails.MobColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMobNull() {
-                this[this.tabletblSubjectDetails.MobColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLastSurveyYearCompletedNull() {
-                return this.IsNull(this.tabletblSubjectDetails.LastSurveyYearCompletedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLastSurveyYearCompletedNull() {
-                this[this.tabletblSubjectDetails.LastSurveyYearCompletedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAgeAtLastSurveyNull() {
-                return this.IsNull(this.tabletblSubjectDetails.AgeAtLastSurveyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAgeAtLastSurveyNull() {
-                this[this.tabletblSubjectDetails.AgeAtLastSurveyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12940,39 +12859,120 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             tableMapping.DataSetTable = "tblSubjectDetails";
             tableMapping.ColumnMappings.Add("SubjectTag", "SubjectTag");
             tableMapping.ColumnMappings.Add("RaceCohort", "RaceCohort");
-            tableMapping.ColumnMappings.Add("SiblingCountInNls", "SiblingCountInNls");
-            tableMapping.ColumnMappings.Add("BirthOrderInNls", "BirthOrderInNls");
-            tableMapping.ColumnMappings.Add("SimilarAgeCount", "SimilarAgeCount");
-            tableMapping.ColumnMappings.Add("HasMzPossibly", "HasMzPossibly");
-            tableMapping.ColumnMappings.Add("KidCountBio", "KidCountBio");
-            tableMapping.ColumnMappings.Add("KidCountInNls", "KidCountInNls");
+            tableMapping.ColumnMappings.Add("CrossSectionalCohort", "CrossSectionalCohort");
             tableMapping.ColumnMappings.Add("Mob", "Mob");
             tableMapping.ColumnMappings.Add("LastSurveyYearCompleted", "LastSurveyYearCompleted");
             tableMapping.ColumnMappings.Add("AgeAtLastSurvey", "AgeAtLastSurvey");
+            tableMapping.ColumnMappings.Add("SimilarAgeCount", "SimilarAgeCount");
+            tableMapping.ColumnMappings.Add("HasMzPossibly", "HasMzPossibly");
+            tableMapping.ColumnMappings.Add("SiblingCountInNls", "SiblingCountInNls");
+            tableMapping.ColumnMappings.Add("BirthOrderInNls", "BirthOrderInNls");
+            tableMapping.ColumnMappings.Add("KidCountBio", "KidCountBio");
             tableMapping.ColumnMappings.Add("IsDead", "IsDead");
             tableMapping.ColumnMappings.Add("DeathDate", "DeathDate");
             tableMapping.ColumnMappings.Add("IsBiodadDead", "IsBiodadDead");
             tableMapping.ColumnMappings.Add("BiodadDeathDate", "BiodadDeathDate");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Process].[tblSubjectDetails] WHERE (([SubjectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([Mob] = @Original_Mob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted) AND ([AgeAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCount] = @Original_SimilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ([SiblingCountInNls] = @Original_SiblingCountInNls) AND ([BirthOrderInNls] = @Original_BirthOrderInNls) AND ([KidCountBio] = @Original_KidCountBio) AND ([IsDead] = @Original_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] = @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL) OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = 1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDate)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CrossSectionalCohort", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossSectionalCohort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Mob", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mob", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastSurveyYearCompleted", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastSurveyYearCompleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DeathDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsBiodadDead", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsBiodadDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BiodadDeathDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BiodadDeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblSubjectDetails] ([SubjectTag], [RaceCohort], [SiblingCountInNls], [BirthOrderInNls], [SimilarAgeCount], [HasMzPossibly], [KidCountBio], [KidCountInNls], [Mob], [LastSurveyYearCompleted], [AgeAtLastSurvey], [IsDead], [DeathDate], [IsBiodadDead], [BiodadDeathDate]) VALUES (@SubjectTag, @RaceCohort, @SiblingCountInNls, @BirthOrderInNls, @SimilarAgeCount, @HasMzPossibly, @KidCountBio, @KidCountInNls, @Mob, @LastSurveyYearCompleted, @AgeAtLastSurvey, @IsDead, @DeathDate, @IsBiodadDead, @BiodadDeathDate)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblSubjectDetails] ([SubjectTag], [RaceCohort], [CrossSectionalCohort], [Mob], [LastSurveyYearCompleted], [AgeAtLastSurvey], [SimilarAgeCount], [HasMzPossibly], [SiblingCountInNls], [BirthOrderInNls], [KidCountBio], [IsDead], [DeathDate], [IsBiodadDead], [BiodadDeathDate]) VALUES (@SubjectTag, @RaceCohort, @CrossSectionalCohort, @Mob, @LastSurveyYearCompleted, @AgeAtLastSurvey, @SimilarAgeCount, @HasMzPossibly, @SiblingCountInNls, @BirthOrderInNls, @KidCountBio, @IsDead, @DeathDate, @IsBiodadDead, @BiodadDeathDate);
+SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails WHERE (SubjectTag = @SubjectTag)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossSectionalCohort", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossSectionalCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mob", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mob", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastSurveyYearCompleted", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastSurveyYearCompleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsBiodadDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BiodadDeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [Process].[tblSubjectDetails] SET [SubjectTag] = @SubjectTag, [RaceCohort]" +
+                " = @RaceCohort, [CrossSectionalCohort] = @CrossSectionalCohort, [Mob] = @Mob, [L" +
+                "astSurveyYearCompleted] = @LastSurveyYearCompleted, [AgeAtLastSurvey] = @AgeAtLa" +
+                "stSurvey, [SimilarAgeCount] = @SimilarAgeCount, [HasMzPossibly] = @HasMzPossibly" +
+                ", [SiblingCountInNls] = @SiblingCountInNls, [BirthOrderInNls] = @BirthOrderInNls" +
+                ", [KidCountBio] = @KidCountBio, [IsDead] = @IsDead, [DeathDate] = @DeathDate, [I" +
+                "sBiodadDead] = @IsBiodadDead, [BiodadDeathDate] = @BiodadDeathDate WHERE (([Subj" +
+                "ectTag] = @Original_SubjectTag) AND ([RaceCohort] = @Original_RaceCohort) AND ([" +
+                "CrossSectionalCohort] = @Original_CrossSectionalCohort) AND ([Mob] = @Original_M" +
+                "ob) AND ([LastSurveyYearCompleted] = @Original_LastSurveyYearCompleted) AND ([Ag" +
+                "eAtLastSurvey] = @Original_AgeAtLastSurvey) AND ([SimilarAgeCount] = @Original_S" +
+                "imilarAgeCount) AND ([HasMzPossibly] = @Original_HasMzPossibly) AND ([SiblingCou" +
+                "ntInNls] = @Original_SiblingCountInNls) AND ([BirthOrderInNls] = @Original_Birth" +
+                "OrderInNls) AND ([KidCountBio] = @Original_KidCountBio) AND ([IsDead] = @Origina" +
+                "l_IsDead) AND ((@IsNull_DeathDate = 1 AND [DeathDate] IS NULL) OR ([DeathDate] =" +
+                " @Original_DeathDate)) AND ((@IsNull_IsBiodadDead = 1 AND [IsBiodadDead] IS NULL" +
+                ") OR ([IsBiodadDead] = @Original_IsBiodadDead)) AND ((@IsNull_BiodadDeathDate = " +
+                "1 AND [BiodadDeathDate] IS NULL) OR ([BiodadDeathDate] = @Original_BiodadDeathDa" +
+                "te)));\r\nSELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYear" +
+                "Completed, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, B" +
+                "irthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FR" +
+                "OM Process.tblSubjectDetails WHERE (SubjectTag = @SubjectTag)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossSectionalCohort", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossSectionalCohort", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mob", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mob", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastSurveyYearCompleted", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastSurveyYearCompleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsBiodadDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BiodadDeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SubjectTag", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubjectTag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RaceCohort", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RaceCohort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CrossSectionalCohort", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossSectionalCohort", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Mob", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mob", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastSurveyYearCompleted", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastSurveyYearCompleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AgeAtLastSurvey", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AgeAtLastSurvey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SimilarAgeCount", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SimilarAgeCount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HasMzPossibly", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HasMzPossibly", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SiblingCountInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SiblingCountInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BirthOrderInNls", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BirthOrderInNls", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KidCountBio", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KidCountBio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DeathDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeathDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsBiodadDead", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsBiodadDead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsBiodadDead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BiodadDeathDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BiodadDeathDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BiodadDeathDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12988,10 +12988,7 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SubjectTag, RaceCohort, SiblingCountInNls, BirthOrderInNls, SimilarAgeCoun" +
-                "t, HasMzPossibly, KidCountBio, KidCountInNls, Mob, LastSurveyYearCompleted, AgeA" +
-                "tLastSurvey, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSu" +
-                "bjectDetails";
+            this._commandCollection[0].CommandText = @"SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate FROM Process.tblSubjectDetails";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13051,44 +13048,76 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_SubjectTag, byte Original_RaceCohort, bool Original_CrossSectionalCohort, System.DateTime Original_Mob, short Original_LastSurveyYearCompleted, double Original_AgeAtLastSurvey, byte Original_SimilarAgeCount, bool Original_HasMzPossibly, byte Original_SiblingCountInNls, byte Original_BirthOrderInNls, byte Original_KidCountBio, bool Original_IsDead, global::System.Nullable<global::System.DateTime> Original_DeathDate, global::System.Nullable<bool> Original_IsBiodadDead, global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SubjectTag));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((byte)(Original_RaceCohort));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_CrossSectionalCohort));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_Mob));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((short)(Original_LastSurveyYearCompleted));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((double)(Original_AgeAtLastSurvey));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_SimilarAgeCount));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_HasMzPossibly));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((byte)(Original_SiblingCountInNls));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((byte)(Original_BirthOrderInNls));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((byte)(Original_KidCountBio));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_IsDead));
+            if ((Original_DeathDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((System.DateTime)(Original_DeathDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IsBiodadDead.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((bool)(Original_IsBiodadDead.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Original_BiodadDeathDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((System.DateTime)(Original_BiodadDeathDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SubjectTag, byte RaceCohort, byte SiblingCountInNls, byte BirthOrderInNls, byte SimilarAgeCount, bool HasMzPossibly, global::System.Nullable<byte> KidCountBio, global::System.Nullable<byte> KidCountInNls, global::System.Nullable<global::System.DateTime> Mob, global::System.Nullable<short> LastSurveyYearCompleted, global::System.Nullable<double> AgeAtLastSurvey, bool IsDead, global::System.Nullable<global::System.DateTime> DeathDate, global::System.Nullable<bool> IsBiodadDead, global::System.Nullable<global::System.DateTime> BiodadDeathDate) {
+        public virtual int Insert(int SubjectTag, byte RaceCohort, bool CrossSectionalCohort, System.DateTime Mob, short LastSurveyYearCompleted, double AgeAtLastSurvey, byte SimilarAgeCount, bool HasMzPossibly, byte SiblingCountInNls, byte BirthOrderInNls, byte KidCountBio, bool IsDead, global::System.Nullable<global::System.DateTime> DeathDate, global::System.Nullable<bool> IsBiodadDead, global::System.Nullable<global::System.DateTime> BiodadDeathDate) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubjectTag));
             this.Adapter.InsertCommand.Parameters[1].Value = ((byte)(RaceCohort));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(SiblingCountInNls));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(BirthOrderInNls));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(SimilarAgeCount));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(HasMzPossibly));
-            if ((KidCountBio.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(KidCountBio.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((KidCountInNls.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((byte)(KidCountInNls.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((Mob.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(Mob.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((LastSurveyYearCompleted.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((short)(LastSurveyYearCompleted.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((AgeAtLastSurvey.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((double)(AgeAtLastSurvey.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(CrossSectionalCohort));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Mob));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((short)(LastSurveyYearCompleted));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((double)(AgeAtLastSurvey));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(SimilarAgeCount));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(HasMzPossibly));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(SiblingCountInNls));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((byte)(BirthOrderInNls));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((byte)(KidCountBio));
             this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(IsDead));
             if ((DeathDate.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(DeathDate.Value));
@@ -13122,6 +13151,160 @@ SELECT SubjectTag, ExtendedID, SubjectID, Gender, hh_internal_id FROM Process.tb
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int SubjectTag, 
+                    byte RaceCohort, 
+                    bool CrossSectionalCohort, 
+                    System.DateTime Mob, 
+                    short LastSurveyYearCompleted, 
+                    double AgeAtLastSurvey, 
+                    byte SimilarAgeCount, 
+                    bool HasMzPossibly, 
+                    byte SiblingCountInNls, 
+                    byte BirthOrderInNls, 
+                    byte KidCountBio, 
+                    bool IsDead, 
+                    global::System.Nullable<global::System.DateTime> DeathDate, 
+                    global::System.Nullable<bool> IsBiodadDead, 
+                    global::System.Nullable<global::System.DateTime> BiodadDeathDate, 
+                    int Original_SubjectTag, 
+                    byte Original_RaceCohort, 
+                    bool Original_CrossSectionalCohort, 
+                    System.DateTime Original_Mob, 
+                    short Original_LastSurveyYearCompleted, 
+                    double Original_AgeAtLastSurvey, 
+                    byte Original_SimilarAgeCount, 
+                    bool Original_HasMzPossibly, 
+                    byte Original_SiblingCountInNls, 
+                    byte Original_BirthOrderInNls, 
+                    byte Original_KidCountBio, 
+                    bool Original_IsDead, 
+                    global::System.Nullable<global::System.DateTime> Original_DeathDate, 
+                    global::System.Nullable<bool> Original_IsBiodadDead, 
+                    global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SubjectTag));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((byte)(RaceCohort));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(CrossSectionalCohort));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Mob));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((short)(LastSurveyYearCompleted));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(AgeAtLastSurvey));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(SimilarAgeCount));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(HasMzPossibly));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(SiblingCountInNls));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(BirthOrderInNls));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(KidCountBio));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(IsDead));
+            if ((DeathDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(DeathDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((IsBiodadDead.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(IsBiodadDead.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((BiodadDeathDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(BiodadDeathDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_SubjectTag));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((byte)(Original_RaceCohort));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_CrossSectionalCohort));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_Mob));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((short)(Original_LastSurveyYearCompleted));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(Original_AgeAtLastSurvey));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((byte)(Original_SimilarAgeCount));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_HasMzPossibly));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_SiblingCountInNls));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((byte)(Original_BirthOrderInNls));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((byte)(Original_KidCountBio));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_IsDead));
+            if ((Original_DeathDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((System.DateTime)(Original_DeathDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IsBiodadDead.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((bool)(Original_IsBiodadDead.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            if ((Original_BiodadDeathDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((System.DateTime)(Original_BiodadDeathDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    byte RaceCohort, 
+                    bool CrossSectionalCohort, 
+                    System.DateTime Mob, 
+                    short LastSurveyYearCompleted, 
+                    double AgeAtLastSurvey, 
+                    byte SimilarAgeCount, 
+                    bool HasMzPossibly, 
+                    byte SiblingCountInNls, 
+                    byte BirthOrderInNls, 
+                    byte KidCountBio, 
+                    bool IsDead, 
+                    global::System.Nullable<global::System.DateTime> DeathDate, 
+                    global::System.Nullable<bool> IsBiodadDead, 
+                    global::System.Nullable<global::System.DateTime> BiodadDeathDate, 
+                    int Original_SubjectTag, 
+                    byte Original_RaceCohort, 
+                    bool Original_CrossSectionalCohort, 
+                    System.DateTime Original_Mob, 
+                    short Original_LastSurveyYearCompleted, 
+                    double Original_AgeAtLastSurvey, 
+                    byte Original_SimilarAgeCount, 
+                    bool Original_HasMzPossibly, 
+                    byte Original_SiblingCountInNls, 
+                    byte Original_BirthOrderInNls, 
+                    byte Original_KidCountBio, 
+                    bool Original_IsDead, 
+                    global::System.Nullable<global::System.DateTime> Original_DeathDate, 
+                    global::System.Nullable<bool> Original_IsBiodadDead, 
+                    global::System.Nullable<global::System.DateTime> Original_BiodadDeathDate) {
+            return this.Update(Original_SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearCompleted, AgeAtLastSurvey, SimilarAgeCount, HasMzPossibly, SiblingCountInNls, BirthOrderInNls, KidCountBio, IsDead, DeathDate, IsBiodadDead, BiodadDeathDate, Original_SubjectTag, Original_RaceCohort, Original_CrossSectionalCohort, Original_Mob, Original_LastSurveyYearCompleted, Original_AgeAtLastSurvey, Original_SimilarAgeCount, Original_HasMzPossibly, Original_SiblingCountInNls, Original_BirthOrderInNls, Original_KidCountBio, Original_IsDead, Original_DeathDate, Original_IsBiodadDead, Original_BiodadDeathDate);
         }
     }
     

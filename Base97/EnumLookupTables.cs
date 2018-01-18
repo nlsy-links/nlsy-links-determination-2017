@@ -9,7 +9,8 @@ namespace Nls.Base97 {
         gender = 10,
         DateOfBirthMonth = 11,
         DateOfBirthYear = 12,
-        sample_cohort = 13,
+        cross_sectional_cohort = 13,
+        race_cohort = 14, // race-ethnicity
         InterviewDateDay = 20,
         InterviewDateMonth = 21,
         InterviewDateYear = 22,
@@ -47,11 +48,6 @@ namespace Nls.Base97 {
     //public enum Gender : byte {
     //    Male = 1,
     //    Female = 2,
-    //}
-    //public enum RaceCohort : byte {
-    //    Hispanic = 1,
-    //    Black = 2,
-    //    Nbnh = 3,
     //}
     //public enum MarkerEvidence : byte {
     //    Irrelevant = 0,

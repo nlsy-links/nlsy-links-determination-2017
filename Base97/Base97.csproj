@@ -75,6 +75,7 @@
     <Compile Include="Retrieve.cs" />
     <Compile Include="Roster.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="SubjectDetails.cs" />
     <Compile Include="SurveyTime.cs" />
   </ItemGroup>
   <ItemGroup>

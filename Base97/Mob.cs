@@ -25,10 +25,10 @@ namespace Nls.Base97 {
         }
         internal static DateTime? Retrieve( Int32 subjectTag, LinksDataSet.tblSubjectDetailsDataTable dt ) {
             LinksDataSet.tblSubjectDetailsRow dr = dt.FindBySubjectTag(subjectTag);
-            if( dr.IsMobNull() )
-                return null;
-            else
-                return dr.Mob;
+            //if( dr.IsMobNull() )
+            //    return null;
+            //else
+            return dr.Mob;
         }
 
         private static DateTime? CalculateMob( Int32 reportedBirthMonth, Int32 reportedYob ) {

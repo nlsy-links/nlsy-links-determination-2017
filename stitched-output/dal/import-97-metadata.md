@@ -198,13 +198,13 @@ ds_entries
 ## # A tibble: 13 x 4
 ##    name             path                           col_types  entries     
 ##    <chr>            <chr>                          <list>     <list>      
-##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [21~
+##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [22~
 ##  2 LUExtractSource  data-public/metadata/tables-9~ <S3: col_~ <tibble [5 ~
 ##  3 LUMarkerEvidence data-public/metadata/tables-9~ <S3: col_~ <tibble [8 ~
 ##  4 LUGender         data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
 ##  5 LUMarkerType     data-public/metadata/tables-9~ <S3: col_~ <tibble [28~
 ##  6 LUMultipleBirth  data-public/metadata/tables-9~ <S3: col_~ <tibble [5 ~
-##  7 LURaceCohort     data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
+##  7 LURaceCohort     data-public/metadata/tables-9~ <S3: col_~ <tibble [4 ~
 ##  8 LURoster         data-public/metadata/tables-9~ <S3: col_~ <tibble [92~
 ##  9 LUTristate       data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
 ## 10 LUYesNo          data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
@@ -223,7 +223,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 27 x 6
+## # A tibble: 28 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -236,7 +236,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 3            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 17 more rows
+## # ... with 18 more rows
 ```
 
 ```r
@@ -266,20 +266,20 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 21 x 7
-##       ID Label              MinValue MinNonnegative MaxValue Active Notes
-##    <int> <chr>                 <int>          <int>    <int> <lgl>  <chr>
-##  1     1 subject_id                1              1     9022 T      <NA> 
-##  2     2 extended_family_id        1              1     9022 T      <NA> 
-##  3     3 hh_internal_id            1              1        5 T      <NA> 
-##  4    10 gender                    1              1        2 T      <NA> 
-##  5    11 DateOfBirthMonth          1              1       12 T      <NA> 
-##  6    12 DateOfBirthYear        1980           1980     1984 T      <NA> 
-##  7    13 sample_cohort             0              0        1 T      <NA> 
-##  8    20 InterviewDateDay      -   7              1       31 T      <NA> 
-##  9    21 InterviewDateMonth    -   7              1       12 T      <NA> 
-## 10    22 InterviewDateYear     -   7             86     2016 T      <NA> 
-## # ... with 11 more rows
+## # A tibble: 22 x 7
+##       ID Label              MinValue MinNonnegative MaxValue Active Notes 
+##    <int> <chr>                 <int>          <int>    <int> <lgl>  <chr> 
+##  1     1 subject_id                1              1     9022 T      <NA>  
+##  2     2 extended_family_id        1              1     9022 T      <NA>  
+##  3     3 hh_internal_id            1              1        5 T      <NA>  
+##  4    10 gender                    1              1        2 T      <NA>  
+##  5    11 DateOfBirthMonth          1              1       12 T      <NA>  
+##  6    12 DateOfBirthYear        1980           1980     1984 T      <NA>  
+##  7    13 sample_cohort             0              0        1 T      <NA>  
+##  8    14 race_cohort               1              1        4 T      race-~
+##  9    20 InterviewDateDay      -   7              1       31 T      <NA>  
+## 10    21 InterviewDateMonth    -   7              1       12 T      <NA>  
+## # ... with 12 more rows
 ## # A tibble: 5 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
@@ -327,12 +327,13 @@ ds_file$entries %>%
 ## 3     3 Trip       T      <NA>                                            
 ## 4     4 TwinOrTrip T      Currently Then Gen1 algorithm doesn't distingui~
 ## 5   255 DoNotKnow  T      <NA>                                            
-## # A tibble: 3 x 4
+## # A tibble: 4 x 4
 ##      ID Label    Active Notes
 ##   <int> <chr>    <lgl>  <chr>
-## 1     1 Hispanic T      <NA> 
-## 2     2 Black    T      <NA> 
-## 3     3 Nbnh     T      <NA> 
+## 1     1 Black    T      <NA> 
+## 2     2 Hispanic T      <NA> 
+## 3     3 Mixed    T      <NA> 
+## 4     4 Nbnh     T      <NA> 
 ## # A tibble: 92 x 4
 ##       ID Label       Active Notes
 ##    <int> <chr>       <lgl>  <chr>
@@ -392,7 +393,7 @@ ds_file$entries %>%
 ## # ... with 21 more rows, and 5 more variables: ShareBiograndparent <int>,
 ## #   Inconsistent <int>, Notes <chr>, ResponseLowerLabel <chr>,
 ## #   ResponseUpperLabel <chr>
-## # A tibble: 434 x 11
+## # A tibble: 435 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
 ##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
@@ -402,10 +403,10 @@ ds_file$entries %>%
 ##  5 R0536~    11      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
 ##  6 R0536~    12      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
 ##  7 R1235~    13      1   1997     1     1     1     1 <NA>  CV_S~ SAMPLE ~
-##  8 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
-##  9 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
-## 10 R1098~   101      2   1997     3     1     1     1 <NA>  HHI2~ HHI2_HH~
-## # ... with 424 more rows
+##  8 R1482~    14      1   1997     1     1     1     1 <NA>  KEY!~ KEY!RAC~
+##  9 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
+## 10 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
+## # ... with 425 more rows
 ```
 
 ```r
@@ -501,6 +502,7 @@ ds_enum %>%
 ##     DateOfBirthMonth                                             =    11, 
 ##     DateOfBirthYear                                              =    12, 
 ##     sample_cohort                                                =    13, 
+##     race_cohort                                                  =    14, // race-ethnicity
 ##     InterviewDateDay                                             =    20, 
 ##     InterviewDateMonth                                           =    21, 
 ##     InterviewDateYear                                            =    22, 
@@ -582,9 +584,10 @@ ds_enum %>%
 ## }
 ##  
 ## public enum RaceCohort {
-##     Hispanic                                                     =     1, 
-##     Black                                                        =     2, 
-##     Nbnh                                                         =     3, 
+##     Black                                                        =     1, 
+##     Hispanic                                                     =     2, 
+##     Mixed                                                        =     3, 
+##     Nbnh                                                         =     4, 
 ## }
 ##  
 ## public enum RosterGen1 {
@@ -1065,7 +1068,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 20:13 -0600 in 15 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-17, 22:50 -0600 in 17 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1120,6 +1123,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-17 20:13:10 CST"
+## [1] "2018-01-17 22:50:23 CST"
 ```
 

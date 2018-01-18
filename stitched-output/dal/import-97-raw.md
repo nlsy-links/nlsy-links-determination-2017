@@ -431,11 +431,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   T8123600 <int>, T8132900 <int>, T8132901 <int>, T8132902 <int>,
 ## #   U0001700 <int>, U0001800 <int>, U0013200 <int>, U0013201 <int>,
 ## #   U0013202 <int>
-## [1] "2018-01-17 20:13:29 CST"
-```
-
-```
-## The table `Extract.tblSurveyTime` was written over dsn `local-nlsy-links-97` in 0.081 minutes.
+## [1] 1
 ```
 
 ```
@@ -538,7 +534,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-17, 20:13 -0600 in 30 seconds.
+## File completed by `Will` at 2018-01-17, 22:50 -0600 in 31 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -593,6 +589,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-17 20:13:40 CST"
+## [1] "2018-01-17 22:50:55 CST"
 ```
 

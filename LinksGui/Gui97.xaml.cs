@@ -43,8 +43,8 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            if( Convert.ToBoolean("true") ) {
-            //if( Convert.ToBoolean("false")) {
+            //if( Convert.ToBoolean("true") ) {
+                if( Convert.ToBoolean("false")) {
                 LoadExtractDemographics();
                 LoadExtractRoster();
                 LoadExtractSurveyTime();
@@ -71,7 +71,7 @@ namespace LinksGui {
             //LoadParentsOfGen1Current();
             //LoadBabyDaddy();
             //LoadFatherOfGen2();
-            //LoadSubjectDetails();
+            LoadSubjectDetails();
             //LoadMarkerGen1();
             //LoadMarkerGen2();
             LoadRelatedValues();
@@ -118,14 +118,14 @@ namespace LinksGui {
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             //WriteXml(_dsLinks.tblRosterGen1);
         }
-    
-        //private void btnSubjectDetails_Click( object sender, RoutedEventArgs e ) {
-        //    BA.SubjectDetails subjectDetails = new BA.SubjectDetails(_dsLinks);
-        //    string message = subjectDetails.Go();
-        //    Trace.WriteLine(message);
-        //    if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-        //    //WriteXml(_dsLinks.tblSubjectDetails);
-        //}
+
+        private void btnSubjectDetails_Click( object sender, RoutedEventArgs e ) {
+            BA.SubjectDetails subjectDetails = new BA.SubjectDetails(_dsLinks);
+            string message = subjectDetails.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblSubjectDetails);
+        }
         private void btnRelatedValues_Click( object sender, RoutedEventArgs e ) {
         //    BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
         //    string message = related.Go();
@@ -164,7 +164,7 @@ namespace LinksGui {
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Current, LoadParentsOfGen1Current);
         //    BulkUpdate(schemaName, _dsLinks.tblBabyDaddy, LoadBabyDaddy);
         //    BulkUpdate(schemaName, _dsLinks.tblFatherOfGen2, LoadFatherOfGen2);
-        //    BulkUpdate(schemaName, _dsLinks.tblSubjectDetails, LoadSubjectDetails);
+            BulkUpdate(schemaName, _dsLinks.tblSubjectDetails, LoadSubjectDetails);
         //    BulkUpdate(schemaName, _dsLinks.tblMarkerGen1, LoadMarkerGen1);
         //    BulkUpdate(schemaName, _dsLinks.tblMarkerGen2, LoadMarkerGen2);
         //    BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
@@ -292,6 +292,12 @@ namespace LinksGui {
             CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblRosterViewSource")));
             vs.View.MoveCurrentToFirst();
         }
+        private void LoadSubjectDetails( ) {
+            BA.LinksDataSetTableAdapters.tblSubjectDetailsTableAdapter ta = new BA.LinksDataSetTableAdapters.tblSubjectDetailsTableAdapter();
+            ta.Fill(_dsLinks.tblSubjectDetails);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblSubjectDetailsViewSource")));
+            vs.View.MoveCurrentToFirst();
+        }
 
         private void LoadRelatedValues( ) {
             //BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
@@ -342,9 +348,9 @@ namespace LinksGui {
         }
         private void btnCombine2_Click ( object sender, RoutedEventArgs e ) {
         //    BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter taSurveyTimeRecent = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
-        //    Stopwatch sw = new Stopwatch();
-        //    sw.Start();
-        //    e.Source = _combinedButtonTag;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            e.Source = _combinedButtonTag;
         //    taSurveyTimeRecent.Fill(_dsLinks.vewSurveyTimeMostRecent);
 
         //    btnRosterGen1_Click(sender, e);
@@ -352,18 +358,18 @@ namespace LinksGui {
         //    btnParentsOfGen1Current_Click(sender, e);
         //    btnBabyDaddy_Click(sender, e);
         //    btnFatherOfGen2_Click(sender, e);
-        //    btnSubjectDetails_Click(sender, e);
+            btnSubjectDetails_Click(sender, e);
         //    btnMarkerGen1_Click(sender, e);
         //    btnMarkerGen2_Click(sender, e);
         //    btnRelatedValues_Click(sender, e);
         //    btnOutcome_Click(sender, e);
         //    btnRelatedValuesArchive_Click(sender, e);
 
-        //    sw.Stop();
-        //    string message = string.Format("Elapsed time for btnCombine2 operations: {0}", sw.Elapsed.ToString());
-        //    btnUpdateAllTables_Click(sender, e);
-        //    Trace.WriteLine(message);
-        //    MessageBox.Show(message);
+            sw.Stop();
+            string message = string.Format("Elapsed time for btnCombine2 operations: {0}", sw.Elapsed.ToString());
+            btnUpdateAllTables_Click(sender, e);
+            Trace.WriteLine(message);
+            MessageBox.Show(message);
         }
 
     }

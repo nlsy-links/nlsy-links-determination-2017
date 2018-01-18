@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-17"
+date: "Date: 2018-01-18"
 output:
   html_document:
     keep_md: yes
@@ -42,7 +42,7 @@ This report documents the basic properties of the input & output tables kinship 
 ## Notes 
 1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
 1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
-1. For the NLSY97, 434 variables are defined, and 434 variables are 'active'.
+1. For the NLSY97, 435 variables are defined, and 435 variables are 'active'.
 
 ## Unanswered Questions
 
@@ -1939,7 +1939,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Enum        |tblLUMarkerEvidence     |         8|            4|
 |Enum        |tblLUMarkerType         |        28|            5|
 |Enum        |tblLUMultipleBirth      |         5|            4|
-|Enum        |tblLURaceCohort         |         3|            4|
+|Enum        |tblLURaceCohort         |         4|            4|
 |Enum        |tblLURoster             |        92|            4|
 |Enum        |tblLUTristate           |         3|            4|
 |Enum        |tblLUYesNo              |         6|            4|
@@ -1948,17 +1948,17 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksImplicit        |     8,984|           43|
 |Extract     |tblRoster               |     8,984|          464|
 |Extract     |tblSurveyTime           |     8,984|           94|
-|Metadata    |tblItem                 |        21|            7|
+|Metadata    |tblItem                 |        22|            7|
 |Metadata    |tblMzManual             |       208|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
-|Metadata    |tblVariable             |       434|           11|
+|Metadata    |tblVariable             |       435|           11|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            8|
 |Process     |tblRelatedValues        |         0|           23|
-|Process     |tblResponse             | 1,156,770|            8|
+|Process     |tblResponse             | 1,165,754|            8|
 |Process     |tblRoster               |     5,038|           13|
 |Process     |tblSubject              |     8,984|            5|
-|Process     |tblSubjectDetails       |         0|           15|
+|Process     |tblSubjectDetails       |     8,984|           15|
 |Process     |tblSurveyTime           |   152,728|            7|
 
 ## Items 97
@@ -1972,6 +1972,7 @@ This report documents the basic properties of the input & output tables kinship 
 |   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA                                                                        |
 |   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA                                                                        |
 |   13|sample_cohort                    |        0|              0|        1|TRUE   |NA                                                                        |
+|   14|race_cohort                      |        1|              1|        4|TRUE   |race-ethnicity                                                            |
 |   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA                                                                        |
 |   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA                                                                        |
 |   22|InterviewDateYear                |       -7|             86|     2016|TRUE   |NA                                                                        |
@@ -2345,6 +2346,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R1317200      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
 |R1317300      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
 |R1317400      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
+|R1482600      |      14|race_cohort                      |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R2553400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
 |R2553500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
 |R2568300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
@@ -2445,7 +2447,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksExplicit        |          1,480|         1,432|
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
 |Extract     |tblRoster               |         18,056|        18,048|
-|Extract     |tblSurveyTime           |          3,720|         3,616|
+|Extract     |tblSurveyTime           |          3,656|         3,616|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            40|
 |Metadata    |tblRosterAssignment     |             72|            16|
@@ -2453,11 +2455,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |             72|            16|
-|Process     |tblResponse             |         53,320|        50,800|
+|Process     |tblResponse             |         60,936|        58,056|
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
-|Process     |tblSubjectDetails       |             72|            16|
-|Process     |tblSurveyTime           |          5,712|         5,040|
+|Process     |tblSubjectDetails       |            720|           544|
+|Process     |tblSurveyTime           |          5,456|         4,832|
 
 
 # Session Information
@@ -2478,7 +2480,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-17                                 
+ date     2018-01-18                                 
 ```
 
 ```
@@ -2549,4 +2551,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-17, 20:32 -0600 in 1 seconds.
+Report rendered by Will at 2018-01-18, 00:01 -0600 in 2 seconds.

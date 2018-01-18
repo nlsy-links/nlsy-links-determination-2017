@@ -891,8 +891,6 @@ CREATE TABLE [Extract].[tblSurveyTime](
 	[R0000201] [int] NOT NULL,
 	[R0000202] [int] NOT NULL,
 	[R0536300] [int] NOT NULL,
-	[R0536401] [int] NOT NULL,
-	[R0536402] [int] NOT NULL,
 	[R0541100] [int] NOT NULL,
 	[R0541101] [int] NOT NULL,
 	[R0541102] [int] NOT NULL,
@@ -902,88 +900,86 @@ CREATE TABLE [Extract].[tblSurveyTime](
 	[R1209400] [int] NOT NULL,
 	[R1209401] [int] NOT NULL,
 	[R1209402] [int] NOT NULL,
-	[R1235800] [int] NOT NULL,
-	[R1482600] [int] NOT NULL,
-	[R1490000] [int] NOT NULL,
-	[R1490001] [int] NOT NULL,
-	[R1490002] [int] NOT NULL,
 	[R2553400] [int] NOT NULL,
 	[R2553500] [int] NOT NULL,
-	[R2730000] [int] NOT NULL,
-	[R2730001] [int] NOT NULL,
-	[R2730002] [int] NOT NULL,
+	[R2568300] [int] NOT NULL,
+	[R2568301] [int] NOT NULL,
+	[R2568302] [int] NOT NULL,
 	[R3876200] [int] NOT NULL,
 	[R3876300] [int] NOT NULL,
-	[R3990000] [int] NOT NULL,
-	[R3990001] [int] NOT NULL,
-	[R3990002] [int] NOT NULL,
+	[R3890300] [int] NOT NULL,
+	[R3890301] [int] NOT NULL,
+	[R3890302] [int] NOT NULL,
 	[R5453600] [int] NOT NULL,
 	[R5453700] [int] NOT NULL,
-	[R5650000] [int] NOT NULL,
-	[R5650001] [int] NOT NULL,
-	[R5650002] [int] NOT NULL,
+	[R5472300] [int] NOT NULL,
+	[R5472301] [int] NOT NULL,
+	[R5472302] [int] NOT NULL,
 	[R7215900] [int] NOT NULL,
 	[R7216000] [int] NOT NULL,
-	[S0000100] [int] NOT NULL,
-	[S0000101] [int] NOT NULL,
-	[S0000102] [int] NOT NULL,
+	[R7236100] [int] NOT NULL,
+	[R7236101] [int] NOT NULL,
+	[R7236102] [int] NOT NULL,
 	[S1531300] [int] NOT NULL,
 	[S1531400] [int] NOT NULL,
+	[S1550900] [int] NOT NULL,
+	[S1550901] [int] NOT NULL,
+	[S1550902] [int] NOT NULL,
 	[S2000900] [int] NOT NULL,
 	[S2001000] [int] NOT NULL,
-	[S2075300] [int] NOT NULL,
-	[S2075301] [int] NOT NULL,
-	[S2075302] [int] NOT NULL,
+	[S2020800] [int] NOT NULL,
+	[S2020801] [int] NOT NULL,
+	[S2020802] [int] NOT NULL,
 	[S3801000] [int] NOT NULL,
 	[S3801100] [int] NOT NULL,
-	[S3872500] [int] NOT NULL,
-	[S3872501] [int] NOT NULL,
-	[S3872502] [int] NOT NULL,
+	[S3822000] [int] NOT NULL,
+	[S3822001] [int] NOT NULL,
+	[S3822002] [int] NOT NULL,
 	[S5400900] [int] NOT NULL,
 	[S5401000] [int] NOT NULL,
-	[S5462300] [int] NOT NULL,
-	[S5462301] [int] NOT NULL,
-	[S5462302] [int] NOT NULL,
+	[S5422000] [int] NOT NULL,
+	[S5422001] [int] NOT NULL,
+	[S5422002] [int] NOT NULL,
 	[S7501100] [int] NOT NULL,
 	[S7501200] [int] NOT NULL,
-	[S7565300] [int] NOT NULL,
-	[S7565301] [int] NOT NULL,
-	[S7565302] [int] NOT NULL,
+	[S7524100] [int] NOT NULL,
+	[S7524101] [int] NOT NULL,
+	[S7524102] [int] NOT NULL,
 	[T0008400] [int] NOT NULL,
 	[T0008500] [int] NOT NULL,
-	[T0049800] [int] NOT NULL,
-	[T0049801] [int] NOT NULL,
-	[T0049802] [int] NOT NULL,
+	[T0024500] [int] NOT NULL,
+	[T0024501] [int] NOT NULL,
+	[T0024502] [int] NOT NULL,
 	[T2011000] [int] NOT NULL,
 	[T2011100] [int] NOT NULL,
-	[T2030500] [int] NOT NULL,
-	[T2030501] [int] NOT NULL,
-	[T2030502] [int] NOT NULL,
+	[T2019400] [int] NOT NULL,
+	[T2019401] [int] NOT NULL,
+	[T2019402] [int] NOT NULL,
 	[T3601400] [int] NOT NULL,
 	[T3601500] [int] NOT NULL,
-	[T3631300] [int] NOT NULL,
-	[T3631301] [int] NOT NULL,
-	[T3631302] [int] NOT NULL,
+	[T3610000] [int] NOT NULL,
+	[T3610001] [int] NOT NULL,
+	[T3610002] [int] NOT NULL,
 	[T5201300] [int] NOT NULL,
 	[T5201400] [int] NOT NULL,
-	[T5229100] [int] NOT NULL,
-	[T5229101] [int] NOT NULL,
-	[T5229102] [int] NOT NULL,
+	[T5210400] [int] NOT NULL,
+	[T5210401] [int] NOT NULL,
+	[T5210402] [int] NOT NULL,
 	[T6651200] [int] NOT NULL,
 	[T6651300] [int] NOT NULL,
-	[T6680900] [int] NOT NULL,
-	[T6680901] [int] NOT NULL,
-	[T6680902] [int] NOT NULL,
+	[T6661400] [int] NOT NULL,
+	[T6661401] [int] NOT NULL,
+	[T6661402] [int] NOT NULL,
 	[T8123500] [int] NOT NULL,
 	[T8123600] [int] NOT NULL,
-	[T8154000] [int] NOT NULL,
-	[T8154001] [int] NOT NULL,
-	[T8154002] [int] NOT NULL,
+	[T8132900] [int] NOT NULL,
+	[T8132901] [int] NOT NULL,
+	[T8132902] [int] NOT NULL,
 	[U0001700] [int] NOT NULL,
 	[U0001800] [int] NOT NULL,
-	[U0036300] [int] NOT NULL,
-	[U0036301] [int] NOT NULL,
-	[U0036302] [int] NOT NULL,
+	[U0013200] [int] NOT NULL,
+	[U0013201] [int] NOT NULL,
+	[U0013202] [int] NOT NULL,
  CONSTRAINT [PK_tblSurveyTime] PRIMARY KEY CLUSTERED 
 (
 	[R0000100] ASC
@@ -1199,19 +1195,23 @@ GO
 CREATE TABLE [Process].[tblSubjectDetails](
 	[SubjectTag] [int] NOT NULL,
 	[RaceCohort] [tinyint] NOT NULL,
-	[SiblingCountInNls] [tinyint] NOT NULL,
-	[BirthOrderInNls] [tinyint] NOT NULL,
+	[CrossSectionalCohort] [bit] NOT NULL,
+	[Mob] [date] NOT NULL,
+	[LastSurveyYearCompleted] [smallint] NOT NULL,
+	[AgeAtLastSurvey] [float] NOT NULL,
 	[SimilarAgeCount] [tinyint] NOT NULL,
 	[HasMzPossibly] [bit] NOT NULL,
-	[KidCountBio] [tinyint] NULL,
-	[KidCountInNls] [tinyint] NULL,
-	[Mob] [date] NULL,
-	[LastSurveyYearCompleted] [smallint] NULL,
-	[AgeAtLastSurvey] [float] NULL,
+	[SiblingCountInNls] [tinyint] NOT NULL,
+	[BirthOrderInNls] [tinyint] NOT NULL,
+	[KidCountBio] [tinyint] NOT NULL,
 	[IsDead] [bit] NOT NULL,
 	[DeathDate] [date] NULL,
 	[IsBiodadDead] [bit] NULL,
-	[BiodadDeathDate] [date] NULL
+	[BiodadDeathDate] [date] NULL,
+ CONSTRAINT [PK_tblSubjectDetails] PRIMARY KEY NONCLUSTERED 
+(
+	[SubjectTag] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1266,11 +1266,6 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubject_Unique] ON [Process].[tblSubject
 	[SubjectID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSubjectDetails] ON [Process].[tblSubjectDetails]
-(
-	[SubjectTag] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblSurveyTime_Unique] ON [Process].[tblSurveyTime]
 (
 	[SubjectTag] ASC,
@@ -1284,8 +1279,6 @@ GO
 CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblRelatedValues] ON [Process].[tblRelatedValues] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
 GO
 CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblResponse] ON [Process].[tblResponse] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
-GO
-CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSubjectDetails] ON [Process].[tblSubjectDetails] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
 GO
 CREATE CLUSTERED COLUMNSTORE INDEX [ICC_tblSurveyTime] ON [Process].[tblSurveyTime] WITH (DROP_EXISTING = OFF, COMPRESSION_DELAY = 0) ON [PRIMARY]
 GO
@@ -1492,7 +1485,7 @@ ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSub
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_LastSurveyYear]
 GO
-ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_Mob] CHECK  (('1/1/1955'<=[Mob]))
+ALTER TABLE [Process].[tblSubjectDetails]  WITH CHECK ADD  CONSTRAINT [CK_tblSubjectDetails_Mob] CHECK  (('1/1/1980'<=[Mob] AND [Mob]<='1/1/1985'))
 GO
 ALTER TABLE [Process].[tblSubjectDetails] CHECK CONSTRAINT [CK_tblSubjectDetails_Mob]
 GO
@@ -1551,7 +1544,7 @@ OR Item in (105)                                                                
 --OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
 --OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
 --OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
---OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
+OR Item in (11, 12, 13, 14)                                                                              --For SubjectDetails
 --OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
 --OR Item in (9,10)                                                                                        --For MarkerGen2
 --OR Item in (                                                                                             --Outcomes
