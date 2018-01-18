@@ -72,8 +72,7 @@ namespace LinksGui {
             //LoadBabyDaddy();
             //LoadFatherOfGen2();
             LoadSubjectDetails();
-            //LoadMarkerGen1();
-            //LoadMarkerGen2();
+            LoadMarker();
             LoadRelatedValues();
             //LoadRelatedValuesNextVersionNumber();
             sw.Stop();
@@ -126,6 +125,13 @@ namespace LinksGui {
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             //WriteXml(_dsLinks.tblSubjectDetails);
         }
+        private void btnMarker_Click( object sender, RoutedEventArgs e ) {
+            BA.Marker marker = new BA.Marker(_dsLinks, _dsImport);
+            string message = marker.Go();
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+            //WriteXml(_dsLinks.tblMarker);
+        }
         private void btnRelatedValues_Click( object sender, RoutedEventArgs e ) {
         //    BA.RelatedValues related = new BA.RelatedValues(_dsImport, _dsLinks);
         //    string message = related.Go();
@@ -165,8 +171,7 @@ namespace LinksGui {
         //    BulkUpdate(schemaName, _dsLinks.tblBabyDaddy, LoadBabyDaddy);
         //    BulkUpdate(schemaName, _dsLinks.tblFatherOfGen2, LoadFatherOfGen2);
             BulkUpdate(schemaName, _dsLinks.tblSubjectDetails, LoadSubjectDetails);
-        //    BulkUpdate(schemaName, _dsLinks.tblMarkerGen1, LoadMarkerGen1);
-        //    BulkUpdate(schemaName, _dsLinks.tblMarkerGen2, LoadMarkerGen2);
+            BulkUpdate(schemaName, _dsLinks.tblMarker, LoadMarker);
         //    BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
         //    BulkUpdate(schemaName, _dsLinks.tblOutcome, LoadOutcomes);
         //    BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
@@ -298,6 +303,12 @@ namespace LinksGui {
             CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblSubjectDetailsViewSource")));
             vs.View.MoveCurrentToFirst();
         }
+        private void LoadMarker( ) {
+            BA.LinksDataSetTableAdapters.tblMarkerTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMarkerTableAdapter();
+            ta.Fill(_dsLinks.tblMarker);
+            CollectionViewSource vs = ((CollectionViewSource)(this.FindResource("tblMarkerViewSource")));
+            vs.View.MoveCurrentToFirst();
+        }
 
         private void LoadRelatedValues( ) {
             //BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRelatedValuesTableAdapter();
@@ -359,8 +370,7 @@ namespace LinksGui {
         //    btnBabyDaddy_Click(sender, e);
         //    btnFatherOfGen2_Click(sender, e);
             btnSubjectDetails_Click(sender, e);
-        //    btnMarkerGen1_Click(sender, e);
-        //    btnMarkerGen2_Click(sender, e);
+            btnMarker_Click(sender, e);
         //    btnRelatedValues_Click(sender, e);
         //    btnOutcome_Click(sender, e);
         //    btnRelatedValuesArchive_Click(sender, e);

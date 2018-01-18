@@ -23,6 +23,7 @@
         <CollectionViewSource x:Key="tblRosterViewSource1" Source="{Binding tblRoster, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblRosterAssignmentViewSource" Source="{Binding tblRosterAssignment, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblSubjectDetailsViewSource" Source="{Binding tblSubjectDetails, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblMarkerViewSource" Source="{Binding tblMarker, Source={StaticResource linksDataSet}}"/>
 
 
     </Window.Resources>
@@ -67,6 +68,7 @@
             <Button Name="btnSubjectDetails" Grid.Column="10" Click="btnSubjectDetails_Click">
                 <TextBlock>Subject<LineBreak/>Details</TextBlock>
             </Button>
+            <Button Name="btnMarker" Content="Marker" Grid.Column="11" Click="btnMarker_Click"/>
             <Button x:Name="btnRelatedValues" Grid.Column="13" Click="btnRelatedValues_Click">
                 <TextBlock><Run Text="Related"/><LineBreak/><Run Text="Values"/></TextBlock>
             </Button>
@@ -126,6 +128,9 @@
             </TabItem>
             <TabItem Header="SubjectDetails" Name="tabSubjectDetails" >
                 <DataGrid  ItemsSource="{Binding Source={StaticResource tblSubjectDetailsViewSource}}"/>
+            </TabItem>
+            <TabItem Header="Marker" Name="tabMarker" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblMarkerViewSource}}"/>
             </TabItem>
             <TabItem Header="RValues" x:Name="tabRelatedValues" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}" />

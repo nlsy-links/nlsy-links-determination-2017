@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assign\Evidence.cs" />
     <Compile Include="CommonCalculations.cs" />
     <Compile Include="CommonFunctions.cs" />
     <Compile Include="Constants.cs" />
@@ -62,6 +63,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LinksDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Marker.cs" />
+    <Compile Include="MarkerSummary.cs" />
     <Compile Include="Mob.cs" />
     <Compile Include="Overrides.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

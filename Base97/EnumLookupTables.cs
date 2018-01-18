@@ -1,7 +1,8 @@
 ﻿using System;
 namespace Nls.Base97 {
-    //public enum MarkerType : byte {
-    //}
+    public enum MarkerType : byte {
+        roster=1
+    }
     public enum Item : short {
         subject_id = 1,
         extended_family_id = 2,
@@ -45,20 +46,16 @@ namespace Nls.Base97 {
         Yes = 1,
         DoNotKnow = 255,
     }
-    //public enum Gender : byte {
-    //    Male = 1,
-    //    Female = 2,
-    //}
-    //public enum MarkerEvidence : byte {
-    //    Irrelevant = 0,
-    //    StronglySupports = 1,
-    //    Supports = 2,
-    //    Consistent = 3,
-    //    Ambiguous = 4,
-    //    Missing = 5,
-    //    Unlikely = 6,
-    //    Disconfirms = 7,
-    //}
+    public enum MarkerEvidence : byte {
+        Irrelevant = 0,
+        StronglySupports = 1,
+        Supports = 2,
+        Consistent = 3,
+        Ambiguous = 4,
+        Missing = 5,
+        Unlikely = 6,
+        Disconfirms = 7,
+    }
     //public enum YesNo : short {
     //    ValidSkipOrNoInterviewOrNotInSurvey = -6,
     //    InvalidSkip = -3,

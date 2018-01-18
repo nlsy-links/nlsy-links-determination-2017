@@ -163,7 +163,7 @@ namespace LinksGui {
             string message = marker.Go();
             Trace.WriteLine(message);
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
-            //WriteXml(_dsLinks.tblMarkerGen2);
+            //WriteXml(_dsLinks.tblMarkerGen1);
         }
         private void btnMarkerGen2_Click( object sender, RoutedEventArgs e ) {
             BA.MarkerGen2 marker = new BA.MarkerGen2(_dsLinks);

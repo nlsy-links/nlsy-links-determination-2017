@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Nls.Base79 {
-    public class MarkerGen1Summary {
+namespace Nls.Base97 {
+    public class MarkerSummary {
         #region Fields
         private readonly MarkerEvidence _sameGeneration;
         private readonly MarkerEvidence _shareBiomom;
@@ -18,7 +18,7 @@ namespace Nls.Base79 {
         public MarkerEvidence ShareBiograndparent { get { return _shareBiograndparent; } }
         #endregion
         #region Constructor
-        public MarkerGen1Summary( MarkerEvidence sameGeneration, MarkerEvidence shareBiomom, MarkerEvidence shareBiodad, MarkerEvidence shareBiograndparent ) {
+        public MarkerSummary( MarkerEvidence sameGeneration, MarkerEvidence shareBiomom, MarkerEvidence shareBiodad, MarkerEvidence shareBiograndparent ) {
             _sameGeneration = sameGeneration;
             _shareBiomom = shareBiomom;
             _shareBiodad = shareBiodad;

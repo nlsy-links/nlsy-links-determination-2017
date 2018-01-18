@@ -62,17 +62,17 @@ namespace Nls.Base97 {
         }
         #endregion
         #region Public Static Methods
-        //internal static MarkerGen1Summary RetrieveSummary( Int32 relatedIDLeft, LinksDataSet.tblRosterDataTable dtRoster ) {
-        //    if( dtRoster == null ) throw new ArgumentNullException("dtRoster");
-        //    LinksDataSet.tblRosterGen1Row dr = dtRoster.FindByRelatedID(relatedIDLeft);
+        internal static MarkerSummary RetrieveSummary( Int32 relatedIDLeft, LinksDataSet.tblRosterDataTable dtRoster ) {
+            if( dtRoster == null ) throw new ArgumentNullException("dtRoster");
+            LinksDataSet.tblRosterRow dr = dtRoster.FindByRelatedID(relatedIDLeft);
 
-        //    MarkerEvidence sameGeneration = Assign.EvidenceGen1.RosterSameGeneration((Tristate)dr.SameGeneration);
-        //    MarkerEvidence shareBiodad = Assign.EvidenceGen1.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiodad);
-        //    MarkerEvidence shareBiomom = Assign.EvidenceGen1.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiomom);
-        //    MarkerEvidence shareBiograndparent = Assign.EvidenceGen1.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiograndparent);
+            MarkerEvidence sameGeneration = Assign.Evidence.RosterSameGeneration((Tristate)dr.SameGeneration);
+            MarkerEvidence shareBiodad = Assign.Evidence.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiodad);
+            MarkerEvidence shareBiomom = Assign.Evidence.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiomom);
+            MarkerEvidence shareBiograndparent = Assign.Evidence.RosterShareBioParentOrGrandparent((Tristate)dr.ShareBiograndparent);
 
-        //    return new MarkerGen1Summary(sameGeneration, shareBiomom, shareBiodad, shareBiograndparent);
-        //}
+            return new MarkerSummary(sameGeneration, shareBiomom, shareBiodad, shareBiograndparent);
+        }
         #endregion
         #region Private Methods -Tier 1
         private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 internal_id_2, LinksDataSet.tblResponseDataTable dtFamily ) {

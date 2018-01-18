@@ -34,6 +34,8 @@ namespace Nls.Base97 {
         
         private tblVariableDataTable tabletblVariable;
         
+        private tblMarkerDataTable tabletblMarker;
+        
         private tblOutcomeDataTable tabletblOutcome;
         
         private tblRelatedStructureDataTable tabletblRelatedStructure;
@@ -51,6 +53,8 @@ namespace Nls.Base97 {
         private global::System.Data.DataRelation relationFK_tblSurveyTime_tblSubject;
         
         private global::System.Data.DataRelation relationFK_tblVariable_tblItem;
+        
+        private global::System.Data.DataRelation relationFK_tblMarker_tblRelatedStructure;
         
         private global::System.Data.DataRelation relationFK_tblOutcome_tblItem;
         
@@ -110,6 +114,9 @@ namespace Nls.Base97 {
                 }
                 if ((ds.Tables["tblVariable"] != null)) {
                     base.Tables.Add(new tblVariableDataTable(ds.Tables["tblVariable"]));
+                }
+                if ((ds.Tables["tblMarker"] != null)) {
+                    base.Tables.Add(new tblMarkerDataTable(ds.Tables["tblMarker"]));
                 }
                 if ((ds.Tables["tblOutcome"] != null)) {
                     base.Tables.Add(new tblOutcomeDataTable(ds.Tables["tblOutcome"]));
@@ -197,6 +204,16 @@ namespace Nls.Base97 {
         public tblVariableDataTable tblVariable {
             get {
                 return this.tabletblVariable;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblMarkerDataTable tblMarker {
+            get {
+                return this.tabletblMarker;
             }
         }
         
@@ -352,6 +369,9 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblVariable"] != null)) {
                     base.Tables.Add(new tblVariableDataTable(ds.Tables["tblVariable"]));
                 }
+                if ((ds.Tables["tblMarker"] != null)) {
+                    base.Tables.Add(new tblMarkerDataTable(ds.Tables["tblMarker"]));
+                }
                 if ((ds.Tables["tblOutcome"] != null)) {
                     base.Tables.Add(new tblOutcomeDataTable(ds.Tables["tblOutcome"]));
                 }
@@ -436,6 +456,12 @@ namespace Nls.Base97 {
                     this.tabletblVariable.InitVars();
                 }
             }
+            this.tabletblMarker = ((tblMarkerDataTable)(base.Tables["tblMarker"]));
+            if ((initTable == true)) {
+                if ((this.tabletblMarker != null)) {
+                    this.tabletblMarker.InitVars();
+                }
+            }
             this.tabletblOutcome = ((tblOutcomeDataTable)(base.Tables["tblOutcome"]));
             if ((initTable == true)) {
                 if ((this.tabletblOutcome != null)) {
@@ -480,6 +506,7 @@ namespace Nls.Base97 {
             }
             this.relationFK_tblSurveyTime_tblSubject = this.Relations["FK_tblSurveyTime_tblSubject"];
             this.relationFK_tblVariable_tblItem = this.Relations["FK_tblVariable_tblItem"];
+            this.relationFK_tblMarker_tblRelatedStructure = this.Relations["FK_tblMarker_tblRelatedStructure"];
             this.relationFK_tblOutcome_tblItem = this.Relations["FK_tblOutcome_tblItem"];
             this.relationFK_tblOutcome_tblSubject = this.Relations["FK_tblOutcome_tblSubject"];
             this.relationFK_tblRelatedStructure_tblSubject_Subject1 = this.Relations["FK_tblRelatedStructure_tblSubject_Subject1"];
@@ -508,6 +535,8 @@ namespace Nls.Base97 {
             base.Tables.Add(this.tabletblRosterAssignment);
             this.tabletblVariable = new tblVariableDataTable();
             base.Tables.Add(this.tabletblVariable);
+            this.tabletblMarker = new tblMarkerDataTable();
+            base.Tables.Add(this.tabletblMarker);
             this.tabletblOutcome = new tblOutcomeDataTable();
             base.Tables.Add(this.tabletblOutcome);
             this.tabletblRelatedStructure = new tblRelatedStructureDataTable();
@@ -530,6 +559,10 @@ namespace Nls.Base97 {
                         this.tabletblItem.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletblVariable.ItemColumn}, false);
             this.Relations.Add(this.relationFK_tblVariable_tblItem);
+            this.relationFK_tblMarker_tblRelatedStructure = new global::System.Data.DataRelation("FK_tblMarker_tblRelatedStructure", new global::System.Data.DataColumn[] {
+                        this.tabletblRelatedStructure.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletblMarker.RelatedIDColumn}, false);
+            this.Relations.Add(this.relationFK_tblMarker_tblRelatedStructure);
             this.relationFK_tblOutcome_tblItem = new global::System.Data.DataRelation("FK_tblOutcome_tblItem", new global::System.Data.DataColumn[] {
                         this.tabletblItem.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletblOutcome.ItemColumn}, false);
@@ -591,6 +624,12 @@ namespace Nls.Base97 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblVariable() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblMarker() {
             return false;
         }
         
@@ -705,6 +744,9 @@ namespace Nls.Base97 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblVariableRowChangeEventHandler(object sender, tblVariableRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblMarkerRowChangeEventHandler(object sender, tblMarkerRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblOutcomeRowChangeEventHandler(object sender, tblOutcomeRowChangeEvent e);
@@ -2667,6 +2709,409 @@ namespace Nls.Base97 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tblVariableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblMarkerDataTable : global::System.Data.TypedTableBase<tblMarkerRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnExtendedID;
+            
+            private global::System.Data.DataColumn columnRelatedID;
+            
+            private global::System.Data.DataColumn columnMarkerType;
+            
+            private global::System.Data.DataColumn columnSurveyYear;
+            
+            private global::System.Data.DataColumn columnMzEvidence;
+            
+            private global::System.Data.DataColumn columnSameGeneration;
+            
+            private global::System.Data.DataColumn columnShareBiomomEvidence;
+            
+            private global::System.Data.DataColumn columnShareBiodadEvidence;
+            
+            private global::System.Data.DataColumn columnShareBioGrandparentEvidence;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerDataTable() {
+                this.TableName = "tblMarker";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblMarkerDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblMarkerDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExtendedIDColumn {
+                get {
+                    return this.columnExtendedID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RelatedIDColumn {
+                get {
+                    return this.columnRelatedID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MarkerTypeColumn {
+                get {
+                    return this.columnMarkerType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SurveyYearColumn {
+                get {
+                    return this.columnSurveyYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MzEvidenceColumn {
+                get {
+                    return this.columnMzEvidence;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SameGenerationColumn {
+                get {
+                    return this.columnSameGeneration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBiomomEvidenceColumn {
+                get {
+                    return this.columnShareBiomomEvidence;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBiodadEvidenceColumn {
+                get {
+                    return this.columnShareBiodadEvidence;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ShareBioGrandparentEvidenceColumn {
+                get {
+                    return this.columnShareBioGrandparentEvidence;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow this[int index] {
+                get {
+                    return ((tblMarkerRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblMarkerRowChangeEventHandler tblMarkerRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblMarkerRowChangeEventHandler tblMarkerRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblMarkerRowChangeEventHandler tblMarkerRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblMarkerRowChangeEventHandler tblMarkerRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblMarkerRow(tblMarkerRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow AddtblMarkerRow(short ExtendedID, tblRelatedStructureRow parenttblRelatedStructureRowByFK_tblMarker_tblRelatedStructure, byte MarkerType, short SurveyYear, byte MzEvidence, byte SameGeneration, byte ShareBiomomEvidence, byte ShareBiodadEvidence, byte ShareBioGrandparentEvidence) {
+                tblMarkerRow rowtblMarkerRow = ((tblMarkerRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        ExtendedID,
+                        null,
+                        MarkerType,
+                        SurveyYear,
+                        MzEvidence,
+                        SameGeneration,
+                        ShareBiomomEvidence,
+                        ShareBiodadEvidence,
+                        ShareBioGrandparentEvidence};
+                if ((parenttblRelatedStructureRowByFK_tblMarker_tblRelatedStructure != null)) {
+                    columnValuesArray[2] = parenttblRelatedStructureRowByFK_tblMarker_tblRelatedStructure[0];
+                }
+                rowtblMarkerRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblMarkerRow);
+                return rowtblMarkerRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow FindByRelatedIDMarkerTypeSurveyYear(int RelatedID, byte MarkerType, short SurveyYear) {
+                return ((tblMarkerRow)(this.Rows.Find(new object[] {
+                            RelatedID,
+                            MarkerType,
+                            SurveyYear})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblMarkerDataTable cln = ((tblMarkerDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblMarkerDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnExtendedID = base.Columns["ExtendedID"];
+                this.columnRelatedID = base.Columns["RelatedID"];
+                this.columnMarkerType = base.Columns["MarkerType"];
+                this.columnSurveyYear = base.Columns["SurveyYear"];
+                this.columnMzEvidence = base.Columns["MzEvidence"];
+                this.columnSameGeneration = base.Columns["SameGeneration"];
+                this.columnShareBiomomEvidence = base.Columns["ShareBiomomEvidence"];
+                this.columnShareBiodadEvidence = base.Columns["ShareBiodadEvidence"];
+                this.columnShareBioGrandparentEvidence = base.Columns["ShareBioGrandparentEvidence"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnExtendedID = new global::System.Data.DataColumn("ExtendedID", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExtendedID);
+                this.columnRelatedID = new global::System.Data.DataColumn("RelatedID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRelatedID);
+                this.columnMarkerType = new global::System.Data.DataColumn("MarkerType", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMarkerType);
+                this.columnSurveyYear = new global::System.Data.DataColumn("SurveyYear", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSurveyYear);
+                this.columnMzEvidence = new global::System.Data.DataColumn("MzEvidence", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMzEvidence);
+                this.columnSameGeneration = new global::System.Data.DataColumn("SameGeneration", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSameGeneration);
+                this.columnShareBiomomEvidence = new global::System.Data.DataColumn("ShareBiomomEvidence", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBiomomEvidence);
+                this.columnShareBiodadEvidence = new global::System.Data.DataColumn("ShareBiodadEvidence", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBiodadEvidence);
+                this.columnShareBioGrandparentEvidence = new global::System.Data.DataColumn("ShareBioGrandparentEvidence", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShareBioGrandparentEvidence);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnRelatedID,
+                                this.columnMarkerType,
+                                this.columnSurveyYear}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnExtendedID.AllowDBNull = false;
+                this.columnRelatedID.AllowDBNull = false;
+                this.columnMarkerType.AllowDBNull = false;
+                this.columnSurveyYear.AllowDBNull = false;
+                this.columnMzEvidence.AllowDBNull = false;
+                this.columnSameGeneration.AllowDBNull = false;
+                this.columnShareBiomomEvidence.AllowDBNull = false;
+                this.columnShareBiodadEvidence.AllowDBNull = false;
+                this.columnShareBioGrandparentEvidence.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow NewtblMarkerRow() {
+                return ((tblMarkerRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblMarkerRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblMarkerRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblMarkerRowChanged != null)) {
+                    this.tblMarkerRowChanged(this, new tblMarkerRowChangeEvent(((tblMarkerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblMarkerRowChanging != null)) {
+                    this.tblMarkerRowChanging(this, new tblMarkerRowChangeEvent(((tblMarkerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblMarkerRowDeleted != null)) {
+                    this.tblMarkerRowDeleted(this, new tblMarkerRowChangeEvent(((tblMarkerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblMarkerRowDeleting != null)) {
+                    this.tblMarkerRowDeleting(this, new tblMarkerRowChangeEvent(((tblMarkerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblMarkerRow(tblMarkerRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                LinksDataSet ds = new LinksDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblMarkerDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6464,6 +6909,142 @@ namespace Nls.Base97 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class tblMarkerRow : global::System.Data.DataRow {
+            
+            private tblMarkerDataTable tabletblMarker;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblMarkerRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblMarker = ((tblMarkerDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long ID {
+                get {
+                    return ((long)(this[this.tabletblMarker.IDColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short ExtendedID {
+                get {
+                    return ((short)(this[this.tabletblMarker.ExtendedIDColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.ExtendedIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int RelatedID {
+                get {
+                    return ((int)(this[this.tabletblMarker.RelatedIDColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.RelatedIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte MarkerType {
+                get {
+                    return ((byte)(this[this.tabletblMarker.MarkerTypeColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.MarkerTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short SurveyYear {
+                get {
+                    return ((short)(this[this.tabletblMarker.SurveyYearColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.SurveyYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte MzEvidence {
+                get {
+                    return ((byte)(this[this.tabletblMarker.MzEvidenceColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.MzEvidenceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte SameGeneration {
+                get {
+                    return ((byte)(this[this.tabletblMarker.SameGenerationColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.SameGenerationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBiomomEvidence {
+                get {
+                    return ((byte)(this[this.tabletblMarker.ShareBiomomEvidenceColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.ShareBiomomEvidenceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBiodadEvidence {
+                get {
+                    return ((byte)(this[this.tabletblMarker.ShareBiodadEvidenceColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.ShareBiodadEvidenceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ShareBioGrandparentEvidence {
+                get {
+                    return ((byte)(this[this.tabletblMarker.ShareBioGrandparentEvidenceColumn]));
+                }
+                set {
+                    this[this.tabletblMarker.ShareBioGrandparentEvidenceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblRelatedStructureRow tblRelatedStructureRow {
+                get {
+                    return ((tblRelatedStructureRow)(this.GetParentRow(this.Table.ParentRelations["FK_tblMarker_tblRelatedStructure"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_tblMarker_tblRelatedStructure"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class tblOutcomeRow : global::System.Data.DataRow {
             
             private tblOutcomeDataTable tabletblOutcome;
@@ -6674,6 +7255,17 @@ namespace Nls.Base97 {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_tblRelatedStructure_tblSubject_Subject2"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow[] GettblMarkerRows() {
+                if ((this.Table.ChildRelations["FK_tblMarker_tblRelatedStructure"] == null)) {
+                    return new tblMarkerRow[0];
+                }
+                else {
+                    return ((tblMarkerRow[])(base.GetChildRows(this.Table.ChildRelations["FK_tblMarker_tblRelatedStructure"])));
                 }
             }
             
@@ -8148,6 +8740,40 @@ namespace Nls.Base97 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblVariableRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblMarkerRowChangeEvent : global::System.EventArgs {
+            
+            private tblMarkerRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRowChangeEvent(tblMarkerRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblMarkerRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10670,6 +11296,256 @@ SELECT VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Tr
                     string Original_QuestionName, 
                     string Original_VariableTitle) {
             return this.Update(Original_VariableCode, Item, ExtractSource, SurveyYear, LoopIndex1, LoopIndex2, Translate, Active, Notes, QuestionName, VariableTitle, Original_VariableCode, Original_Item, Original_ExtractSource, Original_SurveyYear, Original_LoopIndex1, Original_LoopIndex2, Original_Translate, Original_Active, Original_Notes, Original_QuestionName, Original_VariableTitle);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblMarkerTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public tblMarkerTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tblMarker";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("ExtendedID", "ExtendedID");
+            tableMapping.ColumnMappings.Add("RelatedID", "RelatedID");
+            tableMapping.ColumnMappings.Add("MarkerType", "MarkerType");
+            tableMapping.ColumnMappings.Add("SurveyYear", "SurveyYear");
+            tableMapping.ColumnMappings.Add("MzEvidence", "MzEvidence");
+            tableMapping.ColumnMappings.Add("SameGeneration", "SameGeneration");
+            tableMapping.ColumnMappings.Add("ShareBiomomEvidence", "ShareBiomomEvidence");
+            tableMapping.ColumnMappings.Add("ShareBiodadEvidence", "ShareBiodadEvidence");
+            tableMapping.ColumnMappings.Add("ShareBioGrandparentEvidence", "ShareBioGrandparentEvidence");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Process].[tblMarker] ([ExtendedID], [RelatedID], [MarkerType], [SurveyYear], [MzEvidence], [SameGeneration], [ShareBiomomEvidence], [ShareBiodadEvidence], [ShareBioGrandparentEvidence]) VALUES (@ExtendedID, @RelatedID, @MarkerType, @SurveyYear, @MzEvidence, @SameGeneration, @ShareBiomomEvidence, @ShareBiodadEvidence, @ShareBioGrandparentEvidence)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExtendedID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExtendedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RelatedID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RelatedID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MarkerType", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MarkerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SurveyYear", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SurveyYear", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MzEvidence", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MzEvidence", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SameGeneration", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SameGeneration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiomomEvidence", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiomomEvidence", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBiodadEvidence", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBiodadEvidence", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShareBioGrandparentEvidence", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShareBioGrandparentEvidence", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Nls.Base97.Properties.Settings.Default.Nlsy97ConnectionStringBase;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, ExtendedID, RelatedID, MarkerType, SurveyYear, MzEvidence, SameGenerat" +
+                "ion, ShareBiomomEvidence, ShareBiodadEvidence, ShareBioGrandparentEvidence FROM " +
+                "Process.tblMarker";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(LinksDataSet.tblMarkerDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual LinksDataSet.tblMarkerDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            LinksDataSet.tblMarkerDataTable dataTable = new LinksDataSet.tblMarkerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LinksDataSet.tblMarkerDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LinksDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "tblMarker");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(short ExtendedID, int RelatedID, byte MarkerType, short SurveyYear, byte MzEvidence, byte SameGeneration, byte ShareBiomomEvidence, byte ShareBiodadEvidence, byte ShareBioGrandparentEvidence) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((short)(ExtendedID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(RelatedID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(MarkerType));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((short)(SurveyYear));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(MzEvidence));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(SameGeneration));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(ShareBiomomEvidence));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((byte)(ShareBiodadEvidence));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(ShareBioGrandparentEvidence));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
         }
     }
     
@@ -13331,6 +14207,8 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
         
         private tblVariableTableAdapter _tblVariableTableAdapter;
         
+        private tblMarkerTableAdapter _tblMarkerTableAdapter;
+        
         private tblOutcomeTableAdapter _tblOutcomeTableAdapter;
         
         private tblRelatedStructureTableAdapter _tblRelatedStructureTableAdapter;
@@ -13427,6 +14305,20 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             }
             set {
                 this._tblVariableTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tblMarkerTableAdapter tblMarkerTableAdapter {
+            get {
+                return this._tblMarkerTableAdapter;
+            }
+            set {
+                this._tblMarkerTableAdapter = value;
             }
         }
         
@@ -13567,6 +14459,10 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                             && (this._tblVariableTableAdapter.Connection != null))) {
                     return this._tblVariableTableAdapter.Connection;
                 }
+                if (((this._tblMarkerTableAdapter != null) 
+                            && (this._tblMarkerTableAdapter.Connection != null))) {
+                    return this._tblMarkerTableAdapter.Connection;
+                }
                 if (((this._tblOutcomeTableAdapter != null) 
                             && (this._tblOutcomeTableAdapter.Connection != null))) {
                     return this._tblOutcomeTableAdapter.Connection;
@@ -13621,6 +14517,9 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     count = (count + 1);
                 }
                 if ((this._tblVariableTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tblMarkerTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tblOutcomeTableAdapter != null)) {
@@ -13715,6 +14614,15 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblVariableTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tblMarkerTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblMarker.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblMarkerTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -13829,6 +14737,14 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tblMarkerTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblMarker.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblMarkerTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._tblOutcomeTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tblOutcome.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -13916,6 +14832,14 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblOutcomeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tblMarkerTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblMarker.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblMarkerTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -14039,6 +14963,11 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._tblMarkerTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblMarkerTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             if (((this._tblOutcomeTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblOutcomeTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -14149,6 +15078,15 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                     if (this._tblVariableTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblVariableTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblVariableTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tblMarkerTableAdapter != null)) {
+                    revertConnections.Add(this._tblMarkerTableAdapter, this._tblMarkerTableAdapter.Connection);
+                    this._tblMarkerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblMarkerTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblMarkerTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblMarkerTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblMarkerTableAdapter.Adapter);
                     }
                 }
                 if ((this._tblOutcomeTableAdapter != null)) {
@@ -14291,6 +15229,10 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
                 if ((this._tblVariableTableAdapter != null)) {
                     this._tblVariableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblVariableTableAdapter]));
                     this._tblVariableTableAdapter.Transaction = null;
+                }
+                if ((this._tblMarkerTableAdapter != null)) {
+                    this._tblMarkerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblMarkerTableAdapter]));
+                    this._tblMarkerTableAdapter.Transaction = null;
                 }
                 if ((this._tblOutcomeTableAdapter != null)) {
                     this._tblOutcomeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblOutcomeTableAdapter]));

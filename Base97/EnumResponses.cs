@@ -2,6 +2,22 @@
 
 namespace Nls.Base97 {
     namespace EnumResponses {
+        public enum TypicalItem : int {
+            NonInterview = -5,
+            ValidSkip = -4,
+            InvalidSkip = -3,
+            DoNotKnow = -2,
+            Refusal = -1,
+        }
+        public enum ShareBioparent: int {
+            //DoesNotExistInNls = -99,
+            NonInterview = -5,
+            ValidSkip = -4,
+            DoNotKnow = -2,
+            Refusal = -1,
+            SameBioMom = 18,
+            SameBioDad = 19,
+        }
         public enum Gender : int {
             InvalidSkip = -3,
             Male = 1,
