@@ -37,6 +37,7 @@ namespace Nls.Base97 {
         SurveyTime = 3,
         LinksExplicit = 4,
         LinksImplicit = 5,
+        Twins = 6,
     }
     public enum MultipleBirth : byte {// 'Keep these values sync'ed with tblLUMultipleBirth in the database.
         No = 0,

@@ -239,6 +239,7 @@ ds_extract &lt;- tibble::tribble(
   ,&quot;Extract.tblSurveyTime&quot;          , &quot;97-survey-time&quot;
   ,&quot;Extract.tblLinksExplicit&quot;       , &quot;97-links-explicit&quot;
   ,&quot;Extract.tblLinksImplicit&quot;       , &quot;97-links-implicit&quot;
+  ,&quot;Extract.tblTwins&quot;              , &quot;97-twins&quot;
 )
 
 col_types_default &lt;- readr::cols(
@@ -246,7 +247,7 @@ col_types_default &lt;- readr::cols(
 )
 
 checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.missing=F, unique=T)
-checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name_base       , min.chars= 8, any.missing=F, unique=T)
 
 
 # sql_template_not_null &lt;- &quot; ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL&quot;
@@ -284,7 +285,7 @@ testit::assert(&quot;All files should be found.&quot;, all(ds_extract$extract_ex
 print(ds_extract, n=20)
 </code></pre>
 
-<pre><code>## # A tibble: 5 x 9
+<pre><code>## # A tibble: 6 x 9
 ##   table_name_qualified     file~ tabl~ path~ name~ extr~ sql_~ sql_~ sql_~
 ##   &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
 ## 1 Extract.tblDemographics  97-d~ tblD~ data~ 97-d~ T     SELE~ TRUN~ &quot;  A~
@@ -292,6 +293,7 @@ print(ds_extract, n=20)
 ## 3 Extract.tblSurveyTime    97-s~ tblS~ data~ 97-s~ T     SELE~ TRUN~ &quot;  A~
 ## 4 Extract.tblLinksExplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ &quot;  A~
 ## 5 Extract.tblLinksImplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ &quot;  A~
+## 6 Extract.tblTwins         97-t~ tblT~ data~ 97-t~ T     SELE~ TRUN~ &quot;  A~
 </code></pre>
 
 <pre><code class="r">ds_extract %&gt;%
@@ -299,7 +301,7 @@ print(ds_extract, n=20)
   print(n=20)
 </code></pre>
 
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 6 x 2
 ##   table_name_qualified     path_zip                                      
 ##   &lt;chr&gt;                    &lt;chr&gt;                                         
 ## 1 Extract.tblDemographics  data-unshared/raw/nlsy97/97-demographics.zip  
@@ -307,6 +309,7 @@ print(ds_extract, n=20)
 ## 3 Extract.tblSurveyTime    data-unshared/raw/nlsy97/97-survey-time.zip   
 ## 4 Extract.tblLinksExplicit data-unshared/raw/nlsy97/97-links-explicit.zip
 ## 5 Extract.tblLinksImplicit data-unshared/raw/nlsy97/97-links-implicit.zip
+## 6 Extract.tblTwins         data-unshared/raw/nlsy97/97-twins.zip
 </code></pre>
 
 <pre><code class="r">ds_inventory &lt;- ds_inventory %&gt;%
@@ -692,6 +695,58 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 <pre><code>## Tibble size: 1.5 Mb
 </code></pre>
 
+<pre><code>## Uploading from `data-unshared/raw/nlsy97/97-twins.zip` to `Extract.tblTwins`.
+</code></pre>
+
+<pre><code>## # A tibble: 8,984 x 86
+##    R000~ R053~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1     1     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  2     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  3     3     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  4     4     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  6     6     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  8     8     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 10    10     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 11    11     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 12    12     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 14    14     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 15    15     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 16    16     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 17    17     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 19    19     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 20    20     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## # ... with 8,964 more rows, and 74 more variables: R0814100 &lt;int&gt;,
+## #   R0814200 &lt;int&gt;, R0814300 &lt;int&gt;, R0814400 &lt;int&gt;, R0814500 &lt;int&gt;,
+## #   R0814600 &lt;int&gt;, R0814700 &lt;int&gt;, R0814800 &lt;int&gt;, R0814900 &lt;int&gt;,
+## #   R0815000 &lt;int&gt;, R0815100 &lt;int&gt;, R0815200 &lt;int&gt;, R0815300 &lt;int&gt;,
+## #   R0815400 &lt;int&gt;, R0815500 &lt;int&gt;, R0815600 &lt;int&gt;, R0815700 &lt;int&gt;,
+## #   R0815800 &lt;int&gt;, R0815900 &lt;int&gt;, R0816000 &lt;int&gt;, R0816100 &lt;int&gt;,
+## #   R0816200 &lt;int&gt;, R0816300 &lt;int&gt;, R0816400 &lt;int&gt;, R0816500 &lt;int&gt;,
+## #   R0817400 &lt;int&gt;, R0817500 &lt;int&gt;, R0817600 &lt;int&gt;, R0817700 &lt;int&gt;,
+## #   R0817800 &lt;int&gt;, R0817900 &lt;int&gt;, R0818000 &lt;int&gt;, R0818100 &lt;int&gt;,
+## #   R0818200 &lt;int&gt;, R0818300 &lt;int&gt;, R0818400 &lt;int&gt;, R0818500 &lt;int&gt;,
+## #   R0818600 &lt;int&gt;, R0818700 &lt;int&gt;, R0818800 &lt;int&gt;, R0818900 &lt;int&gt;,
+## #   R0819000 &lt;int&gt;, R0819100 &lt;int&gt;, R0819200 &lt;int&gt;, R0819300 &lt;int&gt;,
+## #   R0819400 &lt;int&gt;, R0819500 &lt;int&gt;, R0819600 &lt;int&gt;, R0819700 &lt;int&gt;,
+## #   R0819800 &lt;int&gt;, R0819900 &lt;int&gt;, R0820000 &lt;int&gt;, R0820100 &lt;int&gt;,
+## #   R0820200 &lt;int&gt;, R0820300 &lt;int&gt;, R0820400 &lt;int&gt;, R0820500 &lt;int&gt;,
+## #   R0820600 &lt;int&gt;, R0820700 &lt;int&gt;, R0820800 &lt;int&gt;, R0820900 &lt;int&gt;,
+## #   R0821000 &lt;int&gt;, R0821100 &lt;int&gt;, R0821200 &lt;int&gt;, R0821300 &lt;int&gt;,
+## #   R0821400 &lt;int&gt;, R0821500 &lt;int&gt;, R0821600 &lt;int&gt;, R0821700 &lt;int&gt;,
+## #   R0821800 &lt;int&gt;, R0821900 &lt;int&gt;, R0822000 &lt;int&gt;, R0822100 &lt;int&gt;,
+## #   R1193000 &lt;int&gt;
+## [1] 1
+</code></pre>
+
+<pre><code>## Tibble size: 3 Mb
+</code></pre>
+
 <pre><code class="r"># Diconnect the connections/channels.
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
@@ -700,7 +755,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;File completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## File completed by `Will` at 2018-01-18, 10:54 -0600 in 26 seconds.
+<pre><code>## File completed by `Will` at 2018-01-19, 00:20 -0600 in 38 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -750,7 +805,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-18 10:54:03 CST&quot;
+<pre><code>## [1] &quot;2018-01-19 00:20:56 CST&quot;
 </code></pre>
 
 </body>

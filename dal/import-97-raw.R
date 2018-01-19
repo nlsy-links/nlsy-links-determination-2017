@@ -33,6 +33,7 @@ ds_extract <- tibble::tribble(
   ,"Extract.tblSurveyTime"          , "97-survey-time"
   ,"Extract.tblLinksExplicit"       , "97-links-explicit"
   ,"Extract.tblLinksImplicit"       , "97-links-implicit"
+  ,"Extract.tblTwins"              , "97-twins"
 )
 
 col_types_default <- readr::cols(
@@ -40,7 +41,7 @@ col_types_default <- readr::cols(
 )
 
 checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.missing=F, unique=T)
-checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name_base       , min.chars= 8, any.missing=F, unique=T)
 
 
 # sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"

@@ -43,13 +43,14 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            //if( Convert.ToBoolean("true") ) {
-                if( Convert.ToBoolean("false")) {
+            if( Convert.ToBoolean("true") ) {
+                //if( Convert.ToBoolean("false")) {
                 LoadExtractDemographics();
                 LoadExtractRoster();
                 LoadExtractSurveyTime();
                 LoadExtractLinksExplicit();
                 LoadExtractLinksImplicit();
+                LoadExtractTwins();
             }
 
             //LoadGeocodeSanitized();//Needed for MarkerGen1
@@ -231,6 +232,10 @@ namespace LinksGui {
         private void LoadExtractLinksImplicit( ) {
             BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
             ta.Fill(_dsImport.tblLinksImplicit);
+        }
+        private void LoadExtractTwins( ) {
+            BA.ImportDataSetTableAdapters.tblTwinsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblTwinsTableAdapter();
+            ta.Fill(_dsImport.tblTwins);
         }
         private void LoadItem( ) {
             BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();

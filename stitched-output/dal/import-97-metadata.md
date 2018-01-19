@@ -198,8 +198,8 @@ ds_entries
 ## # A tibble: 13 x 4
 ##    name             path                           col_types  entries     
 ##    <chr>            <chr>                          <list>     <list>      
-##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [22~
-##  2 LUExtractSource  data-public/metadata/tables-9~ <S3: col_~ <tibble [5 ~
+##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [25~
+##  2 LUExtractSource  data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
 ##  3 LUMarkerEvidence data-public/metadata/tables-9~ <S3: col_~ <tibble [8 ~
 ##  4 LUGender         data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
 ##  5 LUMarkerType     data-public/metadata/tables-9~ <S3: col_~ <tibble [28~
@@ -208,9 +208,9 @@ ds_entries
 ##  8 LURoster         data-public/metadata/tables-9~ <S3: col_~ <tibble [92~
 ##  9 LUTristate       data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
 ## 10 LUYesNo          data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
-## 11 MzManual         data-public/metadata/tables-9~ <S3: col_~ <tibble [20~
+## 11 MzManual         data-public/metadata/tables-9~ <S3: col_~ <tibble [90~
 ## 12 RosterAssignment data-public/metadata/tables-9~ <S3: col_~ <tibble [31~
-## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [43~
+## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [51~
 ```
 
 ```r
@@ -223,12 +223,12 @@ ds_table
 ```
 
 ```
-## # A tibble: 29 x 6
+## # A tibble: 30 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
 ##  2 Archive     tblRelatedValuesArchive         0           22     72    16
-##  3 Enum        tblLUExtractSource              5            4     72    16
+##  3 Enum        tblLUExtractSource              6            4     72    16
 ##  4 Enum        tblLUGender                     3            4     72    16
 ##  5 Enum        tblLUMarkerEvidence             8            4     72    16
 ##  6 Enum        tblLUMarkerType                28            5     72    16
@@ -236,7 +236,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 19 more rows
+## # ... with 20 more rows
 ```
 
 ```r
@@ -266,7 +266,7 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 22 x 7
+## # A tibble: 25 x 7
 ##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
 ##    <int> <chr>                     <int>          <int>  <int> <lgl> <chr>
 ##  1     1 subject_id                    1              1   9022 T     <NA> 
@@ -279,8 +279,8 @@ ds_file$entries %>%
 ##  8    14 race_cohort                   1              1      4 T     race~
 ##  9    20 InterviewDateDay          -   7              1     31 T     <NA> 
 ## 10    21 InterviewDateMonth        -   7              1     12 T     <NA> 
-## # ... with 12 more rows
-## # A tibble: 5 x 4
+## # ... with 15 more rows
+## # A tibble: 6 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
 ## 1     1 97-demographics   T      <NA> 
@@ -288,6 +288,7 @@ ds_file$entries %>%
 ## 3     3 97-survey-time    T      <NA> 
 ## 4     4 97-links-explicit T      <NA> 
 ## 5     5 97-links-implicit T      <NA> 
+## 6     6 97-twins          T      <NA> 
 ## # A tibble: 8 x 4
 ##      ID Label            Active Notes
 ##   <int> <chr>            <lgl>  <chr>
@@ -363,20 +364,20 @@ ds_file$entries %>%
 ## 4    -1 Refusal                             T      <NA> 
 ## 5     0 No                                  T      <NA> 
 ## 6     1 Yes                                 T      <NA> 
-## # A tibble: 208 x 8
-##       ID SubjectTag_S1 SubjectTag_S2 Multiple~  IsMz Undec~ Rela~ Notes   
-##    <int>         <int>         <int>     <int> <int>  <int> <int> <chr>   
-##  1     1          5003          5004         2     0      0     1 Very Co~
-##  2     3         14303         14304         2     0      0     1 Differe~
-##  3     5         15904         15905         2     0      0     1 <NA>    
-##  4     6         28805         28806         2     0      0     1 Differe~
-##  5     8         36504         36505         2     1      0     1 Twice D~
-##  6     9         67703         67704         2     0      0     1 1994-20~
-##  7    10         73301         73302         2     1      0     1 Mostly ~
-##  8    12         74301         74302         2     0      0     1 Differe~
-##  9    13         77502         77503         2     1      0     1 1994-20~
-## 10    14         93001         93002         2     1      0     1 1994-20~
-## # ... with 198 more rows
+## # A tibble: 90 x 8
+##       ID SubjectTag_S1 SubjectTag_S2 MultipleBi~  IsMz Undeci~ Rela~ Notes
+##    <int>         <int>         <int>       <int> <int>   <int> <int> <chr>
+##  1     1            66            67           2   255       1    NA <NA> 
+##  2     2            75            76           2   255       1    NA <NA> 
+##  3     3           116           117           2   255       1    NA <NA> 
+##  4     4           222           223           2   255       1    NA <NA> 
+##  5     5           343           344           3   255       1    NA <NA> 
+##  6     6           343           345           3   255       1    NA <NA> 
+##  7     7           344           345           3   255       1    NA <NA> 
+##  8     8           351           352           2   255       1    NA <NA> 
+##  9     9           447           448           2   255       1    NA <NA> 
+## 10    10           588           589           2   255       1    NA <NA> 
+## # ... with 80 more rows
 ## # A tibble: 31 x 16
 ##       ID Respo~ Respo~  Freq Resol~      R RBoun~ RBou~ SameG~ Shar~ Shar~
 ##    <int>  <int>  <int> <int>  <int>  <dbl>  <dbl> <dbl>  <dbl> <int> <int>
@@ -393,7 +394,7 @@ ds_file$entries %>%
 ## # ... with 21 more rows, and 5 more variables: ShareBiograndparent <int>,
 ## #   Inconsistent <int>, Notes <chr>, ResponseLowerLabel <chr>,
 ## #   ResponseUpperLabel <chr>
-## # A tibble: 435 x 11
+## # A tibble: 518 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
 ##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
@@ -406,7 +407,7 @@ ds_file$entries %>%
 ##  8 R1482~    14      1   1997     1     1     1     1 <NA>  KEY!~ KEY!RAC~
 ##  9 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
 ## 10 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
-## # ... with 425 more rows
+## # ... with 508 more rows
 ```
 
 ```r
@@ -511,9 +512,12 @@ ds_enum %>%
 ##     roster_crosswalk                                             =   101, 
 ##     hh_member_id                                                 =   102, 
 ##     hh_informant                                                 =   103, 
-##     roster_relationship_2_dim                                    =   104, // 16 x 16 square
+##     // roster_relationship_2_dim                                 =   104, // 16 x 16 square
 ##     roster_relationship_1_dim                                    =   105, // 1 x 16 vector
 ##     hh_unique_id                                                 =   106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
+##     pair_multiple_birth                                          =   121, 
+##     pair_twins_mz                                                =   122, 
+##     pair_same_bioparent                                          =   123, 
 ##     // InterviewDateDayParent_NOTUSED                            =  1020, 
 ##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
 ##     // InterviewDateYearParent_NOTUSED                           =  1022, 
@@ -525,6 +529,7 @@ ds_enum %>%
 ##     97-survey-time                                               =     3, 
 ##     97-links-explicit                                            =     4, 
 ##     97-links-implicit                                            =     5, 
+##     97-twins                                                     =     6, 
 ## }
 ##  
 ## public enum MarkerEvidence {
@@ -729,7 +734,13 @@ checkmate::assert_logical(  d_variable$item_found                               
 testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
 # sum(duplicated(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)))
 checkmate::assert_character(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2), any.missing=F, unique=T)
+```
 
+```
+## Error in source("D:/Projects/Hlo/nlsy-links-determination-2017/dal/flow-97.R", : Assertion on 'paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)' failed: Contains duplicated values.
+```
+
+```r
 rm(d_item, d_variable)
 ```
 
@@ -1071,7 +1082,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-18, 10:53 -0600 in 18 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-19, 00:20 -0600 in 11 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1126,6 +1137,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-18 10:53:37 CST"
+## [1] "2018-01-19 00:20:17 CST"
 ```
 

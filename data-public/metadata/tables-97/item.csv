@@ -15,9 +15,12 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
  101,roster_crosswalk,-5,1,20,TRUE,
  102,hh_member_id,-4,1,17,TRUE,
  103,hh_informant,-4,0,1,TRUE,
- 104,roster_relationship_2_dim,-4,0,99,TRUE,16 x 16 square
+ 104,roster_relationship_2_dim,-4,0,99,FALSE,16 x 16 square
  105,roster_relationship_1_dim,-4,0,99,TRUE,1 x 16 vector
  106,hh_unique_id,-4,0,122,TRUE,"HHI2: People living in the Household - sorted, UID; HH member's unique ID"
+ 121,pair_multiple_birth,-4,0,3,TRUE,
+ 122,pair_twins_mz,-4,0,1,TRUE,
+ 123,pair_same_bioparent,-4,15,16,TRUE,
 1020,InterviewDateDayParent_NOTUSED,-4,1,31,FALSE,
 1021,InterviewDateMonthParent_NOTUSED,-4,1,9,FALSE,
 1022,InterviewDateYearParent_NOTUSED,-4,1997,1998,FALSE,

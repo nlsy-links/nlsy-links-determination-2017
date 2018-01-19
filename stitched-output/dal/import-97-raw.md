@@ -45,6 +45,7 @@ ds_extract <- tibble::tribble(
   ,"Extract.tblSurveyTime"          , "97-survey-time"
   ,"Extract.tblLinksExplicit"       , "97-links-explicit"
   ,"Extract.tblLinksImplicit"       , "97-links-implicit"
+  ,"Extract.tblTwins"              , "97-twins"
 )
 
 col_types_default <- readr::cols(
@@ -52,7 +53,7 @@ col_types_default <- readr::cols(
 )
 
 checkmate::assert_character(ds_extract$table_name_qualified , min.chars=10, any.missing=F, unique=T)
-checkmate::assert_character(ds_extract$file_name_base       , min.chars=9 , any.missing=F, unique=T)
+checkmate::assert_character(ds_extract$file_name_base       , min.chars= 8, any.missing=F, unique=T)
 
 
 # sql_template_not_null <- " ALTER TABLE {table_name_qualified} ALTER COLUMN [R0000100] INTEGER NOT NULL"
@@ -92,7 +93,7 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 5 x 9
+## # A tibble: 6 x 9
 ##   table_name_qualified     file~ tabl~ path~ name~ extr~ sql_~ sql_~ sql_~
 ##   <chr>                    <chr> <chr> <chr> <chr> <lgl> <chr> <chr> <chr>
 ## 1 Extract.tblDemographics  97-d~ tblD~ data~ 97-d~ T     SELE~ TRUN~ "  A~
@@ -100,6 +101,7 @@ print(ds_extract, n=20)
 ## 3 Extract.tblSurveyTime    97-s~ tblS~ data~ 97-s~ T     SELE~ TRUN~ "  A~
 ## 4 Extract.tblLinksExplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ "  A~
 ## 5 Extract.tblLinksImplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ "  A~
+## 6 Extract.tblTwins         97-t~ tblT~ data~ 97-t~ T     SELE~ TRUN~ "  A~
 ```
 
 ```r
@@ -109,7 +111,7 @@ ds_extract %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 6 x 2
 ##   table_name_qualified     path_zip                                      
 ##   <chr>                    <chr>                                         
 ## 1 Extract.tblDemographics  data-unshared/raw/nlsy97/97-demographics.zip  
@@ -117,6 +119,7 @@ ds_extract %>%
 ## 3 Extract.tblSurveyTime    data-unshared/raw/nlsy97/97-survey-time.zip   
 ## 4 Extract.tblLinksExplicit data-unshared/raw/nlsy97/97-links-explicit.zip
 ## 5 Extract.tblLinksImplicit data-unshared/raw/nlsy97/97-links-implicit.zip
+## 6 Extract.tblTwins         data-unshared/raw/nlsy97/97-twins.zip
 ```
 
 ```r
@@ -524,6 +527,61 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## Tibble size: 1.5 Mb
 ```
 
+```
+## Uploading from `data-unshared/raw/nlsy97/97-twins.zip` to `Extract.tblTwins`.
+```
+
+```
+## # A tibble: 8,984 x 86
+##    R000~ R053~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~
+##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1     1     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  2     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  3     3     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  4     4     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  6     6     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  8     8     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 10    10     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 11    11     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 12    12     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 14    14     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 15    15     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 16    16     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 17    17     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 19    19     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## 20    20     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
+## # ... with 8,964 more rows, and 74 more variables: R0814100 <int>,
+## #   R0814200 <int>, R0814300 <int>, R0814400 <int>, R0814500 <int>,
+## #   R0814600 <int>, R0814700 <int>, R0814800 <int>, R0814900 <int>,
+## #   R0815000 <int>, R0815100 <int>, R0815200 <int>, R0815300 <int>,
+## #   R0815400 <int>, R0815500 <int>, R0815600 <int>, R0815700 <int>,
+## #   R0815800 <int>, R0815900 <int>, R0816000 <int>, R0816100 <int>,
+## #   R0816200 <int>, R0816300 <int>, R0816400 <int>, R0816500 <int>,
+## #   R0817400 <int>, R0817500 <int>, R0817600 <int>, R0817700 <int>,
+## #   R0817800 <int>, R0817900 <int>, R0818000 <int>, R0818100 <int>,
+## #   R0818200 <int>, R0818300 <int>, R0818400 <int>, R0818500 <int>,
+## #   R0818600 <int>, R0818700 <int>, R0818800 <int>, R0818900 <int>,
+## #   R0819000 <int>, R0819100 <int>, R0819200 <int>, R0819300 <int>,
+## #   R0819400 <int>, R0819500 <int>, R0819600 <int>, R0819700 <int>,
+## #   R0819800 <int>, R0819900 <int>, R0820000 <int>, R0820100 <int>,
+## #   R0820200 <int>, R0820300 <int>, R0820400 <int>, R0820500 <int>,
+## #   R0820600 <int>, R0820700 <int>, R0820800 <int>, R0820900 <int>,
+## #   R0821000 <int>, R0821100 <int>, R0821200 <int>, R0821300 <int>,
+## #   R0821400 <int>, R0821500 <int>, R0821600 <int>, R0821700 <int>,
+## #   R0821800 <int>, R0821900 <int>, R0822000 <int>, R0822100 <int>,
+## #   R1193000 <int>
+## [1] 1
+```
+
+```
+## Tibble size: 3 Mb
+```
+
 ```r
 # Diconnect the connections/channels.
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
@@ -534,7 +592,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-18, 10:54 -0600 in 26 seconds.
+## File completed by `Will` at 2018-01-19, 00:20 -0600 in 38 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -589,6 +647,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-18 10:54:03 CST"
+## [1] "2018-01-19 00:20:56 CST"
 ```
 

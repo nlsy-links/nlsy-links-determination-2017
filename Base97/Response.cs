@@ -19,6 +19,7 @@ namespace Nls.Base97 {
             if( dsImport.tblRoster.Count == 0 ) throw new InvalidOperationException("tblRoster must NOT be empty before reading responses from it.");
             if( dsImport.tblLinksExplicit.Count == 0 ) throw new InvalidOperationException("tblLinksExplicit must NOT be empty before reading responses from it.");
             if( dsImport.tblLinksImplicit.Count == 0 ) throw new InvalidOperationException("tblLinksImplicit must NOT be empty before reading responses from it.");
+            if( dsImport.tblTwins.Count == 0 ) throw new InvalidOperationException("tblTwins must NOT be empty before reading responses from it.");
             _dsImport = dsImport;
             _dsLinks = dsLinks;
         }
@@ -34,6 +35,7 @@ namespace Nls.Base97 {
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.SurveyTime, false, Constants.PassoverResponses, _dsImport.tblSurveyTime);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.LinksExplicit, false, Constants.PassoverResponses, _dsImport.tblLinksExplicit);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.LinksImplicit, false, Constants.PassoverResponses, _dsImport.tblLinksImplicit);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Twins, false, Constants.PassoverResponses, _dsImport.tblTwins);
             sw.Stop();
             return string.Format("{0:N0} response records were translated.\nElapsed time: {1}", reponseRecordsAddedCount, sw.Elapsed.ToString());
         }
@@ -85,18 +87,19 @@ namespace Nls.Base97 {
         private void CheckVariableExistInImportedDataTables( ) {
             foreach( LinksDataSet.tblVariableRow drVariable in _dsLinks.tblVariable ) {
                 if( drVariable.Translate ) {
-                    string tableName = ConverExtractSourceToTableName((ExtractSource)drVariable.ExtractSource);
+                    string tableName = ConvertExtractSourceToTableName((ExtractSource)drVariable.ExtractSource);
                     AssertColumnExistsInImportTable(tableName, drVariable.VariableCode);
                 }
             }
         }
-        private string ConverExtractSourceToTableName( ExtractSource extractSource ) {
+        private string ConvertExtractSourceToTableName( ExtractSource extractSource ) {
             switch( extractSource ) {
                 case ExtractSource.Demographics: return _dsImport.tblDemographics.TableName;
                 case ExtractSource.Roster: return _dsImport.tblRoster.TableName;
                 case ExtractSource.SurveyTime: return _dsImport.tblSurveyTime.TableName;
                 case ExtractSource.LinksExplicit: return _dsImport.tblLinksExplicit.TableName;
                 case ExtractSource.LinksImplicit: return _dsImport.tblLinksImplicit.TableName;
+                case ExtractSource.Twins: return _dsImport.tblTwins.TableName;
 
                 default: throw new ArgumentOutOfRangeException("extractSource", extractSource, "The Extract Source is not recognized in this function.");
             }

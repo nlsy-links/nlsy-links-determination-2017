@@ -24,6 +24,7 @@
         <CollectionViewSource x:Key="tblRosterAssignmentViewSource" Source="{Binding tblRosterAssignment, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblSubjectDetailsViewSource" Source="{Binding tblSubjectDetails, Source={StaticResource linksDataSet}}"/>
         <CollectionViewSource x:Key="tblMarkerViewSource" Source="{Binding tblMarker, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblTwinsViewSource" Source="{Binding tblTwins, Source={StaticResource importDataSet}}"/>
 
 
     </Window.Resources>
@@ -96,6 +97,9 @@
             </TabItem>
             <TabItem Header="LinksImplicit" x:Name="tabLinksImplicit" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksImplicitViewSource}}" />
+            </TabItem>
+            <TabItem Header="Twins" x:Name="tabTwins" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblTwinsViewSource}}" />
             </TabItem>
             <TabItem Header="Item" x:Name="tabItem" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}" />
