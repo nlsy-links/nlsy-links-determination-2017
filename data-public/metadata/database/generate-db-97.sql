@@ -124,14 +124,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-
 CREATE VIEW [Process].[vewSurveyTimeMostRecent]
-WITH SCHEMABINDING  
+WITH SCHEMABINDING 
 AS
-SELECT     TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent
-FROM         Process.tblSurveyTime
-WHERE     (SurveyTaken = 1)
+SELECT        TOP (100) PERCENT SubjectTag, MAX(SurveyYear) AS SurveyYearMostRecent, MAX(AgeCalculateYears) AS AgeCalculateOldest
+FROM            Process.tblSurveyTime
+WHERE        (SurveyTaken = 1)
 GROUP BY SubjectTag
 ORDER BY SubjectTag
 GO
@@ -1723,7 +1721,7 @@ WHERE Item in (0) --For RelatedValues
 --OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
 --OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
 --OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
---OR Item in (11, 12, 13, 14)                                                                              --For SubjectDetails
+OR Item in (11, 12, 13, 14)                                                                              --For SubjectDetails
 --OR Item in (105)                                                                                   --For MarkerGen1
 --OR Item in (                                                                                             --Outcomes
 --	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals

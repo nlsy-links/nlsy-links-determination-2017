@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Nls.Base97.EnumResponses;
@@ -86,7 +87,9 @@ namespace Nls.Base97 {
         }
         private void CheckVariableExistInImportedDataTables( ) {
             foreach( LinksDataSet.tblVariableRow drVariable in _dsLinks.tblVariable ) {
-                if( drVariable.Translate ) {
+                bool item_active = Convert.ToBoolean(drVariable.tblItemRow.Active);
+
+                if( drVariable.Translate && item_active ) {
                     string tableName = ConvertExtractSourceToTableName((ExtractSource)drVariable.ExtractSource);
                     AssertColumnExistsInImportTable(tableName, drVariable.VariableCode);
                 }
@@ -113,7 +116,14 @@ namespace Nls.Base97 {
                 (byte)extractSource, _dsLinks.tblVariable.ExtractSourceColumn.ColumnName,
                 "TRUE", _dsLinks.tblVariable.TranslateColumn.ColumnName);
             LinksDataSet.tblVariableRow[] drVariablesToTranslate = (LinksDataSet.tblVariableRow[])_dsLinks.tblVariable.Select(select);
-            return drVariablesToTranslate;
+
+            IEnumerable<LinksDataSet.tblVariableRow> drs = 
+                from dr in drVariablesToTranslate
+                where dr.tblItemRow.Active=="TRUE"
+                select dr;
+
+
+            return drs.ToArray();
         }
         #endregion
     }

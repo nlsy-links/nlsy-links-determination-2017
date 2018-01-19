@@ -1957,7 +1957,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            8|
 |Process     |tblRelatedValues        |     2,519|           23|
-|Process     |tblResponse             | 1,168,009|            8|
+|Process     |tblResponse             |   934,421|            8|
 |Process     |tblRoster               |     5,038|           13|
 |Process     |tblSubject              |     8,984|            5|
 |Process     |tblSubjectDetails       |     8,984|           15|
@@ -2545,7 +2545,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |            272|            88|
-|Process     |tblResponse             |         83,784|        79,824|
+|Process     |tblResponse             |          7,688|         7,272|
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |            720|           544|
@@ -2641,4 +2641,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-19, 00:29 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-19, 02:32 -0600 in 1 seconds.

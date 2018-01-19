@@ -24,9 +24,12 @@ namespace Nls.Base97 {
         roster_crosswalk = 101,
         hh_member_id = 102,
         hh_informant = 103,
-        roster_relationship_2_dim = 104, // 16 x 16 square
+        // roster_relationship_2_dim                                 =   104, // 16 x 16 square
         roster_relationship_1_dim = 105, // 1 x 16 vector
         hh_unique_id = 106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
+        pair_multiple_birth = 121,
+        pair_twins_mz = 122,
+        pair_same_bioparent = 123,
         // InterviewDateDayParent_NOTUSED                            =  1020, 
         // InterviewDateMonthParent_NOTUSED                          =  1021, 
         // InterviewDateYearParent_NOTUSED                           =  1022, 

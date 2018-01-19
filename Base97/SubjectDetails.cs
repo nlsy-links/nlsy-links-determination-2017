@@ -250,22 +250,7 @@ namespace Nls.Base97 {
         ////    }
         ////}
 
-        private LastSurvey LastSurveyCompletedSlow( Int32 subjectTag ) {
-            string select = string.Format("{0}={1} AND {2}=1",
-                subjectTag, _ds.tblSurveyTime.SubjectTagColumn.ColumnName,
-                _ds.tblSurveyTime.SurveyTakenColumn.ColumnName);
-            string sort = _ds.tblSurveyTime.SurveyYearColumn.ColumnName + " DESC";
-            LinksDataSet.tblSurveyTimeRow[] drs = (LinksDataSet.tblSurveyTimeRow[])_ds.tblSurveyTime.Select(select, sort);
-            if( drs.Length <= 0 )
-                return new LastSurvey(null, null);
-            else
-                return new LastSurvey(drs[0].SurveyYear, (float)drs[0].AgeCalculateYears); //There's only one case where the calculated age is missing; in this case it's not their last survey, so it doesn't matter here.
-        }
         private LastSurvey LastSurveyCompleted( Int32 subjectTag ) {
-            //string select = string.Format("{0}={1} ", subjectTag, _ds.vewSurveyTimeMostRecent.SubjectTagColumn.ColumnName);
-            //LinksDataSet.vewSurveyTimeMostRecentRow[] drs = (LinksDataSet.vewSurveyTimeMostRecentRow[])_ds.vewSurveyTimeMostRecent.Select(select);
-
-            //Trace.Assert(drs.Length == 1, "Exactly one row should be returned for a subject's most recent visit.");
             LinksDataSet.vewSurveyTimeMostRecentRow dr = _ds.vewSurveyTimeMostRecent.FindBySubjectTag(subjectTag);
             return new LastSurvey(dr.SurveyYearMostRecent, (float)dr.AgeCalculateOldest);
         }
