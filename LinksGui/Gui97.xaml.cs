@@ -43,24 +43,15 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            if( Convert.ToBoolean("true") ) {
-                //if( Convert.ToBoolean("false")) {
-                LoadExtractDemographics();
-                LoadExtractRoster();
-                LoadExtractSurveyTime();
-                LoadExtractLinksExplicit();
-                LoadExtractLinksImplicit();
-                LoadExtractTwins();
-            }
+            LoadExtracts();
+            
 
             //LoadGeocodeSanitized();//Needed for MarkerGen1
             //LoadLinks2004Gen1();//Needed for RelatedValues
             //LoadLinks2004Gen2();//Needed for RelatedValues
             ////LoadLinks2004Gen1Mz();//Needed for RelatedValues
-            LoadItem();
-            LoadVariable();
-            LoadMzManual();
-            LoadRosterAssignment();
+
+            LoadMetadata();
 
             LoadSubject();
             LoadRelatedStructure();
@@ -110,6 +101,8 @@ namespace LinksGui {
             Trace.WriteLine(message);
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             //WriteXml(_dsLinks.tblSurveyTime);
+
+            LoadSurveyTimeMostRecent(); 
         }
         private void btnRoster_Click( object sender, RoutedEventArgs e ) {
             BA.Roster roster = new BA.Roster(_dsLinks);
@@ -213,45 +206,37 @@ namespace LinksGui {
         }
         #endregion
         #region Load DataTables
-        private void LoadExtractDemographics( ) {
+        private void LoadExtracts( ) {
             BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter();
             ta.Fill(_dsImport.tblDemographics);
+         
+            BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta_roster = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
+            ta_roster.Fill(_dsImport.tblRoster);
+
+            BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter ta_survey_time = new BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter();
+            ta_survey_time.Fill(_dsImport.tblSurveyTime);
+
+            BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta_links_explicit = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
+            ta_links_explicit.Fill(_dsImport.tblLinksExplicit);
+         
+            BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta_links_implicit = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
+            ta_links_implicit.Fill(_dsImport.tblLinksImplicit);
+         
+            BA.ImportDataSetTableAdapters.tblTwinsTableAdapter ta_twins = new BA.ImportDataSetTableAdapters.tblTwinsTableAdapter();
+            ta_twins.Fill(_dsImport.tblTwins);
         }
-        private void LoadExtractRoster( ) {
-            BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
-            ta.Fill(_dsImport.tblRoster);
-        }
-        private void LoadExtractSurveyTime( ) {
-            BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter ta = new BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter();
-            ta.Fill(_dsImport.tblSurveyTime);
-        }
-        private void LoadExtractLinksExplicit( ) {
-            BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
-            ta.Fill(_dsImport.tblLinksExplicit);
-        }
-        private void LoadExtractLinksImplicit( ) {
-            BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
-            ta.Fill(_dsImport.tblLinksImplicit);
-        }
-        private void LoadExtractTwins( ) {
-            BA.ImportDataSetTableAdapters.tblTwinsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblTwinsTableAdapter();
-            ta.Fill(_dsImport.tblTwins);
-        }
-        private void LoadItem( ) {
-            BA.LinksDataSetTableAdapters.tblItemTableAdapter ta = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
-            ta.Fill(_dsLinks.tblItem);
-        }
-        private void LoadVariable( ) {
-            BA.LinksDataSetTableAdapters.tblVariableTableAdapter ta = new BA.LinksDataSetTableAdapters.tblVariableTableAdapter();
-            ta.Fill(_dsLinks.tblVariable);
-        }
-        private void LoadMzManual( ) {
-            BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();
-            ta.Fill(_dsLinks.tblMzManual);
-        }
-        private void LoadRosterAssignment( ) {
-            BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter ta = new BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter();
-            ta.Fill(_dsLinks.tblRosterAssignment);
+        private void LoadMetadata( ) {
+            BA.LinksDataSetTableAdapters.tblItemTableAdapter ta_item = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
+            ta_item.Fill(_dsLinks.tblItem);
+         
+            BA.LinksDataSetTableAdapters.tblVariableTableAdapter ta_variable = new BA.LinksDataSetTableAdapters.tblVariableTableAdapter();
+            ta_variable.Fill(_dsLinks.tblVariable);
+         
+            BA.LinksDataSetTableAdapters.tblMzManualTableAdapter ta_mz_manual = new BA.LinksDataSetTableAdapters.tblMzManualTableAdapter();
+            ta_mz_manual.Fill(_dsLinks.tblMzManual);
+         
+            BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter ta_roster_assignment = new BA.LinksDataSetTableAdapters.tblRosterAssignmentTableAdapter();
+            ta_roster_assignment.Fill(_dsLinks.tblRosterAssignment);
         }
 
         ///////////////////////////
@@ -322,8 +307,8 @@ namespace LinksGui {
             vs.View.MoveCurrentToFirst();
         }
         private void LoadOutcomes( ) {
-            //BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
-            //ta.Fill(_dsLinks.tblOutcome);
+            BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
+            ta.Fill(_dsLinks.tblOutcome);
         }
         //private void LoadRelatedValuesNextVersionNumber ( ) {
         //    Int16 currentMaxVersion = Int16.MinValue;
@@ -363,21 +348,20 @@ namespace LinksGui {
             MessageBox.Show(message);
         }
         private void btnCombine2_Click ( object sender, RoutedEventArgs e ) {
-            BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter taSurveyTimeRecent = new BA.LinksDataSetTableAdapters.vewSurveyTimeMostRecentTableAdapter();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             e.Source = _combinedButtonTag;
-            taSurveyTimeRecent.Fill(_dsLinks.vewSurveyTimeMostRecent);
 
-        //    btnRosterGen1_Click(sender, e);
+            LoadSurveyTimeMostRecent(); 
+            btnRoster_Click(sender, e);
         //    btnParentsOfGen1Retro_Click(sender, e);
         //    btnParentsOfGen1Current_Click(sender, e);
         //    btnBabyDaddy_Click(sender, e);
         //    btnFatherOfGen2_Click(sender, e);
             btnSubjectDetails_Click(sender, e);
             btnMarker_Click(sender, e);
-        //    btnRelatedValues_Click(sender, e);
-        //    btnOutcome_Click(sender, e);
+            btnRelatedValues_Click(sender, e);
+            btnOutcome_Click(sender, e);
         //    btnRelatedValuesArchive_Click(sender, e);
 
             sw.Stop();

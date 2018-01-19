@@ -1715,19 +1715,11 @@ SELECT     ID, SubjectTag, ExtendedID, SurveyYear, Item, Value, LoopIndex1, Loop
 FROM         Process.tblResponse
 WHERE Item in (0) --For RelatedValues
 
---OR Item in (11, 12, 20, 21, 22, 23,24)                                                                  --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
---OR Item in (105)                                                                                         --For Roster
---OR Item in (13, 14, 306, 326, 340)                                                                       --For ParentsOfGen1Retro
---OR Item in (300, 301, 302, 305, 307, 308,  310, 311, 320, 321, 322, 325, 327, 330, 331, 340)             --For ParentsOfGen1Current 309, 329,
---OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                                                 --For BabyDaddy
---OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
+OR Item in (11, 12, 20, 21, 22, 23,24)                                                                   --For SurveyTime: Birthday Values, SelfReported Age at Interview, and the SubjectID
+OR Item in (105)                                                                                         --For Roster
 OR Item in (11, 12, 13, 14)                                                                              --For SubjectDetails
---OR Item in (105)                                                                                   --For MarkerGen1
+OR Item in (105, 121, 122, 123)                                                                          --For Marker
 --OR Item in (                                                                                             --Outcomes
---	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
---	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement
---	504,512,513,                                                                                           --Gen2WeightPoundsYA, Gen2PiatMathPercentile, Gen2PiatMathStandard
---	122                                                                                                    --Gen2CFatherAlive
 --  )                
 
 END
