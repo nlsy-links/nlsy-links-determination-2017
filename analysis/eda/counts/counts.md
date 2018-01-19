@@ -1949,7 +1949,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblRoster               |     8,984|          464|
 |Extract     |tblSurveyTime           |     8,984|           94|
 |Metadata    |tblItem                 |        22|            7|
-|Metadata    |tblMzManual             |       208|            8|
+|Metadata    |tblMzManual             |        90|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
 |Metadata    |tblVariable             |       435|           11|
 |Process     |tblMarker               |     5,038|           10|
@@ -2450,7 +2450,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblRoster               |         18,056|        18,048|
 |Extract     |tblSurveyTime           |          3,656|         3,616|
 |Metadata    |tblItem                 |             72|            16|
-|Metadata    |tblMzManual             |             72|            40|
+|Metadata    |tblMzManual             |             72|            24|
 |Metadata    |tblRosterAssignment     |             72|            16|
 |Metadata    |tblVariable             |            144|           120|
 |Process     |tblMarker               |            528|           352|
@@ -2553,4 +2553,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-18, 11:14 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-18, 22:09 -0600 in 2 seconds.

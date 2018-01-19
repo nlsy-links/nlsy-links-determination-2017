@@ -194,37 +194,32 @@ namespace Nls.Base97 {
         //    Trace.Assert(drs.Length == 1, "The should be exactly one SubjectRow retreived.");
         //    return drs[0].SubjectTag;
         //}
-        //internal static LinksDataSet.tblMzManualRow MzManualRecord ( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet dsLinks ) {
-        //    LinksDataSet.tblSubjectRow dr1 = dsLinks.tblSubject.FindBySubjectTag(subject1Tag);
-        //    LinksDataSet.tblSubjectRow dr2 = dsLinks.tblSubject.FindBySubjectTag(subject2Tag);
-        //    return MzManualRecord(dr1, dr2, dsLinks);
-        //}
-        //internal static LinksDataSet.tblMzManualRow MzManualRecord ( LinksDataSet.tblSubjectRow dr1, LinksDataSet.tblSubjectRow dr2, LinksDataSet dsLinks ) {
-        //    string select = string.Format("{0}={1} AND {2}={3}",
-        //        dr1.SubjectTag, dsLinks.tblMzManual.SubjectTag_S1Column.ColumnName,
-        //        dr2.SubjectTag, dsLinks.tblMzManual.SubjectTag_S2Column.ColumnName);
-        //    LinksDataSet.tblMzManualRow[] drs = (LinksDataSet.tblMzManualRow[])dsLinks.tblMzManual.Select(select);
-        //    switch ( drs.Length ) {
-        //        case 0:
-        //            DateTime? mob1 = Mob.Retrieve(dr1.SubjectTag, dsLinks.tblSubjectDetails);
-        //            DateTime? mob2 = Mob.Retrieve(dr2.SubjectTag, dsLinks.tblSubjectDetails);
-        //            if ( mob1.HasValue && mob2.HasValue ) {
-        //                if ( (dr1.Generation == (byte)Sample.Nlsy79Gen2) || (dr1.Gender == dr2.Gender) ) {
-        //                    Int32 daysDifferenceAbsolute = (Int32)Math.Abs(mob2.Value.Subtract(mob1.Value).TotalDays);
-        //                    Trace.Assert(daysDifferenceAbsolute > Constants.MaxDaysBetweenTwinBirths, "If siblings have close birthdays, there should be a record in tblMzManual.");
-        //                }
-        //            }
-        //            else {
-        //                Trace.Assert(OverridesGen2.MissingMobInvalidSkip.Contains(dr1.SubjectID) || OverridesGen2.MissingMobInvalidSkip.Contains(dr2.SubjectID), "Subjects with missing MOBs should be recognized.");
-        //            }
-        //            return null;
-        //        case 1:
-        //            return drs[0];
-        //        default:
-        //            Trace.Fail("At most, one record should be retrieved.");
-        //            throw new InvalidOperationException();
-        //    }
-        //}
+        internal static LinksDataSet.tblMzManualRow MzManualRecord( Int32 subject1Tag, Int32 subject2Tag, LinksDataSet dsLinks ) {
+            LinksDataSet.tblSubjectRow dr1 = dsLinks.tblSubject.FindBySubjectTag(subject1Tag);
+            LinksDataSet.tblSubjectRow dr2 = dsLinks.tblSubject.FindBySubjectTag(subject2Tag);
+            return MzManualRecord(dr1, dr2, dsLinks);
+        }
+        internal static LinksDataSet.tblMzManualRow MzManualRecord( LinksDataSet.tblSubjectRow dr1, LinksDataSet.tblSubjectRow dr2, LinksDataSet dsLinks ) {
+            string select = string.Format("{0}={1} AND {2}={3}",
+                dr1.SubjectTag, dsLinks.tblMzManual.SubjectTag_S1Column.ColumnName,
+                dr2.SubjectTag, dsLinks.tblMzManual.SubjectTag_S2Column.ColumnName);
+            LinksDataSet.tblMzManualRow[] drs = (LinksDataSet.tblMzManualRow[])dsLinks.tblMzManual.Select(select);
+            switch( drs.Length ) {
+                case 0:
+                    DateTime? mob1 = Mob.Retrieve(dr1.SubjectTag, dsLinks.tblSubjectDetails);
+                    DateTime? mob2 = Mob.Retrieve(dr2.SubjectTag, dsLinks.tblSubjectDetails);
+                    if( dr1.Gender == dr2.Gender ) {
+                        Int32 daysDifferenceAbsolute = (Int32)Math.Abs(mob2.Value.Subtract(mob1.Value).TotalDays);
+                        Trace.Assert(daysDifferenceAbsolute > Constants.MaxDaysBetweenTwinBirths, "If siblings have close birthdays, there should be a record in tblMzManual.");
+                    } 
+                    return null;
+                case 1:
+                    return drs[0];
+                default:
+                    Trace.Fail("At most, one record should be retrieved.");
+                    throw new InvalidOperationException();
+            }
+        }
         #endregion
     }
 }
