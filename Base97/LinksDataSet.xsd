@@ -968,7 +968,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
               <DbSource ConnectionRef="Nlsy97ConnectionStringBase (Settings)" DbObjectName="NlsyLinks97.Process.vewSurveyTimeMostRecent" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT SubjectTag, SurveyYearMostRecent FROM Process.vewSurveyTimeMostRecent</CommandText>
+                    <CommandText>SELECT SubjectTag, SurveyYearMostRecent, AgeCalculateOldest FROM Process.vewSurveyTimeMostRecent</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -977,6 +977,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             <Mappings>
               <Mapping SourceColumn="SubjectTag" DataSetColumn="SubjectTag" />
               <Mapping SourceColumn="SurveyYearMostRecent" DataSetColumn="SurveyYearMostRecent" />
+              <Mapping SourceColumn="AgeCalculateOldest" DataSetColumn="AgeCalculateOldest" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1273,6 +1274,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             <xs:sequence>
               <xs:element name="SubjectTag" msprop:Generator_ColumnVarNameInTable="columnSubjectTag" msprop:Generator_ColumnPropNameInRow="SubjectTag" msprop:Generator_ColumnPropNameInTable="SubjectTagColumn" msprop:Generator_UserColumnName="SubjectTag" type="xs:int" />
               <xs:element name="SurveyYearMostRecent" msprop:Generator_ColumnVarNameInTable="columnSurveyYearMostRecent" msprop:Generator_ColumnPropNameInRow="SurveyYearMostRecent" msprop:Generator_ColumnPropNameInTable="SurveyYearMostRecentColumn" msprop:Generator_UserColumnName="SurveyYearMostRecent" type="xs:short" minOccurs="0" />
+              <xs:element name="AgeCalculateOldest" msprop:Generator_ColumnVarNameInTable="columnAgeCalculateOldest" msprop:Generator_ColumnPropNameInRow="AgeCalculateOldest" msprop:Generator_ColumnPropNameInTable="AgeCalculateOldestColumn" msprop:Generator_UserColumnName="AgeCalculateOldest" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

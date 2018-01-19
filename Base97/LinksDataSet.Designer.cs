@@ -6077,6 +6077,8 @@ namespace Nls.Base97 {
             
             private global::System.Data.DataColumn columnSurveyYearMostRecent;
             
+            private global::System.Data.DataColumn columnAgeCalculateOldest;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public vewSurveyTimeMostRecentDataTable() {
@@ -6128,6 +6130,14 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AgeCalculateOldestColumn {
+                get {
+                    return this.columnAgeCalculateOldest;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6163,11 +6173,12 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public vewSurveyTimeMostRecentRow AddvewSurveyTimeMostRecentRow(int SubjectTag, short SurveyYearMostRecent) {
+            public vewSurveyTimeMostRecentRow AddvewSurveyTimeMostRecentRow(int SubjectTag, short SurveyYearMostRecent, double AgeCalculateOldest) {
                 vewSurveyTimeMostRecentRow rowvewSurveyTimeMostRecentRow = ((vewSurveyTimeMostRecentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SubjectTag,
-                        SurveyYearMostRecent};
+                        SurveyYearMostRecent,
+                        AgeCalculateOldest};
                 rowvewSurveyTimeMostRecentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowvewSurveyTimeMostRecentRow);
                 return rowvewSurveyTimeMostRecentRow;
@@ -6199,6 +6210,7 @@ namespace Nls.Base97 {
             internal void InitVars() {
                 this.columnSubjectTag = base.Columns["SubjectTag"];
                 this.columnSurveyYearMostRecent = base.Columns["SurveyYearMostRecent"];
+                this.columnAgeCalculateOldest = base.Columns["AgeCalculateOldest"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6208,6 +6220,8 @@ namespace Nls.Base97 {
                 base.Columns.Add(this.columnSubjectTag);
                 this.columnSurveyYearMostRecent = new global::System.Data.DataColumn("SurveyYearMostRecent", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSurveyYearMostRecent);
+                this.columnAgeCalculateOldest = new global::System.Data.DataColumn("AgeCalculateOldest", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAgeCalculateOldest);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSubjectTag}, true));
                 this.columnSubjectTag.AllowDBNull = false;
@@ -8935,6 +8949,23 @@ namespace Nls.Base97 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double AgeCalculateOldest {
+                get {
+                    try {
+                        return ((double)(this[this.tablevewSurveyTimeMostRecent.AgeCalculateOldestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AgeCalculateOldest\' in table \'vewSurveyTimeMostRecent\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevewSurveyTimeMostRecent.AgeCalculateOldestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSurveyYearMostRecentNull() {
                 return this.IsNull(this.tablevewSurveyTimeMostRecent.SurveyYearMostRecentColumn);
             }
@@ -8943,6 +8974,18 @@ namespace Nls.Base97 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSurveyYearMostRecentNull() {
                 this[this.tablevewSurveyTimeMostRecent.SurveyYearMostRecentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAgeCalculateOldestNull() {
+                return this.IsNull(this.tablevewSurveyTimeMostRecent.AgeCalculateOldestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAgeCalculateOldestNull() {
+                this[this.tablevewSurveyTimeMostRecent.AgeCalculateOldestColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14704,6 +14747,7 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             tableMapping.DataSetTable = "vewSurveyTimeMostRecent";
             tableMapping.ColumnMappings.Add("SubjectTag", "SubjectTag");
             tableMapping.ColumnMappings.Add("SurveyYearMostRecent", "SurveyYearMostRecent");
+            tableMapping.ColumnMappings.Add("AgeCalculateOldest", "AgeCalculateOldest");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -14720,7 +14764,8 @@ SELECT SubjectTag, RaceCohort, CrossSectionalCohort, Mob, LastSurveyYearComplete
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SubjectTag, SurveyYearMostRecent FROM Process.vewSurveyTimeMostRecent";
+            this._commandCollection[0].CommandText = "SELECT SubjectTag, SurveyYearMostRecent, AgeCalculateOldest FROM Process.vewSurve" +
+                "yTimeMostRecent";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

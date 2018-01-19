@@ -19,7 +19,7 @@
     <Shape ID="DesignTable:tblRoster" ZOrder="4" X="1140" Y="0" Height="305" Width="198" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:tblSubject" ZOrder="3" X="684" Y="0" Height="172" Width="203" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:tblSubjectDetails" ZOrder="2" X="2556" Y="0" Height="305" Width="243" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:vewSurveyTimeMostRecent" ZOrder="1" X="184" Y="494" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:vewSurveyTimeMostRecent" ZOrder="1" X="205" Y="610" Height="134" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_tblSurveyTime_tblSubject" ZOrder="22" LineWidth="11">
