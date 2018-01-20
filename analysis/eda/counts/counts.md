@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-19"
+date: "Date: 2018-01-20"
 output:
   html_document:
     keep_md: yes
@@ -42,7 +42,7 @@ This report documents the basic properties of the input & output tables kinship 
 ## Notes 
 1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
 1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
-1. For the NLSY97, 518 variables are defined, and 518 variables are 'active'.
+1. For the NLSY97, 551 variables are defined, and 551 variables are 'active'.
 
 ## Unanswered Questions
 
@@ -1948,16 +1948,16 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksImplicit        |     8,984|           43|
 |Extract     |tblRoster               |     8,984|          464|
 |Extract     |tblSurveyTime           |     8,984|           94|
-|Extract     |tblTwins                |     8,984|           86|
-|Metadata    |tblItem                 |        25|            7|
+|Extract     |tblTwins                |     8,984|          119|
+|Metadata    |tblItem                 |        26|            7|
 |Metadata    |tblMzManual             |        90|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
-|Metadata    |tblVariable             |       518|           11|
+|Metadata    |tblVariable             |       551|           11|
 |Process     |tblMarker               |     5,038|           10|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblRelatedStructure     |     5,038|            8|
 |Process     |tblRelatedValues        |     2,519|           23|
-|Process     |tblResponse             |   934,421|            8|
+|Process     |tblResponse             |   935,636|            8|
 |Process     |tblRoster               |     5,038|           13|
 |Process     |tblSubject              |     8,984|            5|
 |Process     |tblSubjectDetails       |     8,984|           15|
@@ -1988,7 +1988,8 @@ This report documents the basic properties of the input & output tables kinship 
 |  106|hh_unique_id                     |       -4|              0|      122|TRUE   |HHI2: People living in the Household - sorted, UID; HH member's unique ID |
 |  121|pair_multiple_birth              |       -4|              0|        3|TRUE   |NA                                                                        |
 |  122|pair_twins_mz                    |       -4|              0|        1|TRUE   |NA                                                                        |
-|  123|pair_same_bioparent              |       -4|             15|       16|TRUE   |NA                                                                        |
+|  123|pair_sister_same_bioparent       |       -4|             15|       16|TRUE   |NA                                                                        |
+|  124|pair_brother_same_bioparent      |       -4|             18|       19|TRUE   |NA                                                                        |
 | 1020|InterviewDateDayParent_NOTUSED   |       -4|              1|       31|FALSE  |NA                                                                        |
 | 1021|InterviewDateMonthParent_NOTUSED |       -4|              1|        9|FALSE  |NA                                                                        |
 | 1022|InterviewDateYearParent_NOTUSED  |       -4|           1997|     1998|FALSE  |NA                                                                        |
@@ -2047,47 +2048,80 @@ This report documents the basic properties of the input & output tables kinship 
 |R0817800      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
 |R0817900      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
 |R0818000      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
-|R0818100      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
-|R0818200      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
-|R0818300      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
-|R0818400      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
-|R0818500      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
-|R0818600      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
-|R0818700      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
-|R0818800      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
-|R0818900      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            1|           10|TRUE      |TRUE            |NA             |
-|R0819000      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
-|R0819100      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
-|R0819200      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
-|R0819300      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
-|R0819400      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
-|R0819500      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
-|R0819600      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            1|TRUE      |TRUE            |NA             |
-|R0819700      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
-|R0819800      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
-|R0819900      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
-|R0820000      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
-|R0820100      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
-|R0820200      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|            9|TRUE      |TRUE            |NA             |
-|R0820300      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            3|           10|TRUE      |TRUE            |NA             |
-|R0820400      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
-|R0820500      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
-|R0820600      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
-|R0820700      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
-|R0820800      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|            9|TRUE      |TRUE            |NA             |
-|R0820900      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            4|           10|TRUE      |TRUE            |NA             |
-|R0821000      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
-|R0821100      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
-|R0821200      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            5|            8|TRUE      |TRUE            |NA             |
-|R0821300      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            5|            9|TRUE      |TRUE            |NA             |
-|R0821400      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
-|R0821500      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
-|R0821600      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            6|            9|TRUE      |TRUE            |NA             |
-|R0821700      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            6|           10|TRUE      |TRUE            |NA             |
-|R0821800      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
-|R0821900      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            7|            9|TRUE      |TRUE            |NA             |
-|R0822000      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
-|R0822100      |     123|pair_same_bioparent              |                 6|97-twins             |        1997|           10|           12|TRUE      |TRUE            |NA             |
+|R0818100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0818200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0818300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R0818400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R0818500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R0818600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R0818700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R0818800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R0818900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|           10|TRUE      |TRUE            |NA             |
+|R0819000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R0819100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R0819200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R0819300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R0819400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R0819500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R0819600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R0819700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0819800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R0819900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R0820000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R0820100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R0820200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            9|TRUE      |TRUE            |NA             |
+|R0820300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|           10|TRUE      |TRUE            |NA             |
+|R0820400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0820500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R0820600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R0820700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R0820800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R0820900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|           10|TRUE      |TRUE            |NA             |
+|R0821000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0821100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R0821200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R0821300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            9|TRUE      |TRUE            |NA             |
+|R0821400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0821500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R0821600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            9|TRUE      |TRUE            |NA             |
+|R0821700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|           10|TRUE      |TRUE            |NA             |
+|R0821800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0821900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            7|            9|TRUE      |TRUE            |NA             |
+|R0822000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R0822100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|           10|           12|TRUE      |TRUE            |NA             |
+|R0822200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0822300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0822400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R0822500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R0822600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R0822700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R0822800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R0822900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R0823000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R0823100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R0823200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R0823300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R0823400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R0823500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R0823600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            9|TRUE      |TRUE            |NA             |
+|R0823700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|           10|TRUE      |TRUE            |NA             |
+|R0823800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0823900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R0824000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R0824100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R0824200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R0824300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0824400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R0824500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R0824600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R0824700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R0824800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0824900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R0825000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R0825100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0825200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R0825300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0825400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
 |R1097800      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
 |R1097900      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
 |R1098000      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
@@ -2536,12 +2570,12 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
 |Extract     |tblRoster               |         18,056|        18,048|
 |Extract     |tblSurveyTime           |          3,656|         3,616|
-|Extract     |tblTwins                |          3,336|         3,288|
+|Extract     |tblTwins                |          4,616|         4,512|
 |Metadata    |tblItem                 |             72|            16|
 |Metadata    |tblMzManual             |             72|            24|
 |Metadata    |tblRosterAssignment     |             72|            16|
-|Metadata    |tblVariable             |            208|           128|
-|Process     |tblMarker               |            528|           352|
+|Metadata    |tblVariable             |            208|           136|
+|Process     |tblMarker               |            528|           344|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |            272|            88|
@@ -2549,7 +2583,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |            720|           544|
-|Process     |tblSurveyTime           |          5,584|         4,896|
+|Process     |tblSurveyTime           |          5,776|         4,968|
 
 
 # Session Information
@@ -2570,7 +2604,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-19                                 
+ date     2018-01-20                                 
 ```
 
 ```
@@ -2641,4 +2675,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-19, 10:24 -0600 in 2 seconds.
+Report rendered by Will at 2018-01-20, 01:22 -0600 in 2 seconds.

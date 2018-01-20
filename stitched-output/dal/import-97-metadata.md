@@ -198,7 +198,7 @@ ds_entries
 ## # A tibble: 13 x 4
 ##    name             path                           col_types  entries     
 ##    <chr>            <chr>                          <list>     <list>      
-##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [25~
+##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [26~
 ##  2 LUExtractSource  data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
 ##  3 LUMarkerEvidence data-public/metadata/tables-9~ <S3: col_~ <tibble [8 ~
 ##  4 LUGender         data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
@@ -210,7 +210,7 @@ ds_entries
 ## 10 LUYesNo          data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
 ## 11 MzManual         data-public/metadata/tables-9~ <S3: col_~ <tibble [90~
 ## 12 RosterAssignment data-public/metadata/tables-9~ <S3: col_~ <tibble [31~
-## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [51~
+## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [55~
 ```
 
 ```r
@@ -223,7 +223,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 30 x 6
+## # A tibble: 29 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -236,7 +236,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 20 more rows
+## # ... with 19 more rows
 ```
 
 ```r
@@ -266,7 +266,7 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 25 x 7
+## # A tibble: 26 x 7
 ##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
 ##    <int> <chr>                     <int>          <int>  <int> <lgl> <chr>
 ##  1     1 subject_id                    1              1   9022 T     <NA> 
@@ -279,7 +279,7 @@ ds_file$entries %>%
 ##  8    14 race_cohort                   1              1      4 T     race~
 ##  9    20 InterviewDateDay          -   7              1     31 T     <NA> 
 ## 10    21 InterviewDateMonth        -   7              1     12 T     <NA> 
-## # ... with 15 more rows
+## # ... with 16 more rows
 ## # A tibble: 6 x 4
 ##      ID Label             Active Notes
 ##   <int> <chr>             <lgl>  <chr>
@@ -394,7 +394,7 @@ ds_file$entries %>%
 ## # ... with 21 more rows, and 5 more variables: ShareBiograndparent <int>,
 ## #   Inconsistent <int>, Notes <chr>, ResponseLowerLabel <chr>,
 ## #   ResponseUpperLabel <chr>
-## # A tibble: 518 x 11
+## # A tibble: 551 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
 ##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
@@ -407,7 +407,7 @@ ds_file$entries %>%
 ##  8 R1482~    14      1   1997     1     1     1     1 <NA>  KEY!~ KEY!RAC~
 ##  9 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
 ## 10 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
-## # ... with 508 more rows
+## # ... with 541 more rows
 ```
 
 ```r
@@ -517,7 +517,8 @@ ds_enum %>%
 ##     hh_unique_id                                                 =   106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
 ##     pair_multiple_birth                                          =   121, 
 ##     pair_twins_mz                                                =   122, 
-##     pair_same_bioparent                                          =   123, 
+##     pair_sister_same_bioparent                                   =   123, 
+##     pair_brother_same_bioparent                                  =   124, 
 ##     // InterviewDateDayParent_NOTUSED                            =  1020, 
 ##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
 ##     // InterviewDateYearParent_NOTUSED                           =  1022, 
@@ -1082,7 +1083,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-19, 09:58 -0600 in 17 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-20, 00:51 -0600 in 3 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1137,6 +1138,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-19 09:58:12 CST"
+## [1] "2018-01-20 00:51:27 CST"
 ```
 

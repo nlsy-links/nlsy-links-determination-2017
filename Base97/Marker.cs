@@ -12,7 +12,7 @@ namespace Nls.Base97 {
         private readonly ImportDataSet _dsImport;
         private readonly Item[] _items = { 
             Item.roster_relationship_1_dim,
-            Item.pair_multiple_birth, Item.pair_twins_mz, Item.pair_same_bioparent
+            Item.pair_multiple_birth, Item.pair_twins_mz, Item.pair_sister_same_bioparent
         };//, Item.IDCodeOfOtherSiblingGen1, Item.ShareBiomomGen1, Item.ShareBiodadGen1 };
         //Unnecssary b/c they're in Retro & Current: Item.Gen1MotherDeathAge, Item.Gen1MotherBirthCountry, Item.Gen1MotherBirthYear, Item.Gen1FatherDeathAge, Item.Gen1FatherBirthCountry, Item.Gen1FatherBirthYear
         private readonly string _itemIDsString = "";

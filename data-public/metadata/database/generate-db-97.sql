@@ -3,9 +3,9 @@ GO
 CREATE DATABASE [NlsyLinks97]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'NlsyLinks97', FILENAME = N'D:\database\nlsy-links\nlsy_links_97.mdf' , SIZE = 70656KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'NlsyLinks97', FILENAME = N'D:\database\nlsy-links\nlsy_links_97.mdf' , SIZE = 319488KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'NlsyLinks97_log', FILENAME = N'D:\database\nlsy-links\nlsy_links_97_log.ldf' , SIZE = 160960KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'NlsyLinks97_log', FILENAME = N'D:\database\nlsy-links\nlsy_links_97_log.ldf' , SIZE = 1084480KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 ALTER DATABASE [NlsyLinks97] SET COMPATIBILITY_LEVEL = 130
 GO
@@ -1103,6 +1103,39 @@ CREATE TABLE [Extract].[tblTwins](
 	[R0821900] [int] NOT NULL,
 	[R0822000] [int] NOT NULL,
 	[R0822100] [int] NOT NULL,
+	[R0822200] [int] NOT NULL,
+	[R0822300] [int] NOT NULL,
+	[R0822400] [int] NOT NULL,
+	[R0822500] [int] NOT NULL,
+	[R0822600] [int] NOT NULL,
+	[R0822700] [int] NOT NULL,
+	[R0822800] [int] NOT NULL,
+	[R0822900] [int] NOT NULL,
+	[R0823000] [int] NOT NULL,
+	[R0823100] [int] NOT NULL,
+	[R0823200] [int] NOT NULL,
+	[R0823300] [int] NOT NULL,
+	[R0823400] [int] NOT NULL,
+	[R0823500] [int] NOT NULL,
+	[R0823600] [int] NOT NULL,
+	[R0823700] [int] NOT NULL,
+	[R0823800] [int] NOT NULL,
+	[R0823900] [int] NOT NULL,
+	[R0824000] [int] NOT NULL,
+	[R0824100] [int] NOT NULL,
+	[R0824200] [int] NOT NULL,
+	[R0824300] [int] NOT NULL,
+	[R0824400] [int] NOT NULL,
+	[R0824500] [int] NOT NULL,
+	[R0824600] [int] NOT NULL,
+	[R0824700] [int] NOT NULL,
+	[R0824800] [int] NOT NULL,
+	[R0824900] [int] NOT NULL,
+	[R0825000] [int] NOT NULL,
+	[R0825100] [int] NOT NULL,
+	[R0825200] [int] NOT NULL,
+	[R0825300] [int] NOT NULL,
+	[R0825400] [int] NOT NULL,
 	[R1193000] [int] NOT NULL,
  CONSTRAINT [PK_tblTwins] PRIMARY KEY CLUSTERED 
 (

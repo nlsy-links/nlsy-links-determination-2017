@@ -532,7 +532,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 8,984 x 86
+## # A tibble: 8,984 x 119
 ##    R000~ R053~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~
 ##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
 ##  1     1     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
@@ -555,7 +555,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
 ## 19    19     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
 ## 20    20     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 74 more variables: R0814100 <int>,
+## # ... with 8,964 more rows, and 107 more variables: R0814100 <int>,
 ## #   R0814200 <int>, R0814300 <int>, R0814400 <int>, R0814500 <int>,
 ## #   R0814600 <int>, R0814700 <int>, R0814800 <int>, R0814900 <int>,
 ## #   R0815000 <int>, R0815100 <int>, R0815200 <int>, R0815300 <int>,
@@ -574,12 +574,22 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   R0821000 <int>, R0821100 <int>, R0821200 <int>, R0821300 <int>,
 ## #   R0821400 <int>, R0821500 <int>, R0821600 <int>, R0821700 <int>,
 ## #   R0821800 <int>, R0821900 <int>, R0822000 <int>, R0822100 <int>,
-## #   R1193000 <int>
-## [1] 1
+## #   R0822200 <int>, R0822300 <int>, R0822400 <int>, R0822500 <int>,
+## #   R0822600 <int>, R0822700 <int>, R0822800 <int>, R0822900 <int>,
+## #   R0823000 <int>, R0823100 <int>, R0823200 <int>, R0823300 <int>,
+## #   R0823400 <int>, R0823500 <int>, R0823600 <int>, R0823700 <int>,
+## #   R0823800 <int>, R0823900 <int>, R0824000 <int>, R0824100 <int>,
+## #   R0824200 <int>, R0824300 <int>, R0824400 <int>, R0824500 <int>,
+## #   R0824600 <int>, R0824700 <int>, R0824800 <int>, ...
+## [1] "2018-01-20 00:51:59 CST"
 ```
 
 ```
-## Tibble size: 3 Mb
+## The table `Extract.tblTwins` was written over dsn `local-nlsy-links-97` in 0.088 minutes.
+```
+
+```
+## Tibble size: 4.1 Mb
 ```
 
 ```r
@@ -592,7 +602,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-01-19, 09:58 -0600 in 34 seconds.
+## File completed by `Will` at 2018-01-20, 00:52 -0600 in 38 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -647,6 +657,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-19 09:58:46 CST"
+## [1] "2018-01-20 00:52:06 CST"
 ```
 

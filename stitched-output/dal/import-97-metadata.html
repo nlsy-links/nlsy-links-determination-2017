@@ -386,7 +386,7 @@ ds_entries
 <pre><code>## # A tibble: 13 x 4
 ##    name             path                           col_types  entries     
 ##    &lt;chr&gt;            &lt;chr&gt;                          &lt;list&gt;     &lt;list&gt;      
-##  1 item             data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [25~
+##  1 item             data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [26~
 ##  2 LUExtractSource  data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [6 ~
 ##  3 LUMarkerEvidence data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [8 ~
 ##  4 LUGender         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [3 ~
@@ -398,7 +398,7 @@ ds_entries
 ## 10 LUYesNo          data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [6 ~
 ## 11 MzManual         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [90~
 ## 12 RosterAssignment data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [31~
-## 13 variable         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [51~
+## 13 variable         data-public/metadata/tables-9~ &lt;S3: col_~ &lt;tibble [55~
 </code></pre>
 
 <pre><code class="r"># d &lt;- readr::read_csv(&quot;data-public/metadata/tables/variable_97.csv&quot;, col_types=lst_col_types$variable_97, comment = &quot;#&quot;)
@@ -409,7 +409,7 @@ ds_table &lt;- database_inventory(study)
 ds_table
 </code></pre>
 
-<pre><code>## # A tibble: 30 x 6
+<pre><code>## # A tibble: 29 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * &lt;chr&gt;       &lt;chr&gt;                       &lt;int&gt;        &lt;int&gt;  &lt;int&gt; &lt;int&gt;
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -422,7 +422,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 20 more rows
+## # ... with 19 more rows
 </code></pre>
 
 <pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
@@ -449,7 +449,7 @@ ds_file$entries %&gt;%
   purrr::walk(print)
 </code></pre>
 
-<pre><code>## # A tibble: 25 x 7
+<pre><code>## # A tibble: 26 x 7
 ##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
 ##    &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;          &lt;int&gt;  &lt;int&gt; &lt;lgl&gt; &lt;chr&gt;
 ##  1     1 subject_id                    1              1   9022 T     &lt;NA&gt; 
@@ -462,7 +462,7 @@ ds_file$entries %&gt;%
 ##  8    14 race_cohort                   1              1      4 T     race~
 ##  9    20 InterviewDateDay          -   7              1     31 T     &lt;NA&gt; 
 ## 10    21 InterviewDateMonth        -   7              1     12 T     &lt;NA&gt; 
-## # ... with 15 more rows
+## # ... with 16 more rows
 ## # A tibble: 6 x 4
 ##      ID Label             Active Notes
 ##   &lt;int&gt; &lt;chr&gt;             &lt;lgl&gt;  &lt;chr&gt;
@@ -577,7 +577,7 @@ ds_file$entries %&gt;%
 ## # ... with 21 more rows, and 5 more variables: ShareBiograndparent &lt;int&gt;,
 ## #   Inconsistent &lt;int&gt;, Notes &lt;chr&gt;, ResponseLowerLabel &lt;chr&gt;,
 ## #   ResponseUpperLabel &lt;chr&gt;
-## # A tibble: 518 x 11
+## # A tibble: 551 x 11
 ##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
 ##    &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   
 ##  1 R0000~     1      1   1997     1     1     1     1 &lt;NA&gt;  PUBID YOUTH C~
@@ -590,7 +590,7 @@ ds_file$entries %&gt;%
 ##  8 R1482~    14      1   1997     1     1     1     1 &lt;NA&gt;  KEY!~ KEY!RAC~
 ##  9 R1097~   101      2   1997     1     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
 ## 10 R1097~   101      2   1997     2     1     1     1 &lt;NA&gt;  HHI2~ HHI2_HH~
-## # ... with 508 more rows
+## # ... with 541 more rows
 </code></pre>
 
 <pre><code class="r"># ds_file %&gt;%
@@ -694,7 +694,8 @@ ds_enum %&gt;%
 ##     hh_unique_id                                                 =   106, // HHI2: People living in the Household - sorted, UID; HH member&#39;s unique ID
 ##     pair_multiple_birth                                          =   121, 
 ##     pair_twins_mz                                                =   122, 
-##     pair_same_bioparent                                          =   123, 
+##     pair_sister_same_bioparent                                   =   123, 
+##     pair_brother_same_bioparent                                  =   124, 
 ##     // InterviewDateDayParent_NOTUSED                            =  1020, 
 ##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
 ##     // InterviewDateYearParent_NOTUSED                           =  1022, 
@@ -1230,7 +1231,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-19, 09:58 -0600 in 17 seconds.
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-01-20, 00:51 -0600 in 3 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1280,7 +1281,7 @@ packages used):</p>
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-19 09:58:12 CST&quot;
+<pre><code>## [1] &quot;2018-01-20 00:51:27 CST&quot;
 </code></pre>
 
 </body>

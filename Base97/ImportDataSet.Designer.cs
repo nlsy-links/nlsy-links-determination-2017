@@ -26,8 +26,6 @@ namespace Nls.Base97 {
         
         private tblDemographicsDataTable tabletblDemographics;
         
-        private tblTwinsDataTable tabletblTwins;
-        
         private tblLinksExplicitDataTable tabletblLinksExplicit;
         
         private tblLinksImplicitDataTable tabletblLinksImplicit;
@@ -35,6 +33,8 @@ namespace Nls.Base97 {
         private tblRosterDataTable tabletblRoster;
         
         private tblSurveyTimeDataTable tabletblSurveyTime;
+        
+        private tblTwinsDataTable tabletblTwins;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -67,9 +67,6 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblDemographics"] != null)) {
                     base.Tables.Add(new tblDemographicsDataTable(ds.Tables["tblDemographics"]));
                 }
-                if ((ds.Tables["tblTwins"] != null)) {
-                    base.Tables.Add(new tblTwinsDataTable(ds.Tables["tblTwins"]));
-                }
                 if ((ds.Tables["tblLinksExplicit"] != null)) {
                     base.Tables.Add(new tblLinksExplicitDataTable(ds.Tables["tblLinksExplicit"]));
                 }
@@ -81,6 +78,9 @@ namespace Nls.Base97 {
                 }
                 if ((ds.Tables["tblSurveyTime"] != null)) {
                     base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
+                }
+                if ((ds.Tables["tblTwins"] != null)) {
+                    base.Tables.Add(new tblTwinsDataTable(ds.Tables["tblTwins"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -107,16 +107,6 @@ namespace Nls.Base97 {
         public tblDemographicsDataTable tblDemographics {
             get {
                 return this.tabletblDemographics;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblTwinsDataTable tblTwins {
-            get {
-                return this.tabletblTwins;
             }
         }
         
@@ -157,6 +147,16 @@ namespace Nls.Base97 {
         public tblSurveyTimeDataTable tblSurveyTime {
             get {
                 return this.tabletblSurveyTime;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblTwinsDataTable tblTwins {
+            get {
+                return this.tabletblTwins;
             }
         }
         
@@ -230,9 +230,6 @@ namespace Nls.Base97 {
                 if ((ds.Tables["tblDemographics"] != null)) {
                     base.Tables.Add(new tblDemographicsDataTable(ds.Tables["tblDemographics"]));
                 }
-                if ((ds.Tables["tblTwins"] != null)) {
-                    base.Tables.Add(new tblTwinsDataTable(ds.Tables["tblTwins"]));
-                }
                 if ((ds.Tables["tblLinksExplicit"] != null)) {
                     base.Tables.Add(new tblLinksExplicitDataTable(ds.Tables["tblLinksExplicit"]));
                 }
@@ -244,6 +241,9 @@ namespace Nls.Base97 {
                 }
                 if ((ds.Tables["tblSurveyTime"] != null)) {
                     base.Tables.Add(new tblSurveyTimeDataTable(ds.Tables["tblSurveyTime"]));
+                }
+                if ((ds.Tables["tblTwins"] != null)) {
+                    base.Tables.Add(new tblTwinsDataTable(ds.Tables["tblTwins"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -284,12 +284,6 @@ namespace Nls.Base97 {
                     this.tabletblDemographics.InitVars();
                 }
             }
-            this.tabletblTwins = ((tblTwinsDataTable)(base.Tables["tblTwins"]));
-            if ((initTable == true)) {
-                if ((this.tabletblTwins != null)) {
-                    this.tabletblTwins.InitVars();
-                }
-            }
             this.tabletblLinksExplicit = ((tblLinksExplicitDataTable)(base.Tables["tblLinksExplicit"]));
             if ((initTable == true)) {
                 if ((this.tabletblLinksExplicit != null)) {
@@ -314,6 +308,12 @@ namespace Nls.Base97 {
                     this.tabletblSurveyTime.InitVars();
                 }
             }
+            this.tabletblTwins = ((tblTwinsDataTable)(base.Tables["tblTwins"]));
+            if ((initTable == true)) {
+                if ((this.tabletblTwins != null)) {
+                    this.tabletblTwins.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -326,8 +326,6 @@ namespace Nls.Base97 {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tabletblDemographics = new tblDemographicsDataTable();
             base.Tables.Add(this.tabletblDemographics);
-            this.tabletblTwins = new tblTwinsDataTable();
-            base.Tables.Add(this.tabletblTwins);
             this.tabletblLinksExplicit = new tblLinksExplicitDataTable();
             base.Tables.Add(this.tabletblLinksExplicit);
             this.tabletblLinksImplicit = new tblLinksImplicitDataTable();
@@ -336,17 +334,13 @@ namespace Nls.Base97 {
             base.Tables.Add(this.tabletblRoster);
             this.tabletblSurveyTime = new tblSurveyTimeDataTable();
             base.Tables.Add(this.tabletblSurveyTime);
+            this.tabletblTwins = new tblTwinsDataTable();
+            base.Tables.Add(this.tabletblTwins);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblDemographics() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializetblTwins() {
             return false;
         }
         
@@ -371,6 +365,12 @@ namespace Nls.Base97 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblSurveyTime() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblTwins() {
             return false;
         }
         
@@ -433,9 +433,6 @@ namespace Nls.Base97 {
         public delegate void tblDemographicsRowChangeEventHandler(object sender, tblDemographicsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void tblTwinsRowChangeEventHandler(object sender, tblTwinsRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblLinksExplicitRowChangeEventHandler(object sender, tblLinksExplicitRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -446,6 +443,9 @@ namespace Nls.Base97 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblSurveyTimeRowChangeEventHandler(object sender, tblSurveyTimeRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblTwinsRowChangeEventHandler(object sender, tblTwinsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -770,1625 +770,6 @@ namespace Nls.Base97 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tblDemographicsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblTwinsDataTable : global::System.Data.TypedTableBase<tblTwinsRow> {
-            
-            private global::System.Data.DataColumn columnR0000100;
-            
-            private global::System.Data.DataColumn columnR0536300;
-            
-            private global::System.Data.DataColumn columnR0813100;
-            
-            private global::System.Data.DataColumn columnR0813200;
-            
-            private global::System.Data.DataColumn columnR0813300;
-            
-            private global::System.Data.DataColumn columnR0813400;
-            
-            private global::System.Data.DataColumn columnR0813500;
-            
-            private global::System.Data.DataColumn columnR0813600;
-            
-            private global::System.Data.DataColumn columnR0813700;
-            
-            private global::System.Data.DataColumn columnR0813800;
-            
-            private global::System.Data.DataColumn columnR0813900;
-            
-            private global::System.Data.DataColumn columnR0814000;
-            
-            private global::System.Data.DataColumn columnR0814100;
-            
-            private global::System.Data.DataColumn columnR0814200;
-            
-            private global::System.Data.DataColumn columnR0814300;
-            
-            private global::System.Data.DataColumn columnR0814400;
-            
-            private global::System.Data.DataColumn columnR0814500;
-            
-            private global::System.Data.DataColumn columnR0814600;
-            
-            private global::System.Data.DataColumn columnR0814700;
-            
-            private global::System.Data.DataColumn columnR0814800;
-            
-            private global::System.Data.DataColumn columnR0814900;
-            
-            private global::System.Data.DataColumn columnR0815000;
-            
-            private global::System.Data.DataColumn columnR0815100;
-            
-            private global::System.Data.DataColumn columnR0815200;
-            
-            private global::System.Data.DataColumn columnR0815300;
-            
-            private global::System.Data.DataColumn columnR0815400;
-            
-            private global::System.Data.DataColumn columnR0815500;
-            
-            private global::System.Data.DataColumn columnR0815600;
-            
-            private global::System.Data.DataColumn columnR0815700;
-            
-            private global::System.Data.DataColumn columnR0815800;
-            
-            private global::System.Data.DataColumn columnR0815900;
-            
-            private global::System.Data.DataColumn columnR0816000;
-            
-            private global::System.Data.DataColumn columnR0816100;
-            
-            private global::System.Data.DataColumn columnR0816200;
-            
-            private global::System.Data.DataColumn columnR0816300;
-            
-            private global::System.Data.DataColumn columnR0816400;
-            
-            private global::System.Data.DataColumn columnR0816500;
-            
-            private global::System.Data.DataColumn columnR0817400;
-            
-            private global::System.Data.DataColumn columnR0817500;
-            
-            private global::System.Data.DataColumn columnR0817600;
-            
-            private global::System.Data.DataColumn columnR0817700;
-            
-            private global::System.Data.DataColumn columnR0817800;
-            
-            private global::System.Data.DataColumn columnR0817900;
-            
-            private global::System.Data.DataColumn columnR0818000;
-            
-            private global::System.Data.DataColumn columnR0818100;
-            
-            private global::System.Data.DataColumn columnR0818200;
-            
-            private global::System.Data.DataColumn columnR0818300;
-            
-            private global::System.Data.DataColumn columnR0818400;
-            
-            private global::System.Data.DataColumn columnR0818500;
-            
-            private global::System.Data.DataColumn columnR0818600;
-            
-            private global::System.Data.DataColumn columnR0818700;
-            
-            private global::System.Data.DataColumn columnR0818800;
-            
-            private global::System.Data.DataColumn columnR0818900;
-            
-            private global::System.Data.DataColumn columnR0819000;
-            
-            private global::System.Data.DataColumn columnR0819100;
-            
-            private global::System.Data.DataColumn columnR0819200;
-            
-            private global::System.Data.DataColumn columnR0819300;
-            
-            private global::System.Data.DataColumn columnR0819400;
-            
-            private global::System.Data.DataColumn columnR0819500;
-            
-            private global::System.Data.DataColumn columnR0819600;
-            
-            private global::System.Data.DataColumn columnR0819700;
-            
-            private global::System.Data.DataColumn columnR0819800;
-            
-            private global::System.Data.DataColumn columnR0819900;
-            
-            private global::System.Data.DataColumn columnR0820000;
-            
-            private global::System.Data.DataColumn columnR0820100;
-            
-            private global::System.Data.DataColumn columnR0820200;
-            
-            private global::System.Data.DataColumn columnR0820300;
-            
-            private global::System.Data.DataColumn columnR0820400;
-            
-            private global::System.Data.DataColumn columnR0820500;
-            
-            private global::System.Data.DataColumn columnR0820600;
-            
-            private global::System.Data.DataColumn columnR0820700;
-            
-            private global::System.Data.DataColumn columnR0820800;
-            
-            private global::System.Data.DataColumn columnR0820900;
-            
-            private global::System.Data.DataColumn columnR0821000;
-            
-            private global::System.Data.DataColumn columnR0821100;
-            
-            private global::System.Data.DataColumn columnR0821200;
-            
-            private global::System.Data.DataColumn columnR0821300;
-            
-            private global::System.Data.DataColumn columnR0821400;
-            
-            private global::System.Data.DataColumn columnR0821500;
-            
-            private global::System.Data.DataColumn columnR0821600;
-            
-            private global::System.Data.DataColumn columnR0821700;
-            
-            private global::System.Data.DataColumn columnR0821800;
-            
-            private global::System.Data.DataColumn columnR0821900;
-            
-            private global::System.Data.DataColumn columnR0822000;
-            
-            private global::System.Data.DataColumn columnR0822100;
-            
-            private global::System.Data.DataColumn columnR1193000;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsDataTable() {
-                this.TableName = "tblTwins";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblTwinsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected tblTwinsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0000100Column {
-                get {
-                    return this.columnR0000100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0536300Column {
-                get {
-                    return this.columnR0536300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813100Column {
-                get {
-                    return this.columnR0813100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813200Column {
-                get {
-                    return this.columnR0813200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813300Column {
-                get {
-                    return this.columnR0813300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813400Column {
-                get {
-                    return this.columnR0813400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813500Column {
-                get {
-                    return this.columnR0813500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813600Column {
-                get {
-                    return this.columnR0813600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813700Column {
-                get {
-                    return this.columnR0813700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813800Column {
-                get {
-                    return this.columnR0813800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0813900Column {
-                get {
-                    return this.columnR0813900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814000Column {
-                get {
-                    return this.columnR0814000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814100Column {
-                get {
-                    return this.columnR0814100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814200Column {
-                get {
-                    return this.columnR0814200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814300Column {
-                get {
-                    return this.columnR0814300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814400Column {
-                get {
-                    return this.columnR0814400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814500Column {
-                get {
-                    return this.columnR0814500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814600Column {
-                get {
-                    return this.columnR0814600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814700Column {
-                get {
-                    return this.columnR0814700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814800Column {
-                get {
-                    return this.columnR0814800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0814900Column {
-                get {
-                    return this.columnR0814900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815000Column {
-                get {
-                    return this.columnR0815000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815100Column {
-                get {
-                    return this.columnR0815100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815200Column {
-                get {
-                    return this.columnR0815200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815300Column {
-                get {
-                    return this.columnR0815300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815400Column {
-                get {
-                    return this.columnR0815400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815500Column {
-                get {
-                    return this.columnR0815500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815600Column {
-                get {
-                    return this.columnR0815600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815700Column {
-                get {
-                    return this.columnR0815700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815800Column {
-                get {
-                    return this.columnR0815800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0815900Column {
-                get {
-                    return this.columnR0815900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816000Column {
-                get {
-                    return this.columnR0816000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816100Column {
-                get {
-                    return this.columnR0816100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816200Column {
-                get {
-                    return this.columnR0816200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816300Column {
-                get {
-                    return this.columnR0816300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816400Column {
-                get {
-                    return this.columnR0816400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0816500Column {
-                get {
-                    return this.columnR0816500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817400Column {
-                get {
-                    return this.columnR0817400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817500Column {
-                get {
-                    return this.columnR0817500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817600Column {
-                get {
-                    return this.columnR0817600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817700Column {
-                get {
-                    return this.columnR0817700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817800Column {
-                get {
-                    return this.columnR0817800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0817900Column {
-                get {
-                    return this.columnR0817900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818000Column {
-                get {
-                    return this.columnR0818000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818100Column {
-                get {
-                    return this.columnR0818100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818200Column {
-                get {
-                    return this.columnR0818200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818300Column {
-                get {
-                    return this.columnR0818300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818400Column {
-                get {
-                    return this.columnR0818400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818500Column {
-                get {
-                    return this.columnR0818500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818600Column {
-                get {
-                    return this.columnR0818600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818700Column {
-                get {
-                    return this.columnR0818700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818800Column {
-                get {
-                    return this.columnR0818800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0818900Column {
-                get {
-                    return this.columnR0818900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819000Column {
-                get {
-                    return this.columnR0819000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819100Column {
-                get {
-                    return this.columnR0819100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819200Column {
-                get {
-                    return this.columnR0819200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819300Column {
-                get {
-                    return this.columnR0819300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819400Column {
-                get {
-                    return this.columnR0819400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819500Column {
-                get {
-                    return this.columnR0819500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819600Column {
-                get {
-                    return this.columnR0819600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819700Column {
-                get {
-                    return this.columnR0819700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819800Column {
-                get {
-                    return this.columnR0819800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0819900Column {
-                get {
-                    return this.columnR0819900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820000Column {
-                get {
-                    return this.columnR0820000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820100Column {
-                get {
-                    return this.columnR0820100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820200Column {
-                get {
-                    return this.columnR0820200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820300Column {
-                get {
-                    return this.columnR0820300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820400Column {
-                get {
-                    return this.columnR0820400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820500Column {
-                get {
-                    return this.columnR0820500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820600Column {
-                get {
-                    return this.columnR0820600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820700Column {
-                get {
-                    return this.columnR0820700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820800Column {
-                get {
-                    return this.columnR0820800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0820900Column {
-                get {
-                    return this.columnR0820900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821000Column {
-                get {
-                    return this.columnR0821000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821100Column {
-                get {
-                    return this.columnR0821100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821200Column {
-                get {
-                    return this.columnR0821200;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821300Column {
-                get {
-                    return this.columnR0821300;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821400Column {
-                get {
-                    return this.columnR0821400;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821500Column {
-                get {
-                    return this.columnR0821500;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821600Column {
-                get {
-                    return this.columnR0821600;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821700Column {
-                get {
-                    return this.columnR0821700;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821800Column {
-                get {
-                    return this.columnR0821800;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0821900Column {
-                get {
-                    return this.columnR0821900;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0822000Column {
-                get {
-                    return this.columnR0822000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R0822100Column {
-                get {
-                    return this.columnR0822100;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn R1193000Column {
-                get {
-                    return this.columnR1193000;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRow this[int index] {
-                get {
-                    return ((tblTwinsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblTwinsRowChangeEventHandler tblTwinsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblTwinsRowChangeEventHandler tblTwinsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblTwinsRowChangeEventHandler tblTwinsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tblTwinsRowChangeEventHandler tblTwinsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddtblTwinsRow(tblTwinsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRow AddtblTwinsRow(
-                        int R0000100, 
-                        int R0536300, 
-                        int R0813100, 
-                        int R0813200, 
-                        int R0813300, 
-                        int R0813400, 
-                        int R0813500, 
-                        int R0813600, 
-                        int R0813700, 
-                        int R0813800, 
-                        int R0813900, 
-                        int R0814000, 
-                        int R0814100, 
-                        int R0814200, 
-                        int R0814300, 
-                        int R0814400, 
-                        int R0814500, 
-                        int R0814600, 
-                        int R0814700, 
-                        int R0814800, 
-                        int R0814900, 
-                        int R0815000, 
-                        int R0815100, 
-                        int R0815200, 
-                        int R0815300, 
-                        int R0815400, 
-                        int R0815500, 
-                        int R0815600, 
-                        int R0815700, 
-                        int R0815800, 
-                        int R0815900, 
-                        int R0816000, 
-                        int R0816100, 
-                        int R0816200, 
-                        int R0816300, 
-                        int R0816400, 
-                        int R0816500, 
-                        int R0817400, 
-                        int R0817500, 
-                        int R0817600, 
-                        int R0817700, 
-                        int R0817800, 
-                        int R0817900, 
-                        int R0818000, 
-                        int R0818100, 
-                        int R0818200, 
-                        int R0818300, 
-                        int R0818400, 
-                        int R0818500, 
-                        int R0818600, 
-                        int R0818700, 
-                        int R0818800, 
-                        int R0818900, 
-                        int R0819000, 
-                        int R0819100, 
-                        int R0819200, 
-                        int R0819300, 
-                        int R0819400, 
-                        int R0819500, 
-                        int R0819600, 
-                        int R0819700, 
-                        int R0819800, 
-                        int R0819900, 
-                        int R0820000, 
-                        int R0820100, 
-                        int R0820200, 
-                        int R0820300, 
-                        int R0820400, 
-                        int R0820500, 
-                        int R0820600, 
-                        int R0820700, 
-                        int R0820800, 
-                        int R0820900, 
-                        int R0821000, 
-                        int R0821100, 
-                        int R0821200, 
-                        int R0821300, 
-                        int R0821400, 
-                        int R0821500, 
-                        int R0821600, 
-                        int R0821700, 
-                        int R0821800, 
-                        int R0821900, 
-                        int R0822000, 
-                        int R0822100, 
-                        int R1193000) {
-                tblTwinsRow rowtblTwinsRow = ((tblTwinsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        R0000100,
-                        R0536300,
-                        R0813100,
-                        R0813200,
-                        R0813300,
-                        R0813400,
-                        R0813500,
-                        R0813600,
-                        R0813700,
-                        R0813800,
-                        R0813900,
-                        R0814000,
-                        R0814100,
-                        R0814200,
-                        R0814300,
-                        R0814400,
-                        R0814500,
-                        R0814600,
-                        R0814700,
-                        R0814800,
-                        R0814900,
-                        R0815000,
-                        R0815100,
-                        R0815200,
-                        R0815300,
-                        R0815400,
-                        R0815500,
-                        R0815600,
-                        R0815700,
-                        R0815800,
-                        R0815900,
-                        R0816000,
-                        R0816100,
-                        R0816200,
-                        R0816300,
-                        R0816400,
-                        R0816500,
-                        R0817400,
-                        R0817500,
-                        R0817600,
-                        R0817700,
-                        R0817800,
-                        R0817900,
-                        R0818000,
-                        R0818100,
-                        R0818200,
-                        R0818300,
-                        R0818400,
-                        R0818500,
-                        R0818600,
-                        R0818700,
-                        R0818800,
-                        R0818900,
-                        R0819000,
-                        R0819100,
-                        R0819200,
-                        R0819300,
-                        R0819400,
-                        R0819500,
-                        R0819600,
-                        R0819700,
-                        R0819800,
-                        R0819900,
-                        R0820000,
-                        R0820100,
-                        R0820200,
-                        R0820300,
-                        R0820400,
-                        R0820500,
-                        R0820600,
-                        R0820700,
-                        R0820800,
-                        R0820900,
-                        R0821000,
-                        R0821100,
-                        R0821200,
-                        R0821300,
-                        R0821400,
-                        R0821500,
-                        R0821600,
-                        R0821700,
-                        R0821800,
-                        R0821900,
-                        R0822000,
-                        R0822100,
-                        R1193000};
-                rowtblTwinsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblTwinsRow);
-                return rowtblTwinsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRow FindByR0000100(int R0000100) {
-                return ((tblTwinsRow)(this.Rows.Find(new object[] {
-                            R0000100})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                tblTwinsDataTable cln = ((tblTwinsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new tblTwinsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnR0000100 = base.Columns["R0000100"];
-                this.columnR0536300 = base.Columns["R0536300"];
-                this.columnR0813100 = base.Columns["R0813100"];
-                this.columnR0813200 = base.Columns["R0813200"];
-                this.columnR0813300 = base.Columns["R0813300"];
-                this.columnR0813400 = base.Columns["R0813400"];
-                this.columnR0813500 = base.Columns["R0813500"];
-                this.columnR0813600 = base.Columns["R0813600"];
-                this.columnR0813700 = base.Columns["R0813700"];
-                this.columnR0813800 = base.Columns["R0813800"];
-                this.columnR0813900 = base.Columns["R0813900"];
-                this.columnR0814000 = base.Columns["R0814000"];
-                this.columnR0814100 = base.Columns["R0814100"];
-                this.columnR0814200 = base.Columns["R0814200"];
-                this.columnR0814300 = base.Columns["R0814300"];
-                this.columnR0814400 = base.Columns["R0814400"];
-                this.columnR0814500 = base.Columns["R0814500"];
-                this.columnR0814600 = base.Columns["R0814600"];
-                this.columnR0814700 = base.Columns["R0814700"];
-                this.columnR0814800 = base.Columns["R0814800"];
-                this.columnR0814900 = base.Columns["R0814900"];
-                this.columnR0815000 = base.Columns["R0815000"];
-                this.columnR0815100 = base.Columns["R0815100"];
-                this.columnR0815200 = base.Columns["R0815200"];
-                this.columnR0815300 = base.Columns["R0815300"];
-                this.columnR0815400 = base.Columns["R0815400"];
-                this.columnR0815500 = base.Columns["R0815500"];
-                this.columnR0815600 = base.Columns["R0815600"];
-                this.columnR0815700 = base.Columns["R0815700"];
-                this.columnR0815800 = base.Columns["R0815800"];
-                this.columnR0815900 = base.Columns["R0815900"];
-                this.columnR0816000 = base.Columns["R0816000"];
-                this.columnR0816100 = base.Columns["R0816100"];
-                this.columnR0816200 = base.Columns["R0816200"];
-                this.columnR0816300 = base.Columns["R0816300"];
-                this.columnR0816400 = base.Columns["R0816400"];
-                this.columnR0816500 = base.Columns["R0816500"];
-                this.columnR0817400 = base.Columns["R0817400"];
-                this.columnR0817500 = base.Columns["R0817500"];
-                this.columnR0817600 = base.Columns["R0817600"];
-                this.columnR0817700 = base.Columns["R0817700"];
-                this.columnR0817800 = base.Columns["R0817800"];
-                this.columnR0817900 = base.Columns["R0817900"];
-                this.columnR0818000 = base.Columns["R0818000"];
-                this.columnR0818100 = base.Columns["R0818100"];
-                this.columnR0818200 = base.Columns["R0818200"];
-                this.columnR0818300 = base.Columns["R0818300"];
-                this.columnR0818400 = base.Columns["R0818400"];
-                this.columnR0818500 = base.Columns["R0818500"];
-                this.columnR0818600 = base.Columns["R0818600"];
-                this.columnR0818700 = base.Columns["R0818700"];
-                this.columnR0818800 = base.Columns["R0818800"];
-                this.columnR0818900 = base.Columns["R0818900"];
-                this.columnR0819000 = base.Columns["R0819000"];
-                this.columnR0819100 = base.Columns["R0819100"];
-                this.columnR0819200 = base.Columns["R0819200"];
-                this.columnR0819300 = base.Columns["R0819300"];
-                this.columnR0819400 = base.Columns["R0819400"];
-                this.columnR0819500 = base.Columns["R0819500"];
-                this.columnR0819600 = base.Columns["R0819600"];
-                this.columnR0819700 = base.Columns["R0819700"];
-                this.columnR0819800 = base.Columns["R0819800"];
-                this.columnR0819900 = base.Columns["R0819900"];
-                this.columnR0820000 = base.Columns["R0820000"];
-                this.columnR0820100 = base.Columns["R0820100"];
-                this.columnR0820200 = base.Columns["R0820200"];
-                this.columnR0820300 = base.Columns["R0820300"];
-                this.columnR0820400 = base.Columns["R0820400"];
-                this.columnR0820500 = base.Columns["R0820500"];
-                this.columnR0820600 = base.Columns["R0820600"];
-                this.columnR0820700 = base.Columns["R0820700"];
-                this.columnR0820800 = base.Columns["R0820800"];
-                this.columnR0820900 = base.Columns["R0820900"];
-                this.columnR0821000 = base.Columns["R0821000"];
-                this.columnR0821100 = base.Columns["R0821100"];
-                this.columnR0821200 = base.Columns["R0821200"];
-                this.columnR0821300 = base.Columns["R0821300"];
-                this.columnR0821400 = base.Columns["R0821400"];
-                this.columnR0821500 = base.Columns["R0821500"];
-                this.columnR0821600 = base.Columns["R0821600"];
-                this.columnR0821700 = base.Columns["R0821700"];
-                this.columnR0821800 = base.Columns["R0821800"];
-                this.columnR0821900 = base.Columns["R0821900"];
-                this.columnR0822000 = base.Columns["R0822000"];
-                this.columnR0822100 = base.Columns["R0822100"];
-                this.columnR1193000 = base.Columns["R1193000"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnR0000100 = new global::System.Data.DataColumn("R0000100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0000100);
-                this.columnR0536300 = new global::System.Data.DataColumn("R0536300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0536300);
-                this.columnR0813100 = new global::System.Data.DataColumn("R0813100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813100);
-                this.columnR0813200 = new global::System.Data.DataColumn("R0813200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813200);
-                this.columnR0813300 = new global::System.Data.DataColumn("R0813300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813300);
-                this.columnR0813400 = new global::System.Data.DataColumn("R0813400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813400);
-                this.columnR0813500 = new global::System.Data.DataColumn("R0813500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813500);
-                this.columnR0813600 = new global::System.Data.DataColumn("R0813600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813600);
-                this.columnR0813700 = new global::System.Data.DataColumn("R0813700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813700);
-                this.columnR0813800 = new global::System.Data.DataColumn("R0813800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813800);
-                this.columnR0813900 = new global::System.Data.DataColumn("R0813900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0813900);
-                this.columnR0814000 = new global::System.Data.DataColumn("R0814000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814000);
-                this.columnR0814100 = new global::System.Data.DataColumn("R0814100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814100);
-                this.columnR0814200 = new global::System.Data.DataColumn("R0814200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814200);
-                this.columnR0814300 = new global::System.Data.DataColumn("R0814300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814300);
-                this.columnR0814400 = new global::System.Data.DataColumn("R0814400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814400);
-                this.columnR0814500 = new global::System.Data.DataColumn("R0814500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814500);
-                this.columnR0814600 = new global::System.Data.DataColumn("R0814600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814600);
-                this.columnR0814700 = new global::System.Data.DataColumn("R0814700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814700);
-                this.columnR0814800 = new global::System.Data.DataColumn("R0814800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814800);
-                this.columnR0814900 = new global::System.Data.DataColumn("R0814900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0814900);
-                this.columnR0815000 = new global::System.Data.DataColumn("R0815000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815000);
-                this.columnR0815100 = new global::System.Data.DataColumn("R0815100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815100);
-                this.columnR0815200 = new global::System.Data.DataColumn("R0815200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815200);
-                this.columnR0815300 = new global::System.Data.DataColumn("R0815300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815300);
-                this.columnR0815400 = new global::System.Data.DataColumn("R0815400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815400);
-                this.columnR0815500 = new global::System.Data.DataColumn("R0815500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815500);
-                this.columnR0815600 = new global::System.Data.DataColumn("R0815600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815600);
-                this.columnR0815700 = new global::System.Data.DataColumn("R0815700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815700);
-                this.columnR0815800 = new global::System.Data.DataColumn("R0815800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815800);
-                this.columnR0815900 = new global::System.Data.DataColumn("R0815900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0815900);
-                this.columnR0816000 = new global::System.Data.DataColumn("R0816000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816000);
-                this.columnR0816100 = new global::System.Data.DataColumn("R0816100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816100);
-                this.columnR0816200 = new global::System.Data.DataColumn("R0816200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816200);
-                this.columnR0816300 = new global::System.Data.DataColumn("R0816300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816300);
-                this.columnR0816400 = new global::System.Data.DataColumn("R0816400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816400);
-                this.columnR0816500 = new global::System.Data.DataColumn("R0816500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0816500);
-                this.columnR0817400 = new global::System.Data.DataColumn("R0817400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817400);
-                this.columnR0817500 = new global::System.Data.DataColumn("R0817500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817500);
-                this.columnR0817600 = new global::System.Data.DataColumn("R0817600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817600);
-                this.columnR0817700 = new global::System.Data.DataColumn("R0817700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817700);
-                this.columnR0817800 = new global::System.Data.DataColumn("R0817800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817800);
-                this.columnR0817900 = new global::System.Data.DataColumn("R0817900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0817900);
-                this.columnR0818000 = new global::System.Data.DataColumn("R0818000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818000);
-                this.columnR0818100 = new global::System.Data.DataColumn("R0818100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818100);
-                this.columnR0818200 = new global::System.Data.DataColumn("R0818200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818200);
-                this.columnR0818300 = new global::System.Data.DataColumn("R0818300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818300);
-                this.columnR0818400 = new global::System.Data.DataColumn("R0818400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818400);
-                this.columnR0818500 = new global::System.Data.DataColumn("R0818500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818500);
-                this.columnR0818600 = new global::System.Data.DataColumn("R0818600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818600);
-                this.columnR0818700 = new global::System.Data.DataColumn("R0818700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818700);
-                this.columnR0818800 = new global::System.Data.DataColumn("R0818800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818800);
-                this.columnR0818900 = new global::System.Data.DataColumn("R0818900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0818900);
-                this.columnR0819000 = new global::System.Data.DataColumn("R0819000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819000);
-                this.columnR0819100 = new global::System.Data.DataColumn("R0819100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819100);
-                this.columnR0819200 = new global::System.Data.DataColumn("R0819200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819200);
-                this.columnR0819300 = new global::System.Data.DataColumn("R0819300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819300);
-                this.columnR0819400 = new global::System.Data.DataColumn("R0819400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819400);
-                this.columnR0819500 = new global::System.Data.DataColumn("R0819500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819500);
-                this.columnR0819600 = new global::System.Data.DataColumn("R0819600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819600);
-                this.columnR0819700 = new global::System.Data.DataColumn("R0819700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819700);
-                this.columnR0819800 = new global::System.Data.DataColumn("R0819800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819800);
-                this.columnR0819900 = new global::System.Data.DataColumn("R0819900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0819900);
-                this.columnR0820000 = new global::System.Data.DataColumn("R0820000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820000);
-                this.columnR0820100 = new global::System.Data.DataColumn("R0820100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820100);
-                this.columnR0820200 = new global::System.Data.DataColumn("R0820200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820200);
-                this.columnR0820300 = new global::System.Data.DataColumn("R0820300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820300);
-                this.columnR0820400 = new global::System.Data.DataColumn("R0820400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820400);
-                this.columnR0820500 = new global::System.Data.DataColumn("R0820500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820500);
-                this.columnR0820600 = new global::System.Data.DataColumn("R0820600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820600);
-                this.columnR0820700 = new global::System.Data.DataColumn("R0820700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820700);
-                this.columnR0820800 = new global::System.Data.DataColumn("R0820800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820800);
-                this.columnR0820900 = new global::System.Data.DataColumn("R0820900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0820900);
-                this.columnR0821000 = new global::System.Data.DataColumn("R0821000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821000);
-                this.columnR0821100 = new global::System.Data.DataColumn("R0821100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821100);
-                this.columnR0821200 = new global::System.Data.DataColumn("R0821200", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821200);
-                this.columnR0821300 = new global::System.Data.DataColumn("R0821300", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821300);
-                this.columnR0821400 = new global::System.Data.DataColumn("R0821400", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821400);
-                this.columnR0821500 = new global::System.Data.DataColumn("R0821500", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821500);
-                this.columnR0821600 = new global::System.Data.DataColumn("R0821600", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821600);
-                this.columnR0821700 = new global::System.Data.DataColumn("R0821700", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821700);
-                this.columnR0821800 = new global::System.Data.DataColumn("R0821800", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821800);
-                this.columnR0821900 = new global::System.Data.DataColumn("R0821900", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0821900);
-                this.columnR0822000 = new global::System.Data.DataColumn("R0822000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0822000);
-                this.columnR0822100 = new global::System.Data.DataColumn("R0822100", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR0822100);
-                this.columnR1193000 = new global::System.Data.DataColumn("R1193000", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnR1193000);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnR0000100}, true));
-                this.columnR0000100.AllowDBNull = false;
-                this.columnR0000100.Unique = true;
-                this.columnR0536300.AllowDBNull = false;
-                this.columnR0813100.AllowDBNull = false;
-                this.columnR0813200.AllowDBNull = false;
-                this.columnR0813300.AllowDBNull = false;
-                this.columnR0813400.AllowDBNull = false;
-                this.columnR0813500.AllowDBNull = false;
-                this.columnR0813600.AllowDBNull = false;
-                this.columnR0813700.AllowDBNull = false;
-                this.columnR0813800.AllowDBNull = false;
-                this.columnR0813900.AllowDBNull = false;
-                this.columnR0814000.AllowDBNull = false;
-                this.columnR0814100.AllowDBNull = false;
-                this.columnR0814200.AllowDBNull = false;
-                this.columnR0814300.AllowDBNull = false;
-                this.columnR0814400.AllowDBNull = false;
-                this.columnR0814500.AllowDBNull = false;
-                this.columnR0814600.AllowDBNull = false;
-                this.columnR0814700.AllowDBNull = false;
-                this.columnR0814800.AllowDBNull = false;
-                this.columnR0814900.AllowDBNull = false;
-                this.columnR0815000.AllowDBNull = false;
-                this.columnR0815100.AllowDBNull = false;
-                this.columnR0815200.AllowDBNull = false;
-                this.columnR0815300.AllowDBNull = false;
-                this.columnR0815400.AllowDBNull = false;
-                this.columnR0815500.AllowDBNull = false;
-                this.columnR0815600.AllowDBNull = false;
-                this.columnR0815700.AllowDBNull = false;
-                this.columnR0815800.AllowDBNull = false;
-                this.columnR0815900.AllowDBNull = false;
-                this.columnR0816000.AllowDBNull = false;
-                this.columnR0816100.AllowDBNull = false;
-                this.columnR0816200.AllowDBNull = false;
-                this.columnR0816300.AllowDBNull = false;
-                this.columnR0816400.AllowDBNull = false;
-                this.columnR0816500.AllowDBNull = false;
-                this.columnR0817400.AllowDBNull = false;
-                this.columnR0817500.AllowDBNull = false;
-                this.columnR0817600.AllowDBNull = false;
-                this.columnR0817700.AllowDBNull = false;
-                this.columnR0817800.AllowDBNull = false;
-                this.columnR0817900.AllowDBNull = false;
-                this.columnR0818000.AllowDBNull = false;
-                this.columnR0818100.AllowDBNull = false;
-                this.columnR0818200.AllowDBNull = false;
-                this.columnR0818300.AllowDBNull = false;
-                this.columnR0818400.AllowDBNull = false;
-                this.columnR0818500.AllowDBNull = false;
-                this.columnR0818600.AllowDBNull = false;
-                this.columnR0818700.AllowDBNull = false;
-                this.columnR0818800.AllowDBNull = false;
-                this.columnR0818900.AllowDBNull = false;
-                this.columnR0819000.AllowDBNull = false;
-                this.columnR0819100.AllowDBNull = false;
-                this.columnR0819200.AllowDBNull = false;
-                this.columnR0819300.AllowDBNull = false;
-                this.columnR0819400.AllowDBNull = false;
-                this.columnR0819500.AllowDBNull = false;
-                this.columnR0819600.AllowDBNull = false;
-                this.columnR0819700.AllowDBNull = false;
-                this.columnR0819800.AllowDBNull = false;
-                this.columnR0819900.AllowDBNull = false;
-                this.columnR0820000.AllowDBNull = false;
-                this.columnR0820100.AllowDBNull = false;
-                this.columnR0820200.AllowDBNull = false;
-                this.columnR0820300.AllowDBNull = false;
-                this.columnR0820400.AllowDBNull = false;
-                this.columnR0820500.AllowDBNull = false;
-                this.columnR0820600.AllowDBNull = false;
-                this.columnR0820700.AllowDBNull = false;
-                this.columnR0820800.AllowDBNull = false;
-                this.columnR0820900.AllowDBNull = false;
-                this.columnR0821000.AllowDBNull = false;
-                this.columnR0821100.AllowDBNull = false;
-                this.columnR0821200.AllowDBNull = false;
-                this.columnR0821300.AllowDBNull = false;
-                this.columnR0821400.AllowDBNull = false;
-                this.columnR0821500.AllowDBNull = false;
-                this.columnR0821600.AllowDBNull = false;
-                this.columnR0821700.AllowDBNull = false;
-                this.columnR0821800.AllowDBNull = false;
-                this.columnR0821900.AllowDBNull = false;
-                this.columnR0822000.AllowDBNull = false;
-                this.columnR0822100.AllowDBNull = false;
-                this.columnR1193000.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRow NewtblTwinsRow() {
-                return ((tblTwinsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblTwinsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(tblTwinsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.tblTwinsRowChanged != null)) {
-                    this.tblTwinsRowChanged(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.tblTwinsRowChanging != null)) {
-                    this.tblTwinsRowChanging(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.tblTwinsRowDeleted != null)) {
-                    this.tblTwinsRowDeleted(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.tblTwinsRowDeleting != null)) {
-                    this.tblTwinsRowDeleting(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovetblTwinsRow(tblTwinsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ImportDataSet ds = new ImportDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblTwinsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -13594,6 +11975,2153 @@ namespace Nls.Base97 {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblTwinsDataTable : global::System.Data.TypedTableBase<tblTwinsRow> {
+            
+            private global::System.Data.DataColumn columnR0000100;
+            
+            private global::System.Data.DataColumn columnR0536300;
+            
+            private global::System.Data.DataColumn columnR0813100;
+            
+            private global::System.Data.DataColumn columnR0813200;
+            
+            private global::System.Data.DataColumn columnR0813300;
+            
+            private global::System.Data.DataColumn columnR0813400;
+            
+            private global::System.Data.DataColumn columnR0813500;
+            
+            private global::System.Data.DataColumn columnR0813600;
+            
+            private global::System.Data.DataColumn columnR0813700;
+            
+            private global::System.Data.DataColumn columnR0813800;
+            
+            private global::System.Data.DataColumn columnR0813900;
+            
+            private global::System.Data.DataColumn columnR0814000;
+            
+            private global::System.Data.DataColumn columnR0814100;
+            
+            private global::System.Data.DataColumn columnR0814200;
+            
+            private global::System.Data.DataColumn columnR0814300;
+            
+            private global::System.Data.DataColumn columnR0814400;
+            
+            private global::System.Data.DataColumn columnR0814500;
+            
+            private global::System.Data.DataColumn columnR0814600;
+            
+            private global::System.Data.DataColumn columnR0814700;
+            
+            private global::System.Data.DataColumn columnR0814800;
+            
+            private global::System.Data.DataColumn columnR0814900;
+            
+            private global::System.Data.DataColumn columnR0815000;
+            
+            private global::System.Data.DataColumn columnR0815100;
+            
+            private global::System.Data.DataColumn columnR0815200;
+            
+            private global::System.Data.DataColumn columnR0815300;
+            
+            private global::System.Data.DataColumn columnR0815400;
+            
+            private global::System.Data.DataColumn columnR0815500;
+            
+            private global::System.Data.DataColumn columnR0815600;
+            
+            private global::System.Data.DataColumn columnR0815700;
+            
+            private global::System.Data.DataColumn columnR0815800;
+            
+            private global::System.Data.DataColumn columnR0815900;
+            
+            private global::System.Data.DataColumn columnR0816000;
+            
+            private global::System.Data.DataColumn columnR0816100;
+            
+            private global::System.Data.DataColumn columnR0816200;
+            
+            private global::System.Data.DataColumn columnR0816300;
+            
+            private global::System.Data.DataColumn columnR0816400;
+            
+            private global::System.Data.DataColumn columnR0816500;
+            
+            private global::System.Data.DataColumn columnR0817400;
+            
+            private global::System.Data.DataColumn columnR0817500;
+            
+            private global::System.Data.DataColumn columnR0817600;
+            
+            private global::System.Data.DataColumn columnR0817700;
+            
+            private global::System.Data.DataColumn columnR0817800;
+            
+            private global::System.Data.DataColumn columnR0817900;
+            
+            private global::System.Data.DataColumn columnR0818000;
+            
+            private global::System.Data.DataColumn columnR0818100;
+            
+            private global::System.Data.DataColumn columnR0818200;
+            
+            private global::System.Data.DataColumn columnR0818300;
+            
+            private global::System.Data.DataColumn columnR0818400;
+            
+            private global::System.Data.DataColumn columnR0818500;
+            
+            private global::System.Data.DataColumn columnR0818600;
+            
+            private global::System.Data.DataColumn columnR0818700;
+            
+            private global::System.Data.DataColumn columnR0818800;
+            
+            private global::System.Data.DataColumn columnR0818900;
+            
+            private global::System.Data.DataColumn columnR0819000;
+            
+            private global::System.Data.DataColumn columnR0819100;
+            
+            private global::System.Data.DataColumn columnR0819200;
+            
+            private global::System.Data.DataColumn columnR0819300;
+            
+            private global::System.Data.DataColumn columnR0819400;
+            
+            private global::System.Data.DataColumn columnR0819500;
+            
+            private global::System.Data.DataColumn columnR0819600;
+            
+            private global::System.Data.DataColumn columnR0819700;
+            
+            private global::System.Data.DataColumn columnR0819800;
+            
+            private global::System.Data.DataColumn columnR0819900;
+            
+            private global::System.Data.DataColumn columnR0820000;
+            
+            private global::System.Data.DataColumn columnR0820100;
+            
+            private global::System.Data.DataColumn columnR0820200;
+            
+            private global::System.Data.DataColumn columnR0820300;
+            
+            private global::System.Data.DataColumn columnR0820400;
+            
+            private global::System.Data.DataColumn columnR0820500;
+            
+            private global::System.Data.DataColumn columnR0820600;
+            
+            private global::System.Data.DataColumn columnR0820700;
+            
+            private global::System.Data.DataColumn columnR0820800;
+            
+            private global::System.Data.DataColumn columnR0820900;
+            
+            private global::System.Data.DataColumn columnR0821000;
+            
+            private global::System.Data.DataColumn columnR0821100;
+            
+            private global::System.Data.DataColumn columnR0821200;
+            
+            private global::System.Data.DataColumn columnR0821300;
+            
+            private global::System.Data.DataColumn columnR0821400;
+            
+            private global::System.Data.DataColumn columnR0821500;
+            
+            private global::System.Data.DataColumn columnR0821600;
+            
+            private global::System.Data.DataColumn columnR0821700;
+            
+            private global::System.Data.DataColumn columnR0821800;
+            
+            private global::System.Data.DataColumn columnR0821900;
+            
+            private global::System.Data.DataColumn columnR0822000;
+            
+            private global::System.Data.DataColumn columnR0822100;
+            
+            private global::System.Data.DataColumn columnR0822200;
+            
+            private global::System.Data.DataColumn columnR0822300;
+            
+            private global::System.Data.DataColumn columnR0822400;
+            
+            private global::System.Data.DataColumn columnR0822500;
+            
+            private global::System.Data.DataColumn columnR0822600;
+            
+            private global::System.Data.DataColumn columnR0822700;
+            
+            private global::System.Data.DataColumn columnR0822800;
+            
+            private global::System.Data.DataColumn columnR0822900;
+            
+            private global::System.Data.DataColumn columnR0823000;
+            
+            private global::System.Data.DataColumn columnR0823100;
+            
+            private global::System.Data.DataColumn columnR0823200;
+            
+            private global::System.Data.DataColumn columnR0823300;
+            
+            private global::System.Data.DataColumn columnR0823400;
+            
+            private global::System.Data.DataColumn columnR0823500;
+            
+            private global::System.Data.DataColumn columnR0823600;
+            
+            private global::System.Data.DataColumn columnR0823700;
+            
+            private global::System.Data.DataColumn columnR0823800;
+            
+            private global::System.Data.DataColumn columnR0823900;
+            
+            private global::System.Data.DataColumn columnR0824000;
+            
+            private global::System.Data.DataColumn columnR0824100;
+            
+            private global::System.Data.DataColumn columnR0824200;
+            
+            private global::System.Data.DataColumn columnR0824300;
+            
+            private global::System.Data.DataColumn columnR0824400;
+            
+            private global::System.Data.DataColumn columnR0824500;
+            
+            private global::System.Data.DataColumn columnR0824600;
+            
+            private global::System.Data.DataColumn columnR0824700;
+            
+            private global::System.Data.DataColumn columnR0824800;
+            
+            private global::System.Data.DataColumn columnR0824900;
+            
+            private global::System.Data.DataColumn columnR0825000;
+            
+            private global::System.Data.DataColumn columnR0825100;
+            
+            private global::System.Data.DataColumn columnR0825200;
+            
+            private global::System.Data.DataColumn columnR0825300;
+            
+            private global::System.Data.DataColumn columnR0825400;
+            
+            private global::System.Data.DataColumn columnR1193000;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsDataTable() {
+                this.TableName = "tblTwins";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblTwinsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblTwinsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0000100Column {
+                get {
+                    return this.columnR0000100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0536300Column {
+                get {
+                    return this.columnR0536300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813100Column {
+                get {
+                    return this.columnR0813100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813200Column {
+                get {
+                    return this.columnR0813200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813300Column {
+                get {
+                    return this.columnR0813300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813400Column {
+                get {
+                    return this.columnR0813400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813500Column {
+                get {
+                    return this.columnR0813500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813600Column {
+                get {
+                    return this.columnR0813600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813700Column {
+                get {
+                    return this.columnR0813700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813800Column {
+                get {
+                    return this.columnR0813800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0813900Column {
+                get {
+                    return this.columnR0813900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814000Column {
+                get {
+                    return this.columnR0814000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814100Column {
+                get {
+                    return this.columnR0814100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814200Column {
+                get {
+                    return this.columnR0814200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814300Column {
+                get {
+                    return this.columnR0814300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814400Column {
+                get {
+                    return this.columnR0814400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814500Column {
+                get {
+                    return this.columnR0814500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814600Column {
+                get {
+                    return this.columnR0814600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814700Column {
+                get {
+                    return this.columnR0814700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814800Column {
+                get {
+                    return this.columnR0814800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0814900Column {
+                get {
+                    return this.columnR0814900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815000Column {
+                get {
+                    return this.columnR0815000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815100Column {
+                get {
+                    return this.columnR0815100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815200Column {
+                get {
+                    return this.columnR0815200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815300Column {
+                get {
+                    return this.columnR0815300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815400Column {
+                get {
+                    return this.columnR0815400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815500Column {
+                get {
+                    return this.columnR0815500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815600Column {
+                get {
+                    return this.columnR0815600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815700Column {
+                get {
+                    return this.columnR0815700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815800Column {
+                get {
+                    return this.columnR0815800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0815900Column {
+                get {
+                    return this.columnR0815900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816000Column {
+                get {
+                    return this.columnR0816000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816100Column {
+                get {
+                    return this.columnR0816100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816200Column {
+                get {
+                    return this.columnR0816200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816300Column {
+                get {
+                    return this.columnR0816300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816400Column {
+                get {
+                    return this.columnR0816400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0816500Column {
+                get {
+                    return this.columnR0816500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817400Column {
+                get {
+                    return this.columnR0817400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817500Column {
+                get {
+                    return this.columnR0817500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817600Column {
+                get {
+                    return this.columnR0817600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817700Column {
+                get {
+                    return this.columnR0817700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817800Column {
+                get {
+                    return this.columnR0817800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0817900Column {
+                get {
+                    return this.columnR0817900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818000Column {
+                get {
+                    return this.columnR0818000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818100Column {
+                get {
+                    return this.columnR0818100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818200Column {
+                get {
+                    return this.columnR0818200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818300Column {
+                get {
+                    return this.columnR0818300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818400Column {
+                get {
+                    return this.columnR0818400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818500Column {
+                get {
+                    return this.columnR0818500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818600Column {
+                get {
+                    return this.columnR0818600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818700Column {
+                get {
+                    return this.columnR0818700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818800Column {
+                get {
+                    return this.columnR0818800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0818900Column {
+                get {
+                    return this.columnR0818900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819000Column {
+                get {
+                    return this.columnR0819000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819100Column {
+                get {
+                    return this.columnR0819100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819200Column {
+                get {
+                    return this.columnR0819200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819300Column {
+                get {
+                    return this.columnR0819300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819400Column {
+                get {
+                    return this.columnR0819400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819500Column {
+                get {
+                    return this.columnR0819500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819600Column {
+                get {
+                    return this.columnR0819600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819700Column {
+                get {
+                    return this.columnR0819700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819800Column {
+                get {
+                    return this.columnR0819800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0819900Column {
+                get {
+                    return this.columnR0819900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820000Column {
+                get {
+                    return this.columnR0820000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820100Column {
+                get {
+                    return this.columnR0820100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820200Column {
+                get {
+                    return this.columnR0820200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820300Column {
+                get {
+                    return this.columnR0820300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820400Column {
+                get {
+                    return this.columnR0820400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820500Column {
+                get {
+                    return this.columnR0820500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820600Column {
+                get {
+                    return this.columnR0820600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820700Column {
+                get {
+                    return this.columnR0820700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820800Column {
+                get {
+                    return this.columnR0820800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0820900Column {
+                get {
+                    return this.columnR0820900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821000Column {
+                get {
+                    return this.columnR0821000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821100Column {
+                get {
+                    return this.columnR0821100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821200Column {
+                get {
+                    return this.columnR0821200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821300Column {
+                get {
+                    return this.columnR0821300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821400Column {
+                get {
+                    return this.columnR0821400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821500Column {
+                get {
+                    return this.columnR0821500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821600Column {
+                get {
+                    return this.columnR0821600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821700Column {
+                get {
+                    return this.columnR0821700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821800Column {
+                get {
+                    return this.columnR0821800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0821900Column {
+                get {
+                    return this.columnR0821900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822000Column {
+                get {
+                    return this.columnR0822000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822100Column {
+                get {
+                    return this.columnR0822100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822200Column {
+                get {
+                    return this.columnR0822200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822300Column {
+                get {
+                    return this.columnR0822300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822400Column {
+                get {
+                    return this.columnR0822400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822500Column {
+                get {
+                    return this.columnR0822500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822600Column {
+                get {
+                    return this.columnR0822600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822700Column {
+                get {
+                    return this.columnR0822700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822800Column {
+                get {
+                    return this.columnR0822800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0822900Column {
+                get {
+                    return this.columnR0822900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823000Column {
+                get {
+                    return this.columnR0823000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823100Column {
+                get {
+                    return this.columnR0823100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823200Column {
+                get {
+                    return this.columnR0823200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823300Column {
+                get {
+                    return this.columnR0823300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823400Column {
+                get {
+                    return this.columnR0823400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823500Column {
+                get {
+                    return this.columnR0823500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823600Column {
+                get {
+                    return this.columnR0823600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823700Column {
+                get {
+                    return this.columnR0823700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823800Column {
+                get {
+                    return this.columnR0823800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0823900Column {
+                get {
+                    return this.columnR0823900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824000Column {
+                get {
+                    return this.columnR0824000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824100Column {
+                get {
+                    return this.columnR0824100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824200Column {
+                get {
+                    return this.columnR0824200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824300Column {
+                get {
+                    return this.columnR0824300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824400Column {
+                get {
+                    return this.columnR0824400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824500Column {
+                get {
+                    return this.columnR0824500;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824600Column {
+                get {
+                    return this.columnR0824600;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824700Column {
+                get {
+                    return this.columnR0824700;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824800Column {
+                get {
+                    return this.columnR0824800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0824900Column {
+                get {
+                    return this.columnR0824900;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0825000Column {
+                get {
+                    return this.columnR0825000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0825100Column {
+                get {
+                    return this.columnR0825100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0825200Column {
+                get {
+                    return this.columnR0825200;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0825300Column {
+                get {
+                    return this.columnR0825300;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R0825400Column {
+                get {
+                    return this.columnR0825400;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn R1193000Column {
+                get {
+                    return this.columnR1193000;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRow this[int index] {
+                get {
+                    return ((tblTwinsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblTwinsRowChangeEventHandler tblTwinsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblTwinsRowChangeEventHandler tblTwinsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblTwinsRowChangeEventHandler tblTwinsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblTwinsRowChangeEventHandler tblTwinsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblTwinsRow(tblTwinsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRow AddtblTwinsRow(
+                        int R0000100, 
+                        int R0536300, 
+                        int R0813100, 
+                        int R0813200, 
+                        int R0813300, 
+                        int R0813400, 
+                        int R0813500, 
+                        int R0813600, 
+                        int R0813700, 
+                        int R0813800, 
+                        int R0813900, 
+                        int R0814000, 
+                        int R0814100, 
+                        int R0814200, 
+                        int R0814300, 
+                        int R0814400, 
+                        int R0814500, 
+                        int R0814600, 
+                        int R0814700, 
+                        int R0814800, 
+                        int R0814900, 
+                        int R0815000, 
+                        int R0815100, 
+                        int R0815200, 
+                        int R0815300, 
+                        int R0815400, 
+                        int R0815500, 
+                        int R0815600, 
+                        int R0815700, 
+                        int R0815800, 
+                        int R0815900, 
+                        int R0816000, 
+                        int R0816100, 
+                        int R0816200, 
+                        int R0816300, 
+                        int R0816400, 
+                        int R0816500, 
+                        int R0817400, 
+                        int R0817500, 
+                        int R0817600, 
+                        int R0817700, 
+                        int R0817800, 
+                        int R0817900, 
+                        int R0818000, 
+                        int R0818100, 
+                        int R0818200, 
+                        int R0818300, 
+                        int R0818400, 
+                        int R0818500, 
+                        int R0818600, 
+                        int R0818700, 
+                        int R0818800, 
+                        int R0818900, 
+                        int R0819000, 
+                        int R0819100, 
+                        int R0819200, 
+                        int R0819300, 
+                        int R0819400, 
+                        int R0819500, 
+                        int R0819600, 
+                        int R0819700, 
+                        int R0819800, 
+                        int R0819900, 
+                        int R0820000, 
+                        int R0820100, 
+                        int R0820200, 
+                        int R0820300, 
+                        int R0820400, 
+                        int R0820500, 
+                        int R0820600, 
+                        int R0820700, 
+                        int R0820800, 
+                        int R0820900, 
+                        int R0821000, 
+                        int R0821100, 
+                        int R0821200, 
+                        int R0821300, 
+                        int R0821400, 
+                        int R0821500, 
+                        int R0821600, 
+                        int R0821700, 
+                        int R0821800, 
+                        int R0821900, 
+                        int R0822000, 
+                        int R0822100, 
+                        int R0822200, 
+                        int R0822300, 
+                        int R0822400, 
+                        int R0822500, 
+                        int R0822600, 
+                        int R0822700, 
+                        int R0822800, 
+                        int R0822900, 
+                        int R0823000, 
+                        int R0823100, 
+                        int R0823200, 
+                        int R0823300, 
+                        int R0823400, 
+                        int R0823500, 
+                        int R0823600, 
+                        int R0823700, 
+                        int R0823800, 
+                        int R0823900, 
+                        int R0824000, 
+                        int R0824100, 
+                        int R0824200, 
+                        int R0824300, 
+                        int R0824400, 
+                        int R0824500, 
+                        int R0824600, 
+                        int R0824700, 
+                        int R0824800, 
+                        int R0824900, 
+                        int R0825000, 
+                        int R0825100, 
+                        int R0825200, 
+                        int R0825300, 
+                        int R0825400, 
+                        int R1193000) {
+                tblTwinsRow rowtblTwinsRow = ((tblTwinsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        R0000100,
+                        R0536300,
+                        R0813100,
+                        R0813200,
+                        R0813300,
+                        R0813400,
+                        R0813500,
+                        R0813600,
+                        R0813700,
+                        R0813800,
+                        R0813900,
+                        R0814000,
+                        R0814100,
+                        R0814200,
+                        R0814300,
+                        R0814400,
+                        R0814500,
+                        R0814600,
+                        R0814700,
+                        R0814800,
+                        R0814900,
+                        R0815000,
+                        R0815100,
+                        R0815200,
+                        R0815300,
+                        R0815400,
+                        R0815500,
+                        R0815600,
+                        R0815700,
+                        R0815800,
+                        R0815900,
+                        R0816000,
+                        R0816100,
+                        R0816200,
+                        R0816300,
+                        R0816400,
+                        R0816500,
+                        R0817400,
+                        R0817500,
+                        R0817600,
+                        R0817700,
+                        R0817800,
+                        R0817900,
+                        R0818000,
+                        R0818100,
+                        R0818200,
+                        R0818300,
+                        R0818400,
+                        R0818500,
+                        R0818600,
+                        R0818700,
+                        R0818800,
+                        R0818900,
+                        R0819000,
+                        R0819100,
+                        R0819200,
+                        R0819300,
+                        R0819400,
+                        R0819500,
+                        R0819600,
+                        R0819700,
+                        R0819800,
+                        R0819900,
+                        R0820000,
+                        R0820100,
+                        R0820200,
+                        R0820300,
+                        R0820400,
+                        R0820500,
+                        R0820600,
+                        R0820700,
+                        R0820800,
+                        R0820900,
+                        R0821000,
+                        R0821100,
+                        R0821200,
+                        R0821300,
+                        R0821400,
+                        R0821500,
+                        R0821600,
+                        R0821700,
+                        R0821800,
+                        R0821900,
+                        R0822000,
+                        R0822100,
+                        R0822200,
+                        R0822300,
+                        R0822400,
+                        R0822500,
+                        R0822600,
+                        R0822700,
+                        R0822800,
+                        R0822900,
+                        R0823000,
+                        R0823100,
+                        R0823200,
+                        R0823300,
+                        R0823400,
+                        R0823500,
+                        R0823600,
+                        R0823700,
+                        R0823800,
+                        R0823900,
+                        R0824000,
+                        R0824100,
+                        R0824200,
+                        R0824300,
+                        R0824400,
+                        R0824500,
+                        R0824600,
+                        R0824700,
+                        R0824800,
+                        R0824900,
+                        R0825000,
+                        R0825100,
+                        R0825200,
+                        R0825300,
+                        R0825400,
+                        R1193000};
+                rowtblTwinsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblTwinsRow);
+                return rowtblTwinsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRow FindByR0000100(int R0000100) {
+                return ((tblTwinsRow)(this.Rows.Find(new object[] {
+                            R0000100})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblTwinsDataTable cln = ((tblTwinsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblTwinsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnR0000100 = base.Columns["R0000100"];
+                this.columnR0536300 = base.Columns["R0536300"];
+                this.columnR0813100 = base.Columns["R0813100"];
+                this.columnR0813200 = base.Columns["R0813200"];
+                this.columnR0813300 = base.Columns["R0813300"];
+                this.columnR0813400 = base.Columns["R0813400"];
+                this.columnR0813500 = base.Columns["R0813500"];
+                this.columnR0813600 = base.Columns["R0813600"];
+                this.columnR0813700 = base.Columns["R0813700"];
+                this.columnR0813800 = base.Columns["R0813800"];
+                this.columnR0813900 = base.Columns["R0813900"];
+                this.columnR0814000 = base.Columns["R0814000"];
+                this.columnR0814100 = base.Columns["R0814100"];
+                this.columnR0814200 = base.Columns["R0814200"];
+                this.columnR0814300 = base.Columns["R0814300"];
+                this.columnR0814400 = base.Columns["R0814400"];
+                this.columnR0814500 = base.Columns["R0814500"];
+                this.columnR0814600 = base.Columns["R0814600"];
+                this.columnR0814700 = base.Columns["R0814700"];
+                this.columnR0814800 = base.Columns["R0814800"];
+                this.columnR0814900 = base.Columns["R0814900"];
+                this.columnR0815000 = base.Columns["R0815000"];
+                this.columnR0815100 = base.Columns["R0815100"];
+                this.columnR0815200 = base.Columns["R0815200"];
+                this.columnR0815300 = base.Columns["R0815300"];
+                this.columnR0815400 = base.Columns["R0815400"];
+                this.columnR0815500 = base.Columns["R0815500"];
+                this.columnR0815600 = base.Columns["R0815600"];
+                this.columnR0815700 = base.Columns["R0815700"];
+                this.columnR0815800 = base.Columns["R0815800"];
+                this.columnR0815900 = base.Columns["R0815900"];
+                this.columnR0816000 = base.Columns["R0816000"];
+                this.columnR0816100 = base.Columns["R0816100"];
+                this.columnR0816200 = base.Columns["R0816200"];
+                this.columnR0816300 = base.Columns["R0816300"];
+                this.columnR0816400 = base.Columns["R0816400"];
+                this.columnR0816500 = base.Columns["R0816500"];
+                this.columnR0817400 = base.Columns["R0817400"];
+                this.columnR0817500 = base.Columns["R0817500"];
+                this.columnR0817600 = base.Columns["R0817600"];
+                this.columnR0817700 = base.Columns["R0817700"];
+                this.columnR0817800 = base.Columns["R0817800"];
+                this.columnR0817900 = base.Columns["R0817900"];
+                this.columnR0818000 = base.Columns["R0818000"];
+                this.columnR0818100 = base.Columns["R0818100"];
+                this.columnR0818200 = base.Columns["R0818200"];
+                this.columnR0818300 = base.Columns["R0818300"];
+                this.columnR0818400 = base.Columns["R0818400"];
+                this.columnR0818500 = base.Columns["R0818500"];
+                this.columnR0818600 = base.Columns["R0818600"];
+                this.columnR0818700 = base.Columns["R0818700"];
+                this.columnR0818800 = base.Columns["R0818800"];
+                this.columnR0818900 = base.Columns["R0818900"];
+                this.columnR0819000 = base.Columns["R0819000"];
+                this.columnR0819100 = base.Columns["R0819100"];
+                this.columnR0819200 = base.Columns["R0819200"];
+                this.columnR0819300 = base.Columns["R0819300"];
+                this.columnR0819400 = base.Columns["R0819400"];
+                this.columnR0819500 = base.Columns["R0819500"];
+                this.columnR0819600 = base.Columns["R0819600"];
+                this.columnR0819700 = base.Columns["R0819700"];
+                this.columnR0819800 = base.Columns["R0819800"];
+                this.columnR0819900 = base.Columns["R0819900"];
+                this.columnR0820000 = base.Columns["R0820000"];
+                this.columnR0820100 = base.Columns["R0820100"];
+                this.columnR0820200 = base.Columns["R0820200"];
+                this.columnR0820300 = base.Columns["R0820300"];
+                this.columnR0820400 = base.Columns["R0820400"];
+                this.columnR0820500 = base.Columns["R0820500"];
+                this.columnR0820600 = base.Columns["R0820600"];
+                this.columnR0820700 = base.Columns["R0820700"];
+                this.columnR0820800 = base.Columns["R0820800"];
+                this.columnR0820900 = base.Columns["R0820900"];
+                this.columnR0821000 = base.Columns["R0821000"];
+                this.columnR0821100 = base.Columns["R0821100"];
+                this.columnR0821200 = base.Columns["R0821200"];
+                this.columnR0821300 = base.Columns["R0821300"];
+                this.columnR0821400 = base.Columns["R0821400"];
+                this.columnR0821500 = base.Columns["R0821500"];
+                this.columnR0821600 = base.Columns["R0821600"];
+                this.columnR0821700 = base.Columns["R0821700"];
+                this.columnR0821800 = base.Columns["R0821800"];
+                this.columnR0821900 = base.Columns["R0821900"];
+                this.columnR0822000 = base.Columns["R0822000"];
+                this.columnR0822100 = base.Columns["R0822100"];
+                this.columnR0822200 = base.Columns["R0822200"];
+                this.columnR0822300 = base.Columns["R0822300"];
+                this.columnR0822400 = base.Columns["R0822400"];
+                this.columnR0822500 = base.Columns["R0822500"];
+                this.columnR0822600 = base.Columns["R0822600"];
+                this.columnR0822700 = base.Columns["R0822700"];
+                this.columnR0822800 = base.Columns["R0822800"];
+                this.columnR0822900 = base.Columns["R0822900"];
+                this.columnR0823000 = base.Columns["R0823000"];
+                this.columnR0823100 = base.Columns["R0823100"];
+                this.columnR0823200 = base.Columns["R0823200"];
+                this.columnR0823300 = base.Columns["R0823300"];
+                this.columnR0823400 = base.Columns["R0823400"];
+                this.columnR0823500 = base.Columns["R0823500"];
+                this.columnR0823600 = base.Columns["R0823600"];
+                this.columnR0823700 = base.Columns["R0823700"];
+                this.columnR0823800 = base.Columns["R0823800"];
+                this.columnR0823900 = base.Columns["R0823900"];
+                this.columnR0824000 = base.Columns["R0824000"];
+                this.columnR0824100 = base.Columns["R0824100"];
+                this.columnR0824200 = base.Columns["R0824200"];
+                this.columnR0824300 = base.Columns["R0824300"];
+                this.columnR0824400 = base.Columns["R0824400"];
+                this.columnR0824500 = base.Columns["R0824500"];
+                this.columnR0824600 = base.Columns["R0824600"];
+                this.columnR0824700 = base.Columns["R0824700"];
+                this.columnR0824800 = base.Columns["R0824800"];
+                this.columnR0824900 = base.Columns["R0824900"];
+                this.columnR0825000 = base.Columns["R0825000"];
+                this.columnR0825100 = base.Columns["R0825100"];
+                this.columnR0825200 = base.Columns["R0825200"];
+                this.columnR0825300 = base.Columns["R0825300"];
+                this.columnR0825400 = base.Columns["R0825400"];
+                this.columnR1193000 = base.Columns["R1193000"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnR0000100 = new global::System.Data.DataColumn("R0000100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0000100);
+                this.columnR0536300 = new global::System.Data.DataColumn("R0536300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0536300);
+                this.columnR0813100 = new global::System.Data.DataColumn("R0813100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813100);
+                this.columnR0813200 = new global::System.Data.DataColumn("R0813200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813200);
+                this.columnR0813300 = new global::System.Data.DataColumn("R0813300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813300);
+                this.columnR0813400 = new global::System.Data.DataColumn("R0813400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813400);
+                this.columnR0813500 = new global::System.Data.DataColumn("R0813500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813500);
+                this.columnR0813600 = new global::System.Data.DataColumn("R0813600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813600);
+                this.columnR0813700 = new global::System.Data.DataColumn("R0813700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813700);
+                this.columnR0813800 = new global::System.Data.DataColumn("R0813800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813800);
+                this.columnR0813900 = new global::System.Data.DataColumn("R0813900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0813900);
+                this.columnR0814000 = new global::System.Data.DataColumn("R0814000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814000);
+                this.columnR0814100 = new global::System.Data.DataColumn("R0814100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814100);
+                this.columnR0814200 = new global::System.Data.DataColumn("R0814200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814200);
+                this.columnR0814300 = new global::System.Data.DataColumn("R0814300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814300);
+                this.columnR0814400 = new global::System.Data.DataColumn("R0814400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814400);
+                this.columnR0814500 = new global::System.Data.DataColumn("R0814500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814500);
+                this.columnR0814600 = new global::System.Data.DataColumn("R0814600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814600);
+                this.columnR0814700 = new global::System.Data.DataColumn("R0814700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814700);
+                this.columnR0814800 = new global::System.Data.DataColumn("R0814800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814800);
+                this.columnR0814900 = new global::System.Data.DataColumn("R0814900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0814900);
+                this.columnR0815000 = new global::System.Data.DataColumn("R0815000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815000);
+                this.columnR0815100 = new global::System.Data.DataColumn("R0815100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815100);
+                this.columnR0815200 = new global::System.Data.DataColumn("R0815200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815200);
+                this.columnR0815300 = new global::System.Data.DataColumn("R0815300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815300);
+                this.columnR0815400 = new global::System.Data.DataColumn("R0815400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815400);
+                this.columnR0815500 = new global::System.Data.DataColumn("R0815500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815500);
+                this.columnR0815600 = new global::System.Data.DataColumn("R0815600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815600);
+                this.columnR0815700 = new global::System.Data.DataColumn("R0815700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815700);
+                this.columnR0815800 = new global::System.Data.DataColumn("R0815800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815800);
+                this.columnR0815900 = new global::System.Data.DataColumn("R0815900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0815900);
+                this.columnR0816000 = new global::System.Data.DataColumn("R0816000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816000);
+                this.columnR0816100 = new global::System.Data.DataColumn("R0816100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816100);
+                this.columnR0816200 = new global::System.Data.DataColumn("R0816200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816200);
+                this.columnR0816300 = new global::System.Data.DataColumn("R0816300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816300);
+                this.columnR0816400 = new global::System.Data.DataColumn("R0816400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816400);
+                this.columnR0816500 = new global::System.Data.DataColumn("R0816500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0816500);
+                this.columnR0817400 = new global::System.Data.DataColumn("R0817400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817400);
+                this.columnR0817500 = new global::System.Data.DataColumn("R0817500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817500);
+                this.columnR0817600 = new global::System.Data.DataColumn("R0817600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817600);
+                this.columnR0817700 = new global::System.Data.DataColumn("R0817700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817700);
+                this.columnR0817800 = new global::System.Data.DataColumn("R0817800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817800);
+                this.columnR0817900 = new global::System.Data.DataColumn("R0817900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0817900);
+                this.columnR0818000 = new global::System.Data.DataColumn("R0818000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818000);
+                this.columnR0818100 = new global::System.Data.DataColumn("R0818100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818100);
+                this.columnR0818200 = new global::System.Data.DataColumn("R0818200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818200);
+                this.columnR0818300 = new global::System.Data.DataColumn("R0818300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818300);
+                this.columnR0818400 = new global::System.Data.DataColumn("R0818400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818400);
+                this.columnR0818500 = new global::System.Data.DataColumn("R0818500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818500);
+                this.columnR0818600 = new global::System.Data.DataColumn("R0818600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818600);
+                this.columnR0818700 = new global::System.Data.DataColumn("R0818700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818700);
+                this.columnR0818800 = new global::System.Data.DataColumn("R0818800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818800);
+                this.columnR0818900 = new global::System.Data.DataColumn("R0818900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0818900);
+                this.columnR0819000 = new global::System.Data.DataColumn("R0819000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819000);
+                this.columnR0819100 = new global::System.Data.DataColumn("R0819100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819100);
+                this.columnR0819200 = new global::System.Data.DataColumn("R0819200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819200);
+                this.columnR0819300 = new global::System.Data.DataColumn("R0819300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819300);
+                this.columnR0819400 = new global::System.Data.DataColumn("R0819400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819400);
+                this.columnR0819500 = new global::System.Data.DataColumn("R0819500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819500);
+                this.columnR0819600 = new global::System.Data.DataColumn("R0819600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819600);
+                this.columnR0819700 = new global::System.Data.DataColumn("R0819700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819700);
+                this.columnR0819800 = new global::System.Data.DataColumn("R0819800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819800);
+                this.columnR0819900 = new global::System.Data.DataColumn("R0819900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0819900);
+                this.columnR0820000 = new global::System.Data.DataColumn("R0820000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820000);
+                this.columnR0820100 = new global::System.Data.DataColumn("R0820100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820100);
+                this.columnR0820200 = new global::System.Data.DataColumn("R0820200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820200);
+                this.columnR0820300 = new global::System.Data.DataColumn("R0820300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820300);
+                this.columnR0820400 = new global::System.Data.DataColumn("R0820400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820400);
+                this.columnR0820500 = new global::System.Data.DataColumn("R0820500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820500);
+                this.columnR0820600 = new global::System.Data.DataColumn("R0820600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820600);
+                this.columnR0820700 = new global::System.Data.DataColumn("R0820700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820700);
+                this.columnR0820800 = new global::System.Data.DataColumn("R0820800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820800);
+                this.columnR0820900 = new global::System.Data.DataColumn("R0820900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0820900);
+                this.columnR0821000 = new global::System.Data.DataColumn("R0821000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821000);
+                this.columnR0821100 = new global::System.Data.DataColumn("R0821100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821100);
+                this.columnR0821200 = new global::System.Data.DataColumn("R0821200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821200);
+                this.columnR0821300 = new global::System.Data.DataColumn("R0821300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821300);
+                this.columnR0821400 = new global::System.Data.DataColumn("R0821400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821400);
+                this.columnR0821500 = new global::System.Data.DataColumn("R0821500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821500);
+                this.columnR0821600 = new global::System.Data.DataColumn("R0821600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821600);
+                this.columnR0821700 = new global::System.Data.DataColumn("R0821700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821700);
+                this.columnR0821800 = new global::System.Data.DataColumn("R0821800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821800);
+                this.columnR0821900 = new global::System.Data.DataColumn("R0821900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0821900);
+                this.columnR0822000 = new global::System.Data.DataColumn("R0822000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822000);
+                this.columnR0822100 = new global::System.Data.DataColumn("R0822100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822100);
+                this.columnR0822200 = new global::System.Data.DataColumn("R0822200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822200);
+                this.columnR0822300 = new global::System.Data.DataColumn("R0822300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822300);
+                this.columnR0822400 = new global::System.Data.DataColumn("R0822400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822400);
+                this.columnR0822500 = new global::System.Data.DataColumn("R0822500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822500);
+                this.columnR0822600 = new global::System.Data.DataColumn("R0822600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822600);
+                this.columnR0822700 = new global::System.Data.DataColumn("R0822700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822700);
+                this.columnR0822800 = new global::System.Data.DataColumn("R0822800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822800);
+                this.columnR0822900 = new global::System.Data.DataColumn("R0822900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0822900);
+                this.columnR0823000 = new global::System.Data.DataColumn("R0823000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823000);
+                this.columnR0823100 = new global::System.Data.DataColumn("R0823100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823100);
+                this.columnR0823200 = new global::System.Data.DataColumn("R0823200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823200);
+                this.columnR0823300 = new global::System.Data.DataColumn("R0823300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823300);
+                this.columnR0823400 = new global::System.Data.DataColumn("R0823400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823400);
+                this.columnR0823500 = new global::System.Data.DataColumn("R0823500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823500);
+                this.columnR0823600 = new global::System.Data.DataColumn("R0823600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823600);
+                this.columnR0823700 = new global::System.Data.DataColumn("R0823700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823700);
+                this.columnR0823800 = new global::System.Data.DataColumn("R0823800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823800);
+                this.columnR0823900 = new global::System.Data.DataColumn("R0823900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0823900);
+                this.columnR0824000 = new global::System.Data.DataColumn("R0824000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824000);
+                this.columnR0824100 = new global::System.Data.DataColumn("R0824100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824100);
+                this.columnR0824200 = new global::System.Data.DataColumn("R0824200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824200);
+                this.columnR0824300 = new global::System.Data.DataColumn("R0824300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824300);
+                this.columnR0824400 = new global::System.Data.DataColumn("R0824400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824400);
+                this.columnR0824500 = new global::System.Data.DataColumn("R0824500", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824500);
+                this.columnR0824600 = new global::System.Data.DataColumn("R0824600", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824600);
+                this.columnR0824700 = new global::System.Data.DataColumn("R0824700", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824700);
+                this.columnR0824800 = new global::System.Data.DataColumn("R0824800", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824800);
+                this.columnR0824900 = new global::System.Data.DataColumn("R0824900", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0824900);
+                this.columnR0825000 = new global::System.Data.DataColumn("R0825000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0825000);
+                this.columnR0825100 = new global::System.Data.DataColumn("R0825100", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0825100);
+                this.columnR0825200 = new global::System.Data.DataColumn("R0825200", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0825200);
+                this.columnR0825300 = new global::System.Data.DataColumn("R0825300", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0825300);
+                this.columnR0825400 = new global::System.Data.DataColumn("R0825400", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR0825400);
+                this.columnR1193000 = new global::System.Data.DataColumn("R1193000", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnR1193000);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnR0000100}, true));
+                this.columnR0000100.AllowDBNull = false;
+                this.columnR0000100.Unique = true;
+                this.columnR0536300.AllowDBNull = false;
+                this.columnR0813100.AllowDBNull = false;
+                this.columnR0813200.AllowDBNull = false;
+                this.columnR0813300.AllowDBNull = false;
+                this.columnR0813400.AllowDBNull = false;
+                this.columnR0813500.AllowDBNull = false;
+                this.columnR0813600.AllowDBNull = false;
+                this.columnR0813700.AllowDBNull = false;
+                this.columnR0813800.AllowDBNull = false;
+                this.columnR0813900.AllowDBNull = false;
+                this.columnR0814000.AllowDBNull = false;
+                this.columnR0814100.AllowDBNull = false;
+                this.columnR0814200.AllowDBNull = false;
+                this.columnR0814300.AllowDBNull = false;
+                this.columnR0814400.AllowDBNull = false;
+                this.columnR0814500.AllowDBNull = false;
+                this.columnR0814600.AllowDBNull = false;
+                this.columnR0814700.AllowDBNull = false;
+                this.columnR0814800.AllowDBNull = false;
+                this.columnR0814900.AllowDBNull = false;
+                this.columnR0815000.AllowDBNull = false;
+                this.columnR0815100.AllowDBNull = false;
+                this.columnR0815200.AllowDBNull = false;
+                this.columnR0815300.AllowDBNull = false;
+                this.columnR0815400.AllowDBNull = false;
+                this.columnR0815500.AllowDBNull = false;
+                this.columnR0815600.AllowDBNull = false;
+                this.columnR0815700.AllowDBNull = false;
+                this.columnR0815800.AllowDBNull = false;
+                this.columnR0815900.AllowDBNull = false;
+                this.columnR0816000.AllowDBNull = false;
+                this.columnR0816100.AllowDBNull = false;
+                this.columnR0816200.AllowDBNull = false;
+                this.columnR0816300.AllowDBNull = false;
+                this.columnR0816400.AllowDBNull = false;
+                this.columnR0816500.AllowDBNull = false;
+                this.columnR0817400.AllowDBNull = false;
+                this.columnR0817500.AllowDBNull = false;
+                this.columnR0817600.AllowDBNull = false;
+                this.columnR0817700.AllowDBNull = false;
+                this.columnR0817800.AllowDBNull = false;
+                this.columnR0817900.AllowDBNull = false;
+                this.columnR0818000.AllowDBNull = false;
+                this.columnR0818100.AllowDBNull = false;
+                this.columnR0818200.AllowDBNull = false;
+                this.columnR0818300.AllowDBNull = false;
+                this.columnR0818400.AllowDBNull = false;
+                this.columnR0818500.AllowDBNull = false;
+                this.columnR0818600.AllowDBNull = false;
+                this.columnR0818700.AllowDBNull = false;
+                this.columnR0818800.AllowDBNull = false;
+                this.columnR0818900.AllowDBNull = false;
+                this.columnR0819000.AllowDBNull = false;
+                this.columnR0819100.AllowDBNull = false;
+                this.columnR0819200.AllowDBNull = false;
+                this.columnR0819300.AllowDBNull = false;
+                this.columnR0819400.AllowDBNull = false;
+                this.columnR0819500.AllowDBNull = false;
+                this.columnR0819600.AllowDBNull = false;
+                this.columnR0819700.AllowDBNull = false;
+                this.columnR0819800.AllowDBNull = false;
+                this.columnR0819900.AllowDBNull = false;
+                this.columnR0820000.AllowDBNull = false;
+                this.columnR0820100.AllowDBNull = false;
+                this.columnR0820200.AllowDBNull = false;
+                this.columnR0820300.AllowDBNull = false;
+                this.columnR0820400.AllowDBNull = false;
+                this.columnR0820500.AllowDBNull = false;
+                this.columnR0820600.AllowDBNull = false;
+                this.columnR0820700.AllowDBNull = false;
+                this.columnR0820800.AllowDBNull = false;
+                this.columnR0820900.AllowDBNull = false;
+                this.columnR0821000.AllowDBNull = false;
+                this.columnR0821100.AllowDBNull = false;
+                this.columnR0821200.AllowDBNull = false;
+                this.columnR0821300.AllowDBNull = false;
+                this.columnR0821400.AllowDBNull = false;
+                this.columnR0821500.AllowDBNull = false;
+                this.columnR0821600.AllowDBNull = false;
+                this.columnR0821700.AllowDBNull = false;
+                this.columnR0821800.AllowDBNull = false;
+                this.columnR0821900.AllowDBNull = false;
+                this.columnR0822000.AllowDBNull = false;
+                this.columnR0822100.AllowDBNull = false;
+                this.columnR0822200.AllowDBNull = false;
+                this.columnR0822300.AllowDBNull = false;
+                this.columnR0822400.AllowDBNull = false;
+                this.columnR0822500.AllowDBNull = false;
+                this.columnR0822600.AllowDBNull = false;
+                this.columnR0822700.AllowDBNull = false;
+                this.columnR0822800.AllowDBNull = false;
+                this.columnR0822900.AllowDBNull = false;
+                this.columnR0823000.AllowDBNull = false;
+                this.columnR0823100.AllowDBNull = false;
+                this.columnR0823200.AllowDBNull = false;
+                this.columnR0823300.AllowDBNull = false;
+                this.columnR0823400.AllowDBNull = false;
+                this.columnR0823500.AllowDBNull = false;
+                this.columnR0823600.AllowDBNull = false;
+                this.columnR0823700.AllowDBNull = false;
+                this.columnR0823800.AllowDBNull = false;
+                this.columnR0823900.AllowDBNull = false;
+                this.columnR0824000.AllowDBNull = false;
+                this.columnR0824100.AllowDBNull = false;
+                this.columnR0824200.AllowDBNull = false;
+                this.columnR0824300.AllowDBNull = false;
+                this.columnR0824400.AllowDBNull = false;
+                this.columnR0824500.AllowDBNull = false;
+                this.columnR0824600.AllowDBNull = false;
+                this.columnR0824700.AllowDBNull = false;
+                this.columnR0824800.AllowDBNull = false;
+                this.columnR0824900.AllowDBNull = false;
+                this.columnR0825000.AllowDBNull = false;
+                this.columnR0825100.AllowDBNull = false;
+                this.columnR0825200.AllowDBNull = false;
+                this.columnR0825300.AllowDBNull = false;
+                this.columnR0825400.AllowDBNull = false;
+                this.columnR1193000.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRow NewtblTwinsRow() {
+                return ((tblTwinsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblTwinsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblTwinsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblTwinsRowChanged != null)) {
+                    this.tblTwinsRowChanged(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblTwinsRowChanging != null)) {
+                    this.tblTwinsRowChanging(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblTwinsRowDeleted != null)) {
+                    this.tblTwinsRowDeleted(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblTwinsRowDeleting != null)) {
+                    this.tblTwinsRowDeleting(this, new tblTwinsRowChangeEvent(((tblTwinsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblTwinsRow(tblTwinsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ImportDataSet ds = new ImportDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblTwinsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblDemographicsRow : global::System.Data.DataRow {
@@ -13692,967 +14220,6 @@ namespace Nls.Base97 {
                 }
                 set {
                     this[this.tabletblDemographics.R1482600Column] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class tblTwinsRow : global::System.Data.DataRow {
-            
-            private tblTwinsDataTable tabletblTwins;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tblTwinsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tabletblTwins = ((tblTwinsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0000100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0000100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0000100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0536300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0536300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0536300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0813900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0813900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0813900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0814900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0814900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0814900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0815900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0815900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0815900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0816500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0816500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0816500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0817900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0817900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0817900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0818900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0818900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0818900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0819900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0819900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0819900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0820900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0820900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0820900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821200 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821200Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821200Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821300 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821300Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821300Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821400 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821400Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821400Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821500 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821500Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821500Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821600 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821600Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821600Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821700 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821700Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821700Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821800 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821800Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821800Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0821900 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0821900Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0821900Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0822000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0822000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0822000Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R0822100 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R0822100Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R0822100Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int R1193000 {
-                get {
-                    return ((int)(this[this.tabletblTwins.R1193000Column]));
-                }
-                set {
-                    this[this.tabletblTwins.R1193000Column] = value;
                 }
             }
         }
@@ -21725,6 +21292,1330 @@ namespace Nls.Base97 {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblTwinsRow : global::System.Data.DataRow {
+            
+            private tblTwinsDataTable tabletblTwins;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblTwinsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblTwins = ((tblTwinsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0000100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0000100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0000100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0536300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0536300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0536300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0813900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0813900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0813900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0814900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0814900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0814900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0815900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0815900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0815900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0816500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0816500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0816500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0817900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0817900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0817900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0818900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0818900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0818900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0819900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0819900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0819900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0820900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0820900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0820900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0821900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0821900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0821900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0822900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0822900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0822900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0823900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0823900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0823900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824500 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824500Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824500Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824600 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824600Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824600Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824700 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824700Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824700Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824800 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824800Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0824900 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0824900Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0824900Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0825000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0825000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0825000Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0825100 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0825100Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0825100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0825200 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0825200Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0825200Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0825300 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0825300Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0825300Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R0825400 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R0825400Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R0825400Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int R1193000 {
+                get {
+                    return ((int)(this[this.tabletblTwins.R1193000Column]));
+                }
+                set {
+                    this[this.tabletblTwins.R1193000Column] = value;
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -21744,40 +22635,6 @@ namespace Nls.Base97 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblDemographicsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class tblTwinsRowChangeEvent : global::System.EventArgs {
-            
-            private tblTwinsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRowChangeEvent(tblTwinsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblTwinsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -21914,6 +22771,40 @@ namespace Nls.Base97 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblSurveyTimeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblTwinsRowChangeEvent : global::System.EventArgs {
+            
+            private tblTwinsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRowChangeEvent(tblTwinsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblTwinsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -22298,1728 +23189,6 @@ SELECT R0000100, R0533400, R0536300, R0536401, R0536402, R1193000, R1235800, R14
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int R0533400, int R0536300, int R0536401, int R0536402, int R1193000, int R1235800, int R1482600, int Original_R0000100, int Original_R0533400, int Original_R0536300, int Original_R0536401, int Original_R0536402, int Original_R1193000, int Original_R1235800, int Original_R1482600) {
             return this.Update(Original_R0000100, R0533400, R0536300, R0536401, R0536402, R1193000, R1235800, R1482600, Original_R0000100, Original_R0533400, Original_R0536300, Original_R0536401, Original_R0536402, Original_R1193000, Original_R1235800, Original_R1482600);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblTwinsTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public tblTwinsTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblTwins";
-            tableMapping.ColumnMappings.Add("R0000100", "R0000100");
-            tableMapping.ColumnMappings.Add("R0536300", "R0536300");
-            tableMapping.ColumnMappings.Add("R0813100", "R0813100");
-            tableMapping.ColumnMappings.Add("R0813200", "R0813200");
-            tableMapping.ColumnMappings.Add("R0813300", "R0813300");
-            tableMapping.ColumnMappings.Add("R0813400", "R0813400");
-            tableMapping.ColumnMappings.Add("R0813500", "R0813500");
-            tableMapping.ColumnMappings.Add("R0813600", "R0813600");
-            tableMapping.ColumnMappings.Add("R0813700", "R0813700");
-            tableMapping.ColumnMappings.Add("R0813800", "R0813800");
-            tableMapping.ColumnMappings.Add("R0813900", "R0813900");
-            tableMapping.ColumnMappings.Add("R0814000", "R0814000");
-            tableMapping.ColumnMappings.Add("R0814100", "R0814100");
-            tableMapping.ColumnMappings.Add("R0814200", "R0814200");
-            tableMapping.ColumnMappings.Add("R0814300", "R0814300");
-            tableMapping.ColumnMappings.Add("R0814400", "R0814400");
-            tableMapping.ColumnMappings.Add("R0814500", "R0814500");
-            tableMapping.ColumnMappings.Add("R0814600", "R0814600");
-            tableMapping.ColumnMappings.Add("R0814700", "R0814700");
-            tableMapping.ColumnMappings.Add("R0814800", "R0814800");
-            tableMapping.ColumnMappings.Add("R0814900", "R0814900");
-            tableMapping.ColumnMappings.Add("R0815000", "R0815000");
-            tableMapping.ColumnMappings.Add("R0815100", "R0815100");
-            tableMapping.ColumnMappings.Add("R0815200", "R0815200");
-            tableMapping.ColumnMappings.Add("R0815300", "R0815300");
-            tableMapping.ColumnMappings.Add("R0815400", "R0815400");
-            tableMapping.ColumnMappings.Add("R0815500", "R0815500");
-            tableMapping.ColumnMappings.Add("R0815600", "R0815600");
-            tableMapping.ColumnMappings.Add("R0815700", "R0815700");
-            tableMapping.ColumnMappings.Add("R0815800", "R0815800");
-            tableMapping.ColumnMappings.Add("R0815900", "R0815900");
-            tableMapping.ColumnMappings.Add("R0816000", "R0816000");
-            tableMapping.ColumnMappings.Add("R0816100", "R0816100");
-            tableMapping.ColumnMappings.Add("R0816200", "R0816200");
-            tableMapping.ColumnMappings.Add("R0816300", "R0816300");
-            tableMapping.ColumnMappings.Add("R0816400", "R0816400");
-            tableMapping.ColumnMappings.Add("R0816500", "R0816500");
-            tableMapping.ColumnMappings.Add("R0817400", "R0817400");
-            tableMapping.ColumnMappings.Add("R0817500", "R0817500");
-            tableMapping.ColumnMappings.Add("R0817600", "R0817600");
-            tableMapping.ColumnMappings.Add("R0817700", "R0817700");
-            tableMapping.ColumnMappings.Add("R0817800", "R0817800");
-            tableMapping.ColumnMappings.Add("R0817900", "R0817900");
-            tableMapping.ColumnMappings.Add("R0818000", "R0818000");
-            tableMapping.ColumnMappings.Add("R0818100", "R0818100");
-            tableMapping.ColumnMappings.Add("R0818200", "R0818200");
-            tableMapping.ColumnMappings.Add("R0818300", "R0818300");
-            tableMapping.ColumnMappings.Add("R0818400", "R0818400");
-            tableMapping.ColumnMappings.Add("R0818500", "R0818500");
-            tableMapping.ColumnMappings.Add("R0818600", "R0818600");
-            tableMapping.ColumnMappings.Add("R0818700", "R0818700");
-            tableMapping.ColumnMappings.Add("R0818800", "R0818800");
-            tableMapping.ColumnMappings.Add("R0818900", "R0818900");
-            tableMapping.ColumnMappings.Add("R0819000", "R0819000");
-            tableMapping.ColumnMappings.Add("R0819100", "R0819100");
-            tableMapping.ColumnMappings.Add("R0819200", "R0819200");
-            tableMapping.ColumnMappings.Add("R0819300", "R0819300");
-            tableMapping.ColumnMappings.Add("R0819400", "R0819400");
-            tableMapping.ColumnMappings.Add("R0819500", "R0819500");
-            tableMapping.ColumnMappings.Add("R0819600", "R0819600");
-            tableMapping.ColumnMappings.Add("R0819700", "R0819700");
-            tableMapping.ColumnMappings.Add("R0819800", "R0819800");
-            tableMapping.ColumnMappings.Add("R0819900", "R0819900");
-            tableMapping.ColumnMappings.Add("R0820000", "R0820000");
-            tableMapping.ColumnMappings.Add("R0820100", "R0820100");
-            tableMapping.ColumnMappings.Add("R0820200", "R0820200");
-            tableMapping.ColumnMappings.Add("R0820300", "R0820300");
-            tableMapping.ColumnMappings.Add("R0820400", "R0820400");
-            tableMapping.ColumnMappings.Add("R0820500", "R0820500");
-            tableMapping.ColumnMappings.Add("R0820600", "R0820600");
-            tableMapping.ColumnMappings.Add("R0820700", "R0820700");
-            tableMapping.ColumnMappings.Add("R0820800", "R0820800");
-            tableMapping.ColumnMappings.Add("R0820900", "R0820900");
-            tableMapping.ColumnMappings.Add("R0821000", "R0821000");
-            tableMapping.ColumnMappings.Add("R0821100", "R0821100");
-            tableMapping.ColumnMappings.Add("R0821200", "R0821200");
-            tableMapping.ColumnMappings.Add("R0821300", "R0821300");
-            tableMapping.ColumnMappings.Add("R0821400", "R0821400");
-            tableMapping.ColumnMappings.Add("R0821500", "R0821500");
-            tableMapping.ColumnMappings.Add("R0821600", "R0821600");
-            tableMapping.ColumnMappings.Add("R0821700", "R0821700");
-            tableMapping.ColumnMappings.Add("R0821800", "R0821800");
-            tableMapping.ColumnMappings.Add("R0821900", "R0821900");
-            tableMapping.ColumnMappings.Add("R0822000", "R0822000");
-            tableMapping.ColumnMappings.Add("R0822100", "R0822100");
-            tableMapping.ColumnMappings.Add("R1193000", "R1193000");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Extract].[tblTwins] WHERE (([R0000100] = @Original_R0000100) AND ([R" +
-                "0536300] = @Original_R0536300) AND ([R0813100] = @Original_R0813100) AND ([R0813" +
-                "200] = @Original_R0813200) AND ([R0813300] = @Original_R0813300) AND ([R0813400]" +
-                " = @Original_R0813400) AND ([R0813500] = @Original_R0813500) AND ([R0813600] = @" +
-                "Original_R0813600) AND ([R0813700] = @Original_R0813700) AND ([R0813800] = @Orig" +
-                "inal_R0813800) AND ([R0813900] = @Original_R0813900) AND ([R0814000] = @Original" +
-                "_R0814000) AND ([R0814100] = @Original_R0814100) AND ([R0814200] = @Original_R08" +
-                "14200) AND ([R0814300] = @Original_R0814300) AND ([R0814400] = @Original_R081440" +
-                "0) AND ([R0814500] = @Original_R0814500) AND ([R0814600] = @Original_R0814600) A" +
-                "ND ([R0814700] = @Original_R0814700) AND ([R0814800] = @Original_R0814800) AND (" +
-                "[R0814900] = @Original_R0814900) AND ([R0815000] = @Original_R0815000) AND ([R08" +
-                "15100] = @Original_R0815100) AND ([R0815200] = @Original_R0815200) AND ([R081530" +
-                "0] = @Original_R0815300) AND ([R0815400] = @Original_R0815400) AND ([R0815500] =" +
-                " @Original_R0815500) AND ([R0815600] = @Original_R0815600) AND ([R0815700] = @Or" +
-                "iginal_R0815700) AND ([R0815800] = @Original_R0815800) AND ([R0815900] = @Origin" +
-                "al_R0815900) AND ([R0816000] = @Original_R0816000) AND ([R0816100] = @Original_R" +
-                "0816100) AND ([R0816200] = @Original_R0816200) AND ([R0816300] = @Original_R0816" +
-                "300) AND ([R0816400] = @Original_R0816400) AND ([R0816500] = @Original_R0816500)" +
-                " AND ([R0817400] = @Original_R0817400) AND ([R0817500] = @Original_R0817500) AND" +
-                " ([R0817600] = @Original_R0817600) AND ([R0817700] = @Original_R0817700) AND ([R" +
-                "0817800] = @Original_R0817800) AND ([R0817900] = @Original_R0817900) AND ([R0818" +
-                "000] = @Original_R0818000) AND ([R0818100] = @Original_R0818100) AND ([R0818200]" +
-                " = @Original_R0818200) AND ([R0818300] = @Original_R0818300) AND ([R0818400] = @" +
-                "Original_R0818400) AND ([R0818500] = @Original_R0818500) AND ([R0818600] = @Orig" +
-                "inal_R0818600) AND ([R0818700] = @Original_R0818700) AND ([R0818800] = @Original" +
-                "_R0818800) AND ([R0818900] = @Original_R0818900) AND ([R0819000] = @Original_R08" +
-                "19000) AND ([R0819100] = @Original_R0819100) AND ([R0819200] = @Original_R081920" +
-                "0) AND ([R0819300] = @Original_R0819300) AND ([R0819400] = @Original_R0819400) A" +
-                "ND ([R0819500] = @Original_R0819500) AND ([R0819600] = @Original_R0819600) AND (" +
-                "[R0819700] = @Original_R0819700) AND ([R0819800] = @Original_R0819800) AND ([R08" +
-                "19900] = @Original_R0819900) AND ([R0820000] = @Original_R0820000) AND ([R082010" +
-                "0] = @Original_R0820100) AND ([R0820200] = @Original_R0820200) AND ([R0820300] =" +
-                " @Original_R0820300) AND ([R0820400] = @Original_R0820400) AND ([R0820500] = @Or" +
-                "iginal_R0820500) AND ([R0820600] = @Original_R0820600) AND ([R0820700] = @Origin" +
-                "al_R0820700) AND ([R0820800] = @Original_R0820800) AND ([R0820900] = @Original_R" +
-                "0820900) AND ([R0821000] = @Original_R0821000) AND ([R0821100] = @Original_R0821" +
-                "100) AND ([R0821200] = @Original_R0821200) AND ([R0821300] = @Original_R0821300)" +
-                " AND ([R0821400] = @Original_R0821400) AND ([R0821500] = @Original_R0821500) AND" +
-                " ([R0821600] = @Original_R0821600) AND ([R0821700] = @Original_R0821700) AND ([R" +
-                "0821800] = @Original_R0821800) AND ([R0821900] = @Original_R0821900) AND ([R0822" +
-                "000] = @Original_R0822000) AND ([R0822100] = @Original_R0822100) AND ([R1193000]" +
-                " = @Original_R1193000))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Extract].[tblTwins] ([R0000100], [R0536300], [R0813100], [R0813200]," +
-                " [R0813300], [R0813400], [R0813500], [R0813600], [R0813700], [R0813800], [R08139" +
-                "00], [R0814000], [R0814100], [R0814200], [R0814300], [R0814400], [R0814500], [R0" +
-                "814600], [R0814700], [R0814800], [R0814900], [R0815000], [R0815100], [R0815200]," +
-                " [R0815300], [R0815400], [R0815500], [R0815600], [R0815700], [R0815800], [R08159" +
-                "00], [R0816000], [R0816100], [R0816200], [R0816300], [R0816400], [R0816500], [R0" +
-                "817400], [R0817500], [R0817600], [R0817700], [R0817800], [R0817900], [R0818000]," +
-                " [R0818100], [R0818200], [R0818300], [R0818400], [R0818500], [R0818600], [R08187" +
-                "00], [R0818800], [R0818900], [R0819000], [R0819100], [R0819200], [R0819300], [R0" +
-                "819400], [R0819500], [R0819600], [R0819700], [R0819800], [R0819900], [R0820000]," +
-                " [R0820100], [R0820200], [R0820300], [R0820400], [R0820500], [R0820600], [R08207" +
-                "00], [R0820800], [R0820900], [R0821000], [R0821100], [R0821200], [R0821300], [R0" +
-                "821400], [R0821500], [R0821600], [R0821700], [R0821800], [R0821900], [R0822000]," +
-                " [R0822100], [R1193000]) VALUES (@R0000100, @R0536300, @R0813100, @R0813200, @R0" +
-                "813300, @R0813400, @R0813500, @R0813600, @R0813700, @R0813800, @R0813900, @R0814" +
-                "000, @R0814100, @R0814200, @R0814300, @R0814400, @R0814500, @R0814600, @R0814700" +
-                ", @R0814800, @R0814900, @R0815000, @R0815100, @R0815200, @R0815300, @R0815400, @" +
-                "R0815500, @R0815600, @R0815700, @R0815800, @R0815900, @R0816000, @R0816100, @R08" +
-                "16200, @R0816300, @R0816400, @R0816500, @R0817400, @R0817500, @R0817600, @R08177" +
-                "00, @R0817800, @R0817900, @R0818000, @R0818100, @R0818200, @R0818300, @R0818400," +
-                " @R0818500, @R0818600, @R0818700, @R0818800, @R0818900, @R0819000, @R0819100, @R" +
-                "0819200, @R0819300, @R0819400, @R0819500, @R0819600, @R0819700, @R0819800, @R081" +
-                "9900, @R0820000, @R0820100, @R0820200, @R0820300, @R0820400, @R0820500, @R082060" +
-                "0, @R0820700, @R0820800, @R0820900, @R0821000, @R0821100, @R0821200, @R0821300, " +
-                "@R0821400, @R0821500, @R0821600, @R0821700, @R0821800, @R0821900, @R0822000, @R0" +
-                "822100, @R1193000);\r\nSELECT R0000100, R0536300, R0813100, R0813200, R0813300, R0" +
-                "813400, R0813500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0" +
-                "814200, R0814300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0" +
-                "815000, R0815100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0" +
-                "815800, R0815900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0" +
-                "817400, R0817500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0" +
-                "818200, R0818300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0" +
-                "819000, R0819100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0" +
-                "819800, R0819900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0" +
-                "820600, R0820700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0" +
-                "821400, R0821500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R1" +
-                "193000 FROM Extract.tblTwins WHERE (R0000100 = @R0000100)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [Extract].[tblTwins] SET [R0000100] = @R0000100, [R0536300] = @R0536300, [" +
-                "R0813100] = @R0813100, [R0813200] = @R0813200, [R0813300] = @R0813300, [R0813400" +
-                "] = @R0813400, [R0813500] = @R0813500, [R0813600] = @R0813600, [R0813700] = @R08" +
-                "13700, [R0813800] = @R0813800, [R0813900] = @R0813900, [R0814000] = @R0814000, [" +
-                "R0814100] = @R0814100, [R0814200] = @R0814200, [R0814300] = @R0814300, [R0814400" +
-                "] = @R0814400, [R0814500] = @R0814500, [R0814600] = @R0814600, [R0814700] = @R08" +
-                "14700, [R0814800] = @R0814800, [R0814900] = @R0814900, [R0815000] = @R0815000, [" +
-                "R0815100] = @R0815100, [R0815200] = @R0815200, [R0815300] = @R0815300, [R0815400" +
-                "] = @R0815400, [R0815500] = @R0815500, [R0815600] = @R0815600, [R0815700] = @R08" +
-                "15700, [R0815800] = @R0815800, [R0815900] = @R0815900, [R0816000] = @R0816000, [" +
-                "R0816100] = @R0816100, [R0816200] = @R0816200, [R0816300] = @R0816300, [R0816400" +
-                "] = @R0816400, [R0816500] = @R0816500, [R0817400] = @R0817400, [R0817500] = @R08" +
-                "17500, [R0817600] = @R0817600, [R0817700] = @R0817700, [R0817800] = @R0817800, [" +
-                "R0817900] = @R0817900, [R0818000] = @R0818000, [R0818100] = @R0818100, [R0818200" +
-                "] = @R0818200, [R0818300] = @R0818300, [R0818400] = @R0818400, [R0818500] = @R08" +
-                "18500, [R0818600] = @R0818600, [R0818700] = @R0818700, [R0818800] = @R0818800, [" +
-                "R0818900] = @R0818900, [R0819000] = @R0819000, [R0819100] = @R0819100, [R0819200" +
-                "] = @R0819200, [R0819300] = @R0819300, [R0819400] = @R0819400, [R0819500] = @R08" +
-                "19500, [R0819600] = @R0819600, [R0819700] = @R0819700, [R0819800] = @R0819800, [" +
-                "R0819900] = @R0819900, [R0820000] = @R0820000, [R0820100] = @R0820100, [R0820200" +
-                "] = @R0820200, [R0820300] = @R0820300, [R0820400] = @R0820400, [R0820500] = @R08" +
-                "20500, [R0820600] = @R0820600, [R0820700] = @R0820700, [R0820800] = @R0820800, [" +
-                "R0820900] = @R0820900, [R0821000] = @R0821000, [R0821100] = @R0821100, [R0821200" +
-                "] = @R0821200, [R0821300] = @R0821300, [R0821400] = @R0821400, [R0821500] = @R08" +
-                "21500, [R0821600] = @R0821600, [R0821700] = @R0821700, [R0821800] = @R0821800, [" +
-                "R0821900] = @R0821900, [R0822000] = @R0822000, [R0822100] = @R0822100, [R1193000" +
-                "] = @R1193000 WHERE (([R0000100] = @Original_R0000100) AND ([R0536300] = @Origin" +
-                "al_R0536300) AND ([R0813100] = @Original_R0813100) AND ([R0813200] = @Original_R" +
-                "0813200) AND ([R0813300] = @Original_R0813300) AND ([R0813400] = @Original_R0813" +
-                "400) AND ([R0813500] = @Original_R0813500) AND ([R0813600] = @Original_R0813600)" +
-                " AND ([R0813700] = @Original_R0813700) AND ([R0813800] = @Original_R0813800) AND" +
-                " ([R0813900] = @Original_R0813900) AND ([R0814000] = @Original_R0814000) AND ([R" +
-                "0814100] = @Original_R0814100) AND ([R0814200] = @Original_R0814200) AND ([R0814" +
-                "300] = @Original_R0814300) AND ([R0814400] = @Original_R0814400) AND ([R0814500]" +
-                " = @Original_R0814500) AND ([R0814600] = @Original_R0814600) AND ([R0814700] = @" +
-                "Original_R0814700) AND ([R0814800] = @Original_R0814800) AND ([R0814900] = @Orig" +
-                "inal_R0814900) AND ([R0815000] = @Original_R0815000) AND ([R0815100] = @Original" +
-                "_R0815100) AND ([R0815200] = @Original_R0815200) AND ([R0815300] = @Original_R08" +
-                "15300) AND ([R0815400] = @Original_R0815400) AND ([R0815500] = @Original_R081550" +
-                "0) AND ([R0815600] = @Original_R0815600) AND ([R0815700] = @Original_R0815700) A" +
-                "ND ([R0815800] = @Original_R0815800) AND ([R0815900] = @Original_R0815900) AND (" +
-                "[R0816000] = @Original_R0816000) AND ([R0816100] = @Original_R0816100) AND ([R08" +
-                "16200] = @Original_R0816200) AND ([R0816300] = @Original_R0816300) AND ([R081640" +
-                "0] = @Original_R0816400) AND ([R0816500] = @Original_R0816500) AND ([R0817400] =" +
-                " @Original_R0817400) AND ([R0817500] = @Original_R0817500) AND ([R0817600] = @Or" +
-                "iginal_R0817600) AND ([R0817700] = @Original_R0817700) AND ([R0817800] = @Origin" +
-                "al_R0817800) AND ([R0817900] = @Original_R0817900) AND ([R0818000] = @Original_R" +
-                "0818000) AND ([R0818100] = @Original_R0818100) AND ([R0818200] = @Original_R0818" +
-                "200) AND ([R0818300] = @Original_R0818300) AND ([R0818400] = @Original_R0818400)" +
-                " AND ([R0818500] = @Original_R0818500) AND ([R0818600] = @Original_R0818600) AND" +
-                " ([R0818700] = @Original_R0818700) AND ([R0818800] = @Original_R0818800) AND ([R" +
-                "0818900] = @Original_R0818900) AND ([R0819000] = @Original_R0819000) AND ([R0819" +
-                "100] = @Original_R0819100) AND ([R0819200] = @Original_R0819200) AND ([R0819300]" +
-                " = @Original_R0819300) AND ([R0819400] = @Original_R0819400) AND ([R0819500] = @" +
-                "Original_R0819500) AND ([R0819600] = @Original_R0819600) AND ([R0819700] = @Orig" +
-                "inal_R0819700) AND ([R0819800] = @Original_R0819800) AND ([R0819900] = @Original" +
-                "_R0819900) AND ([R0820000] = @Original_R0820000) AND ([R0820100] = @Original_R08" +
-                "20100) AND ([R0820200] = @Original_R0820200) AND ([R0820300] = @Original_R082030" +
-                "0) AND ([R0820400] = @Original_R0820400) AND ([R0820500] = @Original_R0820500) A" +
-                "ND ([R0820600] = @Original_R0820600) AND ([R0820700] = @Original_R0820700) AND (" +
-                "[R0820800] = @Original_R0820800) AND ([R0820900] = @Original_R0820900) AND ([R08" +
-                "21000] = @Original_R0821000) AND ([R0821100] = @Original_R0821100) AND ([R082120" +
-                "0] = @Original_R0821200) AND ([R0821300] = @Original_R0821300) AND ([R0821400] =" +
-                " @Original_R0821400) AND ([R0821500] = @Original_R0821500) AND ([R0821600] = @Or" +
-                "iginal_R0821600) AND ([R0821700] = @Original_R0821700) AND ([R0821800] = @Origin" +
-                "al_R0821800) AND ([R0821900] = @Original_R0821900) AND ([R0822000] = @Original_R" +
-                "0822000) AND ([R0822100] = @Original_R0822100) AND ([R1193000] = @Original_R1193" +
-                "000));\r\nSELECT R0000100, R0536300, R0813100, R0813200, R0813300, R0813400, R0813" +
-                "500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0814200, R0814" +
-                "300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0815000, R0815" +
-                "100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0815800, R0815" +
-                "900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0817400, R0817" +
-                "500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0818200, R0818" +
-                "300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0819000, R0819" +
-                "100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0819800, R0819" +
-                "900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0820600, R0820" +
-                "700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0821400, R0821" +
-                "500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R1193000 FROM E" +
-                "xtract.tblTwins WHERE (R0000100 = @R0000100)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Nls.Base97.Properties.Settings.Default.Nlsy97ConnectionStringBase;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT R0000100, R0536300, R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R1193000 FROM Extract.tblTwins";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ImportDataSet.tblTwinsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ImportDataSet.tblTwinsDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            ImportDataSet.tblTwinsDataTable dataTable = new ImportDataSet.tblTwinsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ImportDataSet.tblTwinsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ImportDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "tblTwins");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(
-                    int Original_R0000100, 
-                    int Original_R0536300, 
-                    int Original_R0813100, 
-                    int Original_R0813200, 
-                    int Original_R0813300, 
-                    int Original_R0813400, 
-                    int Original_R0813500, 
-                    int Original_R0813600, 
-                    int Original_R0813700, 
-                    int Original_R0813800, 
-                    int Original_R0813900, 
-                    int Original_R0814000, 
-                    int Original_R0814100, 
-                    int Original_R0814200, 
-                    int Original_R0814300, 
-                    int Original_R0814400, 
-                    int Original_R0814500, 
-                    int Original_R0814600, 
-                    int Original_R0814700, 
-                    int Original_R0814800, 
-                    int Original_R0814900, 
-                    int Original_R0815000, 
-                    int Original_R0815100, 
-                    int Original_R0815200, 
-                    int Original_R0815300, 
-                    int Original_R0815400, 
-                    int Original_R0815500, 
-                    int Original_R0815600, 
-                    int Original_R0815700, 
-                    int Original_R0815800, 
-                    int Original_R0815900, 
-                    int Original_R0816000, 
-                    int Original_R0816100, 
-                    int Original_R0816200, 
-                    int Original_R0816300, 
-                    int Original_R0816400, 
-                    int Original_R0816500, 
-                    int Original_R0817400, 
-                    int Original_R0817500, 
-                    int Original_R0817600, 
-                    int Original_R0817700, 
-                    int Original_R0817800, 
-                    int Original_R0817900, 
-                    int Original_R0818000, 
-                    int Original_R0818100, 
-                    int Original_R0818200, 
-                    int Original_R0818300, 
-                    int Original_R0818400, 
-                    int Original_R0818500, 
-                    int Original_R0818600, 
-                    int Original_R0818700, 
-                    int Original_R0818800, 
-                    int Original_R0818900, 
-                    int Original_R0819000, 
-                    int Original_R0819100, 
-                    int Original_R0819200, 
-                    int Original_R0819300, 
-                    int Original_R0819400, 
-                    int Original_R0819500, 
-                    int Original_R0819600, 
-                    int Original_R0819700, 
-                    int Original_R0819800, 
-                    int Original_R0819900, 
-                    int Original_R0820000, 
-                    int Original_R0820100, 
-                    int Original_R0820200, 
-                    int Original_R0820300, 
-                    int Original_R0820400, 
-                    int Original_R0820500, 
-                    int Original_R0820600, 
-                    int Original_R0820700, 
-                    int Original_R0820800, 
-                    int Original_R0820900, 
-                    int Original_R0821000, 
-                    int Original_R0821100, 
-                    int Original_R0821200, 
-                    int Original_R0821300, 
-                    int Original_R0821400, 
-                    int Original_R0821500, 
-                    int Original_R0821600, 
-                    int Original_R0821700, 
-                    int Original_R0821800, 
-                    int Original_R0821900, 
-                    int Original_R0822000, 
-                    int Original_R0822100, 
-                    int Original_R1193000) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_R0000100));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_R0536300));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_R0813100));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_R0813200));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_R0813300));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_R0813400));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_R0813500));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_R0813600));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_R0813700));
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_R0813800));
-            this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_R0813900));
-            this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_R0814000));
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_R0814100));
-            this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_R0814200));
-            this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_R0814300));
-            this.Adapter.DeleteCommand.Parameters[15].Value = ((int)(Original_R0814400));
-            this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_R0814500));
-            this.Adapter.DeleteCommand.Parameters[17].Value = ((int)(Original_R0814600));
-            this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_R0814700));
-            this.Adapter.DeleteCommand.Parameters[19].Value = ((int)(Original_R0814800));
-            this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_R0814900));
-            this.Adapter.DeleteCommand.Parameters[21].Value = ((int)(Original_R0815000));
-            this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_R0815100));
-            this.Adapter.DeleteCommand.Parameters[23].Value = ((int)(Original_R0815200));
-            this.Adapter.DeleteCommand.Parameters[24].Value = ((int)(Original_R0815300));
-            this.Adapter.DeleteCommand.Parameters[25].Value = ((int)(Original_R0815400));
-            this.Adapter.DeleteCommand.Parameters[26].Value = ((int)(Original_R0815500));
-            this.Adapter.DeleteCommand.Parameters[27].Value = ((int)(Original_R0815600));
-            this.Adapter.DeleteCommand.Parameters[28].Value = ((int)(Original_R0815700));
-            this.Adapter.DeleteCommand.Parameters[29].Value = ((int)(Original_R0815800));
-            this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_R0815900));
-            this.Adapter.DeleteCommand.Parameters[31].Value = ((int)(Original_R0816000));
-            this.Adapter.DeleteCommand.Parameters[32].Value = ((int)(Original_R0816100));
-            this.Adapter.DeleteCommand.Parameters[33].Value = ((int)(Original_R0816200));
-            this.Adapter.DeleteCommand.Parameters[34].Value = ((int)(Original_R0816300));
-            this.Adapter.DeleteCommand.Parameters[35].Value = ((int)(Original_R0816400));
-            this.Adapter.DeleteCommand.Parameters[36].Value = ((int)(Original_R0816500));
-            this.Adapter.DeleteCommand.Parameters[37].Value = ((int)(Original_R0817400));
-            this.Adapter.DeleteCommand.Parameters[38].Value = ((int)(Original_R0817500));
-            this.Adapter.DeleteCommand.Parameters[39].Value = ((int)(Original_R0817600));
-            this.Adapter.DeleteCommand.Parameters[40].Value = ((int)(Original_R0817700));
-            this.Adapter.DeleteCommand.Parameters[41].Value = ((int)(Original_R0817800));
-            this.Adapter.DeleteCommand.Parameters[42].Value = ((int)(Original_R0817900));
-            this.Adapter.DeleteCommand.Parameters[43].Value = ((int)(Original_R0818000));
-            this.Adapter.DeleteCommand.Parameters[44].Value = ((int)(Original_R0818100));
-            this.Adapter.DeleteCommand.Parameters[45].Value = ((int)(Original_R0818200));
-            this.Adapter.DeleteCommand.Parameters[46].Value = ((int)(Original_R0818300));
-            this.Adapter.DeleteCommand.Parameters[47].Value = ((int)(Original_R0818400));
-            this.Adapter.DeleteCommand.Parameters[48].Value = ((int)(Original_R0818500));
-            this.Adapter.DeleteCommand.Parameters[49].Value = ((int)(Original_R0818600));
-            this.Adapter.DeleteCommand.Parameters[50].Value = ((int)(Original_R0818700));
-            this.Adapter.DeleteCommand.Parameters[51].Value = ((int)(Original_R0818800));
-            this.Adapter.DeleteCommand.Parameters[52].Value = ((int)(Original_R0818900));
-            this.Adapter.DeleteCommand.Parameters[53].Value = ((int)(Original_R0819000));
-            this.Adapter.DeleteCommand.Parameters[54].Value = ((int)(Original_R0819100));
-            this.Adapter.DeleteCommand.Parameters[55].Value = ((int)(Original_R0819200));
-            this.Adapter.DeleteCommand.Parameters[56].Value = ((int)(Original_R0819300));
-            this.Adapter.DeleteCommand.Parameters[57].Value = ((int)(Original_R0819400));
-            this.Adapter.DeleteCommand.Parameters[58].Value = ((int)(Original_R0819500));
-            this.Adapter.DeleteCommand.Parameters[59].Value = ((int)(Original_R0819600));
-            this.Adapter.DeleteCommand.Parameters[60].Value = ((int)(Original_R0819700));
-            this.Adapter.DeleteCommand.Parameters[61].Value = ((int)(Original_R0819800));
-            this.Adapter.DeleteCommand.Parameters[62].Value = ((int)(Original_R0819900));
-            this.Adapter.DeleteCommand.Parameters[63].Value = ((int)(Original_R0820000));
-            this.Adapter.DeleteCommand.Parameters[64].Value = ((int)(Original_R0820100));
-            this.Adapter.DeleteCommand.Parameters[65].Value = ((int)(Original_R0820200));
-            this.Adapter.DeleteCommand.Parameters[66].Value = ((int)(Original_R0820300));
-            this.Adapter.DeleteCommand.Parameters[67].Value = ((int)(Original_R0820400));
-            this.Adapter.DeleteCommand.Parameters[68].Value = ((int)(Original_R0820500));
-            this.Adapter.DeleteCommand.Parameters[69].Value = ((int)(Original_R0820600));
-            this.Adapter.DeleteCommand.Parameters[70].Value = ((int)(Original_R0820700));
-            this.Adapter.DeleteCommand.Parameters[71].Value = ((int)(Original_R0820800));
-            this.Adapter.DeleteCommand.Parameters[72].Value = ((int)(Original_R0820900));
-            this.Adapter.DeleteCommand.Parameters[73].Value = ((int)(Original_R0821000));
-            this.Adapter.DeleteCommand.Parameters[74].Value = ((int)(Original_R0821100));
-            this.Adapter.DeleteCommand.Parameters[75].Value = ((int)(Original_R0821200));
-            this.Adapter.DeleteCommand.Parameters[76].Value = ((int)(Original_R0821300));
-            this.Adapter.DeleteCommand.Parameters[77].Value = ((int)(Original_R0821400));
-            this.Adapter.DeleteCommand.Parameters[78].Value = ((int)(Original_R0821500));
-            this.Adapter.DeleteCommand.Parameters[79].Value = ((int)(Original_R0821600));
-            this.Adapter.DeleteCommand.Parameters[80].Value = ((int)(Original_R0821700));
-            this.Adapter.DeleteCommand.Parameters[81].Value = ((int)(Original_R0821800));
-            this.Adapter.DeleteCommand.Parameters[82].Value = ((int)(Original_R0821900));
-            this.Adapter.DeleteCommand.Parameters[83].Value = ((int)(Original_R0822000));
-            this.Adapter.DeleteCommand.Parameters[84].Value = ((int)(Original_R0822100));
-            this.Adapter.DeleteCommand.Parameters[85].Value = ((int)(Original_R1193000));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    int R0000100, 
-                    int R0536300, 
-                    int R0813100, 
-                    int R0813200, 
-                    int R0813300, 
-                    int R0813400, 
-                    int R0813500, 
-                    int R0813600, 
-                    int R0813700, 
-                    int R0813800, 
-                    int R0813900, 
-                    int R0814000, 
-                    int R0814100, 
-                    int R0814200, 
-                    int R0814300, 
-                    int R0814400, 
-                    int R0814500, 
-                    int R0814600, 
-                    int R0814700, 
-                    int R0814800, 
-                    int R0814900, 
-                    int R0815000, 
-                    int R0815100, 
-                    int R0815200, 
-                    int R0815300, 
-                    int R0815400, 
-                    int R0815500, 
-                    int R0815600, 
-                    int R0815700, 
-                    int R0815800, 
-                    int R0815900, 
-                    int R0816000, 
-                    int R0816100, 
-                    int R0816200, 
-                    int R0816300, 
-                    int R0816400, 
-                    int R0816500, 
-                    int R0817400, 
-                    int R0817500, 
-                    int R0817600, 
-                    int R0817700, 
-                    int R0817800, 
-                    int R0817900, 
-                    int R0818000, 
-                    int R0818100, 
-                    int R0818200, 
-                    int R0818300, 
-                    int R0818400, 
-                    int R0818500, 
-                    int R0818600, 
-                    int R0818700, 
-                    int R0818800, 
-                    int R0818900, 
-                    int R0819000, 
-                    int R0819100, 
-                    int R0819200, 
-                    int R0819300, 
-                    int R0819400, 
-                    int R0819500, 
-                    int R0819600, 
-                    int R0819700, 
-                    int R0819800, 
-                    int R0819900, 
-                    int R0820000, 
-                    int R0820100, 
-                    int R0820200, 
-                    int R0820300, 
-                    int R0820400, 
-                    int R0820500, 
-                    int R0820600, 
-                    int R0820700, 
-                    int R0820800, 
-                    int R0820900, 
-                    int R0821000, 
-                    int R0821100, 
-                    int R0821200, 
-                    int R0821300, 
-                    int R0821400, 
-                    int R0821500, 
-                    int R0821600, 
-                    int R0821700, 
-                    int R0821800, 
-                    int R0821900, 
-                    int R0822000, 
-                    int R0822100, 
-                    int R1193000) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(R0000100));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(R0536300));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(R0813100));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(R0813200));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(R0813300));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(R0813400));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(R0813500));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((int)(R0813600));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(R0813700));
-            this.Adapter.InsertCommand.Parameters[9].Value = ((int)(R0813800));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((int)(R0813900));
-            this.Adapter.InsertCommand.Parameters[11].Value = ((int)(R0814000));
-            this.Adapter.InsertCommand.Parameters[12].Value = ((int)(R0814100));
-            this.Adapter.InsertCommand.Parameters[13].Value = ((int)(R0814200));
-            this.Adapter.InsertCommand.Parameters[14].Value = ((int)(R0814300));
-            this.Adapter.InsertCommand.Parameters[15].Value = ((int)(R0814400));
-            this.Adapter.InsertCommand.Parameters[16].Value = ((int)(R0814500));
-            this.Adapter.InsertCommand.Parameters[17].Value = ((int)(R0814600));
-            this.Adapter.InsertCommand.Parameters[18].Value = ((int)(R0814700));
-            this.Adapter.InsertCommand.Parameters[19].Value = ((int)(R0814800));
-            this.Adapter.InsertCommand.Parameters[20].Value = ((int)(R0814900));
-            this.Adapter.InsertCommand.Parameters[21].Value = ((int)(R0815000));
-            this.Adapter.InsertCommand.Parameters[22].Value = ((int)(R0815100));
-            this.Adapter.InsertCommand.Parameters[23].Value = ((int)(R0815200));
-            this.Adapter.InsertCommand.Parameters[24].Value = ((int)(R0815300));
-            this.Adapter.InsertCommand.Parameters[25].Value = ((int)(R0815400));
-            this.Adapter.InsertCommand.Parameters[26].Value = ((int)(R0815500));
-            this.Adapter.InsertCommand.Parameters[27].Value = ((int)(R0815600));
-            this.Adapter.InsertCommand.Parameters[28].Value = ((int)(R0815700));
-            this.Adapter.InsertCommand.Parameters[29].Value = ((int)(R0815800));
-            this.Adapter.InsertCommand.Parameters[30].Value = ((int)(R0815900));
-            this.Adapter.InsertCommand.Parameters[31].Value = ((int)(R0816000));
-            this.Adapter.InsertCommand.Parameters[32].Value = ((int)(R0816100));
-            this.Adapter.InsertCommand.Parameters[33].Value = ((int)(R0816200));
-            this.Adapter.InsertCommand.Parameters[34].Value = ((int)(R0816300));
-            this.Adapter.InsertCommand.Parameters[35].Value = ((int)(R0816400));
-            this.Adapter.InsertCommand.Parameters[36].Value = ((int)(R0816500));
-            this.Adapter.InsertCommand.Parameters[37].Value = ((int)(R0817400));
-            this.Adapter.InsertCommand.Parameters[38].Value = ((int)(R0817500));
-            this.Adapter.InsertCommand.Parameters[39].Value = ((int)(R0817600));
-            this.Adapter.InsertCommand.Parameters[40].Value = ((int)(R0817700));
-            this.Adapter.InsertCommand.Parameters[41].Value = ((int)(R0817800));
-            this.Adapter.InsertCommand.Parameters[42].Value = ((int)(R0817900));
-            this.Adapter.InsertCommand.Parameters[43].Value = ((int)(R0818000));
-            this.Adapter.InsertCommand.Parameters[44].Value = ((int)(R0818100));
-            this.Adapter.InsertCommand.Parameters[45].Value = ((int)(R0818200));
-            this.Adapter.InsertCommand.Parameters[46].Value = ((int)(R0818300));
-            this.Adapter.InsertCommand.Parameters[47].Value = ((int)(R0818400));
-            this.Adapter.InsertCommand.Parameters[48].Value = ((int)(R0818500));
-            this.Adapter.InsertCommand.Parameters[49].Value = ((int)(R0818600));
-            this.Adapter.InsertCommand.Parameters[50].Value = ((int)(R0818700));
-            this.Adapter.InsertCommand.Parameters[51].Value = ((int)(R0818800));
-            this.Adapter.InsertCommand.Parameters[52].Value = ((int)(R0818900));
-            this.Adapter.InsertCommand.Parameters[53].Value = ((int)(R0819000));
-            this.Adapter.InsertCommand.Parameters[54].Value = ((int)(R0819100));
-            this.Adapter.InsertCommand.Parameters[55].Value = ((int)(R0819200));
-            this.Adapter.InsertCommand.Parameters[56].Value = ((int)(R0819300));
-            this.Adapter.InsertCommand.Parameters[57].Value = ((int)(R0819400));
-            this.Adapter.InsertCommand.Parameters[58].Value = ((int)(R0819500));
-            this.Adapter.InsertCommand.Parameters[59].Value = ((int)(R0819600));
-            this.Adapter.InsertCommand.Parameters[60].Value = ((int)(R0819700));
-            this.Adapter.InsertCommand.Parameters[61].Value = ((int)(R0819800));
-            this.Adapter.InsertCommand.Parameters[62].Value = ((int)(R0819900));
-            this.Adapter.InsertCommand.Parameters[63].Value = ((int)(R0820000));
-            this.Adapter.InsertCommand.Parameters[64].Value = ((int)(R0820100));
-            this.Adapter.InsertCommand.Parameters[65].Value = ((int)(R0820200));
-            this.Adapter.InsertCommand.Parameters[66].Value = ((int)(R0820300));
-            this.Adapter.InsertCommand.Parameters[67].Value = ((int)(R0820400));
-            this.Adapter.InsertCommand.Parameters[68].Value = ((int)(R0820500));
-            this.Adapter.InsertCommand.Parameters[69].Value = ((int)(R0820600));
-            this.Adapter.InsertCommand.Parameters[70].Value = ((int)(R0820700));
-            this.Adapter.InsertCommand.Parameters[71].Value = ((int)(R0820800));
-            this.Adapter.InsertCommand.Parameters[72].Value = ((int)(R0820900));
-            this.Adapter.InsertCommand.Parameters[73].Value = ((int)(R0821000));
-            this.Adapter.InsertCommand.Parameters[74].Value = ((int)(R0821100));
-            this.Adapter.InsertCommand.Parameters[75].Value = ((int)(R0821200));
-            this.Adapter.InsertCommand.Parameters[76].Value = ((int)(R0821300));
-            this.Adapter.InsertCommand.Parameters[77].Value = ((int)(R0821400));
-            this.Adapter.InsertCommand.Parameters[78].Value = ((int)(R0821500));
-            this.Adapter.InsertCommand.Parameters[79].Value = ((int)(R0821600));
-            this.Adapter.InsertCommand.Parameters[80].Value = ((int)(R0821700));
-            this.Adapter.InsertCommand.Parameters[81].Value = ((int)(R0821800));
-            this.Adapter.InsertCommand.Parameters[82].Value = ((int)(R0821900));
-            this.Adapter.InsertCommand.Parameters[83].Value = ((int)(R0822000));
-            this.Adapter.InsertCommand.Parameters[84].Value = ((int)(R0822100));
-            this.Adapter.InsertCommand.Parameters[85].Value = ((int)(R1193000));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int R0000100, 
-                    int R0536300, 
-                    int R0813100, 
-                    int R0813200, 
-                    int R0813300, 
-                    int R0813400, 
-                    int R0813500, 
-                    int R0813600, 
-                    int R0813700, 
-                    int R0813800, 
-                    int R0813900, 
-                    int R0814000, 
-                    int R0814100, 
-                    int R0814200, 
-                    int R0814300, 
-                    int R0814400, 
-                    int R0814500, 
-                    int R0814600, 
-                    int R0814700, 
-                    int R0814800, 
-                    int R0814900, 
-                    int R0815000, 
-                    int R0815100, 
-                    int R0815200, 
-                    int R0815300, 
-                    int R0815400, 
-                    int R0815500, 
-                    int R0815600, 
-                    int R0815700, 
-                    int R0815800, 
-                    int R0815900, 
-                    int R0816000, 
-                    int R0816100, 
-                    int R0816200, 
-                    int R0816300, 
-                    int R0816400, 
-                    int R0816500, 
-                    int R0817400, 
-                    int R0817500, 
-                    int R0817600, 
-                    int R0817700, 
-                    int R0817800, 
-                    int R0817900, 
-                    int R0818000, 
-                    int R0818100, 
-                    int R0818200, 
-                    int R0818300, 
-                    int R0818400, 
-                    int R0818500, 
-                    int R0818600, 
-                    int R0818700, 
-                    int R0818800, 
-                    int R0818900, 
-                    int R0819000, 
-                    int R0819100, 
-                    int R0819200, 
-                    int R0819300, 
-                    int R0819400, 
-                    int R0819500, 
-                    int R0819600, 
-                    int R0819700, 
-                    int R0819800, 
-                    int R0819900, 
-                    int R0820000, 
-                    int R0820100, 
-                    int R0820200, 
-                    int R0820300, 
-                    int R0820400, 
-                    int R0820500, 
-                    int R0820600, 
-                    int R0820700, 
-                    int R0820800, 
-                    int R0820900, 
-                    int R0821000, 
-                    int R0821100, 
-                    int R0821200, 
-                    int R0821300, 
-                    int R0821400, 
-                    int R0821500, 
-                    int R0821600, 
-                    int R0821700, 
-                    int R0821800, 
-                    int R0821900, 
-                    int R0822000, 
-                    int R0822100, 
-                    int R1193000, 
-                    int Original_R0000100, 
-                    int Original_R0536300, 
-                    int Original_R0813100, 
-                    int Original_R0813200, 
-                    int Original_R0813300, 
-                    int Original_R0813400, 
-                    int Original_R0813500, 
-                    int Original_R0813600, 
-                    int Original_R0813700, 
-                    int Original_R0813800, 
-                    int Original_R0813900, 
-                    int Original_R0814000, 
-                    int Original_R0814100, 
-                    int Original_R0814200, 
-                    int Original_R0814300, 
-                    int Original_R0814400, 
-                    int Original_R0814500, 
-                    int Original_R0814600, 
-                    int Original_R0814700, 
-                    int Original_R0814800, 
-                    int Original_R0814900, 
-                    int Original_R0815000, 
-                    int Original_R0815100, 
-                    int Original_R0815200, 
-                    int Original_R0815300, 
-                    int Original_R0815400, 
-                    int Original_R0815500, 
-                    int Original_R0815600, 
-                    int Original_R0815700, 
-                    int Original_R0815800, 
-                    int Original_R0815900, 
-                    int Original_R0816000, 
-                    int Original_R0816100, 
-                    int Original_R0816200, 
-                    int Original_R0816300, 
-                    int Original_R0816400, 
-                    int Original_R0816500, 
-                    int Original_R0817400, 
-                    int Original_R0817500, 
-                    int Original_R0817600, 
-                    int Original_R0817700, 
-                    int Original_R0817800, 
-                    int Original_R0817900, 
-                    int Original_R0818000, 
-                    int Original_R0818100, 
-                    int Original_R0818200, 
-                    int Original_R0818300, 
-                    int Original_R0818400, 
-                    int Original_R0818500, 
-                    int Original_R0818600, 
-                    int Original_R0818700, 
-                    int Original_R0818800, 
-                    int Original_R0818900, 
-                    int Original_R0819000, 
-                    int Original_R0819100, 
-                    int Original_R0819200, 
-                    int Original_R0819300, 
-                    int Original_R0819400, 
-                    int Original_R0819500, 
-                    int Original_R0819600, 
-                    int Original_R0819700, 
-                    int Original_R0819800, 
-                    int Original_R0819900, 
-                    int Original_R0820000, 
-                    int Original_R0820100, 
-                    int Original_R0820200, 
-                    int Original_R0820300, 
-                    int Original_R0820400, 
-                    int Original_R0820500, 
-                    int Original_R0820600, 
-                    int Original_R0820700, 
-                    int Original_R0820800, 
-                    int Original_R0820900, 
-                    int Original_R0821000, 
-                    int Original_R0821100, 
-                    int Original_R0821200, 
-                    int Original_R0821300, 
-                    int Original_R0821400, 
-                    int Original_R0821500, 
-                    int Original_R0821600, 
-                    int Original_R0821700, 
-                    int Original_R0821800, 
-                    int Original_R0821900, 
-                    int Original_R0822000, 
-                    int Original_R0822100, 
-                    int Original_R1193000) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(R0000100));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(R0536300));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(R0813100));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(R0813200));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(R0813300));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(R0813400));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(R0813500));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(R0813600));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(R0813700));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(R0813800));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(R0813900));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(R0814000));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(R0814100));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(R0814200));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(R0814300));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(R0814400));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(R0814500));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(R0814600));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(R0814700));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(R0814800));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(R0814900));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(R0815000));
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(R0815100));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(R0815200));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(R0815300));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(R0815400));
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(R0815500));
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(R0815600));
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(R0815700));
-            this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(R0815800));
-            this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(R0815900));
-            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(R0816000));
-            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(R0816100));
-            this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(R0816200));
-            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(R0816300));
-            this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(R0816400));
-            this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(R0816500));
-            this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(R0817400));
-            this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(R0817500));
-            this.Adapter.UpdateCommand.Parameters[39].Value = ((int)(R0817600));
-            this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(R0817700));
-            this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(R0817800));
-            this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(R0817900));
-            this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(R0818000));
-            this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(R0818100));
-            this.Adapter.UpdateCommand.Parameters[45].Value = ((int)(R0818200));
-            this.Adapter.UpdateCommand.Parameters[46].Value = ((int)(R0818300));
-            this.Adapter.UpdateCommand.Parameters[47].Value = ((int)(R0818400));
-            this.Adapter.UpdateCommand.Parameters[48].Value = ((int)(R0818500));
-            this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(R0818600));
-            this.Adapter.UpdateCommand.Parameters[50].Value = ((int)(R0818700));
-            this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(R0818800));
-            this.Adapter.UpdateCommand.Parameters[52].Value = ((int)(R0818900));
-            this.Adapter.UpdateCommand.Parameters[53].Value = ((int)(R0819000));
-            this.Adapter.UpdateCommand.Parameters[54].Value = ((int)(R0819100));
-            this.Adapter.UpdateCommand.Parameters[55].Value = ((int)(R0819200));
-            this.Adapter.UpdateCommand.Parameters[56].Value = ((int)(R0819300));
-            this.Adapter.UpdateCommand.Parameters[57].Value = ((int)(R0819400));
-            this.Adapter.UpdateCommand.Parameters[58].Value = ((int)(R0819500));
-            this.Adapter.UpdateCommand.Parameters[59].Value = ((int)(R0819600));
-            this.Adapter.UpdateCommand.Parameters[60].Value = ((int)(R0819700));
-            this.Adapter.UpdateCommand.Parameters[61].Value = ((int)(R0819800));
-            this.Adapter.UpdateCommand.Parameters[62].Value = ((int)(R0819900));
-            this.Adapter.UpdateCommand.Parameters[63].Value = ((int)(R0820000));
-            this.Adapter.UpdateCommand.Parameters[64].Value = ((int)(R0820100));
-            this.Adapter.UpdateCommand.Parameters[65].Value = ((int)(R0820200));
-            this.Adapter.UpdateCommand.Parameters[66].Value = ((int)(R0820300));
-            this.Adapter.UpdateCommand.Parameters[67].Value = ((int)(R0820400));
-            this.Adapter.UpdateCommand.Parameters[68].Value = ((int)(R0820500));
-            this.Adapter.UpdateCommand.Parameters[69].Value = ((int)(R0820600));
-            this.Adapter.UpdateCommand.Parameters[70].Value = ((int)(R0820700));
-            this.Adapter.UpdateCommand.Parameters[71].Value = ((int)(R0820800));
-            this.Adapter.UpdateCommand.Parameters[72].Value = ((int)(R0820900));
-            this.Adapter.UpdateCommand.Parameters[73].Value = ((int)(R0821000));
-            this.Adapter.UpdateCommand.Parameters[74].Value = ((int)(R0821100));
-            this.Adapter.UpdateCommand.Parameters[75].Value = ((int)(R0821200));
-            this.Adapter.UpdateCommand.Parameters[76].Value = ((int)(R0821300));
-            this.Adapter.UpdateCommand.Parameters[77].Value = ((int)(R0821400));
-            this.Adapter.UpdateCommand.Parameters[78].Value = ((int)(R0821500));
-            this.Adapter.UpdateCommand.Parameters[79].Value = ((int)(R0821600));
-            this.Adapter.UpdateCommand.Parameters[80].Value = ((int)(R0821700));
-            this.Adapter.UpdateCommand.Parameters[81].Value = ((int)(R0821800));
-            this.Adapter.UpdateCommand.Parameters[82].Value = ((int)(R0821900));
-            this.Adapter.UpdateCommand.Parameters[83].Value = ((int)(R0822000));
-            this.Adapter.UpdateCommand.Parameters[84].Value = ((int)(R0822100));
-            this.Adapter.UpdateCommand.Parameters[85].Value = ((int)(R1193000));
-            this.Adapter.UpdateCommand.Parameters[86].Value = ((int)(Original_R0000100));
-            this.Adapter.UpdateCommand.Parameters[87].Value = ((int)(Original_R0536300));
-            this.Adapter.UpdateCommand.Parameters[88].Value = ((int)(Original_R0813100));
-            this.Adapter.UpdateCommand.Parameters[89].Value = ((int)(Original_R0813200));
-            this.Adapter.UpdateCommand.Parameters[90].Value = ((int)(Original_R0813300));
-            this.Adapter.UpdateCommand.Parameters[91].Value = ((int)(Original_R0813400));
-            this.Adapter.UpdateCommand.Parameters[92].Value = ((int)(Original_R0813500));
-            this.Adapter.UpdateCommand.Parameters[93].Value = ((int)(Original_R0813600));
-            this.Adapter.UpdateCommand.Parameters[94].Value = ((int)(Original_R0813700));
-            this.Adapter.UpdateCommand.Parameters[95].Value = ((int)(Original_R0813800));
-            this.Adapter.UpdateCommand.Parameters[96].Value = ((int)(Original_R0813900));
-            this.Adapter.UpdateCommand.Parameters[97].Value = ((int)(Original_R0814000));
-            this.Adapter.UpdateCommand.Parameters[98].Value = ((int)(Original_R0814100));
-            this.Adapter.UpdateCommand.Parameters[99].Value = ((int)(Original_R0814200));
-            this.Adapter.UpdateCommand.Parameters[100].Value = ((int)(Original_R0814300));
-            this.Adapter.UpdateCommand.Parameters[101].Value = ((int)(Original_R0814400));
-            this.Adapter.UpdateCommand.Parameters[102].Value = ((int)(Original_R0814500));
-            this.Adapter.UpdateCommand.Parameters[103].Value = ((int)(Original_R0814600));
-            this.Adapter.UpdateCommand.Parameters[104].Value = ((int)(Original_R0814700));
-            this.Adapter.UpdateCommand.Parameters[105].Value = ((int)(Original_R0814800));
-            this.Adapter.UpdateCommand.Parameters[106].Value = ((int)(Original_R0814900));
-            this.Adapter.UpdateCommand.Parameters[107].Value = ((int)(Original_R0815000));
-            this.Adapter.UpdateCommand.Parameters[108].Value = ((int)(Original_R0815100));
-            this.Adapter.UpdateCommand.Parameters[109].Value = ((int)(Original_R0815200));
-            this.Adapter.UpdateCommand.Parameters[110].Value = ((int)(Original_R0815300));
-            this.Adapter.UpdateCommand.Parameters[111].Value = ((int)(Original_R0815400));
-            this.Adapter.UpdateCommand.Parameters[112].Value = ((int)(Original_R0815500));
-            this.Adapter.UpdateCommand.Parameters[113].Value = ((int)(Original_R0815600));
-            this.Adapter.UpdateCommand.Parameters[114].Value = ((int)(Original_R0815700));
-            this.Adapter.UpdateCommand.Parameters[115].Value = ((int)(Original_R0815800));
-            this.Adapter.UpdateCommand.Parameters[116].Value = ((int)(Original_R0815900));
-            this.Adapter.UpdateCommand.Parameters[117].Value = ((int)(Original_R0816000));
-            this.Adapter.UpdateCommand.Parameters[118].Value = ((int)(Original_R0816100));
-            this.Adapter.UpdateCommand.Parameters[119].Value = ((int)(Original_R0816200));
-            this.Adapter.UpdateCommand.Parameters[120].Value = ((int)(Original_R0816300));
-            this.Adapter.UpdateCommand.Parameters[121].Value = ((int)(Original_R0816400));
-            this.Adapter.UpdateCommand.Parameters[122].Value = ((int)(Original_R0816500));
-            this.Adapter.UpdateCommand.Parameters[123].Value = ((int)(Original_R0817400));
-            this.Adapter.UpdateCommand.Parameters[124].Value = ((int)(Original_R0817500));
-            this.Adapter.UpdateCommand.Parameters[125].Value = ((int)(Original_R0817600));
-            this.Adapter.UpdateCommand.Parameters[126].Value = ((int)(Original_R0817700));
-            this.Adapter.UpdateCommand.Parameters[127].Value = ((int)(Original_R0817800));
-            this.Adapter.UpdateCommand.Parameters[128].Value = ((int)(Original_R0817900));
-            this.Adapter.UpdateCommand.Parameters[129].Value = ((int)(Original_R0818000));
-            this.Adapter.UpdateCommand.Parameters[130].Value = ((int)(Original_R0818100));
-            this.Adapter.UpdateCommand.Parameters[131].Value = ((int)(Original_R0818200));
-            this.Adapter.UpdateCommand.Parameters[132].Value = ((int)(Original_R0818300));
-            this.Adapter.UpdateCommand.Parameters[133].Value = ((int)(Original_R0818400));
-            this.Adapter.UpdateCommand.Parameters[134].Value = ((int)(Original_R0818500));
-            this.Adapter.UpdateCommand.Parameters[135].Value = ((int)(Original_R0818600));
-            this.Adapter.UpdateCommand.Parameters[136].Value = ((int)(Original_R0818700));
-            this.Adapter.UpdateCommand.Parameters[137].Value = ((int)(Original_R0818800));
-            this.Adapter.UpdateCommand.Parameters[138].Value = ((int)(Original_R0818900));
-            this.Adapter.UpdateCommand.Parameters[139].Value = ((int)(Original_R0819000));
-            this.Adapter.UpdateCommand.Parameters[140].Value = ((int)(Original_R0819100));
-            this.Adapter.UpdateCommand.Parameters[141].Value = ((int)(Original_R0819200));
-            this.Adapter.UpdateCommand.Parameters[142].Value = ((int)(Original_R0819300));
-            this.Adapter.UpdateCommand.Parameters[143].Value = ((int)(Original_R0819400));
-            this.Adapter.UpdateCommand.Parameters[144].Value = ((int)(Original_R0819500));
-            this.Adapter.UpdateCommand.Parameters[145].Value = ((int)(Original_R0819600));
-            this.Adapter.UpdateCommand.Parameters[146].Value = ((int)(Original_R0819700));
-            this.Adapter.UpdateCommand.Parameters[147].Value = ((int)(Original_R0819800));
-            this.Adapter.UpdateCommand.Parameters[148].Value = ((int)(Original_R0819900));
-            this.Adapter.UpdateCommand.Parameters[149].Value = ((int)(Original_R0820000));
-            this.Adapter.UpdateCommand.Parameters[150].Value = ((int)(Original_R0820100));
-            this.Adapter.UpdateCommand.Parameters[151].Value = ((int)(Original_R0820200));
-            this.Adapter.UpdateCommand.Parameters[152].Value = ((int)(Original_R0820300));
-            this.Adapter.UpdateCommand.Parameters[153].Value = ((int)(Original_R0820400));
-            this.Adapter.UpdateCommand.Parameters[154].Value = ((int)(Original_R0820500));
-            this.Adapter.UpdateCommand.Parameters[155].Value = ((int)(Original_R0820600));
-            this.Adapter.UpdateCommand.Parameters[156].Value = ((int)(Original_R0820700));
-            this.Adapter.UpdateCommand.Parameters[157].Value = ((int)(Original_R0820800));
-            this.Adapter.UpdateCommand.Parameters[158].Value = ((int)(Original_R0820900));
-            this.Adapter.UpdateCommand.Parameters[159].Value = ((int)(Original_R0821000));
-            this.Adapter.UpdateCommand.Parameters[160].Value = ((int)(Original_R0821100));
-            this.Adapter.UpdateCommand.Parameters[161].Value = ((int)(Original_R0821200));
-            this.Adapter.UpdateCommand.Parameters[162].Value = ((int)(Original_R0821300));
-            this.Adapter.UpdateCommand.Parameters[163].Value = ((int)(Original_R0821400));
-            this.Adapter.UpdateCommand.Parameters[164].Value = ((int)(Original_R0821500));
-            this.Adapter.UpdateCommand.Parameters[165].Value = ((int)(Original_R0821600));
-            this.Adapter.UpdateCommand.Parameters[166].Value = ((int)(Original_R0821700));
-            this.Adapter.UpdateCommand.Parameters[167].Value = ((int)(Original_R0821800));
-            this.Adapter.UpdateCommand.Parameters[168].Value = ((int)(Original_R0821900));
-            this.Adapter.UpdateCommand.Parameters[169].Value = ((int)(Original_R0822000));
-            this.Adapter.UpdateCommand.Parameters[170].Value = ((int)(Original_R0822100));
-            this.Adapter.UpdateCommand.Parameters[171].Value = ((int)(Original_R1193000));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int R0536300, 
-                    int R0813100, 
-                    int R0813200, 
-                    int R0813300, 
-                    int R0813400, 
-                    int R0813500, 
-                    int R0813600, 
-                    int R0813700, 
-                    int R0813800, 
-                    int R0813900, 
-                    int R0814000, 
-                    int R0814100, 
-                    int R0814200, 
-                    int R0814300, 
-                    int R0814400, 
-                    int R0814500, 
-                    int R0814600, 
-                    int R0814700, 
-                    int R0814800, 
-                    int R0814900, 
-                    int R0815000, 
-                    int R0815100, 
-                    int R0815200, 
-                    int R0815300, 
-                    int R0815400, 
-                    int R0815500, 
-                    int R0815600, 
-                    int R0815700, 
-                    int R0815800, 
-                    int R0815900, 
-                    int R0816000, 
-                    int R0816100, 
-                    int R0816200, 
-                    int R0816300, 
-                    int R0816400, 
-                    int R0816500, 
-                    int R0817400, 
-                    int R0817500, 
-                    int R0817600, 
-                    int R0817700, 
-                    int R0817800, 
-                    int R0817900, 
-                    int R0818000, 
-                    int R0818100, 
-                    int R0818200, 
-                    int R0818300, 
-                    int R0818400, 
-                    int R0818500, 
-                    int R0818600, 
-                    int R0818700, 
-                    int R0818800, 
-                    int R0818900, 
-                    int R0819000, 
-                    int R0819100, 
-                    int R0819200, 
-                    int R0819300, 
-                    int R0819400, 
-                    int R0819500, 
-                    int R0819600, 
-                    int R0819700, 
-                    int R0819800, 
-                    int R0819900, 
-                    int R0820000, 
-                    int R0820100, 
-                    int R0820200, 
-                    int R0820300, 
-                    int R0820400, 
-                    int R0820500, 
-                    int R0820600, 
-                    int R0820700, 
-                    int R0820800, 
-                    int R0820900, 
-                    int R0821000, 
-                    int R0821100, 
-                    int R0821200, 
-                    int R0821300, 
-                    int R0821400, 
-                    int R0821500, 
-                    int R0821600, 
-                    int R0821700, 
-                    int R0821800, 
-                    int R0821900, 
-                    int R0822000, 
-                    int R0822100, 
-                    int R1193000, 
-                    int Original_R0000100, 
-                    int Original_R0536300, 
-                    int Original_R0813100, 
-                    int Original_R0813200, 
-                    int Original_R0813300, 
-                    int Original_R0813400, 
-                    int Original_R0813500, 
-                    int Original_R0813600, 
-                    int Original_R0813700, 
-                    int Original_R0813800, 
-                    int Original_R0813900, 
-                    int Original_R0814000, 
-                    int Original_R0814100, 
-                    int Original_R0814200, 
-                    int Original_R0814300, 
-                    int Original_R0814400, 
-                    int Original_R0814500, 
-                    int Original_R0814600, 
-                    int Original_R0814700, 
-                    int Original_R0814800, 
-                    int Original_R0814900, 
-                    int Original_R0815000, 
-                    int Original_R0815100, 
-                    int Original_R0815200, 
-                    int Original_R0815300, 
-                    int Original_R0815400, 
-                    int Original_R0815500, 
-                    int Original_R0815600, 
-                    int Original_R0815700, 
-                    int Original_R0815800, 
-                    int Original_R0815900, 
-                    int Original_R0816000, 
-                    int Original_R0816100, 
-                    int Original_R0816200, 
-                    int Original_R0816300, 
-                    int Original_R0816400, 
-                    int Original_R0816500, 
-                    int Original_R0817400, 
-                    int Original_R0817500, 
-                    int Original_R0817600, 
-                    int Original_R0817700, 
-                    int Original_R0817800, 
-                    int Original_R0817900, 
-                    int Original_R0818000, 
-                    int Original_R0818100, 
-                    int Original_R0818200, 
-                    int Original_R0818300, 
-                    int Original_R0818400, 
-                    int Original_R0818500, 
-                    int Original_R0818600, 
-                    int Original_R0818700, 
-                    int Original_R0818800, 
-                    int Original_R0818900, 
-                    int Original_R0819000, 
-                    int Original_R0819100, 
-                    int Original_R0819200, 
-                    int Original_R0819300, 
-                    int Original_R0819400, 
-                    int Original_R0819500, 
-                    int Original_R0819600, 
-                    int Original_R0819700, 
-                    int Original_R0819800, 
-                    int Original_R0819900, 
-                    int Original_R0820000, 
-                    int Original_R0820100, 
-                    int Original_R0820200, 
-                    int Original_R0820300, 
-                    int Original_R0820400, 
-                    int Original_R0820500, 
-                    int Original_R0820600, 
-                    int Original_R0820700, 
-                    int Original_R0820800, 
-                    int Original_R0820900, 
-                    int Original_R0821000, 
-                    int Original_R0821100, 
-                    int Original_R0821200, 
-                    int Original_R0821300, 
-                    int Original_R0821400, 
-                    int Original_R0821500, 
-                    int Original_R0821600, 
-                    int Original_R0821700, 
-                    int Original_R0821800, 
-                    int Original_R0821900, 
-                    int Original_R0822000, 
-                    int Original_R0822100, 
-                    int Original_R1193000) {
-            return this.Update(Original_R0000100, R0536300, R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R1193000, Original_R0000100, Original_R0536300, Original_R0813100, Original_R0813200, Original_R0813300, Original_R0813400, Original_R0813500, Original_R0813600, Original_R0813700, Original_R0813800, Original_R0813900, Original_R0814000, Original_R0814100, Original_R0814200, Original_R0814300, Original_R0814400, Original_R0814500, Original_R0814600, Original_R0814700, Original_R0814800, Original_R0814900, Original_R0815000, Original_R0815100, Original_R0815200, Original_R0815300, Original_R0815400, Original_R0815500, Original_R0815600, Original_R0815700, Original_R0815800, Original_R0815900, Original_R0816000, Original_R0816100, Original_R0816200, Original_R0816300, Original_R0816400, Original_R0816500, Original_R0817400, Original_R0817500, Original_R0817600, Original_R0817700, Original_R0817800, Original_R0817900, Original_R0818000, Original_R0818100, Original_R0818200, Original_R0818300, Original_R0818400, Original_R0818500, Original_R0818600, Original_R0818700, Original_R0818800, Original_R0818900, Original_R0819000, Original_R0819100, Original_R0819200, Original_R0819300, Original_R0819400, Original_R0819500, Original_R0819600, Original_R0819700, Original_R0819800, Original_R0819900, Original_R0820000, Original_R0820100, Original_R0820200, Original_R0820300, Original_R0820400, Original_R0820500, Original_R0820600, Original_R0820700, Original_R0820800, Original_R0820900, Original_R0821000, Original_R0821100, Original_R0821200, Original_R0821300, Original_R0821400, Original_R0821500, Original_R0821600, Original_R0821700, Original_R0821800, Original_R0821900, Original_R0822000, Original_R0822100, Original_R1193000);
         }
     }
     
@@ -35858,6 +35027,2282 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblTwinsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public tblTwinsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tblTwins";
+            tableMapping.ColumnMappings.Add("R0000100", "R0000100");
+            tableMapping.ColumnMappings.Add("R0536300", "R0536300");
+            tableMapping.ColumnMappings.Add("R0813100", "R0813100");
+            tableMapping.ColumnMappings.Add("R0813200", "R0813200");
+            tableMapping.ColumnMappings.Add("R0813300", "R0813300");
+            tableMapping.ColumnMappings.Add("R0813400", "R0813400");
+            tableMapping.ColumnMappings.Add("R0813500", "R0813500");
+            tableMapping.ColumnMappings.Add("R0813600", "R0813600");
+            tableMapping.ColumnMappings.Add("R0813700", "R0813700");
+            tableMapping.ColumnMappings.Add("R0813800", "R0813800");
+            tableMapping.ColumnMappings.Add("R0813900", "R0813900");
+            tableMapping.ColumnMappings.Add("R0814000", "R0814000");
+            tableMapping.ColumnMappings.Add("R0814100", "R0814100");
+            tableMapping.ColumnMappings.Add("R0814200", "R0814200");
+            tableMapping.ColumnMappings.Add("R0814300", "R0814300");
+            tableMapping.ColumnMappings.Add("R0814400", "R0814400");
+            tableMapping.ColumnMappings.Add("R0814500", "R0814500");
+            tableMapping.ColumnMappings.Add("R0814600", "R0814600");
+            tableMapping.ColumnMappings.Add("R0814700", "R0814700");
+            tableMapping.ColumnMappings.Add("R0814800", "R0814800");
+            tableMapping.ColumnMappings.Add("R0814900", "R0814900");
+            tableMapping.ColumnMappings.Add("R0815000", "R0815000");
+            tableMapping.ColumnMappings.Add("R0815100", "R0815100");
+            tableMapping.ColumnMappings.Add("R0815200", "R0815200");
+            tableMapping.ColumnMappings.Add("R0815300", "R0815300");
+            tableMapping.ColumnMappings.Add("R0815400", "R0815400");
+            tableMapping.ColumnMappings.Add("R0815500", "R0815500");
+            tableMapping.ColumnMappings.Add("R0815600", "R0815600");
+            tableMapping.ColumnMappings.Add("R0815700", "R0815700");
+            tableMapping.ColumnMappings.Add("R0815800", "R0815800");
+            tableMapping.ColumnMappings.Add("R0815900", "R0815900");
+            tableMapping.ColumnMappings.Add("R0816000", "R0816000");
+            tableMapping.ColumnMappings.Add("R0816100", "R0816100");
+            tableMapping.ColumnMappings.Add("R0816200", "R0816200");
+            tableMapping.ColumnMappings.Add("R0816300", "R0816300");
+            tableMapping.ColumnMappings.Add("R0816400", "R0816400");
+            tableMapping.ColumnMappings.Add("R0816500", "R0816500");
+            tableMapping.ColumnMappings.Add("R0817400", "R0817400");
+            tableMapping.ColumnMappings.Add("R0817500", "R0817500");
+            tableMapping.ColumnMappings.Add("R0817600", "R0817600");
+            tableMapping.ColumnMappings.Add("R0817700", "R0817700");
+            tableMapping.ColumnMappings.Add("R0817800", "R0817800");
+            tableMapping.ColumnMappings.Add("R0817900", "R0817900");
+            tableMapping.ColumnMappings.Add("R0818000", "R0818000");
+            tableMapping.ColumnMappings.Add("R0818100", "R0818100");
+            tableMapping.ColumnMappings.Add("R0818200", "R0818200");
+            tableMapping.ColumnMappings.Add("R0818300", "R0818300");
+            tableMapping.ColumnMappings.Add("R0818400", "R0818400");
+            tableMapping.ColumnMappings.Add("R0818500", "R0818500");
+            tableMapping.ColumnMappings.Add("R0818600", "R0818600");
+            tableMapping.ColumnMappings.Add("R0818700", "R0818700");
+            tableMapping.ColumnMappings.Add("R0818800", "R0818800");
+            tableMapping.ColumnMappings.Add("R0818900", "R0818900");
+            tableMapping.ColumnMappings.Add("R0819000", "R0819000");
+            tableMapping.ColumnMappings.Add("R0819100", "R0819100");
+            tableMapping.ColumnMappings.Add("R0819200", "R0819200");
+            tableMapping.ColumnMappings.Add("R0819300", "R0819300");
+            tableMapping.ColumnMappings.Add("R0819400", "R0819400");
+            tableMapping.ColumnMappings.Add("R0819500", "R0819500");
+            tableMapping.ColumnMappings.Add("R0819600", "R0819600");
+            tableMapping.ColumnMappings.Add("R0819700", "R0819700");
+            tableMapping.ColumnMappings.Add("R0819800", "R0819800");
+            tableMapping.ColumnMappings.Add("R0819900", "R0819900");
+            tableMapping.ColumnMappings.Add("R0820000", "R0820000");
+            tableMapping.ColumnMappings.Add("R0820100", "R0820100");
+            tableMapping.ColumnMappings.Add("R0820200", "R0820200");
+            tableMapping.ColumnMappings.Add("R0820300", "R0820300");
+            tableMapping.ColumnMappings.Add("R0820400", "R0820400");
+            tableMapping.ColumnMappings.Add("R0820500", "R0820500");
+            tableMapping.ColumnMappings.Add("R0820600", "R0820600");
+            tableMapping.ColumnMappings.Add("R0820700", "R0820700");
+            tableMapping.ColumnMappings.Add("R0820800", "R0820800");
+            tableMapping.ColumnMappings.Add("R0820900", "R0820900");
+            tableMapping.ColumnMappings.Add("R0821000", "R0821000");
+            tableMapping.ColumnMappings.Add("R0821100", "R0821100");
+            tableMapping.ColumnMappings.Add("R0821200", "R0821200");
+            tableMapping.ColumnMappings.Add("R0821300", "R0821300");
+            tableMapping.ColumnMappings.Add("R0821400", "R0821400");
+            tableMapping.ColumnMappings.Add("R0821500", "R0821500");
+            tableMapping.ColumnMappings.Add("R0821600", "R0821600");
+            tableMapping.ColumnMappings.Add("R0821700", "R0821700");
+            tableMapping.ColumnMappings.Add("R0821800", "R0821800");
+            tableMapping.ColumnMappings.Add("R0821900", "R0821900");
+            tableMapping.ColumnMappings.Add("R0822000", "R0822000");
+            tableMapping.ColumnMappings.Add("R0822100", "R0822100");
+            tableMapping.ColumnMappings.Add("R0822200", "R0822200");
+            tableMapping.ColumnMappings.Add("R0822300", "R0822300");
+            tableMapping.ColumnMappings.Add("R0822400", "R0822400");
+            tableMapping.ColumnMappings.Add("R0822500", "R0822500");
+            tableMapping.ColumnMappings.Add("R0822600", "R0822600");
+            tableMapping.ColumnMappings.Add("R0822700", "R0822700");
+            tableMapping.ColumnMappings.Add("R0822800", "R0822800");
+            tableMapping.ColumnMappings.Add("R0822900", "R0822900");
+            tableMapping.ColumnMappings.Add("R0823000", "R0823000");
+            tableMapping.ColumnMappings.Add("R0823100", "R0823100");
+            tableMapping.ColumnMappings.Add("R0823200", "R0823200");
+            tableMapping.ColumnMappings.Add("R0823300", "R0823300");
+            tableMapping.ColumnMappings.Add("R0823400", "R0823400");
+            tableMapping.ColumnMappings.Add("R0823500", "R0823500");
+            tableMapping.ColumnMappings.Add("R0823600", "R0823600");
+            tableMapping.ColumnMappings.Add("R0823700", "R0823700");
+            tableMapping.ColumnMappings.Add("R0823800", "R0823800");
+            tableMapping.ColumnMappings.Add("R0823900", "R0823900");
+            tableMapping.ColumnMappings.Add("R0824000", "R0824000");
+            tableMapping.ColumnMappings.Add("R0824100", "R0824100");
+            tableMapping.ColumnMappings.Add("R0824200", "R0824200");
+            tableMapping.ColumnMappings.Add("R0824300", "R0824300");
+            tableMapping.ColumnMappings.Add("R0824400", "R0824400");
+            tableMapping.ColumnMappings.Add("R0824500", "R0824500");
+            tableMapping.ColumnMappings.Add("R0824600", "R0824600");
+            tableMapping.ColumnMappings.Add("R0824700", "R0824700");
+            tableMapping.ColumnMappings.Add("R0824800", "R0824800");
+            tableMapping.ColumnMappings.Add("R0824900", "R0824900");
+            tableMapping.ColumnMappings.Add("R0825000", "R0825000");
+            tableMapping.ColumnMappings.Add("R0825100", "R0825100");
+            tableMapping.ColumnMappings.Add("R0825200", "R0825200");
+            tableMapping.ColumnMappings.Add("R0825300", "R0825300");
+            tableMapping.ColumnMappings.Add("R0825400", "R0825400");
+            tableMapping.ColumnMappings.Add("R1193000", "R1193000");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Extract].[tblTwins] WHERE (([R0000100] = @Original_R0000100) AND ([R" +
+                "0536300] = @Original_R0536300) AND ([R0813100] = @Original_R0813100) AND ([R0813" +
+                "200] = @Original_R0813200) AND ([R0813300] = @Original_R0813300) AND ([R0813400]" +
+                " = @Original_R0813400) AND ([R0813500] = @Original_R0813500) AND ([R0813600] = @" +
+                "Original_R0813600) AND ([R0813700] = @Original_R0813700) AND ([R0813800] = @Orig" +
+                "inal_R0813800) AND ([R0813900] = @Original_R0813900) AND ([R0814000] = @Original" +
+                "_R0814000) AND ([R0814100] = @Original_R0814100) AND ([R0814200] = @Original_R08" +
+                "14200) AND ([R0814300] = @Original_R0814300) AND ([R0814400] = @Original_R081440" +
+                "0) AND ([R0814500] = @Original_R0814500) AND ([R0814600] = @Original_R0814600) A" +
+                "ND ([R0814700] = @Original_R0814700) AND ([R0814800] = @Original_R0814800) AND (" +
+                "[R0814900] = @Original_R0814900) AND ([R0815000] = @Original_R0815000) AND ([R08" +
+                "15100] = @Original_R0815100) AND ([R0815200] = @Original_R0815200) AND ([R081530" +
+                "0] = @Original_R0815300) AND ([R0815400] = @Original_R0815400) AND ([R0815500] =" +
+                " @Original_R0815500) AND ([R0815600] = @Original_R0815600) AND ([R0815700] = @Or" +
+                "iginal_R0815700) AND ([R0815800] = @Original_R0815800) AND ([R0815900] = @Origin" +
+                "al_R0815900) AND ([R0816000] = @Original_R0816000) AND ([R0816100] = @Original_R" +
+                "0816100) AND ([R0816200] = @Original_R0816200) AND ([R0816300] = @Original_R0816" +
+                "300) AND ([R0816400] = @Original_R0816400) AND ([R0816500] = @Original_R0816500)" +
+                " AND ([R0817400] = @Original_R0817400) AND ([R0817500] = @Original_R0817500) AND" +
+                " ([R0817600] = @Original_R0817600) AND ([R0817700] = @Original_R0817700) AND ([R" +
+                "0817800] = @Original_R0817800) AND ([R0817900] = @Original_R0817900) AND ([R0818" +
+                "000] = @Original_R0818000) AND ([R0818100] = @Original_R0818100) AND ([R0818200]" +
+                " = @Original_R0818200) AND ([R0818300] = @Original_R0818300) AND ([R0818400] = @" +
+                "Original_R0818400) AND ([R0818500] = @Original_R0818500) AND ([R0818600] = @Orig" +
+                "inal_R0818600) AND ([R0818700] = @Original_R0818700) AND ([R0818800] = @Original" +
+                "_R0818800) AND ([R0818900] = @Original_R0818900) AND ([R0819000] = @Original_R08" +
+                "19000) AND ([R0819100] = @Original_R0819100) AND ([R0819200] = @Original_R081920" +
+                "0) AND ([R0819300] = @Original_R0819300) AND ([R0819400] = @Original_R0819400) A" +
+                "ND ([R0819500] = @Original_R0819500) AND ([R0819600] = @Original_R0819600) AND (" +
+                "[R0819700] = @Original_R0819700) AND ([R0819800] = @Original_R0819800) AND ([R08" +
+                "19900] = @Original_R0819900) AND ([R0820000] = @Original_R0820000) AND ([R082010" +
+                "0] = @Original_R0820100) AND ([R0820200] = @Original_R0820200) AND ([R0820300] =" +
+                " @Original_R0820300) AND ([R0820400] = @Original_R0820400) AND ([R0820500] = @Or" +
+                "iginal_R0820500) AND ([R0820600] = @Original_R0820600) AND ([R0820700] = @Origin" +
+                "al_R0820700) AND ([R0820800] = @Original_R0820800) AND ([R0820900] = @Original_R" +
+                "0820900) AND ([R0821000] = @Original_R0821000) AND ([R0821100] = @Original_R0821" +
+                "100) AND ([R0821200] = @Original_R0821200) AND ([R0821300] = @Original_R0821300)" +
+                " AND ([R0821400] = @Original_R0821400) AND ([R0821500] = @Original_R0821500) AND" +
+                " ([R0821600] = @Original_R0821600) AND ([R0821700] = @Original_R0821700) AND ([R" +
+                "0821800] = @Original_R0821800) AND ([R0821900] = @Original_R0821900) AND ([R0822" +
+                "000] = @Original_R0822000) AND ([R0822100] = @Original_R0822100) AND ([R0822200]" +
+                " = @Original_R0822200) AND ([R0822300] = @Original_R0822300) AND ([R0822400] = @" +
+                "Original_R0822400) AND ([R0822500] = @Original_R0822500) AND ([R0822600] = @Orig" +
+                "inal_R0822600) AND ([R0822700] = @Original_R0822700) AND ([R0822800] = @Original" +
+                "_R0822800) AND ([R0822900] = @Original_R0822900) AND ([R0823000] = @Original_R08" +
+                "23000) AND ([R0823100] = @Original_R0823100) AND ([R0823200] = @Original_R082320" +
+                "0) AND ([R0823300] = @Original_R0823300) AND ([R0823400] = @Original_R0823400) A" +
+                "ND ([R0823500] = @Original_R0823500) AND ([R0823600] = @Original_R0823600) AND (" +
+                "[R0823700] = @Original_R0823700) AND ([R0823800] = @Original_R0823800) AND ([R08" +
+                "23900] = @Original_R0823900) AND ([R0824000] = @Original_R0824000) AND ([R082410" +
+                "0] = @Original_R0824100) AND ([R0824200] = @Original_R0824200) AND ([R0824300] =" +
+                " @Original_R0824300) AND ([R0824400] = @Original_R0824400) AND ([R0824500] = @Or" +
+                "iginal_R0824500) AND ([R0824600] = @Original_R0824600) AND ([R0824700] = @Origin" +
+                "al_R0824700) AND ([R0824800] = @Original_R0824800) AND ([R0824900] = @Original_R" +
+                "0824900) AND ([R0825000] = @Original_R0825000) AND ([R0825100] = @Original_R0825" +
+                "100) AND ([R0825200] = @Original_R0825200) AND ([R0825300] = @Original_R0825300)" +
+                " AND ([R0825400] = @Original_R0825400) AND ([R1193000] = @Original_R1193000))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Extract].[tblTwins] ([R0000100], [R0536300], [R0813100], [R0813200]," +
+                " [R0813300], [R0813400], [R0813500], [R0813600], [R0813700], [R0813800], [R08139" +
+                "00], [R0814000], [R0814100], [R0814200], [R0814300], [R0814400], [R0814500], [R0" +
+                "814600], [R0814700], [R0814800], [R0814900], [R0815000], [R0815100], [R0815200]," +
+                " [R0815300], [R0815400], [R0815500], [R0815600], [R0815700], [R0815800], [R08159" +
+                "00], [R0816000], [R0816100], [R0816200], [R0816300], [R0816400], [R0816500], [R0" +
+                "817400], [R0817500], [R0817600], [R0817700], [R0817800], [R0817900], [R0818000]," +
+                " [R0818100], [R0818200], [R0818300], [R0818400], [R0818500], [R0818600], [R08187" +
+                "00], [R0818800], [R0818900], [R0819000], [R0819100], [R0819200], [R0819300], [R0" +
+                "819400], [R0819500], [R0819600], [R0819700], [R0819800], [R0819900], [R0820000]," +
+                " [R0820100], [R0820200], [R0820300], [R0820400], [R0820500], [R0820600], [R08207" +
+                "00], [R0820800], [R0820900], [R0821000], [R0821100], [R0821200], [R0821300], [R0" +
+                "821400], [R0821500], [R0821600], [R0821700], [R0821800], [R0821900], [R0822000]," +
+                " [R0822100], [R0822200], [R0822300], [R0822400], [R0822500], [R0822600], [R08227" +
+                "00], [R0822800], [R0822900], [R0823000], [R0823100], [R0823200], [R0823300], [R0" +
+                "823400], [R0823500], [R0823600], [R0823700], [R0823800], [R0823900], [R0824000]," +
+                " [R0824100], [R0824200], [R0824300], [R0824400], [R0824500], [R0824600], [R08247" +
+                "00], [R0824800], [R0824900], [R0825000], [R0825100], [R0825200], [R0825300], [R0" +
+                "825400], [R1193000]) VALUES (@R0000100, @R0536300, @R0813100, @R0813200, @R08133" +
+                "00, @R0813400, @R0813500, @R0813600, @R0813700, @R0813800, @R0813900, @R0814000," +
+                " @R0814100, @R0814200, @R0814300, @R0814400, @R0814500, @R0814600, @R0814700, @R" +
+                "0814800, @R0814900, @R0815000, @R0815100, @R0815200, @R0815300, @R0815400, @R081" +
+                "5500, @R0815600, @R0815700, @R0815800, @R0815900, @R0816000, @R0816100, @R081620" +
+                "0, @R0816300, @R0816400, @R0816500, @R0817400, @R0817500, @R0817600, @R0817700, " +
+                "@R0817800, @R0817900, @R0818000, @R0818100, @R0818200, @R0818300, @R0818400, @R0" +
+                "818500, @R0818600, @R0818700, @R0818800, @R0818900, @R0819000, @R0819100, @R0819" +
+                "200, @R0819300, @R0819400, @R0819500, @R0819600, @R0819700, @R0819800, @R0819900" +
+                ", @R0820000, @R0820100, @R0820200, @R0820300, @R0820400, @R0820500, @R0820600, @" +
+                "R0820700, @R0820800, @R0820900, @R0821000, @R0821100, @R0821200, @R0821300, @R08" +
+                "21400, @R0821500, @R0821600, @R0821700, @R0821800, @R0821900, @R0822000, @R08221" +
+                "00, @R0822200, @R0822300, @R0822400, @R0822500, @R0822600, @R0822700, @R0822800," +
+                " @R0822900, @R0823000, @R0823100, @R0823200, @R0823300, @R0823400, @R0823500, @R" +
+                "0823600, @R0823700, @R0823800, @R0823900, @R0824000, @R0824100, @R0824200, @R082" +
+                "4300, @R0824400, @R0824500, @R0824600, @R0824700, @R0824800, @R0824900, @R082500" +
+                "0, @R0825100, @R0825200, @R0825300, @R0825400, @R1193000);\r\nSELECT R0000100, R05" +
+                "36300, R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R08" +
+                "13800, R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R08" +
+                "14600, R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R08" +
+                "15400, R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R08" +
+                "16200, R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R08" +
+                "17800, R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R08" +
+                "18600, R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R08" +
+                "19400, R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R08" +
+                "20200, R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R08" +
+                "21000, R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R08" +
+                "21800, R0821900, R0822000, R0822100, R0822200, R0822300, R0822400, R0822500, R08" +
+                "22600, R0822700, R0822800, R0822900, R0823000, R0823100, R0823200, R0823300, R08" +
+                "23400, R0823500, R0823600, R0823700, R0823800, R0823900, R0824000, R0824100, R08" +
+                "24200, R0824300, R0824400, R0824500, R0824600, R0824700, R0824800, R0824900, R08" +
+                "25000, R0825100, R0825200, R0825300, R0825400, R1193000 FROM Extract.tblTwins WH" +
+                "ERE (R0000100 = @R0000100)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [Extract].[tblTwins] SET [R0000100] = @R0000100, [R0536300] = @R0536300, [" +
+                "R0813100] = @R0813100, [R0813200] = @R0813200, [R0813300] = @R0813300, [R0813400" +
+                "] = @R0813400, [R0813500] = @R0813500, [R0813600] = @R0813600, [R0813700] = @R08" +
+                "13700, [R0813800] = @R0813800, [R0813900] = @R0813900, [R0814000] = @R0814000, [" +
+                "R0814100] = @R0814100, [R0814200] = @R0814200, [R0814300] = @R0814300, [R0814400" +
+                "] = @R0814400, [R0814500] = @R0814500, [R0814600] = @R0814600, [R0814700] = @R08" +
+                "14700, [R0814800] = @R0814800, [R0814900] = @R0814900, [R0815000] = @R0815000, [" +
+                "R0815100] = @R0815100, [R0815200] = @R0815200, [R0815300] = @R0815300, [R0815400" +
+                "] = @R0815400, [R0815500] = @R0815500, [R0815600] = @R0815600, [R0815700] = @R08" +
+                "15700, [R0815800] = @R0815800, [R0815900] = @R0815900, [R0816000] = @R0816000, [" +
+                "R0816100] = @R0816100, [R0816200] = @R0816200, [R0816300] = @R0816300, [R0816400" +
+                "] = @R0816400, [R0816500] = @R0816500, [R0817400] = @R0817400, [R0817500] = @R08" +
+                "17500, [R0817600] = @R0817600, [R0817700] = @R0817700, [R0817800] = @R0817800, [" +
+                "R0817900] = @R0817900, [R0818000] = @R0818000, [R0818100] = @R0818100, [R0818200" +
+                "] = @R0818200, [R0818300] = @R0818300, [R0818400] = @R0818400, [R0818500] = @R08" +
+                "18500, [R0818600] = @R0818600, [R0818700] = @R0818700, [R0818800] = @R0818800, [" +
+                "R0818900] = @R0818900, [R0819000] = @R0819000, [R0819100] = @R0819100, [R0819200" +
+                "] = @R0819200, [R0819300] = @R0819300, [R0819400] = @R0819400, [R0819500] = @R08" +
+                "19500, [R0819600] = @R0819600, [R0819700] = @R0819700, [R0819800] = @R0819800, [" +
+                "R0819900] = @R0819900, [R0820000] = @R0820000, [R0820100] = @R0820100, [R0820200" +
+                "] = @R0820200, [R0820300] = @R0820300, [R0820400] = @R0820400, [R0820500] = @R08" +
+                "20500, [R0820600] = @R0820600, [R0820700] = @R0820700, [R0820800] = @R0820800, [" +
+                "R0820900] = @R0820900, [R0821000] = @R0821000, [R0821100] = @R0821100, [R0821200" +
+                "] = @R0821200, [R0821300] = @R0821300, [R0821400] = @R0821400, [R0821500] = @R08" +
+                "21500, [R0821600] = @R0821600, [R0821700] = @R0821700, [R0821800] = @R0821800, [" +
+                "R0821900] = @R0821900, [R0822000] = @R0822000, [R0822100] = @R0822100, [R0822200" +
+                "] = @R0822200, [R0822300] = @R0822300, [R0822400] = @R0822400, [R0822500] = @R08" +
+                "22500, [R0822600] = @R0822600, [R0822700] = @R0822700, [R0822800] = @R0822800, [" +
+                "R0822900] = @R0822900, [R0823000] = @R0823000, [R0823100] = @R0823100, [R0823200" +
+                "] = @R0823200, [R0823300] = @R0823300, [R0823400] = @R0823400, [R0823500] = @R08" +
+                "23500, [R0823600] = @R0823600, [R0823700] = @R0823700, [R0823800] = @R0823800, [" +
+                "R0823900] = @R0823900, [R0824000] = @R0824000, [R0824100] = @R0824100, [R0824200" +
+                "] = @R0824200, [R0824300] = @R0824300, [R0824400] = @R0824400, [R0824500] = @R08" +
+                "24500, [R0824600] = @R0824600, [R0824700] = @R0824700, [R0824800] = @R0824800, [" +
+                "R0824900] = @R0824900, [R0825000] = @R0825000, [R0825100] = @R0825100, [R0825200" +
+                "] = @R0825200, [R0825300] = @R0825300, [R0825400] = @R0825400, [R1193000] = @R11" +
+                "93000 WHERE (([R0000100] = @Original_R0000100) AND ([R0536300] = @Original_R0536" +
+                "300) AND ([R0813100] = @Original_R0813100) AND ([R0813200] = @Original_R0813200)" +
+                " AND ([R0813300] = @Original_R0813300) AND ([R0813400] = @Original_R0813400) AND" +
+                " ([R0813500] = @Original_R0813500) AND ([R0813600] = @Original_R0813600) AND ([R" +
+                "0813700] = @Original_R0813700) AND ([R0813800] = @Original_R0813800) AND ([R0813" +
+                "900] = @Original_R0813900) AND ([R0814000] = @Original_R0814000) AND ([R0814100]" +
+                " = @Original_R0814100) AND ([R0814200] = @Original_R0814200) AND ([R0814300] = @" +
+                "Original_R0814300) AND ([R0814400] = @Original_R0814400) AND ([R0814500] = @Orig" +
+                "inal_R0814500) AND ([R0814600] = @Original_R0814600) AND ([R0814700] = @Original" +
+                "_R0814700) AND ([R0814800] = @Original_R0814800) AND ([R0814900] = @Original_R08" +
+                "14900) AND ([R0815000] = @Original_R0815000) AND ([R0815100] = @Original_R081510" +
+                "0) AND ([R0815200] = @Original_R0815200) AND ([R0815300] = @Original_R0815300) A" +
+                "ND ([R0815400] = @Original_R0815400) AND ([R0815500] = @Original_R0815500) AND (" +
+                "[R0815600] = @Original_R0815600) AND ([R0815700] = @Original_R0815700) AND ([R08" +
+                "15800] = @Original_R0815800) AND ([R0815900] = @Original_R0815900) AND ([R081600" +
+                "0] = @Original_R0816000) AND ([R0816100] = @Original_R0816100) AND ([R0816200] =" +
+                " @Original_R0816200) AND ([R0816300] = @Original_R0816300) AND ([R0816400] = @Or" +
+                "iginal_R0816400) AND ([R0816500] = @Original_R0816500) AND ([R0817400] = @Origin" +
+                "al_R0817400) AND ([R0817500] = @Original_R0817500) AND ([R0817600] = @Original_R" +
+                "0817600) AND ([R0817700] = @Original_R0817700) AND ([R0817800] = @Original_R0817" +
+                "800) AND ([R0817900] = @Original_R0817900) AND ([R0818000] = @Original_R0818000)" +
+                " AND ([R0818100] = @Original_R0818100) AND ([R0818200] = @Original_R0818200) AND" +
+                " ([R0818300] = @Original_R0818300) AND ([R0818400] = @Original_R0818400) AND ([R" +
+                "0818500] = @Original_R0818500) AND ([R0818600] = @Original_R0818600) AND ([R0818" +
+                "700] = @Original_R0818700) AND ([R0818800] = @Original_R0818800) AND ([R0818900]" +
+                " = @Original_R0818900) AND ([R0819000] = @Original_R0819000) AND ([R0819100] = @" +
+                "Original_R0819100) AND ([R0819200] = @Original_R0819200) AND ([R0819300] = @Orig" +
+                "inal_R0819300) AND ([R0819400] = @Original_R0819400) AND ([R0819500] = @Original" +
+                "_R0819500) AND ([R0819600] = @Original_R0819600) AND ([R0819700] = @Original_R08" +
+                "19700) AND ([R0819800] = @Original_R0819800) AND ([R0819900] = @Original_R081990" +
+                "0) AND ([R0820000] = @Original_R0820000) AND ([R0820100] = @Original_R0820100) A" +
+                "ND ([R0820200] = @Original_R0820200) AND ([R0820300] = @Original_R0820300) AND (" +
+                "[R0820400] = @Original_R0820400) AND ([R0820500] = @Original_R0820500) AND ([R08" +
+                "20600] = @Original_R0820600) AND ([R0820700] = @Original_R0820700) AND ([R082080" +
+                "0] = @Original_R0820800) AND ([R0820900] = @Original_R0820900) AND ([R0821000] =" +
+                " @Original_R0821000) AND ([R0821100] = @Original_R0821100) AND ([R0821200] = @Or" +
+                "iginal_R0821200) AND ([R0821300] = @Original_R0821300) AND ([R0821400] = @Origin" +
+                "al_R0821400) AND ([R0821500] = @Original_R0821500) AND ([R0821600] = @Original_R" +
+                "0821600) AND ([R0821700] = @Original_R0821700) AND ([R0821800] = @Original_R0821" +
+                "800) AND ([R0821900] = @Original_R0821900) AND ([R0822000] = @Original_R0822000)" +
+                " AND ([R0822100] = @Original_R0822100) AND ([R0822200] = @Original_R0822200) AND" +
+                " ([R0822300] = @Original_R0822300) AND ([R0822400] = @Original_R0822400) AND ([R" +
+                "0822500] = @Original_R0822500) AND ([R0822600] = @Original_R0822600) AND ([R0822" +
+                "700] = @Original_R0822700) AND ([R0822800] = @Original_R0822800) AND ([R0822900]" +
+                " = @Original_R0822900) AND ([R0823000] = @Original_R0823000) AND ([R0823100] = @" +
+                "Original_R0823100) AND ([R0823200] = @Original_R0823200) AND ([R0823300] = @Orig" +
+                "inal_R0823300) AND ([R0823400] = @Original_R0823400) AND ([R0823500] = @Original" +
+                "_R0823500) AND ([R0823600] = @Original_R0823600) AND ([R0823700] = @Original_R08" +
+                "23700) AND ([R0823800] = @Original_R0823800) AND ([R0823900] = @Original_R082390" +
+                "0) AND ([R0824000] = @Original_R0824000) AND ([R0824100] = @Original_R0824100) A" +
+                "ND ([R0824200] = @Original_R0824200) AND ([R0824300] = @Original_R0824300) AND (" +
+                "[R0824400] = @Original_R0824400) AND ([R0824500] = @Original_R0824500) AND ([R08" +
+                "24600] = @Original_R0824600) AND ([R0824700] = @Original_R0824700) AND ([R082480" +
+                "0] = @Original_R0824800) AND ([R0824900] = @Original_R0824900) AND ([R0825000] =" +
+                " @Original_R0825000) AND ([R0825100] = @Original_R0825100) AND ([R0825200] = @Or" +
+                "iginal_R0825200) AND ([R0825300] = @Original_R0825300) AND ([R0825400] = @Origin" +
+                "al_R0825400) AND ([R1193000] = @Original_R1193000));\r\nSELECT R0000100, R0536300," +
+                " R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R0813800," +
+                " R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R0814600," +
+                " R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R0815400," +
+                " R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R0816200," +
+                " R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R0817800," +
+                " R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R0818600," +
+                " R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R0819400," +
+                " R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R0820200," +
+                " R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R0821000," +
+                " R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R0821800," +
+                " R0821900, R0822000, R0822100, R0822200, R0822300, R0822400, R0822500, R0822600," +
+                " R0822700, R0822800, R0822900, R0823000, R0823100, R0823200, R0823300, R0823400," +
+                " R0823500, R0823600, R0823700, R0823800, R0823900, R0824000, R0824100, R0824200," +
+                " R0824300, R0824400, R0824500, R0824600, R0824700, R0824800, R0824900, R0825000," +
+                " R0825100, R0825200, R0825300, R0825400, R1193000 FROM Extract.tblTwins WHERE (R" +
+                "0000100 = @R0000100)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0822900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0823900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824500", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824600", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824700", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824800", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0824900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824900", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825100", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825200", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825300", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R0825400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825400", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0000100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0000100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0536300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0536300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0813900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0813900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0814900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0814900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0815900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0815900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0816500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0816500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0817900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0817900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0818900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0818900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0819900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0819900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0820900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0820900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0821900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0821900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0822900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0822900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0823900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0823900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824500", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824500", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824600", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824600", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824700", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824700", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824800", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824800", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0824900", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0824900", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825100", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825100", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825200", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825200", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825300", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825300", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R0825400", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R0825400", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_R1193000", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "R1193000", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Nls.Base97.Properties.Settings.Default.Nlsy97ConnectionStringBase;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT R0000100, R0536300, R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R0822200, R0822300, R0822400, R0822500, R0822600, R0822700, R0822800, R0822900, R0823000, R0823100, R0823200, R0823300, R0823400, R0823500, R0823600, R0823700, R0823800, R0823900, R0824000, R0824100, R0824200, R0824300, R0824400, R0824500, R0824600, R0824700, R0824800, R0824900, R0825000, R0825100, R0825200, R0825300, R0825400, R1193000 FROM Extract.tblTwins";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ImportDataSet.tblTwinsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ImportDataSet.tblTwinsDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ImportDataSet.tblTwinsDataTable dataTable = new ImportDataSet.tblTwinsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ImportDataSet.tblTwinsDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ImportDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "tblTwins");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    int Original_R0000100, 
+                    int Original_R0536300, 
+                    int Original_R0813100, 
+                    int Original_R0813200, 
+                    int Original_R0813300, 
+                    int Original_R0813400, 
+                    int Original_R0813500, 
+                    int Original_R0813600, 
+                    int Original_R0813700, 
+                    int Original_R0813800, 
+                    int Original_R0813900, 
+                    int Original_R0814000, 
+                    int Original_R0814100, 
+                    int Original_R0814200, 
+                    int Original_R0814300, 
+                    int Original_R0814400, 
+                    int Original_R0814500, 
+                    int Original_R0814600, 
+                    int Original_R0814700, 
+                    int Original_R0814800, 
+                    int Original_R0814900, 
+                    int Original_R0815000, 
+                    int Original_R0815100, 
+                    int Original_R0815200, 
+                    int Original_R0815300, 
+                    int Original_R0815400, 
+                    int Original_R0815500, 
+                    int Original_R0815600, 
+                    int Original_R0815700, 
+                    int Original_R0815800, 
+                    int Original_R0815900, 
+                    int Original_R0816000, 
+                    int Original_R0816100, 
+                    int Original_R0816200, 
+                    int Original_R0816300, 
+                    int Original_R0816400, 
+                    int Original_R0816500, 
+                    int Original_R0817400, 
+                    int Original_R0817500, 
+                    int Original_R0817600, 
+                    int Original_R0817700, 
+                    int Original_R0817800, 
+                    int Original_R0817900, 
+                    int Original_R0818000, 
+                    int Original_R0818100, 
+                    int Original_R0818200, 
+                    int Original_R0818300, 
+                    int Original_R0818400, 
+                    int Original_R0818500, 
+                    int Original_R0818600, 
+                    int Original_R0818700, 
+                    int Original_R0818800, 
+                    int Original_R0818900, 
+                    int Original_R0819000, 
+                    int Original_R0819100, 
+                    int Original_R0819200, 
+                    int Original_R0819300, 
+                    int Original_R0819400, 
+                    int Original_R0819500, 
+                    int Original_R0819600, 
+                    int Original_R0819700, 
+                    int Original_R0819800, 
+                    int Original_R0819900, 
+                    int Original_R0820000, 
+                    int Original_R0820100, 
+                    int Original_R0820200, 
+                    int Original_R0820300, 
+                    int Original_R0820400, 
+                    int Original_R0820500, 
+                    int Original_R0820600, 
+                    int Original_R0820700, 
+                    int Original_R0820800, 
+                    int Original_R0820900, 
+                    int Original_R0821000, 
+                    int Original_R0821100, 
+                    int Original_R0821200, 
+                    int Original_R0821300, 
+                    int Original_R0821400, 
+                    int Original_R0821500, 
+                    int Original_R0821600, 
+                    int Original_R0821700, 
+                    int Original_R0821800, 
+                    int Original_R0821900, 
+                    int Original_R0822000, 
+                    int Original_R0822100, 
+                    int Original_R0822200, 
+                    int Original_R0822300, 
+                    int Original_R0822400, 
+                    int Original_R0822500, 
+                    int Original_R0822600, 
+                    int Original_R0822700, 
+                    int Original_R0822800, 
+                    int Original_R0822900, 
+                    int Original_R0823000, 
+                    int Original_R0823100, 
+                    int Original_R0823200, 
+                    int Original_R0823300, 
+                    int Original_R0823400, 
+                    int Original_R0823500, 
+                    int Original_R0823600, 
+                    int Original_R0823700, 
+                    int Original_R0823800, 
+                    int Original_R0823900, 
+                    int Original_R0824000, 
+                    int Original_R0824100, 
+                    int Original_R0824200, 
+                    int Original_R0824300, 
+                    int Original_R0824400, 
+                    int Original_R0824500, 
+                    int Original_R0824600, 
+                    int Original_R0824700, 
+                    int Original_R0824800, 
+                    int Original_R0824900, 
+                    int Original_R0825000, 
+                    int Original_R0825100, 
+                    int Original_R0825200, 
+                    int Original_R0825300, 
+                    int Original_R0825400, 
+                    int Original_R1193000) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_R0000100));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_R0536300));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_R0813100));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_R0813200));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_R0813300));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_R0813400));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_R0813500));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_R0813600));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_R0813700));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_R0813800));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_R0813900));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_R0814000));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_R0814100));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_R0814200));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_R0814300));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((int)(Original_R0814400));
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_R0814500));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((int)(Original_R0814600));
+            this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_R0814700));
+            this.Adapter.DeleteCommand.Parameters[19].Value = ((int)(Original_R0814800));
+            this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_R0814900));
+            this.Adapter.DeleteCommand.Parameters[21].Value = ((int)(Original_R0815000));
+            this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_R0815100));
+            this.Adapter.DeleteCommand.Parameters[23].Value = ((int)(Original_R0815200));
+            this.Adapter.DeleteCommand.Parameters[24].Value = ((int)(Original_R0815300));
+            this.Adapter.DeleteCommand.Parameters[25].Value = ((int)(Original_R0815400));
+            this.Adapter.DeleteCommand.Parameters[26].Value = ((int)(Original_R0815500));
+            this.Adapter.DeleteCommand.Parameters[27].Value = ((int)(Original_R0815600));
+            this.Adapter.DeleteCommand.Parameters[28].Value = ((int)(Original_R0815700));
+            this.Adapter.DeleteCommand.Parameters[29].Value = ((int)(Original_R0815800));
+            this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_R0815900));
+            this.Adapter.DeleteCommand.Parameters[31].Value = ((int)(Original_R0816000));
+            this.Adapter.DeleteCommand.Parameters[32].Value = ((int)(Original_R0816100));
+            this.Adapter.DeleteCommand.Parameters[33].Value = ((int)(Original_R0816200));
+            this.Adapter.DeleteCommand.Parameters[34].Value = ((int)(Original_R0816300));
+            this.Adapter.DeleteCommand.Parameters[35].Value = ((int)(Original_R0816400));
+            this.Adapter.DeleteCommand.Parameters[36].Value = ((int)(Original_R0816500));
+            this.Adapter.DeleteCommand.Parameters[37].Value = ((int)(Original_R0817400));
+            this.Adapter.DeleteCommand.Parameters[38].Value = ((int)(Original_R0817500));
+            this.Adapter.DeleteCommand.Parameters[39].Value = ((int)(Original_R0817600));
+            this.Adapter.DeleteCommand.Parameters[40].Value = ((int)(Original_R0817700));
+            this.Adapter.DeleteCommand.Parameters[41].Value = ((int)(Original_R0817800));
+            this.Adapter.DeleteCommand.Parameters[42].Value = ((int)(Original_R0817900));
+            this.Adapter.DeleteCommand.Parameters[43].Value = ((int)(Original_R0818000));
+            this.Adapter.DeleteCommand.Parameters[44].Value = ((int)(Original_R0818100));
+            this.Adapter.DeleteCommand.Parameters[45].Value = ((int)(Original_R0818200));
+            this.Adapter.DeleteCommand.Parameters[46].Value = ((int)(Original_R0818300));
+            this.Adapter.DeleteCommand.Parameters[47].Value = ((int)(Original_R0818400));
+            this.Adapter.DeleteCommand.Parameters[48].Value = ((int)(Original_R0818500));
+            this.Adapter.DeleteCommand.Parameters[49].Value = ((int)(Original_R0818600));
+            this.Adapter.DeleteCommand.Parameters[50].Value = ((int)(Original_R0818700));
+            this.Adapter.DeleteCommand.Parameters[51].Value = ((int)(Original_R0818800));
+            this.Adapter.DeleteCommand.Parameters[52].Value = ((int)(Original_R0818900));
+            this.Adapter.DeleteCommand.Parameters[53].Value = ((int)(Original_R0819000));
+            this.Adapter.DeleteCommand.Parameters[54].Value = ((int)(Original_R0819100));
+            this.Adapter.DeleteCommand.Parameters[55].Value = ((int)(Original_R0819200));
+            this.Adapter.DeleteCommand.Parameters[56].Value = ((int)(Original_R0819300));
+            this.Adapter.DeleteCommand.Parameters[57].Value = ((int)(Original_R0819400));
+            this.Adapter.DeleteCommand.Parameters[58].Value = ((int)(Original_R0819500));
+            this.Adapter.DeleteCommand.Parameters[59].Value = ((int)(Original_R0819600));
+            this.Adapter.DeleteCommand.Parameters[60].Value = ((int)(Original_R0819700));
+            this.Adapter.DeleteCommand.Parameters[61].Value = ((int)(Original_R0819800));
+            this.Adapter.DeleteCommand.Parameters[62].Value = ((int)(Original_R0819900));
+            this.Adapter.DeleteCommand.Parameters[63].Value = ((int)(Original_R0820000));
+            this.Adapter.DeleteCommand.Parameters[64].Value = ((int)(Original_R0820100));
+            this.Adapter.DeleteCommand.Parameters[65].Value = ((int)(Original_R0820200));
+            this.Adapter.DeleteCommand.Parameters[66].Value = ((int)(Original_R0820300));
+            this.Adapter.DeleteCommand.Parameters[67].Value = ((int)(Original_R0820400));
+            this.Adapter.DeleteCommand.Parameters[68].Value = ((int)(Original_R0820500));
+            this.Adapter.DeleteCommand.Parameters[69].Value = ((int)(Original_R0820600));
+            this.Adapter.DeleteCommand.Parameters[70].Value = ((int)(Original_R0820700));
+            this.Adapter.DeleteCommand.Parameters[71].Value = ((int)(Original_R0820800));
+            this.Adapter.DeleteCommand.Parameters[72].Value = ((int)(Original_R0820900));
+            this.Adapter.DeleteCommand.Parameters[73].Value = ((int)(Original_R0821000));
+            this.Adapter.DeleteCommand.Parameters[74].Value = ((int)(Original_R0821100));
+            this.Adapter.DeleteCommand.Parameters[75].Value = ((int)(Original_R0821200));
+            this.Adapter.DeleteCommand.Parameters[76].Value = ((int)(Original_R0821300));
+            this.Adapter.DeleteCommand.Parameters[77].Value = ((int)(Original_R0821400));
+            this.Adapter.DeleteCommand.Parameters[78].Value = ((int)(Original_R0821500));
+            this.Adapter.DeleteCommand.Parameters[79].Value = ((int)(Original_R0821600));
+            this.Adapter.DeleteCommand.Parameters[80].Value = ((int)(Original_R0821700));
+            this.Adapter.DeleteCommand.Parameters[81].Value = ((int)(Original_R0821800));
+            this.Adapter.DeleteCommand.Parameters[82].Value = ((int)(Original_R0821900));
+            this.Adapter.DeleteCommand.Parameters[83].Value = ((int)(Original_R0822000));
+            this.Adapter.DeleteCommand.Parameters[84].Value = ((int)(Original_R0822100));
+            this.Adapter.DeleteCommand.Parameters[85].Value = ((int)(Original_R0822200));
+            this.Adapter.DeleteCommand.Parameters[86].Value = ((int)(Original_R0822300));
+            this.Adapter.DeleteCommand.Parameters[87].Value = ((int)(Original_R0822400));
+            this.Adapter.DeleteCommand.Parameters[88].Value = ((int)(Original_R0822500));
+            this.Adapter.DeleteCommand.Parameters[89].Value = ((int)(Original_R0822600));
+            this.Adapter.DeleteCommand.Parameters[90].Value = ((int)(Original_R0822700));
+            this.Adapter.DeleteCommand.Parameters[91].Value = ((int)(Original_R0822800));
+            this.Adapter.DeleteCommand.Parameters[92].Value = ((int)(Original_R0822900));
+            this.Adapter.DeleteCommand.Parameters[93].Value = ((int)(Original_R0823000));
+            this.Adapter.DeleteCommand.Parameters[94].Value = ((int)(Original_R0823100));
+            this.Adapter.DeleteCommand.Parameters[95].Value = ((int)(Original_R0823200));
+            this.Adapter.DeleteCommand.Parameters[96].Value = ((int)(Original_R0823300));
+            this.Adapter.DeleteCommand.Parameters[97].Value = ((int)(Original_R0823400));
+            this.Adapter.DeleteCommand.Parameters[98].Value = ((int)(Original_R0823500));
+            this.Adapter.DeleteCommand.Parameters[99].Value = ((int)(Original_R0823600));
+            this.Adapter.DeleteCommand.Parameters[100].Value = ((int)(Original_R0823700));
+            this.Adapter.DeleteCommand.Parameters[101].Value = ((int)(Original_R0823800));
+            this.Adapter.DeleteCommand.Parameters[102].Value = ((int)(Original_R0823900));
+            this.Adapter.DeleteCommand.Parameters[103].Value = ((int)(Original_R0824000));
+            this.Adapter.DeleteCommand.Parameters[104].Value = ((int)(Original_R0824100));
+            this.Adapter.DeleteCommand.Parameters[105].Value = ((int)(Original_R0824200));
+            this.Adapter.DeleteCommand.Parameters[106].Value = ((int)(Original_R0824300));
+            this.Adapter.DeleteCommand.Parameters[107].Value = ((int)(Original_R0824400));
+            this.Adapter.DeleteCommand.Parameters[108].Value = ((int)(Original_R0824500));
+            this.Adapter.DeleteCommand.Parameters[109].Value = ((int)(Original_R0824600));
+            this.Adapter.DeleteCommand.Parameters[110].Value = ((int)(Original_R0824700));
+            this.Adapter.DeleteCommand.Parameters[111].Value = ((int)(Original_R0824800));
+            this.Adapter.DeleteCommand.Parameters[112].Value = ((int)(Original_R0824900));
+            this.Adapter.DeleteCommand.Parameters[113].Value = ((int)(Original_R0825000));
+            this.Adapter.DeleteCommand.Parameters[114].Value = ((int)(Original_R0825100));
+            this.Adapter.DeleteCommand.Parameters[115].Value = ((int)(Original_R0825200));
+            this.Adapter.DeleteCommand.Parameters[116].Value = ((int)(Original_R0825300));
+            this.Adapter.DeleteCommand.Parameters[117].Value = ((int)(Original_R0825400));
+            this.Adapter.DeleteCommand.Parameters[118].Value = ((int)(Original_R1193000));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(
+                    int R0000100, 
+                    int R0536300, 
+                    int R0813100, 
+                    int R0813200, 
+                    int R0813300, 
+                    int R0813400, 
+                    int R0813500, 
+                    int R0813600, 
+                    int R0813700, 
+                    int R0813800, 
+                    int R0813900, 
+                    int R0814000, 
+                    int R0814100, 
+                    int R0814200, 
+                    int R0814300, 
+                    int R0814400, 
+                    int R0814500, 
+                    int R0814600, 
+                    int R0814700, 
+                    int R0814800, 
+                    int R0814900, 
+                    int R0815000, 
+                    int R0815100, 
+                    int R0815200, 
+                    int R0815300, 
+                    int R0815400, 
+                    int R0815500, 
+                    int R0815600, 
+                    int R0815700, 
+                    int R0815800, 
+                    int R0815900, 
+                    int R0816000, 
+                    int R0816100, 
+                    int R0816200, 
+                    int R0816300, 
+                    int R0816400, 
+                    int R0816500, 
+                    int R0817400, 
+                    int R0817500, 
+                    int R0817600, 
+                    int R0817700, 
+                    int R0817800, 
+                    int R0817900, 
+                    int R0818000, 
+                    int R0818100, 
+                    int R0818200, 
+                    int R0818300, 
+                    int R0818400, 
+                    int R0818500, 
+                    int R0818600, 
+                    int R0818700, 
+                    int R0818800, 
+                    int R0818900, 
+                    int R0819000, 
+                    int R0819100, 
+                    int R0819200, 
+                    int R0819300, 
+                    int R0819400, 
+                    int R0819500, 
+                    int R0819600, 
+                    int R0819700, 
+                    int R0819800, 
+                    int R0819900, 
+                    int R0820000, 
+                    int R0820100, 
+                    int R0820200, 
+                    int R0820300, 
+                    int R0820400, 
+                    int R0820500, 
+                    int R0820600, 
+                    int R0820700, 
+                    int R0820800, 
+                    int R0820900, 
+                    int R0821000, 
+                    int R0821100, 
+                    int R0821200, 
+                    int R0821300, 
+                    int R0821400, 
+                    int R0821500, 
+                    int R0821600, 
+                    int R0821700, 
+                    int R0821800, 
+                    int R0821900, 
+                    int R0822000, 
+                    int R0822100, 
+                    int R0822200, 
+                    int R0822300, 
+                    int R0822400, 
+                    int R0822500, 
+                    int R0822600, 
+                    int R0822700, 
+                    int R0822800, 
+                    int R0822900, 
+                    int R0823000, 
+                    int R0823100, 
+                    int R0823200, 
+                    int R0823300, 
+                    int R0823400, 
+                    int R0823500, 
+                    int R0823600, 
+                    int R0823700, 
+                    int R0823800, 
+                    int R0823900, 
+                    int R0824000, 
+                    int R0824100, 
+                    int R0824200, 
+                    int R0824300, 
+                    int R0824400, 
+                    int R0824500, 
+                    int R0824600, 
+                    int R0824700, 
+                    int R0824800, 
+                    int R0824900, 
+                    int R0825000, 
+                    int R0825100, 
+                    int R0825200, 
+                    int R0825300, 
+                    int R0825400, 
+                    int R1193000) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(R0000100));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(R0536300));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(R0813100));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(R0813200));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(R0813300));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(R0813400));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(R0813500));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((int)(R0813600));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(R0813700));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((int)(R0813800));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((int)(R0813900));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((int)(R0814000));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((int)(R0814100));
+            this.Adapter.InsertCommand.Parameters[13].Value = ((int)(R0814200));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((int)(R0814300));
+            this.Adapter.InsertCommand.Parameters[15].Value = ((int)(R0814400));
+            this.Adapter.InsertCommand.Parameters[16].Value = ((int)(R0814500));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((int)(R0814600));
+            this.Adapter.InsertCommand.Parameters[18].Value = ((int)(R0814700));
+            this.Adapter.InsertCommand.Parameters[19].Value = ((int)(R0814800));
+            this.Adapter.InsertCommand.Parameters[20].Value = ((int)(R0814900));
+            this.Adapter.InsertCommand.Parameters[21].Value = ((int)(R0815000));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((int)(R0815100));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((int)(R0815200));
+            this.Adapter.InsertCommand.Parameters[24].Value = ((int)(R0815300));
+            this.Adapter.InsertCommand.Parameters[25].Value = ((int)(R0815400));
+            this.Adapter.InsertCommand.Parameters[26].Value = ((int)(R0815500));
+            this.Adapter.InsertCommand.Parameters[27].Value = ((int)(R0815600));
+            this.Adapter.InsertCommand.Parameters[28].Value = ((int)(R0815700));
+            this.Adapter.InsertCommand.Parameters[29].Value = ((int)(R0815800));
+            this.Adapter.InsertCommand.Parameters[30].Value = ((int)(R0815900));
+            this.Adapter.InsertCommand.Parameters[31].Value = ((int)(R0816000));
+            this.Adapter.InsertCommand.Parameters[32].Value = ((int)(R0816100));
+            this.Adapter.InsertCommand.Parameters[33].Value = ((int)(R0816200));
+            this.Adapter.InsertCommand.Parameters[34].Value = ((int)(R0816300));
+            this.Adapter.InsertCommand.Parameters[35].Value = ((int)(R0816400));
+            this.Adapter.InsertCommand.Parameters[36].Value = ((int)(R0816500));
+            this.Adapter.InsertCommand.Parameters[37].Value = ((int)(R0817400));
+            this.Adapter.InsertCommand.Parameters[38].Value = ((int)(R0817500));
+            this.Adapter.InsertCommand.Parameters[39].Value = ((int)(R0817600));
+            this.Adapter.InsertCommand.Parameters[40].Value = ((int)(R0817700));
+            this.Adapter.InsertCommand.Parameters[41].Value = ((int)(R0817800));
+            this.Adapter.InsertCommand.Parameters[42].Value = ((int)(R0817900));
+            this.Adapter.InsertCommand.Parameters[43].Value = ((int)(R0818000));
+            this.Adapter.InsertCommand.Parameters[44].Value = ((int)(R0818100));
+            this.Adapter.InsertCommand.Parameters[45].Value = ((int)(R0818200));
+            this.Adapter.InsertCommand.Parameters[46].Value = ((int)(R0818300));
+            this.Adapter.InsertCommand.Parameters[47].Value = ((int)(R0818400));
+            this.Adapter.InsertCommand.Parameters[48].Value = ((int)(R0818500));
+            this.Adapter.InsertCommand.Parameters[49].Value = ((int)(R0818600));
+            this.Adapter.InsertCommand.Parameters[50].Value = ((int)(R0818700));
+            this.Adapter.InsertCommand.Parameters[51].Value = ((int)(R0818800));
+            this.Adapter.InsertCommand.Parameters[52].Value = ((int)(R0818900));
+            this.Adapter.InsertCommand.Parameters[53].Value = ((int)(R0819000));
+            this.Adapter.InsertCommand.Parameters[54].Value = ((int)(R0819100));
+            this.Adapter.InsertCommand.Parameters[55].Value = ((int)(R0819200));
+            this.Adapter.InsertCommand.Parameters[56].Value = ((int)(R0819300));
+            this.Adapter.InsertCommand.Parameters[57].Value = ((int)(R0819400));
+            this.Adapter.InsertCommand.Parameters[58].Value = ((int)(R0819500));
+            this.Adapter.InsertCommand.Parameters[59].Value = ((int)(R0819600));
+            this.Adapter.InsertCommand.Parameters[60].Value = ((int)(R0819700));
+            this.Adapter.InsertCommand.Parameters[61].Value = ((int)(R0819800));
+            this.Adapter.InsertCommand.Parameters[62].Value = ((int)(R0819900));
+            this.Adapter.InsertCommand.Parameters[63].Value = ((int)(R0820000));
+            this.Adapter.InsertCommand.Parameters[64].Value = ((int)(R0820100));
+            this.Adapter.InsertCommand.Parameters[65].Value = ((int)(R0820200));
+            this.Adapter.InsertCommand.Parameters[66].Value = ((int)(R0820300));
+            this.Adapter.InsertCommand.Parameters[67].Value = ((int)(R0820400));
+            this.Adapter.InsertCommand.Parameters[68].Value = ((int)(R0820500));
+            this.Adapter.InsertCommand.Parameters[69].Value = ((int)(R0820600));
+            this.Adapter.InsertCommand.Parameters[70].Value = ((int)(R0820700));
+            this.Adapter.InsertCommand.Parameters[71].Value = ((int)(R0820800));
+            this.Adapter.InsertCommand.Parameters[72].Value = ((int)(R0820900));
+            this.Adapter.InsertCommand.Parameters[73].Value = ((int)(R0821000));
+            this.Adapter.InsertCommand.Parameters[74].Value = ((int)(R0821100));
+            this.Adapter.InsertCommand.Parameters[75].Value = ((int)(R0821200));
+            this.Adapter.InsertCommand.Parameters[76].Value = ((int)(R0821300));
+            this.Adapter.InsertCommand.Parameters[77].Value = ((int)(R0821400));
+            this.Adapter.InsertCommand.Parameters[78].Value = ((int)(R0821500));
+            this.Adapter.InsertCommand.Parameters[79].Value = ((int)(R0821600));
+            this.Adapter.InsertCommand.Parameters[80].Value = ((int)(R0821700));
+            this.Adapter.InsertCommand.Parameters[81].Value = ((int)(R0821800));
+            this.Adapter.InsertCommand.Parameters[82].Value = ((int)(R0821900));
+            this.Adapter.InsertCommand.Parameters[83].Value = ((int)(R0822000));
+            this.Adapter.InsertCommand.Parameters[84].Value = ((int)(R0822100));
+            this.Adapter.InsertCommand.Parameters[85].Value = ((int)(R0822200));
+            this.Adapter.InsertCommand.Parameters[86].Value = ((int)(R0822300));
+            this.Adapter.InsertCommand.Parameters[87].Value = ((int)(R0822400));
+            this.Adapter.InsertCommand.Parameters[88].Value = ((int)(R0822500));
+            this.Adapter.InsertCommand.Parameters[89].Value = ((int)(R0822600));
+            this.Adapter.InsertCommand.Parameters[90].Value = ((int)(R0822700));
+            this.Adapter.InsertCommand.Parameters[91].Value = ((int)(R0822800));
+            this.Adapter.InsertCommand.Parameters[92].Value = ((int)(R0822900));
+            this.Adapter.InsertCommand.Parameters[93].Value = ((int)(R0823000));
+            this.Adapter.InsertCommand.Parameters[94].Value = ((int)(R0823100));
+            this.Adapter.InsertCommand.Parameters[95].Value = ((int)(R0823200));
+            this.Adapter.InsertCommand.Parameters[96].Value = ((int)(R0823300));
+            this.Adapter.InsertCommand.Parameters[97].Value = ((int)(R0823400));
+            this.Adapter.InsertCommand.Parameters[98].Value = ((int)(R0823500));
+            this.Adapter.InsertCommand.Parameters[99].Value = ((int)(R0823600));
+            this.Adapter.InsertCommand.Parameters[100].Value = ((int)(R0823700));
+            this.Adapter.InsertCommand.Parameters[101].Value = ((int)(R0823800));
+            this.Adapter.InsertCommand.Parameters[102].Value = ((int)(R0823900));
+            this.Adapter.InsertCommand.Parameters[103].Value = ((int)(R0824000));
+            this.Adapter.InsertCommand.Parameters[104].Value = ((int)(R0824100));
+            this.Adapter.InsertCommand.Parameters[105].Value = ((int)(R0824200));
+            this.Adapter.InsertCommand.Parameters[106].Value = ((int)(R0824300));
+            this.Adapter.InsertCommand.Parameters[107].Value = ((int)(R0824400));
+            this.Adapter.InsertCommand.Parameters[108].Value = ((int)(R0824500));
+            this.Adapter.InsertCommand.Parameters[109].Value = ((int)(R0824600));
+            this.Adapter.InsertCommand.Parameters[110].Value = ((int)(R0824700));
+            this.Adapter.InsertCommand.Parameters[111].Value = ((int)(R0824800));
+            this.Adapter.InsertCommand.Parameters[112].Value = ((int)(R0824900));
+            this.Adapter.InsertCommand.Parameters[113].Value = ((int)(R0825000));
+            this.Adapter.InsertCommand.Parameters[114].Value = ((int)(R0825100));
+            this.Adapter.InsertCommand.Parameters[115].Value = ((int)(R0825200));
+            this.Adapter.InsertCommand.Parameters[116].Value = ((int)(R0825300));
+            this.Adapter.InsertCommand.Parameters[117].Value = ((int)(R0825400));
+            this.Adapter.InsertCommand.Parameters[118].Value = ((int)(R1193000));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int R0000100, 
+                    int R0536300, 
+                    int R0813100, 
+                    int R0813200, 
+                    int R0813300, 
+                    int R0813400, 
+                    int R0813500, 
+                    int R0813600, 
+                    int R0813700, 
+                    int R0813800, 
+                    int R0813900, 
+                    int R0814000, 
+                    int R0814100, 
+                    int R0814200, 
+                    int R0814300, 
+                    int R0814400, 
+                    int R0814500, 
+                    int R0814600, 
+                    int R0814700, 
+                    int R0814800, 
+                    int R0814900, 
+                    int R0815000, 
+                    int R0815100, 
+                    int R0815200, 
+                    int R0815300, 
+                    int R0815400, 
+                    int R0815500, 
+                    int R0815600, 
+                    int R0815700, 
+                    int R0815800, 
+                    int R0815900, 
+                    int R0816000, 
+                    int R0816100, 
+                    int R0816200, 
+                    int R0816300, 
+                    int R0816400, 
+                    int R0816500, 
+                    int R0817400, 
+                    int R0817500, 
+                    int R0817600, 
+                    int R0817700, 
+                    int R0817800, 
+                    int R0817900, 
+                    int R0818000, 
+                    int R0818100, 
+                    int R0818200, 
+                    int R0818300, 
+                    int R0818400, 
+                    int R0818500, 
+                    int R0818600, 
+                    int R0818700, 
+                    int R0818800, 
+                    int R0818900, 
+                    int R0819000, 
+                    int R0819100, 
+                    int R0819200, 
+                    int R0819300, 
+                    int R0819400, 
+                    int R0819500, 
+                    int R0819600, 
+                    int R0819700, 
+                    int R0819800, 
+                    int R0819900, 
+                    int R0820000, 
+                    int R0820100, 
+                    int R0820200, 
+                    int R0820300, 
+                    int R0820400, 
+                    int R0820500, 
+                    int R0820600, 
+                    int R0820700, 
+                    int R0820800, 
+                    int R0820900, 
+                    int R0821000, 
+                    int R0821100, 
+                    int R0821200, 
+                    int R0821300, 
+                    int R0821400, 
+                    int R0821500, 
+                    int R0821600, 
+                    int R0821700, 
+                    int R0821800, 
+                    int R0821900, 
+                    int R0822000, 
+                    int R0822100, 
+                    int R0822200, 
+                    int R0822300, 
+                    int R0822400, 
+                    int R0822500, 
+                    int R0822600, 
+                    int R0822700, 
+                    int R0822800, 
+                    int R0822900, 
+                    int R0823000, 
+                    int R0823100, 
+                    int R0823200, 
+                    int R0823300, 
+                    int R0823400, 
+                    int R0823500, 
+                    int R0823600, 
+                    int R0823700, 
+                    int R0823800, 
+                    int R0823900, 
+                    int R0824000, 
+                    int R0824100, 
+                    int R0824200, 
+                    int R0824300, 
+                    int R0824400, 
+                    int R0824500, 
+                    int R0824600, 
+                    int R0824700, 
+                    int R0824800, 
+                    int R0824900, 
+                    int R0825000, 
+                    int R0825100, 
+                    int R0825200, 
+                    int R0825300, 
+                    int R0825400, 
+                    int R1193000, 
+                    int Original_R0000100, 
+                    int Original_R0536300, 
+                    int Original_R0813100, 
+                    int Original_R0813200, 
+                    int Original_R0813300, 
+                    int Original_R0813400, 
+                    int Original_R0813500, 
+                    int Original_R0813600, 
+                    int Original_R0813700, 
+                    int Original_R0813800, 
+                    int Original_R0813900, 
+                    int Original_R0814000, 
+                    int Original_R0814100, 
+                    int Original_R0814200, 
+                    int Original_R0814300, 
+                    int Original_R0814400, 
+                    int Original_R0814500, 
+                    int Original_R0814600, 
+                    int Original_R0814700, 
+                    int Original_R0814800, 
+                    int Original_R0814900, 
+                    int Original_R0815000, 
+                    int Original_R0815100, 
+                    int Original_R0815200, 
+                    int Original_R0815300, 
+                    int Original_R0815400, 
+                    int Original_R0815500, 
+                    int Original_R0815600, 
+                    int Original_R0815700, 
+                    int Original_R0815800, 
+                    int Original_R0815900, 
+                    int Original_R0816000, 
+                    int Original_R0816100, 
+                    int Original_R0816200, 
+                    int Original_R0816300, 
+                    int Original_R0816400, 
+                    int Original_R0816500, 
+                    int Original_R0817400, 
+                    int Original_R0817500, 
+                    int Original_R0817600, 
+                    int Original_R0817700, 
+                    int Original_R0817800, 
+                    int Original_R0817900, 
+                    int Original_R0818000, 
+                    int Original_R0818100, 
+                    int Original_R0818200, 
+                    int Original_R0818300, 
+                    int Original_R0818400, 
+                    int Original_R0818500, 
+                    int Original_R0818600, 
+                    int Original_R0818700, 
+                    int Original_R0818800, 
+                    int Original_R0818900, 
+                    int Original_R0819000, 
+                    int Original_R0819100, 
+                    int Original_R0819200, 
+                    int Original_R0819300, 
+                    int Original_R0819400, 
+                    int Original_R0819500, 
+                    int Original_R0819600, 
+                    int Original_R0819700, 
+                    int Original_R0819800, 
+                    int Original_R0819900, 
+                    int Original_R0820000, 
+                    int Original_R0820100, 
+                    int Original_R0820200, 
+                    int Original_R0820300, 
+                    int Original_R0820400, 
+                    int Original_R0820500, 
+                    int Original_R0820600, 
+                    int Original_R0820700, 
+                    int Original_R0820800, 
+                    int Original_R0820900, 
+                    int Original_R0821000, 
+                    int Original_R0821100, 
+                    int Original_R0821200, 
+                    int Original_R0821300, 
+                    int Original_R0821400, 
+                    int Original_R0821500, 
+                    int Original_R0821600, 
+                    int Original_R0821700, 
+                    int Original_R0821800, 
+                    int Original_R0821900, 
+                    int Original_R0822000, 
+                    int Original_R0822100, 
+                    int Original_R0822200, 
+                    int Original_R0822300, 
+                    int Original_R0822400, 
+                    int Original_R0822500, 
+                    int Original_R0822600, 
+                    int Original_R0822700, 
+                    int Original_R0822800, 
+                    int Original_R0822900, 
+                    int Original_R0823000, 
+                    int Original_R0823100, 
+                    int Original_R0823200, 
+                    int Original_R0823300, 
+                    int Original_R0823400, 
+                    int Original_R0823500, 
+                    int Original_R0823600, 
+                    int Original_R0823700, 
+                    int Original_R0823800, 
+                    int Original_R0823900, 
+                    int Original_R0824000, 
+                    int Original_R0824100, 
+                    int Original_R0824200, 
+                    int Original_R0824300, 
+                    int Original_R0824400, 
+                    int Original_R0824500, 
+                    int Original_R0824600, 
+                    int Original_R0824700, 
+                    int Original_R0824800, 
+                    int Original_R0824900, 
+                    int Original_R0825000, 
+                    int Original_R0825100, 
+                    int Original_R0825200, 
+                    int Original_R0825300, 
+                    int Original_R0825400, 
+                    int Original_R1193000) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(R0000100));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(R0536300));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(R0813100));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(R0813200));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(R0813300));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(R0813400));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(R0813500));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(R0813600));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(R0813700));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(R0813800));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(R0813900));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(R0814000));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(R0814100));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(R0814200));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(R0814300));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(R0814400));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(R0814500));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(R0814600));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(R0814700));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(R0814800));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(R0814900));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(R0815000));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(R0815100));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(R0815200));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(R0815300));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(R0815400));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(R0815500));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(R0815600));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(R0815700));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(R0815800));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(R0815900));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(R0816000));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(R0816100));
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(R0816200));
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(R0816300));
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(R0816400));
+            this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(R0816500));
+            this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(R0817400));
+            this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(R0817500));
+            this.Adapter.UpdateCommand.Parameters[39].Value = ((int)(R0817600));
+            this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(R0817700));
+            this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(R0817800));
+            this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(R0817900));
+            this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(R0818000));
+            this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(R0818100));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((int)(R0818200));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((int)(R0818300));
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((int)(R0818400));
+            this.Adapter.UpdateCommand.Parameters[48].Value = ((int)(R0818500));
+            this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(R0818600));
+            this.Adapter.UpdateCommand.Parameters[50].Value = ((int)(R0818700));
+            this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(R0818800));
+            this.Adapter.UpdateCommand.Parameters[52].Value = ((int)(R0818900));
+            this.Adapter.UpdateCommand.Parameters[53].Value = ((int)(R0819000));
+            this.Adapter.UpdateCommand.Parameters[54].Value = ((int)(R0819100));
+            this.Adapter.UpdateCommand.Parameters[55].Value = ((int)(R0819200));
+            this.Adapter.UpdateCommand.Parameters[56].Value = ((int)(R0819300));
+            this.Adapter.UpdateCommand.Parameters[57].Value = ((int)(R0819400));
+            this.Adapter.UpdateCommand.Parameters[58].Value = ((int)(R0819500));
+            this.Adapter.UpdateCommand.Parameters[59].Value = ((int)(R0819600));
+            this.Adapter.UpdateCommand.Parameters[60].Value = ((int)(R0819700));
+            this.Adapter.UpdateCommand.Parameters[61].Value = ((int)(R0819800));
+            this.Adapter.UpdateCommand.Parameters[62].Value = ((int)(R0819900));
+            this.Adapter.UpdateCommand.Parameters[63].Value = ((int)(R0820000));
+            this.Adapter.UpdateCommand.Parameters[64].Value = ((int)(R0820100));
+            this.Adapter.UpdateCommand.Parameters[65].Value = ((int)(R0820200));
+            this.Adapter.UpdateCommand.Parameters[66].Value = ((int)(R0820300));
+            this.Adapter.UpdateCommand.Parameters[67].Value = ((int)(R0820400));
+            this.Adapter.UpdateCommand.Parameters[68].Value = ((int)(R0820500));
+            this.Adapter.UpdateCommand.Parameters[69].Value = ((int)(R0820600));
+            this.Adapter.UpdateCommand.Parameters[70].Value = ((int)(R0820700));
+            this.Adapter.UpdateCommand.Parameters[71].Value = ((int)(R0820800));
+            this.Adapter.UpdateCommand.Parameters[72].Value = ((int)(R0820900));
+            this.Adapter.UpdateCommand.Parameters[73].Value = ((int)(R0821000));
+            this.Adapter.UpdateCommand.Parameters[74].Value = ((int)(R0821100));
+            this.Adapter.UpdateCommand.Parameters[75].Value = ((int)(R0821200));
+            this.Adapter.UpdateCommand.Parameters[76].Value = ((int)(R0821300));
+            this.Adapter.UpdateCommand.Parameters[77].Value = ((int)(R0821400));
+            this.Adapter.UpdateCommand.Parameters[78].Value = ((int)(R0821500));
+            this.Adapter.UpdateCommand.Parameters[79].Value = ((int)(R0821600));
+            this.Adapter.UpdateCommand.Parameters[80].Value = ((int)(R0821700));
+            this.Adapter.UpdateCommand.Parameters[81].Value = ((int)(R0821800));
+            this.Adapter.UpdateCommand.Parameters[82].Value = ((int)(R0821900));
+            this.Adapter.UpdateCommand.Parameters[83].Value = ((int)(R0822000));
+            this.Adapter.UpdateCommand.Parameters[84].Value = ((int)(R0822100));
+            this.Adapter.UpdateCommand.Parameters[85].Value = ((int)(R0822200));
+            this.Adapter.UpdateCommand.Parameters[86].Value = ((int)(R0822300));
+            this.Adapter.UpdateCommand.Parameters[87].Value = ((int)(R0822400));
+            this.Adapter.UpdateCommand.Parameters[88].Value = ((int)(R0822500));
+            this.Adapter.UpdateCommand.Parameters[89].Value = ((int)(R0822600));
+            this.Adapter.UpdateCommand.Parameters[90].Value = ((int)(R0822700));
+            this.Adapter.UpdateCommand.Parameters[91].Value = ((int)(R0822800));
+            this.Adapter.UpdateCommand.Parameters[92].Value = ((int)(R0822900));
+            this.Adapter.UpdateCommand.Parameters[93].Value = ((int)(R0823000));
+            this.Adapter.UpdateCommand.Parameters[94].Value = ((int)(R0823100));
+            this.Adapter.UpdateCommand.Parameters[95].Value = ((int)(R0823200));
+            this.Adapter.UpdateCommand.Parameters[96].Value = ((int)(R0823300));
+            this.Adapter.UpdateCommand.Parameters[97].Value = ((int)(R0823400));
+            this.Adapter.UpdateCommand.Parameters[98].Value = ((int)(R0823500));
+            this.Adapter.UpdateCommand.Parameters[99].Value = ((int)(R0823600));
+            this.Adapter.UpdateCommand.Parameters[100].Value = ((int)(R0823700));
+            this.Adapter.UpdateCommand.Parameters[101].Value = ((int)(R0823800));
+            this.Adapter.UpdateCommand.Parameters[102].Value = ((int)(R0823900));
+            this.Adapter.UpdateCommand.Parameters[103].Value = ((int)(R0824000));
+            this.Adapter.UpdateCommand.Parameters[104].Value = ((int)(R0824100));
+            this.Adapter.UpdateCommand.Parameters[105].Value = ((int)(R0824200));
+            this.Adapter.UpdateCommand.Parameters[106].Value = ((int)(R0824300));
+            this.Adapter.UpdateCommand.Parameters[107].Value = ((int)(R0824400));
+            this.Adapter.UpdateCommand.Parameters[108].Value = ((int)(R0824500));
+            this.Adapter.UpdateCommand.Parameters[109].Value = ((int)(R0824600));
+            this.Adapter.UpdateCommand.Parameters[110].Value = ((int)(R0824700));
+            this.Adapter.UpdateCommand.Parameters[111].Value = ((int)(R0824800));
+            this.Adapter.UpdateCommand.Parameters[112].Value = ((int)(R0824900));
+            this.Adapter.UpdateCommand.Parameters[113].Value = ((int)(R0825000));
+            this.Adapter.UpdateCommand.Parameters[114].Value = ((int)(R0825100));
+            this.Adapter.UpdateCommand.Parameters[115].Value = ((int)(R0825200));
+            this.Adapter.UpdateCommand.Parameters[116].Value = ((int)(R0825300));
+            this.Adapter.UpdateCommand.Parameters[117].Value = ((int)(R0825400));
+            this.Adapter.UpdateCommand.Parameters[118].Value = ((int)(R1193000));
+            this.Adapter.UpdateCommand.Parameters[119].Value = ((int)(Original_R0000100));
+            this.Adapter.UpdateCommand.Parameters[120].Value = ((int)(Original_R0536300));
+            this.Adapter.UpdateCommand.Parameters[121].Value = ((int)(Original_R0813100));
+            this.Adapter.UpdateCommand.Parameters[122].Value = ((int)(Original_R0813200));
+            this.Adapter.UpdateCommand.Parameters[123].Value = ((int)(Original_R0813300));
+            this.Adapter.UpdateCommand.Parameters[124].Value = ((int)(Original_R0813400));
+            this.Adapter.UpdateCommand.Parameters[125].Value = ((int)(Original_R0813500));
+            this.Adapter.UpdateCommand.Parameters[126].Value = ((int)(Original_R0813600));
+            this.Adapter.UpdateCommand.Parameters[127].Value = ((int)(Original_R0813700));
+            this.Adapter.UpdateCommand.Parameters[128].Value = ((int)(Original_R0813800));
+            this.Adapter.UpdateCommand.Parameters[129].Value = ((int)(Original_R0813900));
+            this.Adapter.UpdateCommand.Parameters[130].Value = ((int)(Original_R0814000));
+            this.Adapter.UpdateCommand.Parameters[131].Value = ((int)(Original_R0814100));
+            this.Adapter.UpdateCommand.Parameters[132].Value = ((int)(Original_R0814200));
+            this.Adapter.UpdateCommand.Parameters[133].Value = ((int)(Original_R0814300));
+            this.Adapter.UpdateCommand.Parameters[134].Value = ((int)(Original_R0814400));
+            this.Adapter.UpdateCommand.Parameters[135].Value = ((int)(Original_R0814500));
+            this.Adapter.UpdateCommand.Parameters[136].Value = ((int)(Original_R0814600));
+            this.Adapter.UpdateCommand.Parameters[137].Value = ((int)(Original_R0814700));
+            this.Adapter.UpdateCommand.Parameters[138].Value = ((int)(Original_R0814800));
+            this.Adapter.UpdateCommand.Parameters[139].Value = ((int)(Original_R0814900));
+            this.Adapter.UpdateCommand.Parameters[140].Value = ((int)(Original_R0815000));
+            this.Adapter.UpdateCommand.Parameters[141].Value = ((int)(Original_R0815100));
+            this.Adapter.UpdateCommand.Parameters[142].Value = ((int)(Original_R0815200));
+            this.Adapter.UpdateCommand.Parameters[143].Value = ((int)(Original_R0815300));
+            this.Adapter.UpdateCommand.Parameters[144].Value = ((int)(Original_R0815400));
+            this.Adapter.UpdateCommand.Parameters[145].Value = ((int)(Original_R0815500));
+            this.Adapter.UpdateCommand.Parameters[146].Value = ((int)(Original_R0815600));
+            this.Adapter.UpdateCommand.Parameters[147].Value = ((int)(Original_R0815700));
+            this.Adapter.UpdateCommand.Parameters[148].Value = ((int)(Original_R0815800));
+            this.Adapter.UpdateCommand.Parameters[149].Value = ((int)(Original_R0815900));
+            this.Adapter.UpdateCommand.Parameters[150].Value = ((int)(Original_R0816000));
+            this.Adapter.UpdateCommand.Parameters[151].Value = ((int)(Original_R0816100));
+            this.Adapter.UpdateCommand.Parameters[152].Value = ((int)(Original_R0816200));
+            this.Adapter.UpdateCommand.Parameters[153].Value = ((int)(Original_R0816300));
+            this.Adapter.UpdateCommand.Parameters[154].Value = ((int)(Original_R0816400));
+            this.Adapter.UpdateCommand.Parameters[155].Value = ((int)(Original_R0816500));
+            this.Adapter.UpdateCommand.Parameters[156].Value = ((int)(Original_R0817400));
+            this.Adapter.UpdateCommand.Parameters[157].Value = ((int)(Original_R0817500));
+            this.Adapter.UpdateCommand.Parameters[158].Value = ((int)(Original_R0817600));
+            this.Adapter.UpdateCommand.Parameters[159].Value = ((int)(Original_R0817700));
+            this.Adapter.UpdateCommand.Parameters[160].Value = ((int)(Original_R0817800));
+            this.Adapter.UpdateCommand.Parameters[161].Value = ((int)(Original_R0817900));
+            this.Adapter.UpdateCommand.Parameters[162].Value = ((int)(Original_R0818000));
+            this.Adapter.UpdateCommand.Parameters[163].Value = ((int)(Original_R0818100));
+            this.Adapter.UpdateCommand.Parameters[164].Value = ((int)(Original_R0818200));
+            this.Adapter.UpdateCommand.Parameters[165].Value = ((int)(Original_R0818300));
+            this.Adapter.UpdateCommand.Parameters[166].Value = ((int)(Original_R0818400));
+            this.Adapter.UpdateCommand.Parameters[167].Value = ((int)(Original_R0818500));
+            this.Adapter.UpdateCommand.Parameters[168].Value = ((int)(Original_R0818600));
+            this.Adapter.UpdateCommand.Parameters[169].Value = ((int)(Original_R0818700));
+            this.Adapter.UpdateCommand.Parameters[170].Value = ((int)(Original_R0818800));
+            this.Adapter.UpdateCommand.Parameters[171].Value = ((int)(Original_R0818900));
+            this.Adapter.UpdateCommand.Parameters[172].Value = ((int)(Original_R0819000));
+            this.Adapter.UpdateCommand.Parameters[173].Value = ((int)(Original_R0819100));
+            this.Adapter.UpdateCommand.Parameters[174].Value = ((int)(Original_R0819200));
+            this.Adapter.UpdateCommand.Parameters[175].Value = ((int)(Original_R0819300));
+            this.Adapter.UpdateCommand.Parameters[176].Value = ((int)(Original_R0819400));
+            this.Adapter.UpdateCommand.Parameters[177].Value = ((int)(Original_R0819500));
+            this.Adapter.UpdateCommand.Parameters[178].Value = ((int)(Original_R0819600));
+            this.Adapter.UpdateCommand.Parameters[179].Value = ((int)(Original_R0819700));
+            this.Adapter.UpdateCommand.Parameters[180].Value = ((int)(Original_R0819800));
+            this.Adapter.UpdateCommand.Parameters[181].Value = ((int)(Original_R0819900));
+            this.Adapter.UpdateCommand.Parameters[182].Value = ((int)(Original_R0820000));
+            this.Adapter.UpdateCommand.Parameters[183].Value = ((int)(Original_R0820100));
+            this.Adapter.UpdateCommand.Parameters[184].Value = ((int)(Original_R0820200));
+            this.Adapter.UpdateCommand.Parameters[185].Value = ((int)(Original_R0820300));
+            this.Adapter.UpdateCommand.Parameters[186].Value = ((int)(Original_R0820400));
+            this.Adapter.UpdateCommand.Parameters[187].Value = ((int)(Original_R0820500));
+            this.Adapter.UpdateCommand.Parameters[188].Value = ((int)(Original_R0820600));
+            this.Adapter.UpdateCommand.Parameters[189].Value = ((int)(Original_R0820700));
+            this.Adapter.UpdateCommand.Parameters[190].Value = ((int)(Original_R0820800));
+            this.Adapter.UpdateCommand.Parameters[191].Value = ((int)(Original_R0820900));
+            this.Adapter.UpdateCommand.Parameters[192].Value = ((int)(Original_R0821000));
+            this.Adapter.UpdateCommand.Parameters[193].Value = ((int)(Original_R0821100));
+            this.Adapter.UpdateCommand.Parameters[194].Value = ((int)(Original_R0821200));
+            this.Adapter.UpdateCommand.Parameters[195].Value = ((int)(Original_R0821300));
+            this.Adapter.UpdateCommand.Parameters[196].Value = ((int)(Original_R0821400));
+            this.Adapter.UpdateCommand.Parameters[197].Value = ((int)(Original_R0821500));
+            this.Adapter.UpdateCommand.Parameters[198].Value = ((int)(Original_R0821600));
+            this.Adapter.UpdateCommand.Parameters[199].Value = ((int)(Original_R0821700));
+            this.Adapter.UpdateCommand.Parameters[200].Value = ((int)(Original_R0821800));
+            this.Adapter.UpdateCommand.Parameters[201].Value = ((int)(Original_R0821900));
+            this.Adapter.UpdateCommand.Parameters[202].Value = ((int)(Original_R0822000));
+            this.Adapter.UpdateCommand.Parameters[203].Value = ((int)(Original_R0822100));
+            this.Adapter.UpdateCommand.Parameters[204].Value = ((int)(Original_R0822200));
+            this.Adapter.UpdateCommand.Parameters[205].Value = ((int)(Original_R0822300));
+            this.Adapter.UpdateCommand.Parameters[206].Value = ((int)(Original_R0822400));
+            this.Adapter.UpdateCommand.Parameters[207].Value = ((int)(Original_R0822500));
+            this.Adapter.UpdateCommand.Parameters[208].Value = ((int)(Original_R0822600));
+            this.Adapter.UpdateCommand.Parameters[209].Value = ((int)(Original_R0822700));
+            this.Adapter.UpdateCommand.Parameters[210].Value = ((int)(Original_R0822800));
+            this.Adapter.UpdateCommand.Parameters[211].Value = ((int)(Original_R0822900));
+            this.Adapter.UpdateCommand.Parameters[212].Value = ((int)(Original_R0823000));
+            this.Adapter.UpdateCommand.Parameters[213].Value = ((int)(Original_R0823100));
+            this.Adapter.UpdateCommand.Parameters[214].Value = ((int)(Original_R0823200));
+            this.Adapter.UpdateCommand.Parameters[215].Value = ((int)(Original_R0823300));
+            this.Adapter.UpdateCommand.Parameters[216].Value = ((int)(Original_R0823400));
+            this.Adapter.UpdateCommand.Parameters[217].Value = ((int)(Original_R0823500));
+            this.Adapter.UpdateCommand.Parameters[218].Value = ((int)(Original_R0823600));
+            this.Adapter.UpdateCommand.Parameters[219].Value = ((int)(Original_R0823700));
+            this.Adapter.UpdateCommand.Parameters[220].Value = ((int)(Original_R0823800));
+            this.Adapter.UpdateCommand.Parameters[221].Value = ((int)(Original_R0823900));
+            this.Adapter.UpdateCommand.Parameters[222].Value = ((int)(Original_R0824000));
+            this.Adapter.UpdateCommand.Parameters[223].Value = ((int)(Original_R0824100));
+            this.Adapter.UpdateCommand.Parameters[224].Value = ((int)(Original_R0824200));
+            this.Adapter.UpdateCommand.Parameters[225].Value = ((int)(Original_R0824300));
+            this.Adapter.UpdateCommand.Parameters[226].Value = ((int)(Original_R0824400));
+            this.Adapter.UpdateCommand.Parameters[227].Value = ((int)(Original_R0824500));
+            this.Adapter.UpdateCommand.Parameters[228].Value = ((int)(Original_R0824600));
+            this.Adapter.UpdateCommand.Parameters[229].Value = ((int)(Original_R0824700));
+            this.Adapter.UpdateCommand.Parameters[230].Value = ((int)(Original_R0824800));
+            this.Adapter.UpdateCommand.Parameters[231].Value = ((int)(Original_R0824900));
+            this.Adapter.UpdateCommand.Parameters[232].Value = ((int)(Original_R0825000));
+            this.Adapter.UpdateCommand.Parameters[233].Value = ((int)(Original_R0825100));
+            this.Adapter.UpdateCommand.Parameters[234].Value = ((int)(Original_R0825200));
+            this.Adapter.UpdateCommand.Parameters[235].Value = ((int)(Original_R0825300));
+            this.Adapter.UpdateCommand.Parameters[236].Value = ((int)(Original_R0825400));
+            this.Adapter.UpdateCommand.Parameters[237].Value = ((int)(Original_R1193000));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int R0536300, 
+                    int R0813100, 
+                    int R0813200, 
+                    int R0813300, 
+                    int R0813400, 
+                    int R0813500, 
+                    int R0813600, 
+                    int R0813700, 
+                    int R0813800, 
+                    int R0813900, 
+                    int R0814000, 
+                    int R0814100, 
+                    int R0814200, 
+                    int R0814300, 
+                    int R0814400, 
+                    int R0814500, 
+                    int R0814600, 
+                    int R0814700, 
+                    int R0814800, 
+                    int R0814900, 
+                    int R0815000, 
+                    int R0815100, 
+                    int R0815200, 
+                    int R0815300, 
+                    int R0815400, 
+                    int R0815500, 
+                    int R0815600, 
+                    int R0815700, 
+                    int R0815800, 
+                    int R0815900, 
+                    int R0816000, 
+                    int R0816100, 
+                    int R0816200, 
+                    int R0816300, 
+                    int R0816400, 
+                    int R0816500, 
+                    int R0817400, 
+                    int R0817500, 
+                    int R0817600, 
+                    int R0817700, 
+                    int R0817800, 
+                    int R0817900, 
+                    int R0818000, 
+                    int R0818100, 
+                    int R0818200, 
+                    int R0818300, 
+                    int R0818400, 
+                    int R0818500, 
+                    int R0818600, 
+                    int R0818700, 
+                    int R0818800, 
+                    int R0818900, 
+                    int R0819000, 
+                    int R0819100, 
+                    int R0819200, 
+                    int R0819300, 
+                    int R0819400, 
+                    int R0819500, 
+                    int R0819600, 
+                    int R0819700, 
+                    int R0819800, 
+                    int R0819900, 
+                    int R0820000, 
+                    int R0820100, 
+                    int R0820200, 
+                    int R0820300, 
+                    int R0820400, 
+                    int R0820500, 
+                    int R0820600, 
+                    int R0820700, 
+                    int R0820800, 
+                    int R0820900, 
+                    int R0821000, 
+                    int R0821100, 
+                    int R0821200, 
+                    int R0821300, 
+                    int R0821400, 
+                    int R0821500, 
+                    int R0821600, 
+                    int R0821700, 
+                    int R0821800, 
+                    int R0821900, 
+                    int R0822000, 
+                    int R0822100, 
+                    int R0822200, 
+                    int R0822300, 
+                    int R0822400, 
+                    int R0822500, 
+                    int R0822600, 
+                    int R0822700, 
+                    int R0822800, 
+                    int R0822900, 
+                    int R0823000, 
+                    int R0823100, 
+                    int R0823200, 
+                    int R0823300, 
+                    int R0823400, 
+                    int R0823500, 
+                    int R0823600, 
+                    int R0823700, 
+                    int R0823800, 
+                    int R0823900, 
+                    int R0824000, 
+                    int R0824100, 
+                    int R0824200, 
+                    int R0824300, 
+                    int R0824400, 
+                    int R0824500, 
+                    int R0824600, 
+                    int R0824700, 
+                    int R0824800, 
+                    int R0824900, 
+                    int R0825000, 
+                    int R0825100, 
+                    int R0825200, 
+                    int R0825300, 
+                    int R0825400, 
+                    int R1193000, 
+                    int Original_R0000100, 
+                    int Original_R0536300, 
+                    int Original_R0813100, 
+                    int Original_R0813200, 
+                    int Original_R0813300, 
+                    int Original_R0813400, 
+                    int Original_R0813500, 
+                    int Original_R0813600, 
+                    int Original_R0813700, 
+                    int Original_R0813800, 
+                    int Original_R0813900, 
+                    int Original_R0814000, 
+                    int Original_R0814100, 
+                    int Original_R0814200, 
+                    int Original_R0814300, 
+                    int Original_R0814400, 
+                    int Original_R0814500, 
+                    int Original_R0814600, 
+                    int Original_R0814700, 
+                    int Original_R0814800, 
+                    int Original_R0814900, 
+                    int Original_R0815000, 
+                    int Original_R0815100, 
+                    int Original_R0815200, 
+                    int Original_R0815300, 
+                    int Original_R0815400, 
+                    int Original_R0815500, 
+                    int Original_R0815600, 
+                    int Original_R0815700, 
+                    int Original_R0815800, 
+                    int Original_R0815900, 
+                    int Original_R0816000, 
+                    int Original_R0816100, 
+                    int Original_R0816200, 
+                    int Original_R0816300, 
+                    int Original_R0816400, 
+                    int Original_R0816500, 
+                    int Original_R0817400, 
+                    int Original_R0817500, 
+                    int Original_R0817600, 
+                    int Original_R0817700, 
+                    int Original_R0817800, 
+                    int Original_R0817900, 
+                    int Original_R0818000, 
+                    int Original_R0818100, 
+                    int Original_R0818200, 
+                    int Original_R0818300, 
+                    int Original_R0818400, 
+                    int Original_R0818500, 
+                    int Original_R0818600, 
+                    int Original_R0818700, 
+                    int Original_R0818800, 
+                    int Original_R0818900, 
+                    int Original_R0819000, 
+                    int Original_R0819100, 
+                    int Original_R0819200, 
+                    int Original_R0819300, 
+                    int Original_R0819400, 
+                    int Original_R0819500, 
+                    int Original_R0819600, 
+                    int Original_R0819700, 
+                    int Original_R0819800, 
+                    int Original_R0819900, 
+                    int Original_R0820000, 
+                    int Original_R0820100, 
+                    int Original_R0820200, 
+                    int Original_R0820300, 
+                    int Original_R0820400, 
+                    int Original_R0820500, 
+                    int Original_R0820600, 
+                    int Original_R0820700, 
+                    int Original_R0820800, 
+                    int Original_R0820900, 
+                    int Original_R0821000, 
+                    int Original_R0821100, 
+                    int Original_R0821200, 
+                    int Original_R0821300, 
+                    int Original_R0821400, 
+                    int Original_R0821500, 
+                    int Original_R0821600, 
+                    int Original_R0821700, 
+                    int Original_R0821800, 
+                    int Original_R0821900, 
+                    int Original_R0822000, 
+                    int Original_R0822100, 
+                    int Original_R0822200, 
+                    int Original_R0822300, 
+                    int Original_R0822400, 
+                    int Original_R0822500, 
+                    int Original_R0822600, 
+                    int Original_R0822700, 
+                    int Original_R0822800, 
+                    int Original_R0822900, 
+                    int Original_R0823000, 
+                    int Original_R0823100, 
+                    int Original_R0823200, 
+                    int Original_R0823300, 
+                    int Original_R0823400, 
+                    int Original_R0823500, 
+                    int Original_R0823600, 
+                    int Original_R0823700, 
+                    int Original_R0823800, 
+                    int Original_R0823900, 
+                    int Original_R0824000, 
+                    int Original_R0824100, 
+                    int Original_R0824200, 
+                    int Original_R0824300, 
+                    int Original_R0824400, 
+                    int Original_R0824500, 
+                    int Original_R0824600, 
+                    int Original_R0824700, 
+                    int Original_R0824800, 
+                    int Original_R0824900, 
+                    int Original_R0825000, 
+                    int Original_R0825100, 
+                    int Original_R0825200, 
+                    int Original_R0825300, 
+                    int Original_R0825400, 
+                    int Original_R1193000) {
+            return this.Update(Original_R0000100, R0536300, R0813100, R0813200, R0813300, R0813400, R0813500, R0813600, R0813700, R0813800, R0813900, R0814000, R0814100, R0814200, R0814300, R0814400, R0814500, R0814600, R0814700, R0814800, R0814900, R0815000, R0815100, R0815200, R0815300, R0815400, R0815500, R0815600, R0815700, R0815800, R0815900, R0816000, R0816100, R0816200, R0816300, R0816400, R0816500, R0817400, R0817500, R0817600, R0817700, R0817800, R0817900, R0818000, R0818100, R0818200, R0818300, R0818400, R0818500, R0818600, R0818700, R0818800, R0818900, R0819000, R0819100, R0819200, R0819300, R0819400, R0819500, R0819600, R0819700, R0819800, R0819900, R0820000, R0820100, R0820200, R0820300, R0820400, R0820500, R0820600, R0820700, R0820800, R0820900, R0821000, R0821100, R0821200, R0821300, R0821400, R0821500, R0821600, R0821700, R0821800, R0821900, R0822000, R0822100, R0822200, R0822300, R0822400, R0822500, R0822600, R0822700, R0822800, R0822900, R0823000, R0823100, R0823200, R0823300, R0823400, R0823500, R0823600, R0823700, R0823800, R0823900, R0824000, R0824100, R0824200, R0824300, R0824400, R0824500, R0824600, R0824700, R0824800, R0824900, R0825000, R0825100, R0825200, R0825300, R0825400, R1193000, Original_R0000100, Original_R0536300, Original_R0813100, Original_R0813200, Original_R0813300, Original_R0813400, Original_R0813500, Original_R0813600, Original_R0813700, Original_R0813800, Original_R0813900, Original_R0814000, Original_R0814100, Original_R0814200, Original_R0814300, Original_R0814400, Original_R0814500, Original_R0814600, Original_R0814700, Original_R0814800, Original_R0814900, Original_R0815000, Original_R0815100, Original_R0815200, Original_R0815300, Original_R0815400, Original_R0815500, Original_R0815600, Original_R0815700, Original_R0815800, Original_R0815900, Original_R0816000, Original_R0816100, Original_R0816200, Original_R0816300, Original_R0816400, Original_R0816500, Original_R0817400, Original_R0817500, Original_R0817600, Original_R0817700, Original_R0817800, Original_R0817900, Original_R0818000, Original_R0818100, Original_R0818200, Original_R0818300, Original_R0818400, Original_R0818500, Original_R0818600, Original_R0818700, Original_R0818800, Original_R0818900, Original_R0819000, Original_R0819100, Original_R0819200, Original_R0819300, Original_R0819400, Original_R0819500, Original_R0819600, Original_R0819700, Original_R0819800, Original_R0819900, Original_R0820000, Original_R0820100, Original_R0820200, Original_R0820300, Original_R0820400, Original_R0820500, Original_R0820600, Original_R0820700, Original_R0820800, Original_R0820900, Original_R0821000, Original_R0821100, Original_R0821200, Original_R0821300, Original_R0821400, Original_R0821500, Original_R0821600, Original_R0821700, Original_R0821800, Original_R0821900, Original_R0822000, Original_R0822100, Original_R0822200, Original_R0822300, Original_R0822400, Original_R0822500, Original_R0822600, Original_R0822700, Original_R0822800, Original_R0822900, Original_R0823000, Original_R0823100, Original_R0823200, Original_R0823300, Original_R0823400, Original_R0823500, Original_R0823600, Original_R0823700, Original_R0823800, Original_R0823900, Original_R0824000, Original_R0824100, Original_R0824200, Original_R0824300, Original_R0824400, Original_R0824500, Original_R0824600, Original_R0824700, Original_R0824800, Original_R0824900, Original_R0825000, Original_R0825100, Original_R0825200, Original_R0825300, Original_R0825400, Original_R1193000);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -35871,8 +37316,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
         
         private tblDemographicsTableAdapter _tblDemographicsTableAdapter;
         
-        private tblTwinsTableAdapter _tblTwinsTableAdapter;
-        
         private tblLinksExplicitTableAdapter _tblLinksExplicitTableAdapter;
         
         private tblLinksImplicitTableAdapter _tblLinksImplicitTableAdapter;
@@ -35880,6 +37323,8 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
         private tblRosterTableAdapter _tblRosterTableAdapter;
         
         private tblSurveyTimeTableAdapter _tblSurveyTimeTableAdapter;
+        
+        private tblTwinsTableAdapter _tblTwinsTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -35907,20 +37352,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
             }
             set {
                 this._tblDemographicsTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblTwinsTableAdapter tblTwinsTableAdapter {
-            get {
-                return this._tblTwinsTableAdapter;
-            }
-            set {
-                this._tblTwinsTableAdapter = value;
             }
         }
         
@@ -35982,6 +37413,20 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tblTwinsTableAdapter tblTwinsTableAdapter {
+            get {
+                return this._tblTwinsTableAdapter;
+            }
+            set {
+                this._tblTwinsTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -36003,10 +37448,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                             && (this._tblDemographicsTableAdapter.Connection != null))) {
                     return this._tblDemographicsTableAdapter.Connection;
                 }
-                if (((this._tblTwinsTableAdapter != null) 
-                            && (this._tblTwinsTableAdapter.Connection != null))) {
-                    return this._tblTwinsTableAdapter.Connection;
-                }
                 if (((this._tblLinksExplicitTableAdapter != null) 
                             && (this._tblLinksExplicitTableAdapter.Connection != null))) {
                     return this._tblLinksExplicitTableAdapter.Connection;
@@ -36022,6 +37463,10 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if (((this._tblSurveyTimeTableAdapter != null) 
                             && (this._tblSurveyTimeTableAdapter.Connection != null))) {
                     return this._tblSurveyTimeTableAdapter.Connection;
+                }
+                if (((this._tblTwinsTableAdapter != null) 
+                            && (this._tblTwinsTableAdapter.Connection != null))) {
+                    return this._tblTwinsTableAdapter.Connection;
                 }
                 return null;
             }
@@ -36039,9 +37484,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if ((this._tblDemographicsTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._tblTwinsTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tblLinksExplicitTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -36052,6 +37494,9 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                     count = (count + 1);
                 }
                 if ((this._tblSurveyTimeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tblTwinsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -36071,15 +37516,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblDemographicsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tblTwinsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblTwinsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -36119,6 +37555,15 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tblTwinsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblTwinsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -36134,14 +37579,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblDemographicsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tblTwinsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblTwinsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -36177,6 +37614,14 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tblTwinsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblTwinsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -36187,6 +37632,14 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(ImportDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._tblTwinsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblTwinsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tblSurveyTimeTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tblSurveyTime.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -36216,14 +37669,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblLinksExplicitTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tblTwinsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblTwins.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblTwinsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -36279,11 +37724,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tblTwinsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblTwinsTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._tblLinksExplicitTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblLinksExplicitTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -36301,6 +37741,11 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
             }
             if (((this._tblSurveyTimeTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tblSurveyTimeTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._tblTwinsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblTwinsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -36345,15 +37790,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblDemographicsTableAdapter.Adapter);
                     }
                 }
-                if ((this._tblTwinsTableAdapter != null)) {
-                    revertConnections.Add(this._tblTwinsTableAdapter, this._tblTwinsTableAdapter.Connection);
-                    this._tblTwinsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblTwinsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblTwinsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblTwinsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblTwinsTableAdapter.Adapter);
-                    }
-                }
                 if ((this._tblLinksExplicitTableAdapter != null)) {
                     revertConnections.Add(this._tblLinksExplicitTableAdapter, this._tblLinksExplicitTableAdapter.Connection);
                     this._tblLinksExplicitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -36388,6 +37824,15 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                     if (this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblSurveyTimeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblSurveyTimeTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tblTwinsTableAdapter != null)) {
+                    revertConnections.Add(this._tblTwinsTableAdapter, this._tblTwinsTableAdapter.Connection);
+                    this._tblTwinsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblTwinsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblTwinsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblTwinsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblTwinsTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -36452,10 +37897,6 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                     this._tblDemographicsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblDemographicsTableAdapter]));
                     this._tblDemographicsTableAdapter.Transaction = null;
                 }
-                if ((this._tblTwinsTableAdapter != null)) {
-                    this._tblTwinsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblTwinsTableAdapter]));
-                    this._tblTwinsTableAdapter.Transaction = null;
-                }
                 if ((this._tblLinksExplicitTableAdapter != null)) {
                     this._tblLinksExplicitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblLinksExplicitTableAdapter]));
                     this._tblLinksExplicitTableAdapter.Transaction = null;
@@ -36471,6 +37912,10 @@ SELECT R0000100, R0536300, R0822200, R0822300, R0822400, R0822500, R0822600, R08
                 if ((this._tblSurveyTimeTableAdapter != null)) {
                     this._tblSurveyTimeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSurveyTimeTableAdapter]));
                     this._tblSurveyTimeTableAdapter.Transaction = null;
+                }
+                if ((this._tblTwinsTableAdapter != null)) {
+                    this._tblTwinsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblTwinsTableAdapter]));
+                    this._tblTwinsTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

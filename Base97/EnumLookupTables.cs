@@ -29,7 +29,8 @@ namespace Nls.Base97 {
         hh_unique_id = 106, // HHI2: People living in the Household - sorted, UID; HH member's unique ID
         pair_multiple_birth = 121,
         pair_twins_mz = 122,
-        pair_same_bioparent = 123,
+        pair_sister_same_bioparent = 123,
+        pair_brother_same_bioparent = 124,
         // InterviewDateDayParent_NOTUSED                            =  1020, 
         // InterviewDateMonthParent_NOTUSED                          =  1021, 
         // InterviewDateYearParent_NOTUSED                           =  1022, 

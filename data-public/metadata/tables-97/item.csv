@@ -20,7 +20,8 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
  106,hh_unique_id,-4,0,122,TRUE,"HHI2: People living in the Household - sorted, UID; HH member's unique ID"
  121,pair_multiple_birth,-4,0,3,TRUE,
  122,pair_twins_mz,-4,0,1,TRUE,
- 123,pair_same_bioparent,-4,15,16,TRUE,
+ 123,pair_sister_same_bioparent,-4,15,16,TRUE,
+ 124,pair_brother_same_bioparent,-4,18,19,TRUE,
 1020,InterviewDateDayParent_NOTUSED,-4,1,31,FALSE,
 1021,InterviewDateMonthParent_NOTUSED,-4,1,9,FALSE,
 1022,InterviewDateYearParent_NOTUSED,-4,1997,1998,FALSE,
