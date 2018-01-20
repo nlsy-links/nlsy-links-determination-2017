@@ -30,8 +30,6 @@ namespace LinksGui {
         public Gui97( ) {
 			InitializeComponent();
 		}
-
-
         private void Window_Loaded( object sender, RoutedEventArgs e ) {
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -44,13 +42,6 @@ namespace LinksGui {
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
             LoadExtracts();
-            
-
-            //LoadGeocodeSanitized();//Needed for MarkerGen1
-            //LoadLinks2004Gen1();//Needed for RelatedValues
-            //LoadLinks2004Gen2();//Needed for RelatedValues
-            ////LoadLinks2004Gen1Mz();//Needed for RelatedValues
-
             LoadMetadata();
 
             LoadSubject();
@@ -60,9 +51,6 @@ namespace LinksGui {
             LoadSurveyTimeMostRecent(); //Needed for tblRelated
             LoadRoster();
             //LoadParentsOfGen1Retro();
-            //LoadParentsOfGen1Current();
-            //LoadBabyDaddy();
-            //LoadFatherOfGen2();
             LoadSubjectDetails();
             LoadMarker();
             LoadRelatedValues();
@@ -152,18 +140,13 @@ namespace LinksGui {
             const string schemaName = "Process";
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            //Int32 SubjectCount = _taSubject.Update(_dsLinks);
             BulkUpdate(schemaName, _dsLinks.tblSubject, LoadSubject);
             BulkUpdate(schemaName, _dsLinks.tblRelatedStructure, LoadRelatedStructure);
-            //Int32 responseCount = _taResponse.Update(_dsLinks);
 
             BulkUpdate(schemaName, _dsLinks.tblResponse, AcceptResponseChanges);
             BulkUpdate(schemaName, _dsLinks.tblSurveyTime, LoadSurveyTime);
             BulkUpdate(schemaName, _dsLinks.tblRoster, LoadRoster);
         //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Retro, LoadParentsOfGen1Retro);
-        //    BulkUpdate(schemaName, _dsLinks.tblParentsOfGen1Current, LoadParentsOfGen1Current);
-        //    BulkUpdate(schemaName, _dsLinks.tblBabyDaddy, LoadBabyDaddy);
-        //    BulkUpdate(schemaName, _dsLinks.tblFatherOfGen2, LoadFatherOfGen2);
             BulkUpdate(schemaName, _dsLinks.tblSubjectDetails, LoadSubjectDetails);
             BulkUpdate(schemaName, _dsLinks.tblMarker, LoadMarker);
             BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
@@ -207,23 +190,25 @@ namespace LinksGui {
         #endregion
         #region Load DataTables
         private void LoadExtracts( ) {
-            BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter();
-            ta.Fill(_dsImport.tblDemographics);
-         
-            BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta_roster = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
-            ta_roster.Fill(_dsImport.tblRoster);
+            if( _dsLinks.tblSubject.Count == 0 || _dsLinks.tblRelatedStructure.Count == 0 || _dsLinks.tblSubject.Count == 0 || _dsLinks.tblSubject.Count == 0 ) {
+                BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter();
+                ta.Fill(_dsImport.tblDemographics);
 
-            BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter ta_survey_time = new BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter();
-            ta_survey_time.Fill(_dsImport.tblSurveyTime);
+                BA.ImportDataSetTableAdapters.tblRosterTableAdapter ta_roster = new BA.ImportDataSetTableAdapters.tblRosterTableAdapter();
+                ta_roster.Fill(_dsImport.tblRoster);
 
-            BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta_links_explicit = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
-            ta_links_explicit.Fill(_dsImport.tblLinksExplicit);
-         
-            BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta_links_implicit = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
-            ta_links_implicit.Fill(_dsImport.tblLinksImplicit);
-         
-            BA.ImportDataSetTableAdapters.tblTwinsTableAdapter ta_twins = new BA.ImportDataSetTableAdapters.tblTwinsTableAdapter();
-            ta_twins.Fill(_dsImport.tblTwins);
+                BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter ta_survey_time = new BA.ImportDataSetTableAdapters.tblSurveyTimeTableAdapter();
+                ta_survey_time.Fill(_dsImport.tblSurveyTime);
+
+                BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter ta_links_explicit = new BA.ImportDataSetTableAdapters.tblLinksExplicitTableAdapter();
+                ta_links_explicit.Fill(_dsImport.tblLinksExplicit);
+
+                BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter ta_links_implicit = new BA.ImportDataSetTableAdapters.tblLinksImplicitTableAdapter();
+                ta_links_implicit.Fill(_dsImport.tblLinksImplicit);
+
+                BA.ImportDataSetTableAdapters.tblTwinsTableAdapter ta_twins = new BA.ImportDataSetTableAdapters.tblTwinsTableAdapter();
+                ta_twins.Fill(_dsImport.tblTwins);
+            }
         }
         private void LoadMetadata( ) {
             BA.LinksDataSetTableAdapters.tblItemTableAdapter ta_item = new BA.LinksDataSetTableAdapters.tblItemTableAdapter();
@@ -254,17 +239,11 @@ namespace LinksGui {
             tblRelatedStructureViewSource.View.MoveCurrentToFirst();
         }
         private void LoadResponse ( ) {
-            //BA.LinksDataSetTableAdapters.tblResponseTableAdapter _taResponse = new BA.LinksDataSetTableAdapters.tblResponseTableAdapter();
             SqlCommand cmd = new SqlCommand("Process.prcResponseRetrieveSubset", _cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            //_cnn.Open();
-            //SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleResult);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(_dsLinks.tblResponse);
-            //_dsLinks.tblResponse.Load(reader, LoadOption.OverwriteChanges);
-            //_cnn.Close();
 
-            //_taResponse.Fill(_dsLinks.tblResponse);
             CollectionViewSource tblResponseViewSource = ((CollectionViewSource)(this.FindResource("tblResponseViewSource")));
             tblResponseViewSource.View.MoveCurrentToFirst();
         }
@@ -354,15 +333,12 @@ namespace LinksGui {
 
             LoadSurveyTimeMostRecent(); 
             btnRoster_Click(sender, e);
-        //    btnParentsOfGen1Retro_Click(sender, e);
-        //    btnParentsOfGen1Current_Click(sender, e);
-        //    btnBabyDaddy_Click(sender, e);
-        //    btnFatherOfGen2_Click(sender, e);
+            //btnParentsOfGen1Retro_Click(sender, e);
             btnSubjectDetails_Click(sender, e);
             btnMarker_Click(sender, e);
             btnRelatedValues_Click(sender, e);
             btnOutcome_Click(sender, e);
-        //    btnRelatedValuesArchive_Click(sender, e);
+            //btnRelatedValuesArchive_Click(sender, e);
 
             sw.Stop();
             string message = string.Format("Elapsed time for btnCombine2 operations: {0}", sw.Elapsed.ToString());
