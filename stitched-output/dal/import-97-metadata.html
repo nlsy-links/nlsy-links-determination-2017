@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>This report was automatically generated with the R package <strong>knitr</strong>
+(version 1.19).</p>
+
+<pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/import-79-metadata.R&quot;, output=&quot;./stitched-output/dal/import-metadata.md&quot;) # dir.create(output=&quot;./stitched-output/dal/&quot;, recursive=T)
+rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
+</code></pre>
+
+<pre><code class="r"># Call `base::source()` on any repo file that defines functions needed below.  Ideally, no real operations are performed.
+base::source(&quot;utility/connectivity.R&quot;)
+</code></pre>
+
+<pre><code class="r"># Attach these package(s) so their functions don&#39;t need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+library(magrittr            , quietly=TRUE)
+
+# Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
+requireNamespace(&quot;readr&quot;                  )
+requireNamespace(&quot;tidyr&quot;                  )
+requireNamespace(&quot;tibble&quot;                 )
+requireNamespace(&quot;purrr&quot;                  )
+requireNamespace(&quot;dplyr&quot;                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
+requireNamespace(&quot;testit&quot;                 ) #For asserting conditions meet expected patterns.
+requireNamespace(&quot;RODBC&quot;                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
+requireNamespace(&quot;odbc&quot;                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use &#39;upload-to-db&#39; chunk.
+</code></pre>
+
+<pre><code class="r"># Constant values that won&#39;t change.
+directory_in              &lt;- &quot;data-public/metadata/tables-97&quot;
+study                     &lt;- &quot;97&quot;
+
+col_types_minimal &lt;- readr::cols_only(
+  ID                                  = readr::col_integer(),
+  Label                               = readr::col_character(),
+  Active                              = readr::col_logical(),
+  Notes                               = readr::col_character()
+)
+
+# The order of this list matters.
+#   - Tables are WRITTEN from top to bottom.
+#   - Tables are DELETED from bottom to top.
+lst_col_types &lt;- list(
+  item = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    MinValue                            = readr::col_integer(),
+    MinNonnegative                      = readr::col_integer(),
+    MaxValue                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
+  ),
+  LUExtractSource         = col_types_minimal,
+  LUMarkerEvidence        = col_types_minimal,
+  LUGender                = col_types_minimal,
+  LUMarkerType = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    Label                               = readr::col_character(),
+    Explicit                            = readr::col_integer(),
+    Active                              = readr::col_logical(),
+    Notes                               = readr::col_character()
+  ),
+  LUMultipleBirth         = col_types_minimal,
+  LURaceCohort            = col_types_minimal,
+  LURoster                = col_types_minimal,
+  LUTristate              = col_types_minimal,
+  LUYesNo                 = col_types_minimal,
+  MzManual = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    SubjectTag_S1                       = readr::col_integer(),
+    SubjectTag_S2                       = readr::col_integer(),
+    MultipleBirthIfSameSex              = readr::col_integer(),
+    IsMz                                = readr::col_integer(),
+    Undecided                           = readr::col_integer(),
+    Related                             = readr::col_integer(),
+    Notes                               = readr::col_character()
+  ),
+  RosterAssignment    = readr::cols_only(
+    ID                                  = readr::col_integer(),
+    ResponseLower                       = readr::col_integer(),
+    ResponseUpper                       = readr::col_integer(),
+    Freq                                = readr::col_integer(),
+    Resolved                            = readr::col_integer(),
+    R                                   = readr::col_double(),
+    RBoundLower                         = readr::col_double(),
+    RBoundUpper                         = readr::col_double(),
+    SameGeneration                      = readr::col_double(),
+    ShareBiodad                         = readr::col_integer(),
+    ShareBiomom                         = readr::col_integer(),
+    ShareBiograndparent                 = readr::col_integer(),
+    Inconsistent                        = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    ResponseLowerLabel                  = readr::col_character(),
+    ResponseUpperLabel                  = readr::col_character()
+  ),
+  variable = readr::cols_only(
+    # ID                                = readr::col_integer(),
+    VariableCode                        = readr::col_character(),
+    Item                                = readr::col_integer(),
+    ExtractSource                       = readr::col_integer(),
+    SurveyYear                          = readr::col_integer(),
+    LoopIndex1                          = readr::col_integer(),
+    LoopIndex2                          = readr::col_integer(),
+    Translate                           = readr::col_integer(),
+    Active                              = readr::col_integer(),
+    Notes                               = readr::col_character(),
+    QuestionName                        = readr::col_character(),
+    VariableTitle                       = readr::col_character()
+  )
+)
+
+col_types_mapping &lt;- readr::cols_only(
+  table_name          = readr::col_character(),
+  schema_name         = readr::col_character(),
+  enum_name           = readr::col_character(),
+  # enum_file         = readr::col_character(),
+  c_sharp_type        = readr::col_character(),
+  convert_to_enum     = readr::col_logical()
+)
+</code></pre>
+
+<pre><code class="r">start_time &lt;- Sys.time()
+
+ds_mapping &lt;- readr::read_csv(file.path(directory_in, &quot;_mapping.csv&quot;), col_types=col_types_mapping)
+ds_mapping
+</code></pre>
+
+<pre><code>## # A tibble: 13 x 5
+##    table_name       schema_name enum_name     c_sharp_type convert_to_enum
+##    &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;        &lt;lgl&gt;          
+##  1 item             Metadata    Item          short        T              
+##  2 LUExtractSource  Enum        ExtractSource byte         T              
+##  3 LUGender         Enum        Gender        byte         T              
+##  4 LUMarkerEvidence Enum        MarkerEviden~ byte         T              
+##  5 LUMarkerType     Enum        MarkerType    byte         T              
+##  6 LUMultipleBirth  Enum        MultipleBirth byte         T              
+##  7 LURaceCohort     Enum        RaceCohort    byte         T              
+##  8 LURoster         Enum        RosterGen1    short        T              
+##  9 LUTristate       Enum        Tristate      byte         T              
+## 10 LUYesNo          Enum        YesNo         short        T              
+## 11 MzManual         Metadata    NA_character  NA_character F              
+## 12 RosterAssignment Metadata    NA_character  NA_character F              
+## 13 variable         Metadata    NA_character  NA_character F
+</code></pre>
+
+<pre><code class="r">ds_file &lt;- lst_col_types %&gt;%
+  tibble::enframe(value = &quot;col_types&quot;) %&gt;%
+  dplyr::mutate(
+    path        = file.path(directory_in, paste0(name, &quot;.csv&quot;)),
+    exists      = purrr::map_lgl(path, file.exists)
+    # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
+  ) %&gt;%
+  dplyr::select(name, path, dplyr::everything())
+ds_file
+</code></pre>
+
+<pre><code>## # A tibble: 13 x 4
+##    name             path                               col_types    exists
+##    &lt;chr&gt;            &lt;chr&gt;                              &lt;list&gt;       &lt;lgl&gt; 
+##  1 item             data-public/metadata/tables-97/it~ &lt;S3: col_sp~ T     
+##  2 LUExtractSource  data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  3 LUMarkerEvidence data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  4 LUGender         data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  5 LUMarkerType     data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  6 LUMultipleBirth  data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  7 LURaceCohort     data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  8 LURoster         data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+##  9 LUTristate       data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+## 10 LUYesNo          data-public/metadata/tables-97/LU~ &lt;S3: col_sp~ T     
+## 11 MzManual         data-public/metadata/tables-97/Mz~ &lt;S3: col_sp~ T     
+## 12 RosterAssignment data-public/metadata/tables-97/Ro~ &lt;S3: col_sp~ T     
+## 13 variable         data-public/metadata/tables-97/va~ &lt;S3: col_sp~ T
+</code></pre>
+
+<pre><code class="r">testit::assert(&quot;All metadata files must exist.&quot;, all(ds_file$exists))
+
+ds_entries &lt;- ds_file %&gt;%
+  # dplyr::slice(1:9) %&gt;%
+  dplyr::select(name, path, col_types) %&gt;%
+  dplyr::mutate(
+    entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = &quot;#&quot;)
+  )
+ds_entries
+</code></pre>
+
+<pre><code>## # A tibble: 13 x 4
+##    name             path                         col_types    entries     
+##    &lt;chr&gt;            &lt;chr&gt;                        &lt;list&gt;       &lt;list&gt;      
+##  1 item             data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [26~
+##  2 LUExtractSource  data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [6 ~
+##  3 LUMarkerEvidence data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [8 ~
+##  4 LUGender         data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [3 ~
+##  5 LUMarkerType     data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [28~
+##  6 LUMultipleBirth  data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [5 ~
+##  7 LURaceCohort     data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [4 ~
+##  8 LURoster         data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [92~
+##  9 LUTristate       data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [3 ~
+## 10 LUYesNo          data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [6 ~
+## 11 MzManual         data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [90~
+## 12 RosterAssignment data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [31~
+## 13 variable         data-public/metadata/tables~ &lt;S3: col_sp~ &lt;tibble [55~
+</code></pre>
+
+<pre><code class="r"># d &lt;- readr::read_csv(&quot;data-public/metadata/tables/variable_97.csv&quot;, col_types=lst_col_types$variable_97, comment = &quot;#&quot;)
+# readr::problems(d)
+# ds_entries$entries[15]
+
+ds_table &lt;- database_inventory(study)
+ds_table
+</code></pre>
+
+<pre><code>## # A tibble: 31 x 6
+##    schema_name table_name            row_count column_count space_total_kb
+##  * &lt;chr&gt;       &lt;chr&gt;                     &lt;int&gt;        &lt;int&gt;          &lt;int&gt;
+##  1 Archive     tblArchiveDescription         0            4              0
+##  2 Archive     tblRelatedValuesArch~         0           22             72
+##  3 dbo         sysdiagrams                   0            5              0
+##  4 Enum        tblLUExtractSource            6            4             72
+##  5 Enum        tblLUGender                   3            4             72
+##  6 Enum        tblLUMarkerEvidence           8            4             72
+##  7 Enum        tblLUMarkerType              28            5             72
+##  8 Enum        tblLUMultipleBirth            5            4             72
+##  9 Enum        tblLURaceCohort               4            4             72
+## 10 Enum        tblLURoster                  92            4             72
+## # ... with 21 more rows, and 1 more variable: space_used_kb &lt;int&gt;
+</code></pre>
+
+<pre><code class="r">rm(directory_in) # rm(col_types_tulsa)
+</code></pre>
+
+<pre><code class="r"># OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call to `dplyr::rename()`.
+
+ds_file &lt;- ds_file %&gt;%
+  dplyr::left_join( ds_mapping, by=c(&quot;name&quot;=&quot;table_name&quot;)) %&gt;%
+  dplyr::mutate(
+    table_name    = paste0(&quot;tbl&quot;, name),
+    sql_delete    = glue::glue(&quot;DELETE FROM {schema_name}.{table_name};&quot;)
+  ) %&gt;%
+  dplyr::left_join(
+    ds_entries %&gt;%
+      dplyr::select(name, entries)
+    , by=&quot;name&quot;
+  )
+rm(ds_entries)
+
+ds_file$entries %&gt;%
+  purrr::walk(print)
+</code></pre>
+
+<pre><code>## # A tibble: 26 x 7
+##       ID Label           MinValue MinNonnegative MaxValue Active Notes    
+##    &lt;int&gt; &lt;chr&gt;              &lt;int&gt;          &lt;int&gt;    &lt;int&gt; &lt;lgl&gt;  &lt;chr&gt;    
+##  1     1 subject_id             1              1     9022 T      &lt;NA&gt;     
+##  2     2 extended_famil~        1              1     9022 T      &lt;NA&gt;     
+##  3     3 hh_internal_id         1              1        5 T      &lt;NA&gt;     
+##  4    10 gender                 1              1        2 T      &lt;NA&gt;     
+##  5    11 DateOfBirthMon~        1              1       12 T      &lt;NA&gt;     
+##  6    12 DateOfBirthYear     1980           1980     1984 T      &lt;NA&gt;     
+##  7    13 cross_sectiona~        0              0        1 T      &lt;NA&gt;     
+##  8    14 race_cohort            1              1        4 T      race-eth~
+##  9    20 InterviewDateD~    -   7              1       31 T      &lt;NA&gt;     
+## 10    21 InterviewDateM~    -   7              1       12 T      &lt;NA&gt;     
+## # ... with 16 more rows
+## # A tibble: 6 x 4
+##      ID Label             Active Notes
+##   &lt;int&gt; &lt;chr&gt;             &lt;lgl&gt;  &lt;chr&gt;
+## 1     1 97-demographics   T      &lt;NA&gt; 
+## 2     2 97-roster         T      &lt;NA&gt; 
+## 3     3 97-survey-time    T      &lt;NA&gt; 
+## 4     4 97-links-explicit T      &lt;NA&gt; 
+## 5     5 97-links-implicit T      &lt;NA&gt; 
+## 6     6 97-twins          T      &lt;NA&gt; 
+## # A tibble: 8 x 4
+##      ID Label            Active Notes
+##   &lt;int&gt; &lt;chr&gt;            &lt;lgl&gt;  &lt;chr&gt;
+## 1     0 Irrelevant       T      &lt;NA&gt; 
+## 2     1 StronglySupports T      &lt;NA&gt; 
+## 3     2 Supports         T      &lt;NA&gt; 
+## 4     3 Consistent       T      &lt;NA&gt; 
+## 5     4 Ambiguous        T      &lt;NA&gt; 
+## 6     5 Missing          T      &lt;NA&gt; 
+## 7     6 Unlikely         T      &lt;NA&gt; 
+## 8     7 Disconfirms      T      &lt;NA&gt; 
+## # A tibble: 3 x 4
+##      ID Label           Active Notes
+##   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;  &lt;chr&gt;
+## 1     1 Male            T      &lt;NA&gt; 
+## 2     2 Female          T      &lt;NA&gt; 
+## 3   255 InvalidSkipGen2 T      &lt;NA&gt; 
+## # A tibble: 28 x 5
+##       ID Label               Explicit Active Notes
+##    &lt;int&gt; &lt;chr&gt;                  &lt;int&gt; &lt;lgl&gt;  &lt;chr&gt;
+##  1     1 Roster                     1 T      &lt;NA&gt; 
+##  2     2 ShareBiomom                1 T      &lt;NA&gt; 
+##  3     3 ShareBiodad                1 T      &lt;NA&gt; 
+##  4     5 DobSeparation              0 T      &lt;NA&gt; 
+##  5     6 GenderAgreement            0 T      &lt;NA&gt; 
+##  6    10 FatherAsthma               0 T      &lt;NA&gt; 
+##  7    11 BabyDaddyAsthma            0 T      &lt;NA&gt; 
+##  8    12 BabyDaddyLeftHHDate        0 T      &lt;NA&gt; 
+##  9    13 BabyDaddyDeathDate         0 T      &lt;NA&gt; 
+## 10    14 BabyDaddyAlive             0 T      &lt;NA&gt; 
+## # ... with 18 more rows
+## # A tibble: 5 x 4
+##      ID Label      Active Notes                                           
+##   &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;  &lt;chr&gt;                                           
+## 1     0 No         T      &lt;NA&gt;                                            
+## 2     2 Twin       T      &lt;NA&gt;                                            
+## 3     3 Trip       T      &lt;NA&gt;                                            
+## 4     4 TwinOrTrip F      Currently Then Gen1 algorithm doesn&#39;t distingui~
+## 5   255 DoNotKnow  T      &lt;NA&gt;                                            
+## # A tibble: 4 x 4
+##      ID Label    Active Notes
+##   &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;  &lt;chr&gt;
+## 1     1 Black    T      &lt;NA&gt; 
+## 2     2 Hispanic T      &lt;NA&gt; 
+## 3     3 Mixed    T      &lt;NA&gt; 
+## 4     4 Nbnh     T      &lt;NA&gt; 
+## # A tibble: 92 x 4
+##       ID Label       Active Notes
+##    &lt;int&gt; &lt;chr&gt;       &lt;lgl&gt;  &lt;chr&gt;
+##  1    -4 valid_skip  T      &lt;NA&gt; 
+##  2    -2 do_not_know T      &lt;NA&gt; 
+##  3    -1 refusal     T      &lt;NA&gt; 
+##  4     0 self        T      &lt;NA&gt; 
+##  5     1 wife        T      &lt;NA&gt; 
+##  6     2 husband     T      &lt;NA&gt; 
+##  7     3 mother      T      &lt;NA&gt; 
+##  8     4 father      T      &lt;NA&gt; 
+##  9     7 mother_step T      &lt;NA&gt; 
+## 10     8 father_step T      &lt;NA&gt; 
+## # ... with 82 more rows
+## # A tibble: 3 x 4
+##      ID Label     Active Notes
+##   &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;  &lt;chr&gt;
+## 1     0 No        T      &lt;NA&gt; 
+## 2     1 Yes       T      &lt;NA&gt; 
+## 3   255 DoNotKnow T      &lt;NA&gt; 
+## # A tibble: 6 x 4
+##      ID Label                               Active Notes
+##   &lt;int&gt; &lt;chr&gt;                               &lt;lgl&gt;  &lt;chr&gt;
+## 1    -6 ValidSkipOrNoInterviewOrNotInSurvey T      &lt;NA&gt; 
+## 2    -3 InvalidSkip                         T      &lt;NA&gt; 
+## 3    -2 DoNotKnow                           T      &lt;NA&gt; 
+## 4    -1 Refusal                             T      &lt;NA&gt; 
+## 5     0 No                                  T      &lt;NA&gt; 
+## 6     1 Yes                                 T      &lt;NA&gt; 
+## # A tibble: 90 x 8
+##       ID SubjectTag_S1 SubjectTag_S2 MultipleBirthIfSameS~  IsMz Undecided
+##    &lt;int&gt;         &lt;int&gt;         &lt;int&gt;                 &lt;int&gt; &lt;int&gt;     &lt;int&gt;
+##  1     1            66            67                     0     0         0
+##  2     2            75            76                     2     1         0
+##  3     3           116           117                     2     1         0
+##  4     4           222           223                     2     0         0
+##  5     5           343           344                     3   255         1
+##  6     6           343           345                     3   255         1
+##  7     7           344           345                     3   255         1
+##  8     8           351           352                     2     1         0
+##  9     9           447           448                     2     1         0
+## 10    10           588           589                     2     0         0
+## # ... with 80 more rows, and 2 more variables: Related &lt;int&gt;, Notes &lt;chr&gt;
+## # A tibble: 31 x 16
+##       ID ResponseLower ResponseUpper  Freq Resolved      R RBoundLower
+##    &lt;int&gt;         &lt;int&gt;         &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;dbl&gt;       &lt;dbl&gt;
+##  1     1           - 2           - 1     2        0 NA           0    
+##  2     2           - 1           - 1     2        0 NA           0    
+##  3     3            13            13  1034        0 NA           0.500
+##  4     4            13            14  2034        1  0.500       0.500
+##  5     5            14            14  1154        0 NA           0.500
+##  6     6            15            15    48        1  0.250       0.250
+##  7     7            15            18   132        1  0.250       0.250
+##  8     8            16            19     2        1  0.250       0.250
+##  9     9            18            18    62        1  0.250       0.250
+## 10    10            19            19     8        1  0.250       0.250
+## # ... with 21 more rows, and 9 more variables: RBoundUpper &lt;dbl&gt;,
+## #   SameGeneration &lt;dbl&gt;, ShareBiodad &lt;int&gt;, ShareBiomom &lt;int&gt;,
+## #   ShareBiograndparent &lt;int&gt;, Inconsistent &lt;int&gt;, Notes &lt;chr&gt;,
+## #   ResponseLowerLabel &lt;chr&gt;, ResponseUpperLabel &lt;chr&gt;
+## # A tibble: 551 x 11
+##    VariableCode  Item ExtractSource SurveyYear LoopIndex1 LoopIndex2
+##    &lt;chr&gt;        &lt;int&gt;         &lt;int&gt;      &lt;int&gt;      &lt;int&gt;      &lt;int&gt;
+##  1 R0000100         1             1       1997          1          1
+##  2 R1193000         2             1       1997          1          1
+##  3 R0533400         3             1       1997          1          1
+##  4 R0536300        10             1       1997          1          1
+##  5 R0536401        11             1       1997          1          1
+##  6 R0536402        12             1       1997          1          1
+##  7 R1235800        13             1       1997          1          1
+##  8 R1482600        14             1       1997          1          1
+##  9 R1097800       101             2       1997          1          1
+## 10 R1097900       101             2       1997          2          1
+## # ... with 541 more rows, and 5 more variables: Translate &lt;int&gt;,
+## #   Active &lt;int&gt;, Notes &lt;chr&gt;, QuestionName &lt;chr&gt;, VariableTitle &lt;chr&gt;
+</code></pre>
+
+<pre><code class="r"># ds_file %&gt;%
+#   dplyr::group_by(name) %&gt;%
+#   dplyr::mutate(
+#     a = purrr::map_int(entries, ~max(nchar(.), na.rm=T))
+#   ) %&gt;%
+#   dplyr::ungroup() %&gt;%
+#   dplyr::pull(a)
+
+
+# ds_file %&gt;%
+#   dplyr::select(name, entries) %&gt;%
+#   tibble::deframe() %&gt;%
+#   purrr::map(~max(nchar(.), na.rm=T))
+
+# lst_ds %&gt;%
+#   purrr::map(nrow)
+# lst_ds %&gt;%
+#   purrr::map(readr::spec)
+
+ds_file$table_name
+</code></pre>
+
+<pre><code>##  [1] &quot;tblitem&quot;             &quot;tblLUExtractSource&quot;  &quot;tblLUMarkerEvidence&quot;
+##  [4] &quot;tblLUGender&quot;         &quot;tblLUMarkerType&quot;     &quot;tblLUMultipleBirth&quot; 
+##  [7] &quot;tblLURaceCohort&quot;     &quot;tblLURoster&quot;         &quot;tblLUTristate&quot;      
+## [10] &quot;tblLUYesNo&quot;          &quot;tblMzManual&quot;         &quot;tblRosterAssignment&quot;
+## [13] &quot;tblvariable&quot;
+</code></pre>
+
+<pre><code class="r">ds_file
+</code></pre>
+
+<pre><code>## # A tibble: 13 x 11
+##    name    path        col_types exists schema_name enum_name c_sharp_type
+##    &lt;chr&gt;   &lt;chr&gt;       &lt;list&gt;    &lt;lgl&gt;  &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;       
+##  1 item    data-publi~ &lt;S3: col~ T      Metadata    Item      short       
+##  2 LUExtr~ data-publi~ &lt;S3: col~ T      Enum        ExtractS~ byte        
+##  3 LUMark~ data-publi~ &lt;S3: col~ T      Enum        MarkerEv~ byte        
+##  4 LUGend~ data-publi~ &lt;S3: col~ T      Enum        Gender    byte        
+##  5 LUMark~ data-publi~ &lt;S3: col~ T      Enum        MarkerTy~ byte        
+##  6 LUMult~ data-publi~ &lt;S3: col~ T      Enum        Multiple~ byte        
+##  7 LURace~ data-publi~ &lt;S3: col~ T      Enum        RaceCoho~ byte        
+##  8 LURost~ data-publi~ &lt;S3: col~ T      Enum        RosterGe~ short       
+##  9 LUTris~ data-publi~ &lt;S3: col~ T      Enum        Tristate  byte        
+## 10 LUYesNo data-publi~ &lt;S3: col~ T      Enum        YesNo     short       
+## 11 MzManu~ data-publi~ &lt;S3: col~ T      Metadata    NA_chara~ NA_character
+## 12 Roster~ data-publi~ &lt;S3: col~ T      Metadata    NA_chara~ NA_character
+## 13 variab~ data-publi~ &lt;S3: col~ T      Metadata    NA_chara~ NA_character
+## # ... with 4 more variables: convert_to_enum &lt;lgl&gt;, table_name &lt;chr&gt;,
+## #   sql_delete &lt;chr&gt;, entries &lt;list&gt;
+</code></pre>
+
+<pre><code class="r">create_enum_body &lt;- function( d ) {
+  tab_spaces &lt;- &quot;    &quot;
+  labels   &lt;- dplyr::if_else(      d$Active , d$Label, paste(&quot;//&quot;, d$Label))
+  comments &lt;- dplyr::if_else(is.na(d$Notes ), &quot;&quot;     , paste(&quot;//&quot;, d$Notes))
+
+  paste0(sprintf(&quot;%s%-60s = %5s, %s\n&quot;, tab_spaces, labels, d$ID, comments), collapse=&quot;&quot;)
+}
+
+# ds_file %&gt;%
+#   dplyr::filter(name==&quot;LURelationshipPath&quot;) %&gt;%
+#   dplyr::pull(entries)
+
+ds_enum &lt;- ds_file  %&gt;%
+  dplyr::filter(convert_to_enum) %&gt;%
+  dplyr::select(enum_name, entries, c_sharp_type) %&gt;%
+  dplyr::mutate(
+    enum_header = paste0(&quot;\npublic enum &quot;, .$enum_name, &quot; {\n&quot;),
+    enum_body   = purrr::map_chr(.$entries, create_enum_body),
+    enum_footer = &quot;}\n&quot;,
+    enum_cs     = paste0(enum_header, enum_body, enum_footer)
+  ) %&gt;%
+  dplyr::select(-enum_header, -enum_body, -enum_footer)
+
+ds_enum %&gt;%
+  dplyr::pull(enum_cs) %&gt;%
+  cat()
+</code></pre>
+
+<pre><code>## 
+## public enum Item {
+##     subject_id                                                   =     1, 
+##     extended_family_id                                           =     2, 
+##     hh_internal_id                                               =     3, 
+##     gender                                                       =    10, 
+##     DateOfBirthMonth                                             =    11, 
+##     DateOfBirthYear                                              =    12, 
+##     cross_sectional_cohort                                       =    13, 
+##     race_cohort                                                  =    14, // race-ethnicity
+##     InterviewDateDay                                             =    20, 
+##     InterviewDateMonth                                           =    21, 
+##     InterviewDateYear                                            =    22, 
+##     AgeAtInterviewDateMonths                                     =    23, 
+##     AgeAtInterviewDateYears                                      =    24, 
+##     roster_crosswalk                                             =   101, 
+##     hh_member_id                                                 =   102, 
+##     hh_informant                                                 =   103, 
+##     // roster_relationship_2_dim                                 =   104, // 16 x 16 square
+##     roster_relationship_1_dim                                    =   105, // 1 x 16 vector
+##     hh_unique_id                                                 =   106, // HHI2: People living in the Household - sorted, UID; HH member&#39;s unique ID
+##     pair_multiple_birth                                          =   121, 
+##     pair_twins_mz                                                =   122, 
+##     pair_sister_same_bioparent                                   =   123, 
+##     pair_brother_same_bioparent                                  =   124, 
+##     // InterviewDateDayParent_NOTUSED                            =  1020, 
+##     // InterviewDateMonthParent_NOTUSED                          =  1021, 
+##     // InterviewDateYearParent_NOTUSED                           =  1022, 
+## }
+##  
+## public enum ExtractSource {
+##     97-demographics                                              =     1, 
+##     97-roster                                                    =     2, 
+##     97-survey-time                                               =     3, 
+##     97-links-explicit                                            =     4, 
+##     97-links-implicit                                            =     5, 
+##     97-twins                                                     =     6, 
+## }
+##  
+## public enum MarkerEvidence {
+##     Irrelevant                                                   =     0, 
+##     StronglySupports                                             =     1, 
+##     Supports                                                     =     2, 
+##     Consistent                                                   =     3, 
+##     Ambiguous                                                    =     4, 
+##     Missing                                                      =     5, 
+##     Unlikely                                                     =     6, 
+##     Disconfirms                                                  =     7, 
+## }
+##  
+## public enum Gender {
+##     Male                                                         =     1, 
+##     Female                                                       =     2, 
+##     InvalidSkipGen2                                              =   255, 
+## }
+##  
+## public enum MarkerType {
+##     Roster                                                       =     1, 
+##     ShareBiomom                                                  =     2, 
+##     ShareBiodad                                                  =     3, 
+##     DobSeparation                                                =     5, 
+##     GenderAgreement                                              =     6, 
+##     FatherAsthma                                                 =    10, 
+##     BabyDaddyAsthma                                              =    11, 
+##     BabyDaddyLeftHHDate                                          =    12, 
+##     BabyDaddyDeathDate                                           =    13, 
+##     BabyDaddyAlive                                               =    14, 
+##     BabyDaddyInHH                                                =    15, 
+##     BabyDaddyDistanceFromHH                                      =    16, 
+##     Gen2CFatherAlive                                             =    17, 
+##     Gen2CFatherInHH                                              =    18, 
+##     Gen2CFatherDistanceFromHH                                    =    19, 
+##     Gen1BiodadInHH                                               =    30, 
+##     Gen1BiodadDeathAge                                           =    31, 
+##     Gen1BiodadBirthYear                                          =    32, 
+##     // Gen1BiodadInHH1979                                        =    33, 
+##     Gen1BiodadBirthCountry                                       =    34, 
+##     Gen1BiodadBirthState                                         =    35, 
+##     Gen1BiomomInHH                                               =    40, 
+##     Gen1BiomomDeathAge                                           =    41, 
+##     Gen1BiomomBirthYear                                          =    42, 
+##     // Gen1BiomomInHH1979                                        =    43, 
+##     Gen1BiomomBirthCountry                                       =    44, 
+##     Gen1BiomomBirthState                                         =    45, 
+##     Gen1AlwaysLivedWithBothBioparents                            =    50, 
+## }
+##  
+## public enum MultipleBirth {
+##     No                                                           =     0, 
+##     Twin                                                         =     2, 
+##     Trip                                                         =     3, 
+##     // TwinOrTrip                                                =     4, // Currently Then Gen1 algorithm doesn&#39;t distinguish.
+##     DoNotKnow                                                    =   255, 
+## }
+##  
+## public enum RaceCohort {
+##     Black                                                        =     1, 
+##     Hispanic                                                     =     2, 
+##     Mixed                                                        =     3, 
+##     Nbnh                                                         =     4, 
+## }
+##  
+## public enum RosterGen1 {
+##     valid_skip                                                   =    -4, 
+##     do_not_know                                                  =    -2, 
+##     refusal                                                      =    -1, 
+##     self                                                         =     0, 
+##     wife                                                         =     1, 
+##     husband                                                      =     2, 
+##     mother                                                       =     3, 
+##     father                                                       =     4, 
+##     mother_step                                                  =     7, 
+##     father_step                                                  =     8, 
+##     mother_adoptive                                              =     5, 
+##     father_adoptive                                              =     6, 
+##     mother_foster                                                =     9, 
+##     father_foster                                                =    10, 
+##     mother_in_law                                                =    11, 
+##     father_in_law                                                =    12, 
+##     sister_full                                                  =    13, 
+##     brother_full                                                 =    14, 
+##     sister_half_same_mother                                      =    15, 
+##     sister_half_same_father                                      =    16, 
+##     sister_half_unsure                                           =    17, 
+##     brother_half_same_mother                                     =    18, 
+##     brother_half_same_father                                     =    19, 
+##     brother_half_unsure                                          =    20, 
+##     sister_step                                                  =    21, 
+##     brother_step                                                 =    22, 
+##     sister_adoptive                                              =    23, 
+##     brother_adoptive                                             =    24, 
+##     sister_foster                                                =    25, 
+##     brother_foster                                               =    26, 
+##     brother_in_law                                               =    27, 
+##     sister_in_law                                                =    28, 
+##     grandmother_maternal                                         =    29, 
+##     grandmother_paternal                                         =    30, 
+##     grandmother_social                                           =    31, 
+##     grandmother_unsure                                           =    32, 
+##     grandfather_maternal                                         =    33, 
+##     grandfather_paternal                                         =    34, 
+##     grandfather_social                                           =    35, 
+##     grandfather_unsure                                           =    36, 
+##     great_grandmother                                            =    37, 
+##     great_grandfather                                            =    38, 
+##     great_grandmother_social                                     =    39, 
+##     great_grandmother_unsure                                     =    40, 
+##     great_grandfather_maternal                                   =    41, 
+##     great_grandfather_paternal                                   =    42, 
+##     great_grandfather_social                                     =    43, 
+##     great_grandfather_unsure                                     =    44, 
+##     great_great_grandmother                                      =    45, 
+##     great_great_grandfather                                      =    46, 
+##     granddaughter                                                =    47, 
+##     grandson                                                     =    48, 
+##     daughter_bio                                                 =    49, 
+##     son_bio                                                      =    50, 
+##     daughter_step                                                =    51, 
+##     son_step                                                     =    52, 
+##     daughter_adoptive                                            =    53, 
+##     son_adoptive                                                 =    54, 
+##     daughter_foster                                              =    55, 
+##     son_foster                                                   =    56, 
+##     daughter_of_partner                                          =    57, 
+##     son_of_partner                                               =    58, 
+##     daughter_in_law                                              =    59, 
+##     son_in_law                                                   =    60, 
+##     grandmother_in_law                                           =    61, 
+##     grandfather_in_law                                           =    62, 
+##     aunt_in_law                                                  =    63, 
+##     uncle_in_law                                                 =    64, 
+##     cousin_in_law                                                =    65, 
+##     great_grandmother_in_law                                     =    66, 
+##     great_grandfather_in_law                                     =    67, 
+##     roommate                                                     =    68, 
+##     partner                                                      =    69, 
+##     aunt_unsure                                                  =    70, 
+##     great_aunt                                                   =    71, 
+##     uncle_unsure                                                 =    72, 
+##     great_uncle                                                  =    73, 
+##     niece_unsure                                                 =    74, 
+##     niece_step                                                   =    75, 
+##     niece_foster                                                 =    76, 
+##     niece_adoptive                                               =    77, 
+##     nephew_unsure                                                =    78, 
+##     nephew_step                                                  =    79, 
+##     nephew_foster                                                =    80, 
+##     nephew_adoptive                                              =    81, 
+##     cousin_female_unsure                                         =    82, 
+##     cousin_male_unsure                                           =    83, 
+##     relative_other                                               =    84, 
+##     nonrelative_other                                            =    85, 
+##     great_grandson                                               =    86, 
+##     great_granddaughter                                          =    87, 
+##     relationship_missing                                         =    99, 
+## }
+##  
+## public enum Tristate {
+##     No                                                           =     0, 
+##     Yes                                                          =     1, 
+##     DoNotKnow                                                    =   255, 
+## }
+##  
+## public enum YesNo {
+##     ValidSkipOrNoInterviewOrNotInSurvey                          =    -6, 
+##     InvalidSkip                                                  =    -3, 
+##     DoNotKnow                                                    =    -2, 
+##     Refusal                                                      =    -1, 
+##     No                                                           =     0, 
+##     Yes                                                          =     1, 
+## }
+</code></pre>
+
+<pre><code class="r"># Sniff out problems
+d_extract_source &lt;- ds_file  %&gt;%
+  dplyr::filter(name==&quot;LUExtractSource&quot;) %&gt;%
+  dplyr::pull(entries) %&gt;%
+  purrr::flatten_df()
+
+d_item &lt;- ds_file  %&gt;%
+  dplyr::filter(name==&quot;item&quot;) %&gt;%
+  dplyr::pull(entries) %&gt;%
+  purrr::flatten_df()
+
+checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
+checkmate::assert_character(d_item$Label        , pattern=&quot;^\\w+&quot;       , any.missing=F, unique=T)
+
+
+d_variable &lt;- ds_file  %&gt;%
+  dplyr::filter(name==&quot;variable&quot;) %&gt;%
+  dplyr::pull(entries) %&gt;%
+  purrr::flatten_df() %&gt;%
+  dplyr::mutate(
+    item_found    = (ExtractSource %in% d_extract_source$ID),
+    extract_found = (Item %in% d_item$ID),
+    unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
+  ) %&gt;%
+  dplyr::group_by(unique_index) %&gt;%
+  dplyr::mutate(
+    unique_index_violation  = (1L &lt; n())
+  ) %&gt;%
+  dplyr::ungroup()
+
+
+pattern_unique_index &lt;- &quot;^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$&quot;
+checkmate::assert_character(d_variable$VariableCode                     , pattern=&quot;^[A-Z]\\d{7}$&quot;            , any.missing=F, unique=T)
+checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
+checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
+testit::assert(&quot;All items referenced from the variables should be in the item table.&quot;, all(d_variable$item_found))
+testit::assert(&quot;All extract sources referenced from the variables should be in the item table.&quot;, all(d_variable$extract_found))
+checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+
+rm(d_item, d_variable)
+</code></pre>
+
+<pre><code class="r"># lst_ds %&gt;%
+#   purrr::map(function(x)paste(names(x)))
+
+ds_table_process &lt;- ds_table %&gt;%
+  dplyr::filter(schema_name == &quot;Process&quot;) %&gt;%
+  dplyr::mutate(
+    # sql_truncate  = glue::glue(&quot;TRUNCATE TABLE {schema_name}.{table_name};&quot;)
+    sql_truncate  = glue::glue(&quot;DELETE FROM {schema_name}.{table_name};&quot;)
+  )
+
+# Open channel
+channel &lt;- open_dsn_channel_odbc(study)
+DBI::dbGetInfo(channel)
+</code></pre>
+
+<pre><code>## $dbname
+## [1] &quot;NlsyLinks97&quot;
+## 
+## $dbms.name
+## [1] &quot;Microsoft SQL Server&quot;
+## 
+## $db.version
+## [1] &quot;13.00.4206&quot;
+## 
+## $username
+## [1] &quot;dbo&quot;
+## 
+## $host
+## [1] &quot;&quot;
+## 
+## $port
+## [1] &quot;&quot;
+## 
+## $sourcename
+## [1] &quot;local-nlsy-links-97&quot;
+## 
+## $servername
+## [1] &quot;GIMBLE\\EXPRESS_2016&quot;
+## 
+## $drivername
+## [1] &quot;msodbcsql13.dll&quot;
+## 
+## $odbc.version
+## [1] &quot;03.80.0000&quot;
+## 
+## $driver.version
+## [1] &quot;14.00.1000&quot;
+## 
+## $odbcdriver.version
+## [1] &quot;03.80&quot;
+## 
+## $supports.transactions
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;Microsoft SQL Server&quot; &quot;driver_info&quot;          &quot;list&quot;
+</code></pre>
+
+<pre><code class="r">channel_rodbc &lt;- open_dsn_channel_rodbc(study)
+RODBC::odbcGetInfo(channel_rodbc)
+</code></pre>
+
+<pre><code>##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
+## &quot;Microsoft SQL Server&quot;           &quot;13.00.4206&quot;                &quot;03.80&quot; 
+##       Data_Source_Name            Driver_Name             Driver_Ver 
+##  &quot;local-nlsy-links-97&quot;      &quot;msodbcsql13.dll&quot;           &quot;14.00.1000&quot; 
+##               ODBC_Ver            Server_Name 
+##           &quot;03.80.0000&quot; &quot;GIMBLE\\EXPRESS_2016&quot;
+</code></pre>
+
+<pre><code class="r"># Clear process tables
+delete_results_process &lt;- ds_table_process$sql_truncate %&gt;%
+  purrr::set_names(ds_table_process$table_name) %&gt;%
+  rev() %&gt;%
+  purrr::map(DBI::dbGetQuery, conn=channel)
+delete_results_process
+</code></pre>
+
+<pre><code>## $tblSurveyTime
+## data frame with 0 columns and 0 rows
+## 
+## $tblSubjectDetails
+## data frame with 0 columns and 0 rows
+## 
+## $tblSubject
+## data frame with 0 columns and 0 rows
+## 
+## $tblRoster
+## data frame with 0 columns and 0 rows
+## 
+## $tblResponse
+## data frame with 0 columns and 0 rows
+## 
+## $tblRelatedValues
+## data frame with 0 columns and 0 rows
+## 
+## $tblRelatedStructure
+## data frame with 0 columns and 0 rows
+## 
+## $tblOutcome
+## data frame with 0 columns and 0 rows
+## 
+## $tblMarker
+## data frame with 0 columns and 0 rows
+</code></pre>
+
+<pre><code class="r"># Delete metadata tables
+# delete_result &lt;- RODBC::sqlQuery(channel, &quot;DELETE FROM [NlsLinks].[Metadata].[tblVariable]&quot;, errors=FALSE)
+delete_results_metadata &lt;- ds_file$sql_delete %&gt;%
+  purrr::set_names(ds_file$table_name) %&gt;%
+  rev() %&gt;%
+  purrr::map(DBI::dbGetQuery, conn=channel)
+
+# DBI::dbGetQuery(conn=channel, ds_file$sql_delete[15])
+delete_results_metadata
+</code></pre>
+
+<pre><code>## $tblvariable
+## data frame with 0 columns and 0 rows
+## 
+## $tblRosterAssignment
+## data frame with 0 columns and 0 rows
+## 
+## $tblMzManual
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUYesNo
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUTristate
+## data frame with 0 columns and 0 rows
+## 
+## $tblLURoster
+## data frame with 0 columns and 0 rows
+## 
+## $tblLURaceCohort
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUMultipleBirth
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUMarkerType
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUGender
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUMarkerEvidence
+## data frame with 0 columns and 0 rows
+## 
+## $tblLUExtractSource
+## data frame with 0 columns and 0 rows
+## 
+## $tblitem
+## data frame with 0 columns and 0 rows
+</code></pre>
+
+<pre><code class="r"># d &lt;- ds_file %&gt;%
+#   dplyr::select(table_name, entries) %&gt;%
+#   dplyr::filter(table_name==&quot;Enum.tblLURosterGen1&quot;) %&gt;%
+#   tibble::deframe() %&gt;%
+#   .[[1]]
+
+# d2 &lt;- d[, 1:16]
+# RODBC::sqlSave(channel, dat=d, tablename=&quot;Enum.tblLURosterGen1&quot;, safer=TRUE, rownames=FALSE, append=TRUE)
+
+# Upload metadata tables
+purrr::pmap_int(
+  list(
+    ds_file$entries,
+    ds_file$table_name,
+    ds_file$schema_name
+    # seq_len(nrow(ds_file))
+  ),
+  function( d, table_name, schema_name ) {
+    # browser()
+    # DBI::dbWriteTable(
+    #   conn    = channel,
+    #   name    = table_name,
+    #   schema  = schema_name,
+    #   value   = d,
+    #   append  = F
+    # )
+    message(&quot;Writing to table &quot;, table_name)
+    RODBC::sqlSave(
+      channel     = channel_rodbc,
+      dat         = d,
+      # tablename   = table_name,
+      tablename   = paste0(schema_name, &quot;.&quot;, table_name),
+      safer       = TRUE,       # Don&#39;t keep the existing table.
+      rownames    = FALSE,
+      append      = TRUE
+    )
+  }
+) #%&gt;%
+</code></pre>
+
+<pre><code>## Writing to table tblitem
+</code></pre>
+
+<pre><code>## Writing to table tblLUExtractSource
+</code></pre>
+
+<pre><code>## Writing to table tblLUMarkerEvidence
+</code></pre>
+
+<pre><code>## Writing to table tblLUGender
+</code></pre>
+
+<pre><code>## Writing to table tblLUMarkerType
+</code></pre>
+
+<pre><code>## Writing to table tblLUMultipleBirth
+</code></pre>
+
+<pre><code>## Writing to table tblLURaceCohort
+</code></pre>
+
+<pre><code>## Writing to table tblLURoster
+</code></pre>
+
+<pre><code>## Writing to table tblLUTristate
+</code></pre>
+
+<pre><code>## Writing to table tblLUYesNo
+</code></pre>
+
+<pre><code>## Writing to table tblMzManual
+</code></pre>
+
+<pre><code>## Writing to table tblRosterAssignment
+</code></pre>
+
+<pre><code>## Writing to table tblvariable
+</code></pre>
+
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1
+</code></pre>
+
+<pre><code class="r"># purrr::set_names(ds_file$table_name)
+# a &lt;- ds_file$entries[[13]]
+# table(a$ID)
+
+
+# odbc::dbWriteTable(
+#   conn    = channel,
+#   name    = DBI::SQL(&quot;Metadata.tblRosterAssignment&quot;),
+#   # name    = &quot;tblvariable_97&quot;,
+#   # schema  = &quot;Metadata&quot;,
+#   value   = ds_file$entries[[13]],
+#   append  = T
+# )
+
+# RODBC::sqlSave(
+#   channel     = channel_rodbc,
+#   dat         = ds_file$entries[[13]][1:1, ],
+#   # tablename   = table_name,
+#   tablename   = &quot;Metadata.tblRosterAssignment&quot;,
+#   safer       = TRUE,       # Don&#39;t keep the existing table.
+#   rownames    = FALSE,
+#   append      = TRUE
+# )
+
+# for( i in seq_len(nrow(ds_file)) ) {
+#   message(glue::glue(&quot;Uploading from `{ basename(ds_file$path)[i]}` to `{ds_file$table_name[i]}`.&quot;))
+#
+#   d &lt;- ds_file$entries[[i]]
+#   print(d)
+#
+#   # RODBC::sqlQuery(channel, ds_extract$sql_truncate[i], errors=FALSE)
+#
+#   # d_peek &lt;- RODBC::sqlQuery(channel, ds_extract$sql_select[i], errors=FALSE)
+#   #
+#   # missing_in_extract    &lt;- setdiff(colnames(d_peek), colnames(d))
+#   # missing_in_database   &lt;- setdiff(colnames(d), colnames(d_peek))
+#   #
+#   # d_column &lt;- tibble::tibble(
+#   #   db        = colnames(d),
+#   #   extract   = colnames(d_peek)
+#   # ) %&gt;%
+#   #   dplyr::filter(db != extract)
+#   #
+#   # RODBC::sqlSave(
+#   #   channel     = channel,
+#   #   dat         = d,
+#   #   tablename   = ds_extract$table_name[i],
+#   #   safer       = TRUE,       # Don&#39;t keep the existing table.
+#   #   rownames    = FALSE,
+#   #   append      = TRUE
+#   # ) %&gt;%
+#   #   print()
+#
+#   OuhscMunge::upload_sqls_rodbc(
+#     d               = d,
+#     table_name      = ds_file$table_name[i] ,
+#     dsn_name        = &quot;local-nlsy-links&quot;,
+#     clear_table     = T,
+#     create_table    = F
+#   )
+#
+#
+#   message(glue::glue(&quot;{format(object.size(d), units=&#39;MB&#39;)}&quot;))
+# }
+
+# Close channel
+DBI::dbDisconnect(channel); rm(channel)
+RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+
+duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, units=&quot;secs&quot;)))
+cat(&quot;`import-97-metadata.R` file completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## `import-97-metadata.R` file completed by `Will` at 2018-02-13, 12:22 -0600 in 2 seconds.
+</code></pre>
+
+<p>The R session information (including the OS info, R version and all
+packages used):</p>
+
+<pre><code class="r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.4.3 Patched (2018-01-25 r74163)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows &gt;= 8 x64 (build 9200)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] knitr_1.19   bindrcpp_0.2 magrittr_1.5
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      highr_0.6         plyr_1.8.4       
+##  [4] pillar_1.1.0      compiler_3.4.3    bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
+## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
+## [13] tibble_1.4.2      checkmate_1.8.5   pkgconfig_2.0.1  
+## [16] rlang_0.1.6.9003  rstudioapi_0.7    DBI_0.7          
+## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
+## [22] dplyr_0.7.4.9000  stringr_1.2.0     devtools_1.13.4  
+## [25] hms_0.4.1         bit64_0.9-7       rprojroot_1.3-2  
+## [28] tidyselect_0.2.3  glue_1.2.0        R6_2.2.2         
+## [31] rmarkdown_1.8     tidyr_0.8.0       readr_1.1.1      
+## [34] purrr_0.2.4       blob_1.1.0        backports_1.1.2  
+## [37] scales_0.5.0.9000 RODBC_1.3-15      htmltools_0.3.6  
+## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [46] markdown_0.8      crayon_1.3.4
+</code></pre>
+
+<pre><code class="r">Sys.time()
+</code></pre>
+
+<pre><code>## [1] &quot;2018-02-13 12:22:26 CST&quot;
+</code></pre>
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:Nls.Base97;assembly=Base97" xmlns:my1="clr-namespace:LinksGui" xmlns:Base97="clr-namespace:Nls.Base97;assembly=Base97" xmlns:Base79="clr-namespace:Nls.Base79;assembly=Base79" x:Class="LinksGui.Gui97"
+        Title="Determine 97" Height="546" Width="1157" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Base97:ImportDataSet x:Key="importDataSet" />
+        <Base97:LinksDataSet x:Key="linksDataSet" />
+        <CollectionViewSource x:Key="tblItemViewSource" Source="{Binding tblItem, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblVariableViewSource" Source="{Binding tblVariable, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblMzManualViewSource" Source="{Binding tblMzManual, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblSubjectViewSource" Source="{Binding tblSubject, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRelatedStructureViewSource" Source="{Binding tblRelatedStructure, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblResponseViewSource" Source="{Binding tblResponse, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRelatedValuesViewSource" Source="{Binding tblRelatedValues, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblOutcomeViewSource" Source="{Binding tblOutcome, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRosterViewSource" Source="{Binding tblRoster, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblLinksExplicitViewSource" Source="{Binding tblLinksExplicit, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblLinksImplicitViewSource" Source="{Binding tblLinksImplicit, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblDemographicsViewSource" Source="{Binding tblDemographics, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblSurveyTimeViewSource" Source="{Binding tblSurveyTime, Source={StaticResource importDataSet}}"/>
+        <CollectionViewSource x:Key="tblSurveyTimeViewSource1" Source="{Binding tblSurveyTime, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRosterViewSource1" Source="{Binding tblRoster, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblRosterAssignmentViewSource" Source="{Binding tblRosterAssignment, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblSubjectDetailsViewSource" Source="{Binding tblSubjectDetails, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblMarkerViewSource" Source="{Binding tblMarker, Source={StaticResource linksDataSet}}"/>
+        <CollectionViewSource x:Key="tblTwinsViewSource" Source="{Binding tblTwins, Source={StaticResource importDataSet}}"/>
+
+
+    </Window.Resources>
+    <Grid x:Name="grid1" Background="AliceBlue" DataContext="{StaticResource tblMzManualViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grdButton"  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnSubject" Content="Subject" Grid.Column="0" Click="btnSubject_Click" />
+            <Button x:Name="btnRelatedStructure" Grid.Column="1" Click="btnRelatedStructure_Click"    >
+                <TextBlock><Run Text="Related"/><LineBreak/><Run Text="Structure"/></TextBlock>
+            </Button>
+            <Button x:Name="btnResponse" Content="Response"  Grid.Column="2" Click="btnResponse_Click"  />
+            <Button x:Name="btnSurveyTime" Grid.Column="3" Click="btnSurveyTime_Click">
+                <TextBlock><Run Text="Survey"/><LineBreak/><Run Text="Time"/></TextBlock>
+            </Button>
+            <Button Content="Setup" Height="19" HorizontalAlignment="Left" Margin="0,-1,0,0" x:Name="btnSetup" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnSetup_Click" />
+            <Button Content="Button2" Height="19" HorizontalAlignment="Left" Margin="0,19,0,0" x:Name="btnCombine2" VerticalAlignment="Top" Width="74" Grid.Column="4" Click="btnCombine2_Click" />
+            <Button Name="btnRoster" Content="Roster" Grid.Column="5" Click="btnRoster_Click"/>
+            <Button Name="btnSubjectDetails" Grid.Column="10" Click="btnSubjectDetails_Click">
+                <TextBlock>Subject<LineBreak/>Details</TextBlock>
+            </Button>
+            <Button Name="btnMarker" Content="Marker" Grid.Column="11" Click="btnMarker_Click"/>
+            <Button x:Name="btnRelatedValues" Grid.Column="13" Click="btnRelatedValues_Click">
+                <TextBlock><Run Text="Related"/><LineBreak/><Run Text="Values"/></TextBlock>
+            </Button>
+            <Button x:Name="btnOutcoms" Grid.Column="14" Click="btnOutcome_Click">
+                <TextBlock><Run Text="Outcome"/></TextBlock>
+            </Button>
+            <Button x:Name="btnRelatedValuesArchive" Grid.Column="15" Click="btnRelatedValuesArchive_Click">
+                <TextBlock><Run Text="Related"/><LineBreak/><Run Text="Archive"/></TextBlock>
+            </Button>
+            <TextBox x:Name="txtAlogrithmNumber" Grid.Column="16"  />
+        </Grid>
+        <Button x:Name="btnUpdateAllTables" Content="Update All Tables"  Grid.Row="2" Click="btnUpdateAllTables_Click" Background="#FFF5D600" />
+        <TabControl x:Name="tabControlTop"  Grid.Row="0" Background="Transparent"  RenderTransformOrigin="0.415,0.678">
+            <TabItem Header="Demographics" x:Name="tabDemographics" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblDemographicsViewSource}}" />
+            </TabItem>
+            <TabItem Header="Roster" x:Name="tabRoster" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterViewSource}}" />
+            </TabItem>
+            <TabItem Header="SurveyTime" x:Name="tabSurveyTime" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSurveyTimeViewSource}}" />
+            </TabItem>
+            <TabItem Header="LinksExplicit" x:Name="tabLinksExplicit" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksExplicitViewSource}}" />
+            </TabItem>
+            <TabItem Header="LinksImplicit" x:Name="tabLinksImplicit" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblLinksImplicitViewSource}}" />
+            </TabItem>
+            <TabItem Header="Twins" x:Name="tabTwins" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblTwinsViewSource}}" />
+            </TabItem>
+            <TabItem Header="Item" x:Name="tabItem" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblItemViewSource}}" />
+            </TabItem>
+            <TabItem Header="Variable" x:Name="tabVariable" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblVariableViewSource}}"   />
+            </TabItem>
+            <TabItem Header="MzManual" x:Name="tabMzManual" >
+                <DataGrid ItemsSource="{Binding}" />
+            </TabItem>
+            <TabItem Header="Roster Assign" x:Name="tabLURoster" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterAssignmentViewSource}}" />
+            </TabItem>
+        </TabControl>
+        <TabControl x:Name="tabControlBottom"  Grid.Row="3" Background="Transparent">
+            <TabItem Header="Subject" x:Name="tabSubject"  >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}" />
+            </TabItem>
+            <TabItem Header="RStructure" x:Name="tabRelated"  >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedStructureViewSource}}" />
+            </TabItem>
+            <TabItem Header="Response" x:Name="tabResponse"  >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblResponseViewSource}}" />
+            </TabItem>
+            <TabItem Header="SurveyTime" x:Name="SurveyTime"  >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSurveyTimeViewSource1}}" />
+            </TabItem>
+            <TabItem Header="Roster" Name="tabRosterGen1" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRosterViewSource1}}"/>
+            </TabItem>
+            <TabItem Header="SubjectDetails" Name="tabSubjectDetails" >
+                <DataGrid  ItemsSource="{Binding Source={StaticResource tblSubjectDetailsViewSource}}"/>
+            </TabItem>
+            <TabItem Header="Marker" Name="tabMarker" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblMarkerViewSource}}"/>
+            </TabItem>
+            <TabItem Header="RValues" x:Name="tabRelatedValues" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedValuesViewSource}}" />
+            </TabItem>
+            <TabItem Header="Outcome" x:Name="tabOutcome"  >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblOutcomeViewSource}}" />
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>

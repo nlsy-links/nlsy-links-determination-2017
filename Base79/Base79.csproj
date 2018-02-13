@@ -123,7 +123,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RCoefficientsSibling.cs" />
+    <Compile Include="RCoefficients.cs" />
     <Compile Include="RelatedStructure.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Response.cs" />

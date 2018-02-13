@@ -192,7 +192,7 @@ namespace Nls.Base79 {
     public enum Gender : byte {
         Male = 1,
         Female = 2,
-        InvalidSkipGen2 = 255, 
+        InvalidSkipGen2 = 255,
     }
     public enum RaceCohort : byte {
         Hispanic = 1,

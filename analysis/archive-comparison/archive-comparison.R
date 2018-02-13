@@ -76,7 +76,7 @@ startTime <- Sys.time()
 
 # ---- load-data ---------------------------------------------------------------
 startTime <- Sys.time()
-channel            <- open_dsn_channel_odbc()
+channel            <- open_dsn_channel_odbc(study = "79")
 # DBI::dbGetInfo(channel)
 dsRaw           <- DBI::dbGetQuery(channel, sql)
 dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)

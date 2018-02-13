@@ -22,6 +22,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-79"
+study                     <- "79"
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -43,15 +44,6 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  # item_97 = readr::cols_only(
-  #   ID                                  = readr::col_integer(),
-  #   Label                               = readr::col_character(),
-  #   MinValue                            = readr::col_integer(),
-  #   MinNonnegative                      = readr::col_integer(),
-  #   MaxValue                            = readr::col_integer(),
-  #   Active                              = readr::col_logical(),
-  #   Notes                               = readr::col_character()
-  # ),
   LUExtractSource = col_types_minimal,
   LUMarkerEvidence = col_types_minimal,
   LUGender = col_types_minimal,
@@ -138,19 +130,6 @@ lst_col_types <- list(
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character()
   )
-  # variable_97 = readr::cols_only(
-  #   # ID                                  = readr::col_integer(),
-  #   VariableCode                        = readr::col_character(),
-  #   Item                                = readr::col_integer(),
-  #   Generation                          = readr::col_integer(),
-  #   ExtractSource                       = readr::col_integer(),
-  #   SurveySource                        = readr::col_integer(),
-  #   SurveyYear                          = readr::col_integer(),
-  #   LoopIndex                           = readr::col_integer(),
-  #   Translate                           = readr::col_integer(),
-  #   Active                              = readr::col_integer(),
-  #   Notes                               = readr::col_character()
-  # )
 )
 
 col_types_mapping <- readr::cols_only(
@@ -193,13 +172,13 @@ ds_entries
 # readr::problems(d)
 # ds_entries$entries[15]
 
-ds_table <- database_inventory()
+ds_table <- database_inventory(study)
 ds_table
 
 rm(directory_in) # rm(col_types_tulsa)
 
 # ---- tweak-data --------------------------------------------------------------
-# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
+# OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call to `dplyr::rename()`.
 
 ds_file <- ds_file %>%
   dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
@@ -298,10 +277,10 @@ ds_table_process <- ds_table %>%
   )
 
 # Open channel
-channel <- open_dsn_channel_odbc()
+channel <- open_dsn_channel_odbc(study)
 DBI::dbGetInfo(channel)
 
-channel_rodbc <- open_dsn_channel_rodbc()
+channel_rodbc <- open_dsn_channel_rodbc(study)
 RODBC::odbcGetInfo(channel_rodbc)
 
 # Clear process tables
@@ -416,4 +395,4 @@ DBI::dbDisconnect(channel); rm(channel)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 
 duration_in_seconds <- round(as.numeric(difftime(Sys.time(), start_time, units="secs")))
-cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")
+cat("`import-79-metadata.R` file completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y-%m-%d, %H:%M %z"), " in ",  duration_in_seconds, " seconds.", sep="")

@@ -1,12 +1,30 @@
 ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
    1,subject_id,1,1,9022,TRUE,
-   2,extended_family_id,1,1,9022,FALSE,?Where does this exist?
+   2,extended_family_id,1,1,9022,TRUE,
+   3,hh_internal_id,1,1,5,TRUE,
   10,gender,1,1,2,TRUE,
-  11,dob_month,1,1,12,TRUE,
-  12,dob_year,1980,1980,1984,TRUE,
+  11,DateOfBirthMonth,1,1,12,TRUE,
+  12,DateOfBirthYear,1980,1980,1984,TRUE,
+  13,cross_sectional_cohort,0,0,1,TRUE,
+  14,race_cohort,1,1,4,TRUE,"race-ethnicity"
+  20,InterviewDateDay,-7,1,31,TRUE,
+  21,InterviewDateMonth,-7,1,12,TRUE,
+  22,InterviewDateYear,-7,86,2016,TRUE,
+  23,AgeAtInterviewDateMonths,-5,146,500,TRUE,
+  24,AgeAtInterviewDateYears,-5,12,40,TRUE,
  101,roster_crosswalk,-5,1,20,TRUE,
  102,hh_member_id,-4,1,17,TRUE,
-
+ 103,hh_informant,-4,0,1,TRUE,
+ 104,roster_relationship_2_dim,-4,0,99,FALSE,16 x 16 square
+ 105,roster_relationship_1_dim,-4,0,99,TRUE,1 x 16 vector
+ 106,hh_unique_id,-4,0,122,TRUE,"HHI2: People living in the Household - sorted, UID; HH member's unique ID"
+ 121,pair_multiple_birth,-4,0,3,TRUE,
+ 122,pair_twins_mz,-4,0,1,TRUE,
+ 123,pair_sister_same_bioparent,-4,15,16,TRUE,
+ 124,pair_brother_same_bioparent,-4,18,19,TRUE,
+1020,InterviewDateDayParent_NOTUSED,-4,1,31,FALSE,
+1021,InterviewDateMonthParent_NOTUSED,-4,1,9,FALSE,
+1022,InterviewDateYearParent_NOTUSED,-4,1997,1998,FALSE,
 #2,RosterGen1979,-4,1,66,TRUE,
 #3,SiblingNumberFrom1993SiblingRoster,-4,1,99,TRUE,
 #4,IDCodeOfOtherSiblingGen1,-5,3,12518,TRUE,
@@ -15,9 +33,6 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
 #9,IDCodeOfOtherInterviewedBiodadGen2,-7,1,11,TRUE,
 #10,ShareBiodadGen2,-7,0,3,TRUE,
 #11,Gen1MomOfGen2Subject,2,2,12675,TRUE,
-#13,DateOfBirthMonth,-5,1,12,TRUE,
-#14,DateOfBirthYearGen1,-5,55,65,TRUE,
-#15,DateOfBirthYearGen2,-3,1970,2012,TRUE,
 #16,AgeAtInterviewDateYears,-7,13,53,TRUE,
 #17,AgeAtInterviewDateMonths,-7,0,259,TRUE,
 #20,InterviewDateDay,-7,1,31,TRUE,

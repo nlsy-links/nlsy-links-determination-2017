@@ -33,5 +33,16 @@ namespace LinksGui.Properties {
                 return ((string)(this["Nlsy79ConnectionStringGui"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GIMBLE\\express_2016;Initial Catalog=NlsyLinks97;Integrated Security=T" +
+            "rue;Connect Timeout=60")]
+        public string Nlsy97ConnectionStringGui {
+            get {
+                return ((string)(this["Nlsy97ConnectionStringGui"]));
+            }
+        }
     }
 }

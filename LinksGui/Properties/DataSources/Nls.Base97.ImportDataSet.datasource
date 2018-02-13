@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="LinksDataSet" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Nls.Base79.LinksDataSet, Base79, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a6b25547aa2cbef1</TypeInfo>
+<GenericObjectDataSource DisplayName="ImportDataSet" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>Nls.Base97.ImportDataSet, Base97, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a6b25547aa2cbef1</TypeInfo>
 </GenericObjectDataSource>

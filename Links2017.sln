@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base79Fixture", "Base79Fixt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinksGui", "LinksGui\LinksGui.csproj", "{4E4734F1-5FA3-44EA-B58A-2F96E2D83537}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base97", "Base97\Base97.csproj", "{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,18 @@ Global
 		{4E4734F1-5FA3-44EA-B58A-2F96E2D83537}.Release|x64.Build.0 = Release|x64
 		{4E4734F1-5FA3-44EA-B58A-2F96E2D83537}.Release|x86.ActiveCfg = Release|x86
 		{4E4734F1-5FA3-44EA-B58A-2F96E2D83537}.Release|x86.Build.0 = Release|x86
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|x64.ActiveCfg = Release|Any CPU
+		{BDD35D54-987B-47E3-AEAE-C461AC6DB24E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

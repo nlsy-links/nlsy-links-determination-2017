@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-07"
+date: "Date: 2018-02-13"
 output:
   html_document:
     keep_md: yes
@@ -35,76 +35,79 @@ This report documents the basic properties of the input & output tables kinship 
 <!-- Tweak the datasets.   -->
 
 
+
+
 # Summary {.tabset .tabset-fade .tabset-pills}
 
 ## Notes 
-1. The current report covers 52 tables.
-1. 1,642 variables are defined, and 1,606 variables are 'active'.
+1. The current report covers 52 tables in the NLSY79 and 52 tables in the NLSY97.
+1. For the NLSY79, 1,642 variables are defined, and 1,606 variables are 'active'.
+1. For the NLSY97, 551 variables are defined, and 551 variables are 'active'.
 
 ## Unanswered Questions
 
 ## Answered Questions
 
-# Results {.tabset .tabset-fade .tabset-pills}
+# Results NLSY79 {.tabset .tabset-fade .tabset-pills}
 
-## Tables
+## Tables 79
 
-|schema name |table name                 | row count| column count| space total kb| space used kb|
-|:-----------|:--------------------------|---------:|------------:|--------------:|-------------:|
-|Archive     |tblArchiveDescription      |        56|            4|            144|            32|
-|Archive     |tblRelatedValuesArchive    |   869,554|           24|         34,832|        34,296|
-|dbo         |sysdiagrams                |         4|            5|            280|           160|
-|Enum        |tblLUBioparent-not-used    |         0|            2|              0|             0|
-|Enum        |tblLUExtractSource         |        11|            4|             72|            16|
-|Enum        |tblLUGender                |         3|            4|             72|            16|
-|Enum        |tblLUMarkerEvidence        |         8|            4|             72|            16|
-|Enum        |tblLUMarkerType            |        28|            5|             72|            16|
-|Enum        |tblLUMultipleBirth         |         5|            4|             72|            16|
-|Enum        |tblLURaceCohort            |         3|            4|             72|            16|
-|Enum        |tblLURelationshipPath      |         5|            4|             72|            16|
-|Enum        |tblLURosterGen1            |        67|            4|             72|            16|
-|Enum        |tblLUSurveySource          |         5|            4|             72|            16|
-|Enum        |tblLUTristate              |         3|            4|             72|            16|
-|Enum        |tblLUYesNo                 |         6|            4|             72|            16|
-|Extract     |tbl97Roster                |         0|          416|             72|            16|
-|Extract     |tblGen1Explicit            |    12,686|           96|            520|           408|
-|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|            592|           360|
-|Extract     |tblGen1Implicit            |    12,686|          102|            648|           552|
-|Extract     |tblGen1Links               |    12,686|          117|            968|           824|
-|Extract     |tblGen1MzDzDistinction2010 |         0|            7|             72|            16|
-|Extract     |tblGen1Outcomes            |    12,686|           22|            392|           248|
-|Extract     |tblGen2FatherFromGen1      |    12,686|          959|          6,728|         6,648|
-|Extract     |tblGen2ImplicitFather      |    11,521|          111|            584|           432|
-|Extract     |tblGen2Links               |    11,521|          207|            904|           816|
-|Extract     |tblGen2LinksFromGen1       |    12,686|          123|            584|           464|
-|Extract     |tblGen2OutcomesHeight      |    11,521|           46|            392|           256|
-|Extract     |tblGen2OutcomesMath        |    11,521|           44|            456|           304|
-|Extract     |tblGen2OutcomesWeight      |    11,521|           31|            328|           176|
-|Extract     |tblLinks2004Gen1           |     3,890|            9|            528|           208|
-|Extract     |tblLinks2004Gen2           |    12,855|            5|            784|           464|
-|Metadata    |tblItem                    |       110|            7|             72|            16|
-|Metadata    |tblItem_97                 |         7|            7|             72|            16|
-|Metadata    |tblMzManual                |       208|            9|            144|            56|
-|Metadata    |tblRosterGen1Assignment    |        50|           16|             72|            16|
-|Metadata    |tblVariable                |     1,642|           10|            272|           136|
-|Metadata    |tblVariable_97             |        37|           10|             72|            16|
-|Process     |tblBabyDaddy               |   178,993|           11|          6,992|         6,160|
-|Process     |tblFatherOfGen2            |    52,038|            7|            456|           304|
-|Process     |tblIRDemo1                 |         0|            5|             72|            16|
-|Process     |tblMarkerGen1              |   218,568|           10|          7,504|         6,944|
-|Process     |tblMarkerGen2              |   207,408|            8|          7,376|         6,712|
-|Process     |tblOutcome                 |   279,649|            5|         10,320|         9,224|
-|Process     |tblParentsOfGen1Current    |    12,686|           19|            784|           448|
-|Process     |tblParentsOfGen1Retro      |   482,068|            7|         30,616|        28,056|
-|Process     |tblRelatedStructure        |    85,672|            6|          4,176|         3,720|
-|Process     |tblRelatedValues           |    42,836|           24|          2,384|         1,888|
-|Process     |tblResponse                | 2,673,517|            9|        124,296|       117,472|
-|Process     |tblRosterGen1              |    10,604|           13|            720|           328|
-|Process     |tblSubject                 |    24,207|            5|          1,680|         1,232|
-|Process     |tblSubjectDetails          |    24,207|           15|          1,424|         1,048|
-|Process     |tblSurveyTime              |   605,175|            7|         26,512|        24,136|
+|schema name |table name                 | row count| column count|
+|:-----------|:--------------------------|---------:|------------:|
+|Archive     |tblArchiveDescription      |        56|            4|
+|Archive     |tblRelatedValuesArchive    |   756,952|           24|
+|dbo         |sysdiagrams                |         4|            5|
+|Enum        |tblLUBioparent-not-used    |         0|            2|
+|Enum        |tblLUExtractSource         |        11|            4|
+|Enum        |tblLUGender                |         3|            4|
+|Enum        |tblLUMarkerEvidence        |         8|            4|
+|Enum        |tblLUMarkerType            |        28|            5|
+|Enum        |tblLUMultipleBirth         |         5|            4|
+|Enum        |tblLURaceCohort            |         3|            4|
+|Enum        |tblLURelationshipPath      |         5|            4|
+|Enum        |tblLURosterGen1            |        67|            4|
+|Enum        |tblLUSurveySource          |         5|            4|
+|Enum        |tblLUTristate              |         3|            4|
+|Enum        |tblLUYesNo                 |         6|            4|
+|Extract     |tbl97Roster                |         0|          416|
+|Extract     |tblGen1Explicit            |    12,686|           96|
+|Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
+|Extract     |tblGen1Implicit            |    12,686|          102|
+|Extract     |tblGen1Links               |    12,686|          117|
+|Extract     |tblGen1MzDzDistinction2010 |         0|            7|
+|Extract     |tblGen1Outcomes            |    12,686|           22|
+|Extract     |tblGen2FatherFromGen1      |    12,686|          959|
+|Extract     |tblGen2ImplicitFather      |    11,521|          111|
+|Extract     |tblGen2Links               |    11,521|          207|
+|Extract     |tblGen2LinksFromGen1       |    12,686|          123|
+|Extract     |tblGen2OutcomesHeight      |    11,521|           46|
+|Extract     |tblGen2OutcomesMath        |    11,521|           44|
+|Extract     |tblGen2OutcomesWeight      |    11,521|           31|
+|Extract     |tblLinks2004Gen1           |     3,890|            9|
+|Extract     |tblLinks2004Gen2           |    12,855|            5|
+|Metadata    |tblItem                    |       110|            7|
+|Metadata    |tblItem_97                 |         7|            7|
+|Metadata    |tblMzManual                |       208|            9|
+|Metadata    |tblRosterGen1Assignment    |        50|           16|
+|Metadata    |tblVariable                |     1,642|           10|
+|Metadata    |tblVariable_97             |        37|           10|
+|Process     |tblBabyDaddy               |   178,993|           11|
+|Process     |tblFatherOfGen2            |    52,038|            7|
+|Process     |tblIRDemo1                 |         0|            5|
+|Process     |tblMarkerGen1              |   218,568|           10|
+|Process     |tblMarkerGen2              |   207,408|            8|
+|Process     |tblOutcome                 |   279,649|            5|
+|Process     |tblParentsOfGen1Current    |    12,686|           19|
+|Process     |tblParentsOfGen1Retro      |   482,068|            7|
+|Process     |tblRelatedStructure        |    85,672|            6|
+|Process     |tblRelatedValues           |    42,836|           24|
+|Process     |tblResponse                | 2,673,517|            9|
+|Process     |tblRosterGen1              |    10,604|           13|
+|Process     |tblSubject                 |    24,207|            5|
+|Process     |tblSubjectDetails          |    24,207|           15|
+|Process     |tblSurveyTime              |   605,175|            7|
 
-## Items
+## Items 79
 
 |   ID|Label                                              | MinValue| MinNonnegative| MaxValue|Active |Notes |
 |----:|:--------------------------------------------------|--------:|--------------:|--------:|:------|:-----|
@@ -219,7 +222,7 @@ This report documents the basic properties of the input & output tables kinship 
 | 9998|Gen1SecondIncorrectTwinTripAgeDifference_NOTUSED   |       -5|              7|        7|TRUE   |NA    |
 | 9999|NotTranslated                                      |        0|              0|        0|TRUE   |NA    |
 
-## Variables
+## Variables 79
 
 |variable code | item id|item label                                         | generation| extract source id|extract source label | survey source id|survey source label | survey year| loop index|translate |variable active |variable notes                                           |
 |:-------------|-------:|:--------------------------------------------------|----------:|-----------------:|:--------------------|----------------:|:-------------------|-----------:|----------:|:---------|:---------------|:--------------------------------------------------------|
@@ -1866,6 +1869,723 @@ This report documents the basic properties of the input & output tables kinship 
 |Y3003600      |      10|ShareBiodadGen2                                    |          2|                 4|Gen2Links            |                3|Gen2YA              |        2014|         10|FALSE     |FALSE           |NA                                                       |
 |Y3331900      |      16|AgeAtInterviewDateYears                            |          2|                 4|Gen2Links            |                3|Gen2YA              |        2014|          7|TRUE      |TRUE            |NA                                                       |
 
+## Table Sizes 79
+
+|schema name |table name                 | space total kb| space used kb|
+|:-----------|:--------------------------|--------------:|-------------:|
+|Archive     |tblArchiveDescription      |            144|            32|
+|Archive     |tblRelatedValuesArchive    |         30,160|        29,816|
+|dbo         |sysdiagrams                |            280|           160|
+|Enum        |tblLUBioparent-not-used    |              0|             0|
+|Enum        |tblLUExtractSource         |             72|            16|
+|Enum        |tblLUGender                |             72|            16|
+|Enum        |tblLUMarkerEvidence        |             72|            16|
+|Enum        |tblLUMarkerType            |             72|            16|
+|Enum        |tblLUMultipleBirth         |             72|            16|
+|Enum        |tblLURaceCohort            |             72|            16|
+|Enum        |tblLURelationshipPath      |             72|            16|
+|Enum        |tblLURosterGen1            |             72|            16|
+|Enum        |tblLUSurveySource          |             72|            16|
+|Enum        |tblLUTristate              |             72|            16|
+|Enum        |tblLUYesNo                 |             72|            16|
+|Extract     |tbl97Roster                |             72|            16|
+|Extract     |tblGen1Explicit            |            520|           408|
+|Extract     |tblGen1GeocodeSanitized    |            592|           360|
+|Extract     |tblGen1Implicit            |            648|           552|
+|Extract     |tblGen1Links               |            968|           824|
+|Extract     |tblGen1MzDzDistinction2010 |             72|            16|
+|Extract     |tblGen1Outcomes            |            392|           248|
+|Extract     |tblGen2FatherFromGen1      |          6,728|         6,648|
+|Extract     |tblGen2ImplicitFather      |            584|           432|
+|Extract     |tblGen2Links               |            904|           816|
+|Extract     |tblGen2LinksFromGen1       |            584|           464|
+|Extract     |tblGen2OutcomesHeight      |            392|           256|
+|Extract     |tblGen2OutcomesMath        |            456|           304|
+|Extract     |tblGen2OutcomesWeight      |            328|           176|
+|Extract     |tblLinks2004Gen1           |            528|           208|
+|Extract     |tblLinks2004Gen2           |            784|           464|
+|Metadata    |tblItem                    |             72|            16|
+|Metadata    |tblItem_97                 |             72|            16|
+|Metadata    |tblMzManual                |            144|            56|
+|Metadata    |tblRosterGen1Assignment    |             72|            16|
+|Metadata    |tblVariable                |            136|            88|
+|Metadata    |tblVariable_97             |             72|            16|
+|Process     |tblBabyDaddy               |          6,992|         6,056|
+|Process     |tblFatherOfGen2            |            456|           304|
+|Process     |tblIRDemo1                 |             72|            16|
+|Process     |tblMarkerGen1              |          7,504|         6,944|
+|Process     |tblMarkerGen2              |          7,376|         6,712|
+|Process     |tblOutcome                 |         10,320|         9,224|
+|Process     |tblParentsOfGen1Current    |            784|           448|
+|Process     |tblParentsOfGen1Retro      |         30,616|        28,056|
+|Process     |tblRelatedStructure        |          4,176|         3,720|
+|Process     |tblRelatedValues           |          2,384|         1,888|
+|Process     |tblResponse                |        140,488|       132,016|
+|Process     |tblRosterGen1              |            720|           328|
+|Process     |tblSubject                 |          1,680|         1,232|
+|Process     |tblSubjectDetails          |          1,488|         1,064|
+|Process     |tblSurveyTime              |         26,640|        24,144|
+
+# Results NLSY97 {.tabset .tabset-fade .tabset-pills}
+
+## Tables 97
+
+|schema name |table name              | row count| column count|
+|:-----------|:-----------------------|---------:|------------:|
+|Archive     |tblArchiveDescription   |         0|            4|
+|Archive     |tblRelatedValuesArchive |         0|           22|
+|dbo         |sysdiagrams             |         0|            5|
+|Enum        |tblLUExtractSource      |         6|            4|
+|Enum        |tblLUGender             |         3|            4|
+|Enum        |tblLUMarkerEvidence     |         8|            4|
+|Enum        |tblLUMarkerType         |        28|            5|
+|Enum        |tblLUMultipleBirth      |         5|            4|
+|Enum        |tblLURaceCohort         |         4|            4|
+|Enum        |tblLURoster             |        92|            4|
+|Enum        |tblLUTristate           |         3|            4|
+|Enum        |tblLUYesNo              |         6|            4|
+|Extract     |tblDemographics         |     8,984|            8|
+|Extract     |tblLinksExplicit        |     8,984|           36|
+|Extract     |tblLinksImplicit        |     8,984|           43|
+|Extract     |tblRoster               |     8,984|          464|
+|Extract     |tblSurveyTime           |     8,984|           94|
+|Extract     |tblTwins                |     8,984|          119|
+|Metadata    |tblItem                 |        26|            7|
+|Metadata    |tblMzManual             |        90|            8|
+|Metadata    |tblRosterAssignment     |        31|           16|
+|Metadata    |tblVariable             |       551|           11|
+|Process     |tblMarker               |     5,038|           10|
+|Process     |tblOutcome              |         0|            5|
+|Process     |tblRelatedStructure     |     5,038|            8|
+|Process     |tblRelatedValues        |     2,519|           23|
+|Process     |tblResponse             |   935,636|            8|
+|Process     |tblRoster               |     5,038|           13|
+|Process     |tblSubject              |     8,984|            5|
+|Process     |tblSubjectDetails       |     8,984|           15|
+|Process     |tblSurveyTime           |   152,728|            7|
+
+## Items 97
+
+|   ID|Label                            | MinValue| MinNonnegative| MaxValue|Active |Notes                                                                     |
+|----:|:--------------------------------|--------:|--------------:|--------:|:------|:-------------------------------------------------------------------------|
+|    1|subject_id                       |        1|              1|     9022|TRUE   |NA                                                                        |
+|    2|extended_family_id               |        1|              1|     9022|TRUE   |NA                                                                        |
+|    3|hh_internal_id                   |        1|              1|        5|TRUE   |NA                                                                        |
+|   10|gender                           |        1|              1|        2|TRUE   |NA                                                                        |
+|   11|DateOfBirthMonth                 |        1|              1|       12|TRUE   |NA                                                                        |
+|   12|DateOfBirthYear                  |     1980|           1980|     1984|TRUE   |NA                                                                        |
+|   13|cross_sectional_cohort           |        0|              0|        1|TRUE   |NA                                                                        |
+|   14|race_cohort                      |        1|              1|        4|TRUE   |race-ethnicity                                                            |
+|   20|InterviewDateDay                 |       -7|              1|       31|TRUE   |NA                                                                        |
+|   21|InterviewDateMonth               |       -7|              1|       12|TRUE   |NA                                                                        |
+|   22|InterviewDateYear                |       -7|             86|     2016|TRUE   |NA                                                                        |
+|   23|AgeAtInterviewDateMonths         |       -5|            146|      500|TRUE   |NA                                                                        |
+|   24|AgeAtInterviewDateYears          |       -5|             12|       40|TRUE   |NA                                                                        |
+|  101|roster_crosswalk                 |       -5|              1|       20|TRUE   |NA                                                                        |
+|  102|hh_member_id                     |       -4|              1|       17|TRUE   |NA                                                                        |
+|  103|hh_informant                     |       -4|              0|        1|TRUE   |NA                                                                        |
+|  104|roster_relationship_2_dim        |       -4|              0|       99|FALSE  |16 x 16 square                                                            |
+|  105|roster_relationship_1_dim        |       -4|              0|       99|TRUE   |1 x 16 vector                                                             |
+|  106|hh_unique_id                     |       -4|              0|      122|TRUE   |HHI2: People living in the Household - sorted, UID; HH member's unique ID |
+|  121|pair_multiple_birth              |       -4|              0|        3|TRUE   |NA                                                                        |
+|  122|pair_twins_mz                    |       -4|              0|        1|TRUE   |NA                                                                        |
+|  123|pair_sister_same_bioparent       |       -4|             15|       16|TRUE   |NA                                                                        |
+|  124|pair_brother_same_bioparent      |       -4|             18|       19|TRUE   |NA                                                                        |
+| 1020|InterviewDateDayParent_NOTUSED   |       -4|              1|       31|FALSE  |NA                                                                        |
+| 1021|InterviewDateMonthParent_NOTUSED |       -4|              1|        9|FALSE  |NA                                                                        |
+| 1022|InterviewDateYearParent_NOTUSED  |       -4|           1997|     1998|FALSE  |NA                                                                        |
+
+## Variables 97
+
+|variable code | item id|item label                       | extract source id|extract source label | survey year| loop index 1| loop index 2|translate |variable active |variable notes |
+|:-------------|-------:|:--------------------------------|-----------------:|:--------------------|-----------:|------------:|------------:|:---------|:---------------|:--------------|
+|R0000100      |       1|subject_id                       |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0533400      |       3|hh_internal_id                   |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0536300      |      10|gender                           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0536401      |      11|DateOfBirthMonth                 |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0536402      |      12|DateOfBirthYear                  |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0541100      |    1020|InterviewDateDayParent_NOTUSED   |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0541101      |    1021|InterviewDateMonthParent_NOTUSED |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0541102      |    1022|InterviewDateYearParent_NOTUSED  |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R0813100      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0813200      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0813300      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R0813400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R0813500      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R0813600      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R0813700      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R0813800      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R0813900      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|           10|TRUE      |TRUE            |NA             |
+|R0814000      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R0814100      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R0814200      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R0814300      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R0814400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R0814500      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R0814600      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            2|            9|TRUE      |TRUE            |NA             |
+|R0814700      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0814800      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R0814900      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R0815000      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R0815100      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R0815200      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0815300      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R0815400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R0815500      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R0815600      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            5|            3|TRUE      |TRUE            |NA             |
+|R0815700      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0815800      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R0815900      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0816000      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R0816100      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0816200      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            7|            9|TRUE      |TRUE            |NA             |
+|R0816300      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            8|            9|TRUE      |TRUE            |NA             |
+|R0816400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            8|           10|TRUE      |TRUE            |NA             |
+|R0816500      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R0817400      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0817500      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0817600      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0817700      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0817800      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0817900      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0818000      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0818100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0818200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0818300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R0818400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R0818500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R0818600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R0818700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R0818800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R0818900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            1|           10|TRUE      |TRUE            |NA             |
+|R0819000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R0819100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R0819200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R0819300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R0819400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R0819500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R0819600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R0819700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0819800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R0819900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R0820000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R0820100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R0820200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|            9|TRUE      |TRUE            |NA             |
+|R0820300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            3|           10|TRUE      |TRUE            |NA             |
+|R0820400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0820500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R0820600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R0820700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R0820800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R0820900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            4|           10|TRUE      |TRUE            |NA             |
+|R0821000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0821100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R0821200      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R0821300      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            5|            9|TRUE      |TRUE            |NA             |
+|R0821400      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0821500      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R0821600      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|            9|TRUE      |TRUE            |NA             |
+|R0821700      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            6|           10|TRUE      |TRUE            |NA             |
+|R0821800      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0821900      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            7|            9|TRUE      |TRUE            |NA             |
+|R0822000      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R0822100      |     123|pair_sister_same_bioparent       |                 6|97-twins             |        1997|           10|           12|TRUE      |TRUE            |NA             |
+|R0822200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0822300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R0822400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R0822500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R0822600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R0822700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R0822800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R0822900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R0823000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R0823100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R0823200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R0823300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R0823400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R0823500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R0823600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|            9|TRUE      |TRUE            |NA             |
+|R0823700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            2|           10|TRUE      |TRUE            |NA             |
+|R0823800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R0823900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R0824000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R0824100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R0824200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R0824300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R0824400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R0824500      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R0824600      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R0824700      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R0824800      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R0824900      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R0825000      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R0825100      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R0825200      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R0825300      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R0825400      |     124|pair_brother_same_bioparent      |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R1097800      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1097900      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1098000      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1098100      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1098200      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1098300      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1098400      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1098500      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1098600      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1098700      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1098800      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1098900      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1099000      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1099100      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1099200      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1099300      |     101|roster_crosswalk                 |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1101000      |     102|hh_member_id                     |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1101100      |     102|hh_member_id                     |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1101200      |     102|hh_member_id                     |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1101300      |     102|hh_member_id                     |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1101400      |     102|hh_member_id                     |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1101500      |     102|hh_member_id                     |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1101600      |     102|hh_member_id                     |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1101700      |     102|hh_member_id                     |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1101800      |     102|hh_member_id                     |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1101900      |     102|hh_member_id                     |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1102000      |     102|hh_member_id                     |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1102100      |     102|hh_member_id                     |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1102200      |     102|hh_member_id                     |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1102300      |     102|hh_member_id                     |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1102400      |     102|hh_member_id                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1102500      |     102|hh_member_id                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1102501      |     102|hh_member_id                     |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
+|R1102600      |     103|hh_informant                     |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1102700      |     103|hh_informant                     |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1102800      |     103|hh_informant                     |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1102900      |     103|hh_informant                     |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1103000      |     103|hh_informant                     |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1103100      |     103|hh_informant                     |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1103200      |     103|hh_informant                     |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1103300      |     103|hh_informant                     |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1103400      |     103|hh_informant                     |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1103500      |     103|hh_informant                     |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1103600      |     103|hh_informant                     |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1103700      |     103|hh_informant                     |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1103800      |     103|hh_informant                     |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1103900      |     103|hh_informant                     |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1104000      |     103|hh_informant                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1104100      |     103|hh_informant                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1117000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1117100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R1117200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            3|TRUE      |TRUE            |NA             |
+|R1117300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            4|TRUE      |TRUE            |NA             |
+|R1117400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            5|TRUE      |TRUE            |NA             |
+|R1117500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            6|TRUE      |TRUE            |NA             |
+|R1117600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            7|TRUE      |TRUE            |NA             |
+|R1117700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            8|TRUE      |TRUE            |NA             |
+|R1117800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|            9|TRUE      |TRUE            |NA             |
+|R1117900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           10|TRUE      |TRUE            |NA             |
+|R1118000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           11|TRUE      |TRUE            |NA             |
+|R1118100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           12|TRUE      |TRUE            |NA             |
+|R1118200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           13|TRUE      |TRUE            |NA             |
+|R1118300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           14|TRUE      |TRUE            |NA             |
+|R1118400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           15|TRUE      |TRUE            |NA             |
+|R1118500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            1|           16|TRUE      |TRUE            |NA             |
+|R1118600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1118700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            2|TRUE      |TRUE            |NA             |
+|R1118800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            3|TRUE      |TRUE            |NA             |
+|R1118900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            4|TRUE      |TRUE            |NA             |
+|R1119000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            5|TRUE      |TRUE            |NA             |
+|R1119100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            6|TRUE      |TRUE            |NA             |
+|R1119200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            7|TRUE      |TRUE            |NA             |
+|R1119300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            8|TRUE      |TRUE            |NA             |
+|R1119400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|            9|TRUE      |TRUE            |NA             |
+|R1119500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           10|TRUE      |TRUE            |NA             |
+|R1119600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           11|TRUE      |TRUE            |NA             |
+|R1119700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           12|TRUE      |TRUE            |NA             |
+|R1119800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           13|TRUE      |TRUE            |NA             |
+|R1119900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           14|TRUE      |TRUE            |NA             |
+|R1120000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           15|TRUE      |TRUE            |NA             |
+|R1120100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           10|           16|TRUE      |TRUE            |NA             |
+|R1120200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1120300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            2|TRUE      |TRUE            |NA             |
+|R1120400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            3|TRUE      |TRUE            |NA             |
+|R1120500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            4|TRUE      |TRUE            |NA             |
+|R1120600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            5|TRUE      |TRUE            |NA             |
+|R1120700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            6|TRUE      |TRUE            |NA             |
+|R1120800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            7|TRUE      |TRUE            |NA             |
+|R1120900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            8|TRUE      |TRUE            |NA             |
+|R1121000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|            9|TRUE      |TRUE            |NA             |
+|R1121100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           10|TRUE      |TRUE            |NA             |
+|R1121200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           11|TRUE      |TRUE            |NA             |
+|R1121300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           12|TRUE      |TRUE            |NA             |
+|R1121400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           13|TRUE      |TRUE            |NA             |
+|R1121500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           14|TRUE      |TRUE            |NA             |
+|R1121600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           15|TRUE      |TRUE            |NA             |
+|R1121700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           11|           16|TRUE      |TRUE            |NA             |
+|R1121800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1121900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            2|TRUE      |TRUE            |NA             |
+|R1122000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            3|TRUE      |TRUE            |NA             |
+|R1122100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            4|TRUE      |TRUE            |NA             |
+|R1122200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            5|TRUE      |TRUE            |NA             |
+|R1122300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            6|TRUE      |TRUE            |NA             |
+|R1122400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            7|TRUE      |TRUE            |NA             |
+|R1122500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            8|TRUE      |TRUE            |NA             |
+|R1122600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|            9|TRUE      |TRUE            |NA             |
+|R1122700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           10|TRUE      |TRUE            |NA             |
+|R1122800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           11|TRUE      |TRUE            |NA             |
+|R1122900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           12|TRUE      |TRUE            |NA             |
+|R1123000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           13|TRUE      |TRUE            |NA             |
+|R1123100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           14|TRUE      |TRUE            |NA             |
+|R1123200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           15|TRUE      |TRUE            |NA             |
+|R1123300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           12|           16|TRUE      |TRUE            |NA             |
+|R1123400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1123500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            2|TRUE      |TRUE            |NA             |
+|R1123600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            3|TRUE      |TRUE            |NA             |
+|R1123700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            4|TRUE      |TRUE            |NA             |
+|R1123800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            5|TRUE      |TRUE            |NA             |
+|R1123900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            6|TRUE      |TRUE            |NA             |
+|R1124000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            7|TRUE      |TRUE            |NA             |
+|R1124100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            8|TRUE      |TRUE            |NA             |
+|R1124200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|            9|TRUE      |TRUE            |NA             |
+|R1124300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           10|TRUE      |TRUE            |NA             |
+|R1124400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           11|TRUE      |TRUE            |NA             |
+|R1124500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           12|TRUE      |TRUE            |NA             |
+|R1124600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           13|TRUE      |TRUE            |NA             |
+|R1124700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           14|TRUE      |TRUE            |NA             |
+|R1124800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           15|TRUE      |TRUE            |NA             |
+|R1124900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           13|           16|TRUE      |TRUE            |NA             |
+|R1125000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1125100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            2|TRUE      |TRUE            |NA             |
+|R1125200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            3|TRUE      |TRUE            |NA             |
+|R1125300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            4|TRUE      |TRUE            |NA             |
+|R1125400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            5|TRUE      |TRUE            |NA             |
+|R1125500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            6|TRUE      |TRUE            |NA             |
+|R1125600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            7|TRUE      |TRUE            |NA             |
+|R1125700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            8|TRUE      |TRUE            |NA             |
+|R1125800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|            9|TRUE      |TRUE            |NA             |
+|R1125900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           10|TRUE      |TRUE            |NA             |
+|R1126000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           11|TRUE      |TRUE            |NA             |
+|R1126100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           12|TRUE      |TRUE            |NA             |
+|R1126200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           13|TRUE      |TRUE            |NA             |
+|R1126300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           14|TRUE      |TRUE            |NA             |
+|R1126400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           15|TRUE      |TRUE            |NA             |
+|R1126500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           14|           16|TRUE      |TRUE            |NA             |
+|R1126600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1126700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            2|TRUE      |TRUE            |NA             |
+|R1126800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            3|TRUE      |TRUE            |NA             |
+|R1126900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            4|TRUE      |TRUE            |NA             |
+|R1127000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            5|TRUE      |TRUE            |NA             |
+|R1127100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            6|TRUE      |TRUE            |NA             |
+|R1127200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            7|TRUE      |TRUE            |NA             |
+|R1127300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            8|TRUE      |TRUE            |NA             |
+|R1127400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|            9|TRUE      |TRUE            |NA             |
+|R1127500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           10|TRUE      |TRUE            |NA             |
+|R1127600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           11|TRUE      |TRUE            |NA             |
+|R1127700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           12|TRUE      |TRUE            |NA             |
+|R1127800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           13|TRUE      |TRUE            |NA             |
+|R1127900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           14|TRUE      |TRUE            |NA             |
+|R1128000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           15|TRUE      |TRUE            |NA             |
+|R1128100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           15|           16|TRUE      |TRUE            |NA             |
+|R1128200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1128300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            2|TRUE      |TRUE            |NA             |
+|R1128400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            3|TRUE      |TRUE            |NA             |
+|R1128500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            4|TRUE      |TRUE            |NA             |
+|R1128600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            5|TRUE      |TRUE            |NA             |
+|R1128700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            6|TRUE      |TRUE            |NA             |
+|R1128800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            7|TRUE      |TRUE            |NA             |
+|R1128900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            8|TRUE      |TRUE            |NA             |
+|R1129000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|            9|TRUE      |TRUE            |NA             |
+|R1129100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           10|TRUE      |TRUE            |NA             |
+|R1129200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           11|TRUE      |TRUE            |NA             |
+|R1129300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           12|TRUE      |TRUE            |NA             |
+|R1129400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           13|TRUE      |TRUE            |NA             |
+|R1129500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           14|TRUE      |TRUE            |NA             |
+|R1129600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           15|TRUE      |TRUE            |NA             |
+|R1129700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|           16|           16|TRUE      |TRUE            |NA             |
+|R1131900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1132000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            2|TRUE      |TRUE            |NA             |
+|R1132100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            3|TRUE      |TRUE            |NA             |
+|R1132200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            4|TRUE      |TRUE            |NA             |
+|R1132300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            5|TRUE      |TRUE            |NA             |
+|R1132400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            6|TRUE      |TRUE            |NA             |
+|R1132500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            7|TRUE      |TRUE            |NA             |
+|R1132600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            8|TRUE      |TRUE            |NA             |
+|R1132700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|            9|TRUE      |TRUE            |NA             |
+|R1132800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           10|TRUE      |TRUE            |NA             |
+|R1132900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           11|TRUE      |TRUE            |NA             |
+|R1133000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           12|TRUE      |TRUE            |NA             |
+|R1133100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           13|TRUE      |TRUE            |NA             |
+|R1133200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           14|TRUE      |TRUE            |NA             |
+|R1133300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           15|TRUE      |TRUE            |NA             |
+|R1133400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            2|           16|TRUE      |TRUE            |NA             |
+|R1134200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1134300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            2|TRUE      |TRUE            |NA             |
+|R1134400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            3|TRUE      |TRUE            |NA             |
+|R1134500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            4|TRUE      |TRUE            |NA             |
+|R1134600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            5|TRUE      |TRUE            |NA             |
+|R1134700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            6|TRUE      |TRUE            |NA             |
+|R1134800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            7|TRUE      |TRUE            |NA             |
+|R1134900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            8|TRUE      |TRUE            |NA             |
+|R1135000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|            9|TRUE      |TRUE            |NA             |
+|R1135100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           10|TRUE      |TRUE            |NA             |
+|R1135200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           11|TRUE      |TRUE            |NA             |
+|R1135300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           12|TRUE      |TRUE            |NA             |
+|R1135400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           13|TRUE      |TRUE            |NA             |
+|R1135500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           14|TRUE      |TRUE            |NA             |
+|R1135600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           15|TRUE      |TRUE            |NA             |
+|R1135700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            3|           16|TRUE      |TRUE            |NA             |
+|R1135800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1135900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            2|TRUE      |TRUE            |NA             |
+|R1136000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            3|TRUE      |TRUE            |NA             |
+|R1136100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            4|TRUE      |TRUE            |NA             |
+|R1136200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            5|TRUE      |TRUE            |NA             |
+|R1136300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            6|TRUE      |TRUE            |NA             |
+|R1136400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            7|TRUE      |TRUE            |NA             |
+|R1136500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            8|TRUE      |TRUE            |NA             |
+|R1136600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|            9|TRUE      |TRUE            |NA             |
+|R1136700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           10|TRUE      |TRUE            |NA             |
+|R1136800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           11|TRUE      |TRUE            |NA             |
+|R1136900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           12|TRUE      |TRUE            |NA             |
+|R1137000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           13|TRUE      |TRUE            |NA             |
+|R1137100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           14|TRUE      |TRUE            |NA             |
+|R1137200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           15|TRUE      |TRUE            |NA             |
+|R1137300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            4|           16|TRUE      |TRUE            |NA             |
+|R1137400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1137500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            2|TRUE      |TRUE            |NA             |
+|R1137600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            3|TRUE      |TRUE            |NA             |
+|R1137700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            4|TRUE      |TRUE            |NA             |
+|R1137800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            5|TRUE      |TRUE            |NA             |
+|R1137900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            6|TRUE      |TRUE            |NA             |
+|R1138000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            7|TRUE      |TRUE            |NA             |
+|R1138100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            8|TRUE      |TRUE            |NA             |
+|R1138200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|            9|TRUE      |TRUE            |NA             |
+|R1138300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           10|TRUE      |TRUE            |NA             |
+|R1138400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           11|TRUE      |TRUE            |NA             |
+|R1138500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           12|TRUE      |TRUE            |NA             |
+|R1138600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           13|TRUE      |TRUE            |NA             |
+|R1138700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           14|TRUE      |TRUE            |NA             |
+|R1138800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           15|TRUE      |TRUE            |NA             |
+|R1138900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            5|           16|TRUE      |TRUE            |NA             |
+|R1139000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1139100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            2|TRUE      |TRUE            |NA             |
+|R1139200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            3|TRUE      |TRUE            |NA             |
+|R1139300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            4|TRUE      |TRUE            |NA             |
+|R1139400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            5|TRUE      |TRUE            |NA             |
+|R1139500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            6|TRUE      |TRUE            |NA             |
+|R1139600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            7|TRUE      |TRUE            |NA             |
+|R1139700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            8|TRUE      |TRUE            |NA             |
+|R1139800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|            9|TRUE      |TRUE            |NA             |
+|R1139900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           10|TRUE      |TRUE            |NA             |
+|R1140000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           11|TRUE      |TRUE            |NA             |
+|R1140100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           12|TRUE      |TRUE            |NA             |
+|R1140200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           13|TRUE      |TRUE            |NA             |
+|R1140300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           14|TRUE      |TRUE            |NA             |
+|R1140400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           15|TRUE      |TRUE            |NA             |
+|R1140500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            6|           16|TRUE      |TRUE            |NA             |
+|R1140600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1140700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            2|TRUE      |TRUE            |NA             |
+|R1140800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            3|TRUE      |TRUE            |NA             |
+|R1140900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            4|TRUE      |TRUE            |NA             |
+|R1141000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            5|TRUE      |TRUE            |NA             |
+|R1141100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            6|TRUE      |TRUE            |NA             |
+|R1141200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            7|TRUE      |TRUE            |NA             |
+|R1141300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            8|TRUE      |TRUE            |NA             |
+|R1141400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|            9|TRUE      |TRUE            |NA             |
+|R1141500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           10|TRUE      |TRUE            |NA             |
+|R1141600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           11|TRUE      |TRUE            |NA             |
+|R1141700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           12|TRUE      |TRUE            |NA             |
+|R1141800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           13|TRUE      |TRUE            |NA             |
+|R1141900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           14|TRUE      |TRUE            |NA             |
+|R1142000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           15|TRUE      |TRUE            |NA             |
+|R1142100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            7|           16|TRUE      |TRUE            |NA             |
+|R1142200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1142300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            2|TRUE      |TRUE            |NA             |
+|R1142400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            3|TRUE      |TRUE            |NA             |
+|R1142500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            4|TRUE      |TRUE            |NA             |
+|R1142600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            5|TRUE      |TRUE            |NA             |
+|R1142700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            6|TRUE      |TRUE            |NA             |
+|R1142800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            7|TRUE      |TRUE            |NA             |
+|R1142900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            8|TRUE      |TRUE            |NA             |
+|R1143000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|            9|TRUE      |TRUE            |NA             |
+|R1143100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           10|TRUE      |TRUE            |NA             |
+|R1143200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           11|TRUE      |TRUE            |NA             |
+|R1143300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           12|TRUE      |TRUE            |NA             |
+|R1143400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           13|TRUE      |TRUE            |NA             |
+|R1143500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           14|TRUE      |TRUE            |NA             |
+|R1143600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           15|TRUE      |TRUE            |NA             |
+|R1143700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            8|           16|TRUE      |TRUE            |NA             |
+|R1143800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1143900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            2|TRUE      |TRUE            |NA             |
+|R1144000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            3|TRUE      |TRUE            |NA             |
+|R1144100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            4|TRUE      |TRUE            |NA             |
+|R1144200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            5|TRUE      |TRUE            |NA             |
+|R1144300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            6|TRUE      |TRUE            |NA             |
+|R1144400      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            7|TRUE      |TRUE            |NA             |
+|R1144500      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            8|TRUE      |TRUE            |NA             |
+|R1144600      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|            9|TRUE      |TRUE            |NA             |
+|R1144700      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           10|TRUE      |TRUE            |NA             |
+|R1144800      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           11|TRUE      |TRUE            |NA             |
+|R1144900      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           12|TRUE      |TRUE            |NA             |
+|R1145000      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           13|TRUE      |TRUE            |NA             |
+|R1145100      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           14|TRUE      |TRUE            |NA             |
+|R1145200      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           15|TRUE      |TRUE            |NA             |
+|R1145300      |     104|roster_relationship_2_dim        |                 2|97-roster            |        1997|            9|           16|TRUE      |TRUE            |NA             |
+|R1162100      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1162200      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1162300      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1162400      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1162500      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1162600      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1162700      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1162800      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1162900      |     106|hh_unique_id                     |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1163000      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1163100      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1163200      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1163300      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1163400      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1163500      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1163600      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1163601      |     106|hh_unique_id                     |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
+|R1193000      |       2|extended_family_id               |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1193900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1194100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1209402      |      22|InterviewDateYear                |                 3|97-survey-time       |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1235800      |      13|cross_sectional_cohort           |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1315800      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R1315900      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            2|            1|TRUE      |TRUE            |NA             |
+|R1316000      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            3|            1|TRUE      |TRUE            |NA             |
+|R1316100      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            4|            1|TRUE      |TRUE            |NA             |
+|R1316200      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            5|            1|TRUE      |TRUE            |NA             |
+|R1316300      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            6|            1|TRUE      |TRUE            |NA             |
+|R1316400      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            7|            1|TRUE      |TRUE            |NA             |
+|R1316500      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            8|            1|TRUE      |TRUE            |NA             |
+|R1316600      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|            9|            1|TRUE      |TRUE            |NA             |
+|R1316700      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           10|            1|TRUE      |TRUE            |NA             |
+|R1316800      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           11|            1|TRUE      |TRUE            |NA             |
+|R1316900      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           12|            1|TRUE      |TRUE            |NA             |
+|R1317000      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           13|            1|TRUE      |TRUE            |NA             |
+|R1317100      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           14|            1|TRUE      |TRUE            |NA             |
+|R1317200      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           15|            1|TRUE      |TRUE            |NA             |
+|R1317300      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           16|            1|TRUE      |TRUE            |NA             |
+|R1317400      |     105|roster_relationship_1_dim        |                 2|97-roster            |        1997|           17|            1|TRUE      |TRUE            |NA             |
+|R1482600      |      14|race_cohort                      |                 1|97-demographics      |        1997|            1|            1|TRUE      |TRUE            |NA             |
+|R2553400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2553500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2568300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2568301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R2568302      |      22|InterviewDateYear                |                 3|97-survey-time       |        1998|            1|            1|TRUE      |TRUE            |NA             |
+|R3876200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3876300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3890300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3890301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R3890302      |      22|InterviewDateYear                |                 3|97-survey-time       |        1999|            1|            1|TRUE      |TRUE            |NA             |
+|R5453600      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5453700      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5472300      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5472301      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R5472302      |      22|InterviewDateYear                |                 3|97-survey-time       |        2000|            1|            1|TRUE      |TRUE            |NA             |
+|R7215900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7216000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7236100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7236101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|R7236102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2001|            1|            1|TRUE      |TRUE            |NA             |
+|S1531300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1531400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S1550902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2002|            1|            1|TRUE      |TRUE            |NA             |
+|S2000900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2001000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020800      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020801      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S2020802      |      22|InterviewDateYear                |                 3|97-survey-time       |        2003|            1|            1|TRUE      |TRUE            |NA             |
+|S3801000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3801100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S3822002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2004|            1|            1|TRUE      |TRUE            |NA             |
+|S5400900      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5401000      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S5422002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2005|            1|            1|TRUE      |TRUE            |NA             |
+|S7501100      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7501200      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524100      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524101      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|S7524102      |      22|InterviewDateYear                |                 3|97-survey-time       |        2006|            1|            1|TRUE      |TRUE            |NA             |
+|T0008400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0008500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024500      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024501      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T0024502      |      22|InterviewDateYear                |                 3|97-survey-time       |        2007|            1|            1|TRUE      |TRUE            |NA             |
+|T2011000      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2011100      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T2019402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2008|            1|            1|TRUE      |TRUE            |NA             |
+|T3601400      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3601500      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610000      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610001      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T3610002      |      22|InterviewDateYear                |                 3|97-survey-time       |        2009|            1|            1|TRUE      |TRUE            |NA             |
+|T5201300      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5201400      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T5210402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2010|            1|            1|TRUE      |TRUE            |NA             |
+|T6651200      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6651300      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661400      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661401      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T6661402      |      22|InterviewDateYear                |                 3|97-survey-time       |        2011|            1|            1|TRUE      |TRUE            |NA             |
+|T8123500      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8123600      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132900      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132901      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|T8132902      |      22|InterviewDateYear                |                 3|97-survey-time       |        2013|            1|            1|TRUE      |TRUE            |NA             |
+|U0001700      |      23|AgeAtInterviewDateMonths         |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0001800      |      24|AgeAtInterviewDateYears          |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013200      |      20|InterviewDateDay                 |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013201      |      21|InterviewDateMonth               |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+|U0013202      |      22|InterviewDateYear                |                 3|97-survey-time       |        2015|            1|            1|TRUE      |TRUE            |NA             |
+
+## Table Sizes 97
+
+|schema name |table name              | space total kb| space used kb|
+|:-----------|:-----------------------|--------------:|-------------:|
+|Archive     |tblArchiveDescription   |              0|             0|
+|Archive     |tblRelatedValuesArchive |             72|            16|
+|dbo         |sysdiagrams             |              0|             0|
+|Enum        |tblLUExtractSource      |             72|            16|
+|Enum        |tblLUGender             |             72|            16|
+|Enum        |tblLUMarkerEvidence     |             72|            16|
+|Enum        |tblLUMarkerType         |             72|            16|
+|Enum        |tblLUMultipleBirth      |             72|            16|
+|Enum        |tblLURaceCohort         |             72|            16|
+|Enum        |tblLURoster             |             72|            16|
+|Enum        |tblLUTristate           |             72|            16|
+|Enum        |tblLUYesNo              |             72|            16|
+|Extract     |tblDemographics         |            392|           384|
+|Extract     |tblLinksExplicit        |          1,480|         1,432|
+|Extract     |tblLinksImplicit        |          1,736|         1,688|
+|Extract     |tblRoster               |         18,056|        18,048|
+|Extract     |tblSurveyTime           |          3,656|         3,616|
+|Extract     |tblTwins                |          4,552|         4,512|
+|Metadata    |tblItem                 |             72|            16|
+|Metadata    |tblMzManual             |             72|            16|
+|Metadata    |tblRosterAssignment     |             72|            16|
+|Metadata    |tblVariable             |            208|           144|
+|Process     |tblMarker               |            592|           360|
+|Process     |tblOutcome              |             72|            16|
+|Process     |tblRelatedStructure     |            528|           264|
+|Process     |tblRelatedValues        |            272|            88|
+|Process     |tblResponse             |          7,688|         7,272|
+|Process     |tblRoster               |            392|           256|
+|Process     |tblSubject              |            592|           352|
+|Process     |tblSubjectDetails       |            720|           544|
+|Process     |tblSurveyTime           |          5,584|         4,928|
 
 
 # Session Information
@@ -1880,13 +2600,13 @@ Session info -------------------------------------------------------------------
 
 ```
  setting  value                                      
- version  R version 3.4.3 Patched (2017-12-05 r73849)
+ version  R version 3.4.3 Patched (2018-01-25 r74163)
  system   x86_64, mingw32                            
  ui       RTerm                                      
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-07                                 
+ date     2018-02-13                                 
 ```
 
 ```
@@ -1897,49 +2617,52 @@ Packages -----------------------------------------------------------------------
  package    * version    date       source                          
  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                  
  backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                  
- base       * 3.4.3      2017-12-06 local                           
+ base       * 3.4.3      2018-01-26 local                           
  bindr        0.1        2016-11-13 CRAN (R 3.4.2)                  
  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                  
  bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                  
  bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                  
  blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                  
+ checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                  
  colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                  
- compiler     3.4.3      2017-12-06 local                           
- datasets   * 3.4.3      2017-12-06 local                           
+ compiler     3.4.3      2018-01-26 local                           
+ datasets   * 3.4.3      2018-01-26 local                           
  DBI          0.7        2017-06-18 CRAN (R 3.4.2)                  
  devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                  
- digest       0.6.13     2017-12-14 CRAN (R 3.4.3)                  
- dplyr        0.7.4      2017-09-28 CRAN (R 3.4.2)                  
+ digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                  
+ dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)
  evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                  
  glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                  
- graphics   * 3.4.3      2017-12-06 local                           
- grDevices  * 3.4.3      2017-12-06 local                           
+ graphics   * 3.4.3      2018-01-26 local                           
+ grDevices  * 3.4.3      2018-01-26 local                           
  highr        0.6        2016-05-09 CRAN (R 3.4.2)                  
- hms          0.4.0      2017-11-23 CRAN (R 3.4.2)                  
+ hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                  
  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                  
- knitr      * 1.18       2017-12-27 CRAN (R 3.4.3)                  
+ knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                  
  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
- methods    * 3.4.3      2017-12-06 local                           
+ methods    * 3.4.3      2018-01-26 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
- odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
- pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
+ odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                  
+ pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
+ purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                  
  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
- Rcpp         0.12.14    2017-11-23 CRAN (R 3.4.2)                  
- rlang        0.1.6      2017-12-21 CRAN (R 3.4.3)                  
+ Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                  
+ rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
- stats      * 3.4.3      2017-12-06 local                           
+ stats      * 3.4.3      2018-01-26 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
  stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
  testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)   
- tibble       1.4.1      2017-12-25 CRAN (R 3.4.3)                  
- tools        3.4.3      2017-12-06 local                           
- utils      * 3.4.3      2017-12-06 local                           
+ tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                  
+ tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                  
+ tools        3.4.3      2018-01-26 local                           
+ utils      * 3.4.3      2018-01-26 local                           
  withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)
  yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                  
 ```
@@ -1947,4 +2670,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-07, 17:31 -0600 in 2 seconds.
+Report rendered by Will at 2018-02-13, 12:45 -0600 in 3 seconds.

@@ -10,7 +10,7 @@ namespace Nls.Base79 {
 
         public readonly static Int16[] Gen1Height = { 1982 };
         public readonly static Int16[] Gen1Weight = { 1982 };
-        
+
         public const Int16 Gen1BioparentInHH = 1988;
 
         public const Int16 Gen1BioparentHighestGrade = 1979;

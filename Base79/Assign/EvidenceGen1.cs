@@ -4,45 +4,45 @@ using System.Diagnostics;
 using Nls.Base79.EnumResponsesGen1;
 
 namespace Nls.Base79 {
-	namespace Assign {
-		public static class EvidenceGen1 {
-			//public const float LowestRelatedR = (float)(1 / 64);
+    namespace Assign {
+        public static class EvidenceGen1 {
+            //public const float LowestRelatedR = (float)(1 / 64);
 
-			public static MarkerEvidence RosterSameGeneration ( Tristate tristate ) {
-				switch ( tristate ) {
-					case Tristate.No: return MarkerEvidence.Disconfirms;
-					case Tristate.Yes: return MarkerEvidence.StronglySupports;
-					case Tristate.DoNotKnow: return MarkerEvidence.Ambiguous;
-					default: throw new ArgumentOutOfRangeException("tristate", tristate, "This value is not permitted.");
-				}
-			}
-			public static MarkerEvidence RosterShareBioParentOrGrandparent ( Tristate tristate ) {
-				switch ( tristate ) {
-					case Tristate.No: return MarkerEvidence.Disconfirms;
-					case Tristate.Yes: return MarkerEvidence.Consistent;
-					case Tristate.DoNotKnow: return MarkerEvidence.Ambiguous;
-					default: throw new ArgumentOutOfRangeException("tristate", tristate, "This value is not permitted.");
-				}
-			}
-			public static MarkerEvidence ShareBioparentsForBioparents ( EnumResponsesGen1.ShareBioparentGen1 share ) {
-				switch ( share ) {
-					case ShareBioparentGen1.Yes:
-						return MarkerEvidence.Supports;
-					case ShareBioparentGen1.No:
-						return MarkerEvidence.Disconfirms;
-					case ShareBioparentGen1.DoNotKnow:
-					case ShareBioparentGen1.NotSure:
-					case ShareBioparentGen1.Refusal:
-						return MarkerEvidence.Ambiguous;
-					case ShareBioparentGen1.NonInterview:
-					case ShareBioparentGen1.ValidSkip:
-						return MarkerEvidence.Irrelevant;
-					default:
-						throw new ArgumentOutOfRangeException("share", share, "The enum value for share is not recognized.");
-				}
-			}
-		}
-	}
+            public static MarkerEvidence RosterSameGeneration( Tristate tristate ) {
+                switch( tristate ) {
+                    case Tristate.No: return MarkerEvidence.Disconfirms;
+                    case Tristate.Yes: return MarkerEvidence.StronglySupports;
+                    case Tristate.DoNotKnow: return MarkerEvidence.Ambiguous;
+                    default: throw new ArgumentOutOfRangeException("tristate", tristate, "This value is not permitted.");
+                }
+            }
+            public static MarkerEvidence RosterShareBioParentOrGrandparent( Tristate tristate ) {
+                switch( tristate ) {
+                    case Tristate.No: return MarkerEvidence.Disconfirms;
+                    case Tristate.Yes: return MarkerEvidence.Consistent;
+                    case Tristate.DoNotKnow: return MarkerEvidence.Ambiguous;
+                    default: throw new ArgumentOutOfRangeException("tristate", tristate, "This value is not permitted.");
+                }
+            }
+            public static MarkerEvidence ShareBioparentsForBioparents( EnumResponsesGen1.ShareBioparentGen1 share ) {
+                switch( share ) {
+                    case ShareBioparentGen1.Yes:
+                        return MarkerEvidence.Supports;
+                    case ShareBioparentGen1.No:
+                        return MarkerEvidence.Disconfirms;
+                    case ShareBioparentGen1.DoNotKnow:
+                    case ShareBioparentGen1.NotSure:
+                    case ShareBioparentGen1.Refusal:
+                        return MarkerEvidence.Ambiguous;
+                    case ShareBioparentGen1.NonInterview:
+                    case ShareBioparentGen1.ValidSkip:
+                        return MarkerEvidence.Irrelevant;
+                    default:
+                        throw new ArgumentOutOfRangeException("share", share, "The enum value for share is not recognized.");
+                }
+            }
+        }
+    }
 }
 
 //public static MarkerEvidence RosterSameGener ( Tristate tristate ) {
