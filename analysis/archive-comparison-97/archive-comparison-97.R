@@ -19,9 +19,10 @@ requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
 
 # ---- declare-globals ---------------------------------------------------------
-# includedRelationshipPaths <- c(2)
-# includedRelationshipPaths <- c(1)
-includedRelationshipPaths <- c(1, 2)
+colorGood <- "goodColor"
+colorSoso <- "sosoColor"
+colorBad  <- "badColor"
+colorNull <- "nullColor"
 
 sql <- paste("
   SELECT
@@ -69,6 +70,13 @@ sql <- paste("
 #   WHERE Process.tblRelatedStructure.RelationshipPath IN (", paste0(includedRelationshipPaths, collapse=","), ")
 #     AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (73, 75))")
 
+DetermineGoodRowIDs <- function( dsTable ) { # DetermineGoodRowIDs(ds)
+  return( which(dsTable$RImplicit==dsTable$RExplicit) )
+}
+
+DetermineBadRowIDs <- function( dsTable ) { # DetermineBadRowIDs(ds)
+  return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
+}
 
 # sql <- gsub(pattern="\\n", replacement=" ", sql)
 # sqlDescription <- "SELECT AlgorithmVersion, Description, Date2 FROM Archive.tblArchiveDescription where AlgorithmVersion=72" #AlgorithmVersion, Description
@@ -125,47 +133,33 @@ colnames(ds)[which(colnames(ds)=="Count.x")] <- "Count"
 # dsG
 # ds <- dsG
 
-# ---- define-tables ----------------------------------------------------------
-colorGood <- "goodColor"
-colorSoso <- "sosoColor"
-colorBad <- "badColor"
-colorNull <- "nullColor"
-
-DetermineGoodRowIDs <- function( dsTable ) { # DetermineGoodRowIDs(ds)
-  return( which(dsTable$RImplicit==dsTable$RExplicit) )
-}
-
-DetermineBadRowIDs <- function( dsTable ) { # DetermineBadRowIDs(ds)
-  return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
-}
-
-PrintConditionalTable <- function( ) {
-#  relationshipPathID <- 1
+# ---- graph-roc ---------------------------------------------------------------
+CreateRoc <- function(  ) {
   dsT <- ds#[ds$RelationshipPath==relationshipPathID, ]
-  # dsT <- dsT[, colnames(dsT)!="RelationshipPath"]
-  dsT <- dsT[order(-dsT$Count, dsT$Delta), c("Count", "RImplicit", "RExplicit", "RRoster", "Delta")]
-
-#   idGoodRows <- which(dsT$RImplicit==dsT$RExplicit)# & (ds$RImplicit2004 !=.375 | is.na(ds$RImplicit2004)))
-#   idBadRows <- which(abs(dsT$RImplicit - dsT$RExplicit) >= .25)# & ds$RImplicit!=1)
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
   idBadRows <- DetermineBadRowIDs(dsT)
-  idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
 
-  idRows <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
-  idRowsList <- as.list(idRows)# as.list(unlist(idRows))
-  colorRows <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
-  colorRows <- paste0("\\rowcolor{", colorRows, "} ")
+  goodSumLatest <- sum(dsT[idGoodRows, "Count"])
+  badSumLatest <- sum(dsT[idBadRows, "Count"])
 
-  digitsFormat <- c(0, 0, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
-  textTable <- xtable(dsT, digits=digitsFormat, caption="Joint Frequencies for 97 Housemates")
-  print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-")#, size="small")
+  goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, "Delta"])
+  badSumPrevious <- badSumLatest - sum(dsT[idBadRows, "Delta"])
+  dsRoc <- data.frame(Version=c(newerVersionNumber, olderVersionNumber), Agree=c(goodSumLatest, goodSumPrevious), Disagree=c(badSumLatest, badSumPrevious))
+
+  rocLag1 <- ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
+    geom_path() +
+    geom_text()
+  # coord_cartesian(xlim=c(0, 8000), ylim=c(0, 8000))#+ #xlim(0, 8000)
+  return( rocLag1 )
 }
-# PrintConditionalTable()
+CreateRoc()
+
+# ---- table-marginal ----------------------------------------------------------
 #  PrintConditionalTable(relationshipPathID=1,tabelCaption="Counts for Gen1Housemates")
 
-CreateMarginalTable  <- function(dsJoint,  relationshipPathID ) {
-  dsJoint <- dsJoint[dsJoint$RelationshipPath==relationshipPathID, ]
+CreateMarginalTable  <- function(dsJoint ) {
+  # dsJoint <- dsJoint[dsJoint$RelationshipPath==relationshipPathID, ]
 
   dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
   dsImplicit2004Table <- data.frame(table(dsJoint$RImplicit2004, useNA="always"))
@@ -173,11 +167,11 @@ CreateMarginalTable  <- function(dsJoint,  relationshipPathID ) {
   colnames(dsTable)[colnames(dsTable)=="Freq.x"] <- "Implicit2004"
   colnames(dsTable)[colnames(dsTable)=="Freq.y"] <- "Implicit"
 
-  if( relationshipPathID==1 ) {
-    dsRosterTable <- data.frame(table(dsJoint$RRoster, useNA="always"))
-    dsTable <- merge(x=dsTable, y=dsRosterTable, by="Var1", all=T)
-    colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Roster"
-  }
+  # if( relationshipPathID==1 ) {
+  dsRosterTable <- data.frame(table(dsJoint$RRoster, useNA="always"))
+  dsTable <- merge(x=dsTable, y=dsRosterTable, by="Var1", all=T)
+  colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Roster"
+  # }
 
   dsExplicitTable <- data.frame(table(dsJoint$RExplicit, useNA="always"))
   dsTable <- merge(x=dsTable, y=dsExplicitTable, by="Var1", all=T)
@@ -195,34 +189,36 @@ CreateMarginalTable  <- function(dsJoint,  relationshipPathID ) {
 # CreateMarginalTable(dsJoint=dsPrevious, relationshipPathID=2)
 # CreateMarginalTable(2)
 
-PrintMarginalTable <- function(dsJoint, relationshipPathID, title=paste("Marginal Frequencies for RelationshipPath", relationshipPathID) ) {
-  dsTable <- CreateMarginalTable(dsJoint,relationshipPathID)#[, 1:2]
-  textTable <- xtable(dsTable, caption=title)
+PrintMarginalTable <- function(dsJoint, caption ) {
+  dsTable <- CreateMarginalTable(dsJoint)#[, 1:2]
+  textTable <- xtable(dsTable, caption=caption)
   print(textTable, include.rownames=F, NA.string="-", size="large")#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
 }
-# PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=1)
-# PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=2)
+PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
+PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
 
-CreateRoc <- function( relationshipPathID ) {
-  dsT <- ds[ds$RelationshipPath==relationshipPathID, ]
+
+# ---- table-conditional -------------------------------------------------------
+PrintConditionalTable <- function( ) {
+  #  relationshipPathID <- 1
+  dsT <- ds#[ds$RelationshipPath==relationshipPathID, ]
+  # dsT <- dsT[, colnames(dsT)!="RelationshipPath"]
+  dsT <- dsT[order(-dsT$Count, dsT$Delta), c("Count", "RImplicit", "RExplicit", "RRoster", "Delta")]
+
+  #   idGoodRows <- which(dsT$RImplicit==dsT$RExplicit)# & (ds$RImplicit2004 !=.375 | is.na(ds$RImplicit2004)))
+  #   idBadRows <- which(abs(dsT$RImplicit - dsT$RExplicit) >= .25)# & ds$RImplicit!=1)
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
   idBadRows <- DetermineBadRowIDs(dsT)
+  idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
 
-  goodSumLatest <- sum(dsT[idGoodRows, "Count"])
-  badSumLatest <- sum(dsT[idBadRows, "Count"])
+  idRows <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
+  idRowsList <- as.list(idRows)# as.list(unlist(idRows))
+  colorRows <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
+  colorRows <- paste0("\\rowcolor{", colorRows, "} ")
 
-  goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, "Delta"])
-  badSumPrevious <- badSumLatest - sum(dsT[idBadRows, "Delta"])
-  dsRoc <- data.frame(Version=c(newerVersionNumber, olderVersionNumber), Agree=c(goodSumLatest, goodSumPrevious), Disagree=c(badSumLatest, badSumPrevious))
-
-  rocLag1 <- ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
-    geom_path() +
-    geom_text()
-    # coord_cartesian(xlim=c(0, 8000), ylim=c(0, 8000))#+ #xlim(0, 8000)
-  return( rocLag1 )
+  digitsFormat <- c(0, 0, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
+  textTable <- xtable(dsT, digits=digitsFormat, caption="Joint Frequencies for 97 Housemates")
+  print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-")#, size="small")
 }
-
-
-# CreateRoc(relationshipPathID=1)
-# CreateRoc(relationshipPathID=2)
+PrintConditionalTable()

@@ -64,33 +64,23 @@ read_chunk("./analysis/archive-comparison-97/archive-comparison-97.R")
 \textbf{Newer Links Version}: \Sexpr{newerVersionNumber};
 \textbf{Older Links Version}: \Sexpr{olderVersionNumber};
 
-<<define-tables, echo=echo_chunks, results='show', message=message_chunks>>=
-@
-
-
 <<echo=FALSE, comment=NA>>=
 # cat("Newer:", newerDescription)
 cat(str_wrap(paste("Newer Links:", newerDescription), width=80))
 cat(str_wrap(paste("Older Links:", olderDescription), width=80))
 @
 
-\begin{figure}[htbp]
-<<echo=FALSE, fig.width=3.2, fig.height=1.5>>=
-CreateRoc(relationshipPathID=1)
-
-@
-\caption{ROC for 97 Housemates}
-\end{figure}
-
-<<echo=FALSE, results='asis'>>=
-
-PrintMarginalTable(dsJoint=dsLatest, relationshipPathID=1, title="Counts for 97 Housemates")
-PrintMarginalTable(dsJoint=dsPrevious, relationshipPathID=1, title="Counts for 97 Housemates (Previous version of links)")
-
+<<graph-roc, echo=FALSE, comment=NA, fig.width=3.2, fig.height=1.5>>=
+# cat("Newer:", newerDescription)
 @
 
-<<echo=FALSE, results='asis'>>=
-PrintConditionalTable()
+
+<<table-marginal, echo=echo_chunks, results='asis', message=message_chunks>>=
+@
+
+
+<<table-conditional, echo=FALSE, results='asis'>>=
+# PrintConditionalTable()
 @
 
 
