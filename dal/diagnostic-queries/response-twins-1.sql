@@ -22,6 +22,8 @@ where
   --AND 
   --item IN (3, 105, 102) --104, 105, 106
   --item IN (3, 104, 106) --104, 105, 106
-  r.item IN (121, 122, 123)
+  r.item IN (121, 122, 123, 124)
+  --r.item=122
 
+  --AND (hh_internal_id=LoopIndex1 or hh_internal_id=LoopIndex2)
 order by r.ExtendedID, r.SubjectTag, r.SurveyYear, r.item, r.LoopIndex1, r.LoopIndex2

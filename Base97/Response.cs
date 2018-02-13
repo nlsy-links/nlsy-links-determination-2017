@@ -55,6 +55,7 @@ namespace Nls.Base97 {
                     Int32 subjectID = Convert.ToInt32(drImport[subjectIDColumnName]);
                     Int32 subjectTag = subjectID;
                     foreach( LinksDataSet.tblVariableRow drVariable in drsVariablesToTranslate ) {
+                        //if( drVariable.Item == 122 ) {
                         string columnName = drVariable.VariableCode;
                         LinksDataSet.tblResponseRow drResponse = _dsLinks.tblResponse.NewtblResponseRow();
                         drResponse.SubjectTag = subjectTag;
@@ -74,6 +75,7 @@ namespace Nls.Base97 {
                             _dsLinks.tblResponse.AddtblResponseRow(drResponse);
                             gen1ReponseRecordsAddedCount += 1;
                         }
+                        //}
                     }
                 }
             }
@@ -117,9 +119,9 @@ namespace Nls.Base97 {
                 "TRUE", _dsLinks.tblVariable.TranslateColumn.ColumnName);
             LinksDataSet.tblVariableRow[] drVariablesToTranslate = (LinksDataSet.tblVariableRow[])_dsLinks.tblVariable.Select(select);
 
-            IEnumerable<LinksDataSet.tblVariableRow> drs = 
+            IEnumerable<LinksDataSet.tblVariableRow> drs =
                 from dr in drVariablesToTranslate
-                where dr.tblItemRow.Active=="TRUE"
+                where dr.tblItemRow.Active == "TRUE"
                 select dr;
 
 
