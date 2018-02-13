@@ -181,9 +181,23 @@ CreateMarginalTable  <- function( dsJoint ) {
       by = "R"
     ) %>%
     dplyr::mutate(
-      Eventual  = dplyr::coalesce(Eventual, 0L),
       R         = sprintf("%.3f", R),
-      R         = dplyr::if_else(R=="NA", "-", R)
+      Eventual  = dplyr::coalesce(Eventual, 0L),
+      # Implicit  = prettyNum(Implicit  , big.mark = ",", width=5),
+      # Explicit  = prettyNum(Explicit  , big.mark = ",", width=5),
+      # Roster    = prettyNum(Roster    , big.mark = ",", width=5),
+      # Eventual  = prettyNum(Eventual  , big.mark = ",", width=5),
+      # Implicit  = scales::comma(Implicit),
+      # Explicit  = scales::comma(Explicit),
+      # Roster    = scales::comma(Roster  ),
+      # Eventual  = scales::comma(Eventual),
+
+
+      R         = dplyr::if_else(R=="NA", "-", R),
+      # Implicit  = dplyr::if_else(Implicit=="NA", "-", Implicit),
+      # Explicit  = dplyr::if_else(Explicit=="NA", "-", Explicit),
+      # Roster    = dplyr::if_else(Roster  =="NA", "-", Roster  ),
+      # Eventual  = dplyr::if_else(Eventual=="NA", "-", Eventual)
       # R       = dplyr::if_else(is.na(R), "-", sprintf("%.3f", R))
       # R       = dplyr::coalesce(R, "-")
     ) %>%
@@ -191,10 +205,10 @@ CreateMarginalTable  <- function( dsJoint ) {
 }
 # CreateMarginalTable(dsJoint=dsLatest)
 
-PrintMarginalTable <- function(dsJoint, caption ) {
-  dsTable <- CreateMarginalTable(dsJoint)#[, 1:2]
+PrintMarginalTable <- function( dsJoint, caption ) {
+  dsTable   <- CreateMarginalTable(dsJoint)#[, 1:2]
   textTable <- xtable(dsTable, caption=caption)
-  print(textTable, include.rownames=F, NA.string="-", size="large", type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
+  print(textTable, include.rownames=F, NA.string="-", size="large",  right =T, type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
 }
 PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
 PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
@@ -202,25 +216,21 @@ PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previo
 
 # ---- table-conditional -------------------------------------------------------
 PrintConditionalTable <- function( ) {
-  #  relationshipPathID <- 1
-  dsT <- ds#[ds$RelationshipPath==relationshipPathID, ]
-  # dsT <- dsT[, colnames(dsT)!="RelationshipPath"]
-  dsT <- dsT[order(-dsT$Count, dsT$Delta), c("Count", "RImplicit", "RExplicit", "RRoster", "Delta")]
+  dsT <- ds %>%
+    dplyr::select(Count, RImplicit, RExplicit, RRoster, Delta) %>%
+    dplyr::arrange(desc(Count), Delta)
 
-  #   idGoodRows <- which(dsT$RImplicit==dsT$RExplicit)# & (ds$RImplicit2004 !=.375 | is.na(ds$RImplicit2004)))
-  #   idBadRows <- which(abs(dsT$RImplicit - dsT$RExplicit) >= .25)# & ds$RImplicit!=1)
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-  idBadRows <- DetermineBadRowIDs(dsT)
+  idBadRows  <- DetermineBadRowIDs(dsT)
   idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
 
-  idRows <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
-  idRowsList <- as.list(idRows)# as.list(unlist(idRows))
-  colorRows <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
-  colorRows <- paste0("\\rowcolor{", colorRows, "} ")
+  idRows     <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
+  colorRows  <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
+  colorRows  <- paste0("\\rowcolor{", colorRows, "} ")
 
   digitsFormat <- c(0, 0, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
   textTable <- xtable(dsT, digits=digitsFormat, caption="Joint Frequencies for 97 Housemates")
-  print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-", type=output_type)#, size="small")
+  print(textTable, include.rownames=F, add.to.row=list(as.list(idRows), colorRows), NA.string="-", type=output_type)#, size="small")
 }
 PrintConditionalTable()
