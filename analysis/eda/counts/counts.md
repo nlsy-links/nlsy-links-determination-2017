@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-01-20"
+date: "Date: 2018-02-13"
 output:
   html_document:
     keep_md: yes
@@ -1934,6 +1934,7 @@ This report documents the basic properties of the input & output tables kinship 
 |:-----------|:-----------------------|---------:|------------:|
 |Archive     |tblArchiveDescription   |         0|            4|
 |Archive     |tblRelatedValuesArchive |         0|           22|
+|dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
 |Enum        |tblLUMarkerEvidence     |         8|            4|
@@ -2041,7 +2042,7 @@ This report documents the basic properties of the input & output tables kinship 
 |R0816300      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            8|            9|TRUE      |TRUE            |NA             |
 |R0816400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            8|           10|TRUE      |TRUE            |NA             |
 |R0816500      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            9|           10|TRUE      |TRUE            |NA             |
-|R0817400      |     121|pair_multiple_birth              |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
+|R0817400      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            1|            2|TRUE      |TRUE            |NA             |
 |R0817500      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            1|            3|TRUE      |TRUE            |NA             |
 |R0817600      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            3|            4|TRUE      |TRUE            |NA             |
 |R0817700      |     122|pair_twins_mz                    |                 6|97-twins             |        1997|            4|            5|TRUE      |TRUE            |NA             |
@@ -2556,6 +2557,7 @@ This report documents the basic properties of the input & output tables kinship 
 |:-----------|:-----------------------|--------------:|-------------:|
 |Archive     |tblArchiveDescription   |              0|             0|
 |Archive     |tblRelatedValuesArchive |             72|            16|
+|dbo         |sysdiagrams             |              0|             0|
 |Enum        |tblLUExtractSource      |             72|            16|
 |Enum        |tblLUGender             |             72|            16|
 |Enum        |tblLUMarkerEvidence     |             72|            16|
@@ -2570,12 +2572,12 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblLinksImplicit        |          1,736|         1,688|
 |Extract     |tblRoster               |         18,056|        18,048|
 |Extract     |tblSurveyTime           |          3,656|         3,616|
-|Extract     |tblTwins                |          4,616|         4,512|
+|Extract     |tblTwins                |          4,552|         4,512|
 |Metadata    |tblItem                 |             72|            16|
-|Metadata    |tblMzManual             |             72|            24|
+|Metadata    |tblMzManual             |             72|            16|
 |Metadata    |tblRosterAssignment     |             72|            16|
-|Metadata    |tblVariable             |            208|           136|
-|Process     |tblMarker               |            528|           344|
+|Metadata    |tblVariable             |            208|           144|
+|Process     |tblMarker               |            592|           360|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |            272|            88|
@@ -2583,7 +2585,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |            720|           544|
-|Process     |tblSurveyTime           |          5,776|         4,968|
+|Process     |tblSurveyTime           |          5,584|         4,928|
 
 
 # Session Information
@@ -2598,13 +2600,13 @@ Session info -------------------------------------------------------------------
 
 ```
  setting  value                                      
- version  R version 3.4.3 Patched (2017-12-05 r73849)
+ version  R version 3.4.3 Patched (2018-01-25 r74163)
  system   x86_64, mingw32                            
- ui       RStudio (1.1.393)                          
+ ui       RTerm                                      
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-01-20                                 
+ date     2018-02-13                                 
 ```
 
 ```
@@ -2615,59 +2617,52 @@ Packages -----------------------------------------------------------------------
  package    * version    date       source                          
  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                  
  backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                  
- base       * 3.4.3      2017-12-06 local                           
+ base       * 3.4.3      2018-01-26 local                           
  bindr        0.1        2016-11-13 CRAN (R 3.4.2)                  
  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                  
  bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                  
  bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                  
  blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                  
  checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                  
- cli          1.0.0      2017-11-05 CRAN (R 3.4.2)                  
  colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                  
- compiler     3.4.3      2017-12-06 local                           
- crayon       1.3.4      2017-09-16 CRAN (R 3.4.1)                  
- datasets   * 3.4.3      2017-12-06 local                           
+ compiler     3.4.3      2018-01-26 local                           
+ datasets   * 3.4.3      2018-01-26 local                           
  DBI          0.7        2017-06-18 CRAN (R 3.4.2)                  
  devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                  
- digest       0.6.13     2017-12-14 CRAN (R 3.4.3)                  
- dplyr        0.7.4      2017-09-28 CRAN (R 3.4.2)                  
+ digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                  
+ dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)
  evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                  
  glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                  
- graphics   * 3.4.3      2017-12-06 local                           
- grDevices  * 3.4.3      2017-12-06 local                           
+ graphics   * 3.4.3      2018-01-26 local                           
+ grDevices  * 3.4.3      2018-01-26 local                           
  highr        0.6        2016-05-09 CRAN (R 3.4.2)                  
- hms          0.4.0      2017-11-23 CRAN (R 3.4.2)                  
+ hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                  
  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                  
- knitr      * 1.18       2017-12-27 CRAN (R 3.4.3)                  
+ knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                  
  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
- markdown     0.8        2017-04-20 CRAN (R 3.4.2)                  
  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
- methods    * 3.4.3      2017-12-06 local                           
+ methods    * 3.4.3      2018-01-26 local                           
  munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
- odbc         1.1.3      2017-10-05 CRAN (R 3.4.2)                  
- OuhscMunge   0.1.8.9005 2017-12-21 local                           
- pillar       1.0.1      2017-11-27 CRAN (R 3.4.3)                  
+ odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                  
+ pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                  
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
  plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
  purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                  
  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
- Rcpp         0.12.14    2017-11-23 CRAN (R 3.4.2)                  
- readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                  
- rlang        0.1.6      2017-12-21 CRAN (R 3.4.3)                  
+ Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                  
+ rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)
  rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
  RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
  rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
- rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                  
  scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
- stats      * 3.4.3      2017-12-06 local                           
+ stats      * 3.4.3      2018-01-26 local                           
  stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
  stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
  testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)   
- tibble       1.4.1      2017-12-25 CRAN (R 3.4.3)                  
- tidyr        0.7.2      2017-10-16 CRAN (R 3.4.2)                  
- tools        3.4.3      2017-12-06 local                           
- utf8         1.1.3      2018-01-03 CRAN (R 3.4.3)                  
- utils      * 3.4.3      2017-12-06 local                           
+ tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                  
+ tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                  
+ tools        3.4.3      2018-01-26 local                           
+ utils      * 3.4.3      2018-01-26 local                           
  withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)
  yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                  
 ```
@@ -2675,4 +2670,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-01-20, 01:22 -0600 in 2 seconds.
+Report rendered by Will at 2018-02-13, 12:45 -0600 in 3 seconds.

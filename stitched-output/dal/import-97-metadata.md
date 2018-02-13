@@ -3,7 +3,7 @@
 
 
 This report was automatically generated with the R package **knitr**
-(version 1.18).
+(version 1.19).
 
 
 ```r
@@ -134,21 +134,21 @@ ds_mapping
 
 ```
 ## # A tibble: 13 x 5
-##    table_name       schema_name enum_name      c_sharp_type convert_to_en~
-##    <chr>            <chr>       <chr>          <chr>        <lgl>         
-##  1 item             Metadata    Item           short        T             
-##  2 LUExtractSource  Enum        ExtractSource  byte         T             
-##  3 LUGender         Enum        Gender         byte         T             
-##  4 LUMarkerEvidence Enum        MarkerEvidence byte         T             
-##  5 LUMarkerType     Enum        MarkerType     byte         T             
-##  6 LUMultipleBirth  Enum        MultipleBirth  byte         T             
-##  7 LURaceCohort     Enum        RaceCohort     byte         T             
-##  8 LURoster         Enum        RosterGen1     short        T             
-##  9 LUTristate       Enum        Tristate       byte         T             
-## 10 LUYesNo          Enum        YesNo          short        T             
-## 11 MzManual         Metadata    NA_character   NA_character F             
-## 12 RosterAssignment Metadata    NA_character   NA_character F             
-## 13 variable         Metadata    NA_character   NA_character F
+##    table_name       schema_name enum_name     c_sharp_type convert_to_enum
+##    <chr>            <chr>       <chr>         <chr>        <lgl>          
+##  1 item             Metadata    Item          short        T              
+##  2 LUExtractSource  Enum        ExtractSource byte         T              
+##  3 LUGender         Enum        Gender        byte         T              
+##  4 LUMarkerEvidence Enum        MarkerEviden~ byte         T              
+##  5 LUMarkerType     Enum        MarkerType    byte         T              
+##  6 LUMultipleBirth  Enum        MultipleBirth byte         T              
+##  7 LURaceCohort     Enum        RaceCohort    byte         T              
+##  8 LURoster         Enum        RosterGen1    short        T              
+##  9 LUTristate       Enum        Tristate      byte         T              
+## 10 LUYesNo          Enum        YesNo         short        T              
+## 11 MzManual         Metadata    NA_character  NA_character F              
+## 12 RosterAssignment Metadata    NA_character  NA_character F              
+## 13 variable         Metadata    NA_character  NA_character F
 ```
 
 ```r
@@ -165,21 +165,21 @@ ds_file
 
 ```
 ## # A tibble: 13 x 4
-##    name             path                                 col_types   exis~
-##    <chr>            <chr>                                <list>      <lgl>
-##  1 item             data-public/metadata/tables-97/item~ <S3: col_s~ T    
-##  2 LUExtractSource  data-public/metadata/tables-97/LUEx~ <S3: col_s~ T    
-##  3 LUMarkerEvidence data-public/metadata/tables-97/LUMa~ <S3: col_s~ T    
-##  4 LUGender         data-public/metadata/tables-97/LUGe~ <S3: col_s~ T    
-##  5 LUMarkerType     data-public/metadata/tables-97/LUMa~ <S3: col_s~ T    
-##  6 LUMultipleBirth  data-public/metadata/tables-97/LUMu~ <S3: col_s~ T    
-##  7 LURaceCohort     data-public/metadata/tables-97/LURa~ <S3: col_s~ T    
-##  8 LURoster         data-public/metadata/tables-97/LURo~ <S3: col_s~ T    
-##  9 LUTristate       data-public/metadata/tables-97/LUTr~ <S3: col_s~ T    
-## 10 LUYesNo          data-public/metadata/tables-97/LUYe~ <S3: col_s~ T    
-## 11 MzManual         data-public/metadata/tables-97/MzMa~ <S3: col_s~ T    
-## 12 RosterAssignment data-public/metadata/tables-97/Rost~ <S3: col_s~ T    
-## 13 variable         data-public/metadata/tables-97/vari~ <S3: col_s~ T
+##    name             path                               col_types    exists
+##    <chr>            <chr>                              <list>       <lgl> 
+##  1 item             data-public/metadata/tables-97/it~ <S3: col_sp~ T     
+##  2 LUExtractSource  data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  3 LUMarkerEvidence data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  4 LUGender         data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  5 LUMarkerType     data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  6 LUMultipleBirth  data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  7 LURaceCohort     data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  8 LURoster         data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+##  9 LUTristate       data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+## 10 LUYesNo          data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
+## 11 MzManual         data-public/metadata/tables-97/Mz~ <S3: col_sp~ T     
+## 12 RosterAssignment data-public/metadata/tables-97/Ro~ <S3: col_sp~ T     
+## 13 variable         data-public/metadata/tables-97/va~ <S3: col_sp~ T
 ```
 
 ```r
@@ -196,21 +196,21 @@ ds_entries
 
 ```
 ## # A tibble: 13 x 4
-##    name             path                           col_types  entries     
-##    <chr>            <chr>                          <list>     <list>      
-##  1 item             data-public/metadata/tables-9~ <S3: col_~ <tibble [26~
-##  2 LUExtractSource  data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
-##  3 LUMarkerEvidence data-public/metadata/tables-9~ <S3: col_~ <tibble [8 ~
-##  4 LUGender         data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
-##  5 LUMarkerType     data-public/metadata/tables-9~ <S3: col_~ <tibble [28~
-##  6 LUMultipleBirth  data-public/metadata/tables-9~ <S3: col_~ <tibble [5 ~
-##  7 LURaceCohort     data-public/metadata/tables-9~ <S3: col_~ <tibble [4 ~
-##  8 LURoster         data-public/metadata/tables-9~ <S3: col_~ <tibble [92~
-##  9 LUTristate       data-public/metadata/tables-9~ <S3: col_~ <tibble [3 ~
-## 10 LUYesNo          data-public/metadata/tables-9~ <S3: col_~ <tibble [6 ~
-## 11 MzManual         data-public/metadata/tables-9~ <S3: col_~ <tibble [90~
-## 12 RosterAssignment data-public/metadata/tables-9~ <S3: col_~ <tibble [31~
-## 13 variable         data-public/metadata/tables-9~ <S3: col_~ <tibble [55~
+##    name             path                         col_types    entries     
+##    <chr>            <chr>                        <list>       <list>      
+##  1 item             data-public/metadata/tables~ <S3: col_sp~ <tibble [26~
+##  2 LUExtractSource  data-public/metadata/tables~ <S3: col_sp~ <tibble [6 ~
+##  3 LUMarkerEvidence data-public/metadata/tables~ <S3: col_sp~ <tibble [8 ~
+##  4 LUGender         data-public/metadata/tables~ <S3: col_sp~ <tibble [3 ~
+##  5 LUMarkerType     data-public/metadata/tables~ <S3: col_sp~ <tibble [28~
+##  6 LUMultipleBirth  data-public/metadata/tables~ <S3: col_sp~ <tibble [5 ~
+##  7 LURaceCohort     data-public/metadata/tables~ <S3: col_sp~ <tibble [4 ~
+##  8 LURoster         data-public/metadata/tables~ <S3: col_sp~ <tibble [92~
+##  9 LUTristate       data-public/metadata/tables~ <S3: col_sp~ <tibble [3 ~
+## 10 LUYesNo          data-public/metadata/tables~ <S3: col_sp~ <tibble [6 ~
+## 11 MzManual         data-public/metadata/tables~ <S3: col_sp~ <tibble [90~
+## 12 RosterAssignment data-public/metadata/tables~ <S3: col_sp~ <tibble [31~
+## 13 variable         data-public/metadata/tables~ <S3: col_sp~ <tibble [55~
 ```
 
 ```r
@@ -223,20 +223,20 @@ ds_table
 ```
 
 ```
-## # A tibble: 30 x 6
-##    schema_name table_name              row_count column_count space~ spac~
-##  * <chr>       <chr>                       <int>        <int>  <int> <int>
-##  1 Archive     tblArchiveDescription           0            4      0     0
-##  2 Archive     tblRelatedValuesArchive         0           22     72    16
-##  3 Enum        tblLUExtractSource              6            4     72    16
-##  4 Enum        tblLUGender                     3            4     72    16
-##  5 Enum        tblLUMarkerEvidence             8            4     72    16
-##  6 Enum        tblLUMarkerType                28            5     72    16
-##  7 Enum        tblLUMultipleBirth              5            4     72    16
-##  8 Enum        tblLURaceCohort                 4            4     72    16
-##  9 Enum        tblLURoster                    92            4     72    16
-## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 20 more rows
+## # A tibble: 31 x 6
+##    schema_name table_name            row_count column_count space_total_kb
+##  * <chr>       <chr>                     <int>        <int>          <int>
+##  1 Archive     tblArchiveDescription         0            4              0
+##  2 Archive     tblRelatedValuesArch~         0           22             72
+##  3 dbo         sysdiagrams                   0            5              0
+##  4 Enum        tblLUExtractSource            6            4             72
+##  5 Enum        tblLUGender                   3            4             72
+##  6 Enum        tblLUMarkerEvidence           8            4             72
+##  7 Enum        tblLUMarkerType              28            5             72
+##  8 Enum        tblLUMultipleBirth            5            4             72
+##  9 Enum        tblLURaceCohort               4            4             72
+## 10 Enum        tblLURoster                  92            4             72
+## # ... with 21 more rows, and 1 more variable: space_used_kb <int>
 ```
 
 ```r
@@ -265,18 +265,18 @@ ds_file$entries %>%
 
 ```
 ## # A tibble: 26 x 7
-##       ID Label                  MinValue MinNonnegative MaxVa~ Acti~ Notes
-##    <int> <chr>                     <int>          <int>  <int> <lgl> <chr>
-##  1     1 subject_id                    1              1   9022 T     <NA> 
-##  2     2 extended_family_id            1              1   9022 T     <NA> 
-##  3     3 hh_internal_id                1              1      5 T     <NA> 
-##  4    10 gender                        1              1      2 T     <NA> 
-##  5    11 DateOfBirthMonth              1              1     12 T     <NA> 
-##  6    12 DateOfBirthYear            1980           1980   1984 T     <NA> 
-##  7    13 cross_sectional_cohort        0              0      1 T     <NA> 
-##  8    14 race_cohort                   1              1      4 T     race~
-##  9    20 InterviewDateDay          -   7              1     31 T     <NA> 
-## 10    21 InterviewDateMonth        -   7              1     12 T     <NA> 
+##       ID Label           MinValue MinNonnegative MaxValue Active Notes    
+##    <int> <chr>              <int>          <int>    <int> <lgl>  <chr>    
+##  1     1 subject_id             1              1     9022 T      <NA>     
+##  2     2 extended_famil~        1              1     9022 T      <NA>     
+##  3     3 hh_internal_id         1              1        5 T      <NA>     
+##  4    10 gender                 1              1        2 T      <NA>     
+##  5    11 DateOfBirthMon~        1              1       12 T      <NA>     
+##  6    12 DateOfBirthYear     1980           1980     1984 T      <NA>     
+##  7    13 cross_sectiona~        0              0        1 T      <NA>     
+##  8    14 race_cohort            1              1        4 T      race-eth~
+##  9    20 InterviewDateD~    -   7              1       31 T      <NA>     
+## 10    21 InterviewDateM~    -   7              1       12 T      <NA>     
 ## # ... with 16 more rows
 ## # A tibble: 6 x 4
 ##      ID Label             Active Notes
@@ -363,49 +363,51 @@ ds_file$entries %>%
 ## 5     0 No                                  T      <NA> 
 ## 6     1 Yes                                 T      <NA> 
 ## # A tibble: 90 x 8
-##       ID SubjectTag_S1 SubjectTag_S2 MultipleBi~  IsMz Undeci~ Rela~ Notes
-##    <int>         <int>         <int>       <int> <int>   <int> <int> <chr>
-##  1     1            66            67           2   255       1    NA <NA> 
-##  2     2            75            76           2   255       1    NA <NA> 
-##  3     3           116           117           2   255       1    NA <NA> 
-##  4     4           222           223           2   255       1    NA <NA> 
-##  5     5           343           344           3   255       1    NA <NA> 
-##  6     6           343           345           3   255       1    NA <NA> 
-##  7     7           344           345           3   255       1    NA <NA> 
-##  8     8           351           352           2   255       1    NA <NA> 
-##  9     9           447           448           2   255       1    NA <NA> 
-## 10    10           588           589           2   255       1    NA <NA> 
-## # ... with 80 more rows
+##       ID SubjectTag_S1 SubjectTag_S2 MultipleBirthIfSameS~  IsMz Undecided
+##    <int>         <int>         <int>                 <int> <int>     <int>
+##  1     1            66            67                     0     0         0
+##  2     2            75            76                     2     1         0
+##  3     3           116           117                     2     1         0
+##  4     4           222           223                     2     0         0
+##  5     5           343           344                     3   255         1
+##  6     6           343           345                     3   255         1
+##  7     7           344           345                     3   255         1
+##  8     8           351           352                     2     1         0
+##  9     9           447           448                     2     1         0
+## 10    10           588           589                     2     0         0
+## # ... with 80 more rows, and 2 more variables: Related <int>, Notes <chr>
 ## # A tibble: 31 x 16
-##       ID Respo~ Respo~  Freq Resol~      R RBoun~ RBou~ SameG~ Shar~ Shar~
-##    <int>  <int>  <int> <int>  <int>  <dbl>  <dbl> <dbl>  <dbl> <int> <int>
-##  1     1    - 2    - 1     2      0 NA      0     1.00  255      255   255
-##  2     2    - 1    - 1     2      0 NA      0     1.00  255      255   255
-##  3     3     13     13  1034      0 NA      0.500 1.00    1.00     1     1
-##  4     4     13     14  2034      1  0.500  0.500 0.500   1.00     1     1
-##  5     5     14     14  1154      0 NA      0.500 1.00    1.00     1     1
-##  6     6     15     15    48      1  0.250  0.250 0.250   1.00     0     1
-##  7     7     15     18   132      1  0.250  0.250 0.250   1.00     0     1
-##  8     8     16     19     2      1  0.250  0.250 0.250   1.00     1     0
-##  9     9     18     18    62      1  0.250  0.250 0.250   1.00     0     1
-## 10    10     19     19     8      1  0.250  0.250 0.250   1.00     1     0
-## # ... with 21 more rows, and 5 more variables: ShareBiograndparent <int>,
-## #   Inconsistent <int>, Notes <chr>, ResponseLowerLabel <chr>,
-## #   ResponseUpperLabel <chr>
+##       ID ResponseLower ResponseUpper  Freq Resolved      R RBoundLower
+##    <int>         <int>         <int> <int>    <int>  <dbl>       <dbl>
+##  1     1           - 2           - 1     2        0 NA           0    
+##  2     2           - 1           - 1     2        0 NA           0    
+##  3     3            13            13  1034        0 NA           0.500
+##  4     4            13            14  2034        1  0.500       0.500
+##  5     5            14            14  1154        0 NA           0.500
+##  6     6            15            15    48        1  0.250       0.250
+##  7     7            15            18   132        1  0.250       0.250
+##  8     8            16            19     2        1  0.250       0.250
+##  9     9            18            18    62        1  0.250       0.250
+## 10    10            19            19     8        1  0.250       0.250
+## # ... with 21 more rows, and 9 more variables: RBoundUpper <dbl>,
+## #   SameGeneration <dbl>, ShareBiodad <int>, ShareBiomom <int>,
+## #   ShareBiograndparent <int>, Inconsistent <int>, Notes <chr>,
+## #   ResponseLowerLabel <chr>, ResponseUpperLabel <chr>
 ## # A tibble: 551 x 11
-##    Varia~  Item Extra~ Surve~ Loop~ Loop~ Tran~ Acti~ Notes Ques~ Variabl~
-##    <chr>  <int>  <int>  <int> <int> <int> <int> <int> <chr> <chr> <chr>   
-##  1 R0000~     1      1   1997     1     1     1     1 <NA>  PUBID YOUTH C~
-##  2 R1193~     2      1   1997     1     1     1     1 <NA>  SIDC~ HOUSEHO~
-##  3 R0533~     3      1   1997     1     1     1     1 <NA>  YOUT~ YOUTH, ~
-##  4 R0536~    10      1   1997     1     1     1     1 <NA>  KEY!~ RS GEND~
-##  5 R0536~    11      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
-##  6 R0536~    12      1   1997     1     1     1     1 <NA>  KEY!~ RS BIRT~
-##  7 R1235~    13      1   1997     1     1     1     1 <NA>  CV_S~ SAMPLE ~
-##  8 R1482~    14      1   1997     1     1     1     1 <NA>  KEY!~ KEY!RAC~
-##  9 R1097~   101      2   1997     1     1     1     1 <NA>  HHI2~ HHI2_HH~
-## 10 R1097~   101      2   1997     2     1     1     1 <NA>  HHI2~ HHI2_HH~
-## # ... with 541 more rows
+##    VariableCode  Item ExtractSource SurveyYear LoopIndex1 LoopIndex2
+##    <chr>        <int>         <int>      <int>      <int>      <int>
+##  1 R0000100         1             1       1997          1          1
+##  2 R1193000         2             1       1997          1          1
+##  3 R0533400         3             1       1997          1          1
+##  4 R0536300        10             1       1997          1          1
+##  5 R0536401        11             1       1997          1          1
+##  6 R0536402        12             1       1997          1          1
+##  7 R1235800        13             1       1997          1          1
+##  8 R1482600        14             1       1997          1          1
+##  9 R1097800       101             2       1997          1          1
+## 10 R1097900       101             2       1997          2          1
+## # ... with 541 more rows, and 5 more variables: Translate <int>,
+## #   Active <int>, Notes <chr>, QuestionName <chr>, VariableTitle <chr>
 ```
 
 ```r
@@ -445,21 +447,23 @@ ds_file
 
 ```
 ## # A tibble: 13 x 11
-##    name   path    col_t~ exists sche~ enum~ c_sh~ conv~ tabl~ sql_d~ entr~
-##    <chr>  <chr>   <list> <lgl>  <chr> <chr> <chr> <lgl> <chr> <chr>  <lis>
-##  1 item   data-p~ <S3: ~ T      Meta~ Item  short T     tbli~ DELET~ <tib~
-##  2 LUExt~ data-p~ <S3: ~ T      Enum  Extr~ byte  T     tblL~ DELET~ <tib~
-##  3 LUMar~ data-p~ <S3: ~ T      Enum  Mark~ byte  T     tblL~ DELET~ <tib~
-##  4 LUGen~ data-p~ <S3: ~ T      Enum  Gend~ byte  T     tblL~ DELET~ <tib~
-##  5 LUMar~ data-p~ <S3: ~ T      Enum  Mark~ byte  T     tblL~ DELET~ <tib~
-##  6 LUMul~ data-p~ <S3: ~ T      Enum  Mult~ byte  T     tblL~ DELET~ <tib~
-##  7 LURac~ data-p~ <S3: ~ T      Enum  Race~ byte  T     tblL~ DELET~ <tib~
-##  8 LURos~ data-p~ <S3: ~ T      Enum  Rost~ short T     tblL~ DELET~ <tib~
-##  9 LUTri~ data-p~ <S3: ~ T      Enum  Tris~ byte  T     tblL~ DELET~ <tib~
-## 10 LUYes~ data-p~ <S3: ~ T      Enum  YesNo short T     tblL~ DELET~ <tib~
-## 11 MzMan~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblM~ DELET~ <tib~
-## 12 Roste~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblR~ DELET~ <tib~
-## 13 varia~ data-p~ <S3: ~ T      Meta~ NA_c~ NA_c~ F     tblv~ DELET~ <tib~
+##    name    path        col_types exists schema_name enum_name c_sharp_type
+##    <chr>   <chr>       <list>    <lgl>  <chr>       <chr>     <chr>       
+##  1 item    data-publi~ <S3: col~ T      Metadata    Item      short       
+##  2 LUExtr~ data-publi~ <S3: col~ T      Enum        ExtractS~ byte        
+##  3 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerEv~ byte        
+##  4 LUGend~ data-publi~ <S3: col~ T      Enum        Gender    byte        
+##  5 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerTy~ byte        
+##  6 LUMult~ data-publi~ <S3: col~ T      Enum        Multiple~ byte        
+##  7 LURace~ data-publi~ <S3: col~ T      Enum        RaceCoho~ byte        
+##  8 LURost~ data-publi~ <S3: col~ T      Enum        RosterGe~ short       
+##  9 LUTris~ data-publi~ <S3: col~ T      Enum        Tristate  byte        
+## 10 LUYesNo data-publi~ <S3: col~ T      Enum        YesNo     short       
+## 11 MzManu~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## 12 Roster~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## 13 variab~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## # ... with 4 more variables: convert_to_enum <lgl>, table_name <chr>,
+## #   sql_delete <chr>, entries <list>
 ```
 
 ```r
@@ -1086,7 +1090,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-20, 17:27 -0600 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-02-13, 12:22 -0600 in 2 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1098,7 +1102,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.3 Patched (2017-12-05 r73849)
+## R version 3.4.3 Patched (2018-01-25 r74163)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -1115,18 +1119,25 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.19   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
-##  [5] hms_0.4.0        odbc_1.1.3       bit_1.1-12       testit_0.7.1    
-##  [9] R6_2.2.2         rlang_0.1.6      blob_1.1.0       stringr_1.2.0   
-## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.3      
-## [17] cli_1.0.0        DBI_0.7          bit64_0.9-7      yaml_2.1.16     
-## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
-## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
-## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
-## [33] backports_1.1.2  pkgconfig_2.0.1
+##  [1] Rcpp_0.12.15      highr_0.6         plyr_1.8.4       
+##  [4] pillar_1.1.0      compiler_3.4.3    bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
+## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
+## [13] tibble_1.4.2      checkmate_1.8.5   pkgconfig_2.0.1  
+## [16] rlang_0.1.6.9003  rstudioapi_0.7    DBI_0.7          
+## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
+## [22] dplyr_0.7.4.9000  stringr_1.2.0     devtools_1.13.4  
+## [25] hms_0.4.1         bit64_0.9-7       rprojroot_1.3-2  
+## [28] tidyselect_0.2.3  glue_1.2.0        R6_2.2.2         
+## [31] rmarkdown_1.8     tidyr_0.8.0       readr_1.1.1      
+## [34] purrr_0.2.4       blob_1.1.0        backports_1.1.2  
+## [37] scales_0.5.0.9000 RODBC_1.3-15      htmltools_0.3.6  
+## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [46] markdown_0.8      crayon_1.3.4
 ```
 
 ```r
@@ -1134,6 +1145,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-20 17:27:41 CST"
+## [1] "2018-02-13 12:22:26 CST"
 ```
 

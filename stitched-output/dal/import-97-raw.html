@@ -202,7 +202,7 @@ hr {
 
 <body>
 <p>This report was automatically generated with the R package <strong>knitr</strong>
-(version 1.18).</p>
+(version 1.19).</p>
 
 <pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/import-79-raw.R&quot;, output=&quot;./stitched-output/dal/import-raw.md&quot;) # dir.create(output=&quot;./stitched-output/dal/&quot;, recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
@@ -286,14 +286,16 @@ print(ds_extract, n=20)
 </code></pre>
 
 <pre><code>## # A tibble: 6 x 9
-##   table_name_qualified     file~ tabl~ path~ name~ extr~ sql_~ sql_~ sql_~
-##   &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 Extract.tblDemographics  97-d~ tblD~ data~ 97-d~ T     SELE~ TRUN~ &quot;  A~
-## 2 Extract.tblRoster        97-r~ tblR~ data~ 97-r~ T     SELE~ TRUN~ &quot;  A~
-## 3 Extract.tblSurveyTime    97-s~ tblS~ data~ 97-s~ T     SELE~ TRUN~ &quot;  A~
-## 4 Extract.tblLinksExplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ &quot;  A~
-## 5 Extract.tblLinksImplicit 97-l~ tblL~ data~ 97-l~ T     SELE~ TRUN~ &quot;  A~
-## 6 Extract.tblTwins         97-t~ tblT~ data~ 97-t~ T     SELE~ TRUN~ &quot;  A~
+##   table_name_qualif~ file_name_base  table_name  path_zip       name_csv  
+##   &lt;chr&gt;              &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;     
+## 1 Extract.tblDemogr~ 97-demographics tblDemogra~ data-unshared~ 97-demogr~
+## 2 Extract.tblRoster  97-roster       tblRoster   data-unshared~ 97-roster~
+## 3 Extract.tblSurvey~ 97-survey-time  tblSurveyT~ data-unshared~ 97-survey~
+## 4 Extract.tblLinksE~ 97-links-expli~ tblLinksEx~ data-unshared~ 97-links-~
+## 5 Extract.tblLinksI~ 97-links-impli~ tblLinksIm~ data-unshared~ 97-links-~
+## 6 Extract.tblTwins   97-twins        tblTwins    data-unshared~ 97-twins.~
+## # ... with 4 more variables: extract_exist &lt;lgl&gt;, sql_select &lt;chr&gt;,
+## #   sql_truncate &lt;chr&gt;, sql_primary_key &lt;chr&gt;
 </code></pre>
 
 <pre><code class="r">ds_extract %&gt;%
@@ -507,29 +509,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 8,984 x 464
-##    R000~ R053~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~ R109~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2     6     1     4     2     3     5    -4    -4    -4    -4
-##  2     2     1     3     2     1     4    -4    -4    -4    -4    -4    -4
-##  3     3     2     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  4     4     2     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     1     3     1     2     4    -4    -4    -4    -4    -4    -4
-##  6     6     2     3     4     1     2     5    -4    -4    -4    -4    -4
-##  7     7     1     3     4     1     2     5    -4    -4    -4    -4    -4
-##  8     8     2     3     4     5     2     1    -4    -4    -4    -4    -4
-##  9     9     1     3     4     5     2     1    -4    -4    -4    -4    -4
-## 10    10     1     3     4     5     2     1    -4    -4    -4    -4    -4
-## 11    11     2     2     1     3    -4    -4    -4    -4    -4    -4    -4
-## 12    12     1     4     1     3     2    -4    -4    -4    -4    -4    -4
-## 13    13     1     2     1     3     4     5    -4    -4    -4    -4    -4
-## 14    14     1     3     1     2     4    -4    -4    -4    -4    -4    -4
-## 15    15     2     3     1     2     4    -4    -4    -4    -4    -4    -4
-## 16    16     1     2     1    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     2     4     1     2     3     5     6     7     8    -4    -4
-## 18    18     1     6     2     1     3     4     5    -4    -4    -4    -4
-## 19    19     1     6     2     1     3     4     5    -4    -4    -4    -4
-## 20    20     1     2     3     4     1    -4    -4    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 452 more variables: R1098800 &lt;int&gt;,
+##    R0000100 R0536300 R1097800 R1097900 R1098000 R1098100 R1098200 R1098300
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        2        6        1        4        2        3        5
+##  2        2        1        3        2        1        4       -4       -4
+##  3        3        2        2        1       -4       -4       -4       -4
+##  4        4        2        2        1       -4       -4       -4       -4
+##  5        5        1        3        1        2        4       -4       -4
+##  6        6        2        3        4        1        2        5       -4
+##  7        7        1        3        4        1        2        5       -4
+##  8        8        2        3        4        5        2        1       -4
+##  9        9        1        3        4        5        2        1       -4
+## 10       10        1        3        4        5        2        1       -4
+## 11       11        2        2        1        3       -4       -4       -4
+## 12       12        1        4        1        3        2       -4       -4
+## 13       13        1        2        1        3        4        5       -4
+## 14       14        1        3        1        2        4       -4       -4
+## 15       15        2        3        1        2        4       -4       -4
+## 16       16        1        2        1       -4       -4       -4       -4
+## 17       17        2        4        1        2        3        5        6
+## 18       18        1        6        2        1        3        4        5
+## 19       19        1        6        2        1        3        4        5
+## 20       20        1        2        3        4        1       -4       -4
+## # ... with 8,964 more rows, and 456 more variables: R1098400 &lt;int&gt;,
+## #   R1098500 &lt;int&gt;, R1098600 &lt;int&gt;, R1098700 &lt;int&gt;, R1098800 &lt;int&gt;,
 ## #   R1098900 &lt;int&gt;, R1099000 &lt;int&gt;, R1099100 &lt;int&gt;, R1099200 &lt;int&gt;,
 ## #   R1099300 &lt;int&gt;, R1101000 &lt;int&gt;, R1101100 &lt;int&gt;, R1101200 &lt;int&gt;,
 ## #   R1101300 &lt;int&gt;, R1101400 &lt;int&gt;, R1101500 &lt;int&gt;, R1101600 &lt;int&gt;,
@@ -553,8 +556,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 ## #   R1121200 &lt;int&gt;, R1121300 &lt;int&gt;, R1121400 &lt;int&gt;, R1121500 &lt;int&gt;,
 ## #   R1121600 &lt;int&gt;, R1121700 &lt;int&gt;, R1121800 &lt;int&gt;, R1121900 &lt;int&gt;,
 ## #   R1122000 &lt;int&gt;, R1122100 &lt;int&gt;, R1122200 &lt;int&gt;, R1122300 &lt;int&gt;,
-## #   R1122400 &lt;int&gt;, R1122500 &lt;int&gt;, R1122600 &lt;int&gt;, R1122700 &lt;int&gt;,
-## #   R1122800 &lt;int&gt;, R1122900 &lt;int&gt;, R1123000 &lt;int&gt;, ...
+## #   R1122400 &lt;int&gt;, R1122500 &lt;int&gt;, R1122600 &lt;int&gt;, ...
 ## [1] 1
 </code></pre>
 
@@ -565,29 +567,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 8,984 x 94
-##    R000~ R000~ R000~ R000~ R053~ R054~ R054~ R054~ R119~ R119~ R119~ R120~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1    23     7  1997     2    29     7  1997     1   190    15    23
-##  2     2     2     5  1994     1   - 4    -4 -   4     2   178    14     2
-##  3     3    23     4  1997     2    30     4  1997     3   163    13    23
-##  4     4    17     2  1997     2    21     2  1997     4   192    15    17
-##  5     5     7     4  1998     1     7     4  1998     6   186    15     7
-##  6     6    23     9  1997     2    23     9  1997     8   188    15    23
-##  7     7    23     9  1997     1    23     9  1997     8   173    14    23
-##  8     8    25     4  1998     2    16     4  1998     9   202    16    25
-##  9     9    24     4  1998     1    16     4  1998     9   186    15    24
-## 10    10    22     4  1998     1    16     4  1998     9   169    14    22
-## 11    11     6     7  1997     2     6     7  1997    10   181    15     6
-## 12    12     8     7  1997     1    16     7  1997    11   189    15     8
-## 13    13     8     9  1997     1   - 4    -4 -   4    12   154    12     8
-## 14    14    17     8  1997     1    17     8  1997    13   205    17    17
-## 15    15     1     4  1998     2   - 4    -4 -   4    14   183    15     1
-## 16    16    13     4  1997     1    13     4  1997    15   182    15    13
-## 17    17    25     3  1997     2    18     4  1997    16   184    15    25
-## 18    18     9     3  1997     1     1     4  1997    17   181    15     9
-## 19    19     9     3  1997     1     1     4  1997    17   155    12     9
-## 20    20     1     4  1997     1     1     4  1997    18   196    16     1
-## # ... with 8,964 more rows, and 82 more variables: R1209401 &lt;int&gt;,
+##    R0000100 R0000200 R0000201 R0000202 R0536300 R0541100 R0541101 R0541102
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1       23        7     1997        2       29        7     1997
+##  2        2        2        5     1994        1      - 4       -4    -   4
+##  3        3       23        4     1997        2       30        4     1997
+##  4        4       17        2     1997        2       21        2     1997
+##  5        5        7        4     1998        1        7        4     1998
+##  6        6       23        9     1997        2       23        9     1997
+##  7        7       23        9     1997        1       23        9     1997
+##  8        8       25        4     1998        2       16        4     1998
+##  9        9       24        4     1998        1       16        4     1998
+## 10       10       22        4     1998        1       16        4     1998
+## 11       11        6        7     1997        2        6        7     1997
+## 12       12        8        7     1997        1       16        7     1997
+## 13       13        8        9     1997        1      - 4       -4    -   4
+## 14       14       17        8     1997        1       17        8     1997
+## 15       15        1        4     1998        2      - 4       -4    -   4
+## 16       16       13        4     1997        1       13        4     1997
+## 17       17       25        3     1997        2       18        4     1997
+## 18       18        9        3     1997        1        1        4     1997
+## 19       19        9        3     1997        1        1        4     1997
+## 20       20        1        4     1997        1        1        4     1997
+## # ... with 8,964 more rows, and 86 more variables: R1193000 &lt;int&gt;,
+## #   R1193900 &lt;int&gt;, R1194100 &lt;int&gt;, R1209400 &lt;int&gt;, R1209401 &lt;int&gt;,
 ## #   R1209402 &lt;int&gt;, R2553400 &lt;int&gt;, R2553500 &lt;int&gt;, R2568300 &lt;int&gt;,
 ## #   R2568301 &lt;int&gt;, R2568302 &lt;int&gt;, R3876200 &lt;int&gt;, R3876300 &lt;int&gt;,
 ## #   R3890300 &lt;int&gt;, R3890301 &lt;int&gt;, R3890302 &lt;int&gt;, R5453600 &lt;int&gt;,
@@ -619,29 +622,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 8,984 x 36
-##    R000~ R053~ R082~ R082~ R082~ R082~ R082~ R082~ R082~ R082~ R082~ R082~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  2     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  3     3     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  4     4     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  6     6     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  8     8     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 10    10     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 11    11     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 12    12     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 14    14     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 15    15     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 16    16     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 19    19     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 20    20     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 24 more variables: R0823200 &lt;int&gt;,
+##    R0000100 R0536300 R0822200 R0822300 R0822400 R0822500 R0822600 R0822700
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        2       -4       -4       -4       -4       -4       -4
+##  2        2        1       -4       -4       -4       -4       -4       -4
+##  3        3        2       -4       -4       -4       -4       -4       -4
+##  4        4        2       -4       -4       -4       -4       -4       -4
+##  5        5        1       -4       -4       -4       -4       -4       -4
+##  6        6        2       -4       -4       -4       -4       -4       -4
+##  7        7        1       -4       -4       -4       -4       -4       -4
+##  8        8        2       -4       -4       -4       -4       -4       -4
+##  9        9        1       -4       -4       -4       -4       -4       -4
+## 10       10        1       -4       -4       -4       -4       -4       -4
+## 11       11        2       -4       -4       -4       -4       -4       -4
+## 12       12        1       -4       -4       -4       -4       -4       -4
+## 13       13        1       -4       -4       -4       -4       -4       -4
+## 14       14        1       -4       -4       -4       -4       -4       -4
+## 15       15        2       -4       -4       -4       -4       -4       -4
+## 16       16        1       -4       -4       -4       -4       -4       -4
+## 17       17        2       -4       -4       -4       -4       -4       -4
+## 18       18        1       -4       -4       -4       -4       -4       -4
+## 19       19        1       -4       -4       -4       -4       -4       -4
+## 20       20        1       -4       -4       -4       -4       -4       -4
+## # ... with 8,964 more rows, and 28 more variables: R0822800 &lt;int&gt;,
+## #   R0822900 &lt;int&gt;, R0823000 &lt;int&gt;, R0823100 &lt;int&gt;, R0823200 &lt;int&gt;,
 ## #   R0823300 &lt;int&gt;, R0823400 &lt;int&gt;, R0823500 &lt;int&gt;, R0823600 &lt;int&gt;,
 ## #   R0823700 &lt;int&gt;, R0823800 &lt;int&gt;, R0823900 &lt;int&gt;, R0824000 &lt;int&gt;,
 ## #   R0824100 &lt;int&gt;, R0824200 &lt;int&gt;, R0824300 &lt;int&gt;, R0824400 &lt;int&gt;,
@@ -658,29 +662,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 8,984 x 43
-##    R000~ R053~ R055~ R055~ R056~ R056~ R119~ R119~ R119~ R120~ R121~ R123~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2     1     3    -4    -4     1     1     1     6    -4     1
-##  2     2     1   - 4    -4    -4    -4     2     1     1     4    -4     1
-##  3     3     2     1    -4     8    -4     3     1     0     2    -4     1
-##  4     4     2     4    -4     8    -4     4     1     1     2    -4     1
-##  5     5     1    11     7    -4    -4     6     1     1     4    -4     1
-##  6     6     2     3    -4    -4    -4     8     2     1     5    -4     1
-##  7     7     1     3    -4    -4    -4     8     2     1     5    -4     1
-##  8     8     2     4     4    -4    -4     9     3     2     5    -4     1
-##  9     9     1     4     4    -4    -4     9     3     2     5    -4     1
-## 10    10     1     4     4    -4    -4     9     3     2     5    -4     1
-## 11    11     2     6    -4     5    -4    10     1     1     3    -4     1
-## 12    12     1     2     5    -4    -4    11     1     1     4    -4     1
-## 13    13     1   - 4    -4    -4    -4    12     1     0     4    -4     1
-## 14    14     1     4     5    -4    -4    13     1     1     4    -4     1
-## 15    15     2   - 4    -4    -4    -4    14     1     0     4    -4     1
-## 16    16     1     5    -4    -4    -4    15     1     1     2    -4     1
-## 17    17     2     6    -4    -4    -4    16     1     1     8    -4     1
-## 18    18     1     3    -4    -4    -4    17     2     0     6    -4     1
-## 19    19     1     3    -4    -4    -4    17     2     0     6    -4     1
-## 20    20     1     4    -4     5    -4    18     1     1     4    -4     1
-## # ... with 8,964 more rows, and 31 more variables: R1302400 &lt;int&gt;,
+##    R0000100 R0536300 R0553800 R0557300 R0563400 R0563500 R1193000 R1193300
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        2        1        3       -4       -4        1        1
+##  2        2        1      - 4       -4       -4       -4        2        1
+##  3        3        2        1       -4        8       -4        3        1
+##  4        4        2        4       -4        8       -4        4        1
+##  5        5        1       11        7       -4       -4        6        1
+##  6        6        2        3       -4       -4       -4        8        2
+##  7        7        1        3       -4       -4       -4        8        2
+##  8        8        2        4        4       -4       -4        9        3
+##  9        9        1        4        4       -4       -4        9        3
+## 10       10        1        4        4       -4       -4        9        3
+## 11       11        2        6       -4        5       -4       10        1
+## 12       12        1        2        5       -4       -4       11        1
+## 13       13        1      - 4       -4       -4       -4       12        1
+## 14       14        1        4        5       -4       -4       13        1
+## 15       15        2      - 4       -4       -4       -4       14        1
+## 16       16        1        5       -4       -4       -4       15        1
+## 17       17        2        6       -4       -4       -4       16        1
+## 18       18        1        3       -4       -4       -4       17        2
+## 19       19        1        3       -4       -4       -4       17        2
+## 20       20        1        4       -4        5       -4       18        1
+## # ... with 8,964 more rows, and 35 more variables: R1193500 &lt;int&gt;,
+## #   R1205400 &lt;int&gt;, R1211100 &lt;int&gt;, R1235800 &lt;int&gt;, R1302400 &lt;int&gt;,
 ## #   R1302500 &lt;int&gt;, R1482600 &lt;int&gt;, S0192900 &lt;int&gt;, S0193100 &lt;int&gt;,
 ## #   S0193500 &lt;int&gt;, S0193600 &lt;int&gt;, S0193800 &lt;int&gt;, S0193900 &lt;int&gt;,
 ## #   S5604900 &lt;int&gt;, S5605100 &lt;int&gt;, T3706800 &lt;int&gt;, T3706900 &lt;int&gt;,
@@ -699,29 +704,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 8,984 x 119
-##    R000~ R053~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~ R081~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  2     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  3     3     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  4     4     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  6     6     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  8     8     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 10    10     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 11    11     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 12    12     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 14    14     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 15    15     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 16    16     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 19    19     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 20    20     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 8,964 more rows, and 107 more variables: R0814100 &lt;int&gt;,
+##    R0000100 R0536300 R0813100 R0813200 R0813300 R0813400 R0813500 R0813600
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        2       -4       -4       -4       -4       -4       -4
+##  2        2        1       -4       -4       -4       -4       -4       -4
+##  3        3        2       -4       -4       -4       -4       -4       -4
+##  4        4        2       -4       -4       -4       -4       -4       -4
+##  5        5        1       -4       -4       -4       -4       -4       -4
+##  6        6        2       -4       -4       -4       -4       -4       -4
+##  7        7        1       -4       -4       -4       -4       -4       -4
+##  8        8        2       -4       -4       -4       -4       -4       -4
+##  9        9        1       -4       -4       -4       -4       -4       -4
+## 10       10        1       -4       -4       -4       -4       -4       -4
+## 11       11        2       -4       -4       -4       -4       -4       -4
+## 12       12        1       -4       -4       -4       -4       -4       -4
+## 13       13        1       -4       -4       -4       -4       -4       -4
+## 14       14        1       -4       -4       -4       -4       -4       -4
+## 15       15        2       -4       -4       -4       -4       -4       -4
+## 16       16        1       -4       -4       -4       -4       -4       -4
+## 17       17        2       -4       -4       -4       -4       -4       -4
+## 18       18        1       -4       -4       -4       -4       -4       -4
+## 19       19        1       -4       -4       -4       -4       -4       -4
+## 20       20        1       -4       -4       -4       -4       -4       -4
+## # ... with 8,964 more rows, and 111 more variables: R0813700 &lt;int&gt;,
+## #   R0813800 &lt;int&gt;, R0813900 &lt;int&gt;, R0814000 &lt;int&gt;, R0814100 &lt;int&gt;,
 ## #   R0814200 &lt;int&gt;, R0814300 &lt;int&gt;, R0814400 &lt;int&gt;, R0814500 &lt;int&gt;,
 ## #   R0814600 &lt;int&gt;, R0814700 &lt;int&gt;, R0814800 &lt;int&gt;, R0814900 &lt;int&gt;,
 ## #   R0815000 &lt;int&gt;, R0815100 &lt;int&gt;, R0815200 &lt;int&gt;, R0815300 &lt;int&gt;,
@@ -745,8 +751,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 ## #   R0823000 &lt;int&gt;, R0823100 &lt;int&gt;, R0823200 &lt;int&gt;, R0823300 &lt;int&gt;,
 ## #   R0823400 &lt;int&gt;, R0823500 &lt;int&gt;, R0823600 &lt;int&gt;, R0823700 &lt;int&gt;,
 ## #   R0823800 &lt;int&gt;, R0823900 &lt;int&gt;, R0824000 &lt;int&gt;, R0824100 &lt;int&gt;,
-## #   R0824200 &lt;int&gt;, R0824300 &lt;int&gt;, R0824400 &lt;int&gt;, R0824500 &lt;int&gt;,
-## #   R0824600 &lt;int&gt;, R0824700 &lt;int&gt;, R0824800 &lt;int&gt;, ...
+## #   R0824200 &lt;int&gt;, R0824300 &lt;int&gt;, R0824400 &lt;int&gt;, ...
 ## [1] 1
 </code></pre>
 
@@ -761,7 +766,7 @@ duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, unit
 cat(&quot;File completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## File completed by `Will` at 2018-01-20, 17:28 -0600 in 30 seconds.
+<pre><code>## File completed by `Will` at 2018-02-13, 12:22 -0600 in 14 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -770,7 +775,7 @@ packages used):</p>
 <pre><code class="r">sessionInfo()
 </code></pre>
 
-<pre><code>## R version 3.4.3 Patched (2017-12-05 r73849)
+<pre><code>## R version 3.4.3 Patched (2018-01-25 r74163)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows &gt;= 8 x64 (build 9200)
 ## 
@@ -787,24 +792,31 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.19   bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
-##  [5] hms_0.4.0        odbc_1.1.3       bit_1.1-12       testit_0.7.1    
-##  [9] R6_2.2.2         rlang_0.1.6      blob_1.1.0       stringr_1.2.0   
-## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.3      
-## [17] cli_1.0.0        DBI_0.7          bit64_0.9-7      yaml_2.1.16     
-## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
-## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
-## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
-## [33] backports_1.1.2  markdown_0.8     pkgconfig_2.0.1
+##  [1] Rcpp_0.12.15      highr_0.6         plyr_1.8.4       
+##  [4] pillar_1.1.0      compiler_3.4.3    bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
+## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
+## [13] tibble_1.4.2      checkmate_1.8.5   pkgconfig_2.0.1  
+## [16] rlang_0.1.6.9003  rstudioapi_0.7    DBI_0.7          
+## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
+## [22] dplyr_0.7.4.9000  stringr_1.2.0     devtools_1.13.4  
+## [25] hms_0.4.1         bit64_0.9-7       rprojroot_1.3-2  
+## [28] tidyselect_0.2.3  glue_1.2.0        R6_2.2.2         
+## [31] rmarkdown_1.8     tidyr_0.8.0       readr_1.1.1      
+## [34] purrr_0.2.4       blob_1.1.0        backports_1.1.2  
+## [37] scales_0.5.0.9000 RODBC_1.3-15      htmltools_0.3.6  
+## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
+## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
+## [46] markdown_0.8      crayon_1.3.4
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-20 17:28:11 CST&quot;
+<pre><code>## [1] &quot;2018-02-13 12:22:40 CST&quot;
 </code></pre>
 
 </body>
