@@ -6,19 +6,20 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
-library(RODBC)
 library(plyr)
 library(xtable)
 library(ggplot2)
-
 library(magrittr) #Pipes
 # library(ggplot2) #For graphing
-requireNamespace("RODBC")
+
+requireNamespace("DBI")
+requireNamespace("xtable")
 requireNamespace("dplyr")
 requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
 
 # ---- declare-globals ---------------------------------------------------------
+output_type   <- "html"
 colorGood <- "goodColor"
 colorSoso <- "sosoColor"
 colorBad  <- "badColor"
@@ -192,7 +193,7 @@ CreateMarginalTable  <- function(dsJoint ) {
 PrintMarginalTable <- function(dsJoint, caption ) {
   dsTable <- CreateMarginalTable(dsJoint)#[, 1:2]
   textTable <- xtable(dsTable, caption=caption)
-  print(textTable, include.rownames=F, NA.string="-", size="large")#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
+  print(textTable, include.rownames=F, NA.string="-", size="large", type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
 }
 PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
 PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
@@ -219,6 +220,6 @@ PrintConditionalTable <- function( ) {
 
   digitsFormat <- c(0, 0, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
   textTable <- xtable(dsT, digits=digitsFormat, caption="Joint Frequencies for 97 Housemates")
-  print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-")#, size="small")
+  print(textTable, include.rownames=F, add.to.row=list(idRowsList, colorRows), NA.string="-", type=output_type)#, size="small")
 }
 PrintConditionalTable()
