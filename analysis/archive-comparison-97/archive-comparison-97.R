@@ -159,29 +159,37 @@ ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
 
 # ---- table-marginal ----------------------------------------------------------
 CreateMarginalTable  <- function( dsJoint ) {
-
-  dsRosterTable <- data.frame(table(dsJoint$RRoster, useNA="always"))
-  dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
-  dsTable <- merge(x=dsImplicitTable, y=dsRosterTable, by="Var1", all=T)
-  colnames(dsTable)[colnames(dsTable)=="Freq.x"] <- "Implicit"
-  colnames(dsTable)[colnames(dsTable)=="Freq.y"] <- "Roster"
-
-
-  dsExplicitTable <- data.frame(table(dsJoint$RExplicit, useNA="always"))
-  dsTable <- merge(x=dsTable, y=dsExplicitTable, by="Var1", all=T)
-  colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Explicit"
-
-  dsRTable <- data.frame(table(dsJoint$RFull, useNA="always"))
-  dsTable <- merge(x=dsTable, y=dsRTable, by="Var1", all=T)
-  colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Eventual"
-  colnames(dsTable)[colnames(dsTable)=="Var1"] <- "R"
-
-  dsTable <- dsTable[order(as.numeric(as.character(dsTable$R))), ]
-  return( dsTable )
+  dsJoint %>%
+    dplyr::count(RImplicit) %>%
+    dplyr::rename(R=RImplicit, Implicit=n) %>%
+    dplyr::full_join(
+      dsJoint %>%
+        dplyr::count(RExplicit) %>%
+        dplyr::rename(R=RExplicit, Explicit=n),
+      by = "R"
+    ) %>%
+    dplyr::full_join(
+      dsJoint %>%
+        dplyr::count(RRoster) %>%
+        dplyr::rename(R=RRoster, Roster=n),
+      by = "R"
+    ) %>%
+    dplyr::full_join(
+      dsJoint %>%
+        dplyr::count(RFull) %>%
+        dplyr::rename(R=RFull, Eventual=n),
+      by = "R"
+    ) %>%
+    dplyr::mutate(
+      Eventual  = dplyr::coalesce(Eventual, 0L),
+      R         = sprintf("%.3f", R),
+      R         = dplyr::if_else(R=="NA", "-", R)
+      # R       = dplyr::if_else(is.na(R), "-", sprintf("%.3f", R))
+      # R       = dplyr::coalesce(R, "-")
+    ) %>%
+    dplyr::arrange(R) #%>% dput()
 }
-# CreateMarginalTable(dsJoint=dsLatest, relationshipPathID=1)
-# CreateMarginalTable(dsJoint=dsPrevious, relationshipPathID=2)
-# CreateMarginalTable(2)
+# CreateMarginalTable(dsJoint=dsLatest)
 
 PrintMarginalTable <- function(dsJoint, caption ) {
   dsTable <- CreateMarginalTable(dsJoint)#[, 1:2]
