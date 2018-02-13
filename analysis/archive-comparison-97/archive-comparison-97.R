@@ -6,7 +6,6 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
-library(plyr)
 library(xtable)
 library(ggplot2)
 library(magrittr) #Pipes
@@ -111,32 +110,32 @@ dsPrevious  <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 
 
 # dsCollapsedLatest <- ddply(dsLatest, .variables=columnsToConsider, .fun=nrow)
-dsCollapsedLatest <- plyr::count(dsLatest, vars=columnsToConsider)
-dsCollapsedLatest <- plyr::rename(dsCollapsedLatest, replace=c("freq"="Count"))
-dsCollapsedLatest <- dsCollapsedLatest[order(-dsCollapsedLatest$Count),]
+dsCollapsedLatest <- dsLatest %>%
+  dplyr::count_(vars=columnsToConsider) %>%
+  dplyr::rename(
+    "Count" = "n"
+  )
 
-dsCollapsedPrevious <- plyr::count(dsPrevious, vars=columnsToConsider)
-dsCollapsedPrevious <- plyr::rename(dsCollapsedPrevious, replace=c("freq"="Count"))
-dsCollapsedPrevious <- dsCollapsedPrevious[order(-dsCollapsedPrevious$Count), ]
+dsCollapsedPrevious <- dsPrevious %>%
+  dplyr::count_(vars=columnsToConsider) %>%
+  dplyr::rename(
+    "count_previous" = "n"
+  )
 
-ds <- merge(x=dsCollapsedLatest, y=dsCollapsedPrevious, by=columnsToConsider, all=T)
-ds[is.na(ds$Count.x), "Count.x"] <- 0
-ds[is.na(ds$Count.y), "Count.y"] <- 0
-ds$Delta <- ds$Count.x - ds$Count.y
-ds <- ds[ , -which(colnames(ds)=="Count.y")]
-colnames(ds)[which(colnames(ds)=="Count.x")] <- "Count"
+ds <- dsCollapsedLatest %>%
+  dplyr::full_join(dsCollapsedPrevious, by = columnsToConsider) %>%
+  dplyr::mutate(
+    Count           = as.numeric(dplyr::coalesce(.data$Count   , 0L)),
+    count_previous  = as.numeric(dplyr::coalesce(count_previous, 0L)),
+    Delta           = Count - count_previous
+  ) %>%
+  dplyr::select(-count_previous) %>%
+  dplyr::arrange(desc(Count))
 
-
-# ds <- ds[order(-ds$Count, ds$Delta), c(4,1,2,3,5)]
-# dsG <- ds
-# dsG$RExplicit <- as.character(dsG$RExplicit)
-# dsG$RExplicit <- gsub("0.5", "666", dsG$RExplicit)
-# dsG
-# ds <- dsG
 
 # ---- graph-roc ---------------------------------------------------------------
 CreateRoc <- function(  ) {
-  dsT <- ds#[ds$RelationshipPath==relationshipPathID, ]
+  dsT <- as.data.frame(ds)
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
   idBadRows <- DetermineBadRowIDs(dsT)

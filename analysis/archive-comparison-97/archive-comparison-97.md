@@ -47,7 +47,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # Table of *R* Assignments
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:24:32 2018 -->
+<!-- Tue Feb 13 16:41:36 2018 -->
 <table border=1>
 <caption align="bottom"> Counts for 97 Housemates </caption>
 <tr> <th> R </th> <th> Implicit2004 </th> <th> Implicit </th> <th> Roster </th> <th> Explicit </th> <th> Eventual </th>  </tr>
@@ -57,7 +57,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
   <tr> <td> - </td> <td align="right">   0 </td> <td align="right"> 2519 </td> <td align="right"> 1202 </td> <td align="right"> 2519 </td> <td align="right">   0 </td> </tr>
    </table>
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:24:33 2018 -->
+<!-- Tue Feb 13 16:41:37 2018 -->
 <table border=1>
 <caption align="bottom"> Counts for 97 Housemates (Previous version of links) </caption>
 <tr> <th> R </th> <th> Implicit2004 </th> <th> Implicit </th> <th> Roster </th> <th> Explicit </th> <th> Eventual </th>  </tr>
@@ -69,7 +69,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # Breakdown of Agreements 
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:24:33 2018 -->
+<!-- Tue Feb 13 16:41:37 2018 -->
 <table border=1>
 <caption align="bottom"> Joint Frequencies for 97 Housemates </caption>
 <tr> <th> Count </th> <th> RImplicit </th> <th> RExplicit </th> <th> RRoster </th> <th> Delta </th>  </tr>
@@ -112,7 +112,7 @@ Packages -----------------------------------------------------------------------
  backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                    
  base       * 3.4.3      2018-01-26 local                             
  bindr        0.1        2016-11-13 CRAN (R 3.4.2)                    
- bindrcpp     0.2        2017-06-17 CRAN (R 3.4.2)                    
+ bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                    
  bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                    
  bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                    
  blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                    
@@ -143,7 +143,7 @@ Packages -----------------------------------------------------------------------
  odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                    
  pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                    
  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                    
- plyr       * 1.8.4      2016-06-08 CRAN (R 3.4.2)                    
+ plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                    
  purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                    
  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                    
  Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                    
@@ -167,4 +167,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 16:24 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-13, 16:41 -0600 in 3 seconds.
