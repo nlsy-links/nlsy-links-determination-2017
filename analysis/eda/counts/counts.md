@@ -1932,8 +1932,8 @@ This report documents the basic properties of the input & output tables kinship 
 
 |schema name |table name              | row count| column count|
 |:-----------|:-----------------------|---------:|------------:|
-|Archive     |tblArchiveDescription   |         0|            4|
-|Archive     |tblRelatedValuesArchive |         0|           22|
+|Archive     |tblArchiveDescription   |         1|            3|
+|Archive     |tblRelatedValuesArchive |     2,519|           23|
 |dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
@@ -2555,8 +2555,8 @@ This report documents the basic properties of the input & output tables kinship 
 
 |schema name |table name              | space total kb| space used kb|
 |:-----------|:-----------------------|--------------:|-------------:|
-|Archive     |tblArchiveDescription   |              0|             0|
-|Archive     |tblRelatedValuesArchive |             72|            16|
+|Archive     |tblArchiveDescription   |             72|            16|
+|Archive     |tblRelatedValuesArchive |            664|           224|
 |dbo         |sysdiagrams             |              0|             0|
 |Enum        |tblLUExtractSource      |             72|            16|
 |Enum        |tblLUGender             |             72|            16|
@@ -2577,7 +2577,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Metadata    |tblMzManual             |             72|            16|
 |Metadata    |tblRosterAssignment     |             72|            16|
 |Metadata    |tblVariable             |            208|           144|
-|Process     |tblMarker               |            592|           360|
+|Process     |tblMarker               |            528|           344|
 |Process     |tblOutcome              |             72|            16|
 |Process     |tblRelatedStructure     |            528|           264|
 |Process     |tblRelatedValues        |            272|            88|
@@ -2585,7 +2585,7 @@ This report documents the basic properties of the input & output tables kinship 
 |Process     |tblRoster               |            392|           256|
 |Process     |tblSubject              |            592|           352|
 |Process     |tblSubjectDetails       |            720|           544|
-|Process     |tblSurveyTime           |          5,584|         4,928|
+|Process     |tblSurveyTime           |          5,712|         4,960|
 
 
 # Session Information
@@ -2670,4 +2670,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 12:45 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-13, 14:28 -0600 in 3 seconds.

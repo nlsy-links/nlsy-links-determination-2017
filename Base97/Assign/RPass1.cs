@@ -106,18 +106,18 @@ namespace Nls.Base97.Assign {
 
             _dtMarkersGen1 = Marker.PairRelevantMarkerRows(_idRelatedLeft, _idRelatedRight, _dsLinks, _extendedID);
 
-            LinksDataSet.tblMzManualRow drMz = Retrieve.MzManualRecord(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2, _dsLinks);
-            if( drMz == null ) {
+            //LinksDataSet.tblMzManualRow drMz = Retrieve.MzManualRecord(_drLeft.SubjectTag_S1, _drLeft.SubjectTag_S2, _dsLinks);
+            //if( drMz == null ) {
                 _multipleBirth = MultipleBirth.No;
                 _isMZ = Tristate.No;
                 _isRelatedInMzManual = Tristate.DoNotKnow;
-            } else {
-                _multipleBirth = (MultipleBirth)drMz.MultipleBirthIfSameSex;
-                _isMZ = (Tristate)drMz.IsMz;
-                if( drMz.IsRelatedNull() ) _isRelatedInMzManual = Tristate.DoNotKnow;
-                else if( drMz.Related ) _isRelatedInMzManual = Tristate.Yes;
-                else _isRelatedInMzManual = Tristate.No;
-            }
+            //} else {
+            //    _multipleBirth = (MultipleBirth)drMz.MultipleBirthIfSameSex;
+            //    _isMZ = (Tristate)drMz.IsMz;
+            //    if( drMz.IsRelatedNull() ) _isRelatedInMzManual = Tristate.DoNotKnow;
+            //    else if( drMz.Related ) _isRelatedInMzManual = Tristate.Yes;
+            //    else _isRelatedInMzManual = Tristate.No;
+            //}
 
             //MarkerEvidence explicitBiomomFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiomom, ItemYears.Gen1ShareBioparent.Length, _idRelatedOlderAboutYounger);
             //MarkerEvidence explicitBiodadFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiodad, ItemYears.Gen1ShareBioparent.Length, _idRelatedOlderAboutYounger);
