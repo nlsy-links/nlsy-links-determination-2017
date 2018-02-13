@@ -56,9 +56,9 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUExtractSource = col_types_minimal,
-  LUMarkerEvidence = col_types_minimal,
-  LUGender = col_types_minimal,
+  LUExtractSource         = col_types_minimal,
+  LUMarkerEvidence        = col_types_minimal,
+  LUGender                = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -66,11 +66,11 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUMultipleBirth = col_types_minimal,
-  LURaceCohort = col_types_minimal,
-  LURoster = col_types_minimal,
-  LUTristate = col_types_minimal,
-  LUYesNo = col_types_minimal,
+  LUMultipleBirth         = col_types_minimal,
+  LURaceCohort            = col_types_minimal,
+  LURoster                = col_types_minimal,
+  LUTristate              = col_types_minimal,
+  LUYesNo                 = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -100,7 +100,7 @@ lst_col_types <- list(
     ResponseUpperLabel                  = readr::col_character()
   ),
   variable = readr::cols_only(
-    # ID                                  = readr::col_integer(),
+    # ID                                = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
     ExtractSource                       = readr::col_integer(),
@@ -155,9 +155,9 @@ ds_mapping
 ds_file <- lst_col_types %>%
   tibble::enframe(value = "col_types") %>%
   dplyr::mutate(
-    path     = file.path(directory_in, paste0(name, ".csv")),
+    path        = file.path(directory_in, paste0(name, ".csv")),
+    exists      = purrr::map_lgl(path, file.exists)
     # col_types = purrr::map(name, function(x) lst_col_types[[x]]),
-    exists    = purrr::map_lgl(path, file.exists)
   ) %>%
   dplyr::select(name, path, dplyr::everything())
 ds_file
@@ -223,7 +223,7 @@ ds_table
 ```
 
 ```
-## # A tibble: 29 x 6
+## # A tibble: 30 x 6
 ##    schema_name table_name              row_count column_count space~ spac~
 ##  * <chr>       <chr>                       <int>        <int>  <int> <int>
 ##  1 Archive     tblArchiveDescription           0            4      0     0
@@ -236,7 +236,7 @@ ds_table
 ##  8 Enum        tblLURaceCohort                 4            4     72    16
 ##  9 Enum        tblLURoster                    92            4     72    16
 ## 10 Enum        tblLUTristate                   3            4     72    16
-## # ... with 19 more rows
+## # ... with 20 more rows
 ```
 
 ```r
@@ -251,8 +251,6 @@ ds_file <- ds_file %>%
   dplyr::mutate(
     table_name    = paste0("tbl", name),
     sql_delete    = glue::glue("DELETE FROM {schema_name}.{table_name};")
-    # table_name    = paste0(schema_name, ".tbl", name),
-    # sql_delete    = paste0("DELETE FROM ", table_name)
   ) %>%
   dplyr::left_join(
     ds_entries %>%
@@ -709,14 +707,18 @@ ds_enum %>%
 
 ```r
 # Sniff out problems
+d_extract_source <- ds_file  %>%
+  dplyr::filter(name=="LUExtractSource") %>%
+  dplyr::pull(entries) %>%
+  purrr::flatten_df()
 
 d_item <- ds_file  %>%
   dplyr::filter(name=="item") %>%
   dplyr::pull(entries) %>%
   purrr::flatten_df()
 
-checkmate::assert_integer(  d_item$ID                     , lower=1, upper=2^15        , any.missing=F, unique=T)
-checkmate::assert_character(d_item$Label                  , pattern="^\\w+"            , any.missing=F, unique=T)
+checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
+checkmate::assert_character(d_item$Label        , pattern="^\\w+"       , any.missing=F, unique=T)
 
 
 d_variable <- ds_file  %>%
@@ -724,24 +726,25 @@ d_variable <- ds_file  %>%
   dplyr::pull(entries) %>%
   purrr::flatten_df() %>%
   dplyr::mutate(
-    item_found    = (Item %in% d_item$ID )
-    # item_found    = match(Item, d_item$ID )
-  )
-  # dplyr::left_join(d_item[, c("ID")], by=c("Item"="ID"))
+    item_found    = (ExtractSource %in% d_extract_source$ID),
+    extract_found = (Item %in% d_item$ID),
+    unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
+  ) %>%
+  dplyr::group_by(unique_index) %>%
+  dplyr::mutate(
+    unique_index_violation  = (1L < n())
+  ) %>%
+  dplyr::ungroup()
 
+
+pattern_unique_index <- "^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$"
 checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
 checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
 checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
 testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
-# sum(duplicated(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)))
-checkmate::assert_character(paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2), any.missing=F, unique=T)
-```
+testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
+checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
 
-```
-## Error in source("D:/Projects/Hlo/nlsy-links-determination-2017/dal/flow-97.R", : Assertion on 'paste(d_variable$Item, d_variable$SurveyYear, d_variable$LoopIndex1, d_variable$LoopIndex2)' failed: Contains duplicated values.
-```
-
-```r
 rm(d_item, d_variable)
 ```
 
@@ -1083,7 +1086,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-01-20, 00:51 -0600 in 3 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-01-20, 17:27 -0600 in 2 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1112,25 +1115,18 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.18   bindrcpp_0.2 magrittr_1.5
+## [1] bindrcpp_0.2 magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          highr_0.6             pillar_1.0.1         
-##  [4] compiler_3.4.3        plyr_1.8.4            bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            memoise_1.1.0         evaluate_0.10.1      
-## [13] tibble_1.4.1          checkmate_1.8.5       pkgconfig_2.0.1      
-## [16] rlang_0.1.6           rstudioapi_0.7        DBI_0.7              
-## [19] cli_1.0.0             yaml_2.1.16           withr_2.1.1.9000     
-## [22] dplyr_0.7.4           stringr_1.2.0         devtools_1.13.4      
-## [25] hms_0.4.0             bit64_0.9-7           rprojroot_1.3-2      
-## [28] OuhscMunge_0.1.8.9005 glue_1.2.0            R6_2.2.2             
-## [31] rmarkdown_1.8         tidyr_0.7.2           readr_1.1.1          
-## [34] purrr_0.2.4           blob_1.1.0            backports_1.1.2      
-## [37] scales_0.5.0.9000     RODBC_1.3-15          htmltools_0.3.6      
-## [40] assertthat_0.2.0      testit_0.7.1          colorspace_1.3-2     
-## [43] utf8_1.1.3            stringi_1.1.6         munsell_0.4.3        
-## [46] markdown_0.8          crayon_1.3.4
+##  [1] Rcpp_0.12.14     rstudioapi_0.7   knitr_1.18       bindr_0.1       
+##  [5] hms_0.4.0        odbc_1.1.3       bit_1.1-12       testit_0.7.1    
+##  [9] R6_2.2.2         rlang_0.1.6      blob_1.1.0       stringr_1.2.0   
+## [13] dplyr_0.7.4      tools_3.4.3      checkmate_1.8.5  utf8_1.1.3      
+## [17] cli_1.0.0        DBI_0.7          bit64_0.9-7      yaml_2.1.16     
+## [21] assertthat_0.2.0 tibble_1.4.1     crayon_1.3.4     purrr_0.2.4     
+## [25] readr_1.1.1      tidyr_0.7.2      RODBC_1.3-15     evaluate_0.10.1 
+## [29] glue_1.2.0       stringi_1.1.6    compiler_3.4.3   pillar_1.0.1    
+## [33] backports_1.1.2  pkgconfig_2.0.1
 ```
 
 ```r
@@ -1138,6 +1134,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-20 00:51:27 CST"
+## [1] "2018-01-20 17:27:41 CST"
 ```
 
