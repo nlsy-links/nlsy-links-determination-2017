@@ -160,17 +160,12 @@ ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
 # ---- table-marginal ----------------------------------------------------------
 CreateMarginalTable  <- function( dsJoint ) {
 
-  dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
-  dsImplicit2004Table <- data.frame(table(dsJoint$RImplicit2004, useNA="always"))
-  dsTable <- merge(x=dsImplicit2004Table, y=dsImplicitTable, by="Var1", all=T)
-  colnames(dsTable)[colnames(dsTable)=="Freq.x"] <- "Implicit2004"
-  colnames(dsTable)[colnames(dsTable)=="Freq.y"] <- "Implicit"
-
-  # if( relationshipPathID==1 ) {
   dsRosterTable <- data.frame(table(dsJoint$RRoster, useNA="always"))
-  dsTable <- merge(x=dsTable, y=dsRosterTable, by="Var1", all=T)
-  colnames(dsTable)[colnames(dsTable)=="Freq"] <- "Roster"
-  # }
+  dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
+  dsTable <- merge(x=dsImplicitTable, y=dsRosterTable, by="Var1", all=T)
+  colnames(dsTable)[colnames(dsTable)=="Freq.x"] <- "Implicit"
+  colnames(dsTable)[colnames(dsTable)=="Freq.y"] <- "Roster"
+
 
   dsExplicitTable <- data.frame(table(dsJoint$RExplicit, useNA="always"))
   dsTable <- merge(x=dsTable, y=dsExplicitTable, by="Var1", all=T)
