@@ -47,7 +47,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # Table of *R* Assignments
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:41:36 2018 -->
+<!-- Tue Feb 13 17:14:33 2018 -->
 <table border=1>
 <caption align="bottom"> Counts for 97 Housemates </caption>
 <tr> <th> R </th> <th> Implicit2004 </th> <th> Implicit </th> <th> Roster </th> <th> Explicit </th> <th> Eventual </th>  </tr>
@@ -57,7 +57,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
   <tr> <td> - </td> <td align="right">   0 </td> <td align="right"> 2519 </td> <td align="right"> 1202 </td> <td align="right"> 2519 </td> <td align="right">   0 </td> </tr>
    </table>
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:41:37 2018 -->
+<!-- Tue Feb 13 17:14:33 2018 -->
 <table border=1>
 <caption align="bottom"> Counts for 97 Housemates (Previous version of links) </caption>
 <tr> <th> R </th> <th> Implicit2004 </th> <th> Implicit </th> <th> Roster </th> <th> Explicit </th> <th> Eventual </th>  </tr>
@@ -69,7 +69,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # Breakdown of Agreements 
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 16:41:37 2018 -->
+<!-- Tue Feb 13 17:14:34 2018 -->
 <table border=1>
 <caption align="bottom"> Joint Frequencies for 97 Housemates </caption>
 <tr> <th> Count </th> <th> RImplicit </th> <th> RExplicit </th> <th> RRoster </th> <th> Delta </th>  </tr>
@@ -167,4 +167,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 16:41 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-13, 17:14 -0600 in 4 seconds.

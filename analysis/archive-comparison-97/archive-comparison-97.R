@@ -125,8 +125,8 @@ dsCollapsedPrevious <- dsPrevious %>%
 ds <- dsCollapsedLatest %>%
   dplyr::full_join(dsCollapsedPrevious, by = columnsToConsider) %>%
   dplyr::mutate(
-    Count           = as.numeric(dplyr::coalesce(.data$Count   , 0L)),
-    count_previous  = as.numeric(dplyr::coalesce(count_previous, 0L)),
+    Count           = dplyr::coalesce(.data$Count   , 0L),
+    count_previous  = dplyr::coalesce(count_previous, 0L),
     Delta           = Count - count_previous
   ) %>%
   dplyr::select(-count_previous) %>%
@@ -134,32 +134,31 @@ ds <- dsCollapsedLatest %>%
 
 
 # ---- graph-roc ---------------------------------------------------------------
-CreateRoc <- function(  ) {
-  dsT <- as.data.frame(ds)
-  idGoodRows <- DetermineGoodRowIDs(dsT)
-  idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-  idBadRows <- DetermineBadRowIDs(dsT)
 
-  goodSumLatest <- sum(dsT[idGoodRows, "Count"])
-  badSumLatest <- sum(dsT[idBadRows, "Count"])
+dsT        <- as.data.frame(ds)
+idGoodRows <- DetermineGoodRowIDs(dsT)
+idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
+idBadRows  <- DetermineBadRowIDs(dsT)
 
-  goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, "Delta"])
-  badSumPrevious <- badSumLatest - sum(dsT[idBadRows, "Delta"])
-  dsRoc <- data.frame(Version=c(newerVersionNumber, olderVersionNumber), Agree=c(goodSumLatest, goodSumPrevious), Disagree=c(badSumLatest, badSumPrevious))
+goodSumLatest <- sum(dsT[idGoodRows, ]$Count)
+badSumLatest  <- sum(dsT[idBadRows , ]$Count)
 
-  rocLag1 <- ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
-    geom_path() +
-    geom_text()
+goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, ]$Delta)
+badSumPrevious  <- badSumLatest  - sum(dsT[idBadRows , ]$Delta)
+dsRoc <- tibble::tibble(
+  Version   = c(newerVersionNumber, olderVersionNumber  ),
+  Agree     = c(goodSumLatest     , goodSumPrevious     ),
+  Disagree  = c(badSumLatest      , badSumPrevious      )
+)
+
+ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
+  geom_path() +
+  geom_text()
   # coord_cartesian(xlim=c(0, 8000), ylim=c(0, 8000))#+ #xlim(0, 8000)
-  return( rocLag1 )
-}
-CreateRoc()
+
 
 # ---- table-marginal ----------------------------------------------------------
-#  PrintConditionalTable(relationshipPathID=1,tabelCaption="Counts for Gen1Housemates")
-
-CreateMarginalTable  <- function(dsJoint ) {
-  # dsJoint <- dsJoint[dsJoint$RelationshipPath==relationshipPathID, ]
+CreateMarginalTable  <- function( dsJoint ) {
 
   dsImplicitTable <- data.frame(table(dsJoint$RImplicit, useNA="always"))
   dsImplicit2004Table <- data.frame(table(dsJoint$RImplicit2004, useNA="always"))
