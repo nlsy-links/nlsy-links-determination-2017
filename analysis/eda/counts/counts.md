@@ -1871,60 +1871,12 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Table Sizes 79
 
-|schema name |table name                 | space total kb| space used kb|
-|:-----------|:--------------------------|--------------:|-------------:|
-|Archive     |tblArchiveDescription      |            144|            32|
-|Archive     |tblRelatedValuesArchive    |         30,160|        29,816|
-|dbo         |sysdiagrams                |            280|           160|
-|Enum        |tblLUBioparent-not-used    |              0|             0|
-|Enum        |tblLUExtractSource         |             72|            16|
-|Enum        |tblLUGender                |             72|            16|
-|Enum        |tblLUMarkerEvidence        |             72|            16|
-|Enum        |tblLUMarkerType            |             72|            16|
-|Enum        |tblLUMultipleBirth         |             72|            16|
-|Enum        |tblLURaceCohort            |             72|            16|
-|Enum        |tblLURelationshipPath      |             72|            16|
-|Enum        |tblLURosterGen1            |             72|            16|
-|Enum        |tblLUSurveySource          |             72|            16|
-|Enum        |tblLUTristate              |             72|            16|
-|Enum        |tblLUYesNo                 |             72|            16|
-|Extract     |tbl97Roster                |             72|            16|
-|Extract     |tblGen1Explicit            |            520|           408|
-|Extract     |tblGen1GeocodeSanitized    |            592|           360|
-|Extract     |tblGen1Implicit            |            648|           552|
-|Extract     |tblGen1Links               |            968|           824|
-|Extract     |tblGen1MzDzDistinction2010 |             72|            16|
-|Extract     |tblGen1Outcomes            |            392|           248|
-|Extract     |tblGen2FatherFromGen1      |          6,728|         6,648|
-|Extract     |tblGen2ImplicitFather      |            584|           432|
-|Extract     |tblGen2Links               |            904|           816|
-|Extract     |tblGen2LinksFromGen1       |            584|           464|
-|Extract     |tblGen2OutcomesHeight      |            392|           256|
-|Extract     |tblGen2OutcomesMath        |            456|           304|
-|Extract     |tblGen2OutcomesWeight      |            328|           176|
-|Extract     |tblLinks2004Gen1           |            528|           208|
-|Extract     |tblLinks2004Gen2           |            784|           464|
-|Metadata    |tblItem                    |             72|            16|
-|Metadata    |tblItem_97                 |             72|            16|
-|Metadata    |tblMzManual                |            144|            56|
-|Metadata    |tblRosterGen1Assignment    |             72|            16|
-|Metadata    |tblVariable                |            136|            88|
-|Metadata    |tblVariable_97             |             72|            16|
-|Process     |tblBabyDaddy               |          6,992|         6,056|
-|Process     |tblFatherOfGen2            |            456|           304|
-|Process     |tblIRDemo1                 |             72|            16|
-|Process     |tblMarkerGen1              |          7,504|         6,944|
-|Process     |tblMarkerGen2              |          7,376|         6,712|
-|Process     |tblOutcome                 |         10,320|         9,224|
-|Process     |tblParentsOfGen1Current    |            784|           448|
-|Process     |tblParentsOfGen1Retro      |         30,616|        28,056|
-|Process     |tblRelatedStructure        |          4,176|         3,720|
-|Process     |tblRelatedValues           |          2,384|         1,888|
-|Process     |tblResponse                |        140,488|       132,016|
-|Process     |tblRosterGen1              |            720|           328|
-|Process     |tblSubject                 |          1,680|         1,232|
-|Process     |tblSubjectDetails          |          1,488|         1,064|
-|Process     |tblSurveyTime              |         26,640|        24,144|
+```
+The tables sizes have been suppressed in this report
+Toggle their visibility w/ `suppress_table_sizes.`
+The sizes on disk weren't important,
+and created a lot of noise in the Git difs
+```
 
 # Results NLSY97 {.tabset .tabset-fade .tabset-pills}
 
@@ -2553,39 +2505,12 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Table Sizes 97
 
-|schema name |table name              | space total kb| space used kb|
-|:-----------|:-----------------------|--------------:|-------------:|
-|Archive     |tblArchiveDescription   |             72|            16|
-|Archive     |tblRelatedValuesArchive |            664|           224|
-|dbo         |sysdiagrams             |              0|             0|
-|Enum        |tblLUExtractSource      |             72|            16|
-|Enum        |tblLUGender             |             72|            16|
-|Enum        |tblLUMarkerEvidence     |             72|            16|
-|Enum        |tblLUMarkerType         |             72|            16|
-|Enum        |tblLUMultipleBirth      |             72|            16|
-|Enum        |tblLURaceCohort         |             72|            16|
-|Enum        |tblLURoster             |             72|            16|
-|Enum        |tblLUTristate           |             72|            16|
-|Enum        |tblLUYesNo              |             72|            16|
-|Extract     |tblDemographics         |            392|           384|
-|Extract     |tblLinksExplicit        |          1,480|         1,432|
-|Extract     |tblLinksImplicit        |          1,736|         1,688|
-|Extract     |tblRoster               |         18,056|        18,048|
-|Extract     |tblSurveyTime           |          3,656|         3,616|
-|Extract     |tblTwins                |          4,552|         4,512|
-|Metadata    |tblItem                 |             72|            16|
-|Metadata    |tblMzManual             |             72|            16|
-|Metadata    |tblRosterAssignment     |             72|            16|
-|Metadata    |tblVariable             |            208|           144|
-|Process     |tblMarker               |            528|           344|
-|Process     |tblOutcome              |             72|            16|
-|Process     |tblRelatedStructure     |            528|           264|
-|Process     |tblRelatedValues        |            272|            88|
-|Process     |tblResponse             |          7,688|         7,272|
-|Process     |tblRoster               |            392|           256|
-|Process     |tblSubject              |            592|           352|
-|Process     |tblSubjectDetails       |            720|           544|
-|Process     |tblSurveyTime           |          5,712|         4,960|
+```
+The tables sizes have been suppressed in this report
+Toggle their visibility w/ `suppress_table_sizes.`
+The sizes on disk weren't important,
+and created a lot of noise in the Git difs
+```
 
 
 # Session Information
@@ -2670,4 +2595,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 14:28 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-13, 14:37 -0600 in 2 seconds.
