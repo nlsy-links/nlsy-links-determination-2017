@@ -23,6 +23,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-97"
 study                     <- "97"
+shallow_only              <- T   # If TRUE, update only the metadata tables that won't delete any other database tables.
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -35,6 +36,11 @@ col_types_minimal <- readr::cols_only(
 #   - Tables are WRITTEN from top to bottom.
 #   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
+  ArchiveDescription = readr::cols_only(
+    AlgorithmVersion                    = readr::col_integer(),
+    Description                         = readr::col_character(),
+    Date                                = readr::col_date()
+  ),
   item = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -109,15 +115,9 @@ col_types_mapping <- readr::cols_only(
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
-  convert_to_enum     = readr::col_logical()
+  convert_to_enum     = readr::col_logical(),
+  shallow             = readr::col_logical()
 )
-
-# ---- load-data ---------------------------------------------------------------
-start_time <- Sys.time()
-
-ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
-ds_mapping
-
 
 ds_file <- lst_col_types %>%
   tibble::enframe(value = "col_types") %>%
@@ -128,6 +128,13 @@ ds_file <- lst_col_types %>%
   ) %>%
   dplyr::select(name, path, dplyr::everything())
 ds_file
+
+# ---- load-data ---------------------------------------------------------------
+start_time <- Sys.time()
+
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+
+
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
@@ -151,8 +158,14 @@ rm(directory_in) # rm(col_types_tulsa)
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call to `dplyr::rename()`.
 
+if( shallow_only ) {
+  ds_mapping <- ds_mapping %>%
+    dplyr::filter(.data$shallow)
+}
+ds_mapping
+
 ds_file <- ds_file %>%
-  dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
+  dplyr::inner_join(ds_mapping, by=c("name"="table_name")) %>%
   dplyr::mutate(
     table_name    = paste0("tbl", name),
     sql_delete    = glue::glue("DELETE FROM {schema_name}.{table_name};")
@@ -217,47 +230,49 @@ ds_enum %>%
   dplyr::pull(enum_cs) %>%
   cat()
 
-# ---- verify-values -----------------------------------------------------------
+# ---- verify-values-deep -----------------------------------------------------------
 # Sniff out problems
-d_extract_source <- ds_file  %>%
-  dplyr::filter(name=="LUExtractSource") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df()
+if( !shallow_only ) {
+  d_extract_source <- ds_file  %>%
+    dplyr::filter(name=="LUExtractSource") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df()
 
-d_item <- ds_file  %>%
-  dplyr::filter(name=="item") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df()
+  d_item <- ds_file  %>%
+    dplyr::filter(name=="item") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df()
 
-checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
-checkmate::assert_character(d_item$Label        , pattern="^\\w+"       , any.missing=F, unique=T)
-
-
-d_variable <- ds_file  %>%
-  dplyr::filter(name=="variable") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df() %>%
-  dplyr::mutate(
-    item_found    = (ExtractSource %in% d_extract_source$ID),
-    extract_found = (Item %in% d_item$ID),
-    unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
-  ) %>%
-  dplyr::group_by(unique_index) %>%
-  dplyr::mutate(
-    unique_index_violation  = (1L < n())
-  ) %>%
-  dplyr::ungroup()
+  checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
+  checkmate::assert_character(d_item$Label        , pattern="^\\w+"       , any.missing=F, unique=T)
 
 
-pattern_unique_index <- "^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$"
-checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
-checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
-checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
-testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
-testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
-checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+  d_variable <- ds_file  %>%
+    dplyr::filter(name=="variable") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df() %>%
+    dplyr::mutate(
+      item_found    = (ExtractSource %in% d_extract_source$ID),
+      extract_found = (Item %in% d_item$ID),
+      unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
+    ) %>%
+    dplyr::group_by(unique_index) %>%
+    dplyr::mutate(
+      unique_index_violation  = (1L < n())
+    ) %>%
+    dplyr::ungroup()
 
-rm(d_item, d_variable)
+
+  pattern_unique_index <- "^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$"
+  checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
+  checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
+  checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
+  testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
+  testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
+  checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+
+  rm(d_item, d_variable)
+}
 
 # ---- specify-columns-to-upload -----------------------------------------------
 
@@ -280,13 +295,14 @@ DBI::dbGetInfo(channel)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 RODBC::odbcGetInfo(channel_rodbc)
 
+if( !shallow_only ){
 # Clear process tables
-delete_results_process <- ds_table_process$sql_truncate %>%
-  purrr::set_names(ds_table_process$table_name) %>%
-  rev() %>%
-  purrr::map(DBI::dbGetQuery, conn=channel)
-delete_results_process
-
+  delete_results_process <- ds_table_process$sql_truncate %>%
+    purrr::set_names(ds_table_process$table_name) %>%
+    rev() %>%
+    purrr::map(DBI::dbGetQuery, conn=channel)
+  delete_results_process
+}
 # Delete metadata tables
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results_metadata <- ds_file$sql_delete %>%
@@ -306,6 +322,8 @@ delete_results_metadata
 # d2 <- d[, 1:16]
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
+# ds_file <- ds_file %>%
+#   dplyr::slice(1)
 # Upload metadata tables
 purrr::pmap_int(
   list(
@@ -400,7 +418,7 @@ purrr::pmap_int(
 #   message(glue::glue("{format(object.size(d), units='MB')}"))
 # }
 
-# Close channel
+# Close channels
 DBI::dbDisconnect(channel); rm(channel)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 
