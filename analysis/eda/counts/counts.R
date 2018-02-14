@@ -15,7 +15,7 @@ requireNamespace("knitr") #For the kable function for tables
 
 # ---- declare-globals ---------------------------------------------------------
 options(show.signif.stars=F) #Turn off the annotations on p-values
-
+suppress_table_sizes      <- TRUE
 
 sql_item <- "
   SELECT
@@ -150,14 +150,18 @@ ds_variable_79 %>%
   )
 
 # ---- table-79-size ---------------------------------------------------------------
-ds_pretty_79 %>%
-  dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
-  knitr::kable(
-    col.names   = gsub("_", " ", colnames(.)),
-    align       = "llrr",
-    digits      = 2,
-    format      = "markdown"
-  )
+if( suppress_table_sizes ) {
+  cat("The tables sizes have been suppressed in this report\nToggle their visibility w/ `suppress_table_sizes.`\nThe sizes on disk weren't important,\nand created a lot of noise in the Git difs")
+} else {
+  ds_pretty_79 %>%
+    dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
+    knitr::kable(
+      col.names   = gsub("_", " ", colnames(.)),
+      align       = "llrr",
+      digits      = 2,
+      format      = "markdown"
+    )
+}
 
 # ---- table-97-structure ---------------------------------------------------------------
 ds_pretty_97 %>%
@@ -186,12 +190,15 @@ ds_variable_97 %>%
   )
 
 # ---- table-97-size ---------------------------------------------------------------
-ds_pretty_97 %>%
-  dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
-  knitr::kable(
-    col.names   = gsub("_", " ", colnames(.)),
-    align       = "llrr",
-    digits      = 2,
-    format      = "markdown"
-  )
-
+if( suppress_table_sizes ) {
+  cat("The tables sizes have been suppressed in this report\nToggle their visibility w/ `suppress_table_sizes.`\nThe sizes on disk weren't important,\nand created a lot of noise in the Git difs")
+} else {
+  ds_pretty_97 %>%
+    dplyr::select(schema_name, table_name, space_total_kb, space_used_kb) %>%
+    knitr::kable(
+      col.names   = gsub("_", " ", colnames(.)),
+      align       = "llrr",
+      digits      = 2,
+      format      = "markdown"
+    )
+}

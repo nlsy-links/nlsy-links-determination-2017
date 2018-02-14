@@ -48,6 +48,8 @@ stop("Now run the C# program, then come back to run the rest of the R scripts.")
 knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
 
 rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
+rmarkdown::render("analysis/archive-comparison-97/archive-comparison-97.Rmd")
+knitr::stitch_rmd(script="./dal/related-values-scribe-97.R", output="./stitched-output/dal/related-values-scribe-97.md")
 
 message("Completed flow-97 at ", Sys.time(), " (in ", round(elapsed_duration, 2), " mins.)")
 

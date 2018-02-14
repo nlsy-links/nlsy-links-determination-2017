@@ -35,6 +35,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-97"
 study                     <- "97"
+shallow_only              <- F   # If TRUE, update only the metadata tables that won't delete any other database tables.
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -47,6 +48,11 @@ col_types_minimal <- readr::cols_only(
 #   - Tables are WRITTEN from top to bottom.
 #   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
+  ArchiveDescription = readr::cols_only(
+    AlgorithmVersion                    = readr::col_integer(),
+    Description                         = readr::col_character(),
+    Date                                = readr::col_date()
+  ),
   item = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -121,37 +127,10 @@ col_types_mapping <- readr::cols_only(
   enum_name           = readr::col_character(),
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
-  convert_to_enum     = readr::col_logical()
+  convert_to_enum     = readr::col_logical(),
+  shallow             = readr::col_logical()
 )
-```
 
-```r
-start_time <- Sys.time()
-
-ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
-ds_mapping
-```
-
-```
-## # A tibble: 13 x 5
-##    table_name       schema_name enum_name     c_sharp_type convert_to_enum
-##    <chr>            <chr>       <chr>         <chr>        <lgl>          
-##  1 item             Metadata    Item          short        T              
-##  2 LUExtractSource  Enum        ExtractSource byte         T              
-##  3 LUGender         Enum        Gender        byte         T              
-##  4 LUMarkerEvidence Enum        MarkerEviden~ byte         T              
-##  5 LUMarkerType     Enum        MarkerType    byte         T              
-##  6 LUMultipleBirth  Enum        MultipleBirth byte         T              
-##  7 LURaceCohort     Enum        RaceCohort    byte         T              
-##  8 LURoster         Enum        RosterGen1    short        T              
-##  9 LUTristate       Enum        Tristate      byte         T              
-## 10 LUYesNo          Enum        YesNo         short        T              
-## 11 MzManual         Metadata    NA_character  NA_character F              
-## 12 RosterAssignment Metadata    NA_character  NA_character F              
-## 13 variable         Metadata    NA_character  NA_character F
-```
-
-```r
 ds_file <- lst_col_types %>%
   tibble::enframe(value = "col_types") %>%
   dplyr::mutate(
@@ -164,25 +143,32 @@ ds_file
 ```
 
 ```
-## # A tibble: 13 x 4
-##    name             path                               col_types    exists
-##    <chr>            <chr>                              <list>       <lgl> 
-##  1 item             data-public/metadata/tables-97/it~ <S3: col_sp~ T     
-##  2 LUExtractSource  data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  3 LUMarkerEvidence data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  4 LUGender         data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  5 LUMarkerType     data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  6 LUMultipleBirth  data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  7 LURaceCohort     data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  8 LURoster         data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-##  9 LUTristate       data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-## 10 LUYesNo          data-public/metadata/tables-97/LU~ <S3: col_sp~ T     
-## 11 MzManual         data-public/metadata/tables-97/Mz~ <S3: col_sp~ T     
-## 12 RosterAssignment data-public/metadata/tables-97/Ro~ <S3: col_sp~ T     
-## 13 variable         data-public/metadata/tables-97/va~ <S3: col_sp~ T
+## # A tibble: 14 x 4
+##    name               path                              col_types   exists
+##    <chr>              <chr>                             <list>      <lgl> 
+##  1 ArchiveDescription data-public/metadata/tables-97/A~ <S3: col_s~ T     
+##  2 item               data-public/metadata/tables-97/i~ <S3: col_s~ T     
+##  3 LUExtractSource    data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  4 LUMarkerEvidence   data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  5 LUGender           data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  6 LUMarkerType       data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  7 LUMultipleBirth    data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  8 LURaceCohort       data-public/metadata/tables-97/L~ <S3: col_s~ T     
+##  9 LURoster           data-public/metadata/tables-97/L~ <S3: col_s~ T     
+## 10 LUTristate         data-public/metadata/tables-97/L~ <S3: col_s~ T     
+## 11 LUYesNo            data-public/metadata/tables-97/L~ <S3: col_s~ T     
+## 12 MzManual           data-public/metadata/tables-97/M~ <S3: col_s~ T     
+## 13 RosterAssignment   data-public/metadata/tables-97/R~ <S3: col_s~ T     
+## 14 variable           data-public/metadata/tables-97/v~ <S3: col_s~ T
 ```
 
 ```r
+start_time <- Sys.time()
+
+ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
+
+
+
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 ds_entries <- ds_file %>%
@@ -191,26 +177,35 @@ ds_entries <- ds_file %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")
   )
+```
+
+```
+## Warning: 2 parsing failures.
+## row # A tibble: 2 x 5 col     row col   expected     actual                          file            expected   <int> <chr> <chr>        <chr>                           <chr>           actual 1     3 Date  "date like " and overridden if explicitly MZ 'data-public/m~ file 2     3 <NA>  3 columns    4 columns                       'data-public/m~
+```
+
+```r
 ds_entries
 ```
 
 ```
-## # A tibble: 13 x 4
-##    name             path                         col_types    entries     
-##    <chr>            <chr>                        <list>       <list>      
-##  1 item             data-public/metadata/tables~ <S3: col_sp~ <tibble [26~
-##  2 LUExtractSource  data-public/metadata/tables~ <S3: col_sp~ <tibble [6 ~
-##  3 LUMarkerEvidence data-public/metadata/tables~ <S3: col_sp~ <tibble [8 ~
-##  4 LUGender         data-public/metadata/tables~ <S3: col_sp~ <tibble [3 ~
-##  5 LUMarkerType     data-public/metadata/tables~ <S3: col_sp~ <tibble [28~
-##  6 LUMultipleBirth  data-public/metadata/tables~ <S3: col_sp~ <tibble [5 ~
-##  7 LURaceCohort     data-public/metadata/tables~ <S3: col_sp~ <tibble [4 ~
-##  8 LURoster         data-public/metadata/tables~ <S3: col_sp~ <tibble [92~
-##  9 LUTristate       data-public/metadata/tables~ <S3: col_sp~ <tibble [3 ~
-## 10 LUYesNo          data-public/metadata/tables~ <S3: col_sp~ <tibble [6 ~
-## 11 MzManual         data-public/metadata/tables~ <S3: col_sp~ <tibble [90~
-## 12 RosterAssignment data-public/metadata/tables~ <S3: col_sp~ <tibble [31~
-## 13 variable         data-public/metadata/tables~ <S3: col_sp~ <tibble [55~
+## # A tibble: 14 x 4
+##    name               path                        col_types   entries     
+##    <chr>              <chr>                       <list>      <list>      
+##  1 ArchiveDescription data-public/metadata/table~ <S3: col_s~ <tibble [3 ~
+##  2 item               data-public/metadata/table~ <S3: col_s~ <tibble [26~
+##  3 LUExtractSource    data-public/metadata/table~ <S3: col_s~ <tibble [6 ~
+##  4 LUMarkerEvidence   data-public/metadata/table~ <S3: col_s~ <tibble [8 ~
+##  5 LUGender           data-public/metadata/table~ <S3: col_s~ <tibble [3 ~
+##  6 LUMarkerType       data-public/metadata/table~ <S3: col_s~ <tibble [28~
+##  7 LUMultipleBirth    data-public/metadata/table~ <S3: col_s~ <tibble [5 ~
+##  8 LURaceCohort       data-public/metadata/table~ <S3: col_s~ <tibble [4 ~
+##  9 LURoster           data-public/metadata/table~ <S3: col_s~ <tibble [92~
+## 10 LUTristate         data-public/metadata/table~ <S3: col_s~ <tibble [3 ~
+## 11 LUYesNo            data-public/metadata/table~ <S3: col_s~ <tibble [6 ~
+## 12 MzManual           data-public/metadata/table~ <S3: col_s~ <tibble [90~
+## 13 RosterAssignment   data-public/metadata/table~ <S3: col_s~ <tibble [31~
+## 14 variable           data-public/metadata/table~ <S3: col_s~ <tibble [55~
 ```
 
 ```r
@@ -226,8 +221,8 @@ ds_table
 ## # A tibble: 31 x 6
 ##    schema_name table_name            row_count column_count space_total_kb
 ##  * <chr>       <chr>                     <int>        <int>          <int>
-##  1 Archive     tblArchiveDescription         0            4              0
-##  2 Archive     tblRelatedValuesArch~         0           22             72
+##  1 Archive     tblArchiveDescription         2            3             72
+##  2 Archive     tblRelatedValuesArch~      7557           23           1048
 ##  3 dbo         sysdiagrams                   0            5              0
 ##  4 Enum        tblLUExtractSource            6            4             72
 ##  5 Enum        tblLUGender                   3            4             72
@@ -246,8 +241,36 @@ rm(directory_in) # rm(col_types_tulsa)
 ```r
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call to `dplyr::rename()`.
 
+if( shallow_only ) {
+  ds_mapping <- ds_mapping %>%
+    dplyr::filter(.data$shallow)
+}
+ds_mapping
+```
+
+```
+## # A tibble: 14 x 6
+##    table_name   schema_name enum_name c_sharp_type convert_to_enum shallow
+##    <chr>        <chr>       <chr>     <chr>        <lgl>           <lgl>  
+##  1 ArchiveDesc~ Archive     NA_chara~ NA_character F               T      
+##  2 item         Metadata    Item      short        T               F      
+##  3 LUExtractSo~ Enum        ExtractS~ byte         T               F      
+##  4 LUGender     Enum        Gender    byte         T               F      
+##  5 LUMarkerEvi~ Enum        MarkerEv~ byte         T               F      
+##  6 LUMarkerType Enum        MarkerTy~ byte         T               F      
+##  7 LUMultipleB~ Enum        Multiple~ byte         T               F      
+##  8 LURaceCohort Enum        RaceCoho~ byte         T               F      
+##  9 LURoster     Enum        RosterGe~ short        T               F      
+## 10 LUTristate   Enum        Tristate  byte         T               F      
+## 11 LUYesNo      Enum        YesNo     short        T               F      
+## 12 MzManual     Metadata    NA_chara~ NA_character F               T      
+## 13 RosterAssig~ Metadata    NA_chara~ NA_character F               F      
+## 14 variable     Metadata    NA_chara~ NA_character F               F
+```
+
+```r
 ds_file <- ds_file %>%
-  dplyr::left_join( ds_mapping, by=c("name"="table_name")) %>%
+  dplyr::inner_join(ds_mapping, by=c("name"="table_name")) %>%
   dplyr::mutate(
     table_name    = paste0("tbl", name),
     sql_delete    = glue::glue("DELETE FROM {schema_name}.{table_name};")
@@ -264,6 +287,12 @@ ds_file$entries %>%
 ```
 
 ```
+## # A tibble: 3 x 3
+##   AlgorithmVersion Description                             Date      
+##              <int> <chr>                                   <date>    
+## 1                1 naive roster                            2018-01-17
+## 2                2 account for twins                       2018-01-18
+## 3                3 same sib full twins are R=.5 by default NA        
 ## # A tibble: 26 x 7
 ##       ID Label           MinValue MinNonnegative MaxValue Active Notes    
 ##    <int> <chr>              <int>          <int>    <int> <lgl>  <chr>    
@@ -381,9 +410,9 @@ ds_file$entries %>%
 ##    <int>         <int>         <int> <int>    <int>  <dbl>       <dbl>
 ##  1     1           - 2           - 1     2        0 NA           0    
 ##  2     2           - 1           - 1     2        0 NA           0    
-##  3     3            13            13  1034        0 NA           0.500
+##  3     3            13            13  1034        0  0.500       0.500
 ##  4     4            13            14  2034        1  0.500       0.500
-##  5     5            14            14  1154        0 NA           0.500
+##  5     5            14            14  1154        0  0.500       0.500
 ##  6     6            15            15    48        1  0.250       0.250
 ##  7     7            15            18   132        1  0.250       0.250
 ##  8     8            16            19     2        1  0.250       0.250
@@ -434,11 +463,13 @@ ds_file$table_name
 ```
 
 ```
-##  [1] "tblitem"             "tblLUExtractSource"  "tblLUMarkerEvidence"
-##  [4] "tblLUGender"         "tblLUMarkerType"     "tblLUMultipleBirth" 
-##  [7] "tblLURaceCohort"     "tblLURoster"         "tblLUTristate"      
-## [10] "tblLUYesNo"          "tblMzManual"         "tblRosterAssignment"
-## [13] "tblvariable"
+##  [1] "tblArchiveDescription" "tblitem"              
+##  [3] "tblLUExtractSource"    "tblLUMarkerEvidence"  
+##  [5] "tblLUGender"           "tblLUMarkerType"      
+##  [7] "tblLUMultipleBirth"    "tblLURaceCohort"      
+##  [9] "tblLURoster"           "tblLUTristate"        
+## [11] "tblLUYesNo"            "tblMzManual"          
+## [13] "tblRosterAssignment"   "tblvariable"
 ```
 
 ```r
@@ -446,24 +477,25 @@ ds_file
 ```
 
 ```
-## # A tibble: 13 x 11
+## # A tibble: 14 x 12
 ##    name    path        col_types exists schema_name enum_name c_sharp_type
 ##    <chr>   <chr>       <list>    <lgl>  <chr>       <chr>     <chr>       
-##  1 item    data-publi~ <S3: col~ T      Metadata    Item      short       
-##  2 LUExtr~ data-publi~ <S3: col~ T      Enum        ExtractS~ byte        
-##  3 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerEv~ byte        
-##  4 LUGend~ data-publi~ <S3: col~ T      Enum        Gender    byte        
-##  5 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerTy~ byte        
-##  6 LUMult~ data-publi~ <S3: col~ T      Enum        Multiple~ byte        
-##  7 LURace~ data-publi~ <S3: col~ T      Enum        RaceCoho~ byte        
-##  8 LURost~ data-publi~ <S3: col~ T      Enum        RosterGe~ short       
-##  9 LUTris~ data-publi~ <S3: col~ T      Enum        Tristate  byte        
-## 10 LUYesNo data-publi~ <S3: col~ T      Enum        YesNo     short       
-## 11 MzManu~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
-## 12 Roster~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
-## 13 variab~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
-## # ... with 4 more variables: convert_to_enum <lgl>, table_name <chr>,
-## #   sql_delete <chr>, entries <list>
+##  1 Archiv~ data-publi~ <S3: col~ T      Archive     NA_chara~ NA_character
+##  2 item    data-publi~ <S3: col~ T      Metadata    Item      short       
+##  3 LUExtr~ data-publi~ <S3: col~ T      Enum        ExtractS~ byte        
+##  4 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerEv~ byte        
+##  5 LUGend~ data-publi~ <S3: col~ T      Enum        Gender    byte        
+##  6 LUMark~ data-publi~ <S3: col~ T      Enum        MarkerTy~ byte        
+##  7 LUMult~ data-publi~ <S3: col~ T      Enum        Multiple~ byte        
+##  8 LURace~ data-publi~ <S3: col~ T      Enum        RaceCoho~ byte        
+##  9 LURost~ data-publi~ <S3: col~ T      Enum        RosterGe~ short       
+## 10 LUTris~ data-publi~ <S3: col~ T      Enum        Tristate  byte        
+## 11 LUYesNo data-publi~ <S3: col~ T      Enum        YesNo     short       
+## 12 MzManu~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## 13 Roster~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## 14 variab~ data-publi~ <S3: col~ T      Metadata    NA_chara~ NA_character
+## # ... with 5 more variables: convert_to_enum <lgl>, shallow <lgl>,
+## #   table_name <chr>, sql_delete <chr>, entries <list>
 ```
 
 ```r
@@ -711,45 +743,47 @@ ds_enum %>%
 
 ```r
 # Sniff out problems
-d_extract_source <- ds_file  %>%
-  dplyr::filter(name=="LUExtractSource") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df()
+if( !shallow_only ) {
+  d_extract_source <- ds_file  %>%
+    dplyr::filter(name=="LUExtractSource") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df()
 
-d_item <- ds_file  %>%
-  dplyr::filter(name=="item") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df()
+  d_item <- ds_file  %>%
+    dplyr::filter(name=="item") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df()
 
-checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
-checkmate::assert_character(d_item$Label        , pattern="^\\w+"       , any.missing=F, unique=T)
-
-
-d_variable <- ds_file  %>%
-  dplyr::filter(name=="variable") %>%
-  dplyr::pull(entries) %>%
-  purrr::flatten_df() %>%
-  dplyr::mutate(
-    item_found    = (ExtractSource %in% d_extract_source$ID),
-    extract_found = (Item %in% d_item$ID),
-    unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
-  ) %>%
-  dplyr::group_by(unique_index) %>%
-  dplyr::mutate(
-    unique_index_violation  = (1L < n())
-  ) %>%
-  dplyr::ungroup()
+  checkmate::assert_integer(  d_item$ID           , lower=1, upper=2^15   , any.missing=F, unique=T)
+  checkmate::assert_character(d_item$Label        , pattern="^\\w+"       , any.missing=F, unique=T)
 
 
-pattern_unique_index <- "^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$"
-checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
-checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
-checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
-testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
-testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
-checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+  d_variable <- ds_file  %>%
+    dplyr::filter(name=="variable") %>%
+    dplyr::pull(entries) %>%
+    purrr::flatten_df() %>%
+    dplyr::mutate(
+      item_found    = (ExtractSource %in% d_extract_source$ID),
+      extract_found = (Item %in% d_item$ID),
+      unique_index  = paste(Item, SurveyYear, LoopIndex1, LoopIndex2)
+    ) %>%
+    dplyr::group_by(unique_index) %>%
+    dplyr::mutate(
+      unique_index_violation  = (1L < n())
+    ) %>%
+    dplyr::ungroup()
 
-rm(d_item, d_variable)
+
+  pattern_unique_index <- "^\\d{1,5} \\d{4} \\d{1,2} \\d{1,2}$"
+  checkmate::assert_character(d_variable$VariableCode                     , pattern="^[A-Z]\\d{7}$"            , any.missing=F, unique=T)
+  checkmate::assert_integer(  d_variable$Item                             , lower=0    , any.missing=F)
+  checkmate::assert_logical(  d_variable$item_found                                    , any.missing=F)
+  testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
+  testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
+  checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+
+  rm(d_item, d_variable)
+}
 ```
 
 
@@ -828,12 +862,14 @@ RODBC::odbcGetInfo(channel_rodbc)
 ```
 
 ```r
+if( !shallow_only ){
 # Clear process tables
-delete_results_process <- ds_table_process$sql_truncate %>%
-  purrr::set_names(ds_table_process$table_name) %>%
-  rev() %>%
-  purrr::map(DBI::dbGetQuery, conn=channel)
-delete_results_process
+  delete_results_process <- ds_table_process$sql_truncate %>%
+    purrr::set_names(ds_table_process$table_name) %>%
+    rev() %>%
+    purrr::map(DBI::dbGetQuery, conn=channel)
+  delete_results_process
+}
 ```
 
 ```
@@ -916,6 +952,9 @@ delete_results_metadata
 ## 
 ## $tblitem
 ## data frame with 0 columns and 0 rows
+## 
+## $tblArchiveDescription
+## data frame with 0 columns and 0 rows
 ```
 
 ```r
@@ -928,6 +967,8 @@ delete_results_metadata
 # d2 <- d[, 1:16]
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
+# ds_file <- ds_file %>%
+#   dplyr::slice(1)
 # Upload metadata tables
 purrr::pmap_int(
   list(
@@ -960,59 +1001,11 @@ purrr::pmap_int(
 ```
 
 ```
-## Writing to table tblitem
+## Writing to table tblArchiveDescription
 ```
 
 ```
-## Writing to table tblLUExtractSource
-```
-
-```
-## Writing to table tblLUMarkerEvidence
-```
-
-```
-## Writing to table tblLUGender
-```
-
-```
-## Writing to table tblLUMarkerType
-```
-
-```
-## Writing to table tblLUMultipleBirth
-```
-
-```
-## Writing to table tblLURaceCohort
-```
-
-```
-## Writing to table tblLURoster
-```
-
-```
-## Writing to table tblLUTristate
-```
-
-```
-## Writing to table tblLUYesNo
-```
-
-```
-## Writing to table tblMzManual
-```
-
-```
-## Writing to table tblRosterAssignment
-```
-
-```
-## Writing to table tblvariable
-```
-
-```
-##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1
+## Error in RODBC::sqlSave(channel = channel_rodbc, dat = d, tablename = paste0(schema_name, : unable to append to table 'Archive.tblArchiveDescription'
 ```
 
 ```r
@@ -1081,7 +1074,7 @@ purrr::pmap_int(
 #   message(glue::glue("{format(object.size(d), units='MB')}"))
 # }
 
-# Close channel
+# Close channels
 DBI::dbDisconnect(channel); rm(channel)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
 
@@ -1090,7 +1083,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-02-13, 12:22 -0600 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-02-14, 12:53 -0600 in 13 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1119,25 +1112,28 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.19   bindrcpp_0.2 magrittr_1.5
+## [1] ggplot2_2.2.1.9000 xtable_1.8-2       knitr_1.19        
+## [4] bindrcpp_0.2       DBI_0.7            magrittr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.15      highr_0.6         plyr_1.8.4       
-##  [4] pillar_1.1.0      compiler_3.4.3    bindr_0.1        
-##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
-## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
-## [13] tibble_1.4.2      checkmate_1.8.5   pkgconfig_2.0.1  
-## [16] rlang_0.1.6.9003  rstudioapi_0.7    DBI_0.7          
-## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
-## [22] dplyr_0.7.4.9000  stringr_1.2.0     devtools_1.13.4  
-## [25] hms_0.4.1         bit64_0.9-7       rprojroot_1.3-2  
-## [28] tidyselect_0.2.3  glue_1.2.0        R6_2.2.2         
-## [31] rmarkdown_1.8     tidyr_0.8.0       readr_1.1.1      
-## [34] purrr_0.2.4       blob_1.1.0        backports_1.1.2  
-## [37] scales_0.5.0.9000 RODBC_1.3-15      htmltools_0.3.6  
-## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
-## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
-## [46] markdown_0.8      crayon_1.3.4
+##  [1] Rcpp_0.12.15          highr_0.6             plyr_1.8.4           
+##  [4] pillar_1.1.0          compiler_3.4.3        bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.5            digest_0.6.15        
+## [10] bit_1.1-12            gtable_0.2.0          memoise_1.1.0        
+## [13] evaluate_0.10.1       tibble_1.4.2          checkmate_1.8.5      
+## [16] pkgconfig_2.0.1       rlang_0.1.6.9003      cli_1.0.0            
+## [19] rstudioapi_0.7        yaml_2.1.16           withr_2.1.1.9000     
+## [22] dplyr_0.7.4.9000      stringr_1.2.0         devtools_1.13.4      
+## [25] hms_0.4.1             grid_3.4.3            bit64_0.9-7          
+## [28] rprojroot_1.3-2       tidyselect_0.2.3      OuhscMunge_0.1.8.9006
+## [31] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
+## [34] tidyr_0.8.0           readr_1.1.1           purrr_0.2.4          
+## [37] blob_1.1.0            RODBC_1.3-15          scales_0.5.0.9000    
+## [40] backports_1.1.2       htmltools_0.3.6       assertthat_0.2.0     
+## [43] testit_0.7.1          colorspace_1.3-2      labeling_0.3         
+## [46] config_0.2            utf8_1.1.3            stringi_1.1.6        
+## [49] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
+## [52] crayon_1.3.4
 ```
 
 ```r
@@ -1145,6 +1141,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-02-13 12:22:26 CST"
+## [1] "2018-02-14 12:53:27 CST"
 ```
 

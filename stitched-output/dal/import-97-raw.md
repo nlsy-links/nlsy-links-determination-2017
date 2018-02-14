@@ -603,7 +603,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-02-13, 12:22 -0600 in 14 seconds.
+## File completed by `Will` at 2018-02-14, 12:53 -0600 in 17 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -632,25 +632,28 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.19   bindrcpp_0.2 magrittr_1.5
+## [1] ggplot2_2.2.1.9000 xtable_1.8-2       knitr_1.19        
+## [4] bindrcpp_0.2       DBI_0.7            magrittr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.15      highr_0.6         plyr_1.8.4       
-##  [4] pillar_1.1.0      compiler_3.4.3    bindr_0.1        
-##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
-## [10] bit_1.1-12        memoise_1.1.0     evaluate_0.10.1  
-## [13] tibble_1.4.2      checkmate_1.8.5   pkgconfig_2.0.1  
-## [16] rlang_0.1.6.9003  rstudioapi_0.7    DBI_0.7          
-## [19] cli_1.0.0         yaml_2.1.16       withr_2.1.1.9000 
-## [22] dplyr_0.7.4.9000  stringr_1.2.0     devtools_1.13.4  
-## [25] hms_0.4.1         bit64_0.9-7       rprojroot_1.3-2  
-## [28] tidyselect_0.2.3  glue_1.2.0        R6_2.2.2         
-## [31] rmarkdown_1.8     tidyr_0.8.0       readr_1.1.1      
-## [34] purrr_0.2.4       blob_1.1.0        backports_1.1.2  
-## [37] scales_0.5.0.9000 RODBC_1.3-15      htmltools_0.3.6  
-## [40] assertthat_0.2.0  testit_0.7.1      colorspace_1.3-2 
-## [43] utf8_1.1.3        stringi_1.1.6     munsell_0.4.3    
-## [46] markdown_0.8      crayon_1.3.4
+##  [1] Rcpp_0.12.15          highr_0.6             plyr_1.8.4           
+##  [4] pillar_1.1.0          compiler_3.4.3        bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.5            digest_0.6.15        
+## [10] bit_1.1-12            gtable_0.2.0          memoise_1.1.0        
+## [13] evaluate_0.10.1       tibble_1.4.2          checkmate_1.8.5      
+## [16] pkgconfig_2.0.1       rlang_0.1.6.9003      cli_1.0.0            
+## [19] rstudioapi_0.7        yaml_2.1.16           withr_2.1.1.9000     
+## [22] dplyr_0.7.4.9000      stringr_1.2.0         devtools_1.13.4      
+## [25] hms_0.4.1             grid_3.4.3            bit64_0.9-7          
+## [28] rprojroot_1.3-2       tidyselect_0.2.3      OuhscMunge_0.1.8.9006
+## [31] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
+## [34] tidyr_0.8.0           readr_1.1.1           purrr_0.2.4          
+## [37] blob_1.1.0            RODBC_1.3-15          scales_0.5.0.9000    
+## [40] backports_1.1.2       htmltools_0.3.6       assertthat_0.2.0     
+## [43] testit_0.7.1          colorspace_1.3-2      labeling_0.3         
+## [46] config_0.2            utf8_1.1.3            stringi_1.1.6        
+## [49] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
+## [52] crayon_1.3.4
 ```
 
 ```r
@@ -658,6 +661,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-02-13 12:22:40 CST"
+## [1] "2018-02-14 12:53:44 CST"
 ```
 

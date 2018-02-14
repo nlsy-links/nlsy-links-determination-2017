@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-02-13"
+date: "Date: 2018-02-14"
 output:
   html_document:
     keep_md: yes
@@ -1871,60 +1871,12 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Table Sizes 79
 
-|schema name |table name                 | space total kb| space used kb|
-|:-----------|:--------------------------|--------------:|-------------:|
-|Archive     |tblArchiveDescription      |            144|            32|
-|Archive     |tblRelatedValuesArchive    |         30,160|        29,816|
-|dbo         |sysdiagrams                |            280|           160|
-|Enum        |tblLUBioparent-not-used    |              0|             0|
-|Enum        |tblLUExtractSource         |             72|            16|
-|Enum        |tblLUGender                |             72|            16|
-|Enum        |tblLUMarkerEvidence        |             72|            16|
-|Enum        |tblLUMarkerType            |             72|            16|
-|Enum        |tblLUMultipleBirth         |             72|            16|
-|Enum        |tblLURaceCohort            |             72|            16|
-|Enum        |tblLURelationshipPath      |             72|            16|
-|Enum        |tblLURosterGen1            |             72|            16|
-|Enum        |tblLUSurveySource          |             72|            16|
-|Enum        |tblLUTristate              |             72|            16|
-|Enum        |tblLUYesNo                 |             72|            16|
-|Extract     |tbl97Roster                |             72|            16|
-|Extract     |tblGen1Explicit            |            520|           408|
-|Extract     |tblGen1GeocodeSanitized    |            592|           360|
-|Extract     |tblGen1Implicit            |            648|           552|
-|Extract     |tblGen1Links               |            968|           824|
-|Extract     |tblGen1MzDzDistinction2010 |             72|            16|
-|Extract     |tblGen1Outcomes            |            392|           248|
-|Extract     |tblGen2FatherFromGen1      |          6,728|         6,648|
-|Extract     |tblGen2ImplicitFather      |            584|           432|
-|Extract     |tblGen2Links               |            904|           816|
-|Extract     |tblGen2LinksFromGen1       |            584|           464|
-|Extract     |tblGen2OutcomesHeight      |            392|           256|
-|Extract     |tblGen2OutcomesMath        |            456|           304|
-|Extract     |tblGen2OutcomesWeight      |            328|           176|
-|Extract     |tblLinks2004Gen1           |            528|           208|
-|Extract     |tblLinks2004Gen2           |            784|           464|
-|Metadata    |tblItem                    |             72|            16|
-|Metadata    |tblItem_97                 |             72|            16|
-|Metadata    |tblMzManual                |            144|            56|
-|Metadata    |tblRosterGen1Assignment    |             72|            16|
-|Metadata    |tblVariable                |            136|            88|
-|Metadata    |tblVariable_97             |             72|            16|
-|Process     |tblBabyDaddy               |          6,992|         6,056|
-|Process     |tblFatherOfGen2            |            456|           304|
-|Process     |tblIRDemo1                 |             72|            16|
-|Process     |tblMarkerGen1              |          7,504|         6,944|
-|Process     |tblMarkerGen2              |          7,376|         6,712|
-|Process     |tblOutcome                 |         10,320|         9,224|
-|Process     |tblParentsOfGen1Current    |            784|           448|
-|Process     |tblParentsOfGen1Retro      |         30,616|        28,056|
-|Process     |tblRelatedStructure        |          4,176|         3,720|
-|Process     |tblRelatedValues           |          2,384|         1,888|
-|Process     |tblResponse                |        140,488|       132,016|
-|Process     |tblRosterGen1              |            720|           328|
-|Process     |tblSubject                 |          1,680|         1,232|
-|Process     |tblSubjectDetails          |          1,488|         1,064|
-|Process     |tblSurveyTime              |         26,640|        24,144|
+```
+The tables sizes have been suppressed in this report
+Toggle their visibility w/ `suppress_table_sizes.`
+The sizes on disk weren't important,
+and created a lot of noise in the Git difs
+```
 
 # Results NLSY97 {.tabset .tabset-fade .tabset-pills}
 
@@ -1932,8 +1884,8 @@ This report documents the basic properties of the input & output tables kinship 
 
 |schema name |table name              | row count| column count|
 |:-----------|:-----------------------|---------:|------------:|
-|Archive     |tblArchiveDescription   |         0|            4|
-|Archive     |tblRelatedValuesArchive |         0|           22|
+|Archive     |tblArchiveDescription   |         3|            3|
+|Archive     |tblRelatedValuesArchive |     7,557|           23|
 |dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
@@ -2553,39 +2505,12 @@ This report documents the basic properties of the input & output tables kinship 
 
 ## Table Sizes 97
 
-|schema name |table name              | space total kb| space used kb|
-|:-----------|:-----------------------|--------------:|-------------:|
-|Archive     |tblArchiveDescription   |              0|             0|
-|Archive     |tblRelatedValuesArchive |             72|            16|
-|dbo         |sysdiagrams             |              0|             0|
-|Enum        |tblLUExtractSource      |             72|            16|
-|Enum        |tblLUGender             |             72|            16|
-|Enum        |tblLUMarkerEvidence     |             72|            16|
-|Enum        |tblLUMarkerType         |             72|            16|
-|Enum        |tblLUMultipleBirth      |             72|            16|
-|Enum        |tblLURaceCohort         |             72|            16|
-|Enum        |tblLURoster             |             72|            16|
-|Enum        |tblLUTristate           |             72|            16|
-|Enum        |tblLUYesNo              |             72|            16|
-|Extract     |tblDemographics         |            392|           384|
-|Extract     |tblLinksExplicit        |          1,480|         1,432|
-|Extract     |tblLinksImplicit        |          1,736|         1,688|
-|Extract     |tblRoster               |         18,056|        18,048|
-|Extract     |tblSurveyTime           |          3,656|         3,616|
-|Extract     |tblTwins                |          4,552|         4,512|
-|Metadata    |tblItem                 |             72|            16|
-|Metadata    |tblMzManual             |             72|            16|
-|Metadata    |tblRosterAssignment     |             72|            16|
-|Metadata    |tblVariable             |            208|           144|
-|Process     |tblMarker               |            592|           360|
-|Process     |tblOutcome              |             72|            16|
-|Process     |tblRelatedStructure     |            528|           264|
-|Process     |tblRelatedValues        |            272|            88|
-|Process     |tblResponse             |          7,688|         7,272|
-|Process     |tblRoster               |            392|           256|
-|Process     |tblSubject              |            592|           352|
-|Process     |tblSubjectDetails       |            720|           544|
-|Process     |tblSurveyTime           |          5,584|         4,928|
+```
+The tables sizes have been suppressed in this report
+Toggle their visibility w/ `suppress_table_sizes.`
+The sizes on disk weren't important,
+and created a lot of noise in the Git difs
+```
 
 
 # Session Information
@@ -2602,11 +2527,11 @@ Session info -------------------------------------------------------------------
  setting  value                                      
  version  R version 3.4.3 Patched (2018-01-25 r74163)
  system   x86_64, mingw32                            
- ui       RTerm                                      
+ ui       RStudio (1.1.393)                          
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-02-13                                 
+ date     2018-02-14                                 
 ```
 
 ```
@@ -2614,60 +2539,76 @@ Packages -----------------------------------------------------------------------
 ```
 
 ```
- package    * version    date       source                          
- assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                  
- backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                  
- base       * 3.4.3      2018-01-26 local                           
- bindr        0.1        2016-11-13 CRAN (R 3.4.2)                  
- bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                  
- bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                  
- bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                  
- blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                  
- checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                  
- colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                  
- compiler     3.4.3      2018-01-26 local                           
- datasets   * 3.4.3      2018-01-26 local                           
- DBI          0.7        2017-06-18 CRAN (R 3.4.2)                  
- devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                  
- digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                  
- dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)
- evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                  
- glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                  
- graphics   * 3.4.3      2018-01-26 local                           
- grDevices  * 3.4.3      2018-01-26 local                           
- highr        0.6        2016-05-09 CRAN (R 3.4.2)                  
- hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                  
- htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                  
- knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                  
- magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
- memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
- methods    * 3.4.3      2018-01-26 local                           
- munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                  
- odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                  
- pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                  
- pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
- plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                  
- purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                  
- R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
- Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                  
- rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)
- rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                  
- RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                  
- rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                  
- scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)  
- stats      * 3.4.3      2018-01-26 local                           
- stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                  
- stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
- testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)   
- tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                  
- tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                  
- tools        3.4.3      2018-01-26 local                           
- utils      * 3.4.3      2018-01-26 local                           
- withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)
- yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                  
+ package    * version    date       source                               
+ assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                       
+ backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                       
+ base       * 3.4.3      2018-01-26 local                                
+ bindr        0.1        2016-11-13 CRAN (R 3.4.2)                       
+ bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                       
+ bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                       
+ bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                       
+ blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                       
+ checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                       
+ cli          1.0.0      2017-11-05 CRAN (R 3.4.2)                       
+ colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                       
+ compiler     3.4.3      2018-01-26 local                                
+ config       0.2        2016-08-02 CRAN (R 3.4.2)                       
+ crayon       1.3.4      2017-09-16 CRAN (R 3.4.1)                       
+ datasets   * 3.4.3      2018-01-26 local                                
+ DBI        * 0.7        2017-06-18 CRAN (R 3.4.2)                       
+ devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                       
+ digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                       
+ dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)     
+ evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                       
+ ggplot2    * 2.2.1.9000 2017-12-20 Github (tidyverse/ggplot2@bfff1d8)   
+ glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                       
+ graphics   * 3.4.3      2018-01-26 local                                
+ grDevices  * 3.4.3      2018-01-26 local                                
+ grid         3.4.3      2018-01-26 local                                
+ gtable       0.2.0      2016-02-26 CRAN (R 3.4.2)                       
+ highr        0.6        2016-05-09 CRAN (R 3.4.2)                       
+ hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                       
+ htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                       
+ knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                       
+ labeling     0.3        2014-08-23 CRAN (R 3.4.1)                       
+ lazyeval     0.2.1      2017-10-29 CRAN (R 3.4.2)                       
+ magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                       
+ markdown     0.8        2017-04-20 CRAN (R 3.4.2)                       
+ memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                       
+ methods    * 3.4.3      2018-01-26 local                                
+ munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                       
+ odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                       
+ OuhscMunge   0.1.8.9006 2018-02-14 Github (OuhscBbmc/OuhscMunge@ce0a489)
+ pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                       
+ pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                       
+ plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                       
+ purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                       
+ R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                       
+ Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                       
+ readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                       
+ rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)     
+ rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                       
+ RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                       
+ rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                       
+ rsconnect    0.8.5      2017-08-23 CRAN (R 3.4.2)                       
+ rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                       
+ scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)       
+ stats      * 3.4.3      2018-01-26 local                                
+ stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                       
+ stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                       
+ testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)        
+ tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                       
+ tidyr        0.8.0      2018-01-29 CRAN (R 3.4.3)                       
+ tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                       
+ tools        3.4.3      2018-01-26 local                                
+ utf8         1.1.3      2018-01-03 CRAN (R 3.4.3)                       
+ utils      * 3.4.3      2018-01-26 local                                
+ withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)     
+ xtable     * 1.8-2      2016-02-05 CRAN (R 3.4.2)                       
+ yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                       
 ```
 </details>
 
 
 
-Report rendered by Will at 2018-02-13, 12:45 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-14, 13:08 -0600 in 1 seconds.

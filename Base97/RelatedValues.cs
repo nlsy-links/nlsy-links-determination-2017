@@ -33,88 +33,81 @@ namespace Nls.Base97 {
             sw.Stop();
             return string.Format("{0:N0} RelatedValues records were processed.\nElapsed time: {1}", housematesCount, sw.Elapsed.ToString());
         }
-        //public static string Archive( Int16 algorithmVersion, LinksDataSet ds ) {
-        //    Stopwatch sw = new Stopwatch();
-        //    sw.Start();
-        //    Int32 recordsAdded = 0;
-        //    foreach( LinksDataSet.tblRelatedValuesRow drValues in ds.tblRelatedValues ) {
-        //        LinksDataSet.tblRelatedValuesArchiveRow drNew = ds.tblRelatedValuesArchive.NewtblRelatedValuesArchiveRow();
-        //        drNew.AlgorithmVersion = algorithmVersion;
-        //        drNew.SubjectTag_S1 = drValues.tblRelatedStructureRow.SubjectTag_S1;
-        //        drNew.SubjectTag_S2 = drValues.tblRelatedStructureRow.SubjectTag_S2;
-        //        drNew.MultipleBirthIfSameSex = drValues.MultipleBirthIfSameSex;
-        //        drNew.IsMz = drValues.IsMz;
+        public static string Archive( Int16 algorithmVersion, LinksDataSet ds ) {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            Int32 recordsAdded = 0;
+            foreach( LinksDataSet.tblRelatedValuesRow drValues in ds.tblRelatedValues ) {
+                LinksDataSet.tblRelatedValuesArchiveRow drNew = ds.tblRelatedValuesArchive.NewtblRelatedValuesArchiveRow();
+                drNew.AlgorithmVersion = algorithmVersion;
+                drNew.SubjectTag_S1 = drValues.tblRelatedStructureRow.SubjectTag_S1;
+                drNew.SubjectTag_S2 = drValues.tblRelatedStructureRow.SubjectTag_S2;
+                drNew.MultipleBirthIfSameSex = drValues.MultipleBirthIfSameSex;
+                drNew.IsMz = drValues.IsMz;
 
-        //        //if ( drValues.IsS() ) drNew.SetLastSurvey_S1Null();
-        //        //else drNew.LastSurvey_S1 = drValues.LastSurvey_S1;
+                //if ( drValues.IsS() ) drNew.SetLastSurvey_S1Null();
+                //else drNew.LastSurvey_S1 = drValues.LastSurvey_S1;
 
-        //        LinksDataSet.tblRelatedStructureRow drStructure = ds.tblRelatedStructure.FindByID(drValues.ID);
+                LinksDataSet.tblRelatedStructureRow drStructure = ds.tblRelatedStructure.FindByID(drValues.ID);
 
-        //        if( drStructure.RelationshipPath == (byte)RelationshipPath.Gen1Housemates ) {
-        //            LinksDataSet.tblRosterGen1Row drRoster = ds.tblRosterGen1.FindByRelatedID(drValues.ID);
-        //            drNew.RosterAssignmentID = drRoster.RosterAssignmentID;
-        //            drNew.SameGeneration = drRoster.SameGeneration;
+                LinksDataSet.tblRosterRow drRoster = ds.tblRoster.FindByRelatedID(drValues.ID);
+                drNew.RosterAssignmentID = drRoster.RosterAssignmentID;
+                drNew.SameGeneration = drRoster.SameGeneration;
+                if( drRoster.IsRNull() ) drNew.SetRRosterNull();
+                else drNew.RRoster = drRoster.R;
+       
+                if( drValues.IsLastSurvey_S1Null() ) drNew.SetLastSurvey_S1Null();
+                else drNew.LastSurvey_S1 = drValues.LastSurvey_S1;
 
-        //            if( drRoster.IsRNull() ) drNew.SetRRosterNull();
-        //            else drNew.RRoster = drRoster.R;
-        //        } else {
-        //            drNew.SetRosterAssignmentIDNull();
-        //            drNew.SetRRosterNull();
-        //            drNew.SetSameGenerationNull();
-        //        }
+                if( drValues.IsLastSurvey_S2Null() ) drNew.SetLastSurvey_S2Null();
+                else drNew.LastSurvey_S2 = drValues.LastSurvey_S2;
 
-        //        if( drValues.IsLastSurvey_S1Null() ) drNew.SetLastSurvey_S1Null();
-        //        else drNew.LastSurvey_S1 = drValues.LastSurvey_S1;
+                if( drValues.IsRImplicitPass1Null() ) drNew.SetRImplicitPass1Null();
+                else drNew.RImplicitPass1 = drValues.RImplicitPass1;
 
-        //        if( drValues.IsLastSurvey_S2Null() ) drNew.SetLastSurvey_S2Null();
-        //        else drNew.LastSurvey_S2 = drValues.LastSurvey_S2;
+                if( drValues.IsRImplicitNull() ) drNew.SetRImplicitNull();
+                else drNew.RImplicit = drValues.RImplicit;
 
-        //        if( drValues.IsRImplicitPass1Null() ) drNew.SetRImplicitPass1Null();
-        //        else drNew.RImplicitPass1 = drValues.RImplicitPass1;
+                if( drValues.IsRImplicitSubjectNull() ) drNew.SetRImplicitSubjectNull();
+                else drNew.RImplicitSubject = drValues.RImplicitSubject;
 
-        //        if( drValues.IsRImplicitNull() ) drNew.SetRImplicitNull();
-        //        else drNew.RImplicit = drValues.RImplicit;
+                if( drValues.IsRImplicitMotherNull() ) drNew.SetRImplicitMotherNull();
+                else drNew.RImplicitMother = drValues.RImplicitMother;
 
-        //        if( drValues.IsRImplicitSubjectNull() ) drNew.SetRImplicitSubjectNull();
-        //        else drNew.RImplicitSubject = drValues.RImplicitSubject;
+                //if( drValues.IsRImplicit2004Null() ) drNew.SetRImplicit2004Null();
+                //else drNew.RImplicit2004 = drValues.RImplicit2004;
 
-        //        if( drValues.IsRImplicitMotherNull() ) drNew.SetRImplicitMotherNull();
-        //        else drNew.RImplicitMother = drValues.RImplicitMother;
+                if( drValues.IsRExplicitOlderSibVersionNull() ) drNew.SetRExplicitOldestSibVersionNull();
+                else drNew.RExplicitOldestSibVersion = drValues.RExplicitOlderSibVersion;
 
-        //        if( drValues.IsRImplicit2004Null() ) drNew.SetRImplicit2004Null();
-        //        else drNew.RImplicit2004 = drValues.RImplicit2004;
+                if( drValues.IsRExplicitYoungerSibVersionNull() ) drNew.SetRExplicitYoungestSibVersionNull();
+                else drNew.RExplicitYoungestSibVersion = drValues.RExplicitYoungerSibVersion;
 
-        //        if( drValues.IsRExplicitOlderSibVersionNull() ) drNew.SetRExplicitOldestSibVersionNull();
-        //        else drNew.RExplicitOldestSibVersion = drValues.RExplicitOlderSibVersion;
+                if( drValues.IsRExplicitPass1Null() ) drNew.SetRExplicitPass1Null();
+                else drNew.RExplicitPass1 = drValues.RExplicitPass1;
 
-        //        if( drValues.IsRExplicitYoungerSibVersionNull() ) drNew.SetRExplicitYoungestSibVersionNull();
-        //        else drNew.RExplicitYoungestSibVersion = drValues.RExplicitYoungerSibVersion;
+                if( drValues.IsRExplicitNull() ) drNew.SetRExplicitNull();
+                else drNew.RExplicit = drValues.RExplicit;
 
-        //        if( drValues.IsRExplicitPass1Null() ) drNew.SetRExplicitPass1Null();
-        //        else drNew.RExplicitPass1 = drValues.RExplicitPass1;
+                if( drValues.IsRPass1Null() ) drNew.SetRPass1Null();
+                else drNew.RPass1 = drValues.RPass1;
 
-        //        if( drValues.IsRExplicitNull() ) drNew.SetRExplicitNull();
-        //        else drNew.RExplicit = drValues.RExplicit;
+                if( drValues.IsRNull() ) drNew.SetRNull();
+                else drNew.R = drValues.R;
 
-        //        if( drValues.IsRPass1Null() ) drNew.SetRPass1Null();
-        //        else drNew.RPass1 = drValues.RPass1;
+                if( drValues.IsRFullNull() ) drNew.SetRFullNull();
+                else drNew.RFull = drValues.RFull;
 
-        //        if( drValues.IsRNull() ) drNew.SetRNull();
-        //        else drNew.R = drValues.R;
+                if( drValues.IsRPeekNull() ) drNew.SetRPeekNull();
+                else drNew.RPeek = drValues.RPeek;
 
-        //        if( drValues.IsRFullNull() ) drNew.SetRFullNull();
-        //        else drNew.RFull = drValues.RFull;
-
-        //        if( drValues.IsRPeekNull() ) drNew.SetRPeekNull();
-        //        else drNew.RPeek = drValues.RPeek;
-
-        //        ds.tblRelatedValuesArchive.AddtblRelatedValuesArchiveRow(drNew);
-        //        recordsAdded += 1;
-        //    }
-        //    sw.Stop();
-        //    string message = string.Format("{0:N0} RelatedValues records were archived.\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
-        //    return message;
-        //}
+                ds.tblRelatedValuesArchive.AddtblRelatedValuesArchiveRow(drNew);
+                recordsAdded += 1;
+            }
+            sw.Stop();
+            string message = string.Format("{0:N0} RelatedValues records were archived.\nElapsed time: {1}", recordsAdded, sw.Elapsed.ToString());
+            return message;
+        }
         public static LinksDataSet.tblRelatedValuesRow RetrieveRRow( LinksDataSet ds, Int32 subject1Tag, Int32 subject2Tag ) {
             if( ds.tblRelatedValues.Count <= 0 ) throw new ArgumentException("tblRelatedValues should have more than one row.", "ds");
 

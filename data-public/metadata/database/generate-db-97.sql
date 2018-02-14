@@ -138,15 +138,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Archive].[tblArchiveDescription](
-	[ID] [smallint] IDENTITY(1,1) NOT NULL,
 	[AlgorithmVersion] [smallint] NOT NULL,
-	[Description] [text] NOT NULL,
-	[Date] [date] NULL,
+	[Description] [varchar](500) NOT NULL,
+	[Date] [date] NOT NULL,
  CONSTRAINT [PK_tblArchiveDescription] PRIMARY KEY CLUSTERED 
 (
-	[ID] ASC
+	[AlgorithmVersion] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
 GO
@@ -159,10 +158,11 @@ CREATE TABLE [Archive].[tblRelatedValuesArchive](
 	[SubjectTag_S2] [int] NOT NULL,
 	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
 	[IsMz] [tinyint] NOT NULL,
-	[RosterAssignmentID] [tinyint] NULL,
+	[SameGeneration] [tinyint] NOT NULL,
+	[RosterAssignmentID] [tinyint] NOT NULL,
 	[RRoster] [float] NULL,
-	[LastSurvey_S1] [smallint] NULL,
-	[LastSurvey_S2] [smallint] NULL,
+	[LastSurvey_S1] [smallint] NOT NULL,
+	[LastSurvey_S2] [smallint] NOT NULL,
 	[RImplicitPass1] [float] NULL,
 	[RImplicit] [float] NULL,
 	[RImplicitSubject] [float] NULL,
@@ -174,7 +174,11 @@ CREATE TABLE [Archive].[tblRelatedValuesArchive](
 	[RPass1] [float] NULL,
 	[R] [float] NULL,
 	[RFull] [float] NULL,
-	[RPeek] [float] NULL
+	[RPeek] [float] NULL,
+ CONSTRAINT [PK_tblRelatedValuesArchive] PRIMARY KEY NONCLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -1172,7 +1176,7 @@ CREATE TABLE [Metadata].[tblMzManual](
 	[MultipleBirthIfSameSex] [tinyint] NOT NULL,
 	[IsMz] [tinyint] NOT NULL,
 	[Undecided] [bit] NOT NULL,
-	[Related] [bit] NULL,
+	[Related] [tinyint] NULL,
 	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblMzManual] PRIMARY KEY CLUSTERED 
 (

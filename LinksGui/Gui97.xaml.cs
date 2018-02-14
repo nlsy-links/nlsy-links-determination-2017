@@ -54,7 +54,7 @@ namespace LinksGui {
             LoadSubjectDetails();
             LoadMarker();
             LoadRelatedValues();
-            //LoadRelatedValuesNextVersionNumber();
+            LoadRelatedValuesNextVersionNumber();
             sw.Stop();
             string message = string.Format("DataSets loaded (Elapsed time: {0})", sw.Elapsed.ToString());
             Trace.WriteLine(message);
@@ -128,11 +128,11 @@ namespace LinksGui {
             //if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             ////WriteXml(_dsLinks.tblRelatedValues);
         }
-        private void btnRelatedValuesArchive_Click ( object sender, RoutedEventArgs e ) {            
-        //    Int16 algorithmVersion = Int16.Parse(txtAlogrithmNumber.Text);
-        //    string message = BA.RelatedValues.Archive(algorithmVersion, _dsLinks);
-        //    Trace.WriteLine(message);
-        //    if ( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
+        private void btnRelatedValuesArchive_Click ( object sender, RoutedEventArgs e ) {
+            Int16 algorithmVersion = Int16.Parse(txtAlogrithmNumber.Text);
+            string message = BA.RelatedValues.Archive(algorithmVersion, _dsLinks);
+            Trace.WriteLine(message);
+            if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
         //    //WriteXml(_dsLinks.tblRelatedValuesArchive);
         }
 
@@ -151,7 +151,7 @@ namespace LinksGui {
             BulkUpdate(schemaName, _dsLinks.tblMarker, LoadMarker);
             BulkUpdate(schemaName, _dsLinks.tblRelatedValues, LoadRelatedValues);
         //    BulkUpdate(schemaName, _dsLinks.tblOutcome, LoadOutcomes);
-        //    BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
+            BulkUpdate("Archive", _dsLinks.tblRelatedValuesArchive, null);
 
             sw.Stop();
             //string message = string.Format("The follow records were affected for each table ({0} Elapsed):\n{1:N0} tblSubject\n{2:N0} tblResponse", sw.Elapsed.ToString(), -999, -999);
@@ -289,21 +289,20 @@ namespace LinksGui {
             BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter ta = new BA.LinksDataSetTableAdapters.tblOutcomeTableAdapter();
             ta.Fill(_dsLinks.tblOutcome);
         }
-        //private void LoadRelatedValuesNextVersionNumber ( ) {
-        //    Int16 currentMaxVersion = Int16.MinValue;
-        //    using ( SqlCommand cmd = new SqlCommand("Process.prcArchiveMaxVersion", _cnn) ) {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        try {
-        //            _cnn.Open();
-        //            object v = cmd.ExecuteScalar();
-        //            currentMaxVersion = Convert.ToInt16(v);
-        //        }
-        //        finally {
-        //            _cnn.Close();
-        //        }
-        //    }
-        //    txtAlogrithmNumber.Text = Convert.ToString(currentMaxVersion + 1);
-        //}
+        private void LoadRelatedValuesNextVersionNumber( ) {
+            Int16 currentMaxVersion = Int16.MinValue;
+            using( SqlCommand cmd = new SqlCommand("Process.prcArchiveMaxVersion", _cnn) ) {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try {
+                    _cnn.Open();
+                    object v = cmd.ExecuteScalar();
+                    currentMaxVersion = Convert.ToInt16(v);
+                } finally {
+                    _cnn.Close();
+                }
+            }
+            txtAlogrithmNumber.Text = Convert.ToString(currentMaxVersion + 1);
+        }
         #endregion
         //private void WriteXml ( DataTable dt ) {
         //    string timeCode = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");

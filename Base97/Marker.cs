@@ -37,7 +37,7 @@ namespace Nls.Base97 {
             Stopwatch sw = new Stopwatch();
             sw.Start();
             Retrieve.VerifyResponsesExistForItem(_items, _dsLinks);
-            Int16[] bioparentLiveYears = { 1980, 1979, 1978, 1977, 1976 };
+            //Int16[] bioparentLiveYears = { 1980, 1979, 1978, 1977, 1976 };
             Int32 recordsAdded = 0;
             Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_dsLinks);
             foreach( Int16 extendedID in extendedIDs ) {
