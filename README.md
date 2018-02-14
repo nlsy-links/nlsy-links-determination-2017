@@ -15,29 +15,29 @@ This repository contains the products from our current grant (that started in 20
 
 Tables related to an *Item*:
 
-[![item](data-public/metadata/database/diagrams/item.png)](data-public/metadata/database/diagrams)
+[![item](data-public/metadata/database/diagrams-79/item.png)](data-public/metadata/database/diagrams)
 
 Tables related to an *Marker*:
 
-[![marker](data-public/metadata/database/diagrams/marker.png)](data-public/metadata/database/diagrams)
+[![marker](data-public/metadata/database/diagrams-79/marker.png)](data-public/metadata/database/diagrams)
 
 Tables related to an *Relationship*:
 
-[![relationship](data-public/metadata/database/diagrams/relationship.png)](data-public/metadata/database/diagrams)
+[![relationship](data-public/metadata/database/diagrams-79/relationship.png)](data-public/metadata/database/diagrams)
 
 Tables related to an *Subject*:
 
-[![subject](data-public/metadata/database/diagrams/subject.png)](data-public/metadata/database/diagrams)
+[![subject](data-public/metadata/database/diagrams-79/subject.png)](data-public/metadata/database/diagrams)
 
 Additional Information:
-1. Some metadata sets are described in [CSVs](data-public/metadata/tables).  The metadata tables are [uploaded to the database](utility/import-metadata.R),  [logged](stitched-output/utility/import-metadata.md), and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/stitched-output/utility/import-metadata.md).
+1. Some metadata sets are described in [CSVs](data-public/metadata/tables-79).  The metadata tables are [uploaded to the database](utility/import-metadata.R),  [logged](stitched-output/utility/import-metadata.md), and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/stitched-output/utility/import-metadata.md).
 1. Other metadata sets that are hardcoded into the C#:
     * [Enums](Base79/Enums.cs)
     * [EnumResponses](Base79/EnumResponses.cs)
     * [EnumResponsesGen1](Base79/EnumResponsesGen1.cs)
     * [EnumResponsesGen2](Base79/EnumResponsesGen2.cs)
 1. Row & columns counts for each table are [available](analysis/eda/counts/counts.md) and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/analysis/eda/counts/counts.md).
-1. For the masochistically curious, the full database is described [in SQL]([item](data-public/metadata/database/generate-db.sql).
+1. For the masochistically curious, the full database is described [in SQL](data-public/metadata/database/generate-db-79.sql).
 
 ## Aims
 >This application requests funds to continue our past NLSY kinship linking efforts, and to use recently-developed kinship links in new and innovative empirical research.  With previous support from a recent NIH grant, we updated kinship links for two National Longitudinal Survey of Youth datasets (NLSY79 and NLSY-Children/Young Adults), completed in 2013.  The proposed research will identify and circulate links for a third NLSY dataset, the NLSY97, and will provide data for four proposed studies that use the kinship link structure from all three datasets.
