@@ -54,7 +54,7 @@ namespace LinksGui {
             LoadSubjectDetails();
             LoadMarker();
             LoadRelatedValues();
-            //LoadRelatedValuesNextVersionNumber();
+            LoadRelatedValuesNextVersionNumber();
             sw.Stop();
             string message = string.Format("DataSets loaded (Elapsed time: {0})", sw.Elapsed.ToString());
             Trace.WriteLine(message);
