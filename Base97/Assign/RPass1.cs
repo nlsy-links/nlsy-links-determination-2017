@@ -211,7 +211,7 @@ namespace Nls.Base97.Assign {
             if( isMZ == Base97.Tristate.Yes ) {
                 return RCoefficients.MzTrue;
             } else if( isRelatedInMZManual == Tristate.No ) {
-                return RCoefficients.NotRelated; //Of the 21 Gen1 subjects in tblMZManual with Related=0, 17 ended up with R=0 (as of 11/9/2012).  1 was assigned R=.5; 3 were assigned R=NULL (which I want to override now here, looking at the DOB differences).
+                return RCoefficients.NotRelated; 
             } else if( isMZ == Base97.Tristate.DoNotKnow && isRelatedInMZManual == Tristate.Yes ) {
                 Trace.Assert(multiple == MultipleBirth.Twin || multiple == MultipleBirth.Trip || multiple == MultipleBirth.TwinOrTrip, "To be assigned full sib, they've got to be assigned to be a twin/trip.");
                 return RCoefficients.MzAmbiguous;

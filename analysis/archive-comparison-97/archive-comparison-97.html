@@ -224,7 +224,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Comparison of Versions of NLSY97 Kinship Links</h1>
-<h4 class="date"><em>Date: 2018-02-13</em></h4>
+<h4 class="date"><em>Date: 2018-02-14</em></h4>
 
 </div>
 
@@ -245,21 +245,133 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>The current report compares the versions of the NLSY97 Links
 <ul>
-<li>1: naive roster.</li>
 <li>2: account for twins.</li>
+<li>3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.</li>
 </ul></li>
 </ol>
 </div>
 </div>
 <div id="comparison-of-agreement" class="section level1">
 <h1>Comparison of Agreement</h1>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="table-of-r-assignments" class="section level1">
 <h1>Table of <em>R</em> Assignments</h1>
 <table>
 <caption>
 Counts for 97 Housemates
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+R
+</th>
+<th style="text-align:right;">
+Implicit
+</th>
+<th style="text-align:right;">
+Explicit
+</th>
+<th style="text-align:right;">
+Roster
+</th>
+<th style="text-align:right;">
+Eventual
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+2,519
+</td>
+<td style="text-align:right;">
+2,519
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+1,318
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.250
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+126
+</td>
+<td style="text-align:right;">
+124
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.500
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2,111
+</td>
+<td style="text-align:right;">
+1,049
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+28
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<table>
+<caption>
+Counts for 97 Housemates (Previous version of links)
 </caption>
 <thead>
 <tr>
@@ -369,106 +481,11 @@ NA
 </tbody>
 </table></li>
 </ul>
-<table>
-<caption>
-Counts for 97 Housemates (Previous version of links)
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-R
-</th>
-<th style="text-align:right;">
-Implicit
-</th>
-<th style="text-align:right;">
-Explicit
-</th>
-<th style="text-align:right;">
-Roster
-</th>
-<th style="text-align:right;">
-Eventual
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<ul>
-<li></td>
-<td style="text-align:right;">
-2,519
-</td>
-<td style="text-align:right;">
-2,519
-</td>
-<td style="text-align:right;">
-1,202
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-174
-</td>
-<td style="text-align:right;">
-1,376
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.250
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-126
-</td>
-<td style="text-align:right;">
-126
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.500
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1,017
-</td>
-<td style="text-align:right;">
-1,017
-</td>
-</tr>
-</tbody>
-</table></li>
-</ul>
 </div>
 <div id="breakdown-of-agreements" class="section level1">
 <h1>Breakdown of Agreements</h1>
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 18:09:48 2018 -->
+<!-- Wed Feb 14 13:08:53 2018 -->
 <table border="1">
 <caption align="bottom">
 Joint Frequencies for 97 Housemates
@@ -493,25 +510,7 @@ Delta
 
 <tr>
 <td align="right">
-1202
-</td>
-<td align="right">
-<ul>
-<li></td>
-<td align="right">
-<ul>
-<li></td>
-<td align="right">
-<ul>
-<li></td>
-<td align="right">
-0
-</td>
-</tr>
-
-<tr>
-<td align="right">
-1017
+2111
 </td>
 <td align="right">
 <ul>
@@ -523,7 +522,7 @@ Delta
 0.500
 </td>
 <td align="right">
-0
+1094
 </td>
 </tr>
 
@@ -562,6 +561,24 @@ Delta
 0
 </td>
 </tr>
+
+<tr>
+<td align="right">
+108
+</td>
+<td align="right">
+<ul>
+<li></td>
+<td align="right">
+<ul>
+<li></td>
+<td align="right">
+<ul>
+<li></td>
+<td align="right">
+-1094
+</td>
+</tr>
 </table></li>
 </ul></li>
 </ul></li>
@@ -581,70 +598,81 @@ Delta
 <pre><code> setting  value                                      
  version  R version 3.4.3 Patched (2018-01-25 r74163)
  system   x86_64, mingw32                            
- ui       RTerm                                      
+ ui       RStudio (1.1.393)                          
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-02-13                                 </code></pre>
+ date     2018-02-14                                 </code></pre>
 <pre><code>Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code> package    * version    date       source                            
- assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                    
- backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                    
- base       * 3.4.3      2018-01-26 local                             
- bindr        0.1        2016-11-13 CRAN (R 3.4.2)                    
- bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                    
- bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                    
- bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                    
- blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                    
- checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                    
- colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                    
- compiler     3.4.3      2018-01-26 local                             
- datasets   * 3.4.3      2018-01-26 local                             
- DBI          0.7        2017-06-18 CRAN (R 3.4.2)                    
- devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                    
- digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                    
- dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)  
- evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                    
- ggplot2    * 2.2.1.9000 2017-12-20 Github (tidyverse/ggplot2@bfff1d8)
- glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                    
- graphics   * 3.4.3      2018-01-26 local                             
- grDevices  * 3.4.3      2018-01-26 local                             
- grid         3.4.3      2018-01-26 local                             
- gtable       0.2.0      2016-02-26 CRAN (R 3.4.2)                    
- highr        0.6        2016-05-09 CRAN (R 3.4.2)                    
- hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                    
- htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                    
- knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                    
- labeling     0.3        2014-08-23 CRAN (R 3.4.1)                    
- lazyeval     0.2.1      2017-10-29 CRAN (R 3.4.2)                    
- magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                    
- memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                    
- methods    * 3.4.3      2018-01-26 local                             
- munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                    
- odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                    
- pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                    
- pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                    
- plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                    
- purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                    
- R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                    
- Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                    
- rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)  
- rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                    
- rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                    
- scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)    
- stats      * 3.4.3      2018-01-26 local                             
- stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                    
- stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                    
- testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)     
- tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                    
- tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                    
- tools        3.4.3      2018-01-26 local                             
- utils      * 3.4.3      2018-01-26 local                             
- withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)  
- xtable     * 1.8-2      2016-02-05 CRAN (R 3.4.2)                    
- yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                    </code></pre>
+<pre><code> package    * version    date       source                               
+ assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                       
+ backports    1.1.2      2017-12-13 CRAN (R 3.4.3)                       
+ base       * 3.4.3      2018-01-26 local                                
+ bindr        0.1        2016-11-13 CRAN (R 3.4.2)                       
+ bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                       
+ bit          1.1-12     2014-04-09 CRAN (R 3.4.1)                       
+ bit64        0.9-7      2017-05-08 CRAN (R 3.4.1)                       
+ blob         1.1.0      2017-06-17 CRAN (R 3.4.2)                       
+ checkmate    1.8.5      2017-10-24 CRAN (R 3.4.2)                       
+ cli          1.0.0      2017-11-05 CRAN (R 3.4.2)                       
+ colorspace   1.3-2      2016-12-14 CRAN (R 3.4.2)                       
+ compiler     3.4.3      2018-01-26 local                                
+ config       0.2        2016-08-02 CRAN (R 3.4.2)                       
+ crayon       1.3.4      2017-09-16 CRAN (R 3.4.1)                       
+ datasets   * 3.4.3      2018-01-26 local                                
+ DBI        * 0.7        2017-06-18 CRAN (R 3.4.2)                       
+ devtools     1.13.4     2017-11-09 CRAN (R 3.4.2)                       
+ digest       0.6.15     2018-01-28 CRAN (R 3.4.3)                       
+ dplyr        0.7.4.9000 2018-01-26 Github (tidyverse/dplyr@3f91e1e)     
+ evaluate     0.10.1     2017-06-24 CRAN (R 3.4.2)                       
+ ggplot2    * 2.2.1.9000 2017-12-20 Github (tidyverse/ggplot2@bfff1d8)   
+ glue         1.2.0      2017-10-29 CRAN (R 3.4.2)                       
+ graphics   * 3.4.3      2018-01-26 local                                
+ grDevices  * 3.4.3      2018-01-26 local                                
+ grid         3.4.3      2018-01-26 local                                
+ gtable       0.2.0      2016-02-26 CRAN (R 3.4.2)                       
+ highr        0.6        2016-05-09 CRAN (R 3.4.2)                       
+ hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                       
+ htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                       
+ knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                       
+ labeling     0.3        2014-08-23 CRAN (R 3.4.1)                       
+ lazyeval     0.2.1      2017-10-29 CRAN (R 3.4.2)                       
+ magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                       
+ markdown     0.8        2017-04-20 CRAN (R 3.4.2)                       
+ memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                       
+ methods    * 3.4.3      2018-01-26 local                                
+ munsell      0.4.3      2016-02-13 CRAN (R 3.4.2)                       
+ odbc         1.1.5      2018-01-23 CRAN (R 3.4.3)                       
+ OuhscMunge   0.1.8.9006 2018-02-14 Github (OuhscBbmc/OuhscMunge@ce0a489)
+ pillar       1.1.0      2018-01-14 CRAN (R 3.4.3)                       
+ pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                       
+ plyr         1.8.4      2016-06-08 CRAN (R 3.4.2)                       
+ purrr        0.2.4      2017-10-18 CRAN (R 3.4.2)                       
+ R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                       
+ Rcpp         0.12.15    2018-01-20 CRAN (R 3.4.3)                       
+ readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                       
+ rlang        0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)     
+ rmarkdown    1.8        2017-11-17 CRAN (R 3.4.2)                       
+ RODBC        1.3-15     2017-04-13 CRAN (R 3.4.1)                       
+ rprojroot    1.3-2      2018-01-03 CRAN (R 3.4.3)                       
+ rsconnect    0.8.5      2017-08-23 CRAN (R 3.4.2)                       
+ rstudioapi   0.7        2017-09-07 CRAN (R 3.4.1)                       
+ scales       0.5.0.9000 2017-10-11 Github (hadley/scales@d767915)       
+ stats      * 3.4.3      2018-01-26 local                                
+ stringi      1.1.6      2017-11-17 CRAN (R 3.4.2)                       
+ stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                       
+ testit       0.7.1      2017-12-21 Github (yihui/testit@8a346dd)        
+ tibble       1.4.2      2018-01-22 CRAN (R 3.4.3)                       
+ tidyr        0.8.0      2018-01-29 CRAN (R 3.4.3)                       
+ tidyselect   0.2.3      2017-11-06 CRAN (R 3.4.2)                       
+ tools        3.4.3      2018-01-26 local                                
+ utf8         1.1.3      2018-01-03 CRAN (R 3.4.3)                       
+ utils      * 3.4.3      2018-01-26 local                                
+ withr        2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)     
+ xtable     * 1.8-2      2016-02-05 CRAN (R 3.4.2)                       
+ yaml         2.1.16     2017-12-12 CRAN (R 3.4.3)                       </code></pre>
 <p></details></p>
-<p>Report rendered by Will at 2018-02-13, 18:09 -0600 in 3 seconds.</p>
+<p>Report rendered by Will at 2018-02-14, 13:08 -0600 in 1 seconds.</p>
 </div>
 
 

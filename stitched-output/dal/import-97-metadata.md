@@ -177,6 +177,14 @@ ds_entries <- ds_file %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")
   )
+```
+
+```
+## Warning: 2 parsing failures.
+## row # A tibble: 2 x 5 col     row col   expected     actual                          file            expected   <int> <chr> <chr>        <chr>                           <chr>           actual 1     3 Date  "date like " and overridden if explicitly MZ 'data-public/m~ file 2     3 <NA>  3 columns    4 columns                       'data-public/m~
+```
+
+```r
 ds_entries
 ```
 
@@ -184,7 +192,7 @@ ds_entries
 ## # A tibble: 14 x 4
 ##    name               path                        col_types   entries     
 ##    <chr>              <chr>                       <list>      <list>      
-##  1 ArchiveDescription data-public/metadata/table~ <S3: col_s~ <tibble [1 ~
+##  1 ArchiveDescription data-public/metadata/table~ <S3: col_s~ <tibble [3 ~
 ##  2 item               data-public/metadata/table~ <S3: col_s~ <tibble [26~
 ##  3 LUExtractSource    data-public/metadata/table~ <S3: col_s~ <tibble [6 ~
 ##  4 LUMarkerEvidence   data-public/metadata/table~ <S3: col_s~ <tibble [8 ~
@@ -213,8 +221,8 @@ ds_table
 ## # A tibble: 31 x 6
 ##    schema_name table_name            row_count column_count space_total_kb
 ##  * <chr>       <chr>                     <int>        <int>          <int>
-##  1 Archive     tblArchiveDescription         1            3             72
-##  2 Archive     tblRelatedValuesArch~      2519           23            664
+##  1 Archive     tblArchiveDescription         2            3             72
+##  2 Archive     tblRelatedValuesArch~      7557           23           1048
 ##  3 dbo         sysdiagrams                   0            5              0
 ##  4 Enum        tblLUExtractSource            6            4             72
 ##  5 Enum        tblLUGender                   3            4             72
@@ -279,10 +287,12 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 1 x 3
-##   AlgorithmVersion Description  Date      
-##              <int> <chr>        <date>    
-## 1                1 naive roster 2018-01-17
+## # A tibble: 3 x 3
+##   AlgorithmVersion Description                             Date      
+##              <int> <chr>                                   <date>    
+## 1                1 naive roster                            2018-01-17
+## 2                2 account for twins                       2018-01-18
+## 3                3 same sib full twins are R=.5 by default NA        
 ## # A tibble: 26 x 7
 ##       ID Label           MinValue MinNonnegative MaxValue Active Notes    
 ##    <int> <chr>              <int>          <int>    <int> <lgl>  <chr>    
@@ -400,9 +410,9 @@ ds_file$entries %>%
 ##    <int>         <int>         <int> <int>    <int>  <dbl>       <dbl>
 ##  1     1           - 2           - 1     2        0 NA           0    
 ##  2     2           - 1           - 1     2        0 NA           0    
-##  3     3            13            13  1034        0 NA           0.500
+##  3     3            13            13  1034        0  0.500       0.500
 ##  4     4            13            14  2034        1  0.500       0.500
-##  5     5            14            14  1154        0 NA           0.500
+##  5     5            14            14  1154        0  0.500       0.500
 ##  6     6            15            15    48        1  0.250       0.250
 ##  7     7            15            18   132        1  0.250       0.250
 ##  8     8            16            19     2        1  0.250       0.250
@@ -995,59 +1005,7 @@ purrr::pmap_int(
 ```
 
 ```
-## Writing to table tblitem
-```
-
-```
-## Writing to table tblLUExtractSource
-```
-
-```
-## Writing to table tblLUMarkerEvidence
-```
-
-```
-## Writing to table tblLUGender
-```
-
-```
-## Writing to table tblLUMarkerType
-```
-
-```
-## Writing to table tblLUMultipleBirth
-```
-
-```
-## Writing to table tblLURaceCohort
-```
-
-```
-## Writing to table tblLURoster
-```
-
-```
-## Writing to table tblLUTristate
-```
-
-```
-## Writing to table tblLUYesNo
-```
-
-```
-## Writing to table tblMzManual
-```
-
-```
-## Writing to table tblRosterAssignment
-```
-
-```
-## Writing to table tblvariable
-```
-
-```
-##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## Error in RODBC::sqlSave(channel = channel_rodbc, dat = d, tablename = paste0(schema_name, : unable to append to table 'Archive.tblArchiveDescription'
 ```
 
 ```r
@@ -1125,7 +1083,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-02-13, 17:46 -0600 in 18 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-02-14, 12:53 -0600 in 13 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1154,27 +1112,27 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.19         bindrcpp_0.2       magrittr_1.5      
-## [4] ggplot2_2.2.1.9000 xtable_1.8-2      
+## [1] ggplot2_2.2.1.9000 xtable_1.8-2       knitr_1.19        
+## [4] bindrcpp_0.2       DBI_0.7            magrittr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.15      highr_0.6         pillar_1.1.0     
-##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
-##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
-## [10] bit_1.1-12        memoise_1.1.0     checkmate_1.8.5  
-## [13] evaluate_0.10.1   tibble_1.4.2      gtable_0.2.0     
-## [16] pkgconfig_2.0.1   rlang_0.1.6.9003  cli_1.0.0        
-## [19] rstudioapi_0.7    DBI_0.7           yaml_2.1.16      
-## [22] withr_2.1.1.9000  dplyr_0.7.4.9000  stringr_1.2.0    
-## [25] devtools_1.13.4   hms_0.4.1         rprojroot_1.3-2  
-## [28] bit64_0.9-7       grid_3.4.3        tidyselect_0.2.3 
-## [31] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
-## [34] tidyr_0.8.0       readr_1.1.1       purrr_0.2.4      
-## [37] blob_1.1.0        RODBC_1.3-15      backports_1.1.2  
-## [40] scales_0.5.0.9000 htmltools_0.3.6   testit_0.7.1     
-## [43] rsconnect_0.8.5   assertthat_0.2.0  colorspace_1.3-2 
-## [46] labeling_0.3      utf8_1.1.3        stringi_1.1.6    
-## [49] lazyeval_0.2.1    munsell_0.4.3     markdown_0.8     
+##  [1] Rcpp_0.12.15          highr_0.6             plyr_1.8.4           
+##  [4] pillar_1.1.0          compiler_3.4.3        bindr_0.1            
+##  [7] tools_3.4.3           odbc_1.1.5            digest_0.6.15        
+## [10] bit_1.1-12            gtable_0.2.0          memoise_1.1.0        
+## [13] evaluate_0.10.1       tibble_1.4.2          checkmate_1.8.5      
+## [16] pkgconfig_2.0.1       rlang_0.1.6.9003      cli_1.0.0            
+## [19] rstudioapi_0.7        yaml_2.1.16           withr_2.1.1.9000     
+## [22] dplyr_0.7.4.9000      stringr_1.2.0         devtools_1.13.4      
+## [25] hms_0.4.1             grid_3.4.3            bit64_0.9-7          
+## [28] rprojroot_1.3-2       tidyselect_0.2.3      OuhscMunge_0.1.8.9006
+## [31] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
+## [34] tidyr_0.8.0           readr_1.1.1           purrr_0.2.4          
+## [37] blob_1.1.0            RODBC_1.3-15          scales_0.5.0.9000    
+## [40] backports_1.1.2       htmltools_0.3.6       assertthat_0.2.0     
+## [43] testit_0.7.1          colorspace_1.3-2      labeling_0.3         
+## [46] config_0.2            utf8_1.1.3            stringi_1.1.6        
+## [49] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
 ## [52] crayon_1.3.4
 ```
 
@@ -1183,6 +1141,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-02-13 17:46:15 CST"
+## [1] "2018-02-14 12:53:27 CST"
 ```
 

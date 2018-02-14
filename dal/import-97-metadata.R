@@ -23,7 +23,7 @@ requireNamespace("odbc"                   ) #For communicating with SQL Server o
 # Constant values that won't change.
 directory_in              <- "data-public/metadata/tables-97"
 study                     <- "97"
-shallow_only              <- T   # If TRUE, update only the metadata tables that won't delete any other database tables.
+shallow_only              <- F   # If TRUE, update only the metadata tables that won't delete any other database tables.
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -139,7 +139,7 @@ ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
 ds_entries <- ds_file %>%
-  # dplyr::slice(1:9) %>%
+  # dplyr::slice(14) %>%
   dplyr::select(name, path, col_types) %>%
   dplyr::mutate(
     entries = purrr::pmap(list(file=.$path, col_types=.$col_types), readr::read_csv, comment = "#")
