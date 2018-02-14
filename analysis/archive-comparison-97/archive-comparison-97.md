@@ -40,7 +40,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
     * 1: naive roster.
-    * 1: naive roster.
+    * 2: account for twins.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
@@ -60,9 +60,9 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 <tbody>
   <tr>
    <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2519 </td>
-   <td style="text-align:right;"> 2519 </td>
-   <td style="text-align:right;"> 1202 </td>
+   <td style="text-align:right;"> 2,519 </td>
+   <td style="text-align:right;"> 2,519 </td>
+   <td style="text-align:right;"> 1,202 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
@@ -70,21 +70,28 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 174 </td>
-   <td style="text-align:right;"> 1376 </td>
+   <td style="text-align:right;"> 1,318 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.250 </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 126 </td>
-   <td style="text-align:right;"> 126 </td>
+   <td style="text-align:right;"> 124 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.500 </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1017 </td>
-   <td style="text-align:right;"> 1017 </td>
+   <td style="text-align:right;"> 1,017 </td>
+   <td style="text-align:right;"> 1,049 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1.000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 28 </td>
   </tr>
 </tbody>
 </table>
@@ -103,9 +110,9 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 <tbody>
   <tr>
    <td style="text-align:left;"> - </td>
-   <td style="text-align:right;"> 2519 </td>
-   <td style="text-align:right;"> 2519 </td>
-   <td style="text-align:right;"> 1202 </td>
+   <td style="text-align:right;"> 2,519 </td>
+   <td style="text-align:right;"> 2,519 </td>
+   <td style="text-align:right;"> 1,202 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
@@ -113,7 +120,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> 174 </td>
-   <td style="text-align:right;"> 1376 </td>
+   <td style="text-align:right;"> 1,376 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.250 </td>
@@ -126,15 +133,15 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:left;"> 0.500 </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1017 </td>
-   <td style="text-align:right;"> 1017 </td>
+   <td style="text-align:right;"> 1,017 </td>
+   <td style="text-align:right;"> 1,017 </td>
   </tr>
 </tbody>
 </table>
 
 # Breakdown of Agreements 
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 17:58:34 2018 -->
+<!-- Tue Feb 13 18:09:48 2018 -->
 <table border=1>
 <caption align="bottom"> Joint Frequencies for 97 Housemates </caption>
 <tr> <th> Count </th> <th> RImplicit </th> <th> RExplicit </th> <th> RRoster </th> <th> Delta </th>  </tr>
@@ -233,4 +240,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 17:58 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-13, 18:09 -0600 in 3 seconds.

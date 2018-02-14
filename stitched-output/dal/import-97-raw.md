@@ -603,7 +603,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-02-13, 14:01 -0600 in 15 seconds.
+## File completed by `Will` at 2018-02-13, 17:46 -0600 in 14 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -632,18 +632,28 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.19         bindrcpp_0.2       magrittr_1.5      
+## [4] ggplot2_2.2.1.9000 xtable_1.8-2      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.15     rstudioapi_0.7   knitr_1.19       bindr_0.1       
-##  [5] hms_0.4.1        odbc_1.1.5       tidyselect_0.2.3 bit_1.1-12      
-##  [9] testit_0.7.1     R6_2.2.2         rlang_0.1.6.9003 stringr_1.2.0   
-## [13] blob_1.1.0       dplyr_0.7.4.9000 tools_3.4.3      checkmate_1.8.5 
-## [17] utf8_1.1.3       cli_1.0.0        DBI_0.7          yaml_2.1.16     
-## [21] bit64_0.9-7      assertthat_0.2.0 tibble_1.4.2     crayon_1.3.4    
-## [25] purrr_0.2.4      readr_1.1.1      tidyr_0.8.0      RODBC_1.3-15    
-## [29] evaluate_0.10.1  glue_1.2.0       stringi_1.1.6    compiler_3.4.3  
-## [33] pillar_1.1.0     backports_1.1.2  markdown_0.8     pkgconfig_2.0.1
+##  [1] Rcpp_0.12.15      highr_0.6         pillar_1.1.0     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       odbc_1.1.5        digest_0.6.15    
+## [10] bit_1.1-12        memoise_1.1.0     checkmate_1.8.5  
+## [13] evaluate_0.10.1   tibble_1.4.2      gtable_0.2.0     
+## [16] pkgconfig_2.0.1   rlang_0.1.6.9003  cli_1.0.0        
+## [19] rstudioapi_0.7    DBI_0.7           yaml_2.1.16      
+## [22] withr_2.1.1.9000  dplyr_0.7.4.9000  stringr_1.2.0    
+## [25] devtools_1.13.4   hms_0.4.1         rprojroot_1.3-2  
+## [28] bit64_0.9-7       grid_3.4.3        tidyselect_0.2.3 
+## [31] glue_1.2.0        R6_2.2.2          rmarkdown_1.8    
+## [34] tidyr_0.8.0       readr_1.1.1       purrr_0.2.4      
+## [37] blob_1.1.0        RODBC_1.3-15      backports_1.1.2  
+## [40] scales_0.5.0.9000 htmltools_0.3.6   testit_0.7.1     
+## [43] rsconnect_0.8.5   assertthat_0.2.0  colorspace_1.3-2 
+## [46] labeling_0.3      utf8_1.1.3        stringi_1.1.6    
+## [49] lazyeval_0.2.1    munsell_0.4.3     markdown_0.8     
+## [52] crayon_1.3.4
 ```
 
 ```r
@@ -651,6 +661,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-02-13 14:01:45 CST"
+## [1] "2018-02-13 17:46:30 CST"
 ```
 

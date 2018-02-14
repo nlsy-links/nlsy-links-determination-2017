@@ -337,7 +337,7 @@ namespace LinksGui {
             btnMarker_Click(sender, e);
             btnRelatedValues_Click(sender, e);
             btnOutcome_Click(sender, e);
-            btnRelatedValuesArchive_Click(sender, e);
+            //btnRelatedValuesArchive_Click(sender, e);
 
             sw.Stop();
             string message = string.Format("Elapsed time for btnCombine2 operations: {0}", sw.Elapsed.ToString());
