@@ -4,5 +4,7 @@ default:
   outcomes-79-subject-rds:        "./data-public/derived/outcomes-79-subject.rds"
   outcomes-79-subject-survey-csv: "./data-public/derived/outcomes-79-subject-survey-v%i.csv"
   outcomes-79-subject-survey-rds: "./data-public/derived/outcomes-79-subject-survey.rds"
-  links_97_current:               "./data-public/derived/links-2017-v%i.csv"
+  links_79_current:               "./data-public/derived/links-2017-79-v%i.csv"
+  links_79_archive:               "./data-public/derived/links-2017-79-archive.csv"
+  links_97_current:               "./data-public/derived/links-2017-97-v%i.csv"
   links_97_archive:               "./data-public/derived/links-2017-97-archive.csv"
