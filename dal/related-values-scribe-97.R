@@ -57,39 +57,74 @@ requireNamespace("OuhscMunge"   ) # remotes::install_github(repo="OuhscBbmc/Ouhs
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
+config              <- config::get()
 
 sql <- "
 	SELECT
-	  rs.ExtendedID,
-	  rs.SubjectTag_S1,
-	  rs.SubjectTag_S2,
-	  s1.SubjectID             AS SubjectID_S1,
-	  s2.SubjectID             AS SubjectID_S2,
-	  rs.RelationshipPath,
-	  rs.EverSharedHouse,
-	  rv.R,
-	  rv.RFull,
-	  rv.MultipleBirthIfSameSex,
-	  rv.IsMz,
-	  rv.LastSurvey_S1,
-	  rv.LastSurvey_S2,
-	  rv.RImplicitPass1,
-	  rv.RImplicit,
-	  -- rv.RImplicit2004,
-	  -- rv.RImplicit - rv.RImplicit2004 AS RImplicitDifference,
-	  rv.RExplicit,
-	  rv.RExplicitPass1,
-	  rv.RPass1,
-	  rv.RExplicitOlderSibVersion,
-	  rv.RExplicitYoungerSibVersion,
-	  rv.RImplicitSubject,
-	  rv.RImplicitMother
-	FROM Process.tblRelatedStructure rs
-	  LEFT JOIN Process.tblRelatedValues rv ON rs.ID = rv.ID
-	  LEFT JOIN Process.tblSubject s1 ON rs.SubjectTag_S1 = s1.SubjectID
-	  LEFT JOIN Process.tblSubject s2 ON rs.SubjectTag_S2 = s2.SubjectID
+    rs.ExtendedID,
+    rs.SubjectTag_S1,
+    rs.SubjectTag_S2,
+    s1.SubjectID             AS SubjectID_S1,
+    s2.SubjectID             AS SubjectID_S2,
+    rs.RelationshipPath,
+    rs.EverSharedHouse,
+    rv.R,
+    rv.RFull,
+    rv.MultipleBirthIfSameSex,
+    rv.IsMz,
+    rv.LastSurvey_S1,
+    rv.LastSurvey_S2,
+    rv.RImplicitPass1,
+    rv.RImplicit,
+    -- rv.RImplicit2004,
+    -- rv.RImplicit - rv.RImplicit2004 AS RImplicitDifference,
+    rv.RExplicit,
+    rv.RExplicitPass1,
+    rv.RPass1,
+    rv.RExplicitOlderSibVersion,
+    rv.RExplicitYoungerSibVersion,
+    rv.RImplicitSubject,
+    rv.RImplicitMother
+  FROM Process.tblRelatedStructure rs
+    LEFT JOIN Process.tblRelatedValues rv ON rs.ID = rv.ID
+    LEFT JOIN Process.tblSubject s1 ON rs.SubjectTag_S1 = s1.SubjectID
+    LEFT JOIN Process.tblSubject s2 ON rs.SubjectTag_S2 = s2.SubjectID
   WHERE rs.SubjectTag_S1 < rs.SubjectTag_S2
   ORDER BY ExtendedID, SubjectTag_S1, SubjectTag_S2
+"
+sql_archive <- "
+  SELECT
+    --a.ID
+    a.AlgorithmVersion
+    ,rs.ExtendedID
+    ,a.SubjectTag_S1
+    ,a.SubjectTag_S2
+    ,s1.SubjectID             AS SubjectID_S1
+    ,s2.SubjectID             AS SubjectID_S2
+    ,a.MultipleBirthIfSameSex
+    ,a.IsMz
+    ,a.SameGeneration
+    ,a.RosterAssignmentID
+    ,a.RRoster
+    ,a.LastSurvey_S1
+    ,a.LastSurvey_S2
+    ,a.RImplicitPass1
+    ,a.RImplicit
+    ,a.RImplicitSubject
+    ,a.RImplicitMother
+    ,a.RExplicitOldestSibVersion         AS RExplicitOlderSibVersion
+    ,a.RExplicitYoungestSibVersion       AS RExplicitYoungerSibVersion
+    ,a.RExplicitPass1
+    ,a.RExplicit
+    ,a.RPass1
+    ,a.R
+    ,a.RFull
+    ,a.RPeek
+  FROM [NlsyLinks97].[Archive].[tblRelatedValuesArchive]  a
+    LEFT JOIN Process.tblRelatedStructure rs          ON (a.SubjectTag_S1=rs.SubjectTag_S1 AND a.SubjectTag_S2=rs.SubjectTag_S2)
+    LEFT JOIN Process.tblSubject s1                   ON a.SubjectTag_S1 = s1.SubjectID
+    LEFT JOIN Process.tblSubject s2                   ON a.SubjectTag_S2 = s2.SubjectID
+  ORDER BY a.AlgorithmVersion, rs.ExtendedID, a.SubjectTag_S1, a.SubjectTag_S2
 "
 sql_description <- "
   SELECT MAX(AlgorithmVersion) as AlgorithmVersion
@@ -99,14 +134,14 @@ sql_description <- "
 # ---- load-data ---------------------------------------------------------------
 channel            <- open_dsn_channel_odbc(study = "97")
 # DBI::dbGetInfo(channel)
-ds               <- DBI::dbGetQuery(channel, sql)
-ds_description   <- DBI::dbGetQuery(channel, sql_description)
-DBI::dbDisconnect(channel, sql, sql_description)
+ds                <- DBI::dbGetQuery(channel, sql)
+ds_archive        <- DBI::dbGetQuery(channel, sql_archive)
+ds_description    <- DBI::dbGetQuery(channel, sql_description)
+DBI::dbDisconnect(channel, sql, sql_archive, sql_description)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
-path_out <- sprintf("data-public/derived/links-2017-v%i.csv", ds_description$AlgorithmVersion)
-
+path_out_current    <- sprintf(config$links_97_current, ds_description$AlgorithmVersion)
 
 ds <- ds %>%
   tibble::as_tibble() %>%
@@ -116,7 +151,24 @@ ds <- ds %>%
     RExplicitOlderSibVersion    = NA_real_,
     RExplicitYoungerSibVersion  = NA_real_
 
+    # RExplicitOlderSibVersion    = as.numeric(RExplicitOlderSibVersion   ),
+    # RExplicitYoungerSibVersion  = as.numeric(RExplicitYoungerSibVersion )
   )
+
+ds_archive <- ds_archive %>%
+  tibble::as_tibble() %>%
+  dplyr::mutate(
+    RExplicit                   = NA_real_,
+    RExplicitPass1              = NA_real_,
+    RExplicitOlderSibVersion    = NA_real_,
+    RExplicitYoungerSibVersion  = NA_real_
+
+    # RExplicitOlderSibVersion    = as.numeric(RExplicitOlderSibVersion   ),
+    # RExplicitYoungerSibVersion  = as.numeric(RExplicitYoungerSibVersion )
+  )
+#
+# ds <- ds_archive %>%
+#   dplyr::filter(.data$AlgorithmVersion == max(.data$AlgorithmVersion))
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
@@ -153,7 +205,8 @@ checkmate::assert_character(subject_combo, pattern  ="^\\d{1,4}vs\\d{1,4}$"     
 # dput(colnames(ds)) # Print colnames for line below.
 columns_to_write <- c(
   "ExtendedID", "SubjectTag_S1", "SubjectTag_S2", "SubjectID_S1",
-  "SubjectID_S2", "RelationshipPath", "EverSharedHouse", "R", "RFull",
+  "SubjectID_S2", "RelationshipPath", "EverSharedHouse",
+  "R", "RFull",
   "MultipleBirthIfSameSex", "IsMz", "LastSurvey_S1", "LastSurvey_S2",
   "RImplicitPass1", "RImplicit", "RExplicit", "RExplicitPass1",
   "RPass1", "RExplicitOlderSibVersion", "RExplicitYoungerSibVersion",
@@ -168,4 +221,6 @@ rm(columns_to_write)
 
 # ---- save-to-disk ------------------------------------------------------------
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
-readr::write_csv(ds, path_out)
+readr::write_csv(ds_slim, path_out_current)
+
+readr::write_csv(ds_archive, config$links_97_archive)
