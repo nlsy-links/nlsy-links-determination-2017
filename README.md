@@ -30,7 +30,7 @@ Tables related to an *Subject*:
 [![subject](data-public/metadata/database/diagrams-79/subject.png)](data-public/metadata/database/diagrams)
 
 Additional Information:
-1. Some metadata sets are described in [CSVs](data-public/metadata/tables-79).  The metadata tables are [uploaded to the database](utility/import-metadata.R),  [logged](stitched-output/utility/import-metadata.md), and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/stitched-output/utility/import-metadata.md).
+1. Some metadata sets are described in [CSVs](data-public/metadata/tables-79).  The metadata tables are [uploaded to the database](dal/) and [logged](stitched-output/dal/).
 1. Other metadata sets that are hardcoded into the C#:
     * [Enums](Base79/Enums.cs)
     * [EnumResponses](Base79/EnumResponses.cs)
