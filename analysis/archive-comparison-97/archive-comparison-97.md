@@ -46,30 +46,95 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 ![](figure-png/graph-roc-1.png)<!-- -->
 
 # Table of *R* Assignments
-<!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 17:41:27 2018 -->
-<table border=1>
-<caption align="bottom"> Counts for 97 Housemates </caption>
-<tr> <th> R </th> <th> Implicit </th> <th> Explicit </th> <th> Roster </th> <th> Eventual </th>  </tr>
-  <tr> <td> - </td> <td align="right"> 2519 </td> <td align="right"> 2519 </td> <td align="right"> 1202 </td> <td align="right">   0 </td> </tr>
-  <tr> <td> 0.000 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 174 </td> <td align="right"> 1376 </td> </tr>
-  <tr> <td> 0.250 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 126 </td> <td align="right"> 126 </td> </tr>
-  <tr> <td> 0.500 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 1017 </td> <td align="right"> 1017 </td> </tr>
-   </table>
-<!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 17:41:27 2018 -->
-<table border=1>
-<caption align="bottom"> Counts for 97 Housemates (Previous version of links) </caption>
-<tr> <th> R </th> <th> Implicit </th> <th> Explicit </th> <th> Roster </th> <th> Eventual </th>  </tr>
-  <tr> <td> - </td> <td align="right"> 2519 </td> <td align="right"> 2519 </td> <td align="right"> 1202 </td> <td align="right">   0 </td> </tr>
-  <tr> <td> 0.000 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 174 </td> <td align="right"> 1376 </td> </tr>
-  <tr> <td> 0.250 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 126 </td> <td align="right"> 126 </td> </tr>
-  <tr> <td> 0.500 </td> <td align="right"> - </td> <td align="right"> - </td> <td align="right"> 1017 </td> <td align="right"> 1017 </td> </tr>
-   </table>
+<table>
+<caption>Counts for 97 Housemates</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> R </th>
+   <th style="text-align:right;"> Implicit </th>
+   <th style="text-align:right;"> Explicit </th>
+   <th style="text-align:right;"> Roster </th>
+   <th style="text-align:right;"> Eventual </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 2519 </td>
+   <td style="text-align:right;"> 2519 </td>
+   <td style="text-align:right;"> 1202 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 174 </td>
+   <td style="text-align:right;"> 1376 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.250 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 126 </td>
+   <td style="text-align:right;"> 126 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.500 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 1017 </td>
+   <td style="text-align:right;"> 1017 </td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<caption>Counts for 97 Housemates (Previous version of links)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> R </th>
+   <th style="text-align:right;"> Implicit </th>
+   <th style="text-align:right;"> Explicit </th>
+   <th style="text-align:right;"> Roster </th>
+   <th style="text-align:right;"> Eventual </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:right;"> 2519 </td>
+   <td style="text-align:right;"> 2519 </td>
+   <td style="text-align:right;"> 1202 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 174 </td>
+   <td style="text-align:right;"> 1376 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.250 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 126 </td>
+   <td style="text-align:right;"> 126 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 0.500 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 1017 </td>
+   <td style="text-align:right;"> 1017 </td>
+  </tr>
+</tbody>
+</table>
 
 # Breakdown of Agreements 
 <!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Tue Feb 13 17:41:27 2018 -->
+<!-- Tue Feb 13 17:58:34 2018 -->
 <table border=1>
 <caption align="bottom"> Joint Frequencies for 97 Housemates </caption>
 <tr> <th> Count </th> <th> RImplicit </th> <th> RExplicit </th> <th> RRoster </th> <th> Delta </th>  </tr>
@@ -131,6 +196,7 @@ Packages -----------------------------------------------------------------------
  grDevices  * 3.4.3      2018-01-26 local                             
  grid         3.4.3      2018-01-26 local                             
  gtable       0.2.0      2016-02-26 CRAN (R 3.4.2)                    
+ highr        0.6        2016-05-09 CRAN (R 3.4.2)                    
  hms          0.4.1      2018-01-24 CRAN (R 3.4.3)                    
  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.2)                    
  knitr      * 1.19       2018-01-29 CRAN (R 3.4.3)                    
@@ -167,4 +233,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-13, 17:41 -0600 in 4 seconds.
+Report rendered by Will at 2018-02-13, 17:58 -0600 in 3 seconds.

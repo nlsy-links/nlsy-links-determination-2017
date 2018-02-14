@@ -193,7 +193,7 @@ CreateMarginalTable  <- function( dsJoint ) {
       # Eventual  = scales::comma(Eventual),
 
 
-      R         = dplyr::if_else(R=="NA", "-", R),
+      R         = dplyr::if_else(R=="NA", "-", R)
       # Implicit  = dplyr::if_else(Implicit=="NA", "-", Implicit),
       # Explicit  = dplyr::if_else(Explicit=="NA", "-", Explicit),
       # Roster    = dplyr::if_else(Roster  =="NA", "-", Roster  ),
@@ -205,13 +205,28 @@ CreateMarginalTable  <- function( dsJoint ) {
 }
 # CreateMarginalTable(dsJoint=dsLatest)
 
-PrintMarginalTable <- function( dsJoint, caption ) {
-  dsTable   <- CreateMarginalTable(dsJoint)#[, 1:2]
-  textTable <- xtable(dsTable, caption=caption)
-  print(textTable, include.rownames=F, NA.string="-", size="large",  right =T, type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
-}
-PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
-PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
+dsLatest %>%
+  CreateMarginalTable() %>%
+  knitr::kable(
+    format      = output_type,
+    format.args = list(big.mark=","),
+    caption     = "Counts for 97 Housemates"
+  )
+dsPrevious %>%
+  CreateMarginalTable() %>%
+  knitr::kable(
+    format      = output_type,
+    format.args = list(big.mark=","),
+    caption     = "Counts for 97 Housemates (Previous version of links)"
+  )
+
+# PrintMarginalTable <- function( dsJoint, caption ) {
+#   dsTable   <- CreateMarginalTable(dsJoint)#[, 1:2]
+#   textTable <- xtable(dsTable, caption=caption)
+#   print(textTable, include.rownames=F, NA.string="-", size="large",  right =T, type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
+# }
+# PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
+# PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
 
 
 # ---- table-conditional -------------------------------------------------------
