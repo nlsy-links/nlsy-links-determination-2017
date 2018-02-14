@@ -8,7 +8,7 @@ This repository contains the products from our current grant (that started in 20
 * [David Bard](http://ouhsc.edu/bbmc/team/)
 * [Will Beasley](https://scholar.google.com/citations?user=ffsJTC0AAAAJ)
 * [Mike Hunter](http://ouhsc.edu/bbmc/team/)
-* [S. Marson Garrison](https://www.smasongarrison.com/)
+* [S. Mason Garrison](https://www.smasongarrison.com/)
 * See the article "[The NLSY Kinship Links: Using the NLSY79 and NLSY-Children Data to Conduct Genetically-Informed and Family-Oriented Research](https://link.springer.com/article/10.1007/s10519-016-9785-3)" for personnel in all previous Rodgers/Rowe BG grants.
 
 ## Database Structure
@@ -30,14 +30,14 @@ Tables related to an *Subject*:
 [![subject](data-public/metadata/database/diagrams-79/subject.png)](data-public/metadata/database/diagrams)
 
 Additional Information:
-1. Some metadata sets are described in [CSVs](data-public/metadata/tables-79).  The metadata tables are [uploaded to the database](dal/) and [logged](stitched-output/dal/).
+1. Some metadata sets are described in CSVs (*i.e.*, [79](data-public/metadata/tables-79) and [97](data-public/metadata/tables-97)).  The metadata tables are [uploaded to the database](dal/) and [logged](stitched-output/dal/).
 1. Other metadata sets that are hardcoded into the C#:
-    * [Enums](Base79/Enums.cs)
-    * [EnumResponses](Base79/EnumResponses.cs)
-    * [EnumResponsesGen1](Base79/EnumResponsesGen1.cs)
-    * [EnumResponsesGen2](Base79/EnumResponsesGen2.cs)
+    * [79 Enums](Base79/Enums.cs)
+    * [79 EnumResponses](Base79/EnumResponses.cs)
+    * [79 EnumResponsesGen1](Base79/EnumResponsesGen1.cs)
+    * [79 EnumResponsesGen2](Base79/EnumResponsesGen2.cs)
 1. Row & columns counts for each table are [available](analysis/eda/counts/counts.md) and [tracked over time](https://github.com/LiveOak/nlsy-links-determination-2017/commits/master/analysis/eda/counts/counts.md).
-1. For the masochistically curious, the full database is described [in SQL](data-public/metadata/database/generate-db-79.sql).
+1. For the masochistically curious, the SQL scripts for the full [79](data-public/metadata/database/generate-db-79.sql) and [97](data-public/metadata/database/generate-db-97.sql) databases are available.
 
 ## Aims
 >This application requests funds to continue our past NLSY kinship linking efforts, and to use recently-developed kinship links in new and innovative empirical research.  With previous support from a recent NIH grant, we updated kinship links for two National Longitudinal Survey of Youth datasets (NLSY79 and NLSY-Children/Young Adults), completed in 2013.  The proposed research will identify and circulate links for a third NLSY dataset, the NLSY97, and will provide data for four proposed studies that use the kinship link structure from all three datasets.
