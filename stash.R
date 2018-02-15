@@ -36,32 +36,59 @@ DetermineBadRowIDs <- function( dsTable ) { # DetermineBadRowIDs(ds)
 }
 
 col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
-  "AlgorithmVersion"                = "integer",
-  "ExtendedID"                      = "integer",
-  "SubjectTag_S1"                   = "integer",
-  "SubjectTag_S2"                   = "integer",
-  "SubjectID_S1"                    = "integer",
-  "SubjectID_S2"                    = "integer",
-  "MultipleBirthIfSameSex"          = "integer",
-  "IsMz"                            = "integer",
-  "SameGeneration"                  = "integer",
-  "RosterAssignmentID"              = "integer",
-  "RRoster"                         = "numeric",
-  "LastSurvey_S1"                   = "integer",
-  "LastSurvey_S2"                   = "integer",
-  "RImplicitPass1"                  = "numeric",
-  "RImplicit"                       = "numeric",
-  "RImplicitSubject"                = "numeric",
-  "RImplicitMother"                 = "numeric",
-  "RExplicitOlderSibVersion"        = "numeric",
-  "RExplicitYoungerSibVersion"      = "numeric",
-  "RExplicitPass1"                  = "numeric",
-  "RExplicit"                       = "numeric",
-  "RPass1"                          = "numeric",
-  "R"                               = "numeric",
-  "RFull"                           = "numeric",
-  "RPeek"                           = "numeric"
+    "AlgorithmVersion"                = "integer",
+    "ExtendedID"                      = "integer",
+    "SubjectTag_S1"                   = "integer",
+    "SubjectTag_S2"                   = "integer",
+    "SubjectID_S1"                    = "integer",
+    "SubjectID_S2"                    = "integer",
+    "MultipleBirthIfSameSex"          = "integer",
+    "IsMz"                            = "integer",
+    "SameGeneration"                  = "integer",
+    "RosterAssignmentID"              = "integer",
+    "RRoster"                         = "numeric",
+    "LastSurvey_S1"                   = "integer",
+    "LastSurvey_S2"                   = "integer",
+    "RImplicitPass1"                  = "numeric",
+    "RImplicit"                       = "numeric",
+    "RImplicitSubject"                = "numeric",
+    "RImplicitMother"                 = "numeric",
+    "RExplicitOlderSibVersion"        = "numeric",
+    "RExplicitYoungerSibVersion"      = "numeric",
+    "RExplicitPass1"                  = "numeric",
+    "RExplicit"                       = "numeric",
+    "RPass1"                          = "numeric",
+    "R"                               = "numeric",
+    "RFull"                           = "numeric",
+    "RPeek"                           = "numeric"
 )
+# col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
+#   AlgorithmVersion                = readr::col_integer(),
+#   ExtendedID                      = readr::col_integer(),
+#   SubjectTag_S1                   = readr::col_integer(),
+#   SubjectTag_S2                   = readr::col_integer(),
+#   SubjectID_S1                    = readr::col_integer(),
+#   SubjectID_S2                    = readr::col_integer(),
+#   MultipleBirthIfSameSex          = readr::col_integer(),
+#   IsMz                            = readr::col_integer(),
+#   SameGeneration                  = readr::col_integer(),
+#   RosterAssignmentID              = readr::col_integer(),
+#   RRoster                         = readr::col_double(),
+#   LastSurvey_S1                   = readr::col_integer(),
+#   LastSurvey_S2                   = readr::col_integer(),
+#   RImplicitPass1                  = readr::col_double(),
+#   RImplicit                       = readr::col_double(),
+#   RImplicitSubject                = readr::col_double(),
+#   RImplicitMother                 = readr::col_double(),
+#   RExplicitOlderSibVersion        = readr::col_double(),
+#   RExplicitYoungerSibVersion      = readr::col_double(),
+#   RExplicitPass1                  = readr::col_double(),
+#   RExplicit                       = readr::col_double(),
+#   RPass1                          = readr::col_double(),
+#   R                               = readr::col_double(),
+#   RFull                           = readr::col_double(),
+#   RPeek                           = readr::col_double()
+# )
 
 col_types_description <- readr::cols_only(
   AlgorithmVersion  = readr::col_integer(),
@@ -85,11 +112,16 @@ dsRaw <- sqldf::read.csv.sql(
   file        = "data-public/derived/links-archive-2017-97.csv",
   sql         = sql,
   # sql         = "SELECT * FROM file WHERE AlgorithmVersion IN (2, 3)",
-  eol         = "\n",
-  colClasses  = col_types
+  eol         = "\n"#,
+  # colClasses  = col_types
 )
 # })
 table(dsRaw$RRoster, useNA = "always")
+
+
+# dsRaw2 <- readr::read_csv("data-public/derived/links-archive-2017-97.csv", col_types=col_types) %>%
+#   dplyr::filter(AlgorithmVersion %in% 2:3)
+# table(dsRaw2$RRoster, useNA="always")
 
 # purrr::map_chr(dsRaw, class)
 # startTime <- Sys.time()
@@ -106,7 +138,7 @@ table(dsRaw$RRoster, useNA = "always")
 ds_description <- ds_description %>%
   tibble::as_tibble()
 
-format_r_digits <- function( x ) sprintf("%0.3f", as.numeric(x))
+format_r_digits <- function( x ) sprintf("%0.3f", as.numeric(dplyr::na_if(x, "NA")))
 dsRaw <- dsRaw %>%
   tibble::as_tibble() %>%
   dplyr::mutate(
