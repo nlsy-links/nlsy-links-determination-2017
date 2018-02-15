@@ -1,0 +1,6 @@
+- sample: NLSY97
+  algorithm_version: 3
+  description_of_last_change: same sib full twins are R=.5 by default, and overridden
+    if explicitly MZ
+  version_date: '2018-02-14'
+  note_1: For a complete history of algorithm versions, see `data-public/metadata/tables-97/ArchiveDescription.csv
