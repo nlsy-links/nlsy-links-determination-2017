@@ -26,68 +26,64 @@ colorGood <- "goodColor"
 colorSoso <- "sosoColor"
 colorBad  <- "badColor"
 colorNull <- "nullColor"
+palette_conflict <- list("good"="#a6e8a1", "soso"="#ffeed1", "bad"="#ff9f6e", "null"="#7c9fb0") #http://colrd.com/image-dna/24445/
 
-DetermineGoodRowIDs <- function( dsTable ) { # DetermineGoodRowIDs(ds)
-  return( which(dsTable$RImplicit==dsTable$RExplicit) )
+determine_row_good <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  return( d_t$RImplicit==d_t$RExplicit )
+}
+determine_row_soso <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  return( (dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit) )
+}
+determine_row_bad <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  integer(0)
+  # return( abs(dsTable$RImplicit - dsTable$RExplicit) >= .25 )
+}
+determine_row_bad <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  is.na(dsT$RImplicit) & is.na(dsT$RExplicit)
+  # return( abs(dsTable$RImplicit - dsTable$RExplicit) >= .25 )
 }
 
-DetermineBadRowIDs <- function( dsTable ) { # DetermineBadRowIDs(ds)
-  return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
+
+DetermineGoodRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  return( which(determine_row_good(d_t)) )
+}
+DetermineSosoRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  return( which(determine_row_soso(d_t)) )
+}
+DetermineBadRowIDs <- function( d_t ) { # DetermineBadRowIDs(ds)
+  integer(0)
+  # return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
+}
+DetermineNullRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  return( which(determine_row_bad(d_t)) )
 }
 
-col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
-  "AlgorithmVersion"                = "integer",
-  "ExtendedID"                      = "integer",
-  "SubjectTag_S1"                   = "integer",
-  "SubjectTag_S2"                   = "integer",
-  "SubjectID_S1"                    = "integer",
-  "SubjectID_S2"                    = "integer",
-  "MultipleBirthIfSameSex"          = "integer",
-  "IsMz"                            = "integer",
-  "SameGeneration"                  = "integer",
-  "RosterAssignmentID"              = "integer",
-  "RRoster"                         = "numeric",
-  "LastSurvey_S1"                   = "integer",
-  "LastSurvey_S2"                   = "integer",
-  "RImplicitPass1"                  = "numeric",
-  "RImplicit"                       = "numeric",
-  "RImplicitSubject"                = "numeric",
-  "RImplicitMother"                 = "numeric",
-  "RExplicitOlderSibVersion"        = "numeric",
-  "RExplicitYoungerSibVersion"      = "numeric",
-  "RExplicitPass1"                  = "numeric",
-  "RExplicit"                       = "numeric",
-  "RPass1"                          = "numeric",
-  "R"                               = "numeric",
-  "RFull"                           = "numeric",
-  "RPeek"                           = "numeric"
-)
 # col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
-#   AlgorithmVersion                = readr::col_integer(),
-#   ExtendedID                      = readr::col_integer(),
-#   SubjectTag_S1                   = readr::col_integer(),
-#   SubjectTag_S2                   = readr::col_integer(),
-#   SubjectID_S1                    = readr::col_integer(),
-#   SubjectID_S2                    = readr::col_integer(),
-#   MultipleBirthIfSameSex          = readr::col_integer(),
-#   IsMz                            = readr::col_integer(),
-#   SameGeneration                  = readr::col_integer(),
-#   RosterAssignmentID              = readr::col_integer(),
-#   RRoster                         = readr::col_double(),
-#   LastSurvey_S1                   = readr::col_integer(),
-#   LastSurvey_S2                   = readr::col_integer(),
-#   RImplicitPass1                  = readr::col_double(),
-#   RImplicit                       = readr::col_double(),
-#   RImplicitSubject                = readr::col_double(),
-#   RImplicitMother                 = readr::col_double(),
-#   RExplicitOlderSibVersion        = readr::col_double(),
-#   RExplicitYoungerSibVersion      = readr::col_double(),
-#   RExplicitPass1                  = readr::col_double(),
-#   RExplicit                       = readr::col_double(),
-#   RPass1                          = readr::col_double(),
-#   R                               = readr::col_double(),
-#   RFull                           = readr::col_double(),
-#   RPeek                           = readr::col_double()
+#   "AlgorithmVersion"                = "integer",       #   AlgorithmVersion                = readr::col_integer(),
+#   "ExtendedID"                      = "integer",       #   ExtendedID                      = readr::col_integer(),
+#   "SubjectTag_S1"                   = "integer",       #   SubjectTag_S1                   = readr::col_integer(),
+#   "SubjectTag_S2"                   = "integer",       #   SubjectTag_S2                   = readr::col_integer(),
+#   "SubjectID_S1"                    = "integer",       #   SubjectID_S1                    = readr::col_integer(),
+#   "SubjectID_S2"                    = "integer",       #   SubjectID_S2                    = readr::col_integer(),
+#   "MultipleBirthIfSameSex"          = "integer",       #   MultipleBirthIfSameSex          = readr::col_integer(),
+#   "IsMz"                            = "integer",       #   IsMz                            = readr::col_integer(),
+#   "SameGeneration"                  = "integer",       #   SameGeneration                  = readr::col_integer(),
+#   "RosterAssignmentID"              = "integer",       #   RosterAssignmentID              = readr::col_integer(),
+#   "RRoster"                         = "numeric",       #   RRoster                         = readr::col_double(),
+#   "LastSurvey_S1"                   = "integer",       #   LastSurvey_S1                   = readr::col_integer(),
+#   "LastSurvey_S2"                   = "integer",       #   LastSurvey_S2                   = readr::col_integer(),
+#   "RImplicitPass1"                  = "numeric",       #   RImplicitPass1                  = readr::col_double(),
+#   "RImplicit"                       = "numeric",       #   RImplicit                       = readr::col_double(),
+#   "RImplicitSubject"                = "numeric",       #   RImplicitSubject                = readr::col_double(),
+#   "RImplicitMother"                 = "numeric",       #   RImplicitMother                 = readr::col_double(),
+#   "RExplicitOlderSibVersion"        = "numeric",       #   RExplicitOlderSibVersion        = readr::col_double(),
+#   "RExplicitYoungerSibVersion"      = "numeric",       #   RExplicitYoungerSibVersion      = readr::col_double(),
+#   "RExplicitPass1"                  = "numeric",       #   RExplicitPass1                  = readr::col_double(),
+#   "RExplicit"                       = "numeric",       #   RExplicit                       = readr::col_double(),
+#   "RPass1"                          = "numeric",       #   RPass1                          = readr::col_double(),
+#   "R"                               = "numeric",       #   R                               = readr::col_double(),
+#   "RFull"                           = "numeric",       #   RFull                           = readr::col_double(),
+#   "RPeek"                           = "numeric"        #   RPeek                           = readr::col_double()
 # )
 
 col_types_description <- readr::cols_only(
@@ -107,15 +103,12 @@ recent_versions <- ds_description %>%
 
 sql <- glue::glue("SELECT * FROM file WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
 
-# system.time({
 dsRaw <- sqldf::read.csv.sql(
   file        = "data-public/derived/links-archive-2017-97.csv",
   sql         = sql,
-  # sql         = "SELECT * FROM file WHERE AlgorithmVersion IN (2, 3)",
   eol         = "\n"#,
   # colClasses  = col_types
 )
-# })
 # table(dsRaw$RRoster, useNA = "always")
 
 
@@ -123,15 +116,6 @@ dsRaw <- sqldf::read.csv.sql(
 #   dplyr::filter(AlgorithmVersion %in% 2:3)
 # table(dsRaw2$RRoster, useNA="always")
 
-# purrr::map_chr(dsRaw, class)
-# startTime <- Sys.time()
-# channel            <- open_dsn_channel_odbc(study = "97")
-# # DBI::dbGetInfo(channel)
-# dsRaw           <- DBI::dbGetQuery(channel, sql)
-# dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)
-# DBI::dbDisconnect(channel, sql, sqlDescription)
-# (Sys.time() - startTime);  rm(startTime)
-# nrow(dsRaw)
 
 # ---- tweak-data --------------------------------------------------------------
 # glue::collapse(paste(colnames(dsRaw), "=", purrr:::map_chr(dsRaw, class)), sep = ",\n")
@@ -208,8 +192,8 @@ ds <- dsCollapsedLatest %>%
 
 dsT        <- as.data.frame(ds)
 idGoodRows <- DetermineGoodRowIDs(dsT)
-idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-idBadRows  <-integer(0) # DetermineBadRowIDs(dsT)
+idSosoRows <- DetermineSosoRowIDs(dsT)
+idBadRows  <- DetermineBadRowIDs(dsT)
 
 goodSumLatest <- sum(dsT[idGoodRows, ]$Count)
 badSumLatest  <- sum(dsT[idBadRows , ]$Count)
@@ -224,8 +208,8 @@ dsRoc <- tibble::tibble(
 
 ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
   geom_path() +
-  geom_text()
-# coord_cartesian(xlim=c(0, 8000), ylim=c(0, 8000))#+ #xlim(0, 8000)
+  geom_text() +
+  theme_light()
 
 
 # ---- table-marginal ----------------------------------------------------------
@@ -257,23 +241,29 @@ CreateMarginalTable  <- function( dsJoint ) {
       # Implicit  = prettyNum(Implicit  , big.mark = ",", width=5),
       # Explicit  = prettyNum(Explicit  , big.mark = ",", width=5),
       # Roster    = prettyNum(Roster    , big.mark = ",", width=5),
-      # Eventual  = prettyNum(Eventual  , big.mark = ",", width=5),
-      Implicit  = scales::comma(Implicit),
-      Explicit  = scales::comma(Explicit),
-      Roster    = scales::comma(Roster  ),
-      Eventual  = scales::comma(Eventual),
+      # Eventual  = prettyNum(Eventual  , big.mark = ",", width=5)
+      # Implicit  = scales::comma(Implicit),
+      # Explicit  = scales::comma(Explicit),
+      # Roster    = scales::comma(Roster  ),
+      # Eventual  = scales::comma(Eventual),
 
 
-      R         = dplyr::if_else(R=="NA", "-", R),
-      Implicit  = dplyr::coalesce(Implicit, "-"),
-      Explicit  = dplyr::coalesce(Explicit, "-"),
-      Roster    = dplyr::coalesce(Roster  , "-"),
-      Eventual  = dplyr::coalesce(Eventual, "-")
+      R         = dplyr::if_else(R=="NA", "--", R),
+      # Implicit  = dplyr::coalesce(Implicit, "-"),
+      # Explicit  = dplyr::coalesce(Explicit, "-"),
+      # Roster    = dplyr::coalesce(Roster  , "-"),
+      # Eventual  = dplyr::coalesce(Eventual, "-")
 
       # Implicit  = dplyr::if_else(Implicit=="NA", "-", Implicit),
       # Explicit  = dplyr::if_else(Explicit=="NA", "-", Explicit),
       # Roster    = dplyr::if_else(Roster  =="NA", "-", Roster  ),
       # Eventual  = dplyr::if_else(Eventual=="NA", "-", Eventual)
+
+      Implicit  = dplyr::if_else(is.na(Implicit), "--", scales::comma(Implicit)),
+      Explicit  = dplyr::if_else(is.na(Explicit), "--", scales::comma(Explicit)),
+      Roster    = dplyr::if_else(is.na(Roster  ), "--", scales::comma(Roster  )),
+      Eventual  = dplyr::if_else(is.na(Eventual), "--", scales::comma(Eventual))
+
       # R       = dplyr::if_else(is.na(R), "-", sprintf("%.3f", R))
       # R       = dplyr::coalesce(R, "-")
     ) %>%
@@ -318,7 +308,7 @@ PrintConditionalTable <- function( ) {
 
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-  idBadRows  <- integer(0) # DetermineBadRowIDs(dsT)
+  idBadRows  <- DetermineBadRowIDs(dsT)
   idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
 
   idRows     <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
@@ -330,3 +320,33 @@ PrintConditionalTable <- function( ) {
   print(textTable, include.rownames=F, add.to.row=list(as.list(idRows), colorRows), NA.string="-", type=output_type)#, size="small")
 }
 PrintConditionalTable()
+
+
+
+ds_condition <- ds %>%
+  dplyr::select(Count, RImplicit, RExplicit, RRoster, Delta) %>%
+  dplyr::mutate(
+    Count         = scales::comma(Count),
+    RImplicit     = dplyr::coalesce(dplyr::na_if(RImplicit, "NA"), "--"),
+    RExplicit     = dplyr::coalesce(dplyr::na_if(RExplicit, "NA"), "--"),
+    RRoster       = dplyr::coalesce(dplyr::na_if(RRoster  , "NA"), "--")
+  ) %>%
+  dplyr::arrange(desc(Count), Delta)
+
+ds_condition %>%
+  knitr::kable(
+    format      = output_type,
+    # format.args = list(big.mark=","),
+    align       = "r",
+    caption     = "Joint Frequencies for 97 Housemates"
+  ) %>%
+  kableExtra::kable_styling(
+    full_width        = F,
+    position          = "left",
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  ) %>%
+  kableExtra::row_spec(DetermineGoodRowIDs(ds_condition), bold=F, background = palette_conflict$good) %>%
+  kableExtra::row_spec(DetermineSosoRowIDs(ds_condition), bold=F, background = palette_conflict$soso) %>%
+  kableExtra::row_spec(DetermineBadRowIDs( ds_condition), bold=T, background = palette_conflict$bad) %>%
+  kableExtra::row_spec(DetermineNullRowIDs(ds_condition), bold=F, background = palette_conflict$null)
+
