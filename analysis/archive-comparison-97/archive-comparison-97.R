@@ -6,40 +6,34 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 # source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
-library(xtable)
-library(ggplot2)
 library(magrittr) #Pipes
-# library(ggplot2) #For graphing
+library(ggplot2) #For graphing
 
-requireNamespace("DBI")
-requireNamespace("xtable")
 requireNamespace("dplyr")
 requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
+requireNamespace("kableExtra") #For the kable function for tables
 
 # ---- declare-globals ---------------------------------------------------------
 config <- config::get()
 path_in_description   <- "data-public/metadata/tables-97/ArchiveDescription.csv"
 
 output_type   <- "html"
-colorGood <- "goodColor"
-colorSoso <- "sosoColor"
-colorBad  <- "badColor"
-colorNull <- "nullColor"
 palette_conflict <- list("good"="#a6e8a1", "soso"="#ffeed1", "bad"="#ff9f6e", "null"="#7c9fb0") #http://colrd.com/image-dna/24445/
 
 determine_row_good <- function( d_t ) { # DetermineGoodRowIDs(ds)
   return( d_t$RImplicit==d_t$RExplicit )
 }
 determine_row_soso <- function( d_t ) { # DetermineGoodRowIDs(ds)
-  return( (dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit) )
+  return( (d_t$RImplicit==.375 | is.na(d_t$RImplicit)) & !is.na(d_t$RExplicit) )
 }
 determine_row_bad <- function( d_t ) { # DetermineGoodRowIDs(ds)
-  integer(0)
-  # return( abs(dsTable$RImplicit - dsTable$RExplicit) >= .25 )
+  integer(0) # TODO: open this up when there algorithm has something that conflicts.  It's empty now
+  # browser()
+  # return( abs(as.numeric(d_t$RImplicit) - as.numeric(d_t$RExplicit)) >= .25 )
 }
-determine_row_bad <- function( d_t ) { # DetermineGoodRowIDs(ds)
-  is.na(dsT$RImplicit) & is.na(dsT$RExplicit)
+determine_row_null <- function( d_t ) { # DetermineGoodRowIDs(ds)
+  is.na(d_t$RImplicit) & is.na(d_t$RExplicit)
   # return( abs(dsTable$RImplicit - dsTable$RExplicit) >= .25 )
 }
 
@@ -52,10 +46,10 @@ DetermineSosoRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
 }
 DetermineBadRowIDs <- function( d_t ) { # DetermineBadRowIDs(ds)
   integer(0)
-  # return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
+  # return( which(determine_row_bad(d_t)) )
 }
 DetermineNullRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
-  return( which(determine_row_bad(d_t)) )
+  return( which(determine_row_null(d_t)) )
 }
 
 # col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
@@ -128,7 +122,7 @@ dsRaw <- dsRaw %>%
   dplyr::mutate(
     RRoster                         = format_r_digits(RRoster                   ),
     # RImplicitPass1                  = format_r_digits(RImplicitPass1            ),
-    # RImplicit                       = format_r_digits(RImplicit                 ),
+    RImplicit                       = format_r_digits(RImplicit                 ),
     # RImplicitSubject                = format_r_digits(RImplicitSubject          ),
     # RImplicitMother                 = format_r_digits(RImplicitMother           ),
     # RExplicitOlderSibVersion        = format_r_digits(RExplicitOlderSibVersion  ),
@@ -154,11 +148,11 @@ columnsToConsider <- c("RImplicit", "RExplicit", "RRoster")
 dsLatest    <- dsRaw[dsRaw$AlgorithmVersion==newerVersionNumber, ]
 dsPrevious  <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 
-# ds <- dsRaw %>%
-#   dplyr::mutate(
-#     latest      = (.data$AlgorithmVersion == newerVersionNumber)
-#   ) %>%
-#   dplyr::count_(columnsToConsider)
+ds <- dsRaw %>%
+  dplyr::mutate(
+    latest      = (.data$AlgorithmVersion == newerVersionNumber)
+  ) %>%
+  dplyr::count_(columnsToConsider)
 # ds
 # head(dsLatest, 30)
 # head(dsPrevious, 30)
@@ -168,7 +162,7 @@ dsPrevious  <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 dsCollapsedLatest <- dsLatest %>%
   dplyr::count_(vars=columnsToConsider) %>%
   dplyr::rename(
-    "Count" = "n"
+    "count_current" = "n"
   )
 
 dsCollapsedPrevious <- dsPrevious %>%
@@ -180,23 +174,23 @@ dsCollapsedPrevious <- dsPrevious %>%
 ds <- dsCollapsedLatest %>%
   dplyr::full_join(dsCollapsedPrevious, by = columnsToConsider) %>%
   dplyr::mutate(
-    Count           = dplyr::coalesce(.data$Count   , 0L),
+    count_current           = dplyr::coalesce(.data$count_current   , 0L),
     count_previous  = dplyr::coalesce(count_previous, 0L),
-    Delta           = Count - count_previous
+    Delta           = count_current - count_previous
   ) %>%
   dplyr::select(-count_previous) %>%
-  dplyr::arrange(desc(Count))
+  dplyr::arrange(desc(count_current))
 
 
 # ---- graph-roc ---------------------------------------------------------------
 
-dsT        <- as.data.frame(ds)
+dsT        <- ds #as.data.frame(ds)
 idGoodRows <- DetermineGoodRowIDs(dsT)
 idSosoRows <- DetermineSosoRowIDs(dsT)
 idBadRows  <- DetermineBadRowIDs(dsT)
 
-goodSumLatest <- sum(dsT[idGoodRows, ]$Count)
-badSumLatest  <- sum(dsT[idBadRows , ]$Count)
+goodSumLatest <- sum(dsT[idGoodRows, ]$count_current)
+badSumLatest  <- sum(dsT[idBadRows , ]$count_current)
 
 goodSumPrevious <- goodSumLatest - sum(dsT[idGoodRows, ]$Delta)
 badSumPrevious  <- badSumLatest  - sum(dsT[idBadRows , ]$Delta)
@@ -209,6 +203,8 @@ dsRoc <- tibble::tibble(
 ggplot(dsRoc, aes(y=Agree, x=Disagree, label=Version)) +
   geom_path() +
   geom_text() +
+  # scale_x_continuous(labels=function(x) round(x)) +
+  # scale_y_continuous(labels=function(x) round(x)) +
   theme_light()
 
 
@@ -281,7 +277,13 @@ dsLatest %>%
     # format.args = list(big.mark=","),
     align       = "lrrrr",
     caption     = "Counts for 97 Housemates"
+  ) %>%
+  kableExtra::kable_styling(
+    full_width        = F,
+    position          = "left",
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
   )
+
 dsPrevious %>%
   CreateMarginalTable() %>%
   knitr::kable(
@@ -289,53 +291,28 @@ dsPrevious %>%
     # format.args = list(big.mark=","),
     align       = "lrrrr",
     caption     = "Counts for 97 Housemates (Previous version of links)"
+  ) %>%
+  kableExtra::kable_styling(
+    full_width        = F,
+    position          = "left",
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
   )
 
-# PrintMarginalTable <- function( dsJoint, caption ) {
-#   dsTable   <- CreateMarginalTable(dsJoint)#[, 1:2]
-#   textTable <- xtable(dsTable, caption=caption)
-#   print(textTable, include.rownames=F, NA.string="-", size="large",  right =T, type=output_type)#, add.to.col=list(list(0, 1), c("\\rowcolor[gray]{.8} ", "\\rowcolor[gray]{.8} ")))
-# }
-# PrintMarginalTable(dsJoint=dsLatest  , caption="Counts for 97 Housemates")
-# PrintMarginalTable(dsJoint=dsPrevious, caption="Counts for 97 Housemates (Previous version of links)")
-
-
 # ---- table-conditional -------------------------------------------------------
-PrintConditionalTable <- function( ) {
-  dsT <- ds %>%
-    dplyr::select(Count, RImplicit, RExplicit, RRoster, Delta) %>%
-    dplyr::arrange(desc(Count), Delta)
-
-  idGoodRows <- DetermineGoodRowIDs(dsT)
-  idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-  idBadRows  <- DetermineBadRowIDs(dsT)
-  idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
-
-  idRows     <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
-  colorRows  <- c(rep(colorGood, length(idGoodRows)), rep(colorSoso, length(idSosoRows)), rep(colorBad, length(idBadRows)), rep(colorNull, length(idNullRows)))
-  colorRows  <- paste0("\\rowcolor{", colorRows, "} ")
-
-  digitsFormat <- c(0, 0, 3, 3, 3, 0) #Include a dummy at the beginning, for the row.names.
-  textTable <- xtable(dsT, digits=digitsFormat, caption="Joint Frequencies for 97 Housemates")
-  print(textTable, include.rownames=F, add.to.row=list(as.list(idRows), colorRows), NA.string="-", type=output_type)#, size="small")
-}
-PrintConditionalTable()
-
-
-
-ds_condition <- ds %>%
-  dplyr::select(Count, RImplicit, RExplicit, RRoster, Delta) %>%
+ds_conditional <- ds %>%
+  dplyr::select(count_current, RImplicit, RExplicit, RRoster, Delta) %>%
   dplyr::mutate(
-    Count         = scales::comma(Count),
+    count_current = scales::comma(count_current),
     RImplicit     = dplyr::coalesce(dplyr::na_if(RImplicit, "NA"), "--"),
     RExplicit     = dplyr::coalesce(dplyr::na_if(RExplicit, "NA"), "--"),
     RRoster       = dplyr::coalesce(dplyr::na_if(RRoster  , "NA"), "--")
   ) %>%
-  dplyr::arrange(desc(Count), Delta)
+  dplyr::arrange(desc(count_current), Delta)
 
-ds_condition %>%
+ds_conditional %>%
   knitr::kable(
     format      = output_type,
+    col.names   = gsub("_", " ", colnames(.)),
     # format.args = list(big.mark=","),
     align       = "r",
     caption     = "Joint Frequencies for 97 Housemates"
@@ -345,8 +322,7 @@ ds_condition %>%
     position          = "left",
     bootstrap_options = c("striped", "hover", "condensed", "responsive")
   ) %>%
-  kableExtra::row_spec(DetermineGoodRowIDs(ds_condition), bold=F, background = palette_conflict$good) %>%
-  kableExtra::row_spec(DetermineSosoRowIDs(ds_condition), bold=F, background = palette_conflict$soso) %>%
-  kableExtra::row_spec(DetermineBadRowIDs( ds_condition), bold=T, background = palette_conflict$bad) %>%
-  kableExtra::row_spec(DetermineNullRowIDs(ds_condition), bold=F, background = palette_conflict$null)
-
+  kableExtra::row_spec(DetermineGoodRowIDs(ds_conditional), bold=F, background = palette_conflict$good) %>%
+  kableExtra::row_spec(DetermineSosoRowIDs(ds_conditional), bold=F, background = palette_conflict$soso) %>%
+  kableExtra::row_spec(DetermineBadRowIDs( ds_conditional), bold=T, background = palette_conflict$bad) %>%
+  kableExtra::row_spec(DetermineNullRowIDs(ds_conditional), bold=F, background = palette_conflict$null) # which(c(T,F,F,F,T))-1

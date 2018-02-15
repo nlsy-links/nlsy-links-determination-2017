@@ -4,9 +4,9 @@ date: "Date: 2018-02-15"
 output:
   html_document:
     keep_md: yes
-toc: 4
-toc_float: true
-number_sections: true
+    toc: 4
+    toc_float: true
+    number_sections: true
 ---
 
 This report covers the analyses used in development of the NLSY Behavior Genetics kinship links ([Joseph Rodgers](https://www.vanderbilt.edu/psychological_sciences/bio/joe-rodgers), PI).
@@ -39,14 +39,14 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * 2: account for twins.
-    * 3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.
+    * Version 2: account for twins.
+    * Version 3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
 
 # Table of *R* Assignments
-<table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; ">
 <caption>Counts for 97 Housemates</caption>
  <thead>
   <tr>
@@ -96,7 +96,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 </tbody>
 </table>
 
-<table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; ">
 <caption>Counts for 97 Housemates (Previous version of links)</caption>
  <thead>
   <tr>
@@ -147,21 +147,11 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 </table>
 
 # Breakdown of Agreements 
-<!-- html table generated in R 3.4.3 by xtable 1.8-2 package -->
-<!-- Thu Feb 15 11:14:31 2018 -->
-<table border=1>
-<caption align="bottom"> Joint Frequencies for 97 Housemates </caption>
-<tr> <th> Count </th> <th> RImplicit </th> <th> RExplicit </th> <th> RRoster </th> <th> Delta </th>  </tr>
-  \rowcolor{goodColor}  <tr> <td align="right"> 2111 </td> <td> NA </td> <td> NA </td> <td> 0.500 </td> <td align="right"> 1094 </td> </tr>
-   \rowcolor{goodColor} <tr> <td align="right"> 174 </td> <td> NA </td> <td> NA </td> <td> 0.000 </td> <td align="right"> 0 </td> </tr>
-   \rowcolor{goodColor} <tr> <td align="right"> 126 </td> <td> NA </td> <td> NA </td> <td> 0.250 </td> <td align="right"> 0 </td> </tr>
-   \rowcolor{goodColor} <tr> <td align="right"> 108 </td> <td> NA </td> <td> NA </td> <td> NA </td> <td align="right"> -1094 </td> </tr>
-   </table>
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; ">
 <caption>Joint Frequencies for 97 Housemates</caption>
  <thead>
   <tr>
-   <th style="text-align:right;"> Count </th>
+   <th style="text-align:right;"> count current </th>
    <th style="text-align:right;"> RImplicit </th>
    <th style="text-align:right;"> RExplicit </th>
    <th style="text-align:right;"> RRoster </th>
@@ -292,11 +282,10 @@ Packages -----------------------------------------------------------------------
  viridisLite   0.3.0      2018-02-01 CRAN (R 3.4.3)                    
  withr         2.1.1.9000 2017-12-20 Github (jimhester/withr@df18523)  
  xml2          1.2.0      2018-01-24 CRAN (R 3.4.3)                    
- xtable      * 1.8-2      2016-02-05 CRAN (R 3.4.2)                    
  yaml          2.1.16     2017-12-12 CRAN (R 3.4.3)                    
 ```
 </details>
 
 
 
-Report rendered by Will at 2018-02-15, 11:14 -0600 in 3 seconds.
+Report rendered by Will at 2018-02-15, 13:12 -0600 in 4 seconds.

@@ -4,9 +4,9 @@ date: "Date: `r Sys.Date()`"
 output:
   html_document:
     keep_md: yes
-toc: 4
-toc_float: true
-number_sections: true
+    toc: 4
+    toc_float: true
+    number_sections: true
 ---
 
 This report covers the analyses used in development of the NLSY Behavior Genetics kinship links ([Joseph Rodgers](https://www.vanderbilt.edu/psychological_sciences/bio/joe-rodgers), PI).
@@ -70,8 +70,8 @@ read_chunk("./analysis/archive-comparison-97/archive-comparison-97.R") #This all
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * `r olderVersionNumber`: `r olderDescription`.
-    * `r newerVersionNumber`: `r newerDescription`.
+    * Version `r olderVersionNumber`: `r olderDescription`.
+    * Version `r newerVersionNumber`: `r newerDescription`.
 
 # Comparison of Agreement
 ```{r graph-roc, echo=echo_chunks, message=message_chunks, fig.width=3.2, fig.height=1.5}
