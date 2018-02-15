@@ -3,7 +3,7 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 # ---- load-sources ------------------------------------------------------------
 #Load any source files that contain/define functions, but that don't load any other types of variables
 #   into memory.  Avoid side effects and don't pollute the global environment.
-source("./utility/connectivity.R")
+# source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
 library(xtable)
@@ -18,57 +18,14 @@ requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
 
 # ---- declare-globals ---------------------------------------------------------
+config <- config::get()
+path_in_description   <- "data-public/metadata/tables-97/ArchiveDescription.csv"
+
 output_type   <- "html"
 colorGood <- "goodColor"
 colorSoso <- "sosoColor"
 colorBad  <- "badColor"
 colorNull <- "nullColor"
-
-sql <- paste("
-             SELECT
-             a.ID,
-             a.AlgorithmVersion,
-             --s.RelationshipPath,
-             a.SubjectTag_S1,
-             a.SubjectTag_S2,
-             a.MultipleBirthIfSameSex,
-             a.IsMz,
-             a.LastSurvey_S1,
-             a.LastSurvey_S2,
-             a.RRoster,
-             a.RImplicitPass1,
-             a.RImplicit,
-             --a.RImplicit2004,
-             a.RExplicitOldestSibVersion,
-             a.RExplicitYoungestSibVersion,
-             a.RExplicitPass1,
-             a.RExplicit,
-             a.RPass1,
-             a.RFull
-             FROM Archive.tblRelatedValuesArchive AS a
-             INNER JOIN Process.tblRelatedStructure AS s ON
-             a.SubjectTag_S1 = s.SubjectTag_S1
-             AND
-             a.SubjectTag_S2 = s.SubjectTag_S2
-             WHERE
-             (
-             a.AlgorithmVersion IN (
-             SELECT TOP (2)
-             AlgorithmVersion
-             FROM Archive.tblRelatedValuesArchive AS a2
-             GROUP BY AlgorithmVersion
-             ORDER BY AlgorithmVersion DESC
-             )
-             )
-             --AND
-             --s.RelationshipPath IN (1, 2)
-             ORDER BY AlgorithmVersion, SubjectTag_S1, SubjectTag_S2
-             ")
-
-# sql <- paste("SELECT Process.tblRelatedValuesArchive.ID, Process.tblRelatedValuesArchive.AlgorithmVersion, Process.tblRelatedStructure.RelationshipPath, Process.tblRelatedValuesArchive.SubjectTag_S1, Process.tblRelatedValuesArchive.SubjectTag_S2, Process.tblRelatedValuesArchive.MultipleBirthIfSameSex, Process.tblRelatedValuesArchive.IsMz, Process.tblRelatedValuesArchive.LastSurvey_S1, Process.tblRelatedValuesArchive.LastSurvey_S2, Process.tblRelatedValuesArchive.RRoster, Process.tblRelatedValuesArchive.RImplicitPass1, Process.tblRelatedValuesArchive.RImplicit, Process.tblRelatedValuesArchive.RImplicit2004, Process.tblRelatedValuesArchive.RExplicitOldestSibVersion, Process.tblRelatedValuesArchive.RExplicitYoungestSibVersion, Process.tblRelatedValuesArchive.RExplicitPass1, Process.tblRelatedValuesArchive.RExplicit, Process.tblRelatedValuesArchive.RPass1, Process.tblRelatedValuesArchive.RFull
-#   FROM Process.tblRelatedValuesArchive INNER JOIN Process.tblRelatedStructure ON Process.tblRelatedValuesArchive.SubjectTag_S1 = Process.tblRelatedStructure.SubjectTag_S1 AND Process.tblRelatedValuesArchive.SubjectTag_S2 = Process.tblRelatedStructure.SubjectTag_S2
-#   WHERE Process.tblRelatedStructure.RelationshipPath IN (", paste0(includedRelationshipPaths, collapse=","), ")
-#     AND (Process.tblRelatedValuesArchive.AlgorithmVersion IN (73, 75))")
 
 DetermineGoodRowIDs <- function( dsTable ) { # DetermineGoodRowIDs(ds)
   return( which(dsTable$RImplicit==dsTable$RExplicit) )
@@ -78,70 +35,102 @@ DetermineBadRowIDs <- function( dsTable ) { # DetermineBadRowIDs(ds)
   return( which(abs(dsTable$RImplicit - dsTable$RExplicit) >= .25) )
 }
 
-# sql <- gsub(pattern="\\n", replacement=" ", sql)
-# sqlDescription <- "SELECT AlgorithmVersion, Description, Date2 FROM Archive.tblArchiveDescription where AlgorithmVersion=72" #AlgorithmVersion, Description
-sqlDescription <- "SELECT AlgorithmVersion, Description FROM Archive.tblArchiveDescription" #AlgorithmVersion, Description
-startTime <- Sys.time()
+col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
+  "AlgorithmVersion"                = "integer",
+  "ExtendedID"                      = "integer",
+  "SubjectTag_S1"                   = "integer",
+  "SubjectTag_S2"                   = "integer",
+  "SubjectID_S1"                    = "integer",
+  "SubjectID_S2"                    = "integer",
+  "MultipleBirthIfSameSex"          = "integer",
+  "IsMz"                            = "integer",
+  "SameGeneration"                  = "integer",
+  "RosterAssignmentID"              = "integer",
+  "RRoster"                         = "numeric",
+  "LastSurvey_S1"                   = "integer",
+  "LastSurvey_S2"                   = "integer",
+  "RImplicitPass1"                  = "numeric",
+  "RImplicit"                       = "numeric",
+  "RImplicitSubject"                = "numeric",
+  "RImplicitMother"                 = "numeric",
+  "RExplicitOlderSibVersion"        = "numeric",
+  "RExplicitYoungerSibVersion"      = "numeric",
+  "RExplicitPass1"                  = "numeric",
+  "RExplicit"                       = "numeric",
+  "RPass1"                          = "numeric",
+  "R"                               = "numeric",
+  "RFull"                           = "numeric",
+  "RPeek"                           = "numeric"
+)
+
+col_types_description <- readr::cols_only(
+  AlgorithmVersion  = readr::col_integer(),
+  Description       = readr::col_character(),
+  Date              = readr::col_date()
+)
 
 # ---- load-data ---------------------------------------------------------------
+# readr::spec_csv(path_in_description)
+ds_description <- readr::read_csv(path_in_description, col_types = col_types_description)
+
+recent_versions <- ds_description %>%
+  dplyr::pull(AlgorithmVersion) %>%
+  sort() %>%
+  tail(2)
+
+sql <- glue::glue("SELECT * FROM file WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+
+# system.time({
+dsRaw <- sqldf::read.csv.sql(
+  file        = "data-public/derived/links-archive-2017-97.csv",
+  sql         = sql,
+  # sql         = "SELECT * FROM file WHERE AlgorithmVersion IN (2, 3)",
+  eol         = "\n",
+  colClasses  = col_types
+)
+# })
+table(dsRaw$RRoster, useNA = "always")
+
+# purrr::map_chr(dsRaw, class)
 # startTime <- Sys.time()
-channel            <- open_dsn_channel_odbc(study = "97")
-# DBI::dbGetInfo(channel)
-dsRaw           <- DBI::dbGetQuery(channel, sql)
-dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)
-DBI::dbDisconnect(channel, sql, sqlDescription)
+# channel            <- open_dsn_channel_odbc(study = "97")
+# # DBI::dbGetInfo(channel)
+# dsRaw           <- DBI::dbGetQuery(channel, sql)
+# dsDescription   <- DBI::dbGetQuery(channel, sqlDescription)
+# DBI::dbDisconnect(channel, sql, sqlDescription)
 # (Sys.time() - startTime);  rm(startTime)
 # nrow(dsRaw)
 
-dsRaw2 <- sqldf::read.csv.sql(
-  file        = "data-public/derived/links-archive-2017-97.csv",
-  sql         = "SELECT * FROM file WHERE AlgorithmVersion IN (2, 3)",
-  eol         = "\n"#,
-  # colClasses  = col_types
-)
-
-dsRaw3 <- read.csv(
-  file        = "data-public/derived/links-archive-2017-97.csv"
-  # sql         = "SELECT * FROM file WHERE AlgorithmVersion IN (2, 3)",
-  # colClasses  = col_types
-)
-
-ds_raw_1a <- dsRaw %>%
-  tibble::as_tibble() %>%
-  dplyr::select(AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, RRoster) %>%
-  dplyr::mutate(
-    RRoster    = as.character(RRoster)
-  )
-table(ds_raw_1a$RRoster, useNA = "always")
-
-ds_raw_2a <- dsRaw2 %>%
-  tibble::as_tibble() %>%
-  dplyr::select(AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, RRoster) %>%
-  dplyr::mutate(
-    # RRoster    = as.numeric(RRoster)
-  )
-table(ds_raw_2a$RRoster, useNA = "always")
-stop("The NAs for RRoster are being treated like literal 'NA' character values.")
-
-ds_raw_3a <- dsRaw3 %>%
-  tibble::as_tibble() %>%
-  dplyr::select(AlgorithmVersion, SubjectTag_S1, SubjectTag_S2, RRoster) %>%
-  dplyr::filter(AlgorithmVersion %in% 2:3) %>%
-  dplyr::mutate(
-    # RRoster    = as.numeric(RRoster)
-  )
-table(ds_raw_3a$RRoster, useNA = "always")
-
-
-     0 0.25  0.5 <NA>
-  1658  252 3128    0
-ds_raw_2a %>%
-  dplyr::anti_join(ds_raw_1a)
 # ---- tweak-data --------------------------------------------------------------
+# glue::collapse(paste(colnames(dsRaw), "=", purrr:::map_chr(dsRaw, class)), sep = ",\n")
+ds_description <- ds_description %>%
+  tibble::as_tibble()
+
+format_r_digits <- function( x ) sprintf("%0.3f", as.numeric(x))
+dsRaw <- dsRaw %>%
+  tibble::as_tibble() %>%
+  dplyr::mutate(
+    RRoster                         = format_r_digits(RRoster                   ),
+    # RImplicitPass1                  = format_r_digits(RImplicitPass1            ),
+    # RImplicit                       = format_r_digits(RImplicit                 ),
+    # RImplicitSubject                = format_r_digits(RImplicitSubject          ),
+    # RImplicitMother                 = format_r_digits(RImplicitMother           ),
+    # RExplicitOlderSibVersion        = format_r_digits(RExplicitOlderSibVersion  ),
+    # RExplicitYoungerSibVersion      = format_r_digits(RExplicitYoungerSibVersion),
+    # RExplicitPass1                  = format_r_digits(RExplicitPass1            ),
+    RExplicit                       = format_r_digits(RExplicit                 ),
+    # RPass1                          = format_r_digits(RPass1                    ),
+    R                               = format_r_digits(R                         ),
+    RFull                           = format_r_digits(RFull                     )
+    # RPeek                           = format_r_digits(RPeek                     )
+  )
+# table(dsRaw$RPeek)
+# dsRaw
+
 olderVersionNumber <- min(dsRaw$AlgorithmVersion)
-olderDescription <- dsDescription[dsDescription$AlgorithmVersion==olderVersionNumber, 'Description']
+olderDescription <- ds_description[ds_description$AlgorithmVersion==olderVersionNumber, ]$Description
 newerVersionNumber <- max(dsRaw$AlgorithmVersion)
-newerDescription <- dsDescription[dsDescription$AlgorithmVersion==newerVersionNumber, 'Description']
+newerDescription <- ds_description[ds_description$AlgorithmVersion==newerVersionNumber, ]$Description
 
 columnsToConsider <- c("RImplicit", "RExplicit", "RRoster")
 # dsLatestGen2Sibs <- dsRaw[dsRaw$AlgorithmVersion==newerVersionNumber & dsRaw$RelationshipPath %in% includedRelationshipPaths, ]
@@ -149,6 +138,12 @@ columnsToConsider <- c("RImplicit", "RExplicit", "RRoster")
 dsLatest    <- dsRaw[dsRaw$AlgorithmVersion==newerVersionNumber, ]
 dsPrevious  <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 
+# ds <- dsRaw %>%
+#   dplyr::mutate(
+#     latest      = (.data$AlgorithmVersion == newerVersionNumber)
+#   ) %>%
+#   dplyr::count_(columnsToConsider)
+# ds
 # head(dsLatest, 30)
 # head(dsPrevious, 30)
 
@@ -182,7 +177,7 @@ ds <- dsCollapsedLatest %>%
 dsT        <- as.data.frame(ds)
 idGoodRows <- DetermineGoodRowIDs(dsT)
 idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-idBadRows  <- DetermineBadRowIDs(dsT)
+idBadRows  <-integer(0) # DetermineBadRowIDs(dsT)
 
 goodSumLatest <- sum(dsT[idGoodRows, ]$Count)
 badSumLatest  <- sum(dsT[idBadRows , ]$Count)
@@ -225,7 +220,7 @@ CreateMarginalTable  <- function( dsJoint ) {
       by = "R"
     ) %>%
     dplyr::mutate(
-      R         = sprintf("%.3f", R),
+      # R         = sprintf("%.3f", R),
       Eventual  = dplyr::coalesce(Eventual, 0L),
       # Implicit  = prettyNum(Implicit  , big.mark = ",", width=5),
       # Explicit  = prettyNum(Explicit  , big.mark = ",", width=5),
@@ -248,6 +243,9 @@ CreateMarginalTable  <- function( dsJoint ) {
     dplyr::arrange(R) #%>% dput()
 }
 # CreateMarginalTable(dsJoint=dsLatest)
+
+# dsLatest %>%
+#   tibble::as_tibble()
 
 dsLatest %>%
   CreateMarginalTable() %>%
@@ -281,7 +279,7 @@ PrintConditionalTable <- function( ) {
 
   idGoodRows <- DetermineGoodRowIDs(dsT)
   idSosoRows <- which((dsT$RImplicit==.375 | is.na(dsT$RImplicit)) & !is.na(dsT$RExplicit))
-  idBadRows  <- DetermineBadRowIDs(dsT)
+  idBadRows  <- integer(0) # DetermineBadRowIDs(dsT)
   idNullRows <- which(is.na(dsT$RImplicit) & is.na(dsT$RExplicit))
 
   idRows     <- c(idGoodRows, idSosoRows, idBadRows, idNullRows) -1 #Subtract one, b/c LaTeX row indices are zero-based
