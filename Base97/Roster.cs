@@ -8,7 +8,7 @@ namespace Nls.Base97 {
         #region Fields
         private readonly LinksDataSet _dsLinks;
         //private readonly ItemYearCount _itemYearCount;
-        private readonly Item[] _items = { Item.roster_relationship_1_dim }; //, Item.IDCodeOfOtherSiblingGen1, Item.IDOfOther1979RosterGen1
+        private readonly Item[] _items = { Item.roster_relationship_1_dim, Item.pair_sister_same_bioparent, Item.pair_brother_same_bioparent }; //, Item.IDCodeOfOtherSiblingGen1, Item.IDOfOther1979RosterGen1
         private readonly string _itemIDsString = "";
         #endregion
         #region Constructor
@@ -37,8 +37,8 @@ namespace Nls.Base97 {
                 Int32 internal_id_s2 = drRelated.hh_internal_id_s2;
 
                 LinksDataSet.tblResponseDataTable dtFamily = Retrieve.ExtendedFamilyRelevantResponseRows(drRelated.ExtendedID, _itemIDsString, 1, _dsLinks.tblResponse);
-                EnumResponses.RosterChoice response1on2 = RetrieveResponse(subject1Tag, internal_id_s2, dtFamily);
-                EnumResponses.RosterChoice response2on1 = RetrieveResponse(subject2Tag, internal_id_s1, dtFamily);
+                EnumResponses.RosterChoice response1on2 = RosterResponseDeep(subject1Tag, internal_id_s2, dtFamily);
+                EnumResponses.RosterChoice response2on1 = RosterResponseDeep(subject2Tag, internal_id_s1, dtFamily);
 
                 Int16 responseLower = Math.Min((Int16)response1on2, (Int16)response2on1);
                 Int16 responseUpper = Math.Max((Int16)response1on2, (Int16)response2on1);
@@ -75,6 +75,11 @@ namespace Nls.Base97 {
         }
         #endregion
         #region Private Methods -Tier 1
+
+        private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
+            return RetrieveResponse(subject_tag_a, internal_id_b, dtFamily);
+        }
+
         private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 internal_id_2, LinksDataSet.tblResponseDataTable dtFamily ) {
             //const Item itemID = Item.unique_id;
             const Item itemRelationship = Item.roster_relationship_1_dim;
