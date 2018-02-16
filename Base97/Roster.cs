@@ -77,17 +77,27 @@ namespace Nls.Base97 {
         #region Private Methods -Tier 1
 
         private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
-            return RetrieveResponse(subject_tag_a, internal_id_b, dtFamily);
+            EnumResponses.RosterChoice shallow =  RetrieveResponse(subject_tag_a, internal_id_b, 1, dtFamily);
+            switch( shallow ) {
+                case EnumResponses.RosterChoice.brother_half_unsure:
+                    return EnumResponses.RosterChoice.brother_half_unsure;
+                case EnumResponses.RosterChoice.sister_half_unsure:
+                    return EnumResponses.RosterChoice.sister_half_unsure;
+                default:
+                    return shallow;
+            }
+
         }
 
-        private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 internal_id_2, LinksDataSet.tblResponseDataTable dtFamily ) {
+        private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 loop_index_1, Int32 loop_index_2, LinksDataSet.tblResponseDataTable dtFamily ) {
             //const Item itemID = Item.unique_id;
             const Item itemRelationship = Item.roster_relationship_1_dim;
             Int32 surveyYearCount = 1;  //The roster was asked only in 1997.
 
             string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
                 subject1Tag, dtFamily.SubjectTagColumn.ColumnName,
-                internal_id_2, dtFamily.LoopIndex1Column.ColumnName,
+                loop_index_1, dtFamily.LoopIndex1Column.ColumnName,
+                loop_index_2, dtFamily.LoopIndex2Column.ColumnName,
                 (byte)itemRelationship, dtFamily.ItemColumn.ColumnName);
             LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtFamily.Select(selectToShareResponse);
             Trace.Assert(drsForShareResponse.Length == surveyYearCount, "Exactly one row should be returned for the Item.Roster item to Subject2");

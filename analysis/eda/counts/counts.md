@@ -1885,7 +1885,7 @@ and created a lot of noise in the Git difs
 |schema name |table name              | row count| column count|
 |:-----------|:-----------------------|---------:|------------:|
 |Archive     |tblArchiveDescription   |         3|            3|
-|Archive     |tblRelatedValuesArchive |    10,076|           23|
+|Archive     |tblRelatedValuesArchive |    12,595|           23|
 |dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
@@ -2624,4 +2624,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-16, 16:52 -0600 in 1 seconds.
+Report rendered by Will at 2018-02-16, 17:11 -0600 in 2 seconds.
