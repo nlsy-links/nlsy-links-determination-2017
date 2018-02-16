@@ -4,8 +4,8 @@ namespace Nls.Base97 {
         Roster = 1,
         ShareBiomom = 2,
         ShareBiodad = 3,
-        DobSeparation = 5,
-        GenderAgreement = 6,
+        //DobSeparation = 5,
+        //GenderAgreement = 6,
     }
     public enum Item : short {
         subject_id = 1,

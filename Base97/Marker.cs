@@ -42,6 +42,7 @@ namespace Nls.Base97 {
             Int16[] extendedIDs = CommonFunctions.CreateExtendedFamilyIDs(_dsLinks);
             foreach( Int16 extendedID in extendedIDs ) {
                 LinksDataSet.tblRelatedStructureRow[] drsRelated = Retrieve.RelatedStructureInExtendedFamily(extendedID, _dsLinks.tblRelatedStructure);
+                LinksDataSet.tblResponseDataTable dt_response = Retrieve.ExtendedFamilyRelevantResponseRows(extendedID, _itemIDsString, 0, _dsLinks.tblResponse);
                 //LinksDataSet.tblParentsOfGen1RetroDataTable dtRetroForExtended = ParentsOfGen1Retro.RetrieveRows(extendedID, _dsLinks.tblParentsOfGen1Retro);
 
                 foreach( LinksDataSet.tblRelatedStructureRow drRelated in drsRelated ) {
@@ -52,7 +53,7 @@ namespace Nls.Base97 {
                     //LinksDataSet.tblParentsOfGen1RetroDataTable dtParentsRetro = ParentsOfGen1Retro.RetrieveRows(subject1Tag, subject2Tag, dtRetroForExtended);
 
                     recordsAdded += FromRoster(drRelated, dtSubject1);
-                    //recordsAdded += FromShareExplicit(Item.ShareBiomomGen1, MarkerType.ShareBiomom, drRelated, dtSubject1);
+                    recordsAdded += FromShareExplicit(drRelated, dtSubject1, dt_response);
                     //recordsAdded += FromShareExplicit(Item.ShareBiodadGen1, MarkerType.ShareBiodad, drRelated, dtSubject1);
 
                     //recordsAdded += FromAlwaysLivedWithBothBioparents(drRelated, dtParentsCurrent);
@@ -374,6 +375,46 @@ namespace Nls.Base97 {
             AddMarkerRow(drRelated.ExtendedID, drRelated.ID, markerType, ItemYears.Roster, mzEvidence, roster.SameGeneration, roster.ShareBiomom, roster.ShareBiodad, roster.ShareBiograndparent);
             const Int32 recordsAdded = 1;
             return recordsAdded;
+        }
+        private Int32 FromShareExplicit( LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dtSubject1, LinksDataSet.tblResponseDataTable dt_response ) {
+            const Item item_id_share_sister= Item.pair_sister_same_bioparent;
+            const Item item_id_share_brother = Item.pair_brother_same_bioparent;
+            Int16 item_year = ItemYears.Roster; // The roster was asked in only 1997
+
+            //LinksDataSet.tblSubjectRow drSubject1 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject1;
+            //LinksDataSet.tblSubjectRow drSubject2 = drRelated.tblSubjectRowByFK_tblRelatedStructure_tblSubject_Subject2;
+
+            //string sisters_share_parent = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
+            //    drRelated.SubjectTag_S1, dtSubject1.SubjectTagColumn.ColumnName,
+            //    Convert.ToInt16(itemID), dtSubject1.ItemColumn.ColumnName,
+            //    drSubject2.SubjectID, dtSubject1.ValueColumn.ColumnName);
+            //LinksDataSet.tblResponseRow[] drsForLoopIndex = (LinksDataSet.tblResponseRow[])dtSubject1.Select(selectToGetLoopIndex);
+            //Trace.Assert(drsForLoopIndex.Length <= surveyYearCount, string.Format("No more than {0} row(s) should be returned that matches Subject2 for item '{1}'.", surveyYearCount, itemID.ToString()));
+            ////Response.
+
+            Int32? response_sister = Retrieve.ResponseNullPossible(
+                surveyYear: item_year,
+                itemID: item_id_share_sister,
+                subjectTag: drRelated.SubjectTag_S1,
+                loopIndex1: drRelated.hh_internal_id_s1,
+                loopIndex2: drRelated.hh_internal_id_s2,
+                dt: dt_response
+               );
+            Int32? response_brother = Retrieve.ResponseNullPossible(
+                surveyYear: item_year,
+                itemID: item_id_share_brother,
+                subjectTag: drRelated.SubjectTag_S1,
+                loopIndex1: drRelated.hh_internal_id_s1,
+                loopIndex2: drRelated.hh_internal_id_s2,
+                dt: dt_response
+               );
+
+            bool share_biomom = (response_sister == (Int32)EnumResponses.RosterChoice.sister_half_same_mother) || (response_brother == (Int32)EnumResponses.RosterChoice.brother_half_same_mother);
+            bool share_biodad = (response_sister == (Int32)EnumResponses.RosterChoice.sister_half_same_father) || (response_brother == (Int32)EnumResponses.RosterChoice.brother_half_same_father);
+
+            //AddMarkerRow(drRelated.ExtendedID, drRelated.ID,
+                return (0);
+
         }
         //private Int32 FromShareExplicit( Item itemRelationship, MarkerType markerType, LinksDataSet.tblRelatedStructureRow drRelated, LinksDataSet.tblResponseDataTable dtSubject1 ) {
         //    const Item itemID = Item.IDCodeOfOtherSiblingGen1;

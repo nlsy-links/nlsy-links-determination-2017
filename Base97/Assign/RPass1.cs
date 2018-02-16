@@ -119,10 +119,10 @@ namespace Nls.Base97.Assign {
                 else _isRelatedInMzManual = Tristate.No;
             }
 
-            //MarkerEvidence explicitBiomomFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiomom, ItemYears.Gen1ShareBioparent.Length, _idRelatedOlderAboutYounger);
-            //MarkerEvidence explicitBiodadFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiodad, ItemYears.Gen1ShareBioparent.Length, _idRelatedOlderAboutYounger);
-            //MarkerEvidence explicitBiomomFromYounger = ReduceShareBioparentToOne(MarkerType.ShareBiomom, ItemYears.Gen1ShareBioparent.Length, _idRelatedYoungerAboutOlder);
-            //MarkerEvidence explicitBiodadFromYounger = ReduceShareBioparentToOne(MarkerType.ShareBiodad, ItemYears.Gen1ShareBioparent.Length, _idRelatedYoungerAboutOlder);
+            //MarkerEvidence explicitBiomomFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiomom, ItemYears.Roster.Length, _idRelatedOlderAboutYounger);
+            //MarkerEvidence explicitBiodadFromOlder = ReduceShareBioparentToOne(MarkerType.ShareBiodad, ItemYears.ShareBioparent.Length, _idRelatedOlderAboutYounger);
+            //MarkerEvidence explicitBiomomFromYounger = ReduceShareBioparentToOne(MarkerType.ShareBiomom, ItemYears.ShareBioparent.Length, _idRelatedYoungerAboutOlder);
+            //MarkerEvidence explicitBiodadFromYounger = ReduceShareBioparentToOne(MarkerType.ShareBiodad, ItemYears.ShareBioparent.Length, _idRelatedYoungerAboutOlder);
 
             //MarkerEvidence biomomInHH1979 = Marker.RetrieveParentMarkerMultiYear(_idRelatedOlderAboutYounger, MarkerType.Gen1BiomomInHH, 1979, Bioparent.Mom, _dtMarkersGen1);
             //MarkerEvidence biodadInHH1979 = Marker.RetrieveParentMarkerMultiYear(_idRelatedOlderAboutYounger, MarkerType.Gen1BiodadInHH, 1979, Bioparent.Dad, _dtMarkersGen1);
@@ -224,36 +224,36 @@ namespace Nls.Base97.Assign {
                 return CommonFunctions.TranslateToR(shareBiomom: shareBiomom, shareBiodad: shareBiodad, mustDecide: false);
             }
         }
-        private MarkerEvidence ReduceShareBioparentToOne( MarkerType markerType, Int32 maxMarkerCount, Int32 idRelated ) {
-            MarkerSummary[] summaries = Marker.RetrieveMarkers(idRelated, markerType, _dtMarkersGen1, maxMarkerCount);
-            if( summaries.Length <= 0 )
-                return MarkerEvidence.Missing;
+        //private MarkerEvidence ReduceShareBioparentToOne( MarkerType markerType, Int32 maxMarkerCount, Int32 idRelated ) {
+        //    MarkerSummary[] summaries = Marker.RetrieveMarkers(idRelated, markerType, _dtMarkersGen1, maxMarkerCount);
+        //    if( summaries.Length <= 0 )
+        //        return MarkerEvidence.Missing;
 
-            IEnumerable<MarkerEvidence> evidences;
-            if( markerType == MarkerType.ShareBiodad )
-                evidences = from summary in summaries select summary.ShareBiodad;
-            else if( markerType == MarkerType.ShareBiomom )
-                evidences = from summary in summaries select summary.ShareBiomom;
-            else
-                throw new ArgumentOutOfRangeException("markerType", markerType, "The 'ReduceShareBiodadToOne' function does not accommodoate this markerType.");
+        //    IEnumerable<MarkerEvidence> evidences;
+        //    if( markerType == MarkerType.ShareBiodad )
+        //        evidences = from summary in summaries select summary.ShareBiodad;
+        //    else if( markerType == MarkerType.ShareBiomom )
+        //        evidences = from summary in summaries select summary.ShareBiomom;
+        //    else
+        //        throw new ArgumentOutOfRangeException("markerType", markerType, "The 'ReduceShareBiodadToOne' function does not accommodoate this markerType.");
 
 
-            if( evidences.All(evidence => evidence == MarkerEvidence.Supports) ) {
-                return MarkerEvidence.Supports;
-            } else if( evidences.All(evidence => evidence == MarkerEvidence.Disconfirms) ) {
-                return MarkerEvidence.Disconfirms;
-            } else if( evidences.All(evidence => evidence == MarkerEvidence.Ambiguous) ) {
-                return MarkerEvidence.Ambiguous;
-            } else if( evidences.Any(evidence => evidence == MarkerEvidence.Irrelevant) ) {
-                throw new NotImplementedException("This function was not designed to accept this evidence value.");
-            } else if( evidences.Any(evidence => evidence == MarkerEvidence.Consistent) ) {
-                throw new NotImplementedException("This function was not designed to accept this evidence value.");
-            } else if( evidences.Any(evidence => evidence == MarkerEvidence.Unlikely) ) {
-                throw new NotImplementedException("This function was not designed to accept this evidence value.");
-            } else {
-                return MarkerEvidence.Ambiguous;
-            }
-        }
+        //    if( evidences.All(evidence => evidence == MarkerEvidence.Supports) ) {
+        //        return MarkerEvidence.Supports;
+        //    } else if( evidences.All(evidence => evidence == MarkerEvidence.Disconfirms) ) {
+        //        return MarkerEvidence.Disconfirms;
+        //    } else if( evidences.All(evidence => evidence == MarkerEvidence.Ambiguous) ) {
+        //        return MarkerEvidence.Ambiguous;
+        //    } else if( evidences.Any(evidence => evidence == MarkerEvidence.Irrelevant) ) {
+        //        throw new NotImplementedException("This function was not designed to accept this evidence value.");
+        //    } else if( evidences.Any(evidence => evidence == MarkerEvidence.Consistent) ) {
+        //        throw new NotImplementedException("This function was not designed to accept this evidence value.");
+        //    } else if( evidences.Any(evidence => evidence == MarkerEvidence.Unlikely) ) {
+        //        throw new NotImplementedException("This function was not designed to accept this evidence value.");
+        //    } else {
+        //        return MarkerEvidence.Ambiguous;
+        //    }
+        //}
         #endregion
     }
 }

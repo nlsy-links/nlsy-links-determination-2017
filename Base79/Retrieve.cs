@@ -171,7 +171,7 @@ namespace Nls.Base79 {
                 dtResponse.ItemColumn.ColumnName, itemIDsString);
             LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
 
-            Trace.Assert(drs.Length >= 0, "There should be at least " + minRowCount + "  row(s) returned.");
+            Trace.Assert(drs.Length >= minRowCount, "There should be at least " + minRowCount + "  row(s) returned."); // I corrected this from "drs.Length >= 0" to "drs.Length >= minRowCount", but haven't tested it yet.  2018-02-16.
 
             LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
             foreach( LinksDataSet.tblResponseRow dr in drs ) {

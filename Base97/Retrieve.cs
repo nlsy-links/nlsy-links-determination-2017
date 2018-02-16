@@ -136,7 +136,7 @@ namespace Nls.Base97 {
                 dtResponse.ItemColumn.ColumnName, itemIDsString);
             LinksDataSet.tblResponseRow[] drs = (LinksDataSet.tblResponseRow[])dtResponse.Select(select);
 
-            Trace.Assert(drs.Length >= 0, "There should be at least " + minRowCount + "  row(s) returned.");
+            Trace.Assert(drs.Length >= minRowCount, "There should be at least " + minRowCount + "  row(s) returned.");
 
             LinksDataSet.tblResponseDataTable dt = new LinksDataSet.tblResponseDataTable();
             foreach( LinksDataSet.tblResponseRow dr in drs ) {
