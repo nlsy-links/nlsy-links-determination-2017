@@ -1885,7 +1885,7 @@ and created a lot of noise in the Git difs
 |schema name |table name              | row count| column count|
 |:-----------|:-----------------------|---------:|------------:|
 |Archive     |tblArchiveDescription   |         3|            3|
-|Archive     |tblRelatedValuesArchive |    12,595|           23|
+|Archive     |tblRelatedValuesArchive |    15,114|           23|
 |dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
@@ -2548,7 +2548,6 @@ Packages -----------------------------------------------------------------------
  bindrcpp    * 0.2        2017-06-17 CRAN (R 3.4.2)                       
  bit           1.1-12     2014-04-09 CRAN (R 3.4.1)                       
  bit64         0.9-7      2017-05-08 CRAN (R 3.4.1)                       
- bitops      * 1.0-6      2013-08-17 CRAN (R 3.4.1)                       
  blob          1.1.0      2017-06-17 CRAN (R 3.4.2)                       
  checkmate     1.8.5      2017-10-24 CRAN (R 3.4.2)                       
  chron         2.3-52     2018-01-06 CRAN (R 3.4.3)                       
@@ -2592,13 +2591,11 @@ Packages -----------------------------------------------------------------------
  purrr         0.2.4      2017-10-18 CRAN (R 3.4.2)                       
  R6            2.2.2      2017-06-17 CRAN (R 3.4.2)                       
  Rcpp          0.12.15    2018-01-20 CRAN (R 3.4.3)                       
- RCurl       * 1.95-4.10  2018-01-04 CRAN (R 3.4.3)                       
  readr         1.1.1      2017-05-16 CRAN (R 3.4.2)                       
  rlang         0.1.6.9003 2018-01-26 Github (tidyverse/rlang@b5da865)     
  rmarkdown     1.8        2017-11-17 CRAN (R 3.4.2)                       
  RODBC         1.3-15     2017-04-13 CRAN (R 3.4.1)                       
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.4.3)                       
- rsconnect     0.8.5      2017-08-23 CRAN (R 3.4.2)                       
  RSQLite     * 2.0        2017-06-19 CRAN (R 3.4.1)                       
  rstudioapi    0.7        2017-09-07 CRAN (R 3.4.1)                       
  rvest         0.3.2      2016-06-17 CRAN (R 3.4.2)                       
@@ -2624,4 +2621,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-02-16, 17:11 -0600 in 2 seconds.
+Report rendered by Will at 2018-02-16, 17:31 -0600 in 2 seconds.

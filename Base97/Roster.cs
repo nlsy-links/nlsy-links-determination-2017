@@ -37,8 +37,8 @@ namespace Nls.Base97 {
                 Int32 internal_id_s2 = drRelated.hh_internal_id_s2;
 
                 LinksDataSet.tblResponseDataTable dtFamily = Retrieve.ExtendedFamilyRelevantResponseRows(drRelated.ExtendedID, _itemIDsString, 1, _dsLinks.tblResponse);
-                EnumResponses.RosterChoice response1on2 = RosterResponseDeep(subject1Tag, internal_id_s2, dtFamily);
-                EnumResponses.RosterChoice response2on1 = RosterResponseDeep(subject2Tag, internal_id_s1, dtFamily);
+                EnumResponses.RosterChoice response1on2 = RosterResponseDeep(subject1Tag, internal_id_s1, internal_id_s2, dtFamily);
+                EnumResponses.RosterChoice response2on1 = RosterResponseDeep(subject2Tag, internal_id_s2, internal_id_s1, dtFamily);
 
                 Int16 responseLower = Math.Min((Int16)response1on2, (Int16)response2on1);
                 Int16 responseUpper = Math.Max((Int16)response1on2, (Int16)response2on1);
@@ -76,32 +76,59 @@ namespace Nls.Base97 {
         #endregion
         #region Private Methods -Tier 1
 
-        private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
-            EnumResponses.RosterChoice shallow =  RetrieveResponse(subject_tag_a, internal_id_b, 1, dtFamily);
+        private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
+            EnumResponses.RosterChoice shallow = RetrieveResponse(Item.roster_relationship_1_dim, subject_tag_a, internal_id_b, 1, dtFamily);
+
+            Int32 internal_id_min = Math.Min(internal_id_a, internal_id_b);
+            Int32 internal_id_max = Math.Max(internal_id_a, internal_id_b);
+
             switch( shallow ) {
-                case EnumResponses.RosterChoice.brother_half_unsure:
-                    return EnumResponses.RosterChoice.brother_half_unsure;
-                case EnumResponses.RosterChoice.sister_half_unsure:
-                    return EnumResponses.RosterChoice.sister_half_unsure;
+                case EnumResponses.RosterChoice.brother_half_same_mother_default:
+                    //return EnumResponses.RosterChoice.brother_half_unsure;
+                    EnumResponses.RosterChoice half = RetrieveResponseHalfSiblings(subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+                    return half;
+                //case EnumResponses.RosterChoice.brother_half_same_mother_default:
+                //    //return EnumResponses.RosterChoice.brother_half_unsure;
+                //    EnumResponses.RosterChoice half_brother = RetrieveResponse(Item.pair_brother_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+                //    return half_brother;
+                //case EnumResponses.RosterChoice.sister_half_same_mother_default:
+                //    //return EnumResponses.RosterChoice.sister_half_unsure;
+                //    EnumResponses.RosterChoice half_sister = RetrieveResponse(Item.pair_sister_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+                //    return half_sister;
                 default:
                     return shallow;
             }
 
         }
 
-        private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 loop_index_1, Int32 loop_index_2, LinksDataSet.tblResponseDataTable dtFamily ) {
+        private EnumResponses.RosterChoice RetrieveResponse( Item itemRelationship, Int32 subject1Tag, Int32 loop_index_1, Int32 loop_index_2, LinksDataSet.tblResponseDataTable dtFamily ) {
             //const Item itemID = Item.unique_id;
-            const Item itemRelationship = Item.roster_relationship_1_dim;
             Int32 surveyYearCount = 1;  //The roster was asked only in 1997.
 
-            string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
+            string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND {6}={7}",
                 subject1Tag, dtFamily.SubjectTagColumn.ColumnName,
                 loop_index_1, dtFamily.LoopIndex1Column.ColumnName,
                 loop_index_2, dtFamily.LoopIndex2Column.ColumnName,
                 (byte)itemRelationship, dtFamily.ItemColumn.ColumnName);
             LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtFamily.Select(selectToShareResponse);
             Trace.Assert(drsForShareResponse.Length == surveyYearCount, "Exactly one row should be returned for the Item.Roster item to Subject2");
-            
+
+            return (EnumResponses.RosterChoice)drsForShareResponse[0].Value;
+        }
+
+        private EnumResponses.RosterChoice RetrieveResponseHalfSiblings( Int32 subject1Tag, Int32 loop_index_1, Int32 loop_index_2, LinksDataSet.tblResponseDataTable dtFamily ) {
+            //const Item itemID = Item.unique_id;
+            Int32 surveyYearCount = 1;  //The roster was asked only in 1997.
+
+            string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5} AND ({6}={7} OR {8}={9})",
+                subject1Tag, dtFamily.SubjectTagColumn.ColumnName,
+                loop_index_1, dtFamily.LoopIndex1Column.ColumnName,
+                loop_index_2, dtFamily.LoopIndex2Column.ColumnName,
+                (byte)Item.pair_sister_same_bioparent, dtFamily.ItemColumn.ColumnName,
+                (byte)Item.pair_brother_same_bioparent, dtFamily.ItemColumn.ColumnName);
+            LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtFamily.Select(selectToShareResponse);
+            Trace.Assert(drsForShareResponse.Length == surveyYearCount, "Exactly one row should be returned for the Item.Roster item to Subject2");
+
             return (EnumResponses.RosterChoice)drsForShareResponse[0].Value;
         }
         private LinksDataSet.tblRosterAssignmentRow RetrieveAssignmentRow( Int16 responseLower, Int16 responseUpper ) {
