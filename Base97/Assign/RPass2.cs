@@ -243,7 +243,7 @@ namespace Nls.Base97.Assign {
         private static float? CalculateR( float? rFull, Tristate sameGeneration ) {
             if( !rFull.HasValue )
                 return null;
-            else if( Constants.Gen1RsToExcludeFromR.Contains(rFull.Value) )
+            else if( Constants.RsToExcludeFromR.Contains(rFull.Value) )
                 return null;
             else if( sameGeneration == Tristate.No )
                 return null;

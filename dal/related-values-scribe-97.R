@@ -1,40 +1,3 @@
-# rm(list=ls(all=TRUE))
-# library(RODBC)
-# library(plyr)
-#
-# channel <- RODBC::odbcDriverConnect("driver={SQL Server}; Server=Bee\\Bass; Database=NlsLinks; Uid=NlsyReadWrite; Pwd=nophi")
-# algorithmVersion <- max(sqlQuery(channel, "SELECT MAX(AlgorithmVersion) as AlgorithmVersion  FROM [NlsLinks].[Process].[tblRelatedValuesArchive]"))
-# odbcClose(channel)
-#
-# isGen1_S1 <- grepl("^\\d{1,7}00$", ds$SubjectTag_S1, perl=TRUE);
-# isGen1_S2 <- grepl("^\\d{1,7}00$", ds$SubjectTag_S2, perl=TRUE);
-#
-# ds$Generation_S1 <- ifelse(isGen1_S1, 1L, 2L)
-# ds$Generation_S2 <- ifelse(isGen1_S2, 1L, 2L)
-#
-# ds$SubjectID_S1 <- ifelse(isGen1_S1, ds$SubjectTag_S1 / 100, ds$SubjectTag_S1)
-# ds$SubjectID_S2 <- ifelse(isGen1_S2, ds$SubjectTag_S2 / 100, ds$SubjectTag_S2)
-#
-# if( any((ds$SubjectID_S1 %% 1) != 0) ) stop("A Gen2 subject was accidentally classified as Gen1.")
-# if( any((ds$SubjectID_S2 %% 1) != 0) ) stop("A Gen2 subject was accidentally classified as Gen1.")
-#
-# ds$SubjectID_S1 <- as.integer(ds$SubjectID_S1)
-# ds$SubjectID_S2 <- as.integer(ds$SubjectID_S2)
-#
-#
-# fileName <- sprintf("./ForDistribution/Links/Links2011V%d.csv", algorithmVersion)
-#
-# plyr::count(ds, vars=c("RelationshipPath", "R"))
-#
-# write.csv(ds, file=fileName, row.names=FALSE)
-# summary(ds)
-
-# table(ds$RelationshipPath, is.na(ds$RFull))
-#############################################################################################################################
-#############################################################################################################################
-#############################################################################################################################
-
-
 # knitr::stitch_rmd(script="./manipulation/te-ellis.R", output="./stitched-output/manipulation/te-ellis.md") # dir.create("./stitched-output/manipulation/", recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
 
@@ -127,8 +90,12 @@ sql_archive <- "
   ORDER BY a.AlgorithmVersion, rs.ExtendedID, a.SubjectTag_S1, a.SubjectTag_S2
 "
 sql_description <- "
-  SELECT MAX(AlgorithmVersion) as AlgorithmVersion
-  FROM Archive.tblRelatedValuesArchive
+  SELECT TOP (1)
+    AlgorithmVersion
+    ,Description
+    ,Date
+  FROM Archive.tblArchiveDescription
+  ORDER BY AlgorithmVersion DESC
 "
 
 # ---- load-data ---------------------------------------------------------------
@@ -139,9 +106,13 @@ ds_archive        <- DBI::dbGetQuery(channel, sql_archive)
 ds_description    <- DBI::dbGetQuery(channel, sql_description)
 DBI::dbDisconnect(channel, sql, sql_archive, sql_description)
 
+OuhscMunge::verify_data_frame(ds                , 2519    )
+OuhscMunge::verify_data_frame(ds_archive        , 2519*3  )
+OuhscMunge::verify_data_frame(ds_description    , 1       )
+
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call ato `dplyr::rename()`.
-path_out_current    <- sprintf(config$links_97_current, ds_description$AlgorithmVersion)
+testit::assert("Only one description row should be returned", nrow(ds_description) == 1L)
 
 ds <- ds %>%
   tibble::as_tibble() %>%
@@ -150,9 +121,6 @@ ds <- ds %>%
     RExplicitPass1              = NA_real_,
     RExplicitOlderSibVersion    = NA_real_,
     RExplicitYoungerSibVersion  = NA_real_
-
-    # RExplicitOlderSibVersion    = as.numeric(RExplicitOlderSibVersion   ),
-    # RExplicitYoungerSibVersion  = as.numeric(RExplicitYoungerSibVersion )
   )
 
 ds_archive <- ds_archive %>%
@@ -162,15 +130,30 @@ ds_archive <- ds_archive %>%
     RExplicitPass1              = NA_real_,
     RExplicitOlderSibVersion    = NA_real_,
     RExplicitYoungerSibVersion  = NA_real_
-
-    # RExplicitOlderSibVersion    = as.numeric(RExplicitOlderSibVersion   ),
-    # RExplicitYoungerSibVersion  = as.numeric(RExplicitYoungerSibVersion )
   )
-#
+
+ds_description <- ds_description %>%
+  tibble::as_tibble() %>%
+  dplyr::mutate(
+    sample   = "NLSY97",
+    Date     = as.character(Date),
+    note_1   = "For a complete history of algorithm versions, see `data-public/metadata/tables-97/ArchiveDescription.csv"
+  ) %>%
+  dplyr::select(
+    sample,
+    algorithm_version             = AlgorithmVersion,
+    description_of_last_change    = Description,
+    version_date                  = Date,
+    note_1
+  )
+
+# l <- yaml::read_yaml("a.yml")
+
+# l$Description
 # ds <- ds_archive %>%
 #   dplyr::filter(.data$AlgorithmVersion == max(.data$AlgorithmVersion))
 
-# ---- verify-values -----------------------------------------------------------
+# ---- verify-values-current -----------------------------------------------------------
 # Sniff out problems
 # OuhscMunge::verify_value_headstart(ds)
 checkmate::assert_integer( ds$ExtendedID                 , any.missing=F , lower=8, upper=7477    )
@@ -196,14 +179,44 @@ checkmate::assert_numeric( ds$RExplicitYoungerSibVersion , any.missing=T , lower
 checkmate::assert_numeric( ds$RImplicitSubject           , any.missing=T , lower=0, upper=1       )
 checkmate::assert_numeric( ds$RImplicitMother            , any.missing=T , lower=0, upper=1       )
 
-
 subject_combo   <- paste0(ds$SubjectTag_S1, "vs", ds$SubjectTag_S2)
 checkmate::assert_character(subject_combo, min.chars=3            , any.missing=F, unique=T)
 checkmate::assert_character(subject_combo, pattern  ="^\\d{1,4}vs\\d{1,4}$"            , any.missing=F, unique=T)
 
-# ---- specify-columns-to-upload -----------------------------------------------
+# ---- verify-values-archive -----------------------------------------------------------
+# Sniff out problems
+# OuhscMunge::verify_value_headstart(ds)
+checkmate::assert_integer( ds_archive$AlgorithmVersion           , any.missing=F , lower=1, upper=1000    )
+checkmate::assert_integer( ds_archive$ExtendedID                 , any.missing=F , lower=8, upper=7477    )
+checkmate::assert_integer( ds_archive$SubjectTag_S1              , any.missing=F , lower=6, upper=9021    )
+checkmate::assert_integer( ds_archive$SubjectTag_S2              , any.missing=F , lower=7, upper=9022    )
+checkmate::assert_integer( ds_archive$SubjectID_S1               , any.missing=F , lower=6, upper=9021    )
+checkmate::assert_integer( ds_archive$SubjectID_S2               , any.missing=F , lower=7, upper=9022    )
+# checkmate::assert_integer( ds_archive$RelationshipPath           , any.missing=F , lower=1, upper=1       )
+# checkmate::assert_logical( ds_archive$EverSharedHouse            , any.missing=F                          )
+checkmate::assert_numeric( ds_archive$R                          , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RFull                      , any.missing=T , lower=0, upper=1       )
+checkmate::assert_integer( ds_archive$MultipleBirthIfSameSex     , any.missing=T , lower=0, upper=255     )
+checkmate::assert_integer( ds_archive$IsMz                       , any.missing=T , lower=0, upper=255     )
+checkmate::assert_integer( ds_archive$LastSurvey_S1              , any.missing=T , lower=1997, upper=2015 )
+checkmate::assert_integer( ds_archive$LastSurvey_S2              , any.missing=T , lower=1997, upper=2015 )
+checkmate::assert_numeric( ds_archive$RImplicitPass1             , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RImplicit                  , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RExplicit                  , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RExplicitPass1             , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RPass1                     , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RExplicitOlderSibVersion   , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RExplicitYoungerSibVersion , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RImplicitSubject           , any.missing=T , lower=0, upper=1       )
+checkmate::assert_numeric( ds_archive$RImplicitMother            , any.missing=T , lower=0, upper=1       )
+
+algorithm_subject_combo   <- paste0(ds_archive$AlgorithmVersion, ":", ds_archive$SubjectTag_S1, "vs", ds_archive$SubjectTag_S2)
+checkmate::assert_character(algorithm_subject_combo, min.chars=3            , any.missing=F, unique=T)
+checkmate::assert_character(algorithm_subject_combo, pattern  ="^\\d{1,4}:\\d{1,4}vs\\d{1,4}$"            , any.missing=F, unique=T)
+
+# ---- specify-columns-to-upload-current -----------------------------------------------
 # dput(colnames(ds)) # Print colnames for line below.
-columns_to_write <- c(
+columns_to_write_current <- c(
   "ExtendedID", "SubjectTag_S1", "SubjectTag_S2", "SubjectID_S1",
   "SubjectID_S2", "RelationshipPath", "EverSharedHouse",
   "R", "RFull",
@@ -212,15 +225,35 @@ columns_to_write <- c(
   "RPass1", "RExplicitOlderSibVersion", "RExplicitYoungerSibVersion",
   "RImplicitSubject", "RImplicitMother"
 )
-ds_slim <- ds %>%
+ds_slim_current <- ds %>%
   # dplyr::slice(1:100) %>%
-  dplyr::select_(.dots=columns_to_write)
-ds_slim
+  dplyr::select_(.dots=columns_to_write_current)
+ds_slim_current
 
-rm(columns_to_write)
+rm(columns_to_write_current)
+
+# ---- specify-columns-to-upload-archive -----------------------------------------------
+# dput(colnames(ds_archive)) # Print colnames for line below.
+columns_to_write_archive <- c(
+  "AlgorithmVersion", "ExtendedID", "SubjectTag_S1", "SubjectTag_S2",
+  "SubjectID_S1", "SubjectID_S2", "MultipleBirthIfSameSex", "IsMz",
+  "SameGeneration", "RosterAssignmentID", "RRoster", "LastSurvey_S1",
+  "LastSurvey_S2", "RImplicitPass1", "RImplicit", "RImplicitSubject",
+  "RImplicitMother", "RExplicitOlderSibVersion", "RExplicitYoungerSibVersion",
+  "RExplicitPass1", "RExplicit", "RPass1", "R", "RFull", "RPeek"
+)
+ds_slim_archive <- ds_archive %>%
+  # dplyr::slice(1:100) %>%
+  dplyr::select_(.dots=columns_to_write_archive)
+ds_slim_current
+
+rm(columns_to_write_archive)
 
 # ---- save-to-disk ------------------------------------------------------------
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
-readr::write_csv(ds_slim, path_out_current)
+readr::write_csv(ds_slim_current, config$links_97_current)
+readr::write_csv(ds_slim_archive, config$links_97_archive)
 
-readr::write_csv(ds_archive, config$links_97_archive)
+ds_description %>%
+  purrr::transpose() %>%
+  yaml::write_yaml(config$links_97_metadata)

@@ -8,7 +8,7 @@ namespace Nls.Base97 {
         #region Fields
         private readonly LinksDataSet _dsLinks;
         //private readonly ItemYearCount _itemYearCount;
-        private readonly Item[] _items = { Item.roster_relationship_1_dim }; //, Item.IDCodeOfOtherSiblingGen1, Item.IDOfOther1979RosterGen1
+        private readonly Item[] _items = { Item.roster_relationship_1_dim, Item.pair_sister_same_bioparent, Item.pair_brother_same_bioparent }; //, Item.IDCodeOfOtherSiblingGen1, Item.IDOfOther1979RosterGen1
         private readonly string _itemIDsString = "";
         #endregion
         #region Constructor
@@ -37,8 +37,8 @@ namespace Nls.Base97 {
                 Int32 internal_id_s2 = drRelated.hh_internal_id_s2;
 
                 LinksDataSet.tblResponseDataTable dtFamily = Retrieve.ExtendedFamilyRelevantResponseRows(drRelated.ExtendedID, _itemIDsString, 1, _dsLinks.tblResponse);
-                EnumResponses.RosterChoice response1on2 = RetrieveResponse(subject1Tag, internal_id_s2, dtFamily);
-                EnumResponses.RosterChoice response2on1 = RetrieveResponse(subject2Tag, internal_id_s1, dtFamily);
+                EnumResponses.RosterChoice response1on2 = RosterResponseDeep(subject1Tag, internal_id_s2, dtFamily);
+                EnumResponses.RosterChoice response2on1 = RosterResponseDeep(subject2Tag, internal_id_s1, dtFamily);
 
                 Int16 responseLower = Math.Min((Int16)response1on2, (Int16)response2on1);
                 Int16 responseUpper = Math.Max((Int16)response1on2, (Int16)response2on1);
@@ -75,14 +75,29 @@ namespace Nls.Base97 {
         }
         #endregion
         #region Private Methods -Tier 1
-        private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 internal_id_2, LinksDataSet.tblResponseDataTable dtFamily ) {
+
+        private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
+            EnumResponses.RosterChoice shallow =  RetrieveResponse(subject_tag_a, internal_id_b, 1, dtFamily);
+            switch( shallow ) {
+                case EnumResponses.RosterChoice.brother_half_unsure:
+                    return EnumResponses.RosterChoice.brother_half_unsure;
+                case EnumResponses.RosterChoice.sister_half_unsure:
+                    return EnumResponses.RosterChoice.sister_half_unsure;
+                default:
+                    return shallow;
+            }
+
+        }
+
+        private EnumResponses.RosterChoice RetrieveResponse( Int32 subject1Tag, Int32 loop_index_1, Int32 loop_index_2, LinksDataSet.tblResponseDataTable dtFamily ) {
             //const Item itemID = Item.unique_id;
             const Item itemRelationship = Item.roster_relationship_1_dim;
             Int32 surveyYearCount = 1;  //The roster was asked only in 1997.
 
             string selectToShareResponse = string.Format("{0}={1} AND {2}={3} AND {4}={5}",
                 subject1Tag, dtFamily.SubjectTagColumn.ColumnName,
-                internal_id_2, dtFamily.LoopIndex1Column.ColumnName,
+                loop_index_1, dtFamily.LoopIndex1Column.ColumnName,
+                loop_index_2, dtFamily.LoopIndex2Column.ColumnName,
                 (byte)itemRelationship, dtFamily.ItemColumn.ColumnName);
             LinksDataSet.tblResponseRow[] drsForShareResponse = (LinksDataSet.tblResponseRow[])dtFamily.Select(selectToShareResponse);
             Trace.Assert(drsForShareResponse.Length == surveyYearCount, "Exactly one row should be returned for the Item.Roster item to Subject2");

@@ -18,7 +18,7 @@ namespace Nls.Base97 {
         public const string ExtendedFamilyIDColumn = "R1193000";	 //In tblRoster	
         public const string GenderColumn = "R0536300";               //In tblRoster
 
-        public static float[] Gen1RsToExcludeFromR { get { return new float[] { 0f, .0625f, .125f, .375f, .75f }; } }
+        public static float[] RsToExcludeFromR { get { return new float[] { 0f, .0625f, .125f, .375f, .75f }; } }
         #endregion
         #region  IDs
         public const Int32 IDMin = 1;//Sync with tblLUItem
