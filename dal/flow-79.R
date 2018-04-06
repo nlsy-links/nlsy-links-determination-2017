@@ -41,12 +41,12 @@ message("Preparing to run\n\t", paste(path_sources, collapse="\n\t"))
 # dir.create(output="./stitched-output/dal/", recursive=T)
 knitr::stitch_rmd(script="./dal/import-79-metadata.R", output="./stitched-output/dal/import-metadata.md")
 knitr::stitch_rmd(script="./dal/import-79-raw.R", output="./stitched-output/dal/import-raw.md")
-rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see below).
+rmarkdown::render("analysis/eda/counts/counts.Rmd", envir=new.env())                                             # Watch out, this file is actually knitted twice (see below).
 
 stop("Now run the C# program, then come back to run the rest of the R scripts.")
 
 knitr::stitch_rmd(script="./dal/outcomes/outcomes-79.R", output="./stitched-output/dal/outcomes/outcomes-79.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
-rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
+rmarkdown::render("analysis/eda/counts/counts.Rmd", envir=new.env())                                             # Watch out, this file is actually knitted twice (see above).
 
 
 message("Completed flow-79 at ", Sys.time(), " (in ", round(elapsed_duration, 2), " mins.)")
