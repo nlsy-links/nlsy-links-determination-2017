@@ -103,6 +103,8 @@ dsRaw <- sqldf::read.csv.sql(
   eol         = "\n"#,
   # colClasses  = col_types
 )
+# base::closeAllConnections() # Check back with https://stackoverflow.com/questions/50937423/closing-unused-connection-after-sqldfread-csv-sql
+
 # table(dsRaw$RRoster, useNA = "always")
 
 

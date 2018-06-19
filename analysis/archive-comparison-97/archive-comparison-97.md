@@ -254,17 +254,14 @@ Packages -----------------------------------------------------------------------
  kableExtra    0.9.0      2018-05-21 CRAN (R 3.5.0)                  
  knitr       * 1.20       2018-02-20 CRAN (R 3.5.0)                  
  labeling      0.3        2014-08-23 CRAN (R 3.5.0)                  
- lavaan        0.6-1      2018-05-22 CRAN (R 3.5.0)                  
  lazyeval      0.2.1      2017-10-29 CRAN (R 3.5.0)                  
  magrittr    * 1.5        2014-11-22 CRAN (R 3.5.0)                  
  markdown      0.8        2017-04-20 CRAN (R 3.5.0)                  
  memoise       1.1.0      2017-04-21 CRAN (R 3.5.0)                  
  methods     * 3.5.0      2018-05-15 local                           
- mnormt        1.5-5      2016-10-15 CRAN (R 3.5.0)                  
  munsell       0.5.0      2018-06-12 CRAN (R 3.5.0)                  
  odbc          1.1.6      2018-06-09 CRAN (R 3.5.0)                  
  OuhscMunge    0.1.9.9007 2018-05-23 local                           
- pbivnorm      0.6.0      2015-01-23 CRAN (R 3.5.0)                  
  pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
  pkgconfig     2.0.1      2017-03-21 CRAN (R 3.5.0)                  
  plyr          1.8.4      2016-06-08 CRAN (R 3.5.0)                  
@@ -283,7 +280,6 @@ Packages -----------------------------------------------------------------------
  scales        0.5.0      2017-08-24 CRAN (R 3.5.0)                  
  sqldf         0.4-11     2017-06-28 CRAN (R 3.5.0)                  
  stats       * 3.5.0      2018-05-15 local                           
- stats4        3.5.0      2018-05-15 local                           
  stringi       1.2.3      2018-06-12 CRAN (R 3.5.0)                  
  stringr       1.3.1      2018-05-10 CRAN (R 3.5.0)                  
  tcltk         3.5.0      2018-05-15 local                           
@@ -297,11 +293,10 @@ Packages -----------------------------------------------------------------------
  viridisLite   0.3.0      2018-02-01 CRAN (R 3.5.0)                  
  withr         2.1.2      2018-03-15 CRAN (R 3.5.0)                  
  xml2          1.2.0      2018-01-24 CRAN (R 3.5.0)                  
- xtable      * 1.8-2      2016-02-05 CRAN (R 3.5.0)                  
  yaml          2.1.19     2018-05-01 CRAN (R 3.5.0)                  
 ```
 </details>
 
 
 
-Report rendered by Will at 2018-06-19, 15:53 -0500 in 2 seconds.
+Report rendered by Will at 2018-06-19, 16:59 -0500 in 1 seconds.
