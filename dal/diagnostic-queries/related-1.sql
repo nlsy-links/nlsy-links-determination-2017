@@ -1,4 +1,6 @@
-SELECT TOP (1000)
+use [NlsyLinks97]
+
+SELECT -- TOP (1000)
 	v.[ID]
 	,rs.[ExtendedID]
 	,rs.SubjectTag_S1
@@ -25,7 +27,14 @@ SELECT TOP (1000)
 	,v.[R]
 	,v.[RFull]
 	--,[RPeek]
+	--,rt.ResponseLower
+	--,rt.ResponseUpper
+	,lur1.Label           AS response_older
+	,lur2.Label           AS response_younger
 --  delete
-FROM [NlsyLinks97].[Process].[tblRelatedValues] v
-  left join [NlsyLinks97].[Process].[tblRelatedStructure] rs on v.ID=rs.id
+FROM [Process].[tblRelatedValues] v
+  left join [Process].[tblRelatedStructure] rs   ON v.ID=rs.id
+  left join [Process].[tblRoster]           rt   ON v.ID=rt.RelatedID
+  left join [Enum].[tblLURoster]            lur1 ON rt.ResponseLower = lur1.id
+  left join [Enum].[tblLURoster]            lur2 ON rt.ResponseUpper = lur2.id
 order by rs.[ExtendedID]	,rs.SubjectTag_S1	,rs.SubjectTag_S2

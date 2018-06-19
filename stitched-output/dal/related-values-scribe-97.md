@@ -22,30 +22,12 @@ library(DBI                 , quietly=TRUE)
 
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"        )
-```
-
-```
-## Loading required namespace: readr
-```
-
-```r
 requireNamespace("tidyr"        )
-```
-
-```
-## Loading required namespace: tidyr
-```
-
-```r
 requireNamespace("dplyr"        ) # Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"       ) # For asserting conditions meet expected patterns/conditions.
 requireNamespace("checkmate"    ) # For asserting conditions meet expected patterns/conditions. # remotes::install_github("mllg/checkmate")
 # requireNamespace("RODBC"      ) # For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 requireNamespace("OuhscMunge"   ) # remotes::install_github(repo="OuhscBbmc/OuhscMunge")
-```
-
-```
-## Loading required namespace: OuhscMunge
 ```
 
 ```r
@@ -339,18 +321,6 @@ rm(columns_to_write_archive)
 ```r
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
 readr::write_csv(ds_slim_current, config$links_97_current)
-```
-
-```
-## Warning in open.connection(path, "wb"): cannot open file './data-public/
-## derived/links-2017-97.csv': Permission denied
-```
-
-```
-## Error in open.connection(path, "wb"): cannot open the connection
-```
-
-```r
 readr::write_csv(ds_slim_archive, config$links_97_archive)
 
 ds_description %>%
@@ -384,25 +354,31 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_1.0.0      bindrcpp_0.2.2 magrittr_1.5   knitr_1.20    
+## [1] RSQLite_2.1.1  ggplot2_2.2.1  DBI_1.0.0      bindrcpp_0.2.2
+## [5] magrittr_1.5   knitr_1.20    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.17          compiler_3.5.0        pillar_1.2.3         
-##  [4] plyr_1.8.4            highr_0.7             bindr_0.1.1          
-##  [7] tools_3.5.0           odbc_1.1.6            digest_0.6.15        
-## [10] bit_1.1-14            evaluate_0.10.1       memoise_1.1.0        
-## [13] tibble_1.4.2          checkmate_1.8.6       pkgconfig_2.0.1      
-## [16] rlang_0.2.1           cli_1.0.0             rstudioapi_0.7       
-## [19] yaml_2.1.19           withr_2.1.2           dplyr_0.7.5          
-## [22] stringr_1.3.1         hms_0.4.2.9000        devtools_1.13.5      
-## [25] rprojroot_1.3-2       bit64_0.9-7           tidyselect_0.2.4     
-## [28] OuhscMunge_0.1.9.9007 glue_1.2.0            R6_2.2.2             
-## [31] rmarkdown_1.9         tidyr_0.8.1           readr_1.2.0          
-## [34] purrr_0.2.5           blob_1.1.1            backports_1.1.2      
-## [37] scales_0.5.0          RODBC_1.3-15          htmltools_0.3.6      
-## [40] assertthat_0.2.0      testit_0.7            colorspace_1.3-2     
-## [43] config_0.3            utf8_1.1.4            stringi_1.2.2        
-## [46] munsell_0.4.3         crayon_1.3.4
+##  [1] tidyselect_0.2.4      purrr_0.2.5           tcltk_3.5.0          
+##  [4] colorspace_1.3-2      htmltools_0.3.6       viridisLite_0.3.0    
+##  [7] yaml_2.1.19           chron_2.3-52          utf8_1.1.4           
+## [10] blob_1.1.1            rlang_0.2.1           pillar_1.2.3         
+## [13] glue_1.2.0            withr_2.1.2           bit64_0.9-7          
+## [16] gsubfn_0.7            bindr_0.1.1           plyr_1.8.4           
+## [19] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
+## [22] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
+## [25] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
+## [28] OuhscMunge_0.1.9.9007 markdown_0.8          highr_0.7            
+## [31] proto_1.0.0           Rcpp_0.12.17          readr_1.2.0          
+## [34] scales_0.5.0          backports_1.1.2       checkmate_1.8.6      
+## [37] config_0.3            bit_1.1-14            testit_0.8           
+## [40] hms_0.4.2.9000        digest_0.6.15         stringi_1.2.3        
+## [43] dplyr_0.7.5           rprojroot_1.3-2       grid_3.5.0           
+## [46] cli_1.0.0             odbc_1.1.6            tools_3.5.0          
+## [49] sqldf_0.4-11          lazyeval_0.2.1        tibble_1.4.2         
+## [52] crayon_1.3.4          tidyr_0.8.1           pkgconfig_2.0.1      
+## [55] RODBC_1.3-15          xml2_1.2.0            assertthat_0.2.0     
+## [58] rmarkdown_1.10        httr_1.3.1            rstudioapi_0.7       
+## [61] R6_2.2.2              compiler_3.5.0
 ```
 
 ```r
@@ -410,6 +386,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-19 14:49:51 CDT"
+## [1] "2018-06-19 15:18:41 CDT"
 ```
 

@@ -48,8 +48,8 @@ coercing other values of type string
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * Version 3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.
     * Version 7: allows nulls for RFull.
+    * Version 8: recover different-sex full sibs.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
@@ -268,7 +268,7 @@ Packages -----------------------------------------------------------------------
  markdown      0.8        2017-04-20 CRAN (R 3.5.0)                  
  memoise       1.1.0      2017-04-21 CRAN (R 3.5.0)                  
  methods     * 3.5.0      2018-05-15 local                           
- munsell       0.4.3      2016-02-13 CRAN (R 3.5.0)                  
+ munsell       0.5.0      2018-06-12 CRAN (R 3.5.0)                  
  odbc          1.1.6      2018-06-09 CRAN (R 3.5.0)                  
  OuhscMunge    0.1.9.9007 2018-05-23 local                           
  pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
@@ -280,7 +280,7 @@ Packages -----------------------------------------------------------------------
  Rcpp          0.12.17    2018-05-18 CRAN (R 3.5.0)                  
  readr         1.2.0      2018-05-30 Github (tidyverse/readr@d6d622b)
  rlang         0.2.1      2018-05-30 CRAN (R 3.5.0)                  
- rmarkdown     1.9        2018-03-01 CRAN (R 3.5.0)                  
+ rmarkdown     1.10       2018-06-11 CRAN (R 3.5.0)                  
  RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
  RSQLite     * 2.1.1      2018-05-06 CRAN (R 3.5.0)                  
@@ -289,10 +289,10 @@ Packages -----------------------------------------------------------------------
  scales        0.5.0      2017-08-24 CRAN (R 3.5.0)                  
  sqldf         0.4-11     2017-06-28 CRAN (R 3.5.0)                  
  stats       * 3.5.0      2018-05-15 local                           
- stringi       1.2.2      2018-05-02 CRAN (R 3.5.0)                  
+ stringi       1.2.3      2018-06-12 CRAN (R 3.5.0)                  
  stringr       1.3.1      2018-05-10 CRAN (R 3.5.0)                  
  tcltk         3.5.0      2018-05-15 local                           
- testit        0.7        2017-05-22 CRAN (R 3.5.0)                  
+ testit        0.8        2018-06-14 CRAN (R 3.5.0)                  
  tibble        1.4.2      2018-01-22 CRAN (R 3.5.0)                  
  tidyr         0.8.1      2018-05-18 CRAN (R 3.5.0)                  
  tidyselect    0.2.4      2018-02-26 CRAN (R 3.5.0)                  
@@ -308,4 +308,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-19, 14:49 -0500 in 2 seconds.
+Report rendered by Will at 2018-06-19, 15:18 -0500 in 1 seconds.

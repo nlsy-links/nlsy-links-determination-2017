@@ -94,6 +94,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -242,15 +245,15 @@ coercing other values of type string</code></pre>
 <ol style="list-style-type: decimal">
 <li>The current report compares the versions of the NLSY97 Links
 <ul>
-<li>Version 3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.</li>
 <li>Version 7: allows nulls for RFull.</li>
+<li>Version 8: recover different-sex full sibs.</li>
 </ul></li>
 </ol>
 </div>
 </div>
 <div id="comparison-of-agreement" class="section level1">
 <h1><span class="header-section-number">2</span> Comparison of Agreement</h1>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATMAAACQCAMAAABTeXyYAAAA81BMVEUAAAAAACAAADIAADoAAGYADVEAKAAAMn0AOpAAWGYAZoEAZrYhADo6AAA6ADo6AGY6kNtNTU1NTW5NTY5NbqtNjshZTABZnr9mAABmtv9uTU1uTW5uTY5ubqtuq8huq+R9MgCBKACOTU2OTW6OTY6OyP+QOgCQkDqQkGaQtpCQ27aQ2/+dkDqe3t6rbk2rbm6rbo6ryKur5P+zs7O2ZgC2Zma2tma2//+8//+/nlm/3t7Ijk3I///bkDrb/7bb///enlne3r/e3t7kq27k////tmb/trb/yI7/25D/29v/5Kv//53//7b//8j//9v//+T///8+j8MXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAGxUlEQVR4nO2dC3fbNBTHDQksELImY4N0PDo2Uh6BDdpAYWkodDPJStr6+38a9PDbV5avI9tRdP9n5zj2tR7+VZIl30nyAhJWXtcZsFDEDC9ihpeG2c3TyWQWBG8mk8mnl/z8y0txUZzE12+fTx6/bT6v+6JyZrcvzoKbL86C5UyeryWhWfBGMpLX71+yC08azugeqZzZmpNYzu5fnYnT5aNfWTm7+eqtgMlgyeu3317KAuiI9O0Zw8Pqnqiism4mzMLryYXzw1ZVZvcvT0T1lGWKMxN185E4k9fXjyNmXOfquK5rmWoGMx9jVWa3z0/CX6Ltit4BX7+KELHrSTlLx2wsq7Yxu3k6i34mzALZhMXXs+2Z68xCZLzy3f8S9TV4kZKvyfA6r77Je9N1Zrz/xVt5dhQNmCxO6wnvjvGf4fVM/8x1ZnVEzPAiZngRM7yIGV7EDK/z60MVlTO8iZjhTcQMbyJmeBMxw5uIGd5EzPCmyt/PSv1OeXM6ZmNZtYyZxu+UN2diNpZVy5hp/E45czZmY1m1jBlXid+pYBbema6HOI3JiN+pYE7/NQA5Us40fqecOR2zsazaxkzjd8qb0zEby6plzDR+p4I5HbOxrO45s5XnHa8GV/G5xu9UMKdjNpbV/Wa2GPw1Pb47HZakppdbzLbTY/Yv8PsXJclpRczwcotZsOJ1czsdl6Sml2PMAt9jGpckVkGuMTMhYoaXa+PNfP+sFjO16RDLGfXPqK9hOBgxw5uof4Y3Uf8MbzqA/pn4A7MXvbkYNSaI2d1pIX2Nry78z8fd/B/ku9PB1fU3H/xhLkaNSfEOyN2l8dWFk8Oyc8RaY7Z5OA/+fu+TubkYNSbFOyDXndX46sLJFB3NqWDM7p599LBbZtupbCGyfY0SX134KzdHrK2hzD/PHvz5/mcPXreVnhlfXTg5rLM5YgvPUw/0untvlvrqCuUsHbOxrKps2+nH089PlR3wduum58UjznJfXbftmd//vf/zpuP2LFjxPxobB8TDdI2vLpwc1tEcMb//0+B118zCvgYbb0ZDTt0csU77Z9vph8PrhbJB64pZHbX3DvhvtAfvgKhuFjtqCLk23vTlAG7VUzUSFeQaMxNyk9lv9M0RlJIZ66Tt+J22tbFM21IwW5V8kKrKTG06wHImxgG7OZ0Ct5ixIsZelwtiplSBWdihJWZqU7Gc+aIpI2ZqE+wPoPasRl/Dp/em2qTsn7HCRn50WGXjgH8TZuW+utSnIppXFwn21fFvjvH3Mv49kubVpaT21UXrn3GANK8ur4KvLlPO+DdtmleXU9FXl/6ULdxNNK8uK8BXxxGtwyZ/HbdrNEcsEuSrS7uAlycZczpmY1m1jBnoq0uVM1kj3Z5Xl5fSV8fOoteBvM3ZeXVGRMzwImZ4ETO8iBlexAwvGjvVYKY2UTnTxAyImGliBkTMNDEDImaamAERM03MgIiZJmZAbjCrsY+Y68x0fidoHzHXmWn8TuA+Yq4z4yrxO9E+YrDK/E7YfcRKVC9Uu8EM+Z0C1D5iFfKzz8EM+Z0C1D5iFfKzz8GM+J3AfcQOX7v5naB9xA5ftJ8wXsQML2KGlzFmSZuG2cw6uQnaikAbCJpzazYt6LlMMUuNORGbWSc3gVsR6AKBa6IYTQt8LlPMkj4aZjPr5CZwKwJdIHANAaNpgc9lilnJZtaVQonspEe2VQKBa1UYTQt8LlPMksEBOAjVhgqgrQh0gcA1UYymBT6XCWbLyeRJ7m+dH4RWCAVsRQDLQDmrnFa+uojnMt+ehXEj2zNwKwJdoJrtGSIt8LnMvTdPyjaz1oYCtyLQBQLXRDGaFvhchvtn2EFoHArcikCbVI3+GTIt6LloHIAXMcOLmOFFzPAiZngRM7yIGV7EDK+9ZyYWY5DLMajXIWxXFjAbB3Kd6K5zEssSZsC61t3JFmbBaijq5mYkVwARx7FYF6r3w9HF5ug7r3/B6zFf6CI6NiRrmPmDK8ZMNGmbkdhPgy8/yRef3E77F5vRkN86FGuGR8emsmQPMwaGMTuSxecdB8LOxQKnK87sOJCbkjCa0bGpLNnDTJQzvsS2XNGIr9LTm4vSxECK8reSiziPo2NTWbKG2WIY9jXE4onbaW/Oz7PMwurYYLUUsoUZr2pR/4xXP47F78m6KautOBd2f5elYivIEmaifxa1X/zIi9moN4/fAZyZuIlZomNTWbKAWdw4cTCyGRNbB/R+ZGWP9zW+D5mJe3vz5NiQ9p5ZBfktjxEsZ8Zr4K4b7KFlOTPRv2gZmfXMuhAxw4uY4UXM8CJmeBEzvIgZXv8DnnrZ99UMmXMAAAAASUVORK5CYII=" /><!-- --></p>
 </div>
 <div id="table-of-r-assignments" class="section level1">
 <h1><span class="header-section-number">3</span> Table of <em>R</em> Assignments</h1>
@@ -629,7 +632,7 @@ Delta
  markdown      0.8        2017-04-20 CRAN (R 3.5.0)                  
  memoise       1.1.0      2017-04-21 CRAN (R 3.5.0)                  
  methods     * 3.5.0      2018-05-15 local                           
- munsell       0.4.3      2016-02-13 CRAN (R 3.5.0)                  
+ munsell       0.5.0      2018-06-12 CRAN (R 3.5.0)                  
  odbc          1.1.6      2018-06-09 CRAN (R 3.5.0)                  
  OuhscMunge    0.1.9.9007 2018-05-23 local                           
  pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
@@ -641,7 +644,7 @@ Delta
  Rcpp          0.12.17    2018-05-18 CRAN (R 3.5.0)                  
  readr         1.2.0      2018-05-30 Github (tidyverse/readr@d6d622b)
  rlang         0.2.1      2018-05-30 CRAN (R 3.5.0)                  
- rmarkdown     1.9        2018-03-01 CRAN (R 3.5.0)                  
+ rmarkdown     1.10       2018-06-11 CRAN (R 3.5.0)                  
  RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
  RSQLite     * 2.1.1      2018-05-06 CRAN (R 3.5.0)                  
@@ -650,10 +653,10 @@ Delta
  scales        0.5.0      2017-08-24 CRAN (R 3.5.0)                  
  sqldf         0.4-11     2017-06-28 CRAN (R 3.5.0)                  
  stats       * 3.5.0      2018-05-15 local                           
- stringi       1.2.2      2018-05-02 CRAN (R 3.5.0)                  
+ stringi       1.2.3      2018-06-12 CRAN (R 3.5.0)                  
  stringr       1.3.1      2018-05-10 CRAN (R 3.5.0)                  
  tcltk         3.5.0      2018-05-15 local                           
- testit        0.7        2017-05-22 CRAN (R 3.5.0)                  
+ testit        0.8        2018-06-14 CRAN (R 3.5.0)                  
  tibble        1.4.2      2018-01-22 CRAN (R 3.5.0)                  
  tidyr         0.8.1      2018-05-18 CRAN (R 3.5.0)                  
  tidyselect    0.2.4      2018-02-26 CRAN (R 3.5.0)                  
@@ -665,7 +668,7 @@ Delta
  xml2          1.2.0      2018-01-24 CRAN (R 3.5.0)                  
  yaml          2.1.19     2018-05-01 CRAN (R 3.5.0)                  </code></pre>
 <p></details></p>
-<p>Report rendered by Will at 2018-06-19, 14:49 -0500 in 2 seconds.</p>
+<p>Report rendered by Will at 2018-06-19, 15:18 -0500 in 1 seconds.</p>
 </div>
 
 
