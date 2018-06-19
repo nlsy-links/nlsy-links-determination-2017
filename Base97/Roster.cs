@@ -78,26 +78,27 @@ namespace Nls.Base97 {
 
         private EnumResponses.RosterChoice RosterResponseDeep( Int32 subject_tag_a, Int32 internal_id_a, Int32 internal_id_b, LinksDataSet.tblResponseDataTable dtFamily ) { //The tag of the respondent, and the internal id of the relative
             EnumResponses.RosterChoice shallow = RetrieveResponse(Item.roster_relationship_1_dim, subject_tag_a, internal_id_b, 1, dtFamily);
+            return shallow;
 
-            Int32 internal_id_min = Math.Min(internal_id_a, internal_id_b);
-            Int32 internal_id_max = Math.Max(internal_id_a, internal_id_b);
+            //Int32 internal_id_min = Math.Min(internal_id_a, internal_id_b);
+            //Int32 internal_id_max = Math.Max(internal_id_a, internal_id_b);
 
-            switch( shallow ) {
-                case EnumResponses.RosterChoice.brother_half_same_mother_default:
-                    //return EnumResponses.RosterChoice.brother_half_unsure;
-                    EnumResponses.RosterChoice half = RetrieveResponseHalfSiblings(subject_tag_a, internal_id_min, internal_id_max, dtFamily);
-                    return half;
-                //case EnumResponses.RosterChoice.brother_half_same_mother_default:
-                //    //return EnumResponses.RosterChoice.brother_half_unsure;
-                //    EnumResponses.RosterChoice half_brother = RetrieveResponse(Item.pair_brother_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
-                //    return half_brother;
-                //case EnumResponses.RosterChoice.sister_half_same_mother_default:
-                //    //return EnumResponses.RosterChoice.sister_half_unsure;
-                //    EnumResponses.RosterChoice half_sister = RetrieveResponse(Item.pair_sister_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
-                //    return half_sister;
-                default:
-                    return shallow;
-            }
+            //switch( shallow ) {
+            //    case EnumResponses.RosterChoice.brother_half_same_mother_default:
+            //        //return EnumResponses.RosterChoice.brother_half_unsure;
+            //        EnumResponses.RosterChoice half = RetrieveResponseHalfSiblings(subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+            //        return half;
+            //    //case EnumResponses.RosterChoice.brother_half_same_mother_default:
+            //    //    //return EnumResponses.RosterChoice.brother_half_unsure;
+            //    //    EnumResponses.RosterChoice half_brother = RetrieveResponse(Item.pair_brother_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+            //    //    return half_brother;
+            //    //case EnumResponses.RosterChoice.sister_half_same_mother_default:
+            //    //    //return EnumResponses.RosterChoice.sister_half_unsure;
+            //    //    EnumResponses.RosterChoice half_sister = RetrieveResponse(Item.pair_sister_same_bioparent, subject_tag_a, internal_id_min, internal_id_max, dtFamily);
+            //    //    return half_sister;
+            //    default:
+            //        return shallow;
+            //}
 
         }
 

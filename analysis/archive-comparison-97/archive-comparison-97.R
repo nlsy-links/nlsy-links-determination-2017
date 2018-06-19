@@ -270,6 +270,9 @@ CreateMarginalTable  <- function( dsJoint ) {
 # dsLatest %>%
 #   tibble::as_tibble()
 
+# dsLatest %>%
+#   dplyr::count(RFull)
+
 dsLatest %>%
   CreateMarginalTable() %>%
   knitr::kable(
