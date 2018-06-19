@@ -31,6 +31,15 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 <!-- Load the datasets.   -->
 
+```
+Warning in result_fetch(res@ptr, n = n): Column `RPass1`: mixed type, first seen values of type
+real, coercing other values of type string
+```
+
+```
+Warning in result_fetch(res@ptr, n = n): Column `RFull`: mixed type, first seen values of type real,
+coercing other values of type string
+```
 
 <!-- Tweak the datasets.   -->
 
@@ -39,8 +48,8 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * Version 2: account for twins.
     * Version 3: same sib full twins are R=.5 by default, and overridden if explicitly MZ.
+    * Version 7: allows nulls for RFull.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
@@ -112,7 +121,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:left;"> -- </td>
    <td style="text-align:right;"> 2,519 </td>
    <td style="text-align:right;"> 2,519 </td>
-   <td style="text-align:right;"> 1,202 </td>
+   <td style="text-align:right;"> 108 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
@@ -133,7 +142,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:left;"> 0.500 </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> -- </td>
-   <td style="text-align:right;"> 1,017 </td>
+   <td style="text-align:right;"> 2,111 </td>
    <td style="text-align:right;"> 1,049 </td>
   </tr>
   <tr>
@@ -164,7 +173,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;background-color: #a6e8a1;"> -- </td>
    <td style="text-align:right;background-color: #a6e8a1;"> -- </td>
    <td style="text-align:right;background-color: #a6e8a1;"> 0.500 </td>
-   <td style="text-align:right;background-color: #a6e8a1;"> 1094 </td>
+   <td style="text-align:right;background-color: #a6e8a1;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;background-color: #a6e8a1;"> 174 </td>
@@ -185,7 +194,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;background-color: #a6e8a1;"> -- </td>
    <td style="text-align:right;background-color: #a6e8a1;"> -- </td>
    <td style="text-align:right;background-color: #a6e8a1;"> -- </td>
-   <td style="text-align:right;background-color: #a6e8a1;"> -1094 </td>
+   <td style="text-align:right;background-color: #a6e8a1;"> 0 </td>
   </tr>
 </tbody>
 </table>
@@ -274,7 +283,6 @@ Packages -----------------------------------------------------------------------
  rmarkdown     1.9        2018-03-01 CRAN (R 3.5.0)                  
  RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
- rsconnect     0.8.8      2018-03-09 CRAN (R 3.5.0)                  
  RSQLite     * 2.1.1      2018-05-06 CRAN (R 3.5.0)                  
  rstudioapi    0.7        2017-09-07 CRAN (R 3.5.0)                  
  rvest         0.3.2      2016-06-17 CRAN (R 3.5.0)                  
@@ -300,4 +308,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-19, 13:02 -0500 in 1 seconds.
+Report rendered by Will at 2018-06-19, 14:49 -0500 in 2 seconds.

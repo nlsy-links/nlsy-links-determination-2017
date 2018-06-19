@@ -84,14 +84,15 @@ namespace Nls.Base97.Assign {
             //_rExplicit = CommonFunctions.TranslateToR(shareBiomom: explicitShareBiomom, shareBiodad: explicitShareBiodad, mustDecide: true);
             //_rImplicit = CommonFunctions.TranslateToR(shareBiomom: implicitShareBiomom, shareBiodad: implicitShareBiodad, mustDecide: false);//Possibly 'true' later one
 
-            _rFull = (float)_drValue.RPass1;
-            //if( !_drValue.IsRPass1Null() ) {
-            //    _rFull = (float)_drValue.RPass1;
-            //} else { //Don't do the expensive interpolation unless it will be used
+            //_rFull = (float)_drValue.RPass1;
+            if( !_drValue.IsRPass1Null() ) {
+                _rFull = (float)_drValue.RPass1;
+            } else { //Don't do the expensive interpolation unless it will be used
             //    Tristate shareBiomom = AddressBiomom(explicitShareBiomom, implicitShareBiomom);
             //    Tristate shareBiodad = AddressBiodad(explicitShareBiodad, implicitShareBiodad);
             //    _rFull = CommonFunctions.TranslateToR(shareBiomom: shareBiomom, shareBiodad: shareBiodad, mustDecide: true);
-            //}
+                _rFull = null;
+            }
 
             LinksDataSet.tblRosterRow drRoster = _dsLinks.tblRoster.FindByRelatedID(_drValue.ID);
             _r = CalculateR(_rFull, (Tristate)drRoster.SameGeneration);

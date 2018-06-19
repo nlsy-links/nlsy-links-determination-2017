@@ -43,7 +43,7 @@ namespace Nls.Base97 {
         //}
         public static float? TranslateToR( Tristate shareBiomom, Tristate shareBiodad, bool mustDecide ) {
             if( shareBiomom == Tristate.DoNotKnow && shareBiodad == Tristate.DoNotKnow ) return null;
-            else if( shareBiomom == Tristate.No && shareBiodad == Tristate.No ) return RCoefficients.NotRelated;
+            //else if( shareBiomom == Tristate.No && shareBiodad == Tristate.No ) return RCoefficients.NotRelated;  // This is appropriate for only 79Gen2
             else if( shareBiomom == Tristate.Yes && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingFull;
             else if( shareBiomom == Tristate.No && shareBiodad == Tristate.Yes ) return RCoefficients.SiblingHalf;
             else if( shareBiomom == Tristate.Yes && shareBiodad == Tristate.No ) return RCoefficients.SiblingHalf;

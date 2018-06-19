@@ -14,10 +14,10 @@ requireNamespace("testit")
 
 # ---- declare-globals ---------------------------------------------------------
 path_sources <- c(
+  # "dal/outcomes/outcomes-97.R",
   "dal/import-97-metadata.R",
   "dal/import-97-raw.R",
   "analysis/eda/counts/counts.Rmd"
-  # "dal/outcomes/outcomes-97.R"
 )
 
 file.exists(path_sources)
@@ -45,12 +45,13 @@ rmarkdown::render("analysis/eda/counts/counts.Rmd")                             
 
 stop("Now run the C# program, then come back to run the rest of the R scripts.")
 
-knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
+# knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
 
 rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
 knitr::stitch_rmd(script="./dal/related-values-scribe-97.R", output="./stitched-output/dal/related-values-scribe-97.md")
 rmarkdown::render("analysis/archive-comparison-97/archive-comparison-97.Rmd")
 
-message("Completed flow-97 at ", Sys.time(), " (in ", round(elapsed_duration, 2), " mins.)")
+elapsed_duration <- (Sys.time() - start_time)
+message(sprintf("Completed flow-97 at %s (in %0.2f mins.)", start_time, elapsed_duration))
 
 # ---- verify-values -----------------------------------------------------------
