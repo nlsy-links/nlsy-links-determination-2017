@@ -181,7 +181,9 @@ namespace Nls.Base97.Assign {
 
             LinksDataSet.tblRosterRow dr = dtRoster.FindByRelatedID(idRelated);
             Trace.Assert(dr != null, "Exactly one row should be retrieved from tblRosterGen1.");
-            if( dr.Resolved ) {
+
+            //if( dr.Resolved ) {
+            if( !dr.IsRNull() ) {
                 Trace.Assert(!dr.IsRNull(), "If R is resolved by the roster, then R shouldn't be NaN.");
                 return (float)dr.R;
             } else {

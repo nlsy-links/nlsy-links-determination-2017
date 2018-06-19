@@ -4,3 +4,4 @@ AlgorithmVersion,Description,Date,Valid
 3,"same sib full twins are R=.5 by default, and overridden if explicitly MZ",2018-02-14,TRUE
 7,"allows nulls for RFull",2018-06-19,FALSE
 8,recover different-sex full sibs,2018-06-19,FALSE
+9,recover same-sex full sibs,2018-06-19,FALSE
