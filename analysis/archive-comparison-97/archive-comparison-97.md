@@ -31,15 +31,6 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 <!-- Load the datasets.   -->
 
-```
-Warning in result_fetch(res@ptr, n = n): Column `RPass1`: mixed type, first seen values of type
-real, coercing other values of type string
-```
-
-```
-Warning in result_fetch(res@ptr, n = n): Column `RFull`: mixed type, first seen values of type real,
-coercing other values of type string
-```
 
 <!-- Tweak the datasets.   -->
 
@@ -72,14 +63,14 @@ coercing other values of type string
    <td style="text-align:right;"> 2,519 </td>
    <td style="text-align:right;"> 2,519 </td>
    <td style="text-align:right;"> 108 </td>
-   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 107 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.000 </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> 174 </td>
-   <td style="text-align:right;"> 284 </td>
+   <td style="text-align:right;"> 177 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.250 </td>
@@ -237,7 +228,6 @@ Packages -----------------------------------------------------------------------
  bit64         0.9-7      2017-05-08 CRAN (R 3.5.0)                  
  blob          1.1.1      2018-03-25 CRAN (R 3.5.0)                  
  checkmate     1.8.6      2018-05-23 Github (mllg/checkmate@f161dc3) 
- chron         2.3-52     2018-01-06 CRAN (R 3.5.0)                  
  cli           1.0.0      2017-11-05 CRAN (R 3.5.0)                  
  colorspace    1.3-2      2016-12-14 CRAN (R 3.5.0)                  
  compiler      3.5.0      2018-05-15 local                           
@@ -254,7 +244,6 @@ Packages -----------------------------------------------------------------------
  graphics    * 3.5.0      2018-05-15 local                           
  grDevices   * 3.5.0      2018-05-15 local                           
  grid          3.5.0      2018-05-15 local                           
- gsubfn        0.7        2018-03-16 CRAN (R 3.5.0)                  
  gtable        0.2.0      2016-02-26 CRAN (R 3.5.0)                  
  highr         0.7        2018-06-09 CRAN (R 3.5.0)                  
  hms           0.4.2.9000 2018-05-30 Github (tidyverse/hms@14e74ab)  
@@ -274,7 +263,6 @@ Packages -----------------------------------------------------------------------
  pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
  pkgconfig     2.0.1      2017-03-21 CRAN (R 3.5.0)                  
  plyr          1.8.4      2016-06-08 CRAN (R 3.5.0)                  
- proto         1.0.0      2016-10-29 CRAN (R 3.5.0)                  
  purrr         0.2.5      2018-05-29 CRAN (R 3.5.0)                  
  R6            2.2.2      2017-06-17 CRAN (R 3.5.0)                  
  Rcpp          0.12.17    2018-05-18 CRAN (R 3.5.0)                  
@@ -283,15 +271,13 @@ Packages -----------------------------------------------------------------------
  rmarkdown     1.10       2018-06-11 CRAN (R 3.5.0)                  
  RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
- RSQLite     * 2.1.1      2018-05-06 CRAN (R 3.5.0)                  
+ RSQLite       2.1.1      2018-05-06 CRAN (R 3.5.0)                  
  rstudioapi    0.7        2017-09-07 CRAN (R 3.5.0)                  
  rvest         0.3.2      2016-06-17 CRAN (R 3.5.0)                  
  scales        0.5.0      2017-08-24 CRAN (R 3.5.0)                  
- sqldf         0.4-11     2017-06-28 CRAN (R 3.5.0)                  
  stats       * 3.5.0      2018-05-15 local                           
  stringi       1.2.3      2018-06-12 CRAN (R 3.5.0)                  
  stringr       1.3.1      2018-05-10 CRAN (R 3.5.0)                  
- tcltk         3.5.0      2018-05-15 local                           
  testit        0.8        2018-06-14 CRAN (R 3.5.0)                  
  tibble        1.4.2      2018-01-22 CRAN (R 3.5.0)                  
  tidyr         0.8.1      2018-05-18 CRAN (R 3.5.0)                  
@@ -308,4 +294,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-19, 20:53 -0500 in 1 seconds.
+Report rendered by Will at 2018-06-19, 21:34 -0500 in 1 seconds.

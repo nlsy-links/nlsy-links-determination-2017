@@ -7,6 +7,7 @@ default:
   links_79_metadata:              "./data-public/derived/links-metadata-2017-79.yml"
   links_79_current:               "./data-public/derived/links-2017-79.csv"
   links_79_archive:               "./data-public/derived/links-archive-2017-79.csv"
+  links_79_archive_db:            "./data-public/derived/links-archive-2017-79.sqlite3"
 
   links_97_metadata:              "./data-public/derived/links-metadata-2017-97.yml"
   links_97_current:               "./data-public/derived/links-2017-97.csv"

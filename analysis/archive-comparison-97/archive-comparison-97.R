@@ -64,7 +64,7 @@ col_types <- c(#
   "IsMz"                            = "integer",       #   IsMz                            = readr::col_integer(),
   "SameGeneration"                  = "integer",       #   SameGeneration                  = readr::col_integer(),
   "RosterAssignmentID"              = "integer",       #   RosterAssignmentID              = readr::col_integer(),
-  "RRoster"                         = "numeric",     #   RRoster                         = readr::col_double(),
+  "RRoster"                         = "numeric",       #   RRoster                         = readr::col_double(),
   "LastSurvey_S1"                   = "integer",       #   LastSurvey_S1                   = readr::col_integer(),
   "LastSurvey_S2"                   = "integer",       #   LastSurvey_S2                   = readr::col_integer(),
   "RImplicitPass1"                  = "numeric",       #   RImplicitPass1                  = readr::col_double(),
@@ -82,34 +82,6 @@ col_types <- c(#
 )
 
 
-# col_types <- c(#
-#   "AlgorithmVersion"                = "integer",       #   AlgorithmVersion                = readr::col_integer(),
-#   "ExtendedID"                      = "integer",       #   ExtendedID                      = readr::col_integer(),
-#   "SubjectTag_S1"                   = "integer",       #   SubjectTag_S1                   = readr::col_integer(),
-#   "SubjectTag_S2"                   = "integer",       #   SubjectTag_S2                   = readr::col_integer(),
-#   "SubjectID_S1"                    = "integer",       #   SubjectID_S1                    = readr::col_integer(),
-#   "SubjectID_S2"                    = "integer",       #   SubjectID_S2                    = readr::col_integer(),
-#   "MultipleBirthIfSameSex"          = "integer",       #   MultipleBirthIfSameSex          = readr::col_integer(),
-#   "IsMz"                            = "integer",       #   IsMz                            = readr::col_integer(),
-#   "SameGeneration"                  = "integer",       #   SameGeneration                  = readr::col_integer(),
-#   "RosterAssignmentID"              = "integer",       #   RosterAssignmentID              = readr::col_integer(),
-#   "RRoster"                         = "text",     #   RRoster                         = readr::col_double(),
-#   "LastSurvey_S1"                   = "integer",       #   LastSurvey_S1                   = readr::col_integer(),
-#   "LastSurvey_S2"                   = "integer",       #   LastSurvey_S2                   = readr::col_integer(),
-#   "RImplicitPass1"                  = "real",       #   RImplicitPass1                  = readr::col_double(),
-#   "RImplicit"                       = "real",       #   RImplicit                       = readr::col_double(),
-#   "RImplicitSubject"                = "real",       #   RImplicitSubject                = readr::col_double(),
-#   "RImplicitMother"                 = "real",       #   RImplicitMother                 = readr::col_double(),
-#   "RExplicitOlderSibVersion"        = "real",       #   RExplicitOlderSibVersion        = readr::col_double(),
-#   "RExplicitYoungerSibVersion"      = "real",       #   RExplicitYoungerSibVersion      = readr::col_double(),
-#   "RExplicitPass1"                  = "real",       #   RExplicitPass1                  = readr::col_double(),
-#   "RExplicit"                       = "real",       #   RExplicit                       = readr::col_double(),
-#   "RPass1"                          = "real",       #   RPass1                          = readr::col_double(),
-#   "R"                               = "real",       #   R                               = readr::col_double(),
-#   "RFull"                           = "real",       #   RFull                           = readr::col_double(),
-#   "RPeek"                           = "real"        #   RPeek                           = readr::col_double()
-# )
-
 col_types_description <- readr::cols_only(
   AlgorithmVersion  = readr::col_integer(),
   Description       = readr::col_character(),
@@ -125,16 +97,35 @@ recent_versions <- ds_description %>%
   sort() %>%
   tail(2)
 
-sql <- glue::glue("SELECT * FROM file WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+sql <- glue::glue("SELECT * FROM archive_97 WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
 
-
-dsRaw <- sqldf::read.csv.sql(
-  file        = "data-public/derived/links-archive-2017-97.csv",
-  sql         = sql,
-  eol         = "\n"#,
-  # colClasses  = col_types
-)
-
+cnn     <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_79_archive_db)
+dsRaw   <- DBI::dbGetQuery(cnn, sql)
+DBI::dbDisconnect(cnn); rm(cnn)
+# # readr::spec_csv(config$links_97_archive)
+#
+# #
+# # sql <- glue::glue("SELECT * FROM ff WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+# # # sql <- glue::glue("SELECT * FROM ff WHERE AlgorithmVersion", versions=glue::collapse(recent_versions, sep=", "))
+# #
+# ff    <- base::file(config$links_97_archive)
+# attr(ff, "file.format") <- list(colClasses = col_types)
+# attr(ff, "file.format") <- list(eol         = "\n")
+# #
+# # # dsRaw <- sqldf::read.csv.sql(sql=sql)
+# # # dsRaw <- sqldf::read.csv.sql(sql="SELECT * FROM ff", eol         = "\n")
+# dsRaw <- sqldf::read.csv.sql(
+#   # file = config$links_97_archive,
+#   sql         = sql,
+#   # sql="SELECT * FROM ff",
+#   # sql="SELECT * FROM file",
+#   # file.format = list(colClasses = col_types)
+#   # colClasses  = col_types,
+#   eol         = "\n",
+#   nrows       = 100000
+# )
+#
+# base::close(ff)
 
 # base::closeAllConnections() # Check back with https://stackoverflow.com/questions/50937423/closing-unused-connection-after-sqldfread-csv-sql
 
