@@ -50,6 +50,7 @@ stop("Now run the C# program, then come back to run the rest of the R scripts.")
 rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
 knitr::stitch_rmd(script="./dal/related-values-scribe-97.R", output="./stitched-output/dal/related-values-scribe-97.md")
 rmarkdown::render("analysis/archive-comparison-97/archive-comparison-97.Rmd")
+base::closeAllConnections() # Check back with https://stackoverflow.com/questions/50937423/closing-unused-connection-after-sqldfread-csv-sql
 
 elapsed_duration <- (Sys.time() - start_time)
 message(sprintf("Completed flow-97 at %s (in %0.2f mins.)", start_time, elapsed_duration))

@@ -253,6 +253,7 @@ rm(columns_to_write_archive)
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
 readr::write_csv(ds_slim_current, config$links_97_current)
 readr::write_csv(ds_slim_archive, config$links_97_archive)
+# utils::write.csv(ds_slim_archive, config$links_97_archive, row.names=F)
 
 ds_description %>%
   purrr::transpose() %>%

@@ -31,6 +31,15 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 <!-- Load the datasets.   -->
 
+```
+Warning in result_fetch(res@ptr, n = n): Column `RPass1`: mixed type, first seen values of type
+real, coercing other values of type string
+```
+
+```
+Warning in result_fetch(res@ptr, n = n): Column `RFull`: mixed type, first seen values of type real,
+coercing other values of type string
+```
 
 <!-- Tweak the datasets.   -->
 
@@ -39,8 +48,8 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * Version 8: recover different-sex full sibs.
     * Version 9: recover same-sex full sibs.
+    * Version 10: allow nonsibs to still be r>0.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
@@ -120,7 +129,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> 174 </td>
-   <td style="text-align:right;"> 1,318 </td>
+   <td style="text-align:right;"> 284 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.250 </td>
@@ -134,7 +143,7 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> 2,111 </td>
-   <td style="text-align:right;"> 1,049 </td>
+   <td style="text-align:right;"> 2,083 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 1.000 </td>
@@ -299,4 +308,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-19, 16:59 -0500 in 1 seconds.
+Report rendered by Will at 2018-06-19, 20:53 -0500 in 1 seconds.

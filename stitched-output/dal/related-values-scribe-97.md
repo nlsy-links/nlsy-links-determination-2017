@@ -23,22 +23,11 @@ library(DBI                 , quietly=TRUE)
 # Verify these packages are available on the machine, but their functions need to be qualified: http://r-pkgs.had.co.nz/namespace.html#search-path
 requireNamespace("readr"        )
 requireNamespace("tidyr"        )
-```
-
-```
-## Loading required namespace: tidyr
-```
-
-```r
 requireNamespace("dplyr"        ) # Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"       ) # For asserting conditions meet expected patterns/conditions.
 requireNamespace("checkmate"    ) # For asserting conditions meet expected patterns/conditions. # remotes::install_github("mllg/checkmate")
 # requireNamespace("RODBC"      ) # For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 requireNamespace("OuhscMunge"   ) # remotes::install_github(repo="OuhscBbmc/OuhscMunge")
-```
-
-```
-## Loading required namespace: OuhscMunge
 ```
 
 ```r
@@ -333,6 +322,7 @@ rm(columns_to_write_archive)
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
 readr::write_csv(ds_slim_current, config$links_97_current)
 readr::write_csv(ds_slim_archive, config$links_97_archive)
+# utils::write.csv(ds_slim_archive, config$links_97_archive, row.names=F)
 
 ds_description %>%
   purrr::transpose() %>%
@@ -365,8 +355,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_1.0.0      bindrcpp_0.2.2 RSQLite_2.1.1  ggplot2_2.2.1 
-## [5] magrittr_1.5   knitr_1.20    
+## [1] knitr_1.20     bindrcpp_0.2.2 DBI_1.0.0      RSQLite_2.1.1 
+## [5] ggplot2_2.2.1  magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_0.2.4      purrr_0.2.5           tcltk_3.5.0          
@@ -377,19 +367,18 @@ sessionInfo()
 ## [16] gsubfn_0.7            bindr_0.1.1           plyr_1.8.4           
 ## [19] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
 ## [22] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
-## [25] evaluate_0.10.1       memoise_1.1.0         labeling_0.3         
-## [28] OuhscMunge_0.1.9.9007 highr_0.7             proto_1.0.0          
-## [31] Rcpp_0.12.17          readr_1.2.0           scales_0.5.0         
-## [34] backports_1.1.2       checkmate_1.8.6       config_0.3           
-## [37] bit_1.1-14            testit_0.8            hms_0.4.2.9000       
-## [40] digest_0.6.15         stringi_1.2.3         dplyr_0.7.5          
-## [43] grid_3.5.0            rprojroot_1.3-2       cli_1.0.0            
-## [46] tools_3.5.0           odbc_1.1.6            sqldf_0.4-11         
-## [49] lazyeval_0.2.1        tibble_1.4.2          crayon_1.3.4         
-## [52] tidyr_0.8.1           pkgconfig_2.0.1       RODBC_1.3-15         
-## [55] xml2_1.2.0            assertthat_0.2.0      rmarkdown_1.10       
-## [58] httr_1.3.1            rstudioapi_0.7        R6_2.2.2             
-## [61] compiler_3.5.0
+## [25] evaluate_0.10.1       memoise_1.1.0         OuhscMunge_0.1.9.9007
+## [28] highr_0.7             proto_1.0.0           Rcpp_0.12.17         
+## [31] readr_1.2.0           backports_1.1.2       scales_0.5.0         
+## [34] checkmate_1.8.6       config_0.3            bit_1.1-14           
+## [37] testit_0.8            hms_0.4.2.9000        digest_0.6.15        
+## [40] stringi_1.2.3         dplyr_0.7.5           rprojroot_1.3-2      
+## [43] grid_3.5.0            cli_1.0.0             tools_3.5.0          
+## [46] odbc_1.1.6            sqldf_0.4-11          lazyeval_0.2.1       
+## [49] tibble_1.4.2          crayon_1.3.4          tidyr_0.8.1          
+## [52] pkgconfig_2.0.1       RODBC_1.3-15          xml2_1.2.0           
+## [55] assertthat_0.2.0      rmarkdown_1.10        httr_1.3.1           
+## [58] rstudioapi_0.7        R6_2.2.2              compiler_3.5.0
 ```
 
 ```r
@@ -397,6 +386,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-19 16:58:59 CDT"
+## [1] "2018-06-19 20:53:42 CDT"
 ```
 

@@ -233,6 +233,10 @@ div.tocify {
 <!-- Load any global functions and variables declared in the R file.  Suppress the output. -->
 <!-- Declare any global functions specific to a Rmd output.  Suppress the output. -->
 <!-- Load the datasets.   -->
+<pre><code>Warning in result_fetch(res@ptr, n = n): Column `RPass1`: mixed type, first seen values of type
+real, coercing other values of type string</code></pre>
+<pre><code>Warning in result_fetch(res@ptr, n = n): Column `RFull`: mixed type, first seen values of type real,
+coercing other values of type string</code></pre>
 <!-- Tweak the datasets.   -->
 <div id="summary" class="section level1 tabset tabset-fade tabset-pills">
 <h1><span class="header-section-number">1</span> Summary</h1>
@@ -241,15 +245,15 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>The current report compares the versions of the NLSY97 Links
 <ul>
-<li>Version 8: recover different-sex full sibs.</li>
 <li>Version 9: recover same-sex full sibs.</li>
+<li>Version 10: allow nonsibs to still be r&gt;0.</li>
 </ul></li>
 </ol>
 </div>
 </div>
 <div id="comparison-of-agreement" class="section level1">
 <h1><span class="header-section-number">2</span> Comparison of Agreement</h1>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="table-of-r-assignments" class="section level1">
 <h1><span class="header-section-number">3</span> Table of <em>R</em> Assignments</h1>
@@ -419,7 +423,7 @@ Eventual
 174
 </td>
 <td style="text-align:right;">
-1,318
+284
 </td>
 </tr>
 <tr>
@@ -453,7 +457,7 @@ Eventual
 2,111
 </td>
 <td style="text-align:right;">
-1,049
+2,083
 </td>
 </tr>
 <tr>
@@ -664,7 +668,7 @@ Delta
  xml2          1.2.0      2018-01-24 CRAN (R 3.5.0)                  
  yaml          2.1.19     2018-05-01 CRAN (R 3.5.0)                  </code></pre>
 <p></details></p>
-<p>Report rendered by Will at 2018-06-19, 16:59 -0500 in 1 seconds.</p>
+<p>Report rendered by Will at 2018-06-19, 20:53 -0500 in 1 seconds.</p>
 </div>
 
 
