@@ -86,6 +86,9 @@ read_chunk("./analysis/archive-comparison-97/archive-comparison-97.R") #This all
 ```
 
 # By Roster 
+
+The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a brother-sister pair contribute to the same row as a sister-brother pair.
+
 ```{r by-roster, echo=echo_chunks, message=message_chunks, results='asis'}
 ```
 

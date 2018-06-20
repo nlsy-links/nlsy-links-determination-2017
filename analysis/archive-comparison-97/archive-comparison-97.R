@@ -365,27 +365,38 @@ pretty_r <- function( x ) {
   # x
 }
 
+cat("\n### Mean Rs within Roster categories\n\n")
+
 ds_roster_category %>%
-  dplyr::group_by(roster_response_older, roster_response_younger) %>%
+  dplyr::group_by(roster_response_lower, roster_response_upper) %>%
   dplyr::summarize(
     count_int       = sum(count),
     RRoster_mean    = pretty_r(weighted.mean(RRoster, na.rm=F, w=count)),
     RPass1_mean     = pretty_r(weighted.mean(RPass1 , na.rm=F, w=count)),
     R_mean          = pretty_r(weighted.mean(R      , na.rm=F, w=count)),
     RFull_mean      = pretty_r(weighted.mean(RFull  , na.rm=F, w=count)),
-    count           = scales::comma(count_int)
+    count           = scales::comma(count_int),
+    concern         = "-"  # I don't know what would flag this, but I'm including it so the two tables have the same spacing
   ) %>%
   dplyr::ungroup() %>%
-  dplyr::arrange(-count_int, roster_response_older, roster_response_younger) %>%
-  dplyr::select(count, roster_response_older, roster_response_younger, RRoster_mean, RPass1_mean, R_mean, RFull_mean) %>%
+  dplyr::arrange(dplyr::desc(RRoster_mean), roster_response_lower, roster_response_upper, -count_int) %>%
+  dplyr::select(count, RRoster_mean, roster_response_lower, roster_response_upper, RPass1_mean, RFull_mean, R_mean, concern) %>%
   knitr::kable(
     format      = "markdown",
     col.names   = gsub("_", "<br/>", colnames(.)),
     # format.args = list(big.mark=","),
+    escape      = FALSE,
     align       = "r",
     caption     = "Mean Rs within Roster categories"
-  )
+  ) #%>%
+  # kableExtra::kable_styling(
+  #   full_width        = F,
+  #   position          = "left",
+  #   bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  # )
 
+
+cat("\n### Exact Rs of Roster categories\n\n")
 
 ds_roster_category %>%
   dplyr::mutate(
@@ -395,14 +406,21 @@ ds_roster_category %>%
     RPass1      = pretty_r(RPass1  ),
     R           = pretty_r(R       ),
     RFull       = pretty_r(RFull   )
-
-  ) %>%
+  )  %>%
+  dplyr::arrange(dplyr::desc(RRoster), roster_response_lower, roster_response_upper, dplyr::desc(count)) %>%
+  dplyr::select(count, RRoster, roster_response_lower, roster_response_upper, RRoster, RPass1, RFull, R, concern) %>%
   knitr::kable(
     format      = "markdown",
-    col.names   = gsub("_", " ", colnames(.)),
+    col.names   = gsub("_", "<br/>", colnames(.)),
     # format.args = list(big.mark=","),
+    escape      = FALSE,
     align       = "r",
     caption     = "Exact Rs of Roster categories"
-  )
+  ) #%>%
+  # kableExtra::kable_styling(
+  #   full_width        = F,
+  #   position          = "left",
+  #   bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  # )
 
 

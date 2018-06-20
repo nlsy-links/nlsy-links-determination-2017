@@ -192,80 +192,90 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # By Roster 
 
-| count| roster<br/>response<br/>older| roster<br/>response<br/>younger| RRoster<br/>mean| RPass1<br/>mean| R<br/>mean| RFull<br/>mean|
-|-----:|-----------------------------:|-------------------------------:|----------------:|---------------:|----------:|--------------:|
-| 1,017|                   sister_full|                    brother_full|            0.500|           0.500|      0.500|          0.500|
-|   577|                  brother_full|                    brother_full|            0.500|           0.510|      0.510|          0.510|
-|   517|                   sister_full|                     sister_full|            0.500|           0.516|      0.516|          0.516|
-|    66|       sister_half_same_mother|        brother_half_same_mother|            0.250|           0.250|      0.250|          0.250|
-|    40|                   sister_step|                    brother_step|            0.000|           0.000|         --|          0.000|
-|    38|          cousin_female_unsure|              cousin_male_unsure|               --|              --|         --|             --|
-|    31|      brother_half_same_mother|        brother_half_same_mother|            0.250|           0.242|         --|          0.242|
-|    29|                  brother_step|                    brother_step|            0.000|           0.000|         --|          0.000|
-|    29|             nonrelative_other|               nonrelative_other|            0.000|           0.000|         --|          0.000|
-|    28|            cousin_male_unsure|              cousin_male_unsure|               --|              --|         --|             --|
-|    24|          cousin_female_unsure|            cousin_female_unsure|               --|              --|         --|             --|
-|    24|       sister_half_same_mother|         sister_half_same_mother|            0.250|           0.250|      0.250|          0.250|
-|    19|                   sister_step|                     sister_step|            0.000|           0.000|         --|          0.000|
-|    14|                 sister_foster|                   sister_foster|            0.000|           0.000|         --|          0.000|
-|    11|                brother_foster|                  brother_foster|            0.000|           0.000|         --|          0.000|
-|    10|               sister_adoptive|                brother_adoptive|            0.000|           0.000|         --|          0.000|
-|     7|              brother_adoptive|                brother_adoptive|            0.000|           0.000|         --|          0.000|
-|     7|                  uncle_unsure|                   nephew_unsure|               --|              --|         --|             --|
-|     6|                 sister_foster|                  brother_foster|            0.000|           0.000|         --|          0.000|
-|     5|                  uncle_unsure|                    niece_unsure|               --|              --|         --|             --|
-|     4|      brother_half_same_father|        brother_half_same_father|            0.250|           0.188|         --|          0.188|
-|     3|                   aunt_unsure|                    niece_unsure|               --|              --|         --|             --|
-|     3|               sister_adoptive|                 sister_adoptive|            0.000|           0.000|         --|          0.000|
-|     2|                       partner|                         partner|            0.000|           0.000|         --|          0.000|
-|     2|                 sister_in_law|                   sister_in_law|            0.000|           0.000|         --|          0.000|
-|     1|                   aunt_unsure|                   nephew_unsure|               --|              --|         --|             --|
-|     1|           daughter_of_partner|               nonrelative_other|            0.000|           0.000|         --|          0.000|
-|     1|                   do_not_know|                         refusal|               --|              --|         --|             --|
-|     1|                       refusal|                         refusal|               --|              --|         --|             --|
-|     1|                      roommate|                        roommate|            0.000|           0.000|         --|          0.000|
-|     1|       sister_half_same_father|        brother_half_same_father|            0.250|           0.250|      0.250|          0.250|
+The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a brother-sister pair contribute to the same row as a sister-brother pair.
+
+
+### Mean Rs within Roster categories
 
 
 
-| count| RRoster| RPass1|     R| RFull|    roster response older|  roster response younger| concern|
-|-----:|-------:|------:|-----:|-----:|------------------------:|------------------------:|-------:|
-| 1,017|   0.500|  0.500| 0.500| 0.500|              sister_full|             brother_full|       -|
-|   566|   0.500|  0.500| 0.500| 0.500|             brother_full|             brother_full|       -|
-|   500|   0.500|  0.500| 0.500| 0.500|              sister_full|              sister_full|       -|
-|    66|   0.250|  0.250| 0.250| 0.250|  sister_half_same_mother| brother_half_same_mother|       -|
-|    40|   0.000|  0.000|    --| 0.000|              sister_step|             brother_step|       -|
-|    38|      --|     --|    --|    --|     cousin_female_unsure|       cousin_male_unsure|       -|
-|    30|   0.250|  0.250| 0.250| 0.250| brother_half_same_mother| brother_half_same_mother|       -|
-|    29|   0.000|  0.000|    --| 0.000|             brother_step|             brother_step|       -|
-|    29|   0.000|  0.000|    --| 0.000|        nonrelative_other|        nonrelative_other|       -|
-|    28|      --|     --|    --|    --|       cousin_male_unsure|       cousin_male_unsure|       -|
-|    24|   0.250|  0.250| 0.250| 0.250|  sister_half_same_mother|  sister_half_same_mother|       -|
-|    23|      --|     --|    --|    --|     cousin_female_unsure|     cousin_female_unsure|       -|
-|    19|   0.000|  0.000|    --| 0.000|              sister_step|              sister_step|       -|
-|    17|   0.500|  1.000| 1.000| 1.000|              sister_full|              sister_full|       -|
-|    14|   0.000|  0.000|    --| 0.000|            sister_foster|            sister_foster|       -|
-|    11|   0.000|  0.000|    --| 0.000|           brother_foster|           brother_foster|       -|
-|    11|   0.500|  1.000| 1.000| 1.000|             brother_full|             brother_full|       -|
-|    10|   0.000|  0.000|    --| 0.000|          sister_adoptive|         brother_adoptive|       -|
-|     7|      --|     --|    --|    --|             uncle_unsure|            nephew_unsure|       -|
-|     7|   0.000|  0.000|    --| 0.000|         brother_adoptive|         brother_adoptive|       -|
-|     6|   0.000|  0.000|    --| 0.000|            sister_foster|           brother_foster|       -|
-|     5|      --|     --|    --|    --|             uncle_unsure|             niece_unsure|       -|
-|     3|      --|     --|    --|    --|              aunt_unsure|             niece_unsure|       -|
-|     3|   0.000|  0.000|    --| 0.000|          sister_adoptive|          sister_adoptive|       -|
-|     3|   0.250|  0.250| 0.250| 0.250| brother_half_same_father| brother_half_same_father|       -|
-|     2|   0.000|  0.000|    --| 0.000|                  partner|                  partner|       -|
-|     2|   0.000|  0.000|    --| 0.000|            sister_in_law|            sister_in_law|       -|
-|     1|      --|     --|    --|    --|              aunt_unsure|            nephew_unsure|       -|
-|     1|      --|     --|    --|    --|              do_not_know|                  refusal|       -|
-|     1|      --|     --|    --|    --|                  refusal|                  refusal|       -|
-|     1|      --|  0.000|    --| 0.000|     cousin_female_unsure|     cousin_female_unsure|       -|
-|     1|   0.000|  0.000|    --| 0.000|      daughter_of_partner|        nonrelative_other|       -|
-|     1|   0.000|  0.000|    --| 0.000|                 roommate|                 roommate|       -|
-|     1|   0.250|  0.000|    --| 0.000| brother_half_same_father| brother_half_same_father|       -|
-|     1|   0.250|  0.000|    --| 0.000| brother_half_same_mother| brother_half_same_mother|       -|
-|     1|   0.250|  0.250| 0.250| 0.250|  sister_half_same_father| brother_half_same_father|       -|
+| count| RRoster<br/>mean| roster<br/>response<br/>lower| roster<br/>response<br/>upper| RPass1<br/>mean| RFull<br/>mean| R<br/>mean| concern|
+|-----:|----------------:|-----------------------------:|-----------------------------:|---------------:|--------------:|----------:|-------:|
+|   577|            0.500|                  brother_full|                  brother_full|           0.510|          0.510|      0.510|       -|
+| 1,017|            0.500|                   sister_full|                  brother_full|           0.500|          0.500|      0.500|       -|
+|   517|            0.500|                   sister_full|                   sister_full|           0.516|          0.516|      0.516|       -|
+|     4|            0.250|      brother_half_same_father|      brother_half_same_father|           0.188|          0.188|         --|       -|
+|    31|            0.250|      brother_half_same_mother|      brother_half_same_mother|           0.242|          0.242|         --|       -|
+|     1|            0.250|       sister_half_same_father|      brother_half_same_father|           0.250|          0.250|      0.250|       -|
+|    66|            0.250|       sister_half_same_mother|      brother_half_same_mother|           0.250|          0.250|      0.250|       -|
+|    24|            0.250|       sister_half_same_mother|       sister_half_same_mother|           0.250|          0.250|      0.250|       -|
+|     7|            0.000|              brother_adoptive|              brother_adoptive|           0.000|          0.000|         --|       -|
+|    11|            0.000|                brother_foster|                brother_foster|           0.000|          0.000|         --|       -|
+|    29|            0.000|                  brother_step|                  brother_step|           0.000|          0.000|         --|       -|
+|     1|            0.000|           daughter_of_partner|             nonrelative_other|           0.000|          0.000|         --|       -|
+|    29|            0.000|             nonrelative_other|             nonrelative_other|           0.000|          0.000|         --|       -|
+|     2|            0.000|                       partner|                       partner|           0.000|          0.000|         --|       -|
+|     1|            0.000|                      roommate|                      roommate|           0.000|          0.000|         --|       -|
+|    10|            0.000|               sister_adoptive|              brother_adoptive|           0.000|          0.000|         --|       -|
+|     3|            0.000|               sister_adoptive|               sister_adoptive|           0.000|          0.000|         --|       -|
+|     6|            0.000|                 sister_foster|                brother_foster|           0.000|          0.000|         --|       -|
+|    14|            0.000|                 sister_foster|                 sister_foster|           0.000|          0.000|         --|       -|
+|     2|            0.000|                 sister_in_law|                 sister_in_law|           0.000|          0.000|         --|       -|
+|    40|            0.000|                   sister_step|                  brother_step|           0.000|          0.000|         --|       -|
+|    19|            0.000|                   sister_step|                   sister_step|           0.000|          0.000|         --|       -|
+|     1|               --|                   aunt_unsure|                 nephew_unsure|              --|             --|         --|       -|
+|     3|               --|                   aunt_unsure|                  niece_unsure|              --|             --|         --|       -|
+|    24|               --|          cousin_female_unsure|          cousin_female_unsure|              --|             --|         --|       -|
+|    38|               --|          cousin_female_unsure|            cousin_male_unsure|              --|             --|         --|       -|
+|    28|               --|            cousin_male_unsure|            cousin_male_unsure|              --|             --|         --|       -|
+|     1|               --|                   do_not_know|                       refusal|              --|             --|         --|       -|
+|     1|               --|                       refusal|                       refusal|              --|             --|         --|       -|
+|     7|               --|                  uncle_unsure|                 nephew_unsure|              --|             --|         --|       -|
+|     5|               --|                  uncle_unsure|                  niece_unsure|              --|             --|         --|       -|
+
+
+### Exact Rs of Roster categories
+
+
+
+| count| RRoster| roster<br/>response<br/>lower| roster<br/>response<br/>upper| RPass1| RFull|     R| concern|
+|-----:|-------:|-----------------------------:|-----------------------------:|------:|-----:|-----:|-------:|
+|   566|   0.500|                  brother_full|                  brother_full|  0.500| 0.500| 0.500|       -|
+|    11|   0.500|                  brother_full|                  brother_full|  1.000| 1.000| 1.000|       -|
+| 1,017|   0.500|                   sister_full|                  brother_full|  0.500| 0.500| 0.500|       -|
+|   500|   0.500|                   sister_full|                   sister_full|  0.500| 0.500| 0.500|       -|
+|    17|   0.500|                   sister_full|                   sister_full|  1.000| 1.000| 1.000|       -|
+|     3|   0.250|      brother_half_same_father|      brother_half_same_father|  0.250| 0.250| 0.250|       -|
+|     1|   0.250|      brother_half_same_father|      brother_half_same_father|  0.000| 0.000|    --|       -|
+|    30|   0.250|      brother_half_same_mother|      brother_half_same_mother|  0.250| 0.250| 0.250|       -|
+|     1|   0.250|      brother_half_same_mother|      brother_half_same_mother|  0.000| 0.000|    --|       -|
+|     1|   0.250|       sister_half_same_father|      brother_half_same_father|  0.250| 0.250| 0.250|       -|
+|    66|   0.250|       sister_half_same_mother|      brother_half_same_mother|  0.250| 0.250| 0.250|       -|
+|    24|   0.250|       sister_half_same_mother|       sister_half_same_mother|  0.250| 0.250| 0.250|       -|
+|     7|   0.000|              brother_adoptive|              brother_adoptive|  0.000| 0.000|    --|       -|
+|    11|   0.000|                brother_foster|                brother_foster|  0.000| 0.000|    --|       -|
+|    29|   0.000|                  brother_step|                  brother_step|  0.000| 0.000|    --|       -|
+|     1|   0.000|           daughter_of_partner|             nonrelative_other|  0.000| 0.000|    --|       -|
+|    29|   0.000|             nonrelative_other|             nonrelative_other|  0.000| 0.000|    --|       -|
+|     2|   0.000|                       partner|                       partner|  0.000| 0.000|    --|       -|
+|     1|   0.000|                      roommate|                      roommate|  0.000| 0.000|    --|       -|
+|    10|   0.000|               sister_adoptive|              brother_adoptive|  0.000| 0.000|    --|       -|
+|     3|   0.000|               sister_adoptive|               sister_adoptive|  0.000| 0.000|    --|       -|
+|     6|   0.000|                 sister_foster|                brother_foster|  0.000| 0.000|    --|       -|
+|    14|   0.000|                 sister_foster|                 sister_foster|  0.000| 0.000|    --|       -|
+|     2|   0.000|                 sister_in_law|                 sister_in_law|  0.000| 0.000|    --|       -|
+|    40|   0.000|                   sister_step|                  brother_step|  0.000| 0.000|    --|       -|
+|    19|   0.000|                   sister_step|                   sister_step|  0.000| 0.000|    --|       -|
+|     1|      --|                   aunt_unsure|                 nephew_unsure|     --|    --|    --|       -|
+|     3|      --|                   aunt_unsure|                  niece_unsure|     --|    --|    --|       -|
+|    23|      --|          cousin_female_unsure|          cousin_female_unsure|     --|    --|    --|       -|
+|     1|      --|          cousin_female_unsure|          cousin_female_unsure|  0.000| 0.000|    --|       -|
+|    38|      --|          cousin_female_unsure|            cousin_male_unsure|     --|    --|    --|       -|
+|    28|      --|            cousin_male_unsure|            cousin_male_unsure|     --|    --|    --|       -|
+|     1|      --|                   do_not_know|                       refusal|     --|    --|    --|       -|
+|     1|      --|                       refusal|                       refusal|     --|    --|    --|       -|
+|     7|      --|                  uncle_unsure|                 nephew_unsure|     --|    --|    --|       -|
+|     5|      --|                  uncle_unsure|                  niece_unsure|     --|    --|    --|       -|
 
 
 
@@ -365,4 +375,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-20, 18:02 -0500 in 2 seconds.
+Report rendered by Will at 2018-06-20, 18:42 -0500 in 3 seconds.

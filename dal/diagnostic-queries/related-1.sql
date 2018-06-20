@@ -31,8 +31,8 @@ WITH cte AS (
 		--,[RPeek]
 		--,rt.ResponseLower
 		--,rt.ResponseUpper
-		,lur1.Label           AS response_older
-		,lur2.Label           AS response_younger
+		,lur1.Label           AS response_lower
+		,lur2.Label           AS response_upper
 	--  delete
 	FROM [Process].[tblRelatedValues] v
 	  left join [Process].[tblRelatedStructure] rs   ON v.ID=rs.id
@@ -52,11 +52,11 @@ SELECT
   COUNT(*)      AS count,
   RRoster,     
   RPass1,
-  R,
   RFull,
-  response_older      AS roster_response_older,
-  response_younger    AS roster_response_younger
+  R,
+  response_lower      AS roster_response_lower,
+  response_upper      AS roster_response_upper
 FROM cte 
-GROUP BY RRoster, RPass1, R, RFull, response_older, response_younger
-order by count(*) DESC
+GROUP BY RRoster, RPass1, R, RFull, response_lower, response_upper
+order by count(*) DESC, RRoster, RPass1, R, RFull, response_lower, response_upper
 --order by RRoster, RPass1, R, RFull, response_older, response_younger
