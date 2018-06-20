@@ -1,6 +1,8 @@
 default:
+  
   dsn_79:                         "local-nlsy-links-79"
   dsn_97:                         "local-nlsy-links-97"
+
   outcomes-79-subject-csv:        "./data-public/derived/outcomes-79-subject-v%i.csv"
   outcomes-79-subject-rds:        "./data-public/derived/outcomes-79-subject.rds"
   outcomes-79-subject-survey-csv: "./data-public/derived/outcomes-79-subject-survey-v%i.csv"
@@ -14,3 +16,4 @@ default:
   links_97_metadata:              "./data-public/derived/links-metadata-2017-97.yml"
   links_97_current:               "./data-public/derived/links-2017-97.csv"
   links_97_archive:               "./data-public/derived/links-archive-2017-97.csv"
+  links_97_archive_db:            "./data-public/derived/links-archive-2017-97.sqlite3"

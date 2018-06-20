@@ -13,6 +13,7 @@
 
 # ---- Binary files with a lot of churn ------------------------------------
 data-public/derived/links-archive-2017-79.sqlite3
+data-public/derived/links-archive-2017-97.sqlite3
 
 # ---- Protected Information -----------------------------------------------
 # see cubuspl42's answer in http://stackoverflow.com/questions/2415873/exceptions-in-gitignore

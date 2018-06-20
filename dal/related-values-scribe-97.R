@@ -291,10 +291,10 @@ sql_create <- "
   )
 "
 # Remove old DB
-if( file.exists(config$links_79_archive_db) ) file.remove(config$links_79_archive_db)
+if( file.exists(config$links_97_archive_db) ) file.remove(config$links_97_archive_db)
 
 # Open connection
-cnn <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_79_archive_db)
+cnn <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
 result_pragma <- DBI::dbSendQuery(cnn, "PRAGMA foreign_keys=ON;") #This needs to be activated each time a connection is made. #http://stackoverflow.com/questions/15301643/sqlite3-forgets-to-use-foreign-keys
 DBI::dbClearResult(result_pragma)
 DBI::dbListTables(cnn)

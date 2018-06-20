@@ -99,9 +99,11 @@ recent_versions <- ds_description %>%
 
 sql <- glue::glue("SELECT * FROM archive_97 WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
 
-cnn     <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_79_archive_db)
+cnn     <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
 dsRaw   <- DBI::dbGetQuery(cnn, sql)
 DBI::dbDisconnect(cnn); rm(cnn)
+
+ds_roster_category <- OuhscMunge::execute_sql_file("dal/diagnostic-queries/related-1.sql", config$dsn_97, execute = F)
 # # readr::spec_csv(config$links_97_archive)
 #
 # #
@@ -355,3 +357,52 @@ ds_conditional %>%
   kableExtra::row_spec(DetermineSosoRowIDs(ds_conditional), bold=F, background = palette_conflict$soso) %>%
   kableExtra::row_spec(DetermineBadRowIDs( ds_conditional), bold=T, background = palette_conflict$bad) %>%
   kableExtra::row_spec(DetermineNullRowIDs(ds_conditional), bold=F, background = palette_conflict$null) # which(c(T,F,F,F,T))-1
+
+
+# ---- by-roster ---------------------------------------------------------------
+pretty_r <- function( x ) {
+  dplyr::if_else(!is.na(x), sprintf("%0.3f", x), "--")
+  # x
+}
+
+ds_roster_category %>%
+  dplyr::group_by(roster_response_older, roster_response_younger) %>%
+  dplyr::summarize(
+    count_int       = sum(count),
+    RRoster_mean    = pretty_r(weighted.mean(RRoster, na.rm=F, w=count)),
+    RPass1_mean     = pretty_r(weighted.mean(RPass1 , na.rm=F, w=count)),
+    R_mean          = pretty_r(weighted.mean(R      , na.rm=F, w=count)),
+    RFull_mean      = pretty_r(weighted.mean(RFull  , na.rm=F, w=count)),
+    count           = scales::comma(count_int)
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::arrange(-count_int, roster_response_older, roster_response_younger) %>%
+  dplyr::select(count, roster_response_older, roster_response_younger, RRoster_mean, RPass1_mean, R_mean, RFull_mean) %>%
+  knitr::kable(
+    format      = "markdown",
+    col.names   = gsub("_", "<br/>", colnames(.)),
+    # format.args = list(big.mark=","),
+    align       = "r",
+    caption     = "Mean Rs within Roster categories"
+  )
+
+
+ds_roster_category %>%
+  dplyr::mutate(
+    count       = scales::comma(count),
+    concern     = dplyr::if_else(!is.na(RRoster) & is.na(RFull), "Yes", "-"),
+    RRoster     = pretty_r(RRoster ),
+    RPass1      = pretty_r(RPass1  ),
+    R           = pretty_r(R       ),
+    RFull       = pretty_r(RFull   )
+
+  ) %>%
+  knitr::kable(
+    format      = "markdown",
+    col.names   = gsub("_", " ", colnames(.)),
+    # format.args = list(big.mark=","),
+    align       = "r",
+    caption     = "Exact Rs of Roster categories"
+  )
+
+

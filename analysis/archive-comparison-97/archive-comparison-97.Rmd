@@ -85,6 +85,10 @@ read_chunk("./analysis/archive-comparison-97/archive-comparison-97.R") #This all
 ```{r table-conditional, echo=echo_chunks, message=message_chunks, results='asis'}
 ```
 
+# By Roster 
+```{r by-roster, echo=echo_chunks, message=message_chunks, results='asis'}
+```
+
 
 
 # Session Information
