@@ -303,7 +303,8 @@ ds_slim <- ds %>%
 # ---- upload-to-db ------------------------------------------------------------
 OuhscMunge::upload_sqls_rodbc(
   d             = ds_slim,
-  table_name    = "osdh.tbl_eto_touchpoint_encounter",
+  schema_name   = "osdh",
+  table_name    = "tbl_eto_touchpoint_encounter",
   dsn_name      = "MiechvEvaluation",
   clear_table   = TRUE,
   create_table  = FALSE

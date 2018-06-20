@@ -1,6 +1,6 @@
 ---
 title: Comparison of Versions of NLSY97 Kinship Links
-date: "Date: 2018-06-19"
+date: "Date: 2018-06-20"
 output:
   html_document:
     keep_md: yes
@@ -39,8 +39,8 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 ## Notes
 1. The current report compares the versions of the NLSY97 Links
-    * Version 9: recover same-sex full sibs.
-    * Version 10: allow nonsibs to still be r>0.
+    * Version 10: allow nonsibs to still be r>0, refresh.
+    * Version 10: allow nonsibs to still be r>0, refresh.
 
 # Comparison of Agreement
 ![](figure-png/graph-roc-1.png)<!-- -->
@@ -113,14 +113,14 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
    <td style="text-align:right;"> 2,519 </td>
    <td style="text-align:right;"> 2,519 </td>
    <td style="text-align:right;"> 108 </td>
-   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 107 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.000 </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> -- </td>
    <td style="text-align:right;"> 174 </td>
-   <td style="text-align:right;"> 284 </td>
+   <td style="text-align:right;"> 177 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 0.250 </td>
@@ -210,7 +210,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-06-19                                 
+ date     2018-06-20                                 
 ```
 
 ```
@@ -227,7 +227,7 @@ Packages -----------------------------------------------------------------------
  bit           1.1-14     2018-05-29 CRAN (R 3.5.0)                  
  bit64         0.9-7      2017-05-08 CRAN (R 3.5.0)                  
  blob          1.1.1      2018-03-25 CRAN (R 3.5.0)                  
- checkmate     1.8.6      2018-05-23 Github (mllg/checkmate@f161dc3) 
+ checkmate     1.8.6      2018-06-20 Github (mllg/checkmate@bc16595) 
  cli           1.0.0      2017-11-05 CRAN (R 3.5.0)                  
  colorspace    1.3-2      2016-12-14 CRAN (R 3.5.0)                  
  compiler      3.5.0      2018-05-15 local                           
@@ -246,7 +246,7 @@ Packages -----------------------------------------------------------------------
  grid          3.5.0      2018-05-15 local                           
  gtable        0.2.0      2016-02-26 CRAN (R 3.5.0)                  
  highr         0.7        2018-06-09 CRAN (R 3.5.0)                  
- hms           0.4.2.9000 2018-05-30 Github (tidyverse/hms@14e74ab)  
+ hms           0.4.2.9000 2018-06-20 Github (tidyverse/hms@2e0a39a)  
  htmltools     0.3.6      2017-04-28 CRAN (R 3.5.0)                  
  httr          1.3.1      2017-08-20 CRAN (R 3.5.0)                  
  kableExtra    0.9.0      2018-05-21 CRAN (R 3.5.0)                  
@@ -258,19 +258,20 @@ Packages -----------------------------------------------------------------------
  memoise       1.1.0      2017-04-21 CRAN (R 3.5.0)                  
  methods     * 3.5.0      2018-05-15 local                           
  munsell       0.5.0      2018-06-12 CRAN (R 3.5.0)                  
- odbc          1.1.6      2018-06-09 CRAN (R 3.5.0)                  
- OuhscMunge    0.1.9.9007 2018-05-23 local                           
+ odbc          1.1.5      2018-06-20 Github (r-dbi/odbc@2255001)     
+ OuhscMunge    0.1.9.9008 2018-06-20 local                           
  pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
  pkgconfig     2.0.1      2017-03-21 CRAN (R 3.5.0)                  
  plyr          1.8.4      2016-06-08 CRAN (R 3.5.0)                  
  purrr         0.2.5      2018-05-29 CRAN (R 3.5.0)                  
  R6            2.2.2      2017-06-17 CRAN (R 3.5.0)                  
  Rcpp          0.12.17    2018-05-18 CRAN (R 3.5.0)                  
- readr         1.2.0      2018-05-30 Github (tidyverse/readr@d6d622b)
+ readr         1.2.0      2018-06-20 Github (tidyverse/readr@05890c3)
  rlang         0.2.1      2018-05-30 CRAN (R 3.5.0)                  
  rmarkdown     1.10       2018-06-11 CRAN (R 3.5.0)                  
  RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
  rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
+ rsconnect     0.8.8      2018-03-09 CRAN (R 3.5.0)                  
  RSQLite       2.1.1      2018-05-06 CRAN (R 3.5.0)                  
  rstudioapi    0.7        2017-09-07 CRAN (R 3.5.0)                  
  rvest         0.3.2      2016-06-17 CRAN (R 3.5.0)                  
@@ -294,4 +295,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-19, 21:34 -0500 in 1 seconds.
+Report rendered by Will at 2018-06-20, 12:03 -0500 in 1 seconds.

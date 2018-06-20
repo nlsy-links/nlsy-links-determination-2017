@@ -21,6 +21,7 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
+study       <- "79"
 item_labels <- "
     'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
     'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
@@ -71,7 +72,7 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 
 # ---- load-data ---------------------------------------------------------------
 
-channel                   <- open_dsn_channel_odbc()
+channel                   <- open_dsn_channel_odbc(study)
 system.time({
 ds_response               <- DBI::dbGetQuery(channel, sql_response    )
 })

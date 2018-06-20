@@ -43,18 +43,18 @@ namespace LinksGui {
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
             if( Convert.ToBoolean("true") ) {
-                //if( Convert.ToBoolean("false")) {
-                //LoadExtractGen1Links();
-                //LoadExtractGen1Explicit();
-                //LoadExtractGen1Implicit();
-                //LoadExtractGen2Links();
-                //LoadExtractGen2LinksFromGen1();
-                //LoadExtractGen2ImplicitFather();
-                //LoadExtractGen2FatherFromGen1();
-                //LoadExtractGen1Outcomes();
-                //LoadExtractGen2OutcomesHeight();
-                //LoadExtractGen2OutcomesWeight();
-                //LoadExtractGen2OutcomesMath();
+                //if( Convert.ToBoolean("false") ) {
+                LoadExtractGen1Links();
+                LoadExtractGen1Explicit();
+                LoadExtractGen1Implicit();
+                LoadExtractGen2Links();
+                LoadExtractGen2LinksFromGen1();
+                LoadExtractGen2ImplicitFather();
+                LoadExtractGen2FatherFromGen1();
+                LoadExtractGen1Outcomes();
+                LoadExtractGen2OutcomesHeight();
+                LoadExtractGen2OutcomesWeight();
+                LoadExtractGen2OutcomesMath();
             }
 
             LoadGeocodeSanitized();//Needed for MarkerGen1

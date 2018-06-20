@@ -6,3 +6,4 @@ AlgorithmVersion,Description,Date,Valid
 8,recover different-sex full sibs,2018-06-19,FALSE
 9,recover same-sex full sibs,2018-06-19,FALSE
 10,allow nonsibs to still be r>0,2018-06-19,FALSE
+11,refresh,2018-06-20,TRUE

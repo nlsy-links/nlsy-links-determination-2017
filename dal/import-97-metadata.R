@@ -16,11 +16,11 @@ requireNamespace("tibble"                 )
 requireNamespace("purrr"                  )
 requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its function names conflict with a lot of packages (esp base, stats, and plyr).
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
-requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
+config                    <- config::get()
 directory_in              <- "data-public/metadata/tables-97"
 study                     <- "97"
 shallow_only              <- F   # If TRUE, update only the metadata tables that won't delete any other database tables.
@@ -325,6 +325,19 @@ delete_results_metadata
 # ds_file <- ds_file %>%
 #   dplyr::slice(1)
 # Upload metadata tables
+
+# i <- 2L
+# OuhscMunge::upload_sqls_odbc(
+#   d             = ds_file$entries[[i]] %>%
+#     dplyr::mutate_if(is.logical, as.character),
+#   schema_name   = ds_file$schema_name[[i]],
+#   table_name    = ds_file$table_name[[i]],
+#   dsn_name      = dsn_name(study),
+#   clear_table   = F,
+#   create_table  = FALSE,
+#   convert_logical_to_integer = F
+# )
+
 purrr::pmap_int(
   list(
     ds_file$entries,
@@ -333,15 +346,25 @@ purrr::pmap_int(
     # seq_len(nrow(ds_file))
   ),
   function( d, table_name, schema_name ) {
+    message("Writing to table ", table_name)
+    # OuhscMunge::upload_sqls_odbc(
+    #   d             = d,
+    #   schema_name   = schema_name,
+    #   table_name    = table_name,
+    #   dsn_name      = dsn_name(study),
+    #   clear_table   = TRUE,
+    #   create_table  = FALSE,
+    #   convert_logical_to_integer = TRUE
+    # )
     # browser()
     # DBI::dbWriteTable(
     #   conn    = channel,
     #   name    = table_name,
     #   schema  = schema_name,
     #   value   = d,
+    #
     #   append  = F
     # )
-    message("Writing to table ", table_name)
     RODBC::sqlSave(
       channel     = channel_rodbc,
       dat         = d,

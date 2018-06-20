@@ -30,6 +30,10 @@ requireNamespace("checkmate"    ) # For asserting conditions meet expected patte
 requireNamespace("OuhscMunge"   ) # remotes::install_github(repo="OuhscBbmc/OuhscMunge")
 ```
 
+```
+## Loading required namespace: OuhscMunge
+```
+
 ```r
 # Constant values that won't change.
 config              <- config::get()
@@ -292,7 +296,7 @@ ds_slim_archive
 ```
 
 ```
-## # A tibble: 25,190 x 25
+## # A tibble: 27,709 x 25
 ##    AlgorithmVersion ExtendedID SubjectTag_S1 SubjectTag_S2 SubjectID_S1
 ##               <int>      <int>         <int>         <int>        <int>
 ##  1                1          8             6             7            6
@@ -305,7 +309,7 @@ ds_slim_archive
 ##  8                1         45            47            48           47
 ##  9                1         48            51            52           51
 ## 10                1         59            62            63           62
-## # ... with 25,180 more rows, and 20 more variables: SubjectID_S2 <int>,
+## # ... with 27,699 more rows, and 20 more variables: SubjectID_S2 <int>,
 ## #   MultipleBirthIfSameSex <int>, IsMz <int>, SameGeneration <int>,
 ## #   RosterAssignmentID <int>, RRoster <dbl>, LastSurvey_S1 <int>,
 ## #   LastSurvey_S2 <int>, RImplicitPass1 <dbl>, RImplicit <dbl>,
@@ -425,30 +429,26 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.20     ggplot2_2.2.1  bindrcpp_0.2.2 DBI_1.0.0     
-## [5] magrittr_1.5  
+## [1] DBI_1.0.0      knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_0.2.4      purrr_0.2.5           colorspace_1.3-2     
-##  [4] htmltools_0.3.6       viridisLite_0.3.0     yaml_2.1.19          
-##  [7] utf8_1.1.4            blob_1.1.1            rlang_0.2.1          
-## [10] pillar_1.2.3          withr_2.1.2           glue_1.2.0           
-## [13] bit64_0.9-7           bindr_0.1.1           plyr_1.8.4           
-## [16] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
-## [19] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
-## [22] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
-## [25] OuhscMunge_0.1.9.9007 markdown_0.8          highr_0.7            
-## [28] Rcpp_0.12.17          readr_1.2.0           scales_0.5.0         
-## [31] backports_1.1.2       checkmate_1.8.6       config_0.3           
-## [34] bit_1.1-14            testit_0.8            hms_0.4.2.9000       
-## [37] digest_0.6.15         stringi_1.2.3         dplyr_0.7.5          
-## [40] rprojroot_1.3-2       grid_3.5.0            cli_1.0.0            
-## [43] odbc_1.1.6            tools_3.5.0           lazyeval_0.2.1       
-## [46] tibble_1.4.2          RSQLite_2.1.1         crayon_1.3.4         
-## [49] tidyr_0.8.1           pkgconfig_2.0.1       RODBC_1.3-15         
-## [52] xml2_1.2.0            assertthat_0.2.0      rmarkdown_1.10       
-## [55] httr_1.3.1            rstudioapi_0.7        R6_2.2.2             
-## [58] compiler_3.5.0
+##  [1] Rcpp_0.12.17          highr_0.7             plyr_1.8.4           
+##  [4] pillar_1.2.3          compiler_3.5.0        bindr_0.1.1          
+##  [7] tools_3.5.0           odbc_1.1.5            digest_0.6.15        
+## [10] bit_1.1-14            RSQLite_2.1.1         memoise_1.1.0        
+## [13] evaluate_0.10.1       tibble_1.4.2          checkmate_1.8.6      
+## [16] pkgconfig_2.0.1       rlang_0.2.1           rstudioapi_0.7       
+## [19] cli_1.0.0             yaml_2.1.19           withr_2.1.2          
+## [22] dplyr_0.7.5           stringr_1.3.1         devtools_1.13.5      
+## [25] hms_0.4.2.9000        bit64_0.9-7           rprojroot_1.3-2      
+## [28] tidyselect_0.2.4      OuhscMunge_0.1.9.9008 glue_1.2.0           
+## [31] R6_2.2.2              rmarkdown_1.10        tidyr_0.8.1          
+## [34] readr_1.2.0           purrr_0.2.5           blob_1.1.1           
+## [37] backports_1.1.2       scales_0.5.0          RODBC_1.3-15         
+## [40] htmltools_0.3.6       rsconnect_0.8.8       assertthat_0.2.0     
+## [43] testit_0.8            colorspace_1.3-2      config_0.3           
+## [46] utf8_1.1.4            stringi_1.2.3         munsell_0.5.0        
+## [49] markdown_0.8          crayon_1.3.4
 ```
 
 ```r
@@ -456,6 +456,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-19 21:34:52 CDT"
+## [1] "2018-06-20 12:03:04 CDT"
 ```
 

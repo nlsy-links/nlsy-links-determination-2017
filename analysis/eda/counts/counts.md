@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-06-19"
+date: "Date: 2018-06-20"
 output:
   html_document:
     keep_md: yes
@@ -55,7 +55,7 @@ This report documents the basic properties of the input & output tables kinship 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
 |Archive     |tblArchiveDescription      |        56|            4|
-|Archive     |tblRelatedValuesArchive    |   756,952|           24|
+|Archive     |tblRelatedValuesArchive    |   751,650|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
 |Enum        |tblLUExtractSource         |        11|            4|
@@ -1884,8 +1884,8 @@ and created a lot of noise in the Git difs
 
 |schema name |table name              | row count| column count|
 |:-----------|:-----------------------|---------:|------------:|
-|Archive     |tblArchiveDescription   |         3|            3|
-|Archive     |tblRelatedValuesArchive |    25,190|           23|
+|Archive     |tblArchiveDescription   |         7|            3|
+|Archive     |tblRelatedValuesArchive |    27,709|           23|
 |dbo         |sysdiagrams             |         0|            5|
 |Enum        |tblLUExtractSource      |         6|            4|
 |Enum        |tblLUGender             |         3|            4|
@@ -2532,7 +2532,7 @@ Session info -------------------------------------------------------------------
  language (EN)                                       
  collate  English_United States.1252                 
  tz       America/Chicago                            
- date     2018-06-19                                 
+ date     2018-06-20                                 
 ```
 
 ```
@@ -2540,80 +2540,70 @@ Packages -----------------------------------------------------------------------
 ```
 
 ```
- package     * version    date       source                          
- assertthat    0.2.0      2017-04-11 CRAN (R 3.5.0)                  
- backports     1.1.2      2017-12-13 CRAN (R 3.5.0)                  
- base        * 3.5.0      2018-05-15 local                           
- bindr         0.1.1      2018-03-13 CRAN (R 3.5.0)                  
- bindrcpp    * 0.2.2      2018-03-29 CRAN (R 3.5.0)                  
- bit           1.1-14     2018-05-29 CRAN (R 3.5.0)                  
- bit64         0.9-7      2017-05-08 CRAN (R 3.5.0)                  
- blob          1.1.1      2018-03-25 CRAN (R 3.5.0)                  
- checkmate     1.8.6      2018-05-23 Github (mllg/checkmate@f161dc3) 
- cli           1.0.0      2017-11-05 CRAN (R 3.5.0)                  
- colorspace    1.3-2      2016-12-14 CRAN (R 3.5.0)                  
- compiler      3.5.0      2018-05-15 local                           
- config        0.3        2018-03-27 CRAN (R 3.5.0)                  
- crayon        1.3.4      2017-09-16 CRAN (R 3.5.0)                  
- datasets    * 3.5.0      2018-05-15 local                           
- DBI         * 1.0.0      2018-05-02 CRAN (R 3.5.0)                  
- devtools      1.13.5     2018-02-18 CRAN (R 3.5.0)                  
- digest        0.6.15     2018-01-28 CRAN (R 3.5.0)                  
- dplyr         0.7.5      2018-05-19 CRAN (R 3.5.0)                  
- evaluate      0.10.1     2017-06-24 CRAN (R 3.5.0)                  
- ggplot2     * 2.2.1      2016-12-30 CRAN (R 3.5.0)                  
- glue          1.2.0      2017-10-29 CRAN (R 3.5.0)                  
- graphics    * 3.5.0      2018-05-15 local                           
- grDevices   * 3.5.0      2018-05-15 local                           
- grid          3.5.0      2018-05-15 local                           
- gtable        0.2.0      2016-02-26 CRAN (R 3.5.0)                  
- highr         0.7        2018-06-09 CRAN (R 3.5.0)                  
- hms           0.4.2.9000 2018-05-30 Github (tidyverse/hms@14e74ab)  
- htmltools     0.3.6      2017-04-28 CRAN (R 3.5.0)                  
- httr          1.3.1      2017-08-20 CRAN (R 3.5.0)                  
- kableExtra    0.9.0      2018-05-21 CRAN (R 3.5.0)                  
- knitr       * 1.20       2018-02-20 CRAN (R 3.5.0)                  
- labeling      0.3        2014-08-23 CRAN (R 3.5.0)                  
- lazyeval      0.2.1      2017-10-29 CRAN (R 3.5.0)                  
- magrittr    * 1.5        2014-11-22 CRAN (R 3.5.0)                  
- markdown      0.8        2017-04-20 CRAN (R 3.5.0)                  
- memoise       1.1.0      2017-04-21 CRAN (R 3.5.0)                  
- methods     * 3.5.0      2018-05-15 local                           
- munsell       0.5.0      2018-06-12 CRAN (R 3.5.0)                  
- odbc          1.1.6      2018-06-09 CRAN (R 3.5.0)                  
- OuhscMunge    0.1.9.9007 2018-05-23 local                           
- pillar        1.2.3      2018-05-25 CRAN (R 3.5.0)                  
- pkgconfig     2.0.1      2017-03-21 CRAN (R 3.5.0)                  
- plyr          1.8.4      2016-06-08 CRAN (R 3.5.0)                  
- purrr         0.2.5      2018-05-29 CRAN (R 3.5.0)                  
- R6            2.2.2      2017-06-17 CRAN (R 3.5.0)                  
- Rcpp          0.12.17    2018-05-18 CRAN (R 3.5.0)                  
- readr         1.2.0      2018-05-30 Github (tidyverse/readr@d6d622b)
- rlang         0.2.1      2018-05-30 CRAN (R 3.5.0)                  
- rmarkdown     1.10       2018-06-11 CRAN (R 3.5.0)                  
- RODBC         1.3-15     2017-04-13 CRAN (R 3.5.0)                  
- rprojroot     1.3-2      2018-01-03 CRAN (R 3.5.0)                  
- RSQLite       2.1.1      2018-05-06 CRAN (R 3.5.0)                  
- rstudioapi    0.7        2017-09-07 CRAN (R 3.5.0)                  
- rvest         0.3.2      2016-06-17 CRAN (R 3.5.0)                  
- scales        0.5.0      2017-08-24 CRAN (R 3.5.0)                  
- stats       * 3.5.0      2018-05-15 local                           
- stringi       1.2.3      2018-06-12 CRAN (R 3.5.0)                  
- stringr       1.3.1      2018-05-10 CRAN (R 3.5.0)                  
- testit        0.8        2018-06-14 CRAN (R 3.5.0)                  
- tibble        1.4.2      2018-01-22 CRAN (R 3.5.0)                  
- tidyr         0.8.1      2018-05-18 CRAN (R 3.5.0)                  
- tidyselect    0.2.4      2018-02-26 CRAN (R 3.5.0)                  
- tools         3.5.0      2018-05-15 local                           
- utf8          1.1.4      2018-05-24 CRAN (R 3.5.0)                  
- utils       * 3.5.0      2018-05-15 local                           
- viridisLite   0.3.0      2018-02-01 CRAN (R 3.5.0)                  
- withr         2.1.2      2018-03-15 CRAN (R 3.5.0)                  
- xml2          1.2.0      2018-01-24 CRAN (R 3.5.0)                  
- yaml          2.1.19     2018-05-01 CRAN (R 3.5.0)                  
+ package    * version    date       source                          
+ assertthat   0.2.0      2017-04-11 CRAN (R 3.5.0)                  
+ backports    1.1.2      2017-12-13 CRAN (R 3.5.0)                  
+ base       * 3.5.0      2018-05-15 local                           
+ bindr        0.1.1      2018-03-13 CRAN (R 3.5.0)                  
+ bindrcpp   * 0.2.2      2018-03-29 CRAN (R 3.5.0)                  
+ bit          1.1-14     2018-05-29 CRAN (R 3.5.0)                  
+ bit64        0.9-7      2017-05-08 CRAN (R 3.5.0)                  
+ blob         1.1.1      2018-03-25 CRAN (R 3.5.0)                  
+ checkmate    1.8.6      2018-06-20 Github (mllg/checkmate@bc16595) 
+ cli          1.0.0      2017-11-05 CRAN (R 3.5.0)                  
+ colorspace   1.3-2      2016-12-14 CRAN (R 3.5.0)                  
+ compiler     3.5.0      2018-05-15 local                           
+ config       0.3        2018-03-27 CRAN (R 3.5.0)                  
+ crayon       1.3.4      2017-09-16 CRAN (R 3.5.0)                  
+ datasets   * 3.5.0      2018-05-15 local                           
+ DBI          1.0.0      2018-05-02 CRAN (R 3.5.0)                  
+ devtools     1.13.5     2018-02-18 CRAN (R 3.5.0)                  
+ digest       0.6.15     2018-01-28 CRAN (R 3.5.0)                  
+ dplyr        0.7.5      2018-05-19 CRAN (R 3.5.0)                  
+ evaluate     0.10.1     2017-06-24 CRAN (R 3.5.0)                  
+ glue         1.2.0      2017-10-29 CRAN (R 3.5.0)                  
+ graphics   * 3.5.0      2018-05-15 local                           
+ grDevices  * 3.5.0      2018-05-15 local                           
+ highr        0.7        2018-06-09 CRAN (R 3.5.0)                  
+ hms          0.4.2.9000 2018-06-20 Github (tidyverse/hms@2e0a39a)  
+ htmltools    0.3.6      2017-04-28 CRAN (R 3.5.0)                  
+ knitr      * 1.20       2018-02-20 CRAN (R 3.5.0)                  
+ magrittr   * 1.5        2014-11-22 CRAN (R 3.5.0)                  
+ markdown     0.8        2017-04-20 CRAN (R 3.5.0)                  
+ memoise      1.1.0      2017-04-21 CRAN (R 3.5.0)                  
+ methods    * 3.5.0      2018-05-15 local                           
+ munsell      0.5.0      2018-06-12 CRAN (R 3.5.0)                  
+ odbc         1.1.5      2018-06-20 Github (r-dbi/odbc@2255001)     
+ OuhscMunge   0.1.9.9008 2018-06-20 local                           
+ pillar       1.2.3      2018-05-25 CRAN (R 3.5.0)                  
+ pkgconfig    2.0.1      2017-03-21 CRAN (R 3.5.0)                  
+ plyr         1.8.4      2016-06-08 CRAN (R 3.5.0)                  
+ purrr        0.2.5      2018-05-29 CRAN (R 3.5.0)                  
+ R6           2.2.2      2017-06-17 CRAN (R 3.5.0)                  
+ Rcpp         0.12.17    2018-05-18 CRAN (R 3.5.0)                  
+ readr        1.2.0      2018-06-20 Github (tidyverse/readr@05890c3)
+ rlang        0.2.1      2018-05-30 CRAN (R 3.5.0)                  
+ rmarkdown    1.10       2018-06-11 CRAN (R 3.5.0)                  
+ RODBC        1.3-15     2017-04-13 CRAN (R 3.5.0)                  
+ rprojroot    1.3-2      2018-01-03 CRAN (R 3.5.0)                  
+ rsconnect    0.8.8      2018-03-09 CRAN (R 3.5.0)                  
+ rstudioapi   0.7        2017-09-07 CRAN (R 3.5.0)                  
+ scales       0.5.0      2017-08-24 CRAN (R 3.5.0)                  
+ stats      * 3.5.0      2018-05-15 local                           
+ stringi      1.2.3      2018-06-12 CRAN (R 3.5.0)                  
+ stringr      1.3.1      2018-05-10 CRAN (R 3.5.0)                  
+ testit       0.8        2018-06-14 CRAN (R 3.5.0)                  
+ tibble       1.4.2      2018-01-22 CRAN (R 3.5.0)                  
+ tidyr        0.8.1      2018-05-18 CRAN (R 3.5.0)                  
+ tidyselect   0.2.4      2018-02-26 CRAN (R 3.5.0)                  
+ tools        3.5.0      2018-05-15 local                           
+ utf8         1.1.4      2018-05-24 CRAN (R 3.5.0)                  
+ utils      * 3.5.0      2018-05-15 local                           
+ withr        2.1.2      2018-03-15 CRAN (R 3.5.0)                  
+ yaml         2.1.19     2018-05-01 CRAN (R 3.5.0)                  
 ```
 </details>
 
 
 
-Report rendered by Will at 2018-06-19, 21:34 -0500 in 1 seconds.
+Report rendered by Will at 2018-06-20, 16:44 -0500 in 1 seconds.
