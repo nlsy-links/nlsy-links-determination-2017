@@ -192,10 +192,16 @@ This report covers the analyses used in development of the NLSY Behavior Genetic
 
 # By Roster 
 
-The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a brother-sister pair contribute to the same row as a sister-brother pair.
+The roster is the starting place for the NLSY97 kinship links.  `R` values can later be adjusted higher (*e.g.*, for MZs) or lower (*e.g.*, the half siblings who later appear to share zero parents).
+
+The codebook entry for this item (`SH-26 []`) is available online as a  [static web page](https://www.nlsinfo.org/sites/nlsinfo.org/files/attachments/121128/nlsy97r1scrhh.html#SH-26) or through the [interactive NLS Investigator](https://www.nlsinfo.org/investigator/pages/search.jsp#R11170.00).  
+
+See the third table in this section to view the exact wording the participant selected.  For example, the label `cousin_female_unsure` in the first two tables corresponds to the response 82, "Female cousin (biological or social)".
+
+The designation of "lower" and "upper" is fairly arbitrary.  It's organized so a brother-sister pair contribute to the same row as a sister-brother pair.
 
 
-### Mean Rs within Roster categories
+## Mean Rs within Roster categories
 
 
 
@@ -234,7 +240,7 @@ The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a
 |     5|               --|                  uncle_unsure|                  niece_unsure|              --|             --|         --|       -|
 
 
-### Exact Rs of Roster categories
+## Exact Rs of Roster categories
 
 
 
@@ -276,6 +282,482 @@ The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a
 |     1|      --|                       refusal|                       refusal|     --|    --|    --|       -|
 |     7|      --|                  uncle_unsure|                 nephew_unsure|     --|    --|    --|       -|
 |     5|      --|                  uncle_unsure|                  niece_unsure|     --|    --|    --|       -|
+
+
+## Exact Wording in the NLSY97
+
+The 92 possible responses to the items like:
+`What is [name of person in relationship loops([loop number 3])]'s relationship to [name of person on household roster 2([loop number 1])]?`.  Some options were never selected in the survey.<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> NLSY ID </th>
+   <th style="text-align:left;"> Exact NLSY Wording </th>
+   <th style="text-align:left;"> Cannonical Label </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:left;"> valid_skip </td>
+   <td style="text-align:left;"> <code>valid_skip</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:left;"> Don't Know </td>
+   <td style="text-align:left;"> <code>do_not_know</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:left;"> refusal </td>
+   <td style="text-align:left;"> <code>refusal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> Identity </td>
+   <td style="text-align:left;"> <code>self</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Wife </td>
+   <td style="text-align:left;"> <code>wife</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Husband </td>
+   <td style="text-align:left;"> <code>husband</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> Mother </td>
+   <td style="text-align:left;"> <code>mother</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Father </td>
+   <td style="text-align:left;"> <code>father</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Step-mother </td>
+   <td style="text-align:left;"> <code>mother_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Step-father </td>
+   <td style="text-align:left;"> <code>father_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Adoptive mother </td>
+   <td style="text-align:left;"> <code>mother_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Adoptive father </td>
+   <td style="text-align:left;"> <code>father_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Foster mother </td>
+   <td style="text-align:left;"> <code>mother_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;"> Foster father </td>
+   <td style="text-align:left;"> <code>father_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> Mother-in-law </td>
+   <td style="text-align:left;"> <code>mother_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> Father-in-law </td>
+   <td style="text-align:left;"> <code>father_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:left;"> Sister (FULL) </td>
+   <td style="text-align:left;"> <code>sister_full</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:left;"> Brother (FULL) </td>
+   <td style="text-align:left;"> <code>brother_full</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> Sister (HALF - Same mother) </td>
+   <td style="text-align:left;"> <code>sister_half_same_mother</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;"> Sister (HALF - Same father) </td>
+   <td style="text-align:left;"> <code>sister_half_same_father</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> Sister (HALF - don't know) </td>
+   <td style="text-align:left;"> <code>sister_half_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Brother (HALF - Same mother) </td>
+   <td style="text-align:left;"> <code>brother_half_same_mother</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Brother (HALF - Same father) </td>
+   <td style="text-align:left;"> <code>brother_half_same_father</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> Brother (HALF - don't know) </td>
+   <td style="text-align:left;"> <code>brother_half_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:left;"> Sister (STEP) </td>
+   <td style="text-align:left;"> <code>sister_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Brother (STEP) </td>
+   <td style="text-align:left;"> <code>brother_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:left;"> Sister (ADOPTIVE) </td>
+   <td style="text-align:left;"> <code>sister_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:left;"> Brother (ADOPTIVE) </td>
+   <td style="text-align:left;"> <code>brother_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:left;"> Sister (FOSTER) </td>
+   <td style="text-align:left;"> <code>sister_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:left;"> Brother (FOSTER) </td>
+   <td style="text-align:left;"> <code>brother_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:left;"> Brother-in-law </td>
+   <td style="text-align:left;"> <code>brother_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:left;"> Sister-in-law </td>
+   <td style="text-align:left;"> <code>sister_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:left;"> Maternal Grandmother </td>
+   <td style="text-align:left;"> <code>grandmother_maternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:left;"> Paternal Grandmother </td>
+   <td style="text-align:left;"> <code>grandmother_paternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:left;"> Social Grandmother </td>
+   <td style="text-align:left;"> <code>grandmother_social</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:left;"> Grandmother (don't know or refused) </td>
+   <td style="text-align:left;"> <code>grandmother_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 33 </td>
+   <td style="text-align:left;"> Maternal Grandfather </td>
+   <td style="text-align:left;"> <code>grandfather_maternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 34 </td>
+   <td style="text-align:left;"> Paternal Grandfather </td>
+   <td style="text-align:left;"> <code>grandfather_paternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 35 </td>
+   <td style="text-align:left;"> Social Grandfather </td>
+   <td style="text-align:left;"> <code>grandfather_social</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 36 </td>
+   <td style="text-align:left;"> Grandfather (don't know or refused) </td>
+   <td style="text-align:left;"> <code>grandfather_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 37 </td>
+   <td style="text-align:left;"> Maternal Great-Grandmother </td>
+   <td style="text-align:left;"> <code>great_grandmother</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:left;"> Paternal Great-Grandmother </td>
+   <td style="text-align:left;"> <code>great_grandfather</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 39 </td>
+   <td style="text-align:left;"> Social Great-Grandmother </td>
+   <td style="text-align:left;"> <code>great_grandmother_social</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:left;"> Great-Grandmother (don't know or refused) </td>
+   <td style="text-align:left;"> <code>great_grandmother_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 41 </td>
+   <td style="text-align:left;"> Maternal Great-Grandfather </td>
+   <td style="text-align:left;"> <code>great_grandfather_maternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 42 </td>
+   <td style="text-align:left;"> Paternal Great-Grandfather </td>
+   <td style="text-align:left;"> <code>great_grandfather_paternal</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 43 </td>
+   <td style="text-align:left;"> Social Great-Grandfather </td>
+   <td style="text-align:left;"> <code>great_grandfather_social</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 44 </td>
+   <td style="text-align:left;"> Great-Grandfather (don't know or refused) </td>
+   <td style="text-align:left;"> <code>great_grandfather_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 45 </td>
+   <td style="text-align:left;"> Great Great Grandmother </td>
+   <td style="text-align:left;"> <code>great_great_grandmother</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 46 </td>
+   <td style="text-align:left;"> Great Great Grandfather </td>
+   <td style="text-align:left;"> <code>great_great_grandfather</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 47 </td>
+   <td style="text-align:left;"> Granddaughter (Biological or social) </td>
+   <td style="text-align:left;"> <code>granddaughter</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:left;"> Grandson (Biological or social) </td>
+   <td style="text-align:left;"> <code>grandson</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 49 </td>
+   <td style="text-align:left;"> Daughter (Biological) </td>
+   <td style="text-align:left;"> <code>daughter_bio</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:left;"> Son (Biological) </td>
+   <td style="text-align:left;"> <code>son_bio</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 51 </td>
+   <td style="text-align:left;"> Step-daughter </td>
+   <td style="text-align:left;"> <code>daughter_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 52 </td>
+   <td style="text-align:left;"> Step-son </td>
+   <td style="text-align:left;"> <code>son_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 53 </td>
+   <td style="text-align:left;"> Adoptive daughter </td>
+   <td style="text-align:left;"> <code>daughter_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 54 </td>
+   <td style="text-align:left;"> Adoptive son </td>
+   <td style="text-align:left;"> <code>son_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 55 </td>
+   <td style="text-align:left;"> Foster daughter </td>
+   <td style="text-align:left;"> <code>daughter_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 56 </td>
+   <td style="text-align:left;"> Foster son </td>
+   <td style="text-align:left;"> <code>son_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 57 </td>
+   <td style="text-align:left;"> Daughter of lover/partner </td>
+   <td style="text-align:left;"> <code>daughter_of_partner</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 58 </td>
+   <td style="text-align:left;"> Son of lover/partner </td>
+   <td style="text-align:left;"> <code>son_of_partner</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 59 </td>
+   <td style="text-align:left;"> Daughter-in-law </td>
+   <td style="text-align:left;"> <code>daughter_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 60 </td>
+   <td style="text-align:left;"> Son-in-law </td>
+   <td style="text-align:left;"> <code>son_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 61 </td>
+   <td style="text-align:left;"> Grandmother-in-law </td>
+   <td style="text-align:left;"> <code>grandmother_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 62 </td>
+   <td style="text-align:left;"> Grandfather-in-law </td>
+   <td style="text-align:left;"> <code>grandfather_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 63 </td>
+   <td style="text-align:left;"> Aunt-in-law </td>
+   <td style="text-align:left;"> <code>aunt_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 64 </td>
+   <td style="text-align:left;"> Uncle-in-law </td>
+   <td style="text-align:left;"> <code>uncle_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 65 </td>
+   <td style="text-align:left;"> Cousin-in-law </td>
+   <td style="text-align:left;"> <code>cousin_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 66 </td>
+   <td style="text-align:left;"> Great-Grandmother-in-law </td>
+   <td style="text-align:left;"> <code>great_grandmother_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 67 </td>
+   <td style="text-align:left;"> Great-Grandfather-in-law </td>
+   <td style="text-align:left;"> <code>great_grandfather_in_law</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 68 </td>
+   <td style="text-align:left;"> Roommate </td>
+   <td style="text-align:left;"> <code>roommate</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:left;"> Lover/partner </td>
+   <td style="text-align:left;"> <code>partner</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 70 </td>
+   <td style="text-align:left;"> Aunt (biological or social) </td>
+   <td style="text-align:left;"> <code>aunt_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 71 </td>
+   <td style="text-align:left;"> Great Aunt </td>
+   <td style="text-align:left;"> <code>great_aunt</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 72 </td>
+   <td style="text-align:left;"> Uncle (biological or social) </td>
+   <td style="text-align:left;"> <code>uncle_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 73 </td>
+   <td style="text-align:left;"> Great Uncle </td>
+   <td style="text-align:left;"> <code>great_uncle</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 74 </td>
+   <td style="text-align:left;"> Niece (biological or social) </td>
+   <td style="text-align:left;"> <code>niece_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 75 </td>
+   <td style="text-align:left;"> Step Niece (biological or social) </td>
+   <td style="text-align:left;"> <code>niece_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:left;"> Foster Niece (biological or social) </td>
+   <td style="text-align:left;"> <code>niece_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 77 </td>
+   <td style="text-align:left;"> Adoptive Niece (biological or social) </td>
+   <td style="text-align:left;"> <code>niece_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:left;"> Nephew (biological or social) </td>
+   <td style="text-align:left;"> <code>nephew_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 79 </td>
+   <td style="text-align:left;"> Step Nephew (biological or social) </td>
+   <td style="text-align:left;"> <code>nephew_step</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 80 </td>
+   <td style="text-align:left;"> Foster Nephew (biological or social) </td>
+   <td style="text-align:left;"> <code>nephew_foster</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 81 </td>
+   <td style="text-align:left;"> Adoptive Nephew (biological or social) </td>
+   <td style="text-align:left;"> <code>nephew_adoptive</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 82 </td>
+   <td style="text-align:left;"> Female cousin (biological or social) </td>
+   <td style="text-align:left;"> <code>cousin_female_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 83 </td>
+   <td style="text-align:left;"> Male cousin (biological or social) </td>
+   <td style="text-align:left;"> <code>cousin_male_unsure</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:left;"> Other relative </td>
+   <td style="text-align:left;"> <code>relative_other</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:left;"> Other non-relative </td>
+   <td style="text-align:left;"> <code>nonrelative_other</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 86 </td>
+   <td style="text-align:left;"> Great Grandson </td>
+   <td style="text-align:left;"> <code>great_grandson</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 87 </td>
+   <td style="text-align:left;"> Great Granddaughter </td>
+   <td style="text-align:left;"> <code>great_granddaughter</code> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 99 </td>
+   <td style="text-align:left;"> RELATIONSHIP MISSING </td>
+   <td style="text-align:left;"> <code>relationship_missing</code> </td>
+  </tr>
+</tbody>
+</table>
 
 
 
@@ -375,4 +857,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-06-20, 18:42 -0500 in 3 seconds.
+Report rendered by Will at 2018-06-20, 19:31 -0500 in 2 seconds.

@@ -87,7 +87,13 @@ read_chunk("./analysis/archive-comparison-97/archive-comparison-97.R") #This all
 
 # By Roster 
 
-The designation of "lower" and "upper" is fairly arbitrary.  It's collapsed so a brother-sister pair contribute to the same row as a sister-brother pair.
+The roster is the starting place for the NLSY97 kinship links.  `R` values can later be adjusted higher (*e.g.*, for MZs) or lower (*e.g.*, the half siblings who later appear to share zero parents).
+
+The codebook entry for this item (`SH-26 []`) is available online as a  [static web page](https://www.nlsinfo.org/sites/nlsinfo.org/files/attachments/121128/nlsy97r1scrhh.html#SH-26) or through the [interactive NLS Investigator](https://www.nlsinfo.org/investigator/pages/search.jsp#R11170.00).  
+
+See the third table in this section to view the exact wording the participant selected.  For example, the label `cousin_female_unsure` in the first two tables corresponds to the response 82, "Female cousin (biological or social)".
+
+The designation of "lower" and "upper" is fairly arbitrary.  It's organized so a brother-sister pair contribute to the same row as a sister-brother pair.
 
 ```{r by-roster, echo=echo_chunks, message=message_chunks, results='asis'}
 ```

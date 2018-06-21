@@ -17,6 +17,8 @@ requireNamespace("kableExtra") #For the kable function for tables
 # ---- declare-globals ---------------------------------------------------------
 config <- config::get()
 path_in_description   <- "data-public/metadata/tables-97/ArchiveDescription.csv"
+path_in_lu_roster     <- "data-public/metadata/tables-97/LURoster.csv"
+
 
 output_type   <- "html"
 palette_conflict <- list("good"="#a6e8a1", "soso"="#ffeed1", "bad"="#ff9f6e", "null"="#7c9fb0") #http://colrd.com/image-dna/24445/
@@ -87,10 +89,18 @@ col_types_description <- readr::cols_only(
   Description       = readr::col_character(),
   Date              = readr::col_date()
 )
+col_types_lu_roster <- readr::cols_only(
+  ID      = readr::col_integer(),
+  Label   = readr::col_character(),
+  Title   = readr::col_character()#,
+  # Active  = readr::col_logical(),
+  # Notes   = readr::col_logical()
+)
 
 # ---- load-data ---------------------------------------------------------------
-# readr::spec_csv(path_in_description)
+# readr::spec_csv(path_in_lu_roster)
 ds_description <- readr::read_csv(path_in_description, col_types = col_types_description)
+ds_lu_roster   <- readr::read_csv(path_in_lu_roster, col_types=col_types_lu_roster)
 
 recent_versions <- ds_description %>%
   dplyr::pull(AlgorithmVersion) %>%
@@ -365,7 +375,7 @@ pretty_r <- function( x ) {
   # x
 }
 
-cat("\n### Mean Rs within Roster categories\n\n")
+cat("\n## Mean Rs within Roster categories\n\n")
 
 ds_roster_category %>%
   dplyr::group_by(roster_response_lower, roster_response_upper) %>%
@@ -396,7 +406,7 @@ ds_roster_category %>%
   # )
 
 
-cat("\n### Exact Rs of Roster categories\n\n")
+cat("\n## Exact Rs of Roster categories\n\n")
 
 ds_roster_category %>%
   dplyr::mutate(
@@ -424,3 +434,28 @@ ds_roster_category %>%
   # )
 
 
+cat("\n## Exact Wording in the NLSY97\n\n")
+cat("The ", nrow(ds_lu_roster), " possible responses to the items like:\n`What is [name of person in relationship loops([loop number 3])]'s relationship to [name of person on household roster 2([loop number 1])]?`.  Some options were never selected in the survey.", sep="")
+
+ds_lu_roster %>%
+  dplyr::mutate(
+    Label     = paste0("<code>", Label, "</code>")
+  ) %>%
+  dplyr::select_(
+    "NLSY_ID"               = "`ID`"
+    , "Exact_NLSY_Wording"  = "`Title`"
+    , "Cannonical_Label"    = "`Label`"
+  ) %>%
+  knitr::kable(
+    format      = output_type,
+    col.names   = gsub("_", " ", colnames(.)),
+    # format.args = list(big.mark=","),
+    escape      = FALSE#,
+    # align       = "r",
+    # caption     = "Exact Rs of Roster categories"
+  ) %>%
+  kableExtra::kable_styling(
+    full_width        = F,
+    position          = "left",
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  )
