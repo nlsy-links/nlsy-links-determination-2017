@@ -1,23 +1,23 @@
-# dsn_name <- function( study ) {
-#   checkmate::assert_subset(study, c("79", "97"))
-#
-#   config <- config::get(value = "dsn_79")
-#   dplyr::recode(
-#     study,
-#     "79"  = config::get(value = "dsn_79"),
-#     "97"  = config::get(value = "dsn_97")
-#   )
-# }
+dsn_name <- function( study ) {
+  checkmate::assert_subset(study, c("79", "97"))
+
+  config <- config::get(value = "dsn_79")
+  dplyr::recode(
+    study,
+    "79"  = config::get(value = "dsn_79"),
+    "97"  = config::get(value = "dsn_97")
+  )
+}
 
 open_dsn_channel_odbc <- function( study ) {
   requireNamespace("odbc")
 
-  checkmate::assert_subset(study, c("79", "97"))
-  dsn <- dplyr::recode(study, "79"="local-nlsy-links-79old", "97"="local-nlsy-links-97old")
+  # checkmate::assert_subset(study, c("79", "97"))
+  # dsn <- dplyr::recode(study, "79"="local-nlsy-links-79old", "97"="local-nlsy-links-97old")
 
   channel <- DBI::dbConnect(
     drv   = odbc::odbc(),
-    dsn   = dsn# dsn_name(study)#"local-nlsy-links-79"
+    dsn   = dsn_name(study)#"local-nlsy-links-79"
   )
   testit::assert("The ODBC channel should open successfully.", exists("channel"))
 
@@ -29,12 +29,12 @@ open_dsn_channel_odbc <- function( study ) {
 open_dsn_channel_rodbc <- function( study ) {
   requireNamespace("RODBC")
 
-  checkmate::assert_subset(study, c("79", "97"))
-  dsn <- dplyr::recode(study, "79"="local-nlsy-links-79old", "97"="local-nlsy-links-97old")
+  # checkmate::assert_subset(study, c("79", "97"))
+  # dsn <- dplyr::recode(study, "79"="local-nlsy-links-79old", "97"="local-nlsy-links-97old")
 
   channel <- RODBC::odbcConnect(
     # Uses Trusted/integrated authentication
-    dsn   = dsn#dsn_name(study) #"local-nlsy-links-79"
+    dsn   = dsn_name(study) #"local-nlsy-links-79"
     # dsn = "BeeNlsLinks",
     # uid = "NlsyReadWrite",
     # pwd = "nophi"
