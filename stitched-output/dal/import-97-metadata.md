@@ -184,7 +184,7 @@ ds_entries
 ## # A tibble: 14 x 4
 ##    name               path                        col_types   entries     
 ##    <chr>              <chr>                       <list>      <list>      
-##  1 ArchiveDescription data-public/metadata/table~ <S3: col_s~ <tibble [7 ~
+##  1 ArchiveDescription data-public/metadata/table~ <S3: col_s~ <tibble [8 ~
 ##  2 item               data-public/metadata/table~ <S3: col_s~ <tibble [26~
 ##  3 LUExtractSource    data-public/metadata/table~ <S3: col_s~ <tibble [6 ~
 ##  4 LUMarkerEvidence   data-public/metadata/table~ <S3: col_s~ <tibble [8 ~
@@ -210,11 +210,11 @@ ds_table
 ```
 
 ```
-## # A tibble: 33 x 6
+## # A tibble: 32 x 6
 ##    schema_name table_name            row_count column_count space_total_kb
 ##  * <chr>       <chr>                     <int>        <int>          <int>
 ##  1 Archive     tblArchiveDescription         7            3             72
-##  2 Archive     tblRelatedValuesArch~     25190           23           2264
+##  2 Archive     tblRelatedValuesArch~     27709           23           2392
 ##  3 dbo         sysdiagrams                   0            5              0
 ##  4 Enum        tblLUExtractSource            6            4             72
 ##  5 Enum        tblLUGender                   3            4             72
@@ -223,7 +223,7 @@ ds_table
 ##  8 Enum        tblLUMultipleBirth            5            4             72
 ##  9 Enum        tblLURaceCohort               4            4             72
 ## 10 Enum        tblLURoster                  92            4             72
-## # ... with 23 more rows, and 1 more variable: space_used_kb <int>
+## # ... with 22 more rows, and 1 more variable: space_used_kb <int>
 ```
 
 ```r
@@ -279,7 +279,7 @@ ds_file$entries %>%
 ```
 
 ```
-## # A tibble: 7 x 3
+## # A tibble: 8 x 3
 ##   AlgorithmVersion Description                                  Date      
 ##              <int> <chr>                                        <date>    
 ## 1                1 naive roster                                 2018-01-17
@@ -289,6 +289,7 @@ ds_file$entries %>%
 ## 5                8 recover different-sex full sibs              2018-06-19
 ## 6                9 recover same-sex full sibs                   2018-06-19
 ## 7               10 allow nonsibs to still be r>0                2018-06-19
+## 8               11 refresh                                      2018-06-20
 ## # A tibble: 26 x 7
 ##       ID Label           MinValue MinNonnegative MaxValue Active Notes    
 ##    <int> <chr>              <int>          <int>    <int> <lgl>  <chr>    
@@ -819,19 +820,19 @@ DBI::dbGetInfo(channel)
 ## [1] ""
 ## 
 ## $sourcename
-## [1] "local-nlsy-links-97"
+## [1] "local-nlsy-links-97old"
 ## 
 ## $servername
 ## [1] "GIMBLE\\EXPRESS_2016"
 ## 
 ## $drivername
-## [1] "msodbcsql17.dll"
+## [1] "msodbcsql13.dll"
 ## 
 ## $odbc.version
 ## [1] "03.80.0000"
 ## 
 ## $driver.version
-## [1] "17.01.0000"
+## [1] "14.00.1000"
 ## 
 ## $odbcdriver.version
 ## [1] "03.80"
@@ -849,12 +850,12 @@ RODBC::odbcGetInfo(channel_rodbc)
 ```
 
 ```
-##              DBMS_Name               DBMS_Ver        Driver_ODBC_Ver 
-## "Microsoft SQL Server"           "13.00.4206"                "03.80" 
-##       Data_Source_Name            Driver_Name             Driver_Ver 
-##  "local-nlsy-links-97"      "msodbcsql17.dll"           "17.01.0000" 
-##               ODBC_Ver            Server_Name 
-##           "03.80.0000" "GIMBLE\\EXPRESS_2016"
+##                DBMS_Name                 DBMS_Ver          Driver_ODBC_Ver 
+##   "Microsoft SQL Server"             "13.00.4206"                  "03.80" 
+##         Data_Source_Name              Driver_Name               Driver_Ver 
+## "local-nlsy-links-97old"        "msodbcsql13.dll"             "14.00.1000" 
+##                 ODBC_Ver              Server_Name 
+##             "03.80.0000"   "GIMBLE\\EXPRESS_2016"
 ```
 
 ```r
@@ -1157,7 +1158,7 @@ cat("`import-97-metadata.R` file completed by `", Sys.info()["user"], "` at ", s
 ```
 
 ```
-## `import-97-metadata.R` file completed by `Will` at 2018-06-20, 11:58 -0500 in 2 seconds.
+## `import-97-metadata.R` file completed by `Will` at 2018-06-27, 10:40 -0500 in 13 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -1186,21 +1187,30 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
+## [1] ggplot2_2.2.1  DBI_1.0.0      bindrcpp_0.2.2 knitr_1.20    
+## [5] magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.17     highr_0.7        plyr_1.8.4       pillar_1.2.3    
-##  [5] compiler_3.5.0   bindr_0.1.1      tools_3.5.0      odbc_1.1.5      
-##  [9] digest_0.6.15    bit_1.1-14       evaluate_0.10.1  tibble_1.4.2    
-## [13] checkmate_1.8.6  pkgconfig_2.0.1  rlang_0.2.1      DBI_1.0.0       
-## [17] cli_1.0.0        yaml_2.1.19      dplyr_0.7.5      stringr_1.3.1   
-## [21] hms_0.4.2.9000   bit64_0.9-7      rprojroot_1.3-2  tidyselect_0.2.4
-## [25] glue_1.2.0       R6_2.2.2         rmarkdown_1.10   tidyr_0.8.1     
-## [29] readr_1.2.0      purrr_0.2.5      blob_1.1.1       backports_1.1.2 
-## [33] scales_0.5.0     RODBC_1.3-15     htmltools_0.3.6  rsconnect_0.8.8 
-## [37] assertthat_0.2.0 testit_0.8       colorspace_1.3-2 config_0.3      
-## [41] utf8_1.1.4       stringi_1.2.3    munsell_0.5.0    markdown_0.8    
-## [45] crayon_1.3.4
+##  [1] tidyselect_0.2.4      purrr_0.2.5           testthat_2.0.0       
+##  [4] colorspace_1.3-2      htmltools_0.3.6       viridisLite_0.3.0    
+##  [7] yaml_2.1.19           utf8_1.1.4            blob_1.1.1           
+## [10] rlang_0.2.1           pillar_1.2.3          glue_1.2.0           
+## [13] withr_2.1.2           bit64_0.9-7           bindr_0.1.1          
+## [16] plyr_1.8.4            stringr_1.3.1         munsell_0.5.0        
+## [19] gtable_0.2.0          rvest_0.3.2           devtools_1.13.5      
+## [22] kableExtra_0.9.0      evaluate_0.10.1       memoise_1.1.0        
+## [25] labeling_0.3          OuhscMunge_0.1.9.9008 markdown_0.8         
+## [28] highr_0.7             Rcpp_0.12.17          readr_1.2.0          
+## [31] backports_1.1.2       scales_0.5.0          checkmate_1.8.6      
+## [34] config_0.3            bit_1.1-14            testit_0.8           
+## [37] hms_0.4.2.9000        digest_0.6.15         stringi_1.2.3        
+## [40] dplyr_0.7.5           rprojroot_1.3-2       grid_3.5.0           
+## [43] cli_1.0.0             tools_3.5.0           odbc_1.1.6           
+## [46] lazyeval_0.2.1        tibble_1.4.2          RSQLite_2.1.1        
+## [49] crayon_1.3.4          tidyr_0.8.1           pkgconfig_2.0.1      
+## [52] RODBC_1.3-15          xml2_1.2.0            assertthat_0.2.0     
+## [55] rmarkdown_1.10        httr_1.3.1            rstudioapi_0.7       
+## [58] R6_2.2.2              compiler_3.5.0
 ```
 
 ```r
@@ -1208,6 +1218,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-20 11:58:49 CDT"
+## [1] "2018-06-27 10:40:44 CDT"
 ```
 

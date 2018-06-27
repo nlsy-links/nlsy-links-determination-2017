@@ -362,7 +362,13 @@ sql_create <- "
 "
 # Remove old DB
 if( file.exists(config$links_97_archive_db) ) file.remove(config$links_97_archive_db)
+```
 
+```
+## [1] TRUE
+```
+
+```r
 # Open connection
 cnn <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
 result_pragma <- DBI::dbSendQuery(cnn, "PRAGMA foreign_keys=ON;") #This needs to be activated each time a connection is made. #http://stackoverflow.com/questions/15301643/sqlite3-forgets-to-use-foreign-keys
@@ -419,30 +425,31 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_1.0.0      ggplot2_2.2.1  knitr_1.20     bindrcpp_0.2.2
-## [5] magrittr_1.5  
+## [1] ggplot2_2.2.1  DBI_1.0.0      bindrcpp_0.2.2 magrittr_1.5  
+## [5] knitr_1.20    
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_0.2.4      purrr_0.2.5           colorspace_1.3-2     
-##  [4] viridisLite_0.3.0     htmltools_0.3.6       yaml_2.1.19          
-##  [7] utf8_1.1.4            blob_1.1.1            rlang_0.2.1          
-## [10] pillar_1.2.3          glue_1.2.0            withr_2.1.2          
-## [13] bit64_0.9-7           bindr_0.1.1           plyr_1.8.4           
-## [16] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
-## [19] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
-## [22] evaluate_0.10.1       memoise_1.1.0         OuhscMunge_0.1.9.9008
-## [25] markdown_0.8          highr_0.7             Rcpp_0.12.17         
-## [28] readr_1.2.0           backports_1.1.2       scales_0.5.0         
-## [31] checkmate_1.8.6       config_0.3            bit_1.1-14           
-## [34] testit_0.8            hms_0.4.2.9000        digest_0.6.15        
-## [37] stringi_1.2.3         dplyr_0.7.5           rprojroot_1.3-2      
-## [40] grid_3.5.0            cli_1.0.0             odbc_1.1.5           
-## [43] tools_3.5.0           RSQLite_2.1.1         lazyeval_0.2.1       
-## [46] tibble_1.4.2          crayon_1.3.4          tidyr_0.8.1          
-## [49] pkgconfig_2.0.1       RODBC_1.3-15          rsconnect_0.8.8      
-## [52] xml2_1.2.0            assertthat_0.2.0      rmarkdown_1.10       
-## [55] httr_1.3.1            rstudioapi_0.7        R6_2.2.2             
-## [58] compiler_3.5.0
+##  [4] testthat_2.0.0        htmltools_0.3.6       viridisLite_0.3.0    
+##  [7] yaml_2.1.19           chron_2.3-52          utf8_1.1.4           
+## [10] blob_1.1.1            rlang_0.2.1           pillar_1.2.3         
+## [13] glue_1.2.0            withr_2.1.2           bit64_0.9-7          
+## [16] gsubfn_0.7            bindr_0.1.1           plyr_1.8.4           
+## [19] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
+## [22] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
+## [25] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
+## [28] OuhscMunge_0.1.9.9008 markdown_0.8          highr_0.7            
+## [31] proto_1.0.0           Rcpp_0.12.17          readr_1.2.0          
+## [34] scales_0.5.0          backports_1.1.2       checkmate_1.8.6      
+## [37] config_0.3            bit_1.1-14            testit_0.8           
+## [40] hms_0.4.2.9000        digest_0.6.15         stringi_1.2.3        
+## [43] dplyr_0.7.5           rprojroot_1.3-2       grid_3.5.0           
+## [46] cli_1.0.0             odbc_1.1.6            tools_3.5.0          
+## [49] sqldf_0.4-11          lazyeval_0.2.1        tibble_1.4.2         
+## [52] RSQLite_2.1.1         crayon_1.3.4          tidyr_0.8.1          
+## [55] pkgconfig_2.0.1       RODBC_1.3-15          xml2_1.2.0           
+## [58] assertthat_0.2.0      rmarkdown_1.10        httr_1.3.1           
+## [61] rstudioapi_0.7        R6_2.2.2              compiler_3.5.0
 ```
 
 ```r
@@ -450,6 +457,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-20 17:16:13 CDT"
+## [1] "2018-06-27 10:56:23 CDT"
 ```
 
