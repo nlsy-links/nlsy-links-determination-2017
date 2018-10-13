@@ -3,9 +3,9 @@ GO
 CREATE DATABASE [NlsyLinks79]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'NlsyLinks79', FILENAME = N'D:\database\nlsy-links\nlsy_links.mdf' , SIZE = 739712KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'NlsyLinks79', FILENAME = N'D:\database\nlsy-links\nlsy_links.mdf' , SIZE = 761216KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'NlsyLinks79_log', FILENAME = N'D:\database\nlsy-links\nlsy_links_log.ldf' , SIZE = 2377088KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'NlsyLinks79_log', FILENAME = N'D:\database\nlsy-links\nlsy_links_log.ldf' , SIZE = 2876352KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 ALTER DATABASE [NlsyLinks79] SET COMPATIBILITY_LEVEL = 100
 GO
@@ -78,19 +78,11 @@ USE [NlsyLinks79]
 GO
 ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
-GO
 ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
 GO
 ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
 GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
-GO
 ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
 GO
 USE [NlsyLinks79]
 GO
@@ -3010,24 +3002,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [Metadata].[tblItem_97](
-	[ID] [smallint] NOT NULL,
-	[Label] [varchar](50) NOT NULL,
-	[MinValue] [int] NOT NULL,
-	[MinNonnegative] [int] NULL,
-	[MaxValue] [int] NOT NULL,
-	[Active] [varchar](5) NOT NULL,
-	[Notes] [varchar](255) NULL,
- CONSTRAINT [PK_tblLUItem_97] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [Metadata].[tblMzManual](
 	[ID] [int] NOT NULL,
 	[SubjectTag_S1] [int] NOT NULL,
@@ -3087,27 +3061,6 @@ CREATE TABLE [Metadata].[tblVariable](
 	[Active] [bit] NOT NULL,
 	[Notes] [varchar](255) NULL,
  CONSTRAINT [PK_tblVariable_79] PRIMARY KEY CLUSTERED 
-(
-	[VariableCode] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Metadata].[tblVariable_97](
-	[VariableCode] [char](8) NOT NULL,
-	[Item] [smallint] NOT NULL,
-	[Generation] [tinyint] NOT NULL,
-	[ExtractSource] [tinyint] NOT NULL,
-	[SurveySource] [tinyint] NOT NULL,
-	[SurveyYear] [smallint] NOT NULL,
-	[LoopIndex] [tinyint] NOT NULL,
-	[Translate] [bit] NOT NULL,
-	[Active] [bit] NOT NULL,
-	[Notes] [varchar](255) NULL,
- CONSTRAINT [PK_tblVariable_97] PRIMARY KEY CLUSTERED 
 (
 	[VariableCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -3304,13 +3257,6 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_tblMzManual_Unique] ON [Metadata].[tblMzMan
 (
 	[SubjectTag_S1] ASC,
 	[SubjectTag_S2] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
-SET ANSI_PADDING ON
-GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_tblVariable_79] ON [Metadata].[tblVariable]
-(
-	[VariableCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_tblBabyDaddy] ON [Process].[tblBabyDaddy]
@@ -3822,18 +3768,6 @@ ALTER TABLE [Metadata].[tblVariable]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable
 GO
 ALTER TABLE [Metadata].[tblVariable] CHECK CONSTRAINT [CK_tblVariable_79_VariableCodeLength]
 GO
-ALTER TABLE [Metadata].[tblVariable_97]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_97_Generation] CHECK  (([Generation]=(2) OR [Generation]=(1)))
-GO
-ALTER TABLE [Metadata].[tblVariable_97] CHECK CONSTRAINT [CK_tblVariable_97_Generation]
-GO
-ALTER TABLE [Metadata].[tblVariable_97]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_97_SurveyYear] CHECK  (((0)<=[SurveyYear] AND [SurveyYear]<=(2030)))
-GO
-ALTER TABLE [Metadata].[tblVariable_97] CHECK CONSTRAINT [CK_tblVariable_97_SurveyYear]
-GO
-ALTER TABLE [Metadata].[tblVariable_97]  WITH CHECK ADD  CONSTRAINT [CK_tblVariable_97_VariableCodeLength] CHECK  ((len([VariableCode])=(8)))
-GO
-ALTER TABLE [Metadata].[tblVariable_97] CHECK CONSTRAINT [CK_tblVariable_97_VariableCodeLength]
-GO
 ALTER TABLE [Process].[tblParentsOfGen1Current]  WITH CHECK ADD  CONSTRAINT [CK_tblParentsOfGen1Current_BiodadHighestGrade] CHECK  (((0)<=[BiodadHighestGrade] AND [BiodadHighestGrade]<=(20)))
 GO
 ALTER TABLE [Process].[tblParentsOfGen1Current] CHECK CONSTRAINT [CK_tblParentsOfGen1Current_BiodadHighestGrade]
@@ -3934,7 +3868,7 @@ OR Item in ( 49, 81,82,83,84,85,86,87,88,89,90, 91, 92 )                        
 OR Item in (121, 122, 123, 124, 125)                                                                     --For Gen2CFather
 OR Item in (11, 13,14,15, 48, 49, 60, 64, 82, 86, 87, 88, 103)                                           --For SubjectDetails
 OR Item in (1,2,4,5,6)                                                                                   --For MarkerGen1
-OR Item in (9,10)                                                                                        --For MarkerGen2
+OR Item in (9,10)                                                                                       --For MarkerGen2
 OR Item in (                                                                                             --Outcomes
 	200,201,203,                                                                                           --Gen1HeightInches, Gen1WeightPounds, Gen1AfqtScaled3Decimals
 	500,501,502,503,                                                                                       --Gen2HeightInchesTotal, Gen2HeightFeetOnly, Gen2HeightInchesRemainder, Gen2HeightInchesTotalMotherSupplement

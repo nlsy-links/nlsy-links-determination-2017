@@ -92,7 +92,7 @@ ds_response               <- DBI::dbGetQuery(channel, sql_response    )
 
 ```
 ##    user  system elapsed 
-##    0.38    0.01    2.54
+##    0.37    0.00    3.79
 ```
 
 ```r
@@ -133,7 +133,7 @@ ds_algorithm_version
 
 ```
 ##   version
-## 1      87
+## 1      88
 ```
 
 ```r
@@ -371,7 +371,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.0 Patched (2018-05-14 r74725)
+## R version 3.5.1 Patched (2018-09-10 r75281)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -391,22 +391,22 @@ sessionInfo()
 ## [1] knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.17          highr_0.7             pillar_1.2.3         
-##  [4] compiler_3.5.0        plyr_1.8.4            bindr_0.1.1          
-##  [7] tools_3.5.0           odbc_1.1.5            digest_0.6.15        
-## [10] bit_1.1-14            memoise_1.1.0         evaluate_0.10.1      
-## [13] tibble_1.4.2          checkmate_1.8.6       pkgconfig_2.0.1      
-## [16] rlang_0.2.1           DBI_1.0.0             cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.19           withr_2.1.2          
-## [22] dplyr_0.7.5           stringr_1.3.1         devtools_1.13.5      
-## [25] hms_0.4.2.9000        bit64_0.9-7           rprojroot_1.3-2      
-## [28] tidyselect_0.2.4      OuhscMunge_0.1.9.9008 glue_1.2.0           
-## [31] R6_2.2.2              rmarkdown_1.10        tidyr_0.8.1          
-## [34] readr_1.2.0           purrr_0.2.5           blob_1.1.1           
-## [37] scales_0.5.0          backports_1.1.2       RODBC_1.3-15         
-## [40] htmltools_0.3.6       rsconnect_0.8.8       assertthat_0.2.0     
-## [43] testit_0.8            colorspace_1.3-2      config_0.3           
-## [46] utf8_1.1.4            stringi_1.2.3         munsell_0.5.0        
+##  [1] Rcpp_0.12.19          highr_0.7             pillar_1.3.0         
+##  [4] compiler_3.5.1        bindr_0.1.1           tools_3.5.1          
+##  [7] odbc_1.1.6            digest_0.6.18         packrat_0.4.9-3      
+## [10] bit_1.1-14            memoise_1.1.0         evaluate_0.12        
+## [13] tibble_1.4.2          checkmate_1.8.5       pkgconfig_2.0.2      
+## [16] rlang_0.2.2           DBI_1.0.0             cli_1.0.1            
+## [19] rstudioapi_0.8        yaml_2.2.0            withr_2.1.2          
+## [22] dplyr_0.7.6           stringr_1.3.1         devtools_1.13.6      
+## [25] hms_0.4.2.9001        rprojroot_1.3-2       bit64_0.9-7          
+## [28] tidyselect_0.2.5      glue_1.3.0            OuhscMunge_0.1.9.9009
+## [31] R6_2.3.0              fansi_0.4.0           rmarkdown_1.10       
+## [34] tidyr_0.8.1           readr_1.2.0           purrr_0.2.5          
+## [37] blob_1.1.1            scales_1.0.0          htmltools_0.3.6      
+## [40] backports_1.1.2       RODBC_1.3-15          assertthat_0.2.0     
+## [43] testit_0.8.1          colorspace_1.3-2      config_0.3           
+## [46] utf8_1.1.4            stringi_1.2.4         munsell_0.5.0        
 ## [49] markdown_0.8          crayon_1.3.4
 ```
 
@@ -415,6 +415,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-20 16:44:57 CDT"
+## [1] "2018-10-13 18:21:30 CDT"
 ```
 
