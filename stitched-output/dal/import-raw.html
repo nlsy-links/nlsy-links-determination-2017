@@ -202,7 +202,7 @@ hr {
 
 <body>
 <p>This report was automatically generated with the R package <strong>knitr</strong>
-(version 1.18).</p>
+(version 1.20).</p>
 
 <pre><code class="r"># knitr::stitch_rmd(script=&quot;./dal/import-79-raw.R&quot;, output=&quot;./stitched-output/dal/import-raw.md&quot;) # dir.create(output=&quot;./stitched-output/dal/&quot;, recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
@@ -275,75 +275,44 @@ print(ds_extract, n=20)
 </code></pre>
 
 <pre><code>## # A tibble: 12 x 6
-##    table_name                      file_n~ path     extra~ sql_se~ sql_tr~
-##    &lt;chr&gt;                           &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;  &lt;chr&gt;   &lt;chr&gt;  
-##  1 Extract.tblGen1Explicit         nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  2 Extract.tblGen1Implicit         nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  3 Extract.tblGen1Links            nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  4 Extract.tblGen1Outcomes         nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  5 Extract.tblGen1GeocodeSanitized nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  6 Extract.tblGen2FatherFromGen1   nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  7 Extract.tblGen2ImplicitFather   nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  8 Extract.tblGen2Links            nlsy79~ data-un~ T      SELECT~ TRUNCA~
-##  9 Extract.tblGen2LinksFromGen1    nlsy79~ data-un~ T      SELECT~ TRUNCA~
-## 10 Extract.tblGen2OutcomesHeight   nlsy79~ data-un~ T      SELECT~ TRUNCA~
-## 11 Extract.tblGen2OutcomesMath     nlsy79~ data-un~ T      SELECT~ TRUNCA~
-## 12 Extract.tblGen2OutcomesWeight   nlsy79~ data-un~ T      SELECT~ TRUNCA~
+##    table_name  file_name   path    extract_exist sql_select  sql_truncate 
+##    &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;   &lt;lgl&gt;         &lt;chr&gt;       &lt;chr&gt;        
+##  1 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  2 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  3 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  4 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  5 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  6 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  7 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  8 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+##  9 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+## 10 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+## 11 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
+## 12 Extract.tb~ nlsy79-gen~ data-u~ TRUE          SELECT TOP~ TRUNCATE TAB~
 </code></pre>
 
 <pre><code class="r"># Sniff out problems
 </code></pre>
 
 <pre><code class="r">channel_odbc &lt;- open_dsn_channel_odbc()
-DBI::dbGetInfo(channel_odbc)
 </code></pre>
 
-<pre><code>## $dbname
-## [1] &quot;NlsyLinks79&quot;
-## 
-## $dbms.name
-## [1] &quot;Microsoft SQL Server&quot;
-## 
-## $db.version
-## [1] &quot;13.00.4206&quot;
-## 
-## $username
-## [1] &quot;dbo&quot;
-## 
-## $host
-## [1] &quot;&quot;
-## 
-## $port
-## [1] &quot;&quot;
-## 
-## $sourcename
-## [1] &quot;local-nlsy-links-79&quot;
-## 
-## $servername
-## [1] &quot;GIMBLE\\EXPRESS_2016&quot;
-## 
-## $drivername
-## [1] &quot;msodbcsql13.dll&quot;
-## 
-## $odbc.version
-## [1] &quot;03.80.0000&quot;
-## 
-## $driver.version
-## [1] &quot;14.00.0500&quot;
-## 
-## $odbcdriver.version
-## [1] &quot;03.80&quot;
-## 
-## $supports.transactions
-## [1] TRUE
-## 
-## attr(,&quot;class&quot;)
-## [1] &quot;Microsoft SQL Server&quot; &quot;driver_info&quot;          &quot;list&quot;
+<pre><code>## Error in checkSubset(x, choices, empty.ok, fmatch): argument &quot;study&quot; is missing, with no default
+</code></pre>
+
+<pre><code class="r">DBI::dbGetInfo(channel_odbc)
+</code></pre>
+
+<pre><code>## Error in DBI::dbGetInfo(channel_odbc): object &#39;channel_odbc&#39; not found
 </code></pre>
 
 <pre><code class="r">channel_rodbc &lt;- open_dsn_channel_rodbc()
+</code></pre>
 
-for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
+<pre><code>## Error in checkSubset(x, choices, empty.ok, fmatch): argument &quot;study&quot; is missing, with no default
+</code></pre>
+
+<pre><code class="r">for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
   message(glue::glue(&quot;Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name[i]}`.&quot;))
 
   d &lt;- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
@@ -419,29 +388,30 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 </code></pre>
 
 <pre><code>## # A tibble: 12,686 x 96
-##    R000~ R000~ R000~ R000~ R000~ R000~ R000~ R000~ R000~ R000~ R000~ R000~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     1   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  2     2     2   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  3     3     3     4     7    -4    -4    -4    -4    -4    -4    -4    -4
-##  4     4     3     3     7    -4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     5     6     6    -4    -4    -4    -4    -4    -4    -4    -4
-##  6     6     5     5     6    -4    -4    -4    -4    -4    -4    -4    -4
-##  7     7     7   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  8     8     8   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  9     9     9   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 10    10    10   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 11    11    11   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 12    12    12   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 13    13    13    14     7    -4    -4    -4    -4    -4    -4    -4    -4
-## 14    14    13    13     6    -4    -4    -4    -4    -4    -4    -4    -4
-## 15    15    15   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 16    16    16   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17    17    18     6    -4    -4    -4    -4    -4    -4    -4    -4
-## 18    18    17    17     6    -4    -4    -4    -4    -4    -4    -4    -4
-## 19    19    19   - 4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 20    20    20    21     7    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 1.267e+04 more rows, and 84 more variables: R0000162 &lt;int&gt;,
+##    R0000100 R0000149 R0000150 R0000151 R0000152 R0000153 R0000154 R0000155
+##       &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+##  1        1        1       -4       -4       -4       -4       -4       -4
+##  2        2        2       -4       -4       -4       -4       -4       -4
+##  3        3        3        4        7       -4       -4       -4       -4
+##  4        4        3        3        7       -4       -4       -4       -4
+##  5        5        5        6        6       -4       -4       -4       -4
+##  6        6        5        5        6       -4       -4       -4       -4
+##  7        7        7       -4       -4       -4       -4       -4       -4
+##  8        8        8       -4       -4       -4       -4       -4       -4
+##  9        9        9       -4       -4       -4       -4       -4       -4
+## 10       10       10       -4       -4       -4       -4       -4       -4
+## 11       11       11       -4       -4       -4       -4       -4       -4
+## 12       12       12       -4       -4       -4       -4       -4       -4
+## 13       13       13       14        7       -4       -4       -4       -4
+## 14       14       13       13        6       -4       -4       -4       -4
+## 15       15       15       -4       -4       -4       -4       -4       -4
+## 16       16       16       -4       -4       -4       -4       -4       -4
+## 17       17       17       18        6       -4       -4       -4       -4
+## 18       18       17       17        6       -4       -4       -4       -4
+## 19       19       19       -4       -4       -4       -4       -4       -4
+## 20       20       20       21        7       -4       -4       -4       -4
+## # ... with 1.267e+04 more rows, and 88 more variables: R0000156 &lt;int&gt;,
+## #   R0000157 &lt;int&gt;, R0000158 &lt;int&gt;, R0000159 &lt;int&gt;, R0000162 &lt;int&gt;,
 ## #   R0000163 &lt;int&gt;, R0000164 &lt;int&gt;, R0000165 &lt;int&gt;, R0000166 &lt;int&gt;,
 ## #   R0173600 &lt;int&gt;, R0214700 &lt;int&gt;, R0214800 &lt;int&gt;, R4125101 &lt;int&gt;,
 ## #   R4125801 &lt;int&gt;, R4126501 &lt;int&gt;, R4127201 &lt;int&gt;, R4127901 &lt;int&gt;,
@@ -463,565 +433,34 @@ for( i in seq_len(nrow(ds_extract)) ) { # i &lt;- 1L
 ## #   T2262800 &lt;int&gt;, T2262900 &lt;int&gt;, T2263000 &lt;int&gt;, T2263100 &lt;int&gt;,
 ## #   T2263200 &lt;int&gt;, T2263300 &lt;int&gt;, T2263400 &lt;int&gt;, T2263500 &lt;int&gt;,
 ## #   T2263600 &lt;int&gt;, T2263700 &lt;int&gt;, T2263800 &lt;int&gt;
-## [1] 1
 </code></pre>
 
-<pre><code>## Tibble size: 4.7 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen1/Gen1Implicit.csv` to `Extract.tblGen1Implicit`.
-</code></pre>
-
-<pre><code>## # A tibble: 12,686 x 102
-##    H000~ H000~ H000~ H000~ H000~ H000~ H000~ H000~ H000~ H000~ H000~ H000~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1    -4    -4   - 4    -4 -   4 -   4 -   4    -4    -4    -4   - 4    -4
-##  2     0     1    55     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-##  3     1    -4   - 4     1  4920 -   4 -   4    -4     1    -4   - 4     0
-##  4    -4    -4   - 4    -4 -   4 -   4 -   4    -4    -4    -4   - 4    -4
-##  5    -4    -4   - 4    -4 -   4 -   4 -   4    -4    -4    -4   - 4    -4
-##  6     0     4    54     1  3039 -   4 -   4    -4     1    -4   - 4     1
-##  7    -2    -4   - 4    -4 -   4 -   4 -   4    -4     1    -4   - 4     1
-##  8     1    -4   - 4     1  3625  5860  7851    -4     0     1    65     1
-##  9     1    -4   - 4     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-## 10    -4    -4   - 4    -4 -   4 -   4 -   4    -4    -4    -4   - 4    -4
-## 11     0     3    62     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-## 12    -4    -4   - 4    -4 -   4 -   4 -   4    -4    -4    -4   - 4    -4
-## 13     1    -4   - 4     1 -   4 -   4 -   4    -4     1    -4   - 4     0
-## 14     1    -4   - 4     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-## 15     0     1    58     1  4292 -   4 -   4    -4     1    -4   - 4     0
-## 16     1    -4   - 4     1  3310  3310 -   4    -4     1    -4   - 4     0
-## 17     0     5    56     1  4292  4920 -   4    -4     1    -4   - 4     0
-## 18     0     1    59     1  4920 -   4 -   4    -4     1    -4   - 4     0
-## 19     1    -4   - 4     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-## 20     1    -4   - 4     0 -   4 -   4 -   4    -4     1    -4   - 4     0
-## # ... with 1.267e+04 more rows, and 90 more variables: H0002800 &lt;int&gt;,
-## #   H0002900 &lt;int&gt;, H0003000 &lt;int&gt;, H0003100 &lt;int&gt;, H0013600 &lt;int&gt;,
-## #   H0013700 &lt;int&gt;, H0013800 &lt;int&gt;, H0013900 &lt;int&gt;, H0014000 &lt;int&gt;,
-## #   H0014100 &lt;int&gt;, H0014200 &lt;int&gt;, H0014300 &lt;int&gt;, H0014400 &lt;int&gt;,
-## #   H0014500 &lt;int&gt;, H0014700 &lt;int&gt;, H0014800 &lt;int&gt;, H0014900 &lt;int&gt;,
-## #   H0015000 &lt;int&gt;, H0015100 &lt;int&gt;, H0015200 &lt;int&gt;, H0015300 &lt;int&gt;,
-## #   H0015400 &lt;int&gt;, H0015500 &lt;int&gt;, H0015600 &lt;int&gt;, H0015700 &lt;int&gt;,
-## #   H0015800 &lt;int&gt;, H0015803 &lt;int&gt;, H0015804 &lt;int&gt;, R0000100 &lt;int&gt;,
-## #   R0006100 &lt;int&gt;, R0006500 &lt;int&gt;, R0007300 &lt;int&gt;, R0007700 &lt;int&gt;,
-## #   R0007900 &lt;int&gt;, R0173600 &lt;int&gt;, R0214700 &lt;int&gt;, R0214800 &lt;int&gt;,
-## #   R2302900 &lt;int&gt;, R2303100 &lt;int&gt;, R2303200 &lt;int&gt;, R2303300 &lt;int&gt;,
-## #   R2303500 &lt;int&gt;, R2303600 &lt;int&gt;, R2505100 &lt;int&gt;, R2505300 &lt;int&gt;,
-## #   R2505400 &lt;int&gt;, R2505500 &lt;int&gt;, R2505700 &lt;int&gt;, R2505800 &lt;int&gt;,
-## #   R2737900 &lt;int&gt;, R2837200 &lt;int&gt;, R2837300 &lt;int&gt;, R2837400 &lt;int&gt;,
-## #   R2837500 &lt;int&gt;, R2837600 &lt;int&gt;, R2837700 &lt;int&gt;, R2837800 &lt;int&gt;,
-## #   R2837900 &lt;int&gt;, R2838000 &lt;int&gt;, R2838100 &lt;int&gt;, R2838200 &lt;int&gt;,
-## #   R2838300 &lt;int&gt;, R2838400 &lt;int&gt;, R2838500 &lt;int&gt;, R2838600 &lt;int&gt;,
-## #   R2838700 &lt;int&gt;, R2838800 &lt;int&gt;, R2838900 &lt;int&gt;, R2839000 &lt;int&gt;,
-## #   R2839100 &lt;int&gt;, R2839200 &lt;int&gt;, R2839300 &lt;int&gt;, R2839400 &lt;int&gt;,
-## #   R2839500 &lt;int&gt;, R2839600 &lt;int&gt;, R2839700 &lt;int&gt;, R2839800 &lt;int&gt;,
-## #   R2839900 &lt;int&gt;, R2840000 &lt;int&gt;, R2840100 &lt;int&gt;, R2840200 &lt;int&gt;,
-## #   R2840300 &lt;int&gt;, R2840400 &lt;int&gt;, R2840500 &lt;int&gt;, R2840600 &lt;int&gt;,
-## #   R2840700 &lt;int&gt;, R2840800 &lt;int&gt;, R2840900 &lt;int&gt;, R2841000 &lt;int&gt;,
-## #   R2841100 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 5 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen1/Gen1Links.csv` to `Extract.tblGen1Links`.
-</code></pre>
-
-<pre><code>## # A tibble: 12,686 x 117
-##    R000~ R000~ R000~ R000~ R000~ R000~ R017~ R017~ R017~ R021~ R021~ R021~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     1     9    58     1     1     3     3     5     3     2    20
-##  2     2     2     1    59     8     7     2    28     5     3     2    20
-##  3     3     3     8    61     3     1     2     8     5     3     2    17
-##  4     4     3     8    62     3     2     2     8     5     3     2    16
-##  5     5     5     7    59     1     0     4    19     1     3     1    19
-##  6     6     5    10    60     1     1     4    21     1     3     1    18
-##  7     7     7     6    64     1     0     2    13     1     3     1    14
-##  8     8     8     7    58     7     7     2    15     6     3     2    20
-##  9     9     9     7    63     4     0     2    13     1     3     1    15
-## 10    10    10    10    60     3     2     2     7     6     3     2    18
-## 11    11    11     7    59     1     1     4    24     1     3     1    19
-## 12    12    12     9    59     3     3     3     9     5     3     2    19
-## 13    13    13     8    58     2     1     3     4     1     3     1    20
-## 14    14    13    10    63     2     2     3     3     5     3     2    15
-## 15    15    15     2    64     1     0     2    13     1     3     1    15
-## 16    16    16    10    58     3     3     2    11     5     3     2    20
-## 17    17    17     1    57     2     1     3     3     1     3     1    22
-## 18    18    17     3    58     2     2     3    24     1     3     1    21
-## 19    19    19    12    57     3     3     2    28     5     3     2    21
-## 20    20    20    11    59     2     0     3    14     5     3     2    19
-## # ... with 1.267e+04 more rows, and 105 more variables: R0329200 &lt;int&gt;,
-## #   R0329210 &lt;int&gt;, R0406510 &lt;int&gt;, R0410100 &lt;int&gt;, R0410300 &lt;int&gt;,
-## #   R0530700 &lt;int&gt;, R0530800 &lt;int&gt;, R0619010 &lt;int&gt;, R0809900 &lt;int&gt;,
-## #   R0810000 &lt;int&gt;, R0898310 &lt;int&gt;, R1045700 &lt;int&gt;, R1045800 &lt;int&gt;,
-## #   R1145110 &lt;int&gt;, R1427500 &lt;int&gt;, R1427600 &lt;int&gt;, R1520310 &lt;int&gt;,
-## #   R1774100 &lt;int&gt;, R1774200 &lt;int&gt;, R1794600 &lt;int&gt;, R1794700 &lt;int&gt;,
-## #   R1891010 &lt;int&gt;, R2156200 &lt;int&gt;, R2156300 &lt;int&gt;, R2258110 &lt;int&gt;,
-## #   R2365700 &lt;int&gt;, R2365800 &lt;int&gt;, R2445510 &lt;int&gt;, R2742500 &lt;int&gt;,
-## #   R2742600 &lt;int&gt;, R2871300 &lt;int&gt;, R2986100 &lt;int&gt;, R2986200 &lt;int&gt;,
-## #   R3075000 &lt;int&gt;, R3302500 &lt;int&gt;, R3302600 &lt;int&gt;, R3401700 &lt;int&gt;,
-## #   R3573400 &lt;int&gt;, R3573500 &lt;int&gt;, R3657100 &lt;int&gt;, R3917600 &lt;int&gt;,
-## #   R3917700 &lt;int&gt;, R4007600 &lt;int&gt;, R4100200 &lt;int&gt;, R4100201 &lt;int&gt;,
-## #   R4100202 &lt;int&gt;, R4418700 &lt;int&gt;, R4500200 &lt;int&gt;, R4500201 &lt;int&gt;,
-## #   R4500202 &lt;int&gt;, R5081700 &lt;int&gt;, R5167000 &lt;int&gt;, R5200200 &lt;int&gt;,
-## #   R5200201 &lt;int&gt;, R5200202 &lt;int&gt;, R6435300 &lt;int&gt;, R6435301 &lt;int&gt;,
-## #   R6435302 &lt;int&gt;, R6479800 &lt;int&gt;, R6963300 &lt;int&gt;, R6963301 &lt;int&gt;,
-## #   R6963302 &lt;int&gt;, R7007500 &lt;int&gt;, R7656300 &lt;int&gt;, R7656301 &lt;int&gt;,
-## #   R7656302 &lt;int&gt;, R7704800 &lt;int&gt;, R7800500 &lt;int&gt;, R7800501 &lt;int&gt;,
-## #   R7800502 &lt;int&gt;, R8497200 &lt;int&gt;, R9908000 &lt;int&gt;, T0000900 &lt;int&gt;,
-## #   T0000901 &lt;int&gt;, T0000902 &lt;int&gt;, T0989000 &lt;int&gt;, T1200700 &lt;int&gt;,
-## #   T1200701 &lt;int&gt;, T1200702 &lt;int&gt;, T2210800 &lt;int&gt;, T2260600 &lt;int&gt;,
-## #   T2260601 &lt;int&gt;, T2260602 &lt;int&gt;, T2763400 &lt;int&gt;, T2763500 &lt;int&gt;,
-## #   T2763600 &lt;int&gt;, T2763700 &lt;int&gt;, T2763800 &lt;int&gt;, T2763900 &lt;int&gt;,
-## #   T2764000 &lt;int&gt;, T3108700 &lt;int&gt;, T3195600 &lt;int&gt;, T3195601 &lt;int&gt;,
-## #   T3195602 &lt;int&gt;, T3729600 &lt;int&gt;, T3729700 &lt;int&gt;, T3729800 &lt;int&gt;,
-## #   T3729900 &lt;int&gt;, T3730000 &lt;int&gt;, T3730100 &lt;int&gt;, ...
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 5.7 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen1/Gen1Outcomes.csv` to `Extract.tblGen1Outcomes`.
-</code></pre>
-
-<pre><code>## # A tibble: 12,686 x 22
-##    R0000~ R0173~ R0214~ R0214~ R0481~ R048~ R061~ R061~ R0618~ R077~ R077~
-##     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1      1      5      3      2    505  -  1   - 4   - 4 -    4   - 5  -  5
-##  2      2      5      3      2    502   120    12     9   6841    62   125
-##  3      3      5      3      2   -  5  -  5    51    46  49444    70   160
-##  4      4      5      3      2    507   110    62    48  55761    67   109
-##  5      5      1      3      1    503   130    90    99  96772    63   135
-##  6      6      1      3      1    504   200    99    99  99393    65   200
-##  7      7      1      3      1    505   131    33    35  47412    67   138
-##  8      8      6      3      2    505   179    43    42  44022    65   169
-##  9      9      1      3      1    506   145    55    51  59683    65   155
-## 10     10      6      3      2    506   115    27    21  30039    66   115
-## 11     11      1      3      1    511   155    71    81  85347    71   155
-## 12     12      5      3      2    506   118    94    89  89641    66   116
-## 13     13      1      3      1    511   180    78    85  72313    71   175
-## 14     14      5      3      2    507   135    88    92  98798    67   140
-## 15     15      1      3      1    601   185    83    69  82260    74   205
-## 16     16      5      3      2    503   130    63    57  50283    63   135
-## 17     17      1      3      1    509   160    84    88  89669    70   160
-## 18     18      1      3      1    509   155    99    98  95977    68   145
-## 19     19      5      3      2    504   120   - 4   - 4 -    4    64   125
-## 20     20      5      3      2    504   120    54    63  67021    61   120
-## # ... with 1.267e+04 more rows, and 11 more variables: R1773900 &lt;int&gt;,
-## #   R1774000 &lt;int&gt;, T0897300 &lt;int&gt;, T0897400 &lt;int&gt;, T0897500 &lt;int&gt;,
-## #   T2053800 &lt;int&gt;, T2053900 &lt;int&gt;, T2054000 &lt;int&gt;, T3024700 &lt;int&gt;,
-## #   T3024800 &lt;int&gt;, T3024900 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 1.1 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen1/Gen1GeocodeSanitized.csv` to `Extract.tblGen1GeocodeSanitized`.
-</code></pre>
-
-<pre><code>## # A tibble: 5,302 x 29
-##    Subj~ Subj~ DobD~ DobD~ DobD~ DobD~ DobD~ DobD~ Birt~ Birt~ Birt~ Birt~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   300   400 - 338 - 338    NA    NA     0     0     0     0     1     0
-##  2   500   600 - 461 - 462 - 461 - 462     0     0     0     0     1     0
-##  3  1300  1400 -1868 -1868 -1868 -1868     0     0     0     0     1     0
-##  4  1700  1800 - 413 - 413 - 413 - 413     0     0     0     0     1     0
-##  5  2000  2100 - 591 - 591 - 591 - 591     0     0     0     0     1     0
-##  6  2300  2400 - 828 - 828 - 828 - 828     0     0     0     0     0     0
-##  7  2700  2800 -1356 -1356 -1356 -1356     0     0     0     0     1     0
-##  8  2900  3000   698   698   698   698     0     0     1     1     1     1
-##  9  3200  3300 -1640    NA -1640    NA     0     0     1     1     0     1
-## 10  3400  3500 -1730 -1732 -1730 -1732     0     0     0     0     1     0
-## 11  3700  3800 -1406 -1409 -1406 -1409     0     0     0     0     1     0
-## 12  4000  4100 - 772 - 772 - 772 - 772     0     0     0     0     1     0
-## 13  5000  5100 -1596    NA -1596    NA     0     0     0     0     1     0
-## 14  5500  5600 -1998 -1998    NA    NA     0     0     0     0     1     0
-## 15  5800  5900 - 738 -1042 - 738 -1042     0     0     0     0     1     0
-## 16  5800  6000 -1680 -1680 -1680 -1680     0     0     0     0     1     0
-## 17  5900  6000 - 942 - 942 - 638 - 638     0     0     0     0     1     0
-## 18  6100  6200 - 677 - 678 - 677 - 678     0     0     0     0     0     0
-## 19  6300  6400 - 603 - 604 - 603 - 604     0     0     0     0     1     0
-## 20  6300  6500 -1343 -1343 -1343 -1343     0     0     0     0     1     0
-## # ... with 5,282 more rows, and 17 more variables:
-## #   BirthSubjectStateMissing_2 &lt;int&gt;, BirthSubjectStateEqual &lt;int&gt;,
-## #   BirthSubjectCountryMissing_1 &lt;int&gt;, BirthSubjectCountryMissing_2
-## #   &lt;int&gt;, BirthSubjectCountryEqual &lt;int&gt;, BirthMotherStateMissing_1
-## #   &lt;int&gt;, BirthMotherStateMissing_2 &lt;int&gt;, BirthMotherStateEqual &lt;int&gt;,
-## #   BirthMotherCountryMissing_1 &lt;int&gt;, BirthMotherCountryMissing_2 &lt;int&gt;,
-## #   BirthMotherCountryEqual &lt;int&gt;, BirthFatherStateMissing_1 &lt;int&gt;,
-## #   BirthFatherStateMissing_2 &lt;int&gt;, BirthFatherStateEqual &lt;int&gt;,
-## #   BirthFatherCountryMissing_1 &lt;int&gt;, BirthFatherCountryMissing_2 &lt;int&gt;,
-## #   BirthFatherCountryEqual &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 0.6 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2FatherFromGen1.csv` to `Extract.tblGen2FatherFromGen1`.
-</code></pre>
-
-<pre><code>## # A tibble: 12,686 x 959
-##    R000~ R021~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~ R137~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     2    -5    -5    -5    -5    -5    -5    -5    -5    -5    -5
-##  2     2     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  3     3     2     1    -4    -4     1    -4    -4    -4    -4    -4    -4
-##  4     4     2     0     1     4    -4    -4    -4    -4    -4    -4    -4
-##  5     5     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  6     6     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  7     7     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-##  8     8     2     1    -4    -4     1    -4    -4     1    -4    -4    -4
-##  9     9     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 10    10     2     1    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 11    11     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 12    12     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 13    13     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 14    14     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 15    15     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 16    16     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 17    17     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 18    18     1    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 19    19     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## 20    20     2    -4    -4    -4    -4    -4    -4    -4    -4    -4    -4
-## # ... with 1.267e+04 more rows, and 947 more variables: R1375500 &lt;int&gt;,
-## #   R1375600 &lt;int&gt;, R1376100 &lt;int&gt;, R1376200 &lt;int&gt;, R1376300 &lt;int&gt;,
-## #   R1376800 &lt;int&gt;, R1376900 &lt;int&gt;, R1377000 &lt;int&gt;, R1377500 &lt;int&gt;,
-## #   R1377600 &lt;int&gt;, R1377700 &lt;int&gt;, R1753700 &lt;int&gt;, R1753800 &lt;int&gt;,
-## #   R1753900 &lt;int&gt;, R1754400 &lt;int&gt;, R1754500 &lt;int&gt;, R1754600 &lt;int&gt;,
-## #   R1755100 &lt;int&gt;, R1755200 &lt;int&gt;, R1755300 &lt;int&gt;, R1755800 &lt;int&gt;,
-## #   R1755900 &lt;int&gt;, R1756000 &lt;int&gt;, R1756500 &lt;int&gt;, R1756600 &lt;int&gt;,
-## #   R1756700 &lt;int&gt;, R1757200 &lt;int&gt;, R1757300 &lt;int&gt;, R1757400 &lt;int&gt;,
-## #   R1757900 &lt;int&gt;, R1758000 &lt;int&gt;, R1758100 &lt;int&gt;, R2095700 &lt;int&gt;,
-## #   R2095800 &lt;int&gt;, R2095900 &lt;int&gt;, R2096400 &lt;int&gt;, R2096500 &lt;int&gt;,
-## #   R2096600 &lt;int&gt;, R2097100 &lt;int&gt;, R2097200 &lt;int&gt;, R2097300 &lt;int&gt;,
-## #   R2097800 &lt;int&gt;, R2097900 &lt;int&gt;, R2098000 &lt;int&gt;, R2098500 &lt;int&gt;,
-## #   R2098600 &lt;int&gt;, R2098700 &lt;int&gt;, R2099200 &lt;int&gt;, R2099300 &lt;int&gt;,
-## #   R2099400 &lt;int&gt;, R2099900 &lt;int&gt;, R2100000 &lt;int&gt;, R2100100 &lt;int&gt;,
-## #   R2345900 &lt;int&gt;, R2346200 &lt;int&gt;, R2346500 &lt;int&gt;, R2346800 &lt;int&gt;,
-## #   R2347100 &lt;int&gt;, R2347400 &lt;int&gt;, R2347700 &lt;int&gt;, R2648000 &lt;int&gt;,
-## #   R2648100 &lt;int&gt;, R2648200 &lt;int&gt;, R2648700 &lt;int&gt;, R2648800 &lt;int&gt;,
-## #   R2648900 &lt;int&gt;, R2649400 &lt;int&gt;, R2649500 &lt;int&gt;, R2649600 &lt;int&gt;,
-## #   R2650100 &lt;int&gt;, R2650200 &lt;int&gt;, R2650300 &lt;int&gt;, R2650800 &lt;int&gt;,
-## #   R2650900 &lt;int&gt;, R2651000 &lt;int&gt;, R2651500 &lt;int&gt;, R2651600 &lt;int&gt;,
-## #   R2651700 &lt;int&gt;, R2652200 &lt;int&gt;, R2652300 &lt;int&gt;, R2652400 &lt;int&gt;,
-## #   R2955900 &lt;int&gt;, R2956200 &lt;int&gt;, R2956500 &lt;int&gt;, R2956800 &lt;int&gt;,
-## #   R2957100 &lt;int&gt;, R2957400 &lt;int&gt;, R2957700 &lt;int&gt;, R3255900 &lt;int&gt;,
-## #   R3256000 &lt;int&gt;, R3256100 &lt;int&gt;, R3257700 &lt;int&gt;, R3257800 &lt;int&gt;,
-## #   R3257900 &lt;int&gt;, R3259500 &lt;int&gt;, R3259600 &lt;int&gt;, R3259700 &lt;int&gt;,
-## #   R3261300 &lt;int&gt;, R3261400 &lt;int&gt;, R3261500 &lt;int&gt;, ...
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 46.9 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2ImplicitFather.csv` to `Extract.tblGen2ImplicitFather`.
-</code></pre>
-
-<pre><code>## # A tibble: 11,521 x 111
-##    C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   201     2     3     2  1993    -7    -7    -7    -7    -7    -7    -7
-##  2   202     2     3     2  1994    -7    -7    -7    -7    -7    -7    -7
-##  3   301     3     3     2  1981     1    -7    -7     1    -7    -7     1
-##  4   302     3     3     2  1983     1    -7    -7     1    -7    -7     1
-##  5   303     3     3     2  1986    -7    -7    -7    -7    -7    -7    -7
-##  6   401     4     3     1  1980     0     1     4     0     1     4     0
-##  7   403     4     3     2  1997    -7    -7    -7    -7    -7    -7    -7
-##  8   801     8     3     2  1976     1    -7    -7     1    -7    -7     1
-##  9   802     8     3     1  1979     1    -7    -7     1    -7    -7     1
-## 10   803     8     3     2  1982     1    -7    -7     1    -7    -7     1
-## 11  1001    10     3     2  1983     1    -7    -7     1    -7    -7    -7
-## 12  1002    10     3     2  1988    -7    -7    -7    -7    -7    -7    -7
-## 13  1201    12     3     1  1989    -7    -7    -7    -7    -7    -7    -7
-## 14  1202    12     3     1  1993    -7    -7    -7    -7    -7    -7    -7
-## 15  1601    16     3     1  1990    -7    -7    -7    -7    -7    -7    -7
-## 16  1602    16     3     1  1993    -7    -7    -7    -7    -7    -7    -7
-## 17  1603    16     3     2  1996    -7    -7    -7    -7    -7    -7    -7
-## 18  1901    19     3     2  1987    -7    -7    -7    -7    -7    -7    -7
-## 19  2001    20     3     2  1990    -7    -7    -7    -7    -7    -7    -7
-## 20  2501    25     3     1  1990    -7    -7    -7    -7    -7    -7    -7
-## # ... with 1.15e+04 more rows, and 99 more variables: C0009200 &lt;int&gt;,
-## #   C0009300 &lt;int&gt;, C0009600 &lt;int&gt;, C0009700 &lt;int&gt;, C0009800 &lt;int&gt;,
-## #   C0009900 &lt;int&gt;, C0010110 &lt;int&gt;, C0010200 &lt;int&gt;, C0010300 &lt;int&gt;,
-## #   C0010400 &lt;int&gt;, C0010700 &lt;int&gt;, C0010800 &lt;int&gt;, C0010900 &lt;int&gt;,
-## #   C0011110 &lt;int&gt;, C0011111 &lt;int&gt;, C0011112 &lt;int&gt;, C0011113 &lt;int&gt;,
-## #   C0011114 &lt;int&gt;, C0011117 &lt;int&gt;, C0011118 &lt;int&gt;, C0011119 &lt;int&gt;,
-## #   C0011122 &lt;int&gt;, C0011123 &lt;int&gt;, C0011124 &lt;int&gt;, C0011127 &lt;int&gt;,
-## #   C0011128 &lt;int&gt;, C0011129 &lt;int&gt;, C0011132 &lt;int&gt;, C0011133 &lt;int&gt;,
-## #   C0011134 &lt;int&gt;, C0011137 &lt;int&gt;, C0011138 &lt;int&gt;, C0011139 &lt;int&gt;,
-## #   C0011142 &lt;int&gt;, C0011143 &lt;int&gt;, C0011144 &lt;int&gt;, C3070500 &lt;int&gt;,
-## #   C3423600 &lt;int&gt;, C3601100 &lt;int&gt;, C3601700 &lt;int&gt;, C3601800 &lt;int&gt;,
-## #   C3601900 &lt;int&gt;, C3605900 &lt;int&gt;, C3981100 &lt;int&gt;, C3981700 &lt;int&gt;,
-## #   C3981800 &lt;int&gt;, C3981900 &lt;int&gt;, Y0003200 &lt;int&gt;, Y0007300 &lt;int&gt;,
-## #   Y0007400 &lt;int&gt;, Y0007600 &lt;int&gt;, Y0007601 &lt;int&gt;, Y0008000 &lt;int&gt;,
-## #   Y0008500 &lt;int&gt;, Y0008600 &lt;int&gt;, Y0009400 &lt;int&gt;, Y0394100 &lt;int&gt;,
-## #   Y0394300 &lt;int&gt;, Y0394500 &lt;int&gt;, Y0394501 &lt;int&gt;, Y0394900 &lt;int&gt;,
-## #   Y0651000 &lt;int&gt;, Y0682500 &lt;int&gt;, Y0683800 &lt;int&gt;, Y0683900 &lt;int&gt;,
-## #   Y0684100 &lt;int&gt;, Y0684101 &lt;int&gt;, Y0684500 &lt;int&gt;, Y0947100 &lt;int&gt;,
-## #   Y0986200 &lt;int&gt;, Y0986700 &lt;int&gt;, Y0988800 &lt;int&gt;, Y0988900 &lt;int&gt;,
-## #   Y0989400 &lt;int&gt;, Y0989401 &lt;int&gt;, Y0989900 &lt;int&gt;, Y1229100 &lt;int&gt;,
-## #   Y1229200 &lt;int&gt;, Y1229700 &lt;int&gt;, Y1229701 &lt;int&gt;, Y1458900 &lt;int&gt;,
-## #   Y1459400 &lt;int&gt;, Y1459401 &lt;int&gt;, Y1629500 &lt;int&gt;, Y1704000 &lt;int&gt;,
-## #   Y1704500 &lt;int&gt;, Y1704501 &lt;int&gt;, Y1707300 &lt;int&gt;, Y1883300 &lt;int&gt;,
-## #   Y1989500 &lt;int&gt;, Y1990000 &lt;int&gt;, Y1990001 &lt;int&gt;, Y1992900 &lt;int&gt;,
-## #   Y2197500 &lt;int&gt;, Y2308300 &lt;int&gt;, Y2308800 &lt;int&gt;, Y2308801 &lt;int&gt;,
-## #   Y2311700 &lt;int&gt;, Y2531800 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 4.9 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2Links.csv` to `Extract.tblGen2Links`.
-</code></pre>
-
-<pre><code>## # A tibble: 11,521 x 207
-##    C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~ C000~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   201     2     3     2     3  1993     1  -  7  -  7  -  7  -  7    17
-##  2   202     2     3     2    11  1994     2  -  7  -  7  -  7  -  7  -  7
-##  3   301     3     3     2     6  1981     1    56    85   112   134   158
-##  4   302     3     3     2    10  1983     2    28    57    84   106   131
-##  5   303     3     3     2     4  1986     3  -  7    27    54    76   100
-##  6   401     4     3     1     8  1980     1  -  7    96   120  -  7  -  7
-##  7   403     4     3     2     3  1997     2  -  7  -  7  -  7  -  7  -  7
-##  8   801     8     3     2     3  1976     1   120   149   173   196  -  7
-##  9   802     8     3     1     5  1979     2    81   111   135   158  -  7
-## 10   803     8     3     2     9  1982     3    41    71    95   118   142
-## 11  1001    10     3     2     1  1983     1  -  7    67    91   114   138
-## 12  1002    10     3     2     7  1988     2  -  7     2    26    49    73
-## 13  1201    12     3     1    10  1989     1  -  7  -  7  -  7  -  7    60
-## 14  1202    12     3     1     8  1993     2  -  7  -  7  -  7  -  7    14
-## 15  1601    16     3     1     2  1990     1  -  7  -  7     7    29    53
-## 16  1602    16     3     1     8  1993     2  -  7  -  7  -  7  -  7    11
-## 17  1603    16     3     2     9  1996     3  -  7  -  7  -  7  -  7  -  7
-## 18  1901    19     3     2    11  1987     1  -  7     7    31  -  7    80
-## 19  2001    20     3     2     8  1990     1  -  7  -  7     1    23    48
-## 20  2501    25     3     1    10  1990     1  -  7  -  7  -  7    21    44
-## # ... with 1.15e+04 more rows, and 195 more variables: C0007043 &lt;int&gt;,
-## #   C0007045 &lt;int&gt;, C0007047 &lt;int&gt;, C0007049 &lt;int&gt;, C0007052 &lt;int&gt;,
-## #   C0007055 &lt;int&gt;, C0402400 &lt;int&gt;, C0402500 &lt;int&gt;, C0402600 &lt;int&gt;,
-## #   C0404100 &lt;int&gt;, C0404200 &lt;int&gt;, C0737000 &lt;int&gt;, C0737100 &lt;int&gt;,
-## #   C0737200 &lt;int&gt;, C0948700 &lt;int&gt;, C0948800 &lt;int&gt;, C0948900 &lt;int&gt;,
-## #   C1146600 &lt;int&gt;, C1146700 &lt;int&gt;, C1146800 &lt;int&gt;, C1230100 &lt;int&gt;,
-## #   C1230200 &lt;int&gt;, C1230300 &lt;int&gt;, C1548100 &lt;int&gt;, C1548101 &lt;int&gt;,
-## #   C1548102 &lt;int&gt;, C1989400 &lt;int&gt;, C1989401 &lt;int&gt;, C1989402 &lt;int&gt;,
-## #   C2305100 &lt;int&gt;, C2305101 &lt;int&gt;, C2305102 &lt;int&gt;, C2544700 &lt;int&gt;,
-## #   C2544701 &lt;int&gt;, C2544702 &lt;int&gt;, C2814500 &lt;int&gt;, C2814501 &lt;int&gt;,
-## #   C2814502 &lt;int&gt;, C3123500 &lt;int&gt;, C3123501 &lt;int&gt;, C3123502 &lt;int&gt;,
-## #   C3601100 &lt;int&gt;, C3627700 &lt;int&gt;, C3627701 &lt;int&gt;, C3627702 &lt;int&gt;,
-## #   C3981100 &lt;int&gt;, C4006300 &lt;int&gt;, C4006301 &lt;int&gt;, C4006302 &lt;int&gt;,
-## #   C5524800 &lt;int&gt;, C5550100 &lt;int&gt;, C5550101 &lt;int&gt;, C5550102 &lt;int&gt;,
-## #   C5801100 &lt;int&gt;, Y0000200 &lt;int&gt;, Y0000201 &lt;int&gt;, Y0000202 &lt;int&gt;,
-## #   Y0002100 &lt;int&gt;, Y0390100 &lt;int&gt;, Y0390101 &lt;int&gt;, Y0390102 &lt;int&gt;,
-## #   Y0677600 &lt;int&gt;, Y0933700 &lt;int&gt;, Y0933701 &lt;int&gt;, Y0933702 &lt;int&gt;,
-## #   Y0974800 &lt;int&gt;, Y1180500 &lt;int&gt;, Y1180501 &lt;int&gt;, Y1180502 &lt;int&gt;,
-## #   Y1192400 &lt;int&gt;, Y1421100 &lt;int&gt;, Y1421101 &lt;int&gt;, Y1421102 &lt;int&gt;,
-## #   Y1434300 &lt;int&gt;, Y1450200 &lt;int&gt;, Y1450201 &lt;int&gt;, Y1450202 &lt;int&gt;,
-## #   Y1672700 &lt;int&gt;, Y1695600 &lt;int&gt;, Y1695601 &lt;int&gt;, Y1695602 &lt;int&gt;,
-## #   Y1707300 &lt;int&gt;, Y1707400 &lt;int&gt;, Y1707500 &lt;int&gt;, Y1707600 &lt;int&gt;,
-## #   Y1707700 &lt;int&gt;, Y1707800 &lt;int&gt;, Y1707900 &lt;int&gt;, Y1708000 &lt;int&gt;,
-## #   Y1708100 &lt;int&gt;, Y1708200 &lt;int&gt;, Y1708300 &lt;int&gt;, Y1708400 &lt;int&gt;,
-## #   Y1708500 &lt;int&gt;, Y1708600 &lt;int&gt;, Y1708700 &lt;int&gt;, Y1708800 &lt;int&gt;,
-## #   Y1708900 &lt;int&gt;, Y1709000 &lt;int&gt;, Y1709100 &lt;int&gt;, ...
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 9.2 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2LinksFromGen1.csv` to `Extract.tblGen2LinksFromGen1`.
-</code></pre>
-
-<pre><code>## # A tibble: 12,686 x 123
-##    R000~ R017~ R021~ R021~ R482~ R482~ R482~ R482~ R482~ R482~ R549~ R549~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1     1     5     3     2    -5    -5    -5    -5    -5    -5    -5    -5
-##  2     2     5     3     2     0    -4    -4    -4    -4    -4     0    -4
-##  3     3     5     3     2     0    -4    -4    -4    -4    -4     0    -4
-##  4     4     5     3     2    -5    -5    -5    -5    -5    -5     0    -4
-##  5     5     1     3     1    -5    -5    -5    -5    -5    -5    -5    -5
-##  6     6     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-##  7     7     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-##  8     8     6     3     2     0    -4    -4    -4    -4    -4     0    -4
-##  9     9     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 10    10     6     3     2     0    -4    -4    -4    -4    -4    -5    -5
-## 11    11     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 12    12     5     3     2     0    -4    -4    -4    -4    -4    -5    -5
-## 13    13     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 14    14     5     3     2     0    -4    -4    -4    -4    -4     0    -4
-## 15    15     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 16    16     5     3     2     0    -4    -4    -4    -4    -4     0    -4
-## 17    17     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 18    18     1     3     1     0    -4    -4    -4    -4    -4     0    -4
-## 19    19     5     3     2     0    -4    -4    -4    -4    -4    -5    -5
-## 20    20     5     3     2     0    -4    -4    -4    -4    -4     0    -4
-## # ... with 1.267e+04 more rows, and 111 more variables: R5496300 &lt;int&gt;,
-## #   R5496500 &lt;int&gt;, R5496700 &lt;int&gt;, R5497000 &lt;int&gt;, R5497200 &lt;int&gt;,
-## #   R6210700 &lt;int&gt;, R6210800 &lt;int&gt;, R6210900 &lt;int&gt;, R6211500 &lt;int&gt;,
-## #   R6211600 &lt;int&gt;, R6211700 &lt;int&gt;, R6211800 &lt;int&gt;, R6211900 &lt;int&gt;,
-## #   R6212200 &lt;int&gt;, R6212300 &lt;int&gt;, R6764000 &lt;int&gt;, R6764100 &lt;int&gt;,
-## #   R6764200 &lt;int&gt;, R6764900 &lt;int&gt;, R6765000 &lt;int&gt;, R6765100 &lt;int&gt;,
-## #   R6765200 &lt;int&gt;, R6765600 &lt;int&gt;, R6765700 &lt;int&gt;, R6765800 &lt;int&gt;,
-## #   R6839600 &lt;int&gt;, R7408300 &lt;int&gt;, R7408400 &lt;int&gt;, R7408500 &lt;int&gt;,
-## #   R7409200 &lt;int&gt;, R7409300 &lt;int&gt;, R7409400 &lt;int&gt;, R7409500 &lt;int&gt;,
-## #   R7409900 &lt;int&gt;, R7410000 &lt;int&gt;, R7410100 &lt;int&gt;, R7548600 &lt;int&gt;,
-## #   R8106400 &lt;int&gt;, R8106500 &lt;int&gt;, R8106600 &lt;int&gt;, R8106700 &lt;int&gt;,
-## #   R8106800 &lt;int&gt;, R8106900 &lt;int&gt;, R8107000 &lt;int&gt;, R8107100 &lt;int&gt;,
-## #   R8107200 &lt;int&gt;, R8255400 &lt;int&gt;, R9900400 &lt;int&gt;, R9900600 &lt;int&gt;,
-## #   R9900601 &lt;int&gt;, R9901200 &lt;int&gt;, R9901400 &lt;int&gt;, R9901401 &lt;int&gt;,
-## #   R9902000 &lt;int&gt;, R9902200 &lt;int&gt;, R9902201 &lt;int&gt;, R9902800 &lt;int&gt;,
-## #   R9903000 &lt;int&gt;, R9903001 &lt;int&gt;, R9903600 &lt;int&gt;, R9903800 &lt;int&gt;,
-## #   R9903801 &lt;int&gt;, R9904400 &lt;int&gt;, R9904600 &lt;int&gt;, R9904601 &lt;int&gt;,
-## #   R9905200 &lt;int&gt;, R9905400 &lt;int&gt;, R9905401 &lt;int&gt;, R9906000 &lt;int&gt;,
-## #   R9906600 &lt;int&gt;, R9907200 &lt;int&gt;, R9907800 &lt;int&gt;, R9908000 &lt;int&gt;,
-## #   R9911200 &lt;int&gt;, R9911201 &lt;int&gt;, T0337300 &lt;int&gt;, T0337400 &lt;int&gt;,
-## #   T0337500 &lt;int&gt;, T0337600 &lt;int&gt;, T0337700 &lt;int&gt;, T0337800 &lt;int&gt;,
-## #   T0337900 &lt;int&gt;, T0338000 &lt;int&gt;, T0338100 &lt;int&gt;, T0338200 &lt;int&gt;,
-## #   T0338300 &lt;int&gt;, T0338400 &lt;int&gt;, T0338500 &lt;int&gt;, T0338600 &lt;int&gt;,
-## #   T1486900 &lt;int&gt;, T1487000 &lt;int&gt;, T1487100 &lt;int&gt;, T1487200 &lt;int&gt;,
-## #   T1487300 &lt;int&gt;, T1487400 &lt;int&gt;, T1487500 &lt;int&gt;, T1487600 &lt;int&gt;,
-## #   T1487700 &lt;int&gt;, T1487800 &lt;int&gt;, T2217700 &lt;int&gt;, ...
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 6 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2OutcomesHeight.csv` to `Extract.tblGen2OutcomesHeight`.
-</code></pre>
-
-<pre><code>## # A tibble: 11,521 x 46
-##    C000~ C000~ C000~ C000~ C000~ C057~ C060~ C060~ C082~ C082~ C101~ C101~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   201     2     3     2  1993   - 7    -7   - 7    -7   - 7    -7   - 7
-##  2   202     2     3     2  1994   - 7    -7   - 7    -7   - 7    -7   - 7
-##  3   301     3     3     2  1981    42     4     2    -2   - 2     5     0
-##  4   302     3     3     2  1983    37     3     9    -7   - 7     4     7
-##  5   303     3     3     2  1986   - 7     2    10    -2   - 7     3    11
-##  6   401     4     3     1  1980   - 7     4     7     4     7    -7   - 7
-##  7   403     4     3     2  1997   - 7    -7   - 7    -7   - 7    -7   - 7
-##  8   801     8     3     2  1976    58     5     5     5     7     5     6
-##  9   802     8     3     1  1979    50     4    10     5     0     5     4
-## 10   803     8     3     2  1982    41     4     4     4     6     4     6
-## 11  1001    10     3     2  1983   - 7     3     9     4     2     4     4
-## 12  1002    10     3     2  1988   - 7     1    11     3     0     3     6
-## 13  1201    12     3     1  1989   - 7    -7   - 7    -7   - 7    -7   - 7
-## 14  1202    12     3     1  1993   - 7    -7   - 7    -7   - 7    -7   - 7
-## 15  1601    16     3     1  1990   - 7    -7   - 7     2     4     0    33
-## 16  1602    16     3     1  1993   - 7    -7   - 7    -7   - 7    -7   - 7
-## 17  1603    16     3     2  1996   - 7    -7   - 7    -7   - 7    -7   - 7
-## 18  1901    19     3     2  1987   - 7     2     1     3     3    -7   - 7
-## 19  2001    20     3     2  1990   - 7    -7   - 7     1    10     2     7
-## 20  2501    25     3     1  1990   - 7    -7   - 7    -7   - 7     0    33
-## # ... with 1.15e+04 more rows, and 34 more variables: C1220200 &lt;int&gt;,
-## #   C1220300 &lt;int&gt;, C1532700 &lt;int&gt;, C1532800 &lt;int&gt;, C1779300 &lt;int&gt;,
-## #   C1779400 &lt;int&gt;, C2288500 &lt;int&gt;, C2288600 &lt;int&gt;, C2552300 &lt;int&gt;,
-## #   C2820900 &lt;int&gt;, C3130400 &lt;int&gt;, C3553400 &lt;int&gt;, C3634500 &lt;int&gt;,
-## #   C3898000 &lt;int&gt;, C4013000 &lt;int&gt;, C5147900 &lt;int&gt;, Y0308300 &lt;int&gt;,
-## #   Y0308400 &lt;int&gt;, Y0609600 &lt;int&gt;, Y0609700 &lt;int&gt;, Y0903900 &lt;int&gt;,
-## #   Y0904000 &lt;int&gt;, Y1150800 &lt;int&gt;, Y1150900 &lt;int&gt;, Y1385800 &lt;int&gt;,
-## #   Y1385900 &lt;int&gt;, Y1637500 &lt;int&gt;, Y1637600 &lt;int&gt;, Y1891100 &lt;int&gt;,
-## #   Y1891200 &lt;int&gt;, Y2207000 &lt;int&gt;, Y2207100 &lt;int&gt;, Y2544700 &lt;int&gt;,
-## #   Y2544800 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 2 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2OutcomesMath.csv` to `Extract.tblGen2OutcomesMath`.
-</code></pre>
-
-<pre><code>## # A tibble: 11,521 x 44
-##    C000~ C000~ C000~ C000~ C000~ C057~ C058~ C058~ C079~ C079~ C079~ C099~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   201     2     3     2  1993   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-##  2   202     2     3     2  1994   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-##  3   301     3     3     2  1981   - 7   - 7  -  7    27    67   107   - 3
-##  4   302     3     3     2  1983   - 7   - 7  -  7   - 7   - 7  -  7   - 3
-##  5   303     3     3     2  1986   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-##  6   401     4     3     1  1980   - 7   - 7  -  7    35    62   105    42
-##  7   403     4     3     2  1997   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-##  8   801     8     3     2  1976    48    71   108    52    55   102    59
-##  9   802     8     3     1  1979    41    95   125    37    35    94    56
-## 10   803     8     3     2  1982   - 7   - 7  -  7    16    69   107    39
-## 11  1001    10     3     2  1983   - 7   - 7  -  7    13    57   103    15
-## 12  1002    10     3     2  1988   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 13  1201    12     3     1  1989   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 14  1202    12     3     1  1993   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 15  1601    16     3     1  1990   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 16  1602    16     3     1  1993   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 17  1603    16     3     2  1996   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 18  1901    19     3     2  1987   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 19  2001    20     3     2  1990   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## 20  2501    25     3     1  1990   - 7   - 7  -  7   - 7   - 7  -  7   - 7
-## # ... with 1.15e+04 more rows, and 32 more variables: C0998700 &lt;int&gt;,
-## #   C0998800 &lt;int&gt;, C1198600 &lt;int&gt;, C1198700 &lt;int&gt;, C1198800 &lt;int&gt;,
-## #   C1507600 &lt;int&gt;, C1507700 &lt;int&gt;, C1507800 &lt;int&gt;, C1564500 &lt;int&gt;,
-## #   C1564600 &lt;int&gt;, C1564700 &lt;int&gt;, C1799900 &lt;int&gt;, C1800000 &lt;int&gt;,
-## #   C1800100 &lt;int&gt;, C2503500 &lt;int&gt;, C2503600 &lt;int&gt;, C2503700 &lt;int&gt;,
-## #   C2532000 &lt;int&gt;, C2532100 &lt;int&gt;, C2532200 &lt;int&gt;, C2802800 &lt;int&gt;,
-## #   C2802900 &lt;int&gt;, C2803000 &lt;int&gt;, C3111300 &lt;int&gt;, C3111400 &lt;int&gt;,
-## #   C3111500 &lt;int&gt;, C3615000 &lt;int&gt;, C3615100 &lt;int&gt;, C3615200 &lt;int&gt;,
-## #   C3993600 &lt;int&gt;, C3993700 &lt;int&gt;, C3993800 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 2 Mb
-</code></pre>
-
-<pre><code>## Uploading from `nlsy79-gen2/Gen2OutcomesWeight.csv` to `Extract.tblGen2OutcomesWeight`.
-</code></pre>
-
-<pre><code>## # A tibble: 11,521 x 31
-##    C000~ C000~ C000~ C000~ C000~ Y030~ Y090~ Y115~ Y138~ Y163~ Y189~ Y220~
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1   201     2     3     2  1993  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-##  2   202     2     3     2  1994  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-##  3   301     3     3     2  1981  -  7   115  -  7   115  -  7  -  7   130
-##  4   302     3     3     2  1983  -  7   129   135   135  -  7  -  7   135
-##  5   303     3     3     2  1986  -  7  -  7  -  7   110  -  7  -  7   130
-##  6   401     4     3     1  1980  -  7   153  -  7  -  7  -  7  -  7  -  7
-##  7   403     4     3     2  1997  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-##  8   801     8     3     2  1976   187  -  7   220   230   230   229   205
-##  9   802     8     3     1  1979   130   178   190   195   225   230   225
-## 10   803     8     3     2  1982  -  7   155   155   159   180   182   180
-## 11  1001    10     3     2  1983  -  7  -  7  -  7   125  -  7  -  7  -  7
-## 12  1002    10     3     2  1988  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-## 13  1201    12     3     1  1989  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-## 14  1202    12     3     1  1993  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-## 15  1601    16     3     1  1990  -  7  -  7  -  7  -  7  -  7   160   170
-## 16  1602    16     3     1  1993  -  7  -  7  -  7  -  7  -  7  -  7   150
-## 17  1603    16     3     2  1996  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-## 18  1901    19     3     2  1987  -  7  -  7  -  7  -  7  -  7  -  7  -  7
-## 19  2001    20     3     2  1990  -  7  -  7  -  7  -  7  -  7   120   130
-## 20  2501    25     3     1  1990  -  7  -  7  -  7  -  7  -  7   155   171
-## # ... with 1.15e+04 more rows, and 19 more variables: Y2544900 &lt;int&gt;,
-## #   Y2623301 &lt;int&gt;, Y2623302 &lt;int&gt;, Y2623401 &lt;int&gt;, Y2623402 &lt;int&gt;,
-## #   Y2623501 &lt;int&gt;, Y2623502 &lt;int&gt;, Y2623601 &lt;int&gt;, Y2623602 &lt;int&gt;,
-## #   Y2623701 &lt;int&gt;, Y2623702 &lt;int&gt;, Y2623801 &lt;int&gt;, Y2623802 &lt;int&gt;,
-## #   Y2623901 &lt;int&gt;, Y2623902 &lt;int&gt;, Y2624001 &lt;int&gt;, Y2624002 &lt;int&gt;,
-## #   Y2624101 &lt;int&gt;, Y2624102 &lt;int&gt;
-## [1] 1
-</code></pre>
-
-<pre><code>## Tibble size: 1.4 Mb
+<pre><code>## Error in DBI::dbGetQuery(channel_odbc, ds_extract$sql_truncate[i]): object &#39;channel_odbc&#39; not found
 </code></pre>
 
 <pre><code class="r">DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
-RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+</code></pre>
 
-duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, units=&quot;secs&quot;)))
+<pre><code>## Error in DBI::dbDisconnect(channel_odbc): object &#39;channel_odbc&#39; not found
+</code></pre>
+
+<pre><code>## Warning in rm(channel_odbc): object &#39;channel_odbc&#39; not found
+</code></pre>
+
+<pre><code class="r">RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
+</code></pre>
+
+<pre><code>## Error in odbcValidChannel(channel): object &#39;channel_rodbc&#39; not found
+</code></pre>
+
+<pre><code>## Warning in rm(channel_rodbc): object &#39;channel_rodbc&#39; not found
+</code></pre>
+
+<pre><code class="r">duration_in_seconds &lt;- round(as.numeric(difftime(Sys.time(), start_time, units=&quot;secs&quot;)))
 cat(&quot;File completed by `&quot;, Sys.info()[&quot;user&quot;], &quot;` at &quot;, strftime(Sys.time(), &quot;%Y-%m-%d, %H:%M %z&quot;), &quot; in &quot;,  duration_in_seconds, &quot; seconds.&quot;, sep=&quot;&quot;)
 </code></pre>
 
-<pre><code>## File completed by `Will` at 2018-01-07, 19:29 -0600 in 105 seconds.
+<pre><code>## File completed by `Will` at 2018-06-20, 12:30 -0500 in 1 seconds.
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -1030,7 +469,7 @@ packages used):</p>
 <pre><code class="r">sessionInfo()
 </code></pre>
 
-<pre><code>## R version 3.4.3 Patched (2017-12-05 r73849)
+<pre><code>## R version 3.5.0 Patched (2018-05-14 r74725)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows &gt;= 8 x64 (build 9200)
 ## 
@@ -1047,31 +486,27 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] purrr_0.2.4  tidyr_0.7.2  bindrcpp_0.2 magrittr_1.5
+## [1] bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
-##  [4] plyr_1.8.4            highr_0.6             bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            checkmate_1.8.5       evaluate_0.10.1      
-## [13] tibble_1.4.1          pkgconfig_2.0.1       rlang_0.1.6          
-## [16] DBI_0.7               cli_1.0.0             rstudioapi_0.7       
-## [19] yaml_2.1.16           dplyr_0.7.4           stringr_1.2.0        
-## [22] knitr_1.18            hms_0.4.0             tidyselect_0.2.3     
-## [25] bit64_0.9-7           rprojroot_1.3-2       OuhscMunge_0.1.8.9005
-## [28] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
-## [31] readr_1.1.1           blob_1.1.0            scales_0.5.0.9000    
-## [34] backports_1.1.2       RODBC_1.3-15          htmltools_0.3.6      
-## [37] rsconnect_0.8.5       assertthat_0.2.0      testit_0.7.1         
-## [40] colorspace_1.3-2      config_0.2            utf8_1.1.3           
-## [43] stringi_1.1.6         munsell_0.4.3         markdown_0.8         
-## [46] crayon_1.3.4
+##  [1] Rcpp_0.12.17     pillar_1.2.3     compiler_3.5.0   plyr_1.8.4      
+##  [5] bindr_0.1.1      tools_3.5.0      odbc_1.1.5       digest_0.6.15   
+##  [9] bit_1.1-14       evaluate_0.10.1  tibble_1.4.2     checkmate_1.8.6 
+## [13] pkgconfig_2.0.1  rlang_0.2.1      DBI_1.0.0        cli_1.0.0       
+## [17] rstudioapi_0.7   yaml_2.1.19      dplyr_0.7.5      stringr_1.3.1   
+## [21] knitr_1.20       hms_0.4.2.9000   bit64_0.9-7      rprojroot_1.3-2 
+## [25] tidyselect_0.2.4 glue_1.2.0       R6_2.2.2         rmarkdown_1.10  
+## [29] tidyr_0.8.1      readr_1.2.0      purrr_0.2.5      blob_1.1.1      
+## [33] scales_0.5.0     backports_1.1.2  RODBC_1.3-15     htmltools_0.3.6 
+## [37] rsconnect_0.8.8  assertthat_0.2.0 testit_0.8       colorspace_1.3-2
+## [41] config_0.3       utf8_1.1.4       stringi_1.2.3    munsell_0.5.0   
+## [45] markdown_0.8     crayon_1.3.4
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-01-07 19:29:55 CST&quot;
+<pre><code>## [1] &quot;2018-06-20 12:30:08 CDT&quot;
 </code></pre>
 
 </body>

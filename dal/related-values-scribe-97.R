@@ -245,7 +245,7 @@ columns_to_write_archive <- c(
 ds_slim_archive <- ds_archive %>%
   # dplyr::slice(1:100) %>%
   dplyr::select_(.dots=columns_to_write_archive)
-ds_slim_current
+ds_slim_archive
 
 rm(columns_to_write_archive)
 
@@ -253,7 +253,59 @@ rm(columns_to_write_archive)
 # If there's no PHI, a rectangular CSV is usually adequate, and it's portable to other machines and software.
 readr::write_csv(ds_slim_current, config$links_97_current)
 readr::write_csv(ds_slim_archive, config$links_97_archive)
+# utils::write.csv(ds_slim_archive, config$links_97_archive, row.names=F)
 
 ds_description %>%
   purrr::transpose() %>%
   yaml::write_yaml(config$links_97_metadata)
+
+
+# ---- save-to-db --------------------------------------------------------------
+sql_create <- "
+  CREATE TABLE `archive_97` (
+    AlgorithmVersion                integer NOT NULL,
+    ExtendedID                      integer NOT NULL,
+    SubjectTag_S1                   integer NOT NULL,
+    SubjectTag_S2                   integer NOT NULL,
+    SubjectID_S1                    integer NOT NULL,
+    SubjectID_S2                    integer NOT NULL,
+    MultipleBirthIfSameSex          integer,
+    IsMz                            integer,
+    SameGeneration                  integer,
+    RosterAssignmentID              integer,
+    RRoster                         text,
+    LastSurvey_S1                   integer,
+    LastSurvey_S2                   integer,
+    RImplicitPass1                  real,
+    RImplicit                       real,
+    RImplicitSubject                real,
+    RImplicitMother                 real,
+    RExplicitOlderSibVersion        real,
+    RExplicitYoungerSibVersion      real,
+    RExplicitPass1                  real,
+    RExplicit                       real,
+    RPass1                          real,
+    R                               real,
+    RFull                           real,
+    RPeek                           real
+  )
+"
+# Remove old DB
+if( file.exists(config$links_97_archive_db) ) file.remove(config$links_97_archive_db)
+
+# Open connection
+cnn <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
+result_pragma <- DBI::dbSendQuery(cnn, "PRAGMA foreign_keys=ON;") #This needs to be activated each time a connection is made. #http://stackoverflow.com/questions/15301643/sqlite3-forgets-to-use-foreign-keys
+DBI::dbClearResult(result_pragma)
+DBI::dbListTables(cnn)
+
+# Create tables
+result_create <- DBI::dbSendQuery(cnn, sql_create)
+DBI::dbClearResult(result_create)
+DBI::dbListTables(cnn)
+
+# Write to database
+DBI::dbWriteTable(cnn, name='archive_97', value=ds_slim_archive, append=TRUE, row.names=FALSE)
+
+# Close connection
+DBI::dbDisconnect(cnn)

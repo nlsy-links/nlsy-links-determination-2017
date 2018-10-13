@@ -14,10 +14,10 @@ requireNamespace("testit")
 
 # ---- declare-globals ---------------------------------------------------------
 path_sources <- c(
+  # "dal/outcomes/outcomes-97.R",
   "dal/import-97-metadata.R",
   "dal/import-97-raw.R",
   "analysis/eda/counts/counts.Rmd"
-  # "dal/outcomes/outcomes-97.R"
 )
 
 file.exists(path_sources)
@@ -39,18 +39,20 @@ message("Preparing to run\n\t", paste(path_sources, collapse="\n\t"))
 
 
 # dir.create(output="./stitched-output/dal/", recursive=T)
-knitr::stitch_rmd(script="./dal/import-97-metadata.R", output="./stitched-output/dal/import-97-metadata.md")
-knitr::stitch_rmd(script="./dal/import-97-raw.R", output="./stitched-output/dal/import-97-raw.md")
-rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see below).
+knitr::stitch_rmd(script="./dal/import-97-metadata.R", output="./stitched-output/dal/import-97-metadata.md", envir = new.env())
+knitr::stitch_rmd(script="./dal/import-97-raw.R", output="./stitched-output/dal/import-97-raw.md", envir = new.env())
+rmarkdown::render("analysis/eda/counts/counts.Rmd", envir = new.env())                                                               # Watch out, this file is actually knitted twice (see below).
 
 stop("Now run the C# program, then come back to run the rest of the R scripts.")
 
-knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
+# knitr::stitch_rmd(script="./dal/outcomes/outcomes-97.R", output="./stitched-output/dal/outcomes/outcomes-97.md") # dir.create("./stitched-output/dal/outcomes/", recursive=T)
 
-rmarkdown::render("analysis/eda/counts/counts.Rmd")                                                               # Watch out, this file is actually knitted twice (see above).
-rmarkdown::render("analysis/archive-comparison-97/archive-comparison-97.Rmd")
-knitr::stitch_rmd(script="./dal/related-values-scribe-97.R", output="./stitched-output/dal/related-values-scribe-97.md")
+rmarkdown::render("analysis/eda/counts/counts.Rmd", envir = new.env())                                                               # Watch out, this file is actually knitted twice (see above).
+knitr::stitch_rmd(script="./dal/related-values-scribe-97.R", output="./stitched-output/dal/related-values-scribe-97.md", envir = new.env())
+rmarkdown::render("analysis/archive-comparison-97/archive-comparison-97.Rmd", envir = new.env())
+base::closeAllConnections() # Check back with https://stackoverflow.com/questions/50937423/closing-unused-connection-after-sqldfread-csv-sql
 
-message("Completed flow-97 at ", Sys.time(), " (in ", round(elapsed_duration, 2), " mins.)")
+elapsed_duration <- (Sys.time() - start_time)
+message(sprintf("Completed flow-97 at %s (in %0.2f mins.)", start_time, elapsed_duration))
 
 # ---- verify-values -----------------------------------------------------------

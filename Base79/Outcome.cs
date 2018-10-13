@@ -50,7 +50,7 @@ namespace Nls.Base79 {
         #endregion
         #region Public Methods
         public string Go( ) {
-            const Int32 minRowCount = 1;//This is somewhat arbitrary.
+            const Int32 minRowCount = 0;//This is somewhat arbitrary.
             Stopwatch sw = new Stopwatch();
             sw.Start();
             Retrieve.VerifyResponsesExistForItem(_itemsGen1, _ds);

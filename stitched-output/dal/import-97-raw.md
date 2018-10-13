@@ -3,7 +3,7 @@
 
 
 This report was automatically generated with the R package **knitr**
-(version 1.19).
+(version 1.20).
 
 
 ```r
@@ -168,13 +168,13 @@ DBI::dbGetInfo(channel_odbc)
 ## [1] "GIMBLE\\EXPRESS_2016"
 ## 
 ## $drivername
-## [1] "msodbcsql13.dll"
+## [1] "msodbcsql17.dll"
 ## 
 ## $odbc.version
 ## [1] "03.80.0000"
 ## 
 ## $driver.version
-## [1] "14.00.1000"
+## [1] "17.01.0000"
 ## 
 ## $odbcdriver.version
 ## [1] "03.80"
@@ -383,7 +383,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## Tibble size: 16.1 Mb
+## Tibble size: 16.2 Mb
 ```
 
 ```
@@ -395,7 +395,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ##    R0000100 R0000200 R0000201 R0000202 R0536300 R0541100 R0541101 R0541102
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
 ##  1        1       23        7     1997        2       29        7     1997
-##  2        2        2        5     1994        1      - 4       -4    -   4
+##  2        2        2        5     1994        1       -4       -4       -4
 ##  3        3       23        4     1997        2       30        4     1997
 ##  4        4       17        2     1997        2       21        2     1997
 ##  5        5        7        4     1998        1        7        4     1998
@@ -406,9 +406,9 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 10       10       22        4     1998        1       16        4     1998
 ## 11       11        6        7     1997        2        6        7     1997
 ## 12       12        8        7     1997        1       16        7     1997
-## 13       13        8        9     1997        1      - 4       -4    -   4
+## 13       13        8        9     1997        1       -4       -4       -4
 ## 14       14       17        8     1997        1       17        8     1997
-## 15       15        1        4     1998        2      - 4       -4    -   4
+## 15       15        1        4     1998        2       -4       -4       -4
 ## 16       16       13        4     1997        1       13        4     1997
 ## 17       17       25        3     1997        2       18        4     1997
 ## 18       18        9        3     1997        1        1        4     1997
@@ -496,7 +496,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ##    R0000100 R0536300 R0553800 R0557300 R0563400 R0563500 R1193000 R1193300
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
 ##  1        1        2        1        3       -4       -4        1        1
-##  2        2        1      - 4       -4       -4       -4        2        1
+##  2        2        1       -4       -4       -4       -4        2        1
 ##  3        3        2        1       -4        8       -4        3        1
 ##  4        4        2        4       -4        8       -4        4        1
 ##  5        5        1       11        7       -4       -4        6        1
@@ -507,9 +507,9 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 10       10        1        4        4       -4       -4        9        3
 ## 11       11        2        6       -4        5       -4       10        1
 ## 12       12        1        2        5       -4       -4       11        1
-## 13       13        1      - 4       -4       -4       -4       12        1
+## 13       13        1       -4       -4       -4       -4       12        1
 ## 14       14        1        4        5       -4       -4       13        1
-## 15       15        2      - 4       -4       -4       -4       14        1
+## 15       15        2       -4       -4       -4       -4       14        1
 ## 16       16        1        5       -4       -4       -4       15        1
 ## 17       17        2        6       -4       -4       -4       16        1
 ## 18       18        1        3       -4       -4       -4       17        2
@@ -603,7 +603,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-02-14, 12:53 -0600 in 17 seconds.
+## File completed by `Will` at 2018-06-27, 10:59 -0500 in 16 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -615,7 +615,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.3 Patched (2018-01-25 r74163)
+## R version 3.5.0 Patched (2018-05-14 r74725)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -632,28 +632,31 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_2.2.1.9000 xtable_1.8-2       knitr_1.19        
-## [4] bindrcpp_0.2       DBI_0.7            magrittr_1.5      
+## [1] ggplot2_2.2.1  DBI_1.0.0      bindrcpp_0.2.2 magrittr_1.5  
+## [5] knitr_1.20    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.15          highr_0.6             plyr_1.8.4           
-##  [4] pillar_1.1.0          compiler_3.4.3        bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.5            digest_0.6.15        
-## [10] bit_1.1-12            gtable_0.2.0          memoise_1.1.0        
-## [13] evaluate_0.10.1       tibble_1.4.2          checkmate_1.8.5      
-## [16] pkgconfig_2.0.1       rlang_0.1.6.9003      cli_1.0.0            
-## [19] rstudioapi_0.7        yaml_2.1.16           withr_2.1.1.9000     
-## [22] dplyr_0.7.4.9000      stringr_1.2.0         devtools_1.13.4      
-## [25] hms_0.4.1             grid_3.4.3            bit64_0.9-7          
-## [28] rprojroot_1.3-2       tidyselect_0.2.3      OuhscMunge_0.1.8.9006
-## [31] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
-## [34] tidyr_0.8.0           readr_1.1.1           purrr_0.2.4          
-## [37] blob_1.1.0            RODBC_1.3-15          scales_0.5.0.9000    
-## [40] backports_1.1.2       htmltools_0.3.6       assertthat_0.2.0     
-## [43] testit_0.7.1          colorspace_1.3-2      labeling_0.3         
-## [46] config_0.2            utf8_1.1.3            stringi_1.1.6        
-## [49] lazyeval_0.2.1        munsell_0.4.3         markdown_0.8         
-## [52] crayon_1.3.4
+##  [1] tidyselect_0.2.4      purrr_0.2.5           colorspace_1.3-2     
+##  [4] testthat_2.0.0        htmltools_0.3.6       viridisLite_0.3.0    
+##  [7] yaml_2.1.19           chron_2.3-52          utf8_1.1.4           
+## [10] blob_1.1.1            rlang_0.2.1           pillar_1.2.3         
+## [13] glue_1.2.0            withr_2.1.2           bit64_0.9-7          
+## [16] gsubfn_0.7            bindr_0.1.1           plyr_1.8.4           
+## [19] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
+## [22] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
+## [25] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
+## [28] OuhscMunge_0.1.9.9008 markdown_0.8          highr_0.7            
+## [31] proto_1.0.0           Rcpp_0.12.17          readr_1.2.0          
+## [34] scales_0.5.0          backports_1.1.2       checkmate_1.8.6      
+## [37] config_0.3            bit_1.1-14            testit_0.8           
+## [40] hms_0.4.2.9000        digest_0.6.15         stringi_1.2.3        
+## [43] dplyr_0.7.5           rprojroot_1.3-2       grid_3.5.0           
+## [46] cli_1.0.0             odbc_1.1.6            tools_3.5.0          
+## [49] sqldf_0.4-11          lazyeval_0.2.1        tibble_1.4.2         
+## [52] RSQLite_2.1.1         crayon_1.3.4          tidyr_0.8.1          
+## [55] pkgconfig_2.0.1       RODBC_1.3-15          xml2_1.2.0           
+## [58] assertthat_0.2.0      rmarkdown_1.10        httr_1.3.1           
+## [61] rstudioapi_0.7        R6_2.2.2              compiler_3.5.0
 ```
 
 ```r
@@ -661,6 +664,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-02-14 12:53:44 CST"
+## [1] "2018-06-27 10:59:36 CDT"
 ```
 

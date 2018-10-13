@@ -1,4 +1,9 @@
-AlgorithmVersion,Description,Date
-1,naive roster,2018-01-17
-2,account for twins,2018-01-18
-3,"same sib full twins are R=.5 by default, and overridden if explicitly MZ",2018-02-14
+AlgorithmVersion,Description,Date,Valid
+1,naive roster,2018-01-17,TRUE
+2,account for twins,2018-01-18,TRUE
+3,"same sib full twins are R=.5 by default, and overridden if explicitly MZ",2018-02-14,TRUE
+7,"allows nulls for RFull",2018-06-19,FALSE
+8,recover different-sex full sibs,2018-06-19,FALSE
+9,recover same-sex full sibs,2018-06-19,FALSE
+10,allow nonsibs to still be r>0,2018-06-19,FALSE
+11,refresh,2018-06-20,TRUE

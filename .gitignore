@@ -11,6 +11,7 @@
 # Output files from R CMD check
 /*.Rcheck/
 
+# ---- Binary files with a lot of churn ------------------------------------
 
 # ---- Protected Information -----------------------------------------------
 # see cubuspl42's answer in http://stackoverflow.com/questions/2415873/exceptions-in-gitignore

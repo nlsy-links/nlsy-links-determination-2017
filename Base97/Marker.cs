@@ -409,7 +409,7 @@ namespace Nls.Base97 {
                 dt: dt_response
                );
 
-            bool share_biomom = (response_sister == (Int32)EnumResponses.RosterChoice.sister_half_same_mother) || (response_brother == (Int32)EnumResponses.RosterChoice.brother_half_same_mother);
+            bool share_biomom = (response_sister == (Int32)EnumResponses.RosterChoice.sister_half_same_mother_default) || (response_brother == (Int32)EnumResponses.RosterChoice.brother_half_same_mother_default);
             bool share_biodad = (response_sister == (Int32)EnumResponses.RosterChoice.sister_half_same_father) || (response_brother == (Int32)EnumResponses.RosterChoice.brother_half_same_father);
 
             //AddMarkerRow(drRelated.ExtendedID, drRelated.ID,

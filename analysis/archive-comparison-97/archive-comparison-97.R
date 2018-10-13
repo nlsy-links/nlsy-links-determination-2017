@@ -17,6 +17,8 @@ requireNamespace("kableExtra") #For the kable function for tables
 # ---- declare-globals ---------------------------------------------------------
 config <- config::get()
 path_in_description   <- "data-public/metadata/tables-97/ArchiveDescription.csv"
+path_in_lu_roster     <- "data-public/metadata/tables-97/LURoster.csv"
+
 
 output_type   <- "html"
 palette_conflict <- list("good"="#a6e8a1", "soso"="#ffeed1", "bad"="#ff9f6e", "null"="#7c9fb0") #http://colrd.com/image-dna/24445/
@@ -52,57 +54,93 @@ DetermineNullRowIDs <- function( d_t ) { # DetermineGoodRowIDs(ds)
   return( which(determine_row_null(d_t)) )
 }
 
-# col_types <- c(# glue::collapse(paste0(colnames(dsRaw), '                     = "', purrr:::map_chr(dsRaw, class), '"'), sep = ",\n")
-#   "AlgorithmVersion"                = "integer",       #   AlgorithmVersion                = readr::col_integer(),
-#   "ExtendedID"                      = "integer",       #   ExtendedID                      = readr::col_integer(),
-#   "SubjectTag_S1"                   = "integer",       #   SubjectTag_S1                   = readr::col_integer(),
-#   "SubjectTag_S2"                   = "integer",       #   SubjectTag_S2                   = readr::col_integer(),
-#   "SubjectID_S1"                    = "integer",       #   SubjectID_S1                    = readr::col_integer(),
-#   "SubjectID_S2"                    = "integer",       #   SubjectID_S2                    = readr::col_integer(),
-#   "MultipleBirthIfSameSex"          = "integer",       #   MultipleBirthIfSameSex          = readr::col_integer(),
-#   "IsMz"                            = "integer",       #   IsMz                            = readr::col_integer(),
-#   "SameGeneration"                  = "integer",       #   SameGeneration                  = readr::col_integer(),
-#   "RosterAssignmentID"              = "integer",       #   RosterAssignmentID              = readr::col_integer(),
-#   "RRoster"                         = "numeric",       #   RRoster                         = readr::col_double(),
-#   "LastSurvey_S1"                   = "integer",       #   LastSurvey_S1                   = readr::col_integer(),
-#   "LastSurvey_S2"                   = "integer",       #   LastSurvey_S2                   = readr::col_integer(),
-#   "RImplicitPass1"                  = "numeric",       #   RImplicitPass1                  = readr::col_double(),
-#   "RImplicit"                       = "numeric",       #   RImplicit                       = readr::col_double(),
-#   "RImplicitSubject"                = "numeric",       #   RImplicitSubject                = readr::col_double(),
-#   "RImplicitMother"                 = "numeric",       #   RImplicitMother                 = readr::col_double(),
-#   "RExplicitOlderSibVersion"        = "numeric",       #   RExplicitOlderSibVersion        = readr::col_double(),
-#   "RExplicitYoungerSibVersion"      = "numeric",       #   RExplicitYoungerSibVersion      = readr::col_double(),
-#   "RExplicitPass1"                  = "numeric",       #   RExplicitPass1                  = readr::col_double(),
-#   "RExplicit"                       = "numeric",       #   RExplicit                       = readr::col_double(),
-#   "RPass1"                          = "numeric",       #   RPass1                          = readr::col_double(),
-#   "R"                               = "numeric",       #   R                               = readr::col_double(),
-#   "RFull"                           = "numeric",       #   RFull                           = readr::col_double(),
-#   "RPeek"                           = "numeric"        #   RPeek                           = readr::col_double()
-# )
+# glue::collapse(sprintf('%-40s = "%s"' , colnames(dsRaw), purrr:::map_chr(dsRaw, class)), sep = ",\n")
+col_types <- c(#
+  "AlgorithmVersion"                = "integer",       #   AlgorithmVersion                = readr::col_integer(),
+  "ExtendedID"                      = "integer",       #   ExtendedID                      = readr::col_integer(),
+  "SubjectTag_S1"                   = "integer",       #   SubjectTag_S1                   = readr::col_integer(),
+  "SubjectTag_S2"                   = "integer",       #   SubjectTag_S2                   = readr::col_integer(),
+  "SubjectID_S1"                    = "integer",       #   SubjectID_S1                    = readr::col_integer(),
+  "SubjectID_S2"                    = "integer",       #   SubjectID_S2                    = readr::col_integer(),
+  "MultipleBirthIfSameSex"          = "integer",       #   MultipleBirthIfSameSex          = readr::col_integer(),
+  "IsMz"                            = "integer",       #   IsMz                            = readr::col_integer(),
+  "SameGeneration"                  = "integer",       #   SameGeneration                  = readr::col_integer(),
+  "RosterAssignmentID"              = "integer",       #   RosterAssignmentID              = readr::col_integer(),
+  "RRoster"                         = "numeric",       #   RRoster                         = readr::col_double(),
+  "LastSurvey_S1"                   = "integer",       #   LastSurvey_S1                   = readr::col_integer(),
+  "LastSurvey_S2"                   = "integer",       #   LastSurvey_S2                   = readr::col_integer(),
+  "RImplicitPass1"                  = "numeric",       #   RImplicitPass1                  = readr::col_double(),
+  "RImplicit"                       = "numeric",       #   RImplicit                       = readr::col_double(),
+  "RImplicitSubject"                = "numeric",       #   RImplicitSubject                = readr::col_double(),
+  "RImplicitMother"                 = "numeric",       #   RImplicitMother                 = readr::col_double(),
+  "RExplicitOlderSibVersion"        = "numeric",       #   RExplicitOlderSibVersion        = readr::col_double(),
+  "RExplicitYoungerSibVersion"      = "numeric",       #   RExplicitYoungerSibVersion      = readr::col_double(),
+  "RExplicitPass1"                  = "numeric",       #   RExplicitPass1                  = readr::col_double(),
+  "RExplicit"                       = "numeric",       #   RExplicit                       = readr::col_double(),
+  "RPass1"                          = "numeric",       #   RPass1                          = readr::col_double(),
+  "R"                               = "numeric",       #   R                               = readr::col_double(),
+  "RFull"                           = "numeric",       #   RFull                           = readr::col_double(),
+  "RPeek"                           = "numeric"        #   RPeek                           = readr::col_double()
+)
+
 
 col_types_description <- readr::cols_only(
   AlgorithmVersion  = readr::col_integer(),
   Description       = readr::col_character(),
   Date              = readr::col_date()
 )
+col_types_lu_roster <- readr::cols_only(
+  ID      = readr::col_integer(),
+  Label   = readr::col_character(),
+  Title   = readr::col_character()#,
+  # Active  = readr::col_logical(),
+  # Notes   = readr::col_logical()
+)
 
 # ---- load-data ---------------------------------------------------------------
-# readr::spec_csv(path_in_description)
+# readr::spec_csv(path_in_lu_roster)
 ds_description <- readr::read_csv(path_in_description, col_types = col_types_description)
+ds_lu_roster   <- readr::read_csv(path_in_lu_roster, col_types=col_types_lu_roster)
 
 recent_versions <- ds_description %>%
   dplyr::pull(AlgorithmVersion) %>%
   sort() %>%
   tail(2)
 
-sql <- glue::glue("SELECT * FROM file WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+sql <- glue::glue("SELECT * FROM archive_97 WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
 
-dsRaw <- sqldf::read.csv.sql(
-  file        = "data-public/derived/links-archive-2017-97.csv",
-  sql         = sql,
-  eol         = "\n"#,
-  # colClasses  = col_types
-)
+cnn     <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
+dsRaw   <- DBI::dbGetQuery(cnn, sql)
+DBI::dbDisconnect(cnn); rm(cnn)
+
+ds_roster_category <- OuhscMunge::execute_sql_file("dal/diagnostic-queries/related-1.sql", config$dsn_97, execute = F)
+# # readr::spec_csv(config$links_97_archive)
+#
+# #
+# # sql <- glue::glue("SELECT * FROM ff WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+# # # sql <- glue::glue("SELECT * FROM ff WHERE AlgorithmVersion", versions=glue::collapse(recent_versions, sep=", "))
+# #
+# ff    <- base::file(config$links_97_archive)
+# attr(ff, "file.format") <- list(colClasses = col_types)
+# attr(ff, "file.format") <- list(eol         = "\n")
+# #
+# # # dsRaw <- sqldf::read.csv.sql(sql=sql)
+# # # dsRaw <- sqldf::read.csv.sql(sql="SELECT * FROM ff", eol         = "\n")
+# dsRaw <- sqldf::read.csv.sql(
+#   # file = config$links_97_archive,
+#   sql         = sql,
+#   # sql="SELECT * FROM ff",
+#   # sql="SELECT * FROM file",
+#   # file.format = list(colClasses = col_types)
+#   # colClasses  = col_types,
+#   eol         = "\n",
+#   nrows       = 100000
+# )
+#
+# base::close(ff)
+
+# base::closeAllConnections() # Check back with https://stackoverflow.com/questions/50937423/closing-unused-connection-after-sqldfread-csv-sql
+
 # table(dsRaw$RRoster, useNA = "always")
 
 
@@ -270,6 +308,9 @@ CreateMarginalTable  <- function( dsJoint ) {
 # dsLatest %>%
 #   tibble::as_tibble()
 
+# dsLatest %>%
+#   dplyr::count(RFull)
+
 dsLatest %>%
   CreateMarginalTable() %>%
   knitr::kable(
@@ -326,3 +367,95 @@ ds_conditional %>%
   kableExtra::row_spec(DetermineSosoRowIDs(ds_conditional), bold=F, background = palette_conflict$soso) %>%
   kableExtra::row_spec(DetermineBadRowIDs( ds_conditional), bold=T, background = palette_conflict$bad) %>%
   kableExtra::row_spec(DetermineNullRowIDs(ds_conditional), bold=F, background = palette_conflict$null) # which(c(T,F,F,F,T))-1
+
+
+# ---- by-roster ---------------------------------------------------------------
+pretty_r <- function( x ) {
+  dplyr::if_else(!is.na(x), sprintf("%0.3f", x), "--")
+  # x
+}
+
+cat("\n## Mean Rs within Roster categories\n\n")
+
+ds_roster_category %>%
+  dplyr::group_by(roster_response_lower, roster_response_upper) %>%
+  dplyr::summarize(
+    count_int       = sum(count),
+    RRoster_mean    = pretty_r(weighted.mean(RRoster, na.rm=F, w=count)),
+    RPass1_mean     = pretty_r(weighted.mean(RPass1 , na.rm=F, w=count)),
+    R_mean          = pretty_r(weighted.mean(R      , na.rm=F, w=count)),
+    RFull_mean      = pretty_r(weighted.mean(RFull  , na.rm=F, w=count)),
+    count           = scales::comma(count_int),
+    concern         = "-"  # I don't know what would flag this, but I'm including it so the two tables have the same spacing
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::arrange(dplyr::desc(RRoster_mean), roster_response_lower, roster_response_upper, -count_int) %>%
+  dplyr::select(count, RRoster_mean, roster_response_lower, roster_response_upper, RPass1_mean, RFull_mean, R_mean, concern) %>%
+  knitr::kable(
+    format      = "markdown",
+    col.names   = gsub("_", "<br/>", colnames(.)),
+    # format.args = list(big.mark=","),
+    escape      = FALSE,
+    align       = "r",
+    caption     = "Mean Rs within Roster categories"
+  ) #%>%
+  # kableExtra::kable_styling(
+  #   full_width        = F,
+  #   position          = "left",
+  #   bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  # )
+
+
+cat("\n## Exact Rs of Roster categories\n\n")
+
+ds_roster_category %>%
+  dplyr::mutate(
+    count       = scales::comma(count),
+    concern     = dplyr::if_else(!is.na(RRoster) & is.na(RFull), "Yes", "-"),
+    RRoster     = pretty_r(RRoster ),
+    RPass1      = pretty_r(RPass1  ),
+    R           = pretty_r(R       ),
+    RFull       = pretty_r(RFull   )
+  )  %>%
+  dplyr::arrange(dplyr::desc(RRoster), roster_response_lower, roster_response_upper, dplyr::desc(count)) %>%
+  dplyr::select(count, RRoster, roster_response_lower, roster_response_upper, RRoster, RPass1, RFull, R, concern) %>%
+  knitr::kable(
+    format      = "markdown",
+    col.names   = gsub("_", "<br/>", colnames(.)),
+    # format.args = list(big.mark=","),
+    escape      = FALSE,
+    align       = "r",
+    caption     = "Exact Rs of Roster categories"
+  ) #%>%
+  # kableExtra::kable_styling(
+  #   full_width        = F,
+  #   position          = "left",
+  #   bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  # )
+
+
+cat("\n## Exact Wording in the NLSY97\n\n")
+cat("The ", nrow(ds_lu_roster), " possible responses to the items like:\n`What is [name of person in relationship loops([loop number 3])]'s relationship to [name of person on household roster 2([loop number 1])]?`.  Some options were never selected in the survey.", sep="")
+
+ds_lu_roster %>%
+  dplyr::mutate(
+    Label     = paste0("<code>", Label, "</code>")
+  ) %>%
+  dplyr::select_(
+    "NLSY_ID"               = "`ID`"
+    , "Exact_NLSY_Wording"  = "`Title`"
+    , "Cannonical_Label"    = "`Label`"
+  ) %>%
+  knitr::kable(
+    format      = output_type,
+    col.names   = gsub("_", " ", colnames(.)),
+    # format.args = list(big.mark=","),
+    escape      = FALSE#,
+    # align       = "r",
+    # caption     = "Exact Rs of Roster categories"
+  ) %>%
+  kableExtra::kable_styling(
+    full_width        = F,
+    position          = "left",
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  )

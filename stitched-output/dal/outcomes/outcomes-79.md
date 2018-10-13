@@ -3,7 +3,7 @@
 
 
 This report was automatically generated with the R package **knitr**
-(version 1.18).
+(version 1.20).
 
 
 ```r
@@ -33,6 +33,7 @@ requireNamespace("OuhscMunge"   ) # devtools::install_github(repo="OuhscBbmc/Ouh
 
 ```r
 # Constant values that won't change.
+study       <- "79"
 item_labels <- "
     'Gen1HeightInches', 'Gen1WeightPounds', 'Gen1AfqtScaled3Decimals',
     'Gen2HeightInchesTotal', 'Gen2HeightFeetOnly', 'Gen2HeightInchesRemainder', 'Gen2HeightInchesTotalMotherSupplement',
@@ -83,7 +84,7 @@ path_out_subject_survey_rds             <- config::get("outcomes-79-subject-surv
 ```
 
 ```r
-channel                   <- open_dsn_channel_odbc()
+channel                   <- open_dsn_channel_odbc(study)
 system.time({
 ds_response               <- DBI::dbGetQuery(channel, sql_response    )
 })
@@ -91,7 +92,7 @@ ds_response               <- DBI::dbGetQuery(channel, sql_response    )
 
 ```
 ##    user  system elapsed 
-##    0.51    0.02    2.44
+##    0.38    0.01    2.54
 ```
 
 ```r
@@ -132,7 +133,7 @@ ds_algorithm_version
 
 ```
 ##   version
-## 1      86
+## 1      87
 ```
 
 ```r
@@ -198,19 +199,20 @@ ds_subject_survey
 
 ```
 ## # A tibble: 118,822 x 8
-##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
-##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1 22.1     NA       120    6.84     NA
-##  2         200        1982          1 23.1     62.0     125   NA        NA
-##  3         200        1985          1 26.1     62.0     118   NA        NA
-##  4         201        1998          2  5.20    NA        NA   NA        NA
-##  5         201        2000          2  7.20    NA        NA   NA        NA
-##  6         201        2002          2  9.30    NA        NA   NA        NA
-##  7         201        2004          2 11.3     NA        NA   NA        NA
-##  8         202        2000          2  5.60    NA        NA   NA        NA
-##  9         202        2002          2  7.60    NA        NA   NA        NA
-## 10         202        2004          2  9.60    NA        NA   NA        NA
-## # ... with 118,812 more rows
+##    subject_tag survey_year generation   age height_inches weight_pounds
+##          <int>       <int>      <int> <dbl>         <dbl>         <dbl>
+##  1         200        1981          1  22.1            NA           120
+##  2         200        1982          1  23.1            62           125
+##  3         200        1985          1  26.1            62           118
+##  4         201        1998          2   5.2            NA            NA
+##  5         201        2000          2   7.2            NA            NA
+##  6         201        2002          2   9.3            NA            NA
+##  7         201        2004          2  11.3            NA            NA
+##  8         202        2000          2   5.6            NA            NA
+##  9         202        2002          2   7.6            NA            NA
+## 10         202        2004          2   9.6            NA            NA
+## # ... with 118,812 more rows, and 2 more variables:
+## #   afqt_scaled_gen1 <dbl>, father_alive <dbl>
 ```
 
 ```r
@@ -296,19 +298,19 @@ ds_slim_subject
 
 ```
 ## # A tibble: 22,718 x 6
-##    subject_tag generation height_inches weight_pounds afqt_scale~ father_~
-##          <int>      <int>         <dbl>         <dbl>       <dbl>    <dbl>
-##  1         200          1          62.0           120        6.84    NA   
-##  2         201          2          NA              NA       NA       NA   
-##  3         202          2          NA              NA       NA       NA   
-##  4         300          1          70.0           160       49.4     NA   
-##  5         301          2          NA              NA       NA       NA   
-##  6         302          2          NA              NA       NA       NA   
-##  7         303          2          NA              NA       NA       NA   
-##  8         400          1          67.0           110       55.8     NA   
-##  9         401          2          NA              NA       NA        1.00
-## 10         500          1          63.0           130       96.8     NA   
-## # ... with 22,708 more rows
+##    subject_tag generation height_inches weight_pounds afqt_scaled_gen1
+##          <int>      <int>         <dbl>         <dbl>            <dbl>
+##  1         200          1            62           120             6.84
+##  2         201          2            NA            NA            NA   
+##  3         202          2            NA            NA            NA   
+##  4         300          1            70           160            49.4 
+##  5         301          2            NA            NA            NA   
+##  6         302          2            NA            NA            NA   
+##  7         303          2            NA            NA            NA   
+##  8         400          1            67           110            55.8 
+##  9         401          2            NA            NA            NA   
+## 10         500          1            63           130            96.8 
+## # ... with 22,708 more rows, and 1 more variable: father_alive <dbl>
 ```
 
 ```r
@@ -330,19 +332,20 @@ ds_slim_subject_survey
 
 ```
 ## # A tibble: 118,822 x 8
-##    subject_tag survey_year generation   age height~ weight~ afqt_s~ fathe~
-##          <int>       <int>      <int> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>
-##  1         200        1981          1 22.1     NA       120    6.84     NA
-##  2         200        1982          1 23.1     62.0     125   NA        NA
-##  3         200        1985          1 26.1     62.0     118   NA        NA
-##  4         201        1998          2  5.20    NA        NA   NA        NA
-##  5         201        2000          2  7.20    NA        NA   NA        NA
-##  6         201        2002          2  9.30    NA        NA   NA        NA
-##  7         201        2004          2 11.3     NA        NA   NA        NA
-##  8         202        2000          2  5.60    NA        NA   NA        NA
-##  9         202        2002          2  7.60    NA        NA   NA        NA
-## 10         202        2004          2  9.60    NA        NA   NA        NA
-## # ... with 118,812 more rows
+##    subject_tag survey_year generation   age height_inches weight_pounds
+##          <int>       <int>      <int> <dbl>         <dbl>         <dbl>
+##  1         200        1981          1  22.1            NA           120
+##  2         200        1982          1  23.1            62           125
+##  3         200        1985          1  26.1            62           118
+##  4         201        1998          2   5.2            NA            NA
+##  5         201        2000          2   7.2            NA            NA
+##  6         201        2002          2   9.3            NA            NA
+##  7         201        2004          2  11.3            NA            NA
+##  8         202        2000          2   5.6            NA            NA
+##  9         202        2002          2   7.6            NA            NA
+## 10         202        2004          2   9.6            NA            NA
+## # ... with 118,812 more rows, and 2 more variables:
+## #   afqt_scaled_gen1 <dbl>, father_alive <dbl>
 ```
 
 ```r
@@ -368,7 +371,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.4.3 Patched (2017-12-05 r73849)
+## R version 3.5.0 Patched (2018-05-14 r74725)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows >= 8 x64 (build 9200)
 ## 
@@ -385,25 +388,26 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] purrr_0.2.4  tidyr_0.7.2  bindrcpp_0.2 magrittr_1.5
+## [1] knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.14          pillar_1.0.1          compiler_3.4.3       
-##  [4] plyr_1.8.4            highr_0.6             bindr_0.1            
-##  [7] tools_3.4.3           odbc_1.1.3            digest_0.6.13        
-## [10] bit_1.1-12            checkmate_1.8.5       evaluate_0.10.1      
-## [13] tibble_1.4.1          pkgconfig_2.0.1       rlang_0.1.6          
-## [16] DBI_0.7               cli_1.0.0             rstudioapi_0.7       
-## [19] yaml_2.1.16           dplyr_0.7.4           stringr_1.2.0        
-## [22] knitr_1.18            hms_0.4.0             tidyselect_0.2.3     
-## [25] bit64_0.9-7           rprojroot_1.3-2       OuhscMunge_0.1.8.9005
-## [28] glue_1.2.0            R6_2.2.2              rmarkdown_1.8        
-## [31] readr_1.1.1           blob_1.1.0            scales_0.5.0.9000    
-## [34] backports_1.1.2       RODBC_1.3-15          htmltools_0.3.6      
-## [37] rsconnect_0.8.5       assertthat_0.2.0      testit_0.7.1         
-## [40] colorspace_1.3-2      config_0.2            utf8_1.1.3           
-## [43] stringi_1.1.6         munsell_0.4.3         markdown_0.8         
-## [46] crayon_1.3.4
+##  [1] Rcpp_0.12.17          highr_0.7             pillar_1.2.3         
+##  [4] compiler_3.5.0        plyr_1.8.4            bindr_0.1.1          
+##  [7] tools_3.5.0           odbc_1.1.5            digest_0.6.15        
+## [10] bit_1.1-14            memoise_1.1.0         evaluate_0.10.1      
+## [13] tibble_1.4.2          checkmate_1.8.6       pkgconfig_2.0.1      
+## [16] rlang_0.2.1           DBI_1.0.0             cli_1.0.0            
+## [19] rstudioapi_0.7        yaml_2.1.19           withr_2.1.2          
+## [22] dplyr_0.7.5           stringr_1.3.1         devtools_1.13.5      
+## [25] hms_0.4.2.9000        bit64_0.9-7           rprojroot_1.3-2      
+## [28] tidyselect_0.2.4      OuhscMunge_0.1.9.9008 glue_1.2.0           
+## [31] R6_2.2.2              rmarkdown_1.10        tidyr_0.8.1          
+## [34] readr_1.2.0           purrr_0.2.5           blob_1.1.1           
+## [37] scales_0.5.0          backports_1.1.2       RODBC_1.3-15         
+## [40] htmltools_0.3.6       rsconnect_0.8.8       assertthat_0.2.0     
+## [43] testit_0.8            colorspace_1.3-2      config_0.3           
+## [46] utf8_1.1.4            stringi_1.2.3         munsell_0.5.0        
+## [49] markdown_0.8          crayon_1.3.4
 ```
 
 ```r
@@ -411,6 +415,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-01-07 19:24:54 CST"
+## [1] "2018-06-20 16:44:57 CDT"
 ```
 

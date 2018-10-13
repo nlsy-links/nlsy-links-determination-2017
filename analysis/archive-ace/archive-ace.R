@@ -7,7 +7,6 @@ source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
 library(NlsyLinks) # devtools::install_github("LiveOak/NlsyLinks")
-# library(RODBC)
 library(ggplot2)
 library(colorspace)
 library(xtable)

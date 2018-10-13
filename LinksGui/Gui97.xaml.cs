@@ -41,13 +41,15 @@ namespace LinksGui {
             _dsImport = ((BA.ImportDataSet)(this.FindResource("importDataSet")));
             _dsLinks = ((BA.LinksDataSet)(this.FindResource("linksDataSet")));
 
-            LoadExtracts();
-            LoadMetadata();
 
+            LoadMetadata();
             LoadSubject();
             LoadRelatedStructure();
             LoadResponse();
             LoadSurveyTime();
+
+            LoadExtracts(); //Optimize by running after subject, related structure, response, and survey time
+
             LoadSurveyTimeMostRecent(); //Needed for tblRelated
             LoadRoster();
             //LoadParentsOfGen1Retro();
@@ -190,7 +192,7 @@ namespace LinksGui {
         #endregion
         #region Load DataTables
         private void LoadExtracts( ) {
-            if( _dsLinks.tblSubject.Count == 0 || _dsLinks.tblRelatedStructure.Count == 0 || _dsLinks.tblSubject.Count == 0 || _dsLinks.tblSubject.Count == 0 ) {
+            if( _dsLinks.tblSubject.Count == 0 || _dsLinks.tblRelatedStructure.Count == 0 || _dsLinks.tblResponse.Count == 0 || _dsLinks.tblSurveyTime.Count == 0 ) {
                 BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter ta = new BA.ImportDataSetTableAdapters.tblDemographicsTableAdapter();
                 ta.Fill(_dsImport.tblDemographics);
 

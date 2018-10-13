@@ -202,7 +202,7 @@ hr {
 
 <body>
 <p>This report was automatically generated with the R package <strong>knitr</strong>
-(version 1.19).</p>
+(version 1.20).</p>
 
 <pre><code class="r"># knitr::stitch_rmd(script=&quot;./manipulation/te-ellis.R&quot;, output=&quot;./stitched-output/manipulation/te-ellis.md&quot;) # dir.create(&quot;./stitched-output/manipulation/&quot;, recursive=T)
 rm(list=ls(all=TRUE))  #Clear the variables from previous runs.
@@ -474,29 +474,30 @@ columns_to_write_archive &lt;- c(
 ds_slim_archive &lt;- ds_archive %&gt;%
   # dplyr::slice(1:100) %&gt;%
   dplyr::select_(.dots=columns_to_write_archive)
-ds_slim_current
+ds_slim_archive
 </code></pre>
 
-<pre><code>## # A tibble: 2,519 x 22
-##    ExtendedID SubjectTag_S1 SubjectTag_S2 SubjectID_S1 SubjectID_S2
-##         &lt;int&gt;         &lt;int&gt;         &lt;int&gt;        &lt;int&gt;        &lt;int&gt;
-##  1          8             6             7            6            7
-##  2          9             8             9            8            9
-##  3          9             8            10            8           10
-##  4          9             9            10            9           10
-##  5         17            18            19           18           19
-##  6         37            37            38           37           38
-##  7         44            45            46           45           46
-##  8         45            47            48           47           48
-##  9         48            51            52           51           52
-## 10         59            62            63           62           63
-## # ... with 2,509 more rows, and 17 more variables: RelationshipPath &lt;int&gt;,
-## #   EverSharedHouse &lt;lgl&gt;, R &lt;dbl&gt;, RFull &lt;dbl&gt;,
-## #   MultipleBirthIfSameSex &lt;int&gt;, IsMz &lt;int&gt;, LastSurvey_S1 &lt;int&gt;,
+<pre><code>## # A tibble: 27,709 x 25
+##    AlgorithmVersion ExtendedID SubjectTag_S1 SubjectTag_S2 SubjectID_S1
+##               &lt;int&gt;      &lt;int&gt;         &lt;int&gt;         &lt;int&gt;        &lt;int&gt;
+##  1                1          8             6             7            6
+##  2                1          9             8             9            8
+##  3                1          9             8            10            8
+##  4                1          9             9            10            9
+##  5                1         17            18            19           18
+##  6                1         37            37            38           37
+##  7                1         44            45            46           45
+##  8                1         45            47            48           47
+##  9                1         48            51            52           51
+## 10                1         59            62            63           62
+## # ... with 27,699 more rows, and 20 more variables: SubjectID_S2 &lt;int&gt;,
+## #   MultipleBirthIfSameSex &lt;int&gt;, IsMz &lt;int&gt;, SameGeneration &lt;int&gt;,
+## #   RosterAssignmentID &lt;int&gt;, RRoster &lt;dbl&gt;, LastSurvey_S1 &lt;int&gt;,
 ## #   LastSurvey_S2 &lt;int&gt;, RImplicitPass1 &lt;dbl&gt;, RImplicit &lt;dbl&gt;,
-## #   RExplicit &lt;dbl&gt;, RExplicitPass1 &lt;dbl&gt;, RPass1 &lt;dbl&gt;,
+## #   RImplicitSubject &lt;dbl&gt;, RImplicitMother &lt;dbl&gt;,
 ## #   RExplicitOlderSibVersion &lt;dbl&gt;, RExplicitYoungerSibVersion &lt;dbl&gt;,
-## #   RImplicitSubject &lt;dbl&gt;, RImplicitMother &lt;dbl&gt;
+## #   RExplicitPass1 &lt;dbl&gt;, RExplicit &lt;dbl&gt;, RPass1 &lt;dbl&gt;, R &lt;dbl&gt;,
+## #   RFull &lt;dbl&gt;, RPeek &lt;dbl&gt;
 </code></pre>
 
 <pre><code class="r">rm(columns_to_write_archive)
@@ -505,10 +506,73 @@ ds_slim_current
 <pre><code class="r"># If there&#39;s no PHI, a rectangular CSV is usually adequate, and it&#39;s portable to other machines and software.
 readr::write_csv(ds_slim_current, config$links_97_current)
 readr::write_csv(ds_slim_archive, config$links_97_archive)
+# utils::write.csv(ds_slim_archive, config$links_97_archive, row.names=F)
 
 ds_description %&gt;%
   purrr::transpose() %&gt;%
   yaml::write_yaml(config$links_97_metadata)
+</code></pre>
+
+<pre><code class="r">sql_create &lt;- &quot;
+  CREATE TABLE `archive_97` (
+    AlgorithmVersion                integer NOT NULL,
+    ExtendedID                      integer NOT NULL,
+    SubjectTag_S1                   integer NOT NULL,
+    SubjectTag_S2                   integer NOT NULL,
+    SubjectID_S1                    integer NOT NULL,
+    SubjectID_S2                    integer NOT NULL,
+    MultipleBirthIfSameSex          integer,
+    IsMz                            integer,
+    SameGeneration                  integer,
+    RosterAssignmentID              integer,
+    RRoster                         text,
+    LastSurvey_S1                   integer,
+    LastSurvey_S2                   integer,
+    RImplicitPass1                  real,
+    RImplicit                       real,
+    RImplicitSubject                real,
+    RImplicitMother                 real,
+    RExplicitOlderSibVersion        real,
+    RExplicitYoungerSibVersion      real,
+    RExplicitPass1                  real,
+    RExplicit                       real,
+    RPass1                          real,
+    R                               real,
+    RFull                           real,
+    RPeek                           real
+  )
+&quot;
+# Remove old DB
+if( file.exists(config$links_97_archive_db) ) file.remove(config$links_97_archive_db)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r"># Open connection
+cnn &lt;- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
+result_pragma &lt;- DBI::dbSendQuery(cnn, &quot;PRAGMA foreign_keys=ON;&quot;) #This needs to be activated each time a connection is made. #http://stackoverflow.com/questions/15301643/sqlite3-forgets-to-use-foreign-keys
+DBI::dbClearResult(result_pragma)
+DBI::dbListTables(cnn)
+</code></pre>
+
+<pre><code>## character(0)
+</code></pre>
+
+<pre><code class="r"># Create tables
+result_create &lt;- DBI::dbSendQuery(cnn, sql_create)
+DBI::dbClearResult(result_create)
+DBI::dbListTables(cnn)
+</code></pre>
+
+<pre><code>## [1] &quot;archive_97&quot;
+</code></pre>
+
+<pre><code class="r"># Write to database
+DBI::dbWriteTable(cnn, name=&#39;archive_97&#39;, value=ds_slim_archive, append=TRUE, row.names=FALSE)
+
+# Close connection
+DBI::dbDisconnect(cnn)
 </code></pre>
 
 <p>The R session information (including the OS info, R version and all
@@ -517,7 +581,7 @@ packages used):</p>
 <pre><code class="r">sessionInfo()
 </code></pre>
 
-<pre><code>## R version 3.4.3 Patched (2018-01-25 r74163)
+<pre><code>## R version 3.5.0 Patched (2018-05-14 r74725)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows &gt;= 8 x64 (build 9200)
 ## 
@@ -534,38 +598,37 @@ packages used):</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] DBI_0.7            knitr_1.19         RCurl_1.95-4.10   
-## [4] bitops_1.0-6       bindrcpp_0.2       RSQLite_2.0       
-## [7] ggplot2_2.2.1.9000 magrittr_1.5      
+## [1] ggplot2_2.2.1  DBI_1.0.0      bindrcpp_0.2.2 magrittr_1.5  
+## [5] knitr_1.20    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_0.2.3      purrr_0.2.4           tcltk_3.4.3          
-##  [4] colorspace_1.3-2      htmltools_0.3.6       viridisLite_0.3.0    
-##  [7] yaml_2.1.16           chron_2.3-52          utf8_1.1.3           
-## [10] blob_1.1.0            rlang_0.1.6.9003      pillar_1.1.0         
-## [13] withr_2.1.1.9000      glue_1.2.0            bit64_0.9-7          
-## [16] gsubfn_0.6-6          bindr_0.1             plyr_1.8.4           
-## [19] stringr_1.2.0         munsell_0.4.3         gtable_0.2.0         
-## [22] rvest_0.3.2           devtools_1.13.4       kableExtra_0.7.0     
+##  [1] tidyselect_0.2.4      purrr_0.2.5           colorspace_1.3-2     
+##  [4] testthat_2.0.0        htmltools_0.3.6       viridisLite_0.3.0    
+##  [7] yaml_2.1.19           chron_2.3-52          utf8_1.1.4           
+## [10] blob_1.1.1            rlang_0.2.1           pillar_1.2.3         
+## [13] glue_1.2.0            withr_2.1.2           bit64_0.9-7          
+## [16] gsubfn_0.7            bindr_0.1.1           plyr_1.8.4           
+## [19] stringr_1.3.1         munsell_0.5.0         gtable_0.2.0         
+## [22] rvest_0.3.2           devtools_1.13.5       kableExtra_0.9.0     
 ## [25] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
-## [28] OuhscMunge_0.1.8.9006 markdown_0.8          highr_0.6            
-## [31] proto_1.0.0           Rcpp_0.12.15          readr_1.1.1          
-## [34] checkmate_1.8.5       scales_0.5.0.9000     backports_1.1.2      
-## [37] config_0.2            bit_1.1-12            testit_0.7.1         
-## [40] hms_0.4.1             digest_0.6.15         stringi_1.1.6        
-## [43] dplyr_0.7.4.9000      rprojroot_1.3-2       grid_3.4.3           
-## [46] odbc_1.1.5            cli_1.0.0             tools_3.4.3          
+## [28] OuhscMunge_0.1.9.9008 markdown_0.8          highr_0.7            
+## [31] proto_1.0.0           Rcpp_0.12.17          readr_1.2.0          
+## [34] scales_0.5.0          backports_1.1.2       checkmate_1.8.6      
+## [37] config_0.3            bit_1.1-14            testit_0.8           
+## [40] hms_0.4.2.9000        digest_0.6.15         stringi_1.2.3        
+## [43] dplyr_0.7.5           rprojroot_1.3-2       grid_3.5.0           
+## [46] cli_1.0.0             odbc_1.1.6            tools_3.5.0          
 ## [49] sqldf_0.4-11          lazyeval_0.2.1        tibble_1.4.2         
-## [52] tidyr_0.8.0           crayon_1.3.4          pkgconfig_2.0.1      
-## [55] RODBC_1.3-15          rsconnect_0.8.5       xml2_1.2.0           
-## [58] assertthat_0.2.0      rmarkdown_1.8         httr_1.3.1           
-## [61] rstudioapi_0.7        R6_2.2.2              compiler_3.4.3
+## [52] RSQLite_2.1.1         crayon_1.3.4          tidyr_0.8.1          
+## [55] pkgconfig_2.0.1       RODBC_1.3-15          xml2_1.2.0           
+## [58] assertthat_0.2.0      rmarkdown_1.10        httr_1.3.1           
+## [61] rstudioapi_0.7        R6_2.2.2              compiler_3.5.0
 </code></pre>
 
 <pre><code class="r">Sys.time()
 </code></pre>
 
-<pre><code>## [1] &quot;2018-02-16 17:11:35 CST&quot;
+<pre><code>## [1] &quot;2018-06-27 11:07:01 CDT&quot;
 </code></pre>
 
 </body>

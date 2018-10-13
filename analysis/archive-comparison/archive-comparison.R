@@ -6,14 +6,12 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 source("./utility/connectivity.R")
 
 # ---- load-packages -----------------------------------------------------------
-library(RODBC)
-library(plyr)
 library(xtable)
 library(ggplot2)
 
 library(magrittr) #Pipes
 # library(ggplot2) #For graphing
-requireNamespace("RODBC")
+requireNamespace("plyr")
 requireNamespace("dplyr")
 requireNamespace("scales") #For formating values in graphs
 requireNamespace("knitr") #For the kable function for tables
@@ -101,21 +99,26 @@ dsPrevious <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 # head(dsPrevious, 30)
 
 
-# dsCollapsedLatest <- ddply(dsLatest, .variables=columnsToConsider, .fun=nrow)
-dsCollapsedLatest <- plyr::count(dsLatest, vars=columnsToConsider)
-dsCollapsedLatest <- plyr::rename(dsCollapsedLatest, replace=c("freq"="Count"))
-dsCollapsedLatest <- dsCollapsedLatest[order(-dsCollapsedLatest$Count),]
 
-dsCollapsedPrevious <- plyr::count(dsPrevious, vars=columnsToConsider)
-dsCollapsedPrevious <- plyr::rename(dsCollapsedPrevious, replace=c("freq"="Count"))
-dsCollapsedPrevious <- dsCollapsedPrevious[order(-dsCollapsedPrevious$Count), ]
+dsCollapsedLatest <- dsLatest %>%
+  dplyr::count_(columnsToConsider) %>%
+  dplyr::arrange(dplyr::desc(n))
 
-ds <- merge(x=dsCollapsedLatest, y=dsCollapsedPrevious, by=columnsToConsider, all=T)
-ds[is.na(ds$Count.x), "Count.x"] <- 0
-ds[is.na(ds$Count.y), "Count.y"] <- 0
-ds$Delta <- ds$Count.x - ds$Count.y
-ds <- ds[ , -which(colnames(ds)=="Count.y")]
-colnames(ds)[which(colnames(ds)=="Count.x")] <- "Count"
+dsCollapsedPrevious <- dsPrevious %>%
+  dplyr::count_(columnsToConsider) %>%
+  dplyr::arrange(dplyr::desc(n))
+
+ds <- dsCollapsedLatest %>%
+  dplyr::full_join(dsCollapsedPrevious, by=columnsToConsider) %>%
+  dplyr::mutate(
+    n.x         = dplyr::coalesce(n.x, 0L),
+    n.y         = dplyr::coalesce(n.y, 0L),
+    Delta       = n.x - n.y
+  ) %>%
+  dplyr::select(-n.y) %>%
+  dplyr::rename("Count" = "n.x")
+
+
 
 
 # ds <- ds[order(-ds$Count, ds$Delta), c(4,1,2,3,5)]
