@@ -54,7 +54,7 @@ This report documents the basic properties of the input & output tables kinship 
 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
-|Archive     |tblArchiveDescription      |        56|            4|
+|Archive     |tblArchiveDescription      |        56|            3|
 |Archive     |tblRelatedValuesArchive    |   794,486|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
@@ -2605,4 +2605,4 @@ Packages -----------------------------------------------------------------------
 
 
 
-Report rendered by Will at 2018-10-13, 18:21 -0500 in 1 seconds.
+Report rendered by Will at 2018-10-13, 18:50 -0500 in 2 seconds.

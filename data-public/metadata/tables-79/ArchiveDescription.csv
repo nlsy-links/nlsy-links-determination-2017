@@ -1,0 +1,57 @@
+﻿AlgorithmVersion,Description,Date
+32,Unites Gen2 V28 with Gen1 that uses only explicits,NA
+26,"One of the last Gen2 version, before focusing on Gen1",NA
+33,Replaces all Gen2 NULLS with .375s,NA
+34,Gen2 RExplicits uses Twin determinations (and asserts agreement between Explicits and Twin perspectives).,NA
+35,Unites Gen1 Again,NA
+36,"Includes AuntNieces, ParentChildren & Gen2Cousins; before updating with 2010 wave",NA
+37,Updated Gen1Links tagset for 2010 wave,NA
+38,Updated Gen2FatherFromGen1 tagset for 2010 wave,NA
+39,Updated Gen2LinksFromGen1 tagset for 2010 wave,NA
+40,Updated Gen2Links and Gen2ImplicitFather tagset for 2010 wave,NA
+41,Accounted for 1979 Roster; Ignored Gen2,NA
+42,Added RRoster to archive,NA
+43,2006 Explicits trump 1979 Roster,NA
+44,Uses Implicit 2004 before using explicit or roster,NA
+45,"Uses Implicit 2004 after explicit, but before roster",NA
+46,Uses Implicit 2004 after using explicit or roster,NA
+47,Moved DZ assignment after MZ,NA
+48,Implements MzManual for Gen1,NA
+49,RExplicit2004 no longer contributes to R,NA
+50,Resumed inclusion of Gen2,NA
+51,Uses Gen1 geocode differences,NA
+52,After splitting off Gen1 Explicit tagset,NA
+53,"??? R Excludes Gen1 R=0, .375, .75",NA
+54,Adds Gen1 2010 Explicits,2013-03-15
+55,Gen1 Explicits independently considers mom & dad before combining,2013-03-17
+56,Death Ages considered slightly,2013-03-19
+57,In HH in 79,2013-04-21
+58,Interpolates In HH79; weakens Explicity Pass 1,2013-05-25
+59,Uses In HH 76-80,2013-05-25
+60,Interpolates Explicit; no ambiguous well established,2013-05-25
+61,Explicit interpolates differently than V60,2013-05-25
+62,Interpolates Implicit,2013-05-25
+63,Interpolates RFull,2013-05-25
+64,Forces Implicit to make a decision about ambiguity,2013-05-25
+65,Implicit no longer forced to make a decision about ambiguity,2013-05-25
+66,Uses USBorn high in Pass2,2013-05-27
+67,Uses USBorn low in Pass2,2013-05-27
+68,Uses GeocodeSantized for USBorn,2013-05-27
+69,"Uses birth state of Parent of Gen1 -awful ROC performance vs explicits, but good vs roster",2013-05-27
+70,"Uses parents' birthyear at 0, 5, 15, +; disconfirms; supports; unlikely",2013-05-27
+71,"Uses parents' birthyear at 0, 5, 15, +; disconfirms; supports",2013-05-27
+72,"Uses parents' birthyear at 0, 5, 15, +; supports",2013-05-27
+73,"Uses parents' birthyear at 0, 5, 15, +; disconfirms",2013-05-27
+74,"Uses parents' birthyear at 0, 5, 15, +; disconfirms; unlikely",2013-05-27
+75,"Uses parents' birthyear at 0, 5, 15, +; disconfirms (Reverts to V73)",2013-05-27
+76,Uses AlwaysLivedWithBothBioparents,2013-10-23
+77,R excludes SameGeneration==0,2013-10-23
+78,Demoted priority of AlwaysLivedWithBothBioparents,2013-10-23
+79,R excludes SameGeneration==255,2013-10-23
+80,Slightly promotes priority of AlwaysLivedWithBothBioparents,2013-10-23
+81,Slightly demotes priority of AlwaysLivedWithBothBioparents,2013-10-23
+82,"Failed attempt to bring back part of V74 Uses parents' birthyear at 0, 5, 15, +; disconfirms; unlikely",2013-10-23
+83,Reverts to V82,2013-10-23
+84,Adds Gen1 back,2013-11-06
+85,"R excludes 0, .0625, .125 (as well as .375 & .75)",2013-11-20
+86,Add 2012 variables,2018-01-04

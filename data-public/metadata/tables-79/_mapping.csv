@@ -1,4 +1,5 @@
 table_name,schema_name,enum_name,enum_file,c_sharp_type,convert_to_enum
+ArchiveDescription,Archive,ArchiveDescription,NA_character,short,FALSE
 item,Metadata,Item,EnumLookupTables.cs,short,TRUE
 LUExtractSource,Enum,ExtractSource,EnumLookupTables.cs,byte,TRUE
 LUGender,Enum,Gender,EnumLookupTables.cs,byte,TRUE

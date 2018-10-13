@@ -92,7 +92,7 @@ ds_response               <- DBI::dbGetQuery(channel, sql_response    )
 
 ```
 ##    user  system elapsed 
-##    0.37    0.00    3.79
+##    0.37    0.04    2.83
 ```
 
 ```r
@@ -388,26 +388,22 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
+## [1] bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.19          highr_0.7             pillar_1.3.0         
-##  [4] compiler_3.5.1        bindr_0.1.1           tools_3.5.1          
-##  [7] odbc_1.1.6            digest_0.6.18         packrat_0.4.9-3      
-## [10] bit_1.1-14            memoise_1.1.0         evaluate_0.12        
-## [13] tibble_1.4.2          checkmate_1.8.5       pkgconfig_2.0.2      
-## [16] rlang_0.2.2           DBI_1.0.0             cli_1.0.1            
-## [19] rstudioapi_0.8        yaml_2.2.0            withr_2.1.2          
-## [22] dplyr_0.7.6           stringr_1.3.1         devtools_1.13.6      
-## [25] hms_0.4.2.9001        rprojroot_1.3-2       bit64_0.9-7          
-## [28] tidyselect_0.2.5      glue_1.3.0            OuhscMunge_0.1.9.9009
-## [31] R6_2.3.0              fansi_0.4.0           rmarkdown_1.10       
-## [34] tidyr_0.8.1           readr_1.2.0           purrr_0.2.5          
-## [37] blob_1.1.1            scales_1.0.0          htmltools_0.3.6      
-## [40] backports_1.1.2       RODBC_1.3-15          assertthat_0.2.0     
-## [43] testit_0.8.1          colorspace_1.3-2      config_0.3           
-## [46] utf8_1.1.4            stringi_1.2.4         munsell_0.5.0        
-## [49] markdown_0.8          crayon_1.3.4
+##  [1] Rcpp_0.12.19          pillar_1.3.0          compiler_3.5.1       
+##  [4] bindr_0.1.1           tools_3.5.1           odbc_1.1.6           
+##  [7] packrat_0.4.9-3       bit_1.1-14            evaluate_0.12        
+## [10] tibble_1.4.2          checkmate_1.8.5       pkgconfig_2.0.2      
+## [13] rlang_0.2.2           DBI_1.0.0             cli_1.0.1            
+## [16] rstudioapi_0.8        yaml_2.2.0            dplyr_0.7.6          
+## [19] stringr_1.3.1         knitr_1.20            hms_0.4.2.9001       
+## [22] bit64_0.9-7           tidyselect_0.2.5      glue_1.3.0           
+## [25] OuhscMunge_0.1.9.9009 R6_2.3.0              fansi_0.4.0          
+## [28] tidyr_0.8.1           readr_1.2.0           purrr_0.2.5          
+## [31] blob_1.1.1            backports_1.1.2       RODBC_1.3-15         
+## [34] assertthat_0.2.0      testit_0.8.1          config_0.3           
+## [37] utf8_1.1.4            stringi_1.2.4         crayon_1.3.4
 ```
 
 ```r
@@ -415,6 +411,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-10-13 18:21:30 CDT"
+## [1] "2018-10-13 18:49:57 CDT"
 ```
 
