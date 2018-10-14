@@ -2195,6 +2195,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Extract].[tblGen2FatherFromGen1Death](
 	[R0000100] [int] NOT NULL,
+	[R0214700] [int] NULL,
 	[R1373400] [int] NULL,
 	[R1374100] [int] NULL,
 	[R1374800] [int] NULL,

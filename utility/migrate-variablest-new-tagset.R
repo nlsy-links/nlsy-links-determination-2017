@@ -29,7 +29,7 @@ path_in_tagset_new              <- file.path(directory_in, "Gen2FatherFromGen1De
 path_in_tagset_old              <- file.path(directory_in, "Gen2FatherFromGen1.NLSY79"      )
 path_out_tagset_old             <- path_in_tagset_old                     # In this case, overwrite the tagset. Make sure things are committed to Git first
 
-variables_to_duplicate          <- c("R0000100")                      # For Nlsy79 Gen1
+variables_to_duplicate          <- c("R0000100", "R0214800")            # For Nlsy79 Gen1
 # variables_to_duplicate          <- c("C0000100", "C0000200")          # For Nlsy79 Gen2
 # variables_to_duplicate          <- c("R0000100")                      # For Nlsy97
 

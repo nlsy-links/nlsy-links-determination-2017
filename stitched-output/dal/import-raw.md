@@ -56,6 +56,9 @@ ds_extract <- tibble::tribble(
   ,"Extract"   , "tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv"
   ,"Extract"   , "tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
 
+
+  ,"Extract"   , "tblGen2FatherFromGen1Death"   , "nlsy79-gen2/Gen2FatherFromGen1Death.csv"
+
   # "Extract"  , "tbl97Roster"             , "nlsy97/97-roster.csv"
 )
 
@@ -84,7 +87,7 @@ print(ds_extract, n=20)
 ```
 
 ```
-## # A tibble: 12 x 8
+## # A tibble: 13 x 8
 ##    schema table_name file_name path  extract_exist table_name_qual~
 ##    <chr>  <chr>      <chr>     <chr> <lgl>         <chr>           
 ##  1 Extra~ tblGen1Ex~ nlsy79-g~ data~ TRUE          Extract.tblGen1~
@@ -99,6 +102,7 @@ print(ds_extract, n=20)
 ## 10 Extra~ tblGen2Ou~ nlsy79-g~ data~ TRUE          Extract.tblGen2~
 ## 11 Extra~ tblGen2Ou~ nlsy79-g~ data~ TRUE          Extract.tblGen2~
 ## 12 Extra~ tblGen2Ou~ nlsy79-g~ data~ TRUE          Extract.tblGen2~
+## 13 Extra~ tblGen2Fa~ nlsy79-g~ data~ TRUE          Extract.tblGen2~
 ## # ... with 2 more variables: sql_select <S3: glue>, sql_truncate <S3:
 ## #   glue>
 ```
@@ -161,7 +165,7 @@ DBI::dbGetInfo(channel_odbc)
 ```r
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
-for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
+for( i in seq_len(nrow(ds_extract)) ) { # i <- 13L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
@@ -213,7 +217,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     channel     = channel_rodbc,
     dat         = d,
     tablename   = ds_extract$table_name_qualified[i],
-    safer       = TRUE,       # Don't keep the existing table.
+    safer       = FALSE,       # Don't keep the existing table.
     rownames    = FALSE,
     append      = TRUE
   ) %>%
@@ -233,7 +237,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 
   # OuhscMunge::upload_sqls_rodbc(
   #   d               = d[1:100, ],
-  #   table_name      = ds_extract$table_name[i] ,
+  #   table_name      = ds_extract$table_name_qualified[i] ,
   #   dsn_name        = "local-nlsy-links-79",
   #   clear_table     = F,
   #   create_table    = T
@@ -517,60 +521,60 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 12,686 x 959
-##    R0000100 R0214800 R1373300 R1373400 R1373500 R1374000 R1374100 R1374200
+## # A tibble: 12,686 x 797
+##    R0000100 R0173600 R0214700 R0214800 R1373300 R1373500 R1374000 R1374200
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
-##  1        1        2       -5       -5       -5       -5       -5       -5
-##  2        2        2       -4       -4       -4       -4       -4       -4
-##  3        3        2        1       -4       -4        1       -4       -4
-##  4        4        2        0        1        4       -4       -4       -4
-##  5        5        1       -4       -4       -4       -4       -4       -4
-##  6        6        1       -4       -4       -4       -4       -4       -4
-##  7        7        1       -4       -4       -4       -4       -4       -4
-##  8        8        2        1       -4       -4        1       -4       -4
-##  9        9        1       -4       -4       -4       -4       -4       -4
-## 10       10        2        1       -4       -4       -4       -4       -4
-## 11       11        1       -4       -4       -4       -4       -4       -4
-## 12       12        2       -4       -4       -4       -4       -4       -4
-## 13       13        1       -4       -4       -4       -4       -4       -4
-## 14       14        2       -4       -4       -4       -4       -4       -4
-## 15       15        1       -4       -4       -4       -4       -4       -4
-## 16       16        2       -4       -4       -4       -4       -4       -4
-## 17       17        1       -4       -4       -4       -4       -4       -4
-## 18       18        1       -4       -4       -4       -4       -4       -4
-## 19       19        2       -4       -4       -4       -4       -4       -4
-## 20       20        2       -4       -4       -4       -4       -4       -4
-## # ... with 1.267e+04 more rows, and 951 more variables: R1374700 <int>,
-## #   R1374800 <int>, R1374900 <int>, R1375400 <int>, R1375500 <int>,
-## #   R1375600 <int>, R1376100 <int>, R1376200 <int>, R1376300 <int>,
-## #   R1376800 <int>, R1376900 <int>, R1377000 <int>, R1377500 <int>,
-## #   R1377600 <int>, R1377700 <int>, R1753700 <int>, R1753800 <int>,
-## #   R1753900 <int>, R1754400 <int>, R1754500 <int>, R1754600 <int>,
-## #   R1755100 <int>, R1755200 <int>, R1755300 <int>, R1755800 <int>,
-## #   R1755900 <int>, R1756000 <int>, R1756500 <int>, R1756600 <int>,
-## #   R1756700 <int>, R1757200 <int>, R1757300 <int>, R1757400 <int>,
-## #   R1757900 <int>, R1758000 <int>, R1758100 <int>, R2095700 <int>,
-## #   R2095800 <int>, R2095900 <int>, R2096400 <int>, R2096500 <int>,
-## #   R2096600 <int>, R2097100 <int>, R2097200 <int>, R2097300 <int>,
-## #   R2097800 <int>, R2097900 <int>, R2098000 <int>, R2098500 <int>,
-## #   R2098600 <int>, R2098700 <int>, R2099200 <int>, R2099300 <int>,
-## #   R2099400 <int>, R2099900 <int>, R2100000 <int>, R2100100 <int>,
-## #   R2345900 <int>, R2346200 <int>, R2346500 <int>, R2346800 <int>,
-## #   R2347100 <int>, R2347400 <int>, R2347700 <int>, R2648000 <int>,
-## #   R2648100 <int>, R2648200 <int>, R2648700 <int>, R2648800 <int>,
-## #   R2648900 <int>, R2649400 <int>, R2649500 <int>, R2649600 <int>,
-## #   R2650100 <int>, R2650200 <int>, R2650300 <int>, R2650800 <int>,
-## #   R2650900 <int>, R2651000 <int>, R2651500 <int>, R2651600 <int>,
-## #   R2651700 <int>, R2652200 <int>, R2652300 <int>, R2652400 <int>,
-## #   R2955900 <int>, R2956200 <int>, R2956500 <int>, R2956800 <int>,
-## #   R2957100 <int>, R2957400 <int>, R2957700 <int>, R3255900 <int>,
-## #   R3256000 <int>, R3256100 <int>, R3257700 <int>, R3257800 <int>,
-## #   R3257900 <int>, R3259500 <int>, R3259600 <int>, ...
+##  1        1        5        3        2       -5       -5       -5       -5
+##  2        2        5        3        2       -4       -4       -4       -4
+##  3        3        5        3        2        1       -4        1       -4
+##  4        4        5        3        2        0        4       -4       -4
+##  5        5        1        3        1       -4       -4       -4       -4
+##  6        6        1        3        1       -4       -4       -4       -4
+##  7        7        1        3        1       -4       -4       -4       -4
+##  8        8        6        3        2        1       -4        1       -4
+##  9        9        1        3        1       -4       -4       -4       -4
+## 10       10        6        3        2        1       -4       -4       -4
+## 11       11        1        3        1       -4       -4       -4       -4
+## 12       12        5        3        2       -4       -4       -4       -4
+## 13       13        1        3        1       -4       -4       -4       -4
+## 14       14        5        3        2       -4       -4       -4       -4
+## 15       15        1        3        1       -4       -4       -4       -4
+## 16       16        5        3        2       -4       -4       -4       -4
+## 17       17        1        3        1       -4       -4       -4       -4
+## 18       18        1        3        1       -4       -4       -4       -4
+## 19       19        5        3        2       -4       -4       -4       -4
+## 20       20        5        3        2       -4       -4       -4       -4
+## # ... with 1.267e+04 more rows, and 789 more variables: R1374700 <int>,
+## #   R1374900 <int>, R1375400 <int>, R1375600 <int>, R1376100 <int>,
+## #   R1376300 <int>, R1376800 <int>, R1377000 <int>, R1377500 <int>,
+## #   R1377700 <int>, R1753700 <int>, R1753900 <int>, R1754400 <int>,
+## #   R1754600 <int>, R1755100 <int>, R1755300 <int>, R1755800 <int>,
+## #   R1756000 <int>, R1756500 <int>, R1756700 <int>, R1757200 <int>,
+## #   R1757400 <int>, R1757900 <int>, R1758100 <int>, R2095700 <int>,
+## #   R2095900 <int>, R2096400 <int>, R2096600 <int>, R2097100 <int>,
+## #   R2097300 <int>, R2097800 <int>, R2098000 <int>, R2098500 <int>,
+## #   R2098700 <int>, R2099200 <int>, R2099400 <int>, R2099900 <int>,
+## #   R2100100 <int>, R2345900 <int>, R2346200 <int>, R2346500 <int>,
+## #   R2346800 <int>, R2347100 <int>, R2347400 <int>, R2347700 <int>,
+## #   R2648000 <int>, R2648200 <int>, R2648700 <int>, R2648900 <int>,
+## #   R2649400 <int>, R2649600 <int>, R2650100 <int>, R2650300 <int>,
+## #   R2650800 <int>, R2651000 <int>, R2651500 <int>, R2651700 <int>,
+## #   R2652200 <int>, R2652400 <int>, R2955900 <int>, R2956200 <int>,
+## #   R2956500 <int>, R2956800 <int>, R2957100 <int>, R2957400 <int>,
+## #   R2957700 <int>, R3255900 <int>, R3256100 <int>, R3257700 <int>,
+## #   R3257900 <int>, R3259500 <int>, R3259700 <int>, R3261300 <int>,
+## #   R3261500 <int>, R3263100 <int>, R3263300 <int>, R3264900 <int>,
+## #   R3265100 <int>, R3266700 <int>, R3266900 <int>, R3268500 <int>,
+## #   R3556400 <int>, R3557000 <int>, R3557600 <int>, R3771800 <int>,
+## #   R3772000 <int>, R3772100 <int>, R3772400 <int>, R3773900 <int>,
+## #   R3774100 <int>, R3774200 <int>, R3774500 <int>, R3776000 <int>,
+## #   R3776200 <int>, R3776300 <int>, R3776600 <int>, R3778100 <int>,
+## #   R3778300 <int>, R3778400 <int>, R3778700 <int>, ...
 ## [1] 1
 ```
 
 ```
-## Tibble size: 46.9 Mb
+## Tibble size: 39 Mb
 ```
 
 ```
@@ -578,7 +582,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 11,521 x 111
+## # A tibble: 11,521 x 132
 ##    C0000100 C0000200 C0005300 C0005400 C0005700 C0008100 C0008200 C0008300
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
 ##  1      201        2        3        2     1993       -7       -7       -7
@@ -601,7 +605,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## 18     1901       19        3        2     1987       -7       -7       -7
 ## 19     2001       20        3        2     1990       -7       -7       -7
 ## 20     2501       25        3        1     1990       -7       -7       -7
-## # ... with 1.15e+04 more rows, and 103 more variables: C0008600 <int>,
+## # ... with 1.15e+04 more rows, and 124 more variables: C0008600 <int>,
 ## #   C0008700 <int>, C0008800 <int>, C0009100 <int>, C0009200 <int>,
 ## #   C0009300 <int>, C0009600 <int>, C0009700 <int>, C0009800 <int>,
 ## #   C0009900 <int>, C0010110 <int>, C0010200 <int>, C0010300 <int>,
@@ -614,24 +618,24 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## #   C0011142 <int>, C0011143 <int>, C0011144 <int>, C3070500 <int>,
 ## #   C3423600 <int>, C3601100 <int>, C3601700 <int>, C3601800 <int>,
 ## #   C3601900 <int>, C3605900 <int>, C3981100 <int>, C3981700 <int>,
-## #   C3981800 <int>, C3981900 <int>, Y0003200 <int>, Y0007300 <int>,
-## #   Y0007400 <int>, Y0007600 <int>, Y0007601 <int>, Y0008000 <int>,
-## #   Y0008500 <int>, Y0008600 <int>, Y0009400 <int>, Y0394100 <int>,
-## #   Y0394300 <int>, Y0394500 <int>, Y0394501 <int>, Y0394900 <int>,
-## #   Y0651000 <int>, Y0682500 <int>, Y0683800 <int>, Y0683900 <int>,
-## #   Y0684100 <int>, Y0684101 <int>, Y0684500 <int>, Y0947100 <int>,
-## #   Y0986200 <int>, Y0986700 <int>, Y0988800 <int>, Y0988900 <int>,
-## #   Y0989400 <int>, Y0989401 <int>, Y0989900 <int>, Y1229100 <int>,
-## #   Y1229200 <int>, Y1229700 <int>, Y1229701 <int>, Y1458900 <int>,
-## #   Y1459400 <int>, Y1459401 <int>, Y1629500 <int>, Y1704000 <int>,
-## #   Y1704500 <int>, Y1704501 <int>, Y1707300 <int>, Y1883300 <int>,
-## #   Y1989500 <int>, Y1990000 <int>, Y1990001 <int>, Y1992900 <int>,
-## #   Y2197500 <int>, Y2308300 <int>, Y2308800 <int>, ...
+## #   C3981800 <int>, C3981900 <int>, C5156100 <int>, C5525500 <int>,
+## #   C5525600 <int>, C5525700 <int>, C5733200 <int>, C5801800 <int>,
+## #   C5801900 <int>, C5802000 <int>, C6006200 <int>, Y0003200 <int>,
+## #   Y0007300 <int>, Y0007400 <int>, Y0007600 <int>, Y0007601 <int>,
+## #   Y0008000 <int>, Y0008500 <int>, Y0008600 <int>, Y0009400 <int>,
+## #   Y0394100 <int>, Y0394300 <int>, Y0394500 <int>, Y0394501 <int>,
+## #   Y0394900 <int>, Y0651000 <int>, Y0682500 <int>, Y0683800 <int>,
+## #   Y0683900 <int>, Y0684100 <int>, Y0684101 <int>, Y0684500 <int>,
+## #   Y0947100 <int>, Y0986200 <int>, Y0986700 <int>, Y0988800 <int>,
+## #   Y0988900 <int>, Y0989400 <int>, Y0989401 <int>, Y0989900 <int>,
+## #   Y1229100 <int>, Y1229200 <int>, Y1229700 <int>, Y1229701 <int>,
+## #   Y1264300 <int>, Y1265300 <int>, Y1458900 <int>, Y1459400 <int>,
+## #   Y1459401 <int>, Y1629500 <int>, Y1704000 <int>, ...
 ## [1] 1
 ```
 
 ```
-## Tibble size: 4.9 Mb
+## Tibble size: 5.9 Mb
 ```
 
 ```
@@ -700,60 +704,60 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ```
 
 ```
-## # A tibble: 12,686 x 123
-##    R0000100 R0173600 R0214700 R0214800 R4825700 R4826000 R4826100 R4826300
+## # A tibble: 12,686 x 137
+##    R0000100 R0214700 R0214800 R4825700 R4826000 R4826100 R4826300 R4826500
 ##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
-##  1        1        5        3        2       -5       -5       -5       -5
-##  2        2        5        3        2        0       -4       -4       -4
-##  3        3        5        3        2        0       -4       -4       -4
-##  4        4        5        3        2       -5       -5       -5       -5
-##  5        5        1        3        1       -5       -5       -5       -5
-##  6        6        1        3        1        0       -4       -4       -4
-##  7        7        1        3        1        0       -4       -4       -4
-##  8        8        6        3        2        0       -4       -4       -4
-##  9        9        1        3        1        0       -4       -4       -4
-## 10       10        6        3        2        0       -4       -4       -4
-## 11       11        1        3        1        0       -4       -4       -4
-## 12       12        5        3        2        0       -4       -4       -4
-## 13       13        1        3        1        0       -4       -4       -4
-## 14       14        5        3        2        0       -4       -4       -4
-## 15       15        1        3        1        0       -4       -4       -4
-## 16       16        5        3        2        0       -4       -4       -4
-## 17       17        1        3        1        0       -4       -4       -4
-## 18       18        1        3        1        0       -4       -4       -4
-## 19       19        5        3        2        0       -4       -4       -4
-## 20       20        5        3        2        0       -4       -4       -4
-## # ... with 1.267e+04 more rows, and 115 more variables: R4826500 <int>,
-## #   R4826800 <int>, R5495900 <int>, R5496200 <int>, R5496300 <int>,
-## #   R5496500 <int>, R5496700 <int>, R5497000 <int>, R5497200 <int>,
-## #   R6210700 <int>, R6210800 <int>, R6210900 <int>, R6211500 <int>,
-## #   R6211600 <int>, R6211700 <int>, R6211800 <int>, R6211900 <int>,
-## #   R6212200 <int>, R6212300 <int>, R6764000 <int>, R6764100 <int>,
-## #   R6764200 <int>, R6764900 <int>, R6765000 <int>, R6765100 <int>,
-## #   R6765200 <int>, R6765600 <int>, R6765700 <int>, R6765800 <int>,
-## #   R6839600 <int>, R7408300 <int>, R7408400 <int>, R7408500 <int>,
-## #   R7409200 <int>, R7409300 <int>, R7409400 <int>, R7409500 <int>,
-## #   R7409900 <int>, R7410000 <int>, R7410100 <int>, R7548600 <int>,
-## #   R8106400 <int>, R8106500 <int>, R8106600 <int>, R8106700 <int>,
-## #   R8106800 <int>, R8106900 <int>, R8107000 <int>, R8107100 <int>,
-## #   R8107200 <int>, R8255400 <int>, R9900400 <int>, R9900600 <int>,
-## #   R9900601 <int>, R9901200 <int>, R9901400 <int>, R9901401 <int>,
-## #   R9902000 <int>, R9902200 <int>, R9902201 <int>, R9902800 <int>,
-## #   R9903000 <int>, R9903001 <int>, R9903600 <int>, R9903800 <int>,
-## #   R9903801 <int>, R9904400 <int>, R9904600 <int>, R9904601 <int>,
-## #   R9905200 <int>, R9905400 <int>, R9905401 <int>, R9906000 <int>,
-## #   R9906600 <int>, R9907200 <int>, R9907800 <int>, R9908000 <int>,
-## #   R9911200 <int>, R9911201 <int>, T0337300 <int>, T0337400 <int>,
-## #   T0337500 <int>, T0337600 <int>, T0337700 <int>, T0337800 <int>,
-## #   T0337900 <int>, T0338000 <int>, T0338100 <int>, T0338200 <int>,
-## #   T0338300 <int>, T0338400 <int>, T0338500 <int>, T0338600 <int>,
-## #   T1486900 <int>, T1487000 <int>, T1487100 <int>, T1487200 <int>,
-## #   T1487300 <int>, T1487400 <int>, T1487500 <int>, ...
+##  1        1        3        2       -5       -5       -5       -5       -5
+##  2        2        3        2        0       -4       -4       -4       -4
+##  3        3        3        2        0       -4       -4       -4       -4
+##  4        4        3        2       -5       -5       -5       -5       -5
+##  5        5        3        1       -5       -5       -5       -5       -5
+##  6        6        3        1        0       -4       -4       -4       -4
+##  7        7        3        1        0       -4       -4       -4       -4
+##  8        8        3        2        0       -4       -4       -4       -4
+##  9        9        3        1        0       -4       -4       -4       -4
+## 10       10        3        2        0       -4       -4       -4       -4
+## 11       11        3        1        0       -4       -4       -4       -4
+## 12       12        3        2        0       -4       -4       -4       -4
+## 13       13        3        1        0       -4       -4       -4       -4
+## 14       14        3        2        0       -4       -4       -4       -4
+## 15       15        3        1        0       -4       -4       -4       -4
+## 16       16        3        2        0       -4       -4       -4       -4
+## 17       17        3        1        0       -4       -4       -4       -4
+## 18       18        3        1        0       -4       -4       -4       -4
+## 19       19        3        2        0       -4       -4       -4       -4
+## 20       20        3        2        0       -4       -4       -4       -4
+## # ... with 1.267e+04 more rows, and 129 more variables: R4826800 <int>,
+## #   R5495900 <int>, R5496200 <int>, R5496300 <int>, R5496500 <int>,
+## #   R5496700 <int>, R5497000 <int>, R5497200 <int>, R6210700 <int>,
+## #   R6210800 <int>, R6210900 <int>, R6211500 <int>, R6211600 <int>,
+## #   R6211700 <int>, R6211800 <int>, R6211900 <int>, R6212200 <int>,
+## #   R6212300 <int>, R6764000 <int>, R6764100 <int>, R6764200 <int>,
+## #   R6764900 <int>, R6765000 <int>, R6765100 <int>, R6765200 <int>,
+## #   R6765600 <int>, R6765700 <int>, R6765800 <int>, R6839600 <int>,
+## #   R7408300 <int>, R7408400 <int>, R7408500 <int>, R7409200 <int>,
+## #   R7409300 <int>, R7409400 <int>, R7409500 <int>, R7409900 <int>,
+## #   R7410000 <int>, R7410100 <int>, R7548600 <int>, R8106400 <int>,
+## #   R8106500 <int>, R8106600 <int>, R8106700 <int>, R8106800 <int>,
+## #   R8106900 <int>, R8107000 <int>, R8107100 <int>, R8107200 <int>,
+## #   R8255400 <int>, R9900400 <int>, R9900600 <int>, R9900601 <int>,
+## #   R9901200 <int>, R9901400 <int>, R9901401 <int>, R9902000 <int>,
+## #   R9902200 <int>, R9902201 <int>, R9902800 <int>, R9903000 <int>,
+## #   R9903001 <int>, R9903600 <int>, R9903800 <int>, R9903801 <int>,
+## #   R9904400 <int>, R9904600 <int>, R9904601 <int>, R9905200 <int>,
+## #   R9905400 <int>, R9905401 <int>, R9906000 <int>, R9906600 <int>,
+## #   R9907200 <int>, R9907800 <int>, R9908000 <int>, R9911200 <int>,
+## #   R9911201 <int>, T0337300 <int>, T0337400 <int>, T0337500 <int>,
+## #   T0337600 <int>, T0337700 <int>, T0337800 <int>, T0337900 <int>,
+## #   T0338000 <int>, T0338100 <int>, T0338200 <int>, T0338300 <int>,
+## #   T0338400 <int>, T0338500 <int>, T0338600 <int>, T1486900 <int>,
+## #   T1487000 <int>, T1487100 <int>, T1487200 <int>, T1487300 <int>,
+## #   T1487400 <int>, T1487500 <int>, T1487600 <int>, ...
 ## [1] 1
 ```
 
 ```
-## Tibble size: 6 Mb
+## Tibble size: 6.7 Mb
 ```
 
 ```
@@ -889,6 +893,67 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 ## Tibble size: 1.4 Mb
 ```
 
+```
+## Uploading from `nlsy79-gen2/Gen2FatherFromGen1Death.csv` to `Extract.tblGen2FatherFromGen1Death`.
+```
+
+```
+## # A tibble: 12,686 x 318
+##    R0000100 R0214800 R1373400 R1374100 R1374800 R1375500 R1376200 R1376900
+##       <int>    <int>    <int>    <int>    <int>    <int>    <int>    <int>
+##  1        1        2       -5       -5       -5       -5       -5       -5
+##  2        2        2       -4       -4       -4       -4       -4       -4
+##  3        3        2       -4       -4       -4       -4       -4       -4
+##  4        4        2        1       -4       -4       -4       -4       -4
+##  5        5        1       -4       -4       -4       -4       -4       -4
+##  6        6        1       -4       -4       -4       -4       -4       -4
+##  7        7        1       -4       -4       -4       -4       -4       -4
+##  8        8        2       -4       -4       -4       -4       -4       -4
+##  9        9        1       -4       -4       -4       -4       -4       -4
+## 10       10        2       -4       -4       -4       -4       -4       -4
+## 11       11        1       -4       -4       -4       -4       -4       -4
+## 12       12        2       -4       -4       -4       -4       -4       -4
+## 13       13        1       -4       -4       -4       -4       -4       -4
+## 14       14        2       -4       -4       -4       -4       -4       -4
+## 15       15        1       -4       -4       -4       -4       -4       -4
+## 16       16        2       -4       -4       -4       -4       -4       -4
+## 17       17        1       -4       -4       -4       -4       -4       -4
+## 18       18        1       -4       -4       -4       -4       -4       -4
+## 19       19        2       -4       -4       -4       -4       -4       -4
+## 20       20        2       -4       -4       -4       -4       -4       -4
+## # ... with 1.267e+04 more rows, and 310 more variables: R1377600 <int>,
+## #   R1753800 <int>, R1754500 <int>, R1755200 <int>, R1755900 <int>,
+## #   R1756600 <int>, R1757300 <int>, R1758000 <int>, R2095800 <int>,
+## #   R2096500 <int>, R2097200 <int>, R2097900 <int>, R2098600 <int>,
+## #   R2099300 <int>, R2100000 <int>, R2648100 <int>, R2648800 <int>,
+## #   R2649500 <int>, R2650200 <int>, R2650900 <int>, R2651600 <int>,
+## #   R2652300 <int>, R3256000 <int>, R3257800 <int>, R3259600 <int>,
+## #   R3261400 <int>, R3263200 <int>, R3265000 <int>, R3266800 <int>,
+## #   R3771900 <int>, R3772200 <int>, R3772300 <int>, R3774000 <int>,
+## #   R3774300 <int>, R3774400 <int>, R3776100 <int>, R3776400 <int>,
+## #   R3776500 <int>, R3778200 <int>, R3778500 <int>, R3778600 <int>,
+## #   R3780300 <int>, R3780600 <int>, R3780700 <int>, R3782400 <int>,
+## #   R3784500 <int>, R4276900 <int>, R4277200 <int>, R4277201 <int>,
+## #   R4277800 <int>, R4278100 <int>, R4278101 <int>, R4278700 <int>,
+## #   R4279000 <int>, R4279001 <int>, R4279600 <int>, R4279900 <int>,
+## #   R4279901 <int>, R4280500 <int>, R4280800 <int>, R4280801 <int>,
+## #   R4281400 <int>, R4282200 <int>, R4827700 <int>, R4828000 <int>,
+## #   R4828001 <int>, R4830700 <int>, R4831000 <int>, R4831001 <int>,
+## #   R4833700 <int>, R4834000 <int>, R4834001 <int>, R4836700 <int>,
+## #   R4837000 <int>, R4837001 <int>, R4839700 <int>, R4840000 <int>,
+## #   R4840001 <int>, R4842600 <int>, R4844900 <int>, R4847200 <int>,
+## #   R5498100 <int>, R5498400 <int>, R5498401 <int>, R5501100 <int>,
+## #   R5501400 <int>, R5501401 <int>, R5504100 <int>, R5504400 <int>,
+## #   R5504401 <int>, R5507100 <int>, R5507400 <int>, R5507401 <int>,
+## #   R5510100 <int>, R5510400 <int>, R5510401 <int>, R5513100 <int>,
+## #   R5515400 <int>, R5517700 <int>, R5519900 <int>, ...
+## [1] 1
+```
+
+```
+## Tibble size: 15.6 Mb
+```
+
 ```r
 DBI::dbDisconnect(channel_odbc); rm(channel_odbc)
 RODBC::odbcClose(channel_rodbc); rm(channel_rodbc)
@@ -898,7 +963,7 @@ cat("File completed by `", Sys.info()["user"], "` at ", strftime(Sys.time(), "%Y
 ```
 
 ```
-## File completed by `Will` at 2018-10-13, 17:24 -0500 in 40 seconds.
+## File completed by `Will` at 2018-10-14, 17:01 -0500 in 42 seconds.
 ```
 
 The R session information (including the OS info, R version and all
@@ -927,23 +992,26 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] bindrcpp_0.2.2 magrittr_1.5  
+## [1] knitr_1.20     bindrcpp_0.2.2 magrittr_1.5  
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.19          pillar_1.3.0          compiler_3.5.1       
-##  [4] bindr_0.1.1           tools_3.5.1           odbc_1.1.6           
-##  [7] packrat_0.4.9-3       bit_1.1-14            evaluate_0.12        
-## [10] tibble_1.4.2          checkmate_1.8.5       pkgconfig_2.0.2      
-## [13] rlang_0.2.2           DBI_1.0.0             cli_1.0.1            
-## [16] rstudioapi_0.8        yaml_2.2.0            dplyr_0.7.6          
-## [19] stringr_1.3.1         knitr_1.20            hms_0.4.2.9001       
-## [22] bit64_0.9-7           tidyselect_0.2.5      glue_1.3.0           
-## [25] OuhscMunge_0.1.9.9009 R6_2.3.0              fansi_0.4.0          
-## [28] tidyr_0.8.1           readr_1.2.0           purrr_0.2.5          
-## [31] blob_1.1.1            backports_1.1.2       RODBC_1.3-15         
-## [34] assertthat_0.2.0      testit_0.8.1          config_0.3           
-## [37] utf8_1.1.4            stringi_1.2.4         markdown_0.8         
-## [40] crayon_1.3.4
+##  [1] Rcpp_0.12.19          highr_0.7             pillar_1.3.0         
+##  [4] compiler_3.5.1        bindr_0.1.1           tools_3.5.1          
+##  [7] odbc_1.1.6            packrat_0.4.9-3       digest_0.6.18        
+## [10] bit_1.1-14            memoise_1.1.0         evaluate_0.12        
+## [13] tibble_1.4.2          checkmate_1.8.5       pkgconfig_2.0.2      
+## [16] rlang_0.2.2           rstudioapi_0.8        DBI_1.0.0            
+## [19] cli_1.0.1             yaml_2.2.0            withr_2.1.2          
+## [22] dplyr_0.7.6           stringr_1.3.1         devtools_1.13.6      
+## [25] hms_0.4.2.9001        rprojroot_1.3-2       bit64_0.9-7          
+## [28] tidyselect_0.2.5      glue_1.3.0            OuhscMunge_0.1.9.9009
+## [31] R6_2.3.0              fansi_0.4.0           rmarkdown_1.10       
+## [34] tidyr_0.8.1           readr_1.2.0           purrr_0.2.5          
+## [37] blob_1.1.1            scales_1.0.0          backports_1.1.2      
+## [40] RODBC_1.3-15          htmltools_0.3.6       assertthat_0.2.0     
+## [43] testit_0.8.1          colorspace_1.3-2      config_0.3           
+## [46] utf8_1.1.4            stringi_1.2.4         munsell_0.5.0        
+## [49] markdown_0.8          crayon_1.3.4
 ```
 
 ```r
@@ -951,6 +1019,6 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-10-13 17:24:32 CDT"
+## [1] "2018-10-14 17:01:53 CDT"
 ```
 

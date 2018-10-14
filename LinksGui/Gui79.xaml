@@ -22,6 +22,7 @@
         <CollectionViewSource x:Key="tblMzManualViewSource" Source="{Binding Path=tblMzManual, Source={StaticResource linksDataSet}}" />
         <CollectionViewSource x:Key="tblLinks2004Gen2ViewSource" Source="{Binding Path=tblLinks2004Gen2, Source={StaticResource importDataSet}}" />
         <CollectionViewSource x:Key="tblGen2FatherFromGen1ViewSource" Source="{Binding Path=tblGen2FatherFromGen1, Source={StaticResource importDataSet}}" />
+        <CollectionViewSource x:Key="tblGen2FatherFromGen1DeathViewSource" Source="{Binding Path=tblGen2FatherFromGen1Death, Source={StaticResource importDataSet}}" />
         <CollectionViewSource x:Key="tblBabyDaddyViewSource" Source="{Binding Path=tblBabyDaddy, Source={StaticResource linksDataSet}}" />
         <CollectionViewSource x:Key="tblFatherOfGen2ViewSource" Source="{Binding Path=tblFatherOfGen2, Source={StaticResource linksDataSet}}" />
         <CollectionViewSource x:Key="tblLinks2004Gen1ViewSource" Source="{Binding Path=tblLinks2004Gen1, Source={StaticResource importDataSet}}" />
@@ -139,6 +140,9 @@
             <TabItem Header="Gen2FatherFromGen1" Name="tabGen2FatherFromGen1" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2FatherFromGen1ViewSource}}" />
             </TabItem>
+            <TabItem Header="Gen2FatherFromGen1Death" Name="tabGen2FatherFromGen1Death" >
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblGen2FatherFromGen1DeathViewSource}}" />
+            </TabItem>
             <TabItem Header="Geocode" Name="tabGeocode" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblGen1GeocodeSanitizedViewSource}}"/>
             </TabItem>
@@ -176,7 +180,7 @@
         </TabControl>
         <TabControl Name="tabControlBottom"  Grid.Row="3" Background="Transparent" SelectedIndex="{Binding Mode=OneWay, Source={StaticResource tblOutcomeViewSource}}">
             <TabItem Header="Subject" Name="tabSubject" >
-                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}"/>
+                <DataGrid ItemsSource="{Binding Source={StaticResource tblSubjectViewSource}}" Margin="-74,-4,74,4"/>
             </TabItem>
             <TabItem Header="RStructure" Name="tabRelated" >
                 <DataGrid ItemsSource="{Binding Source={StaticResource tblRelatedStructureViewSource}}"/>
