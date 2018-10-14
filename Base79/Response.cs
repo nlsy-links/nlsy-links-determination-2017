@@ -126,6 +126,7 @@ namespace Nls.Base79 {
                 case ExtractSource.Gen2OutcomesHeight: return _dsImport.tblGen2OutcomesHeight.TableName;
                 case ExtractSource.Gen2OutcomesWeight: return _dsImport.tblGen2OutcomesWeight.TableName;
                 case ExtractSource.Gen2OutcomesMath: return _dsImport.tblGen2OutcomesMath.TableName;
+                case ExtractSource.Gen2FatherFromGen1Death: return _dsImport.tblGen2FatherFromGen1Death.TableName;
                 default: throw new ArgumentOutOfRangeException("extractSource", extractSource, "The Extract Source is not recognized in this function.");
             }
         }

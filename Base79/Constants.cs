@@ -51,7 +51,7 @@ namespace Nls.Base79 {
         public const Int32 Gen2IDSiblingCountMax = 10;    //ExtendedID 6371 has 11 kids, so Gen2 Subject637111 has 10 siblings.
 
         //WRONG public const Int32 CousinCountMax = 16//ExtendedID 8693
-        public const Int32 SurveyTimeCount = 605175; //580752 in 2012; //580560 in 2010; //429718 in 2008;
+        public const Int32 SurveyTimeCount = 629382; //580752 in 2012; //580560 in 2010; //429718 in 2008;
         #endregion
         #region Parents Of Gen1
         public const Int16 Gen1BioparentBirthYearReportedMin = 1900;

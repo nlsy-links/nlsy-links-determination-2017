@@ -44,6 +44,9 @@ ds_extract <- tibble::tribble(
   ,"Extract"   , "tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath.csv"
   ,"Extract"   , "tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight.csv"
 
+
+  ,"Extract"   , "tblGen2FatherFromGen1Death"   , "nlsy79-gen2/Gen2FatherFromGen1Death.csv"
+
   # "Extract"  , "tbl97Roster"             , "nlsy97/97-roster.csv"
 )
 
@@ -84,7 +87,7 @@ DBI::dbGetInfo(channel_odbc)
 
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
-for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
+for( i in seq_len(nrow(ds_extract)) ) { # i <- 13L
   message(glue::glue("Uploading from `{ds_extract$file_name[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
   d <- readr::read_csv(ds_extract$path[i], col_types=col_types_default)
@@ -156,7 +159,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
 
   # OuhscMunge::upload_sqls_rodbc(
   #   d               = d[1:100, ],
-  #   table_name      = ds_extract$table_name[i] ,
+  #   table_name      = ds_extract$table_name_qualified[i] ,
   #   dsn_name        = "local-nlsy-links-79",
   #   clear_table     = F,
   #   create_table    = T

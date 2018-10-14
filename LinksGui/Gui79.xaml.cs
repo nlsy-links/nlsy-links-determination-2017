@@ -51,6 +51,7 @@ namespace LinksGui {
                 LoadExtractGen2LinksFromGen1();
                 LoadExtractGen2ImplicitFather();
                 LoadExtractGen2FatherFromGen1();
+                LoadExtractGen2FatherFromGen1Death();
                 LoadExtractGen1Outcomes();
                 LoadExtractGen2OutcomesHeight();
                 LoadExtractGen2OutcomesWeight();
@@ -113,6 +114,7 @@ namespace LinksGui {
             BA.SurveyTime surveyTime = new BA.SurveyTime(_dsLinks);
             string message = surveyTime.Go();
             Trace.WriteLine(message);
+            Trace.Flush();
             if( e.Source.ToString() != _combinedButtonTag ) MessageBox.Show(message);
             //WriteXml(_dsLinks.tblSurveyTime);
         }
@@ -279,6 +281,10 @@ namespace LinksGui {
         private void LoadExtractGen2FatherFromGen1( ) {
             BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1TableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1TableAdapter();
             ta.Fill(_dsImport.tblGen2FatherFromGen1);
+        }
+        private void LoadExtractGen2FatherFromGen1Death( ) {
+            BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1DeathTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen2FatherFromGen1DeathTableAdapter();
+            ta.Fill(_dsImport.tblGen2FatherFromGen1Death);
         }
         private void LoadGeocodeSanitized( ) {
             BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter ta = new BA.ImportDataSetTableAdapters.tblGen1GeocodeSanitizedTableAdapter();
