@@ -136,7 +136,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     channel     = channel_rodbc,
     dat         = d,
     tablename   = ds_extract$table_name_qualified[i],
-    safer       = TRUE,       # Don't keep the existing table.
+    safer       = FALSE,       # Don't keep the existing table.
     rownames    = FALSE,
     append      = TRUE
   ) %>%

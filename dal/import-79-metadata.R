@@ -353,6 +353,15 @@ purrr::pmap_int(
 # a <- ds_file$entries[[15]]
 # table(a$ID)
 
+# RODBC::sqlSave(
+#   channel     = channel_rodbc,
+#   dat         = ds_file$entries[[16]][, ],
+#   tablename   = "Metadata.tblVariable",
+#   safer       = TRUE,       # Don't keep the existing table.
+#   rownames    = FALSE,
+#   append      = TRUE
+# )
+
 # DBI::dbWriteTable(
 #   conn        = channel,
 #   name        = DBI::Id(catalog="NlsyLinks79", schema="Metadata", table="tblv"),

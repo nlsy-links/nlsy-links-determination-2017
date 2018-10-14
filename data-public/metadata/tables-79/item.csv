@@ -26,11 +26,11 @@ ID,Label,MinValue,MinNonnegative,MaxValue,Active,Notes
 40,FatherHasAsthmaGen2,-7,0,1,TRUE,
 48,BioKidCountGen1,0,0,11,TRUE,
 49,Gen1ChildsIDByBirthOrder,-4,1,11,TRUE,
-50,HerTwinsTripsAreListed,-5,0,5,TRUE,
-52,HerTwinsAreMz,-5,0,5,TRUE,
-53,HerTripsAreMz,-5,0,5,TRUE,
-54,HerTwinsMistakenForEachOther,-5,1,2,TRUE,
-55,HerTripsMistakenForEachOther,-5,1,2,TRUE,
+50,HerTwinsTripsAreListed,-5,0,5,TRUE,"Manually reviewed after 2010 wave, but not since"
+52,HerTwinsAreMz,-5,0,5,TRUE,"Manually reviewed after 2010 wave, but not since"
+53,HerTripsAreMz,-5,0,5,TRUE,"Manually reviewed after 2010 wave, but not since"
+54,HerTwinsMistakenForEachOther,-5,1,2,TRUE,"Manually reviewed after 2010 wave, but not since"
+55,HerTripsMistakenForEachOther,-5,1,2,TRUE,"Manually reviewed after 2010 wave, but not since"
 60,BirthOrderInNlsGen2,-3,1,11,TRUE,
 63,SiblingCountTotalFen1,-3,0,29,TRUE,
 64,BioKidCountGen2,-7,0,11,TRUE,
