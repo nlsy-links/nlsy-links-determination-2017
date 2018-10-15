@@ -19,6 +19,8 @@ namespace Nls.Base79 {
             if( dsImport.tblGen1Links.Count == 0 ) throw new InvalidOperationException("tblGen1Links must NOT be empty before reading responses from it.");
             if( dsImport.tblGen2Links.Count == 0 ) throw new InvalidOperationException("tblGen2Links must NOT be empty before reading responses from it.");
             if( dsImport.tblGen2LinksFromGen1.Count == 0 ) throw new InvalidOperationException("tblGen2LinksFromGen1 must NOT be empty before reading responses from it.");
+            if( dsImport.tblGen2FatherFromGen1.Count == 0 ) throw new InvalidOperationException("tblGen2FatherFromGen1 must NOT be empty before reading responses from it.");
+            if( dsImport.tblGen2FatherFromGen1Death.Count == 0 ) throw new InvalidOperationException("tblGen2FatherFromGen1Death must NOT be empty before reading responses from it.");
             if( dsImport.tblGen2ImplicitFather.Count == 0 ) throw new InvalidOperationException("tblGen2ImplicitFather must NOT be empty before reading responses from it.");
             if( dsImport.tblGen1Outcomes.Count == 0 ) throw new InvalidOperationException("tblGen1Outcomes must NOT be empty before reading responses from it.");
             if( dsImport.tblGen2OutcomesHeight.Count == 0 ) throw new InvalidOperationException("tblGen2OutcomesHeight must NOT be empty before reading responses from it.");
@@ -41,6 +43,7 @@ namespace Nls.Base79 {
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2LinksFromGen1, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponses, _dsImport.tblGen2LinksFromGen1);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2ImplicitFather, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponses, _dsImport.tblGen2ImplicitFather);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2FatherFromGen1, Sample.Nlsy79Gen1, true, Constants.Gen1PassoverResponses, _dsImport.tblGen2FatherFromGen1);
+            reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2FatherFromGen1Death, Sample.Nlsy79Gen1, true, Constants.Gen1PassoverResponses, _dsImport.tblGen2FatherFromGen1Death);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen1Outcomes, Sample.Nlsy79Gen1, false, Constants.Gen1PassoverResponsesNoNegatives, _dsImport.tblGen1Outcomes);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesHeight, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesHeight);
             reponseRecordsAddedCount += TranslateExtractSource(ExtractSource.Gen2OutcomesWeight, Sample.Nlsy79Gen2, false, Constants.Gen2PassoverResponseNoNegatives, _dsImport.tblGen2OutcomesWeight);
@@ -126,6 +129,7 @@ namespace Nls.Base79 {
                 case ExtractSource.Gen2OutcomesHeight: return _dsImport.tblGen2OutcomesHeight.TableName;
                 case ExtractSource.Gen2OutcomesWeight: return _dsImport.tblGen2OutcomesWeight.TableName;
                 case ExtractSource.Gen2OutcomesMath: return _dsImport.tblGen2OutcomesMath.TableName;
+                case ExtractSource.Gen2FatherFromGen1Death: return _dsImport.tblGen2FatherFromGen1Death.TableName;
                 default: throw new ArgumentOutOfRangeException("extractSource", extractSource, "The Extract Source is not recognized in this function.");
             }
         }

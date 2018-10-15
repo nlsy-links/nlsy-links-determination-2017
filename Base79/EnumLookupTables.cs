@@ -158,6 +158,7 @@ namespace Nls.Base79 {
         Gen1Implicit = 11,
         Gen2OutcomesWeight = 12,
         Gen2OutcomesMath = 13,
+        Gen2FatherFromGen1Death = 14,
     }
     public enum SurveySource : byte {
         NoInterview = 0,

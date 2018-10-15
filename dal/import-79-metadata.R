@@ -18,6 +18,7 @@ requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its func
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("RODBC"                  ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
+requireNamespace("OuhscMunge"             ) # remotes::install_github("OuhscBbmc/OuhscMunge")
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
@@ -35,6 +36,11 @@ col_types_minimal <- readr::cols_only(
 #   - Tables are WRITTEN from top to bottom.
 #   - Tables are DELETED from bottom to top.
 lst_col_types <- list(
+  ArchiveDescription = readr::cols_only(
+    AlgorithmVersion                    = readr::col_integer(),
+    Description                         = readr::col_character(),
+    Date                                = readr::col_date()
+  ),
   item = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -319,6 +325,13 @@ purrr::pmap_int(
   function( d, table_name, schema_name ) {
     # browser()
     # DBI::dbWriteTable(
+    #   conn        = channel,
+    #   name        = DBI::Id(schema=schema_name, table=table_name),
+    #   value       = d,
+    #   overwrite   = FALSE,
+    #   append      = TRUE
+    # )
+    # DBI::dbWriteTable(
     #   conn    = channel,
     #   name    = table_name,
     #   schema  = schema_name,
@@ -340,13 +353,21 @@ purrr::pmap_int(
 # a <- ds_file$entries[[15]]
 # table(a$ID)
 
-# odbc::dbWriteTable(
-#   conn    = channel,
-#   name    = DBI::SQL("Metadata.tblvariable_97"),
-#   # name    = "tblvariable_97",
-#   # schema  = "Metadata",
-#   value   = ds_file$entries[[16]],
-#   append  = T
+# RODBC::sqlSave(
+#   channel     = channel_rodbc,
+#   dat         = ds_file$entries[[16]][, ],
+#   tablename   = "Metadata.tblVariable",
+#   safer       = TRUE,       # Don't keep the existing table.
+#   rownames    = FALSE,
+#   append      = TRUE
+# )
+
+# DBI::dbWriteTable(
+#   conn        = channel,
+#   name        = DBI::Id(catalog="NlsyLinks79", schema="Metadata", table="tblv"),
+#   value       = ds_file$entries[[15]][1:10, 2],
+#   overwrite   = FALSE,
+#   append      = F
 # )
 
 # for( i in seq_len(nrow(ds_file)) ) {
