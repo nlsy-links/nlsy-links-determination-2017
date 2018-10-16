@@ -18,6 +18,8 @@ requireNamespace("dplyr"                  ) #Avoid attaching dplyr, b/c its func
 requireNamespace("testit"                 ) #For asserting conditions meet expected patterns.
 requireNamespace("odbc"                   ) #For communicating with SQL Server over a locally-configured DSN.  Uncomment if you use 'upload-to-db' chunk.
 
+
+
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
 config                    <- config::get()
@@ -62,20 +64,23 @@ lst_col_types <- list(
   ),
   LUMultipleBirth         = col_types_minimal,
   LURaceCohort            = col_types_minimal,
+
   LURoster                = col_types_minimal,
+
   LUTristate              = col_types_minimal,
   LUYesNo                 = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
     SubjectTag_S2                       = readr::col_integer(),
+
     MultipleBirthIfSameSex              = readr::col_integer(),
     IsMz                                = readr::col_integer(),
     Undecided                           = readr::col_integer(),
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  RosterAssignment    = readr::cols_only(
+  RosterAssignment        = readr::cols_only(
     ID                                  = readr::col_integer(),
     ResponseLower                       = readr::col_integer(),
     ResponseUpper                       = readr::col_integer(),
@@ -97,7 +102,9 @@ lst_col_types <- list(
     # ID                                = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
+
     ExtractSource                       = readr::col_integer(),
+
     SurveyYear                          = readr::col_integer(),
     LoopIndex1                          = readr::col_integer(),
     LoopIndex2                          = readr::col_integer(),

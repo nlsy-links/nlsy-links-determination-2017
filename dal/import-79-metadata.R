@@ -22,8 +22,10 @@ requireNamespace("OuhscMunge"             ) # remotes::install_github("OuhscBbmc
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
+config                    <- config::get()
 directory_in              <- "data-public/metadata/tables-79"
 study                     <- "79"
+shallow_only              <- F   # If TRUE, update only the metadata tables that won't delete any other database tables.
 
 col_types_minimal <- readr::cols_only(
   ID                                  = readr::col_integer(),
@@ -50,9 +52,9 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUExtractSource = col_types_minimal,
-  LUMarkerEvidence = col_types_minimal,
-  LUGender = col_types_minimal,
+  LUExtractSource         = col_types_minimal,
+  LUMarkerEvidence        = col_types_minimal,
+  LUGender                = col_types_minimal,
   LUMarkerType = readr::cols_only(
     ID                                  = readr::col_integer(),
     Label                               = readr::col_character(),
@@ -60,13 +62,13 @@ lst_col_types <- list(
     Active                              = readr::col_logical(),
     Notes                               = readr::col_character()
   ),
-  LUMultipleBirth = col_types_minimal,
-  LURaceCohort = col_types_minimal,
-  LURelationshipPath = col_types_minimal,
-  LURosterGen1 = col_types_minimal,
-  LUSurveySource = col_types_minimal,
-  LUTristate = col_types_minimal,
-  LUYesNo = col_types_minimal,
+  LUMultipleBirth         = col_types_minimal,
+  LURaceCohort            = col_types_minimal,
+  LURelationshipPath      = col_types_minimal,
+  LURosterGen1            = col_types_minimal,
+  LUSurveySource          = col_types_minimal,
+  LUTristate              = col_types_minimal,
+  LUYesNo                 = col_types_minimal,
   MzManual = readr::cols_only(
     ID                                  = readr::col_integer(),
     SubjectTag_S1                       = readr::col_integer(),
@@ -78,32 +80,6 @@ lst_col_types <- list(
     Related                             = readr::col_integer(),
     Notes                               = readr::col_character()
   ),
-  # RArchive = readr::cols_only(
-  #   ID                                = readr::col_integer(),
-  #   AlgorithmVersion                  = readr::col_integer(),
-  #   SubjectTag_S1                     = readr::col_integer(),
-  #   SubjectTag_S2                     = readr::col_integer(),
-  #   MultipleBirthIfSameSex            = readr::col_integer(),
-  #   IsMz                              = readr::col_integer(),
-  #   SameGeneration                    = readr::col_character(),
-  #   RosterAssignmentID                = readr::col_character(),
-  #   RRoster                           = readr::col_character(),
-  #   LastSurvey_S1                     = readr::col_integer(),
-  #   LastSurvey_S2                     = readr::col_integer(),
-  #   RImplicitPass1                    = readr::col_double(),
-  #   RImplicit                         = readr::col_double(),
-  #   RImplicitSubject                  = readr::col_double(),
-  #   RImplicitMother                   = readr::col_double(),
-  #   RImplicit2004                     = readr::col_double(),
-  #   RExplicitOldestSibVersion         = readr::col_double(),
-  #   RExplicitYoungestSibVersion       = readr::col_double(),
-  #   RExplicitPass1                    = readr::col_double(),
-  #   RExplicit                         = readr::col_double(),
-  #   RPass1                            = readr::col_double(),
-  #   R                                 = readr::col_double(),
-  #   RFull                             = readr::col_double(),
-  #   RPeek                             = readr::col_character()
-  # ),
   RosterGen1Assignment    = readr::cols_only(
     ID                                  = readr::col_integer(),
     ResponseLower                       = readr::col_integer(),
@@ -123,7 +99,7 @@ lst_col_types <- list(
     ResponseUpperLabel                  = readr::col_character()
   ),
   variable = readr::cols_only(
-    # ID                                  = readr::col_integer(),
+    # ID                                = readr::col_integer(),
     VariableCode                        = readr::col_character(),
     Item                                = readr::col_integer(),
     Generation                          = readr::col_integer(),
@@ -131,10 +107,12 @@ lst_col_types <- list(
     SurveySource                        = readr::col_integer(),
     SurveyYear                          = readr::col_integer(),
     LoopIndex                           = readr::col_integer(),
+
     Translate                           = readr::col_integer(),
-    Notes                               = readr::col_character(),
     Active                              = readr::col_integer(),
     Notes                               = readr::col_character()
+
+
   )
 )
 
@@ -145,7 +123,18 @@ col_types_mapping <- readr::cols_only(
   # enum_file         = readr::col_character(),
   c_sharp_type        = readr::col_character(),
   convert_to_enum     = readr::col_logical()
+
 )
+
+
+
+
+
+
+
+
+
+
 
 # ---- load-data ---------------------------------------------------------------
 start_time <- Sys.time()
