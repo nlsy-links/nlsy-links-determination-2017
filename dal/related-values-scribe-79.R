@@ -20,7 +20,8 @@ requireNamespace("OuhscMunge"   ) # remotes::install_github(repo="OuhscBbmc/Ouhs
 
 # ---- declare-globals ---------------------------------------------------------
 # Constant values that won't change.
-config              <- config::get()
+config                    <- config::get()
+phantom_subject_tags      <- c(864903L, 1226902L)
 
 sql <- "
 	SELECT
@@ -147,6 +148,20 @@ ds_description <- ds_description %>%
     note_1
   )
 
+
+# ---- assert-phantoms ---------------------------------------------------------
+row_count_current <-
+  ds %>%
+  dplyr::filter((SubjectTag_S1 %in% phantom_subject_tags) | (SubjectTag_S2 %in% phantom_subject_tags)) %>%
+  nrow()
+
+testit::assert(row_count_current == 0L)
+
+
+ds_archive <-
+  ds_archive %>%
+  dplyr::filter(!((SubjectTag_S1 %in% phantom_subject_tags) | (SubjectTag_S2 %in% phantom_subject_tags)))
+
 # l <- yaml::read_yaml("a.yml")
 
 # l$Description
@@ -189,11 +204,11 @@ checkmate::assert_character(subject_combo, pattern  ="^\\d{7}-\\d{7}$"          
 # Sniff out problems
 # OuhscMunge::verify_value_headstart(ds_archive)
 checkmate::assert_integer( ds_archive$AlgorithmVersion           , any.missing=F , lower=25, upper=89       )
-checkmate::assert_integer( ds_archive$ExtendedID                 , any.missing=T , lower=2, upper=12675     )
-checkmate::assert_integer( ds_archive$SubjectTag_S1              , any.missing=F , lower=200, upper=1267500 )
+checkmate::assert_integer( ds_archive$ExtendedID                 , any.missing=F , lower=2, upper=12675     )
+checkmate::assert_integer( ds_archive$SubjectTag_S1              , any.missing=F , lower=200, upper=1267500 ) # There are some early algorithm version
 checkmate::assert_integer( ds_archive$SubjectTag_S2              , any.missing=F , lower=201, upper=1267501 )
-checkmate::assert_integer( ds_archive$SubjectID_S1               , any.missing=T , lower=2, upper=1267301 )
-checkmate::assert_integer( ds_archive$SubjectID_S2               , any.missing=T , lower=4, upper=1267501 )
+checkmate::assert_integer( ds_archive$SubjectID_S1               , any.missing=F , lower=2, upper=1267301 )
+checkmate::assert_integer( ds_archive$SubjectID_S2               , any.missing=F , lower=4, upper=1267501 )
 checkmate::assert_integer( ds_archive$MultipleBirthIfSameSex     , any.missing=F , lower=0, upper=4         )
 checkmate::assert_integer( ds_archive$IsMz                       , any.missing=F , lower=0, upper=255       )
 checkmate::assert_integer( ds_archive$SameGeneration             , any.missing=T , lower=0, upper=255       )
