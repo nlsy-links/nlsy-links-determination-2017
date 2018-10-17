@@ -101,7 +101,7 @@ DBI::dbGetInfo(channel_odbc)
 
 channel_rodbc <- open_dsn_channel_rodbc(study)
 
-for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
+for( i in seq_len(nrow(ds_extract)) ) { # i <- 11L
 # for( i in 1 ) { # i <- 1L
   message(glue::glue("Uploading from `{ds_extract$path_zip[i]}` to `{ds_extract$table_name_qualified[i]}`."))
 
@@ -172,7 +172,8 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     OuhscMunge::upload_sqls_rodbc(
       d               = d,
       # d               = d[1:100, ],
-      table_name      = ds_extract$table_name_qualified[i] ,
+      schema_name     = ds_extract$schema[i],
+      table_name      = ds_extract$table_name[i],
       dsn_name        = "local-nlsy-links-97",
       clear_table     = F,
       create_table    = T

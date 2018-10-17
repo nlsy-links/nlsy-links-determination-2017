@@ -27,25 +27,25 @@ directory_in              <- "data-unshared/raw"
 columns_to_drop           <- c("A0002600", "Y2267000")
 
 ds_extract <- tibble::tribble(
-  ~schema      , ~table_name                       , ~file_name
-  ,"Extract"   , "tblGen1Explicit"         , "nlsy79-gen1/Gen1Explicit"
-  ,"Extract"   , "tblGen1Implicit"         , "nlsy79-gen1/Gen1Implicit"
-  ,"Extract"   , "tblGen1Links"            , "nlsy79-gen1/Gen1Links"
-  ,"Extract"   , "tblGen1Outcomes"         , "nlsy79-gen1/Gen1Outcomes"
-  ,"Extract"   , "tblGen1GeocodeSanitized" , "nlsy79-gen1/Gen1GeocodeSanitized"
+  ~schema      , ~table_name               , ~generation  , ~file_name
+  ,"Extract"   , "tblGen1Explicit"         , 1L           , "nlsy79-gen1/Gen1Explicit"
+  ,"Extract"   , "tblGen1Implicit"         , 1L           , "nlsy79-gen1/Gen1Implicit"
+  ,"Extract"   , "tblGen1Links"            , 1L           , "nlsy79-gen1/Gen1Links"
+  ,"Extract"   , "tblGen1Outcomes"         , 1L           , "nlsy79-gen1/Gen1Outcomes"
+  ,"Extract"   , "tblGen1GeocodeSanitized" , 1L           , "nlsy79-gen1/Gen1GeocodeSanitized"
   # "Process.tblLURosterGen1"         , "nlsy79-gen1/RosterGen1"
   # tblGen1MzDzDistinction2010
   #
-  ,"Extract"   , "tblGen2FatherFromGen1"   , "nlsy79-gen2/Gen2FatherFromGen1"
-  ,"Extract"   , "tblGen2ImplicitFather"   , "nlsy79-gen2/Gen2ImplicitFather"
-  ,"Extract"   , "tblGen2Links"            , "nlsy79-gen2/Gen2Links"
-  ,"Extract"   , "tblGen2LinksFromGen1"    , "nlsy79-gen2/Gen2LinksFromGen1"
-  ,"Extract"   , "tblGen2OutcomesHeight"   , "nlsy79-gen2/Gen2OutcomesHeight"
-  ,"Extract"   , "tblGen2OutcomesMath"     , "nlsy79-gen2/Gen2OutcomesMath"
-  ,"Extract"   , "tblGen2OutcomesWeight"   , "nlsy79-gen2/Gen2OutcomesWeight"
+  ,"Extract"   , "tblGen2FatherFromGen1"   , 2L           , "nlsy79-gen2/Gen2FatherFromGen1"
+  ,"Extract"   , "tblGen2ImplicitFather"   , 2L           , "nlsy79-gen2/Gen2ImplicitFather"
+  ,"Extract"   , "tblGen2Links"            , 2L           , "nlsy79-gen2/Gen2Links"
+  ,"Extract"   , "tblGen2LinksFromGen1"    , 2L           , "nlsy79-gen2/Gen2LinksFromGen1"
+  ,"Extract"   , "tblGen2OutcomesHeight"   , 2L           , "nlsy79-gen2/Gen2OutcomesHeight"
+  ,"Extract"   , "tblGen2OutcomesMath"     , 2L           , "nlsy79-gen2/Gen2OutcomesMath"
+  ,"Extract"   , "tblGen2OutcomesWeight"   , 2L           , "nlsy79-gen2/Gen2OutcomesWeight"
 
 
-  ,"Extract"   , "tblGen2FatherFromGen1Death"   , "nlsy79-gen2/Gen2FatherFromGen1Death"
+  ,"Extract"   , "tblGen2FatherFromGen1Death"  , 2L       , "nlsy79-gen2/Gen2FatherFromGen1Death"
 
   # "Extract"  , "tbl97Roster"             , "nlsy97/97-roster.csv"
 )
@@ -57,9 +57,14 @@ col_types_default <- readr::cols(
 checkmate::assert_character(ds_extract$table_name       , min.chars=10, any.missing=F, unique=T)
 checkmate::assert_character(ds_extract$file_name        , min.chars=10, any.missing=F, unique=T)
 
-sql_template_primary_key <- "
+sql_template_primary_key_gen1 <- "
   ALTER TABLE {table_name_qualified} ADD CONSTRAINT
   	PK_{table_name} PRIMARY KEY CLUSTERED ( R0000100 )
+    WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+"
+sql_template_primary_key_gen2 <- "
+  ALTER TABLE {table_name_qualified} ADD CONSTRAINT
+  	PK_{table_name} PRIMARY KEY CLUSTERED ( C0000100 )
     WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 "
 
@@ -79,7 +84,11 @@ ds_extract <- ds_extract %>%
     sql_select      = glue::glue("SELECT TOP(100) * FROM {table_name_qualified}"),
     sql_truncate    = glue::glue("TRUNCATE TABLE {table_name_qualified}"),
     # sql_not_null    = glue::glue(sql_template_not_null),
-    sql_primary_key = glue::glue(sql_template_primary_key)
+    sql_primary_key = dplyr::recode(
+      .data$generation,
+      glue::glue(sql_template_primary_key_gen1),
+      glue::glue(sql_template_primary_key_gen2)
+    )
   )
 testit::assert("All files should be found.", all(ds_extract$extract_exist))
 
@@ -179,7 +188,8 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     OuhscMunge::upload_sqls_rodbc(
       d               = d,
       # d               = d[1:100, ],
-      table_name      = ds_extract$table_name_qualified[i] ,
+      schema_name     = ds_extract$schema[i],
+      table_name      = ds_extract$table_name[i],
       dsn_name        = "local-nlsy-links-79",
       clear_table     = F,
       create_table    = T
