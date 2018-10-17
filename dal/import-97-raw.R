@@ -58,9 +58,9 @@ sql_template_primary_key <- "
 "
 
 # ---- load-data ---------------------------------------------------------------
-ds_inventory <- database_inventory(study)
-
 start_time <- Sys.time()
+
+ds_inventory <- database_inventory(study)
 
 ds_extract <- ds_extract %>%
   dplyr::mutate(
@@ -87,11 +87,6 @@ ds_inventory <- ds_inventory %>%
   dplyr::mutate(
     table_name_qualified  =  glue::glue("{schema_name}.{table_name}")
   )
-
-
-# ---- inspect -----------------------------------------------------------------
-
-
 
 # ---- verify-values -----------------------------------------------------------
 # Sniff out problems
@@ -133,7 +128,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
   # purrr::map_chr(d, class)
   print(d, n=20)
 
-  # Write the table to teh database.  Different operations, depending if the table existings already.
+  # Write the table to the database.  Different operations, depending if the table existings already.
   if( ds_extract$table_name_qualified[i] %in% ds_inventory$table_name_qualified ) {
     #RODBC::sqlQuery(channel_odbc, ds_extract$sql_truncate[i], errors=FALSE)
     # d_peek <- RODBC::sqlQuery(channel_odbc, ds_extract$sql_select[i], errors=FALSE)
@@ -147,7 +142,7 @@ for( i in seq_len(nrow(ds_extract)) ) { # i <- 1L
     # peek <- DBI::dbListFields(channel_odbc, ds_extract$table_name_qualified[i])
     missing_in_extract    <- setdiff(peek       , colnames(d))
     missing_in_database   <- setdiff(colnames(d), peek       )
-    testit::assert("All columns in the database should be in the extract.", length(missing_in_extract )==0L )
+    testit::assert("All columns in the database should be in the extract.", length(missing_in_extract )==0L)
     testit::assert("All columns in the extract should be in the database.", length(missing_in_database)==0L)
 
     # Write to the database
