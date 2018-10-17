@@ -140,8 +140,7 @@ ds_file
 start_time <- Sys.time()
 
 ds_mapping <- readr::read_csv(file.path(directory_in, "_mapping.csv"), col_types=col_types_mapping)
-
-
+ds_mapping
 
 testit::assert("All metadata files must exist.", all(ds_file$exists))
 
@@ -164,7 +163,6 @@ rm(directory_in) # rm(col_types_tulsa)
 
 # ---- tweak-data --------------------------------------------------------------
 # OuhscMunge::column_rename_headstart(ds_county) #Spit out columns to help write call to `dplyr::rename()`.
-
 if( shallow_only ) {
   ds_mapping <- ds_mapping %>%
     dplyr::filter(.data$shallow)
@@ -265,7 +263,8 @@ if( !shallow_only ) {
     ) %>%
     dplyr::group_by(unique_index) %>%
     dplyr::mutate(
-      unique_index_violation  = (1L < n())
+      unique_index_violation  = (1L < n()),
+      variables_codes         = paste(VariableCode, collapse = "; ")
     ) %>%
     dplyr::ungroup()
 
@@ -277,6 +276,12 @@ if( !shallow_only ) {
   testit::assert("All items referenced from the variables should be in the item table.", all(d_variable$item_found))
   testit::assert("All extract sources referenced from the variables should be in the item table.", all(d_variable$extract_found))
   checkmate::assert_character(d_variable$unique_index   , pattern=pattern_unique_index  , any.missing=F, unique=T)
+
+  # d_variable %>%
+  #   dplyr::filter(unique_index_violation)
+  #
+  # d_variable %>%
+  #   dplyr::filter(!grepl(pattern_unique_index, unique_index))
 
   rm(d_item, d_variable)
 }
@@ -302,14 +307,15 @@ DBI::dbGetInfo(channel)
 channel_rodbc <- open_dsn_channel_rodbc(study)
 RODBC::odbcGetInfo(channel_rodbc)
 
-if( !shallow_only ){
-# Clear process tables
+if( !shallow_only ) {
+  # Clear process tables
   delete_results_process <- ds_table_process$sql_truncate %>%
     purrr::set_names(ds_table_process$table_name) %>%
     rev() %>%
     purrr::map(DBI::dbGetQuery, conn=channel)
   delete_results_process
 }
+
 # Delete metadata tables
 # delete_result <- RODBC::sqlQuery(channel, "DELETE FROM [NlsLinks].[Metadata].[tblVariable]", errors=FALSE)
 delete_results_metadata <- ds_file$sql_delete %>%
@@ -329,49 +335,15 @@ delete_results_metadata
 # d2 <- d[, 1:16]
 # RODBC::sqlSave(channel, dat=d, tablename="Enum.tblLURosterGen1", safer=TRUE, rownames=FALSE, append=TRUE)
 
-# ds_file <- ds_file %>%
-#   dplyr::slice(1)
 # Upload metadata tables
-
-# i <- 2L
-# OuhscMunge::upload_sqls_odbc(
-#   d             = ds_file$entries[[i]] %>%
-#     dplyr::mutate_if(is.logical, as.character),
-#   schema_name   = ds_file$schema_name[[i]],
-#   table_name    = ds_file$table_name[[i]],
-#   dsn_name      = dsn_name(study),
-#   clear_table   = F,
-#   create_table  = FALSE,
-#   convert_logical_to_integer = F
-# )
-
 purrr::pmap_int(
   list(
     ds_file$entries,
     ds_file$table_name,
     ds_file$schema_name
-    # seq_len(nrow(ds_file))
   ),
   function( d, table_name, schema_name ) {
     message("Writing to table ", table_name)
-    # OuhscMunge::upload_sqls_odbc(
-    #   d             = d,
-    #   schema_name   = schema_name,
-    #   table_name    = table_name,
-    #   dsn_name      = dsn_name(study),
-    #   clear_table   = TRUE,
-    #   create_table  = FALSE,
-    #   convert_logical_to_integer = TRUE
-    # )
-    # browser()
-    # DBI::dbWriteTable(
-    #   conn    = channel,
-    #   name    = table_name,
-    #   schema  = schema_name,
-    #   value   = d,
-    #
-    #   append  = F
-    # )
     RODBC::sqlSave(
       channel     = channel_rodbc,
       dat         = d,
