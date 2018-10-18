@@ -28,8 +28,6 @@ sql <- "
     rs.ExtendedID,
     rs.SubjectTag_S1,
     rs.SubjectTag_S2,
-    s1.SubjectID             AS SubjectID_S1,
-    s2.SubjectID             AS SubjectID_S2,
     rs.RelationshipPath,
     rs.EverSharedHouse,
     rv.R,
@@ -40,15 +38,19 @@ sql <- "
     rv.LastSurvey_S2,
     rv.RImplicitPass1,
     rv.RImplicit,
-    -- rv.RImplicit2004,
-    -- rv.RImplicit - rv.RImplicit2004 AS RImplicitDifference,
+    rv.RImplicit2004,
+    rv.RImplicit - rv.RImplicit2004 AS RImplicitDifference,
     rv.RExplicit,
     rv.RExplicitPass1,
     rv.RPass1,
     rv.RExplicitOlderSibVersion,
     rv.RExplicitYoungerSibVersion,
     rv.RImplicitSubject,
-    rv.RImplicitMother
+    rv.RImplicitMother,
+    s1.SubjectID             AS SubjectID_S1,
+    s2.SubjectID             AS SubjectID_S2,
+	  s1.Generation            AS Generation_S1,
+	  s2.Generation            AS Generation_S2
   FROM Process.tblRelatedStructure rs
     LEFT JOIN Process.tblRelatedValues rv ON rs.ID = rv.ID
     LEFT JOIN Process.tblSubject s1 ON (rs.SubjectTag_S1 = s1.SubjectTag AND rs.ExtendedID=s1.ExtendedID)
@@ -74,6 +76,7 @@ sql_archive <- "
     ,a.LastSurvey_S2
     ,a.RImplicitPass1
     ,a.RImplicit
+    ,a.RImplicit2004
     ,a.RImplicitSubject
     ,a.RImplicitMother
     ,a.RExplicitOldestSibVersion         AS RExplicitOlderSibVersion
@@ -174,8 +177,6 @@ ds_archive <-
 checkmate::assert_integer( ds$ExtendedID                 , any.missing=F , lower=2, upper=12675     )
 checkmate::assert_integer( ds$SubjectTag_S1              , any.missing=F , lower=200, upper=1267500 )
 checkmate::assert_integer( ds$SubjectTag_S2              , any.missing=F , lower=201, upper=1267501 )
-checkmate::assert_integer( ds$SubjectID_S1               , any.missing=F , lower=2, upper=1267301   )
-checkmate::assert_integer( ds$SubjectID_S2               , any.missing=F , lower=4, upper=1267501   )
 checkmate::assert_integer( ds$RelationshipPath           , any.missing=F , lower=1, upper=5         )
 checkmate::assert_logical( ds$EverSharedHouse            , any.missing=F                            )
 checkmate::assert_numeric( ds$R                          , any.missing=T , lower=0, upper=1         )
@@ -186,6 +187,8 @@ checkmate::assert_integer( ds$LastSurvey_S1              , any.missing=T , lower
 checkmate::assert_integer( ds$LastSurvey_S2              , any.missing=T , lower=1979, upper=2014   )
 checkmate::assert_numeric( ds$RImplicitPass1             , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds$RImplicit                  , any.missing=T , lower=0, upper=1         )
+checkmate::assert_numeric( ds$RImplicit2004              , any.missing=T , lower=0, upper=1         )
+checkmate::assert_numeric( ds$RImplicitDifference        , any.missing=T , lower=-1, upper=1        )
 checkmate::assert_numeric( ds$RExplicit                  , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds$RExplicitPass1             , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds$RPass1                     , any.missing=T , lower=0, upper=1         )
@@ -193,6 +196,10 @@ checkmate::assert_numeric( ds$RExplicitOlderSibVersion   , any.missing=T , lower
 checkmate::assert_numeric( ds$RExplicitYoungerSibVersion , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds$RImplicitSubject           , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds$RImplicitMother            , any.missing=T , lower=0, upper=1         )
+checkmate::assert_integer( ds$SubjectID_S1               , any.missing=F , lower=2, upper=1267301   )
+checkmate::assert_integer( ds$SubjectID_S2               , any.missing=F , lower=4, upper=1267501   )
+checkmate::assert_integer( ds$Generation_S1              , any.missing=F , lower=1, upper=2         )
+checkmate::assert_integer( ds$Generation_S2              , any.missing=F , lower=1, upper=2         )
 
 subject_combo   <- sprintf("%7i-%7i", ds$SubjectTag_S1, ds$SubjectTag_S2)
 subject_combo   <- sprintf("%07i-%07i", ds$SubjectTag_S1, ds$SubjectTag_S2)
@@ -203,7 +210,7 @@ checkmate::assert_character(subject_combo, pattern  ="^\\d{7}-\\d{7}$"          
 # ---- verify-values-archive -----------------------------------------------------------
 # Sniff out problems
 # OuhscMunge::verify_value_headstart(ds_archive)
-checkmate::assert_integer( ds_archive$AlgorithmVersion           , any.missing=F , lower=25, upper=89       )
+checkmate::assert_integer( ds_archive$AlgorithmVersion           , any.missing=F , lower=25, upper=500     )
 checkmate::assert_integer( ds_archive$ExtendedID                 , any.missing=F , lower=2, upper=12675     )
 checkmate::assert_integer( ds_archive$SubjectTag_S1              , any.missing=F , lower=200, upper=1267500 ) # There are some early algorithm version
 checkmate::assert_integer( ds_archive$SubjectTag_S2              , any.missing=F , lower=201, upper=1267501 )
@@ -218,6 +225,7 @@ checkmate::assert_integer( ds_archive$LastSurvey_S1              , any.missing=T
 checkmate::assert_integer( ds_archive$LastSurvey_S2              , any.missing=T , lower=1979, upper=2014   )
 checkmate::assert_numeric( ds_archive$RImplicitPass1             , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds_archive$RImplicit                  , any.missing=T , lower=0, upper=1         )
+checkmate::assert_numeric( ds_archive$RImplicit2004              , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds_archive$RImplicitSubject           , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds_archive$RImplicitMother            , any.missing=T , lower=0, upper=1         )
 checkmate::assert_numeric( ds_archive$RExplicitOlderSibVersion   , any.missing=T , lower=0, upper=1         )
@@ -237,13 +245,15 @@ checkmate::assert_character(algorithm_subject_combo, pattern  ="^\\d{3}:\\d{7}-\
 # ---- specify-columns-to-upload-current -----------------------------------------------
 # dput(colnames(ds)) # Print colnames for line below.
 columns_to_write_current <- c(
-  "ExtendedID", "SubjectTag_S1", "SubjectTag_S2", "SubjectID_S1",
+  "ExtendedID", "SubjectTag_S1",
   "SubjectID_S2", "RelationshipPath", "EverSharedHouse",
   "R", "RFull",
   "MultipleBirthIfSameSex", "IsMz", "LastSurvey_S1", "LastSurvey_S2",
-  "RImplicitPass1", "RImplicit", "RExplicit", "RExplicitPass1",
+  "RImplicitPass1", "RImplicit", "RImplicit2004", "RImplicitDifference",
+  "RExplicit", "RExplicitPass1",
   "RPass1", "RExplicitOlderSibVersion", "RExplicitYoungerSibVersion",
-  "RImplicitSubject", "RImplicitMother"
+  "RImplicitSubject", "RImplicitMother",
+  "SubjectTag_S2", "SubjectID_S1", "Generation_S1", "Generation_S2"
 )
 ds_slim_current <- ds %>%
   # dplyr::slice(1:100) %>%
@@ -258,7 +268,7 @@ columns_to_write_archive <- c(
   "AlgorithmVersion", "ExtendedID", "SubjectTag_S1", "SubjectTag_S2",
   "SubjectID_S1", "SubjectID_S2", "MultipleBirthIfSameSex", "IsMz",
   "SameGeneration", "RosterAssignmentID", "RRoster", "LastSurvey_S1",
-  "LastSurvey_S2", "RImplicitPass1", "RImplicit", "RImplicitSubject",
+  "LastSurvey_S2", "RImplicitPass1", "RImplicit", "RImplicit2004", "RImplicitSubject",
   "RImplicitMother", "RExplicitOlderSibVersion", "RExplicitYoungerSibVersion",
   "RExplicitPass1", "RExplicit", "RPass1", "R", "RFull", "RPeek"
 )
@@ -298,6 +308,7 @@ sql_create <- "
     LastSurvey_S2                   integer,
     RImplicitPass1                  real,
     RImplicit                       real,
+    RImplicit2004                   real,
     RImplicitSubject                real,
     RImplicitMother                 real,
     RExplicitOlderSibVersion        real,
