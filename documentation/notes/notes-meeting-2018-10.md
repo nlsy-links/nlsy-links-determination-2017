@@ -21,6 +21,10 @@
 | <em>e</em><sup>2</sup>     |          .1976673 |          .1975456 |
 | <em>N</em><sub>pairs</sub> |            24,697 |            24,697 |
 
+Remarks:
+1. Nice & consistent.  Boring is good here, I guess.
+
+
 ### Counts by path & *R*
 
 |    | Relationship     | <em>R</em> | N<sub>2010</sub> | N<sub>2014</sub> | delta    |
@@ -43,3 +47,50 @@
 | 16 | AuntNiece        |  0.25    |   7,438 |     7,450 | + 2 |
 | 17 | AuntNiece        |  0.5     |      14 |        14 |     |
 | 18 | AuntNiece        | --       |   1,845 |     1,847 | + 2 |
+
+Remarks:
+1. More parent-kids than expected?
+
+
+# Nlsy97
+
+
+|    | Relationship     | <em>R</em><sub>Full</sub> | N<sub>2014</sub> |
+| -- | :-------------   | :------  | ------: |
+|  1 | Housemates       |   0      |     177 |
+|  2 | Housemates       |   0.25   |     124 |
+|  3 | Housemates       |   0.5    |   2,083 |
+|  4 | Housemates       |   1      |      28 |
+|  5 | Housemates       |   --     |     107 |
+
+Remarks:
+* No ambiguous among the explicits
+* Few half sibs
+
+# Link Determination: Easier to Update and Maintain
+
+### Modifying Variables
+1. `tblVariable` is ordered by `Item`, `ExtractSource`, `SurveyYear`, `LoopIndex1`, `LoopIndex2` instead of ordered conceptually.  It's a little harder to see some conceptual groupings (eg, father's health in 2010), but a lot easier to determine where things go, and which extracts to use.
+1. Script for extract mitosis.  Useful to keep extract size manageable, and under database's limit of 1,024 columns.
+1. When an extract changes, the database table structure can be updated automatically (ie, adding columns, setting primary key, & disallowing nulls).
+1. Variable duplicates & discrepancies (between extracts & tables) are caught sooner in the process, with better error messages.
+
+### More Portable
+
+1. Better CSV arrangement
+1. SQLite database is used for some intermediate storage.  SQL Server isn't required to track algorithm's longitudinal changes.
+
+# Future
+
+### Package: Accommodate Bigger Datasets
+
+1. The subject * survey_year already requires manual intervention & approval from CRAN.
+1. The desired pair * survey_year will blow it up.  Additional waves & Nlsy97 won't help.
+1. Continue to embed the critical datasets within the package.  Deposit the bigger datasets in a Dataverse; it will download & cache the dataset the first time it's used on a machine.  Few people will use these, so the package won't be a bigger burden than necessary.  The dataverse exposes some simple tracking stats.
+
+### Articles
+1. NlsyLinks description in JSS
+1. ROC used in determination of links
+
+### Other
+1. Compare w/ other people's more casual 97 links?  Pros & cons.  Don't want to appear competitive or critical.
