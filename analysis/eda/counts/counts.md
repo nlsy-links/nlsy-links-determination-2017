@@ -1,6 +1,6 @@
 ---
 title: Row Counts of Tables
-date: "Date: 2018-10-14"
+date: "Date: 2019-03-19"
 output:
   html_document:
     keep_md: yes
@@ -13,6 +13,9 @@ This report documents the basic properties of the input & output tables kinship 
 
 <!--  Set the working directory to the repository's base directory; this assumes the report is nested inside of two directories.-->
 
+```
+## Warning: package 'knitr' was built under R version 3.5.3
+```
 
 <!-- Set the report-wide options, and point to the external code file. -->
 
@@ -55,7 +58,7 @@ This report documents the basic properties of the input & output tables kinship 
 |schema name |table name                 | row count| column count|
 |:-----------|:--------------------------|---------:|------------:|
 |Archive     |tblArchiveDescription      |        57|            3|
-|Archive     |tblRelatedValuesArchive    |   832,020|           24|
+|Archive     |tblRelatedValuesArchive    |   869,554|           24|
 |dbo         |sysdiagrams                |         4|            5|
 |Enum        |tblLUBioparent-not-used    |         0|            2|
 |Enum        |tblLUExtractSource         |        12|            4|
@@ -73,11 +76,11 @@ This report documents the basic properties of the input & output tables kinship 
 |Extract     |tblGen1Explicit            |    12,686|           96|
 |Extract     |tblGen1GeocodeSanitized    |     5,302|           29|
 |Extract     |tblGen1Implicit            |    12,686|          102|
-|Extract     |tblGen1Links               |    12,686|          117|
+|Extract     |tblGen1Links               |    12,686|          104|
 |Extract     |tblGen1MzDzDistinction2010 |         0|            7|
 |Extract     |tblGen1Outcomes            |    12,686|           22|
 |Extract     |tblGen2FatherFromGen1      |    12,686|          797|
-|Extract     |tblGen2FatherFromGen1Death |    12,686|          318|
+|Extract     |tblGen2FatherFromGen1Death |    12,686|          319|
 |Extract     |tblGen2ImplicitFather      |    11,521|          132|
 |Extract     |tblGen2Links               |    11,521|          207|
 |Extract     |tblGen2LinksFromGen1       |    12,686|          137|
@@ -2084,16 +2087,16 @@ and created a lot of noise in the Git difs
 |Metadata    |tblMzManual             |        90|            8|
 |Metadata    |tblRosterAssignment     |        31|           16|
 |Metadata    |tblVariable             |       551|           11|
-|Process     |tblMarker               |         0|           10|
+|Process     |tblMarker               |     5,038|           10|
 |Process     |tblOutcome              |         0|            5|
 |Process     |tblParentsOfGen1Current |         0|            3|
-|Process     |tblRelatedStructure     |         0|            8|
-|Process     |tblRelatedValues        |         0|           23|
-|Process     |tblResponse             |         0|            8|
-|Process     |tblRoster               |         0|           13|
-|Process     |tblSubject              |         0|            5|
-|Process     |tblSubjectDetails       |         0|           15|
-|Process     |tblSurveyTime           |         0|            7|
+|Process     |tblRelatedStructure     |     5,038|            8|
+|Process     |tblRelatedValues        |     2,519|           23|
+|Process     |tblResponse             |   935,636|            8|
+|Process     |tblRoster               |     5,038|           13|
+|Process     |tblSubject              |     8,984|            5|
+|Process     |tblSubjectDetails       |     8,984|           15|
+|Process     |tblSurveyTime           |   152,728|            7|
 
 ## Items 97
 
@@ -2699,89 +2702,89 @@ For the sake of documentation and reproducibility, the current report was render
   <summary>Environment <span class="glyphicon glyphicon-plus-sign"></span></summary>
 
 ```
-Session info --------------------------------------------------------------------------------------
-```
-
-```
+- Session info -----------------------------------------------------------------------------------
  setting  value                                      
- version  R version 3.5.1 Patched (2018-09-10 r75281)
+ version  R version 3.5.2 Patched (2019-01-07 r75958)
+ os       Windows >= 8 x64                           
  system   x86_64, mingw32                            
- ui       RStudio (1.2.907)                          
+ ui       RStudio                                    
  language (EN)                                       
  collate  English_United States.1252                 
+ ctype    English_United States.1252                 
  tz       America/Chicago                            
- date     2018-10-14                                 
-```
+ date     2019-03-19                                 
 
-```
-Packages ------------------------------------------------------------------------------------------
-```
+- Packages ---------------------------------------------------------------------------------------
+ package     * version    date       lib source                               
+ assertthat    0.2.0      2017-04-11 [1] CRAN (R 3.5.0)                       
+ backports     1.1.3      2018-12-14 [1] CRAN (R 3.5.1)                       
+ bit           1.1-14     2018-05-29 [1] CRAN (R 3.5.0)                       
+ bit64         0.9-7      2017-05-08 [1] CRAN (R 3.5.0)                       
+ blob          1.1.1      2018-03-25 [1] CRAN (R 3.5.0)                       
+ callr         3.1.1      2018-12-21 [1] CRAN (R 3.5.2)                       
+ checkmate     1.9.1      2019-01-15 [1] CRAN (R 3.5.2)                       
+ cli           1.0.1      2018-09-25 [1] CRAN (R 3.5.1)                       
+ colorspace    1.4-0      2019-01-13 [1] CRAN (R 3.5.2)                       
+ config        0.3        2018-03-27 [1] CRAN (R 3.5.0)                       
+ crayon        1.3.4      2017-09-16 [1] CRAN (R 3.5.0)                       
+ DBI         * 1.0.0      2018-05-02 [1] CRAN (R 3.5.0)                       
+ desc          1.2.0      2018-05-01 [1] CRAN (R 3.5.0)                       
+ devtools      2.0.1      2018-10-26 [1] CRAN (R 3.5.2)                       
+ digest        0.6.18     2018-10-10 [1] CRAN (R 3.5.1)                       
+ dplyr         0.8.0.1    2019-02-15 [1] CRAN (R 3.5.2)                       
+ evaluate      0.13       2019-02-12 [1] CRAN (R 3.5.2)                       
+ fansi         0.4.0      2018-10-05 [1] CRAN (R 3.5.1)                       
+ fs            1.2.6      2018-08-23 [1] CRAN (R 3.5.1)                       
+ glue          1.3.0      2018-07-17 [1] CRAN (R 3.5.1)                       
+ highr         0.7        2018-06-09 [1] CRAN (R 3.5.0)                       
+ hms           0.4.2.9001 2018-08-09 [1] Github (tidyverse/hms@979286f)       
+ htmltools     0.3.6      2017-04-28 [1] CRAN (R 3.5.0)                       
+ knitr       * 1.22       2019-03-08 [1] CRAN (R 3.5.3)                       
+ magrittr    * 1.5        2014-11-22 [1] CRAN (R 3.5.0)                       
+ memoise       1.1.0      2017-04-21 [1] CRAN (R 3.5.0)                       
+ munsell       0.5.0      2018-06-12 [1] CRAN (R 3.5.0)                       
+ odbc          1.1.6      2018-06-09 [1] CRAN (R 3.5.2)                       
+ OuhscMunge    0.1.9.9009 2018-11-05 [1] Github (OuhscBbmc/OuhscMunge@cfef5d7)
+ packrat       0.5.0      2018-11-14 [1] CRAN (R 3.5.1)                       
+ pillar        1.3.1      2018-12-15 [1] CRAN (R 3.5.1)                       
+ pkgbuild      1.0.2      2018-10-16 [1] CRAN (R 3.5.1)                       
+ pkgconfig     2.0.2      2018-08-16 [1] CRAN (R 3.5.1)                       
+ pkgload       1.0.2      2018-10-29 [1] CRAN (R 3.5.1)                       
+ prettyunits   1.0.2      2015-07-13 [1] CRAN (R 3.5.0)                       
+ processx      3.3.0      2019-03-10 [1] CRAN (R 3.5.3)                       
+ ps            1.3.0      2018-12-21 [1] CRAN (R 3.5.2)                       
+ purrr         0.3.1      2019-03-03 [1] CRAN (R 3.5.2)                       
+ R6            2.4.0      2019-02-14 [1] CRAN (R 3.5.2)                       
+ Rcpp          1.0.0      2018-11-07 [1] CRAN (R 3.5.1)                       
+ readr         1.3.1      2018-12-21 [1] CRAN (R 3.5.2)                       
+ remotes       2.0.2      2018-10-30 [1] CRAN (R 3.5.1)                       
+ rlang         0.3.1      2019-01-08 [1] CRAN (R 3.5.2)                       
+ rmarkdown     1.11       2018-12-08 [1] CRAN (R 3.5.1)                       
+ RODBC         1.3-15     2017-04-13 [1] CRAN (R 3.5.0)                       
+ rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.5.0)                       
+ RSQLite       2.1.1      2018-05-06 [1] CRAN (R 3.5.0)                       
+ rstudioapi    0.9.0      2019-01-09 [1] CRAN (R 3.5.1)                       
+ scales        1.0.0.9000 2019-01-11 [1] local                                
+ sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.5.1)                       
+ stringi       1.3.1      2019-02-13 [1] CRAN (R 3.5.2)                       
+ stringr       1.4.0      2019-02-10 [1] CRAN (R 3.5.2)                       
+ testit        0.9        2018-12-05 [1] CRAN (R 3.5.1)                       
+ testthat      2.0.1      2018-10-13 [1] CRAN (R 3.5.1)                       
+ tibble        2.0.1      2019-01-12 [1] CRAN (R 3.5.2)                       
+ tidyr         0.8.3      2019-03-01 [1] CRAN (R 3.5.2)                       
+ tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.5.1)                       
+ usethis       1.4.0      2018-08-14 [1] CRAN (R 3.5.1)                       
+ utf8          1.1.4      2018-05-24 [1] CRAN (R 3.5.0)                       
+ withr         2.1.2      2018-03-15 [1] CRAN (R 3.5.0)                       
+ xfun          0.5        2019-02-20 [1] CRAN (R 3.5.2)                       
+ yaml          2.2.0      2018-07-25 [1] CRAN (R 3.5.1)                       
 
-```
- package    * version    date       source                          
- assertthat   0.2.0      2017-04-11 CRAN (R 3.5.0)                  
- backports    1.1.2      2017-12-13 CRAN (R 3.5.0)                  
- base       * 3.5.1      2018-09-11 local                           
- bindr        0.1.1      2018-03-13 CRAN (R 3.5.0)                  
- bindrcpp   * 0.2.2      2018-03-29 CRAN (R 3.5.0)                  
- bit          1.1-14     2018-05-29 CRAN (R 3.5.0)                  
- bit64        0.9-7      2017-05-08 CRAN (R 3.5.0)                  
- blob         1.1.1      2018-03-25 CRAN (R 3.5.0)                  
- checkmate    1.8.5      2017-10-24 CRAN (R 3.5.1)                  
- cli          1.0.1      2018-09-25 CRAN (R 3.5.1)                  
- colorspace   1.3-2      2016-12-14 CRAN (R 3.5.0)                  
- compiler     3.5.1      2018-09-11 local                           
- config       0.3        2018-03-27 CRAN (R 3.5.0)                  
- crayon       1.3.4      2017-09-16 CRAN (R 3.5.0)                  
- datasets   * 3.5.1      2018-09-11 local                           
- DBI          1.0.0      2018-05-02 CRAN (R 3.5.0)                  
- devtools     1.13.6     2018-06-27 CRAN (R 3.5.0)                  
- digest       0.6.18     2018-10-10 CRAN (R 3.5.1)                  
- dplyr        0.7.6      2018-06-29 CRAN (R 3.5.1)                  
- evaluate     0.12       2018-10-09 CRAN (R 3.5.1)                  
- fansi        0.4.0      2018-10-05 CRAN (R 3.5.1)                  
- glue         1.3.0      2018-07-17 CRAN (R 3.5.1)                  
- graphics   * 3.5.1      2018-09-11 local                           
- grDevices  * 3.5.1      2018-09-11 local                           
- highr        0.7        2018-06-09 CRAN (R 3.5.0)                  
- hms          0.4.2.9001 2018-08-09 Github (tidyverse/hms@979286f)  
- htmltools    0.3.6      2017-04-28 CRAN (R 3.5.0)                  
- knitr      * 1.20       2018-02-20 CRAN (R 3.5.0)                  
- magrittr   * 1.5        2014-11-22 CRAN (R 3.5.0)                  
- markdown     0.8        2017-04-20 CRAN (R 3.5.0)                  
- memoise      1.1.0      2017-04-21 CRAN (R 3.5.0)                  
- methods    * 3.5.1      2018-09-11 local                           
- munsell      0.5.0      2018-06-12 CRAN (R 3.5.0)                  
- odbc         1.1.6      2018-10-13 Github (r-dbi/odbc@b4c6c3f)     
- OuhscMunge   0.1.9.9009 2018-07-14 local                           
- packrat      0.4.9-3    2018-06-01 CRAN (R 3.5.0)                  
- pillar       1.3.0      2018-07-14 CRAN (R 3.5.1)                  
- pkgconfig    2.0.2      2018-08-16 CRAN (R 3.5.1)                  
- purrr        0.2.5      2018-05-29 CRAN (R 3.5.0)                  
- R6           2.3.0      2018-10-04 CRAN (R 3.5.1)                  
- Rcpp         0.12.19    2018-10-01 CRAN (R 3.5.1)                  
- readr        1.2.0      2018-10-13 Github (tidyverse/readr@156dc31)
- rlang        0.2.2      2018-08-16 CRAN (R 3.5.1)                  
- rmarkdown    1.10       2018-06-11 CRAN (R 3.5.0)                  
- RODBC        1.3-15     2017-04-13 CRAN (R 3.5.0)                  
- rprojroot    1.3-2      2018-01-03 CRAN (R 3.5.0)                  
- rstudioapi   0.8        2018-10-02 CRAN (R 3.5.1)                  
- scales       1.0.0      2018-08-09 CRAN (R 3.5.1)                  
- stats      * 3.5.1      2018-09-11 local                           
- stringi      1.2.4      2018-07-20 CRAN (R 3.5.1)                  
- stringr      1.3.1      2018-05-10 CRAN (R 3.5.0)                  
- testit       0.8.1      2018-09-23 Github (yihui/testit@219f6f4)   
- tibble       1.4.2      2018-01-22 CRAN (R 3.5.0)                  
- tidyr        0.8.1      2018-05-18 CRAN (R 3.5.0)                  
- tidyselect   0.2.5      2018-10-11 CRAN (R 3.5.1)                  
- tools        3.5.1      2018-09-11 local                           
- utf8         1.1.4      2018-05-24 CRAN (R 3.5.0)                  
- utils      * 3.5.1      2018-09-11 local                           
- withr        2.1.2      2018-03-15 CRAN (R 3.5.0)                  
- yaml         2.2.0      2018-07-25 CRAN (R 3.5.1)                  
+[1] D:/Projects/RLibraries
+[2] D:/Users/Will/Documents/R/win-library/3.5
+[3] C:/Program Files/R/R-3.5.2patched/library
 ```
 </details>
 
 
 
-Report rendered by Will at 2018-10-14, 18:26 -0500 in 2 seconds.
+Report rendered by Will at 2019-03-19, 12:28 -0500 in 2 seconds.

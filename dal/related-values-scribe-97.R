@@ -227,7 +227,7 @@ columns_to_write_current <- c(
 )
 ds_slim_current <- ds %>%
   # dplyr::slice(1:100) %>%
-  dplyr::select_(.dots=columns_to_write_current)
+  dplyr::select(!!columns_to_write_current)
 ds_slim_current
 
 rm(columns_to_write_current)
@@ -244,7 +244,7 @@ columns_to_write_archive <- c(
 )
 ds_slim_archive <- ds_archive %>%
   # dplyr::slice(1:100) %>%
-  dplyr::select_(.dots=columns_to_write_archive)
+  dplyr::select(!!columns_to_write_archive)
 ds_slim_archive
 
 rm(columns_to_write_archive)
