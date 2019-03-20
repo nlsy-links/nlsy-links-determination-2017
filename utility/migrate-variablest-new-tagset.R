@@ -86,7 +86,7 @@ columns_to_write <- c(
 )
 ds_slim <-
   ds_old %>%
-  dplyr::select_(.dots=columns_to_write) %>%
+  dplyr::select(!!columns_to_write) %>%
   # dplyr::slice(1:100) %>%
   dplyr::mutate_if(is.logical, as.integer)       # Some databases & drivers need 0/1 instead of FALSE/TRUE.
 ds_slim

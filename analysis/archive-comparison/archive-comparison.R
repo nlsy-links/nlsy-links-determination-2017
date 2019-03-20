@@ -10,6 +10,7 @@ library(xtable)
 library(ggplot2)
 
 library(magrittr) #Pipes
+library(rlang)
 # library(ggplot2) #For graphing
 requireNamespace("plyr")
 requireNamespace("dplyr")
@@ -101,11 +102,11 @@ dsPrevious <- dsRaw[dsRaw$AlgorithmVersion==olderVersionNumber, ]
 
 
 dsCollapsedLatest <- dsLatest %>%
-  dplyr::count_(columnsToConsider) %>%
+  dplyr::count(!!! syms(columnsToConsider)) %>%
   dplyr::arrange(dplyr::desc(n))
 
 dsCollapsedPrevious <- dsPrevious %>%
-  dplyr::count_(columnsToConsider) %>%
+  dplyr::count(!!! syms(columnsToConsider)) %>%
   dplyr::arrange(dplyr::desc(n))
 
 ds <- dsCollapsedLatest %>%
