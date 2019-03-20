@@ -7,6 +7,7 @@ rm(list=ls(all=TRUE)) #Clear the memory of variables from previous run. This is 
 
 # ---- load-packages -----------------------------------------------------------
 library(magrittr) #Pipes
+library(rlang)
 library(ggplot2) #For graphing
 
 requireNamespace("dplyr")
@@ -107,7 +108,7 @@ recent_versions <- ds_description %>%
   sort() %>%
   tail(2)
 
-sql <- glue::glue("SELECT * FROM archive_97 WHERE AlgorithmVersion IN ({versions})", versions=glue::collapse(recent_versions, sep=", "))
+sql <- glue::glue("SELECT * FROM archive_97 WHERE AlgorithmVersion IN ({versions})", versions=glue::glue_collapse(recent_versions, sep=", "))
 
 cnn     <- DBI::dbConnect(drv=RSQLite::SQLite(), dbname=config$links_97_archive_db)
 dsRaw   <- DBI::dbGetQuery(cnn, sql)
@@ -190,7 +191,7 @@ ds <- dsRaw %>%
   dplyr::mutate(
     latest      = (.data$AlgorithmVersion == newerVersionNumber)
   ) %>%
-  dplyr::count_(columnsToConsider)
+  dplyr::count(!!! syms(columnsToConsider))
 # ds
 # head(dsLatest, 30)
 # head(dsPrevious, 30)
@@ -198,13 +199,13 @@ ds <- dsRaw %>%
 
 # dsCollapsedLatest <- ddply(dsLatest, .variables=columnsToConsider, .fun=nrow)
 dsCollapsedLatest <- dsLatest %>%
-  dplyr::count_(vars=columnsToConsider) %>%
+  dplyr::count(!!! syms(columnsToConsider)) %>%
   dplyr::rename(
     "count_current" = "n"
   )
 
 dsCollapsedPrevious <- dsPrevious %>%
-  dplyr::count_(vars=columnsToConsider) %>%
+  dplyr::count(!!! syms(columnsToConsider)) %>%
   dplyr::rename(
     "count_previous" = "n"
   )
@@ -441,10 +442,10 @@ ds_lu_roster %>%
   dplyr::mutate(
     Label     = paste0("<code>", Label, "</code>")
   ) %>%
-  dplyr::select_(
-    "NLSY_ID"               = "`ID`"
-    , "Exact_NLSY_Wording"  = "`Title`"
-    , "Cannonical_Label"    = "`Label`"
+  dplyr::select(
+    NLSY_ID               = ID,
+    Exact_NLSY_Wording    = Title,
+    Cannonical_Label      = Label
   ) %>%
   knitr::kable(
     format      = output_type,
