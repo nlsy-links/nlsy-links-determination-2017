@@ -3,11 +3,14 @@ Abstract
 
 The 24,000 subjects in the NLSY79 have supported [over 70 biometric publications](http://liveoak.github.io/NlsyLinks/research-publications.html) since 1993, thanks to four distinct funding cycles to estimate the Rs of the 42,000 familial pairs.  Our current project updates both generations of the NLSY79, as well as introduces an additional 2,500 kinship links for the 9,000 subjects in the newer NLSY97 sample.
 
-We discuss how these intra-individual longitudinal datasets can quickly contribute to different types of behavior genetic research labs.  First, growing young labs (who do not posses the time or funding to establish their own life course dataset) can immediately download 37 years of detailed history of the NLSY79 extended families.  Second, well-funded distinguished labs (who manage their own productive twin studies) can replicate and further support their findings by leveraging the thousands of economic, cognitive, education, and health variables.
+We discuss how these intra-individual longitudinal datasets can quickly contribute to different types of behavior genetic research labs.  
+1. small labs (who do not posses the time or funding to establish their own life course dataset) can immediately download 37 years of detailed history of the NLSY79 extended families and publish their findings.  
+2. maturing labs (who are planning which instruments to introduce in their expanding twin study) can run similar analyses of this nationally-representative sample to evaluate and justify their proposals.  
+3. distinguished labs (who manage their own productive twin study) can  leverage the thousands of economic, cognitive, education, and health variables to replicate and further support their substantive findings.
 
-In addition to the kinship links, we have derived and released additional datasets the can actuate non-BG investigations, and are available in all major formats.  R users may further benefit from the [NlsyLinks](http://liveoak.github.io/NlsyLinks/) package, which allows researchers to estimate basic biometric models with ten lines of code.
+We have derived and released additional datasets the can actuate non-BG investigations, and are available in all modeling software.  R users may further benefit from the [NlsyLinks](http://liveoak.github.io/NlsyLinks/) package, which allows researchers to estimate basic biometric models with ten lines of code.
 
-
+Loose Notes
 ------------------------
 
 * primarily about 97 + updates of 79
@@ -36,11 +39,8 @@ The NLSY is a collection of three samples tracking individuals and their offspri
 (Data collection 79 began in 1979 and has occurred every other year since, and 97 began in 97 and has been collected every other year since 1997. NLSY 79 gen1 and gen2 NLSY 97 gen1). The 97 was kind of a disappointment because most of the links are 0.5 or 0, in contrast the 79 contains a lot of half-siblings (0.25) which helped improve model estimation.  The 79 also has cross-generational links.  Conventional family with 2 gen1 sisters each with 2 gen 2 offspring, six choose 2 is 15, supports 15 links, but since the 97 has only 1 generation, 2 gen1 sisters produce only 1 link.  The NLSY links is an R package that serves 2-3 purposes.  with 3 components.  The first is it contains biometrical datasets 2) it contains functions that prepare conventional datasets for biometrical analysis, and 3) it contains   documentation and vignettes to help those without much experience with biometrical analysis or the NLSY.
 
 
-For Presentation
----------------------
-
 * Part of our grant funds people's time to support other research teams' NLSY questions, especially related to BG.
 
 * A manageable master's thesis could be replicating your team's original research (with your twin sample) with the broader NLSY subjects and variables.
 
-* List the groomed variables we already provides
+* List the groomed variables we already provide.
