@@ -1,3 +1,12 @@
+Abstract
+------------------------
+
+The 24,000 subjects in the NLSY79 has supported [over 70 biometric publications](http://liveoak.github.io/NlsyLinks/research-publications.html) since 1993, thanks to three distinct funding cycles to estimate the Rs of the 42,000 familial pairs.  Our current project updates both generations of the NLSY79, as well as introduces an additional 2,500 kinship links among the newer NLSY97 sample.
+
+We discuss how these intra-individual longitudinal datasets can contribute to different types of behavior genetic research labs.  First, new and growing labs (who do not posses the time or funding to establish their own life course dataset) can immediately download the 35-year history on extended families in the NLSY79.  Second, well-funded and established labs (who manage their own produce twin studies) can replicate and further support their findings by leveraging the thousands of economic, psychosocial, and health variables.
+
+
+------------------------
 
 * primarily about 97 + updates of 79
 
