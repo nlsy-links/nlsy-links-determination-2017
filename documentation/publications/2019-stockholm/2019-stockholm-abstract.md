@@ -1,12 +1,14 @@
 Abstract
 ------------------------
 
-The 24,000 subjects in the NLSY79 have supported [over 70 biometric publications](http://liveoak.github.io/NlsyLinks/research-publications.html) since 1993, thanks to four distinct funding cycles to estimate the Rs of the 42,000 familial pairs.  Our current project updates both generations of the NLSY79, as well as introduces an additional 2,500 kinship links for the 9,000 subjects in the newer NLSY97 sample.
+**Original and Replication Research with the NLSY79 and NLSY97 Kinship Links**
+
+The 24,000 subjects in the NLSY79 and their children have supported [over 75 biometric publications](http://liveoak.github.io/NlsyLinks/research-publications.html) since 1993, thanks to four distinct funding cycles to estimate the Rs of the 42,000 familial pairs.  Our current project updates both generations of the NLSY79, as well as introduces an additional 2,500 kinship links for the 9,000 subjects in the newer NLSY97 sample.
 
 We discuss how these intra-individual longitudinal datasets can quickly contribute to different types of behavior genetic research labs.  
 1. small labs (who do not posses the time or funding to establish their own life course dataset) can immediately download 37 years of detailed history of the NLSY79 extended families and publish their findings.  
 2. maturing labs (who are planning which instruments to introduce in their expanding twin study) can run similar analyses of this nationally-representative sample to evaluate and justify their proposals.  
-3. distinguished labs (who manage their own productive twin study) can  leverage the thousands of economic, cognitive, education, and health variables to replicate and further support their substantive findings.
+3. distinguished labs (who manage their own productive twin study) can leverage the thousands of economic, cognitive, education, and health variables to replicate and further support their substantive findings.
 
 We have derived and released additional datasets the can actuate non-BG investigations, and are available in all modeling software.  R users may further benefit from the [NlsyLinks](http://liveoak.github.io/NlsyLinks/) package, which allows researchers to estimate basic biometric models with ten lines of code.
 
