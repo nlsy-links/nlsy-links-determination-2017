@@ -15,6 +15,14 @@ We have derived and released additional datasets the can actuate non-BG investig
 Loose Notes
 ------------------------
 
+* Joe's suggestions (2019-05-20)
+    * There's value of seeing the 'http://liveoak.github.io/NlsyLinks/' site w/ screenshots.  Then go into 'Research', and demonstrate the access to the datasets (for those not using the R package).  If time, show the existence of the vignettes & documentation examples.
+    * emphasize that we have 97.  It's value migth be accelerated, when combined with 79.
+    * we're kinda done with the kinship links, except for updates.
+    * but there are other features of the package/datasets beyond the kinship link
+    * for example, all of Gen1 passed age 50, which complete the `H50` health battery (which follows the `H40` battery).
+    * the next big age marker is "the last 79Gen2 becomes age 15" (ie, crosses from 'child' to 'young adult'). "In a few years, every single Gen participant will be in the 'young adult' category.  The selection bias (towards chidren born to younger moms) is rapidly disappearing."
+
 * primarily about 97 + updates of 79
 
 * mention the NlsyLinks package
