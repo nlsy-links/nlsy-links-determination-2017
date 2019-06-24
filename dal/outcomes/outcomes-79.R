@@ -65,10 +65,10 @@ sql_subject_generation <- "
 "
 
 sql_algorithm_version_max <- "SELECT MAX(AlgorithmVersion) as version FROM Archive.tblRelatedValuesArchive"
-path_out_subject_csv_raw                <- config::get("outcomes-79-subject-csv")
-path_out_subject_rds                    <- config::get("outcomes-79-subject-rds")
-path_out_subject_survey_csv_raw         <- config::get("outcomes-79-subject-survey-csv")
-path_out_subject_survey_rds             <- config::get("outcomes-79-subject-survey-rds")
+path_out_subject_csv                    <- config::get$outcomes_79_subject_csv
+path_out_subject_rds                    <- config::get$outcomes_79_subject_rds
+path_out_subject_survey_csv             <- config::get$outcomes_79_subject_survey_csv
+path_out_subject_survey_rds             <- config::get$outcomes_79_subject_survey_rds
 
 # ---- load-data ---------------------------------------------------------------
 
@@ -88,8 +88,8 @@ dim(ds_response)
 dim(ds_subject_generation)
 ds_algorithm_version
 
-path_out_subject_csv        <- sprintf(path_out_subject_csv_raw         , ds_algorithm_version$version)
-path_out_subject_survey_csv <- sprintf(path_out_subject_survey_csv_raw  , ds_algorithm_version$version)
+# path_out_subject_csv        <- sprintf(path_out_subject_csv_raw         , ds_algorithm_version$version)
+# path_out_subject_survey_csv <- sprintf(path_out_subject_survey_csv_raw  , ds_algorithm_version$version)
 
 ds_survey_time <- ds_survey_time %>%
   tibble::as_tibble()
