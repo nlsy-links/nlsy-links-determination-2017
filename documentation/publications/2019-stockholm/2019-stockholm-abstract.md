@@ -12,6 +12,9 @@ We discuss how these intra-individual longitudinal datasets can quickly contribu
 
 We have derived and released additional datasets the can actuate non-BG investigations, and are available in all modeling software.  R users may further benefit from the [NlsyLinks](http://liveoak.github.io/NlsyLinks/) package, which allows researchers to estimate basic biometric models with ten lines of code.
 
+See the presentation at
+https://docs.google.com/presentation/d/1EPsiaxwSEM3tWsgKWKcPwYqMhIr1hfSdtZ5hSztWkyc/edit#slide=id.p
+
 Loose Notes
 ------------------------
 
